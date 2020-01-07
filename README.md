@@ -1,7 +1,7 @@
 ## A hub for issues and content suggestions for Serilum's mods on CurseForge.
 
 ## Mods
-[All Loot](https://curseforge.com/minecraft/mc-mods/all-loot)\
+[All Loot](https://curseforge.com/minecraft/mc-mods/all-loot){:target="_blank"}\
 [Altered Damage](https://curseforge.com/minecraft/mc-mods/altered-damage)\
 [Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
 [Automatic Doors](https://curseforge.com/minecraft/mc-mods/automatic-doors)\
