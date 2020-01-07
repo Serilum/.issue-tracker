@@ -2,7 +2,7 @@
 name: Submit a bug/crash/error.
 about: Something doesn't work as expected.
 title: ''
-labels: "‎‎A Bug"
+labels: "! Choose A Mod Label !, ‎‎A Bug"
 assignees: ''
 
 ---
