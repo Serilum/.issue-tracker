@@ -1,6 +1,6 @@
 ---
 name: Submit a feature idea.
-about: This could improved or added!
+about: Something could be improved or added!
 title: ''
 labels: "! Choose A Mod Label !, A Feature"
 assignees: ricksouth
