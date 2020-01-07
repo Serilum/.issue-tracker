@@ -1,5 +1,5 @@
 ## A hub for issues and content suggestions for Serilum's mods on CurseForge.
-You can create an [issue](https://github.com/ricksouth/serilum-mc-mods/issues) if you have found a bug, got a feature idea or just want to ask a question.<br>**Please specify the correct labels, thanks! :)**
+You can create an [issue](https://github.com/ricksouth/serilum-mc-mods/issues/new/choose) if you have found a bug, got a feature idea or just want to ask a question.<br>**Please specify the correct labels, thanks! :)**
 
 ## Modpacks:
 [The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)
