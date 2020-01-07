@@ -1,24 +1,15 @@
 ---
 name: Submit a feature.
-about: Something doesn't work as expected.
+about: This could improve the mod.
 title: ''
-labels: "‎‎A Bug"
+labels: A Feature
 assignees: ''
 
 ---
 
 ## **Information**
-Minecraft version: xx.xx.xx
-Forge version: xx.xx.xx
-Environment: Singleplayer / Multiplayer
-
 Mod name: Mod
-Mod version: x.x
 
 
-## **Description**
+## **Feature description**
 Hey! This happened..
-
-
-## **Crash report**
-If available.
