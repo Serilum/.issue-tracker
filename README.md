@@ -1,6 +1,6 @@
-#A hub for issues and content suggestions for Serilum's mods on CurseForge.
+# A hub for issues and content suggestions for Serilum's mods on CurseForge.
 
-##Mods
+## Mods
 [All Loot](https://curseforge.com/minecraft/mc-mods/all-loot)\
 [Altered Damage](https://curseforge.com/minecraft/mc-mods/altered-damage)\
 [Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
