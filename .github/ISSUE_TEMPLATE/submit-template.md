@@ -2,7 +2,7 @@
 name: Submit Template
 about: About this
 title: ''
-labels: __must_set_labels
+labels: ''
 assignees: ''
 
 ---
