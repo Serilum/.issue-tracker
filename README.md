@@ -2,7 +2,7 @@
 You can create an [issue](https://github.com/ricksouth/serilum-mc-mods/issues) if you have found a bug, got a feature idea or just want to ask a question.<br>**Please specify the correct labels, thanks! :)**
 
 ## Modpacks:
-[The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)\
+[The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)
 
 ## Mods:
 [All Loot](https://curseforge.com/minecraft/mc-mods/all-loot)\
