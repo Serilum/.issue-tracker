@@ -1,4 +1,4 @@
-# A hub for issues and content suggestions for Serilum's mods on CurseForge.
+## A hub for issues and content suggestions for Serilum's mods on CurseForge.
 
 ## Mods
 [All Loot](https://curseforge.com/minecraft/mc-mods/all-loot)\
