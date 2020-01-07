@@ -1,4 +1,5 @@
 ## A hub for issues and content suggestions for Serilum's mods on CurseForge.
+You can create an [Issue](https://github.com/ricksouth/serilum-mc-mods/issues) if you have found a bug, got a feature idea or just want to ask a question.
 
 ## Mods
 [All Loot](https://curseforge.com/minecraft/mc-mods/all-loot)\
