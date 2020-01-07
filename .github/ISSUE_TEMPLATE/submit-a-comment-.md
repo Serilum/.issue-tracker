@@ -2,7 +2,7 @@
 name: Submit a comment.
 about: Just want to say something? This is your chance!
 title: ''
-labels: "! Choose A Mod Label !"
+labels: "! Choose A Mod Label !, A comment"
 assignees: ricksouth
 
 ---
