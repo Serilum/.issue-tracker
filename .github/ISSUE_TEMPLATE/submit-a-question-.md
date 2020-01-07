@@ -3,7 +3,7 @@ name: Submit a question.
 about: There are no wrong questions!
 title: ''
 labels: "! Choose A Mod Label !, A Question"
-assignees: ''
+assignees: ricksouth
 
 ---
 

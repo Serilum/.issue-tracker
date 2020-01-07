@@ -3,7 +3,7 @@ name: Submit a bug/crash/error.
 about: Something doesn't work as expected.
 title: ''
 labels: "! Choose A Mod Label !, ‎‎A Bug"
-assignees: ''
+assignees: ricksouth
 
 ---
 
