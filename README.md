@@ -71,6 +71,7 @@ Following the [Forge LTS Standard](https://www.minecraftforge.net/forum/topic/79
 [Pet Names](https://curseforge.com/minecraft/mc-mods/pet-names)\
 [Player Tracking](https://curseforge.com/minecraft/mc-mods/player-tracking)\
 [Random Bone Meal Flowers](https://curseforge.com/minecraft/mc-mods/random-bone-meal-flowers)\
+[Set World Spawn Point](https://www.curseforge.com/minecraft/mc-mods/set-world-spawn-point/)\
 [Shulker Drops Two](https://curseforge.com/minecraft/mc-mods/shulker-drops-two)\
 [Silence Mobs](https://curseforge.com/minecraft/mc-mods/silence-mobs)\
 [Skeleton Horse Spawn](https://curseforge.com/minecraft/mc-mods/skeleton-horse-spawn)\
