@@ -12,6 +12,7 @@ Following the [Forge LTS Standard](https://www.minecraftforge.net/forum/topic/79
 [Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
 [Automatic Doors](https://curseforge.com/minecraft/mc-mods/automatic-doors)\
 [Better Beacon Placement](https://curseforge.com/minecraft/mc-mods/better-beacon-placement)\
+[Better Conduit Placement](https://www.curseforge.com/minecraft/mc-mods/better-conduit-placement)\
 [Better Spawner Control](https://curseforge.com/minecraft/mc-mods/better-spawner-control)\
 [Bottle Your Xp](https://curseforge.com/minecraft/mc-mods/bottle-your-xp)\
 [Breedable Killer Rabbit](https://curseforge.com/minecraft/mc-mods/breedable-killer-rabbit)\
