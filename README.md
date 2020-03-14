@@ -85,6 +85,7 @@ Following the [Forge LTS Standard](https://www.minecraftforge.net/forum/topic/79
 [Stray Spawn](https://curseforge.com/minecraft/mc-mods/stray-spawn)\
 [Superflat World No Slimes](https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes)\
 [TNT Breaks Bedrock](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock)\
+[Tree Harvesting](https://www.curseforge.com/minecraft/mc-mods/tree-harvester)\
 [Underwater Enchanting](https://curseforge.com/minecraft/mc-mods/underwater-enchanting)\
 [Unmute Mobs](https://curseforge.com/minecraft/mc-mods/unmute-mobs)\
 [Village Spawn Point](https://curseforge.com/minecraft/mc-mods/village-spawn-point)\
