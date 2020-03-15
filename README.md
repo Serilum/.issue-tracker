@@ -33,6 +33,7 @@ Following the [Forge LTS Standard](https://www.minecraftforge.net/forum/topic/79
 [Enchanting Commands](https://curseforge.com/minecraft/mc-mods/enchanting-commands)\
 [End Portal Recipe](https://curseforge.com/minecraft/mc-mods/end-portal-recipe)\
 [Entity Information](https://curseforge.com/minecraft/mc-mods/entity-information)\
+[Extended Bone Meal](https://www.curseforge.com/minecraft/mc-mods/extended-bone-meal)\
 [Extract Poison](https://curseforge.com/minecraft/mc-mods/extract-poison)\
 [Fall Through Slime](https://curseforge.com/minecraft/mc-mods/fall-through-slime)\
 [Giant Spawn](https://curseforge.com/minecraft/mc-mods/giant-spawn)\
