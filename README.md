@@ -49,6 +49,7 @@ Following the [Forge LTS Standard](https://www.minecraftforge.net/forum/topic/79
 [Inventory Totem](https://curseforge.com/minecraft/mc-mods/inventory-totem)\
 [Just Mob Heads](https://curseforge.com/minecraft/mc-mods/just-mob-heads)\
 [Just Player Heads](https://curseforge.com/minecraft/mc-mods/just-player-heads)\
+[Kelp Fertilizer](https://www.curseforge.com/minecraft/mc-mods/kelp-fertilizer)\
 [Milk All The Mobs](https://curseforge.com/minecraft/mc-mods/milk-all-the-mobs)\
 [Mooshroom Spawn](https://curseforge.com/minecraft/mc-mods/mooshroom-spawn)\
 [Mooshroom Tweaks](https://curseforge.com/minecraft/mc-mods/mooshroom-tweaks)\
