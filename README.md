@@ -1,7 +1,7 @@
 ## A hub for issues and content suggestions for Serilum's mods on CurseForge.
 You can create an [issue](https://github.com/ricksouth/serilum-mc-mods/issues/new/choose) if you have found a bug, got a feature idea or just want to ask a question.<br>**Please specify the correct labels, thanks! :)**
 
-Following the [Forge LTS Standard](https://www.minecraftforge.net/forum/topic/79304-112114-and-lts-system/), I'll only be updating mods for Minecraft version 1.14+. This will drastically reduce my workload, as Forge 1.13 has changed a lot of code. I might make an exception in some cases, but don't count on it.
+Following the [Forge LTS Standard](https://www.minecraftforge.net/forum/topic/79304-112114-and-lts-system/), I'll only be updating mods for Minecraft version 1.14+. This will drastically reduce my workload, as Forge 1.13 has changed a lot of code. I might however in some cases make an exception.
 
 ## Modpacks:
 [The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)
