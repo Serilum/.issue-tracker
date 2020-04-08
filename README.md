@@ -97,8 +97,8 @@ Following the [Forge LTS Standard](https://www.minecraftforge.net/forum/topic/79
 [Zombie Villagers From Spawner](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner)\
 
 ## Discontinued Mods:
-Mods superseded by [Edibles](https://curseforge.com/minecraft/mc-mods/edibles):\
-- [Edible Blaze Powder](https://curseforge.com/minecraft/mc-mods/edible-blaze-powder)\
-  - [Edible Glowstone](https://curseforge.com/minecraft/mc-mods/edible-glowstone)\
-  - [Edible Magma Cream](https://curseforge.com/minecraft/mc-mods/edible-magma-cream)\
+- Mods superseded by [Edibles](https://curseforge.com/minecraft/mc-mods/edibles):
+  - [Edible Blaze Powder](https://curseforge.com/minecraft/mc-mods/edible-blaze-powder)
+  - [Edible Glowstone](https://curseforge.com/minecraft/mc-mods/edible-glowstone)
+  - [Edible Magma Cream](https://curseforge.com/minecraft/mc-mods/edible-magma-cream)
   - [Edible Sugar](https://curseforge.com/minecraft/mc-mods/edible-sugar)
