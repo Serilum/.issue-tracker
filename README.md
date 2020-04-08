@@ -6,7 +6,7 @@ Following the [Forge LTS Standard](https://www.minecraftforge.net/forum/topic/79
 ## Modpacks:
 [The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)
 
-## Mods:
+## Active Mods:
 [All Loot](https://curseforge.com/minecraft/mc-mods/all-loot)\
 [Altered Damage](https://curseforge.com/minecraft/mc-mods/altered-damage)\
 [Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
@@ -26,10 +26,7 @@ Following the [Forge LTS Standard](https://www.minecraftforge.net/forum/topic/79
 [Double Doors](https://curseforge.com/minecraft/mc-mods/double-doors)\
 [Dragon Drops Elytra](https://curseforge.com/minecraft/mc-mods/dragon-drops-elytra)\
 [Easy Elytra Takeoff](https://curseforge.com/minecraft/mc-mods/easy-elytra-takeoff)\
-[Edible Blaze Powder](https://curseforge.com/minecraft/mc-mods/edible-blaze-powder)\
-[Edible Glowstone](https://curseforge.com/minecraft/mc-mods/edible-glowstone)\
-[Edible Magma Cream](https://curseforge.com/minecraft/mc-mods/edible-magma-cream)\
-[Edible Sugar](https://curseforge.com/minecraft/mc-mods/edible-sugar)\
+[Edibles](https://curseforge.com/minecraft/mc-mods/edibles)\
 [Enchanting Commands](https://curseforge.com/minecraft/mc-mods/enchanting-commands)\
 [End Portal Recipe](https://curseforge.com/minecraft/mc-mods/end-portal-recipe)\
 [Entity Information](https://curseforge.com/minecraft/mc-mods/entity-information)\
@@ -97,4 +94,10 @@ Following the [Forge LTS Standard](https://www.minecraftforge.net/forum/topic/79
 [Weaker Spiderwebs](https://curseforge.com/minecraft/mc-mods/weaker-spiderwebs)\
 [World Border](https://curseforge.com/minecraft/mc-mods/world-border)\
 [Zombie Horse Spawn](https://curseforge.com/minecraft/mc-mods/zombie-horse-spawn)\
-[Zombie Villagers From Spawner](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner)
+[Zombie Villagers From Spawner](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner)\
+
+## Discontinued Mods:
+[Edible Blaze Powder](https://curseforge.com/minecraft/mc-mods/edible-blaze-powder)\
+[Edible Glowstone](https://curseforge.com/minecraft/mc-mods/edible-glowstone)\
+[Edible Magma Cream](https://curseforge.com/minecraft/mc-mods/edible-magma-cream)\
+[Edible Sugar](https://curseforge.com/minecraft/mc-mods/edible-sugar)
