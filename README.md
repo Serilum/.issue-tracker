@@ -3,6 +3,8 @@ You can create an [issue](https://github.com/ricksouth/serilum-mc-mods/issues/ne
 
 Following the [Forge LTS Standard](https://www.minecraftforge.net/forum/topic/79304-112114-and-lts-system/), I'll only be updating mods for Minecraft version 1.14+. This will drastically reduce my workload, as Forge 1.13 has changed a lot of code. I might however in some cases make an exception.
 
+I appreciate every submitted issue greatly, and will respond to them while working through. This might take some time!
+
 ## Modpacks:
 [The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)
 
