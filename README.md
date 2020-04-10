@@ -88,7 +88,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Weaker Spiderwebs](https://curseforge.com/minecraft/mc-mods/weaker-spiderwebs)\
 [World Border](https://curseforge.com/minecraft/mc-mods/world-border)\
 [Zombie Horse Spawn](https://curseforge.com/minecraft/mc-mods/zombie-horse-spawn)\
-[Zombie Villagers From Spawner](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner)\
+[Zombie Villagers From Spawner](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner)
 
 ## Discontinued Mods:
 - Mods superseded by [Edibles](https://curseforge.com/minecraft/mc-mods/edibles):
