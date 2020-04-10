@@ -60,6 +60,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Nether Portal Spread](https://curseforge.com/minecraft/mc-mods/nether-portal-spread)\
 [No Hostiles Around Campfire](https://curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire)\
 [Nutritious Milk](https://curseforge.com/minecraft/mc-mods/nutritious-milk)\
+[Omega Mute](https://curseforge.com/minecraft/mc-mods/omega-mute)\
 [Paper Books](https://curseforge.com/minecraft/mc-mods/paper-books)\
 [Pet Names](https://curseforge.com/minecraft/mc-mods/pet-names)\
 [Player Tracking](https://curseforge.com/minecraft/mc-mods/player-tracking)\
