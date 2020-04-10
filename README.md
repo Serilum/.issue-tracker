@@ -97,12 +97,12 @@ I appreciate every submitted issue greatly, and will respond while working throu
   - [Edible Sugar](https://curseforge.com/minecraft/mc-mods/edible-sugar)
 
 - Mods superseded by [Omega Mute](https://curseforge.com/minecraft/mc-mods/omega-mute):
-  - [Mute Chickens](https://curseforge.com/minecraft/mc-mods/mute-chickens)\
-  - [Mute Conduits](https://curseforge.com/minecraft/mc-mods/mute-conduits)\
-  - [Mute Cows](https://curseforge.com/minecraft/mc-mods/mute-cows)\
-  - [Mute Droppers and Dispensers](https://curseforge.com/minecraft/mc-mods/mute-droppers-and-dispensers)\
-  - [Mute Pigs](https://curseforge.com/minecraft/mc-mods/mute-pigs)\
-  - [Mute Pistons](https://curseforge.com/minecraft/mc-mods/mute-pistons)\
-  - [Mute Sheep](https://curseforge.com/minecraft/mc-mods/mute-sheep)\
-  - [Mute Villagers](https://curseforge.com/minecraft/mc-mods/mute-villagers)\
-  - [Mute Withers](https://curseforge.com/minecraft/mc-mods/mute-withers)\
+  - [Mute Chickens](https://curseforge.com/minecraft/mc-mods/mute-chickens)
+  - [Mute Conduits](https://curseforge.com/minecraft/mc-mods/mute-conduits)
+  - [Mute Cows](https://curseforge.com/minecraft/mc-mods/mute-cows)
+  - [Mute Droppers and Dispensers](https://curseforge.com/minecraft/mc-mods/mute-droppers-and-dispensers)
+  - [Mute Pigs](https://curseforge.com/minecraft/mc-mods/mute-pigs)
+  - [Mute Pistons](https://curseforge.com/minecraft/mc-mods/mute-pistons)
+  - [Mute Sheep](https://curseforge.com/minecraft/mc-mods/mute-sheep)
+  - [Mute Villagers](https://curseforge.com/minecraft/mc-mods/mute-villagers)
+  - [Mute Withers](https://curseforge.com/minecraft/mc-mods/mute-withers)
