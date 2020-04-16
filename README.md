@@ -8,6 +8,9 @@ I appreciate every submitted issue greatly, and will respond while working throu
 ## Modpacks:
 [The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)
 
+## Library Mods:
+[Find A Block (FAB) Library](https://www.curseforge.com/minecraft/mc-mods/fab-library) (in test mode)
+
 ## Active Mods:
 [All Loot](https://curseforge.com/minecraft/mc-mods/all-loot)\
 [Altered Damage](https://curseforge.com/minecraft/mc-mods/altered-damage)\
