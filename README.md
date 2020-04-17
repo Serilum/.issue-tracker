@@ -9,7 +9,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)
 
 ## Library Mods:
-[Find A Block (FAB) Library](https://www.curseforge.com/minecraft/mc-mods/fab-library) (in test mode)
+[Find A Block (FAB) Library](https://www.curseforge.com/minecraft/mc-mods/fab-library)
 
 ## Active Mods:
 [All Loot](https://curseforge.com/minecraft/mc-mods/all-loot)\
