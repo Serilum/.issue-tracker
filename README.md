@@ -47,6 +47,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [GUI Compass](https://curseforge.com/minecraft/mc-mods/gui-compass)\
 [Healing Campfire](https://curseforge.com/minecraft/mc-mods/healing-campfire)\
 [Healing Soup](https://curseforge.com/minecraft/mc-mods/healing-soup)\
+[Hide Hands](https://curseforge.com/minecraft/mc-mods/hide-hands)\
 [Humbling Bundle](https://curseforge.com/minecraft/mc-mods/humbling-bundle)\
 [Husk Spawn](https://curseforge.com/minecraft/mc-mods/husk-spawn)\
 [Infinite Trading](https://curseforge.com/minecraft/mc-mods/infinite-trading)\
