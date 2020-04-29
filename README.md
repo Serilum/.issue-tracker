@@ -9,13 +9,15 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)
 
 ## Library Mods:
-[Find A Block (FAB) Library](https://www.curseforge.com/minecraft/mc-mods/fab-library)
+[Find A Block (FAB) Library](https://www.curseforge.com/minecraft/mc-mods/fab-library)\
+[Spawn A Mob (SAM) Library](https://www.curseforge.com/minecraft/mc-mods/sam-library) (alpha)
 
 ## Active Mods:
 [All Loot](https://curseforge.com/minecraft/mc-mods/all-loot)\
 [Altered Damage](https://curseforge.com/minecraft/mc-mods/altered-damage)\
 [Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
 [Automatic Doors](https://curseforge.com/minecraft/mc-mods/automatic-doors)\
+[Bamboo Spreads](https://curseforge.com/minecraft/mc-mods/bamboo-spreads)\
 [Better Beacon Placement](https://curseforge.com/minecraft/mc-mods/better-beacon-placement)\
 [Better Conduit Placement](https://www.curseforge.com/minecraft/mc-mods/better-conduit-placement)\
 [Better Spawner Control](https://curseforge.com/minecraft/mc-mods/better-spawner-control)\
@@ -65,8 +67,11 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Nutritious Milk](https://curseforge.com/minecraft/mc-mods/nutritious-milk)\
 [Omega Mute](https://curseforge.com/minecraft/mc-mods/omega-mute)\
 [Paper Books](https://curseforge.com/minecraft/mc-mods/paper-books)\
+[Passive Endermen](https://curseforge.com/minecraft/mc-mods/passive-endermen)\
 [Pet Names](https://curseforge.com/minecraft/mc-mods/pet-names)\
+[Player Death Kick](https://curseforge.com/minecraft/mc-mods/player-death-kick)\
 [Player Tracking](https://curseforge.com/minecraft/mc-mods/player-tracking)\
+[Player Tracking Compass](https://curseforge.com/minecraft/mc-mods/player-tracking-compass)\
 [Random Bone Meal Flowers](https://curseforge.com/minecraft/mc-mods/random-bone-meal-flowers)\
 [Replanting Crops](https://www.curseforge.com/minecraft/mc-mods/replanting-crops)\
 [Set World Spawn Point](https://www.curseforge.com/minecraft/mc-mods/set-world-spawn-point/)\
@@ -81,6 +86,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Stray Spawn](https://curseforge.com/minecraft/mc-mods/stray-spawn)\
 [Superflat World No Slimes](https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes)\
 [TNT Breaks Bedrock](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock)\
+[Transcending Trident](https://www.curseforge.com/minecraft/mc-mods/trancending-trident)\
 [Tree Harvesting](https://www.curseforge.com/minecraft/mc-mods/tree-harvester)\
 [Underwater Enchanting](https://curseforge.com/minecraft/mc-mods/underwater-enchanting)\
 [Unmute Mobs](https://curseforge.com/minecraft/mc-mods/unmute-mobs)\
