@@ -75,7 +75,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Player Tracking Compass](https://curseforge.com/minecraft/mc-mods/player-tracking-compass)\
 [Random Bone Meal Flowers](https://curseforge.com/minecraft/mc-mods/random-bone-meal-flowers)\
 [Replanting Crops](https://www.curseforge.com/minecraft/mc-mods/replanting-crops)\
-[Set World Spawn Point](https://www.curseforge.com/minecraft/mc-mods/set-world-spawn-point/)\
+[Set World Spawn Point](https://www.curseforge.com/minecraft/mc-mods/set-world-spawn-point)\
 [Shulker Drops Two](https://curseforge.com/minecraft/mc-mods/shulker-drops-two)\
 [Silence Mobs](https://curseforge.com/minecraft/mc-mods/silence-mobs)\
 [Skeleton Horse Spawn](https://curseforge.com/minecraft/mc-mods/skeleton-horse-spawn)\
@@ -87,7 +87,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Stray Spawn](https://curseforge.com/minecraft/mc-mods/stray-spawn)\
 [Superflat World No Slimes](https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes)\
 [TNT Breaks Bedrock](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock)\
-[Transcending Trident](https://www.curseforge.com/minecraft/mc-mods/trancending-trident)\
+[Transcending Trident](https://www.curseforge.com/minecraft/mc-mods/transcending-trident)\
 [Tree Harvesting](https://www.curseforge.com/minecraft/mc-mods/tree-harvester)\
 [Underwater Enchanting](https://curseforge.com/minecraft/mc-mods/underwater-enchanting)\
 [Unmute Mobs](https://curseforge.com/minecraft/mc-mods/unmute-mobs)\
