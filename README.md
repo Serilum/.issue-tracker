@@ -88,7 +88,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Superflat World No Slimes](https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes)\
 [TNT Breaks Bedrock](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock)\
 [Transcending Trident](https://www.curseforge.com/minecraft/mc-mods/transcending-trident)\
-[Tree Harvesting](https://www.curseforge.com/minecraft/mc-mods/tree-harvester)\
+[Tree Harvester](https://www.curseforge.com/minecraft/mc-mods/tree-harvester)\
 [Underwater Enchanting](https://curseforge.com/minecraft/mc-mods/underwater-enchanting)\
 [Unmute Mobs](https://curseforge.com/minecraft/mc-mods/unmute-mobs)\
 [Village Spawn Point](https://curseforge.com/minecraft/mc-mods/village-spawn-point)\
