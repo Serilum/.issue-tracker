@@ -1,0 +1,6 @@
+Changelog:
+Omega Mute
+https://www.curseforge.com/minecraft/mc-mods/omega-mute
+
+=========
+v1.0: Initial release of mod.
