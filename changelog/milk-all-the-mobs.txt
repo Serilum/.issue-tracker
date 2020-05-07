@@ -1,0 +1,6 @@
+Changelog:
+Milk All The Mobs
+https://www.curseforge.com/minecraft/mc-mods/milk-all-the-mobs
+
+=========
+v1.0: Initial release of mod.
