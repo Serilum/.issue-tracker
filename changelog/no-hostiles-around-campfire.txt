@@ -1,0 +1,31 @@
+Changelog:
+No Hostiles Around Campfire
+https://www.curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire
+
+=========
+v2.1: Minor bug fixes.
+Campfires are now instantly detected when placed.
+
+=========
+v2.0: Lots of code rewritten, bugs fixed.
+The mod is now dependent on FAB (Find A Block) Library, which efficiently keeps track of blockstates in the world. In this case we want to of course check for a campfire block nearby.
+New config options.
+
+=========
+v1.5: The campfire check now uses less computation.
+
+=========
+v1.4: The mod should now work with all modded entities which are classified as a monster, via EntityClassification.
+
+=========
+v1.3: Fixed some issues.
+
+=========
+v1.2: The mod now requires less computation.
+Improved multi-world support.
+
+=========
+v1.1: Code improvement, now removes campfires from memory when the chunk it's in is unloaded.
+
+=========
+v1.0: Initial release of mod.
