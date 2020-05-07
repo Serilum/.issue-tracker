@@ -1,0 +1,6 @@
+Changelog:
+Bottle Your Xp
+https://www.curseforge.com/minecraft/mc-mods/bottle-your-xp
+
+=========
+v1.0: Initial release of mod.
