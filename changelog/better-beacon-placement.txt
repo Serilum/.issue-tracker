@@ -1,0 +1,6 @@
+Changelog:
+Better Beacon Placement
+https://www.curseforge.com/minecraft/mc-mods/better-beacon-placement
+
+=========
+v1.0: Initial release of mod.
