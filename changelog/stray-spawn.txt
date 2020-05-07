@@ -1,0 +1,6 @@
+Changelog:
+Stray Spawn
+https://www.curseforge.com/minecraft/mc-mods/stray-spawn
+
+=========
+v1.0: Initial release of mod.
