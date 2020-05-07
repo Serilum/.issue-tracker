@@ -1,0 +1,12 @@
+Changelog:
+Silence Mobs
+https://www.curseforge.com/minecraft/mc-mods/silence-mobs
+
+=========
+v1.2: Fixed the name colour functionality after jar export.
+
+=========
+v1.1: Tweaked usage documentation within the mod.
+
+=========
+v1.0: Initial release of mod.
