@@ -1,0 +1,9 @@
+Changelog:
+Creative Block Replacer
+https://www.curseforge.com/minecraft/mc-mods/creative-block-replacer
+
+=========
+v1.1: Quick fix, the mod now only applies to players in creative mode.
+
+=========
+v1.0: Initial release of mod.
