@@ -1,0 +1,12 @@
+Changelog:
+Easy Elytra Takeoff
+https://www.curseforge.com/minecraft/mc-mods/easy-elytra-takeoff
+
+=========
+v1.2: Adds compatibility with Colytra
+
+=========
+v1.1: Code improvement.
+
+=========
+v1.0: Initial release of mod.
