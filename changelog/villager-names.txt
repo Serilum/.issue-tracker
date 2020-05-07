@@ -1,0 +1,22 @@
+Changelog:
+Villager Names
+https://www.curseforge.com/minecraft/mc-mods/villager-names
+
+=========
+v2.0: Adds the ability to create a custom name list, see the description for more details.
+
+=========
+v1.4: Trading profession suffix code improvement.
+
+=========
+v1.3: Improved compatibility with other mods extending the Villager Entity.
+
+=========
+v1.2: Code improvement. Fixed two reported issues.
+
+=========
+v1.1: Added the profession of the villager on the trade screen.
+Updated modid.
+
+=========
+v1.0: Initial release of mod.
