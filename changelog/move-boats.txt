@@ -1,0 +1,9 @@
+Changelog:
+Move Boats
+https://www.curseforge.com/minecraft/mc-mods/move-boats
+
+=========
+v1.1: Updated modid. Added a config option to only pick up the boat when the player is sneaking.
+
+=========
+v1.0: Initial release of mod.
