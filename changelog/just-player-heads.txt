@@ -1,0 +1,6 @@
+Changelog:
+Just Player Heads
+https://www.curseforge.com/minecraft/mc-mods/just-player-heads
+
+=========
+v1.0: Initial release of mod.
