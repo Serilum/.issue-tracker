@@ -1,0 +1,9 @@
+Changelog:
+GUI Compass
+https://www.curseforge.com/minecraft/mc-mods/gui-compass
+
+=========
+v1.1: Backend code improvement.
+
+=========
+v1.0: Initial release of mod.
