@@ -1,0 +1,6 @@
+Changelog:
+Enchanting Commands
+https://www.curseforge.com/minecraft/mc-mods/enchanting-commands
+
+=========
+v1.0: Initial release of mod.
