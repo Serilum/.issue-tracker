@@ -1,0 +1,12 @@
+Changelog:
+Giant Spawn
+https://www.curseforge.com/minecraft/mc-mods/giant-spawn
+
+=========
+v1.0.2: Fixed exception unique to the 1.14.4 version.
+
+=========
+v1.0.1: Updated issue unique to the 1.14.4 version.
+
+=========
+v1.0: Initial release of mod.
