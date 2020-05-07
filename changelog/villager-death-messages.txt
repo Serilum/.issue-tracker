@@ -1,0 +1,14 @@
+Changelog:
+Villager Death Messages
+https://www.curseforge.com/minecraft/mc-mods/villager-death-messages
+
+=========
+v1.2: Updated modid.
+If a villager has a custom name, it will be used in the death message.
+The location is now toggleable in the config.
+
+=========
+v1.1: Fixed an error when a villager died by fire.
+
+=========
+v1.0: Initial release of mod.
