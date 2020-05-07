@@ -1,0 +1,6 @@
+Changelog:
+Mooshroom Spawn
+https://www.curseforge.com/minecraft/mc-mods/mooshroom-spawn
+
+=========
+v1.0: Initial release of mod.
