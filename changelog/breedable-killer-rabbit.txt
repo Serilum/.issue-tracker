@@ -1,0 +1,9 @@
+Changelog:
+Breedable Killer Rabbit
+https://www.curseforge.com/minecraft/mc-mods/breedable-killer-rabbit
+
+=========
+v1.1: The Killer Rabbit is now tamable with a golden carrot.
+
+=========
+v1.0: Initial release of mod.
