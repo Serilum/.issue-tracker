@@ -1,0 +1,6 @@
+Changelog:
+Altered Damage
+https://www.curseforge.com/minecraft/mc-mods/altered-damage
+
+=========
+v1.0: Initial release of mod.
