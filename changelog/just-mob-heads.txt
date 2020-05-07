@@ -1,0 +1,46 @@
+Changelog:
+Just Mob Heads
+https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
+
+=========
+v2.2: Minor tweaks
+
+=========
+v2.1: Added head textures:
+Fox
+Panda
+Pillager
+Ravager
+Brown mooshroom
+Wandering trader
+All 4 trader llama variants
+All 11 cat variants
+All 14 villager professions
+All 14 zombie villager professions
+Removed head textures:
+1.13 cat textures
+1.13 villager professions
+1.13 zombie villager professions
+
+=========
+v2.0: Mob heads added:
+  All Villager types/professions mob heads have been added.
+  The Killer Rabbit mob head has been added
+
+I believe this means that all mobs that exist in 1.12 have been added. Let me know if I missed anything by creating an Issue.
+
+Other changes:
+The Looting enchant now has an effect on the head drop chance. This can be enabled/disabled within the config file. The chance is 3.5% at level I, 4.5% at level II, and 5.5% at level III and so forth. It also works on looting levels higher than 3.
+
+=========
+v1.3: Fixed a small issue reported by Alicatt which was an error sometimes fired when a zombie villager was killed.
+
+=========
+v1.2: Added an option to enable Creepers, Skeletons and Zombies to drop their head.
+There is a seperate drop chance for all three, which is active if the specific drop chances have been enabled.
+
+=========
+v1.1: Fixed heads not dropping due to naming inconsistencies.
+
+=========
+v1.0: Initial release of mod.
