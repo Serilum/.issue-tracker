@@ -1,0 +1,6 @@
+Changelog:
+Zombie Villagers From Spawner
+https://www.curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner
+
+=========
+v1.0: Initial release of mod.
