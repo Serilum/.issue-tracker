@@ -1,0 +1,13 @@
+Changelog:
+Cycle Paintings
+https://www.curseforge.com/minecraft/mc-mods/cycle-paintings
+
+=========
+v1.2: Fixes incompatibility problem. #70
+
+=========
+v1.1: Fixes paintings not staying in the correct position.
+Adds compatibility for modded paintings.
+
+=========
+v1.0: Initial release of mod.
