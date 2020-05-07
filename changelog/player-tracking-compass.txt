@@ -1,0 +1,9 @@
+Changelog:
+Player Tracking Compass
+https://www.curseforge.com/minecraft/mc-mods/player-tracking-compass
+
+=========
+v1.1: Removed some unused code.
+
+=========
+v1.0: Initial release of mod.
