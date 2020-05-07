@@ -1,0 +1,6 @@
+Changelog:
+Kelp Fertilizer
+https://www.curseforge.com/minecraft/mc-mods/kelp-fertilizer
+
+=========
+v1.0: Initial release of mod.
