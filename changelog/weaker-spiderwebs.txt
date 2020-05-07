@@ -1,0 +1,15 @@
+Changelog:
+Weaker Spiderwebs
+https://www.curseforge.com/minecraft/mc-mods/weaker-spiderwebs
+
+=========
+v1.3: Fixed rare concurrent modification exception. Updated modid.
+
+=========
+v1.2: Code redesign and improvement.
+
+=========
+v1.1: Breaking the spiderweb now makes a sound and shows particles.
+
+=========
+v1.0: Initial release of mod.
