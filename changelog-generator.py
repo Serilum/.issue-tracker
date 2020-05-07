@@ -15,11 +15,17 @@ def main():
 		line = decl.decode('utf-8')
 		if "/mc-mods/" in line:
 			slug = line.split("/mc-mods/")[1].split(")")[0]
-			with open(os.path.join(localpath, "changelog", slug + ".txt"), 'w') as smfile:
-				smfile.write("")
 
-		if "Discontinued" in line:
-			break
+			path = os.path.join(localpath, "changelog", slug + ".txt")
+			if (os.path.exists(path)):
+				print("Exists:", path)
+			else:
+				print("Creating:", path)
+				with open(path, 'w') as smfile:
+					smfile.write("")
+
+		#if "Discontinued" in line:
+		#	break
 
 	return
 
