@@ -1,0 +1,12 @@
+Changelog:
+Grindstone Sharper Tools
+https://www.curseforge.com/minecraft/mc-mods/grindstone-sharper-tools
+
+=========
+v1.2: Removed a debug line.
+
+=========
+v1.1: Fixed a server-side error
+
+=========
+v1.0: Initial release of mod.
