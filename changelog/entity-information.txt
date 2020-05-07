@@ -1,0 +1,9 @@
+Changelog:
+Entity Information
+https://www.curseforge.com/minecraft/mc-mods/entity-information
+
+=========
+v1.1: Changed information sent to the player to be more useful.
+
+=========
+v1.0: Initial release of mod.
