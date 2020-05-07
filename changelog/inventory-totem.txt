@@ -1,0 +1,6 @@
+Changelog:
+Inventory Totem
+https://www.curseforge.com/minecraft/mc-mods/inventory-totem
+
+=========
+v1.0: Initial release of mod.
