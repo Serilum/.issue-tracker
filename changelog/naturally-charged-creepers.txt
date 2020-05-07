@@ -1,0 +1,9 @@
+Changelog:
+Naturally Charged Creepers
+https://www.curseforge.com/minecraft/mc-mods/naturally-charged-creepers
+
+=========
+v1.1: Updated handling of the chance of a creeper being charged.
+
+=========
+v1.0: Initial release of mod.
