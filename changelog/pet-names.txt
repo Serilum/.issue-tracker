@@ -1,0 +1,6 @@
+Changelog:
+Pet Names
+https://www.curseforge.com/minecraft/mc-mods/pet-names
+
+=========
+v1.0: Initial release of mod.
