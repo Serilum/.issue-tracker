@@ -1,0 +1,6 @@
+Changelog:
+Edibles
+https://www.curseforge.com/minecraft/mc-mods/edibles
+
+=========
+v1.0: Initial release of mod.
