@@ -1,0 +1,6 @@
+Changelog:
+Mute Pigs
+https://www.curseforge.com/minecraft/mc-mods/mute-pigs
+
+=========
+v1.0: Initial release of mod.
