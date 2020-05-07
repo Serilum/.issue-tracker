@@ -3,4 +3,11 @@ Bottle Your Xp
 https://www.curseforge.com/minecraft/mc-mods/bottle-your-xp
 
 =========
+v1.2: The mod now runs a death event when a player dies from bottling xp, which makes it compatible with other mods like gravestones.
+
+=========
+v1.1: Fixes players in creative mod getting damaged.
+You can now create bottles in creative mod without xp.
+
+=========
 v1.0: Initial release of mod.
