@@ -1,0 +1,10 @@
+Changelog:
+Set World Spawn Point
+https://www.curseforge.com/minecraft/mc-mods/set-world-spawn-point
+
+=========
+v1.1: Fixed bed respawn issue. #56
+Tweaked some code.
+
+=========
+v1.0: Initial release of mod.
