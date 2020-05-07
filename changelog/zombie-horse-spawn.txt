@@ -1,0 +1,24 @@
+Changelog:
+Zombie Horse Spawn
+https://www.curseforge.com/minecraft/mc-mods/zombie-horse-spawn
+
+=========
+v2.1.2: Fixed exception unique to the 1.14.4 version.
+
+=========
+v2.1.1: Fixed issue unique to the 1.14.4 version.
+
+=========
+v2.1: Complete rewrite of code, a lot more efficient. Updated modid.
+
+=========
+v2.0: Event handler rewritten. Updated modid.
+
+=========
+v1.2: Code improvement.
+
+=========
+v1.1: Improved event handling.
+
+=========
+v1.0: Initial release of mod.
