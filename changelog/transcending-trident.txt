@@ -1,0 +1,6 @@
+Changelog:
+Transcending Trident
+https://www.curseforge.com/minecraft/mc-mods/transcending-trident
+
+=========
+v1.0: Initial release of mod.
