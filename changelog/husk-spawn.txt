@@ -1,0 +1,6 @@
+Changelog:
+Husk Spawn
+https://www.curseforge.com/minecraft/mc-mods/husk-spawn
+
+=========
+v1.0: Initial release of mod.
