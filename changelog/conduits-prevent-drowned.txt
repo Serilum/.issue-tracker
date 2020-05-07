@@ -1,0 +1,6 @@
+Changelog:
+Conduits Prevent Drowned
+https://www.curseforge.com/minecraft/mc-mods/conduits-prevent-drowned
+
+=========
+v1.0: Initial release of mod.
