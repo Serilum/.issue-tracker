@@ -1,0 +1,6 @@
+Changelog:
+Always a Wither Skull
+https://www.curseforge.com/minecraft/mc-mods/always-a-wither-skull
+
+=========
+v1.0: Initial release of mod.
