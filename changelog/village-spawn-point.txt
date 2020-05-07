@@ -1,0 +1,6 @@
+Changelog:
+Village Spawn Point
+https://www.curseforge.com/minecraft/mc-mods/village-spawn-point
+
+=========
+v1.0: Initial release of mod.
