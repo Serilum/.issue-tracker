@@ -1,0 +1,6 @@
+Changelog:
+Paper Books
+https://www.curseforge.com/minecraft/mc-mods/paper-books
+
+=========
+v1.0: Initial release of mod.
