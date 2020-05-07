@@ -1,0 +1,9 @@
+Changelog:
+TNT Breaks Bedrock
+https://www.curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock
+
+=========
+v1.1: Updated modid. Fixed other exploding entities breaking bedrock too.
+
+=========
+v1.0: Initial release of mod.
