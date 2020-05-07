@@ -1,0 +1,6 @@
+Changelog:
+Superflat World No Slimes
+https://www.curseforge.com/minecraft/mc-mods/superflat-world-no-slimes
+
+=========
+v1.0: Initial release of mod.
