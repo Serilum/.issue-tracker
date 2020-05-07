@@ -1,0 +1,9 @@
+Changelog:
+End Portal Recipe
+https://www.curseforge.com/minecraft/mc-mods/end-portal-recipe
+
+=========
+v1.1: Changed the way how the mod detects pickaxes. Paxels and other modded pickaxes are now also supported when breaking end portals.
+
+=========
+v1.0: Initial release of mod.
