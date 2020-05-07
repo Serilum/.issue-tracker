@@ -1,0 +1,6 @@
+Changelog:
+Dragon Drops Elytra
+https://www.curseforge.com/minecraft/mc-mods/dragon-drops-elytra
+
+=========
+v1.0: Initial release of mod.
