@@ -1,0 +1,15 @@
+Changelog:
+All Loot
+https://www.curseforge.com/minecraft/mc-mods/all-loot
+
+=========
+v1.3: Improved compatibility with other mods.
+
+=========
+v1.2: Fixed rare nullpointerexception.
+
+=========
+v1.1: Fixed a bug where the mod altered players' inventories.
+
+=========
+v1.0: initial release of mod.
