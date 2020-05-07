@@ -1,0 +1,9 @@
+Changelog:
+Sleep Sooner
+https://www.curseforge.com/minecraft/mc-mods/sleep-sooner
+
+=========
+v1.1: Bed-check rewritten. Mod now works in multiplayer environments.
+
+=========
+v1.0: Initial release of mod.
