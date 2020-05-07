@@ -1,0 +1,9 @@
+Changelog:
+Edible Sugar
+https://www.curseforge.com/minecraft/mc-mods/edible-sugar
+
+=========
+v2.0: Updated ModID. Added the weakness effect when eating too much sugar, which is configurable.
+
+=========
+v1.0: Initial release of mod.
