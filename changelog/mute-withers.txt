@@ -1,0 +1,6 @@
+Changelog:
+Mute Withers
+https://www.curseforge.com/minecraft/mc-mods/mute-withers
+
+=========
+v1.0: Initial release of mod.
