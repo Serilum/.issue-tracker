@@ -1,0 +1,6 @@
+Changelog:
+Mute Sheep
+https://www.curseforge.com/minecraft/mc-mods/mute-sheep
+
+=========
+v1.0: Initial release of mod.
