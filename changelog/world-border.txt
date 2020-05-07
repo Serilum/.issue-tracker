@@ -1,0 +1,12 @@
+Changelog:
+World Border
+https://www.curseforge.com/minecraft/mc-mods/world-border
+
+=========
+v1.2: Fixed an issue.
+
+=========
+v1.1: You can now loop around the world when hitting a world border, configurable in the config. This will teleport you to the negative coordinate if you hit the positive border and vice versa. Makes for infinitely looping worlds while still limiting the size.
+
+=========
+v1.0: Initial release of mod.
