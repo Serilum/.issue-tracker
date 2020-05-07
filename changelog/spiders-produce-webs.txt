@@ -1,0 +1,6 @@
+Changelog:
+Spiders Produce Webs
+https://www.curseforge.com/minecraft/mc-mods/spiders-produce-webs
+
+=========
+v1.0: Initial release of mod.
