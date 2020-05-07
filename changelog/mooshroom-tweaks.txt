@@ -1,0 +1,6 @@
+Changelog:
+Mooshroom Tweaks
+https://www.curseforge.com/minecraft/mc-mods/mooshroom-tweaks
+
+=========
+v1.0: Initial release of mod.
