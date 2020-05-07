@@ -1,0 +1,36 @@
+Changelog:
+Healing Campfire
+https://www.curseforge.com/minecraft/mc-mods/healing-campfire
+
+=========
+v2.1: Added 0.75 seconds to the duration in seconds to prevent the timer from jumping back and forth when close to a campfire.
+The mod now immediately detects a campfire placed and gives the healing effect.
+
+=========
+v2.0: Lots of code rewritten, bugs fixed.
+The mod is now dependent on FAB (Find A Block) Library, which efficiently keeps track of blockstates in the world. In this case we want to of course check for a campfire block nearby.
+
+=========
+v1.7: The mod now uses the WorldTickEvent instead of the PlayerTickEvent, which should make it a lot more efficient on servers.
+
+=========
+v1.6: The mod can now heal modded passive entities as well.
+
+=========
+v1.5: Fixed some issues.
+
+=========
+v1.4: The mod now requires less computation.
+Improved multi-world support.
+
+=========
+v1.3: Added a config option to hide the particle effects from the campfire regeneration.
+
+=========
+v1.2: Updated modid. Code improvement, less computation.
+
+=========
+v1.1: Campfires can now heal passive mobs as well as the player when they're within the radius around the campfire. This can be toggled off in the config file.
+
+=========
+v1.0: Initial release of mod.
