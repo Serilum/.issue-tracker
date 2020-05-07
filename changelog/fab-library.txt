@@ -1,0 +1,9 @@
+Changelog:
+FAB Library
+https://www.curseforge.com/minecraft/mc-mods/fab-library
+
+=========
+v1.1: Added manual update function used when a player places a block. See the Wiki for more information.
+
+=========
+v1.0: Initial release of mod.
