@@ -1,0 +1,18 @@
+Changelog:
+Nether Portal Spread
+https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
+
+=========
+v3.0: Adds a config file in ./config/netherportalspread/ named 'spreadsettings.txt' where can be specified which blocks convert into which and their weight. See the description for more details.
+
+=========
+v2.1: Improved spread functions so that the mod now requires less computation.
+
+=========
+v2.0: You can now stop the spread of a nether portal by placing two coal blocks within the radius.
+
+=========
+v1.1: Fixed null pointer exception when changing dimensions.
+
+=========
+v1.0: Initial release of mod.
