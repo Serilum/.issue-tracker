@@ -1,0 +1,16 @@
+Changelog:
+Smaller Nether Portals
+https://www.curseforge.com/minecraft/mc-mods/smaller-nether-portals
+
+=========
+v1.2: Minor code improvements.
+
+You can now place fire around the portal without it disappearing.
+Improved obsidian around check. #62
+
+=========
+v1.1: Updated modid.
+Improved some code to fix an issue.
+
+=========
+v1.0: Initial release of mod.
