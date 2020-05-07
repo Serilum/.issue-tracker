@@ -1,0 +1,9 @@
+Changelog:
+Grass Seeds
+https://www.curseforge.com/minecraft/mc-mods/grass-seeds
+
+=========
+v1.1: Added the ability to seed grass and tall grass.
+
+=========
+v1.0: Initial release of mod.
