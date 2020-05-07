@@ -1,0 +1,17 @@
+Changelog:
+Automatic Doors
+https://www.curseforge.com/minecraft/mc-mods/automatic-doors
+
+=========
+v1.3: Added a config option to not automatically open doors when sneaking.
+Fixed an issue of doors spamming sounds when standing near.
+
+=========
+v1.2: The doors now make sound when opened and closed.
+
+=========
+v1.1: Made it so that the doors won't close when the player is still standing next to it.
+Opening iron doors can be toggled off in the config.
+
+=========
+v1.0: initial release of mod.
