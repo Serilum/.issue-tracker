@@ -1,0 +1,6 @@
+Changelog:
+Passive Endermen
+https://www.curseforge.com/minecraft/mc-mods/passive-endermen
+
+=========
+v1.0: Initial release of mod.
