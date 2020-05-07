@@ -1,0 +1,12 @@
+Changelog:
+Replanting Crops
+https://www.curseforge.com/minecraft/mc-mods/replanting-crops
+
+=========
+v1.2: (1.14+) the mod now replants cocoa beans.
+
+=========
+v1.1: The mod now replants netherwart as well.
+
+=========
+v1.0: Initial release of mod.
