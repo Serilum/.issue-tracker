@@ -1,0 +1,6 @@
+Changelog:
+Better Conduit Placement
+https://www.curseforge.com/minecraft/mc-mods/better-conduit-placement
+
+=========
+v1.0: Initial release of mod.
