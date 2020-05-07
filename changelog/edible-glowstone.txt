@@ -1,0 +1,6 @@
+Changelog:
+Edible Glowstone
+https://www.curseforge.com/minecraft/mc-mods/edible-glowstone
+
+=========
+v1.0: Initial release of mod.
