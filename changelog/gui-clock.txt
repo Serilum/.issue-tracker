@@ -1,0 +1,24 @@
+Changelog:
+GUI Clock
+https://www.curseforge.com/minecraft/mc-mods/gui-clock
+
+=========
+v1.6: The 12-hour clock format now actually works as intended.
+
+=========
+v1.5: Fixes the 12-hour clock not displaying correctly.
+
+=========
+v1.4: Backend code improvement.
+
+=========
+v1.3: Game time now correctly syncs with the server.
+
+=========
+v1.2: Added mustHaveClockInInventoryForGameTime and mustHaveClockInInventoryForRealTime config options.
+
+=========
+v1.1: You can now show both in-game time and real time simultaneously.
+
+=========
+v1.0: Initial release of mod.
