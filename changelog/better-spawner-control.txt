@@ -1,0 +1,6 @@
+Changelog:
+Better Spawner Control
+https://www.curseforge.com/minecraft/mc-mods/better-spawner-control
+
+=========
+v1.0: Initial release of mod.
