@@ -1,0 +1,9 @@
+Changelog:
+Configurable Despawn Timer
+https://www.curseforge.com/minecraft/mc-mods/configurable-despawn-timer
+
+=========
+v1.1: Minor backend code improvement.
+
+=========
+v1.0: Initial release of mod.
