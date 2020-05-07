@@ -1,0 +1,9 @@
+Changelog:
+Mute Droppers and Dispensers
+https://www.curseforge.com/minecraft/mc-mods/mute-droppers-and-dispensers
+
+=========
+v1.1: The mod is now client side only, updated modid.
+
+=========
+v1.0: Initial release of mod.
