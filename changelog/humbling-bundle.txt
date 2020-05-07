@@ -1,0 +1,9 @@
+Changelog:
+Humbling Bundle
+https://www.curseforge.com/minecraft/mc-mods/humbling-bundle
+
+=========
+v1.1: Fixed a bug where player loot was being doubled too.
+
+=========
+v1.0: Initial release of mod.
