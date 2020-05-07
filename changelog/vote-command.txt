@@ -1,0 +1,6 @@
+Changelog:
+Vote Command
+https://www.curseforge.com/minecraft/mc-mods/vote-command
+
+=========
+v1.0: Initial release of mod.
