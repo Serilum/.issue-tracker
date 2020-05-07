@@ -1,0 +1,13 @@
+Changelog:
+Healing Soup
+https://www.curseforge.com/minecraft/mc-mods/healing-soup
+
+=========
+v2.0: Renamed Mushroom Stew to Mushroom Soup.
+
+Added Cactus Soup and Chocolate Milk items and recipes.
+New textures.
+Code improvements.
+
+=========
+v1.0: Initial release of mod.
