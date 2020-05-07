@@ -1,0 +1,6 @@
+Changelog:
+Infinite Trading
+https://www.curseforge.com/minecraft/mc-mods/infinite-trading
+
+=========
+v1.0: Initial release of mod.
