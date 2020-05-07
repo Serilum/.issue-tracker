@@ -1,0 +1,6 @@
+Changelog:
+Player Death Kick
+https://www.curseforge.com/minecraft/mc-mods/player-death-kick
+
+=========
+v1.0: Initial release of mod.
