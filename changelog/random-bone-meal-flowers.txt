@@ -1,0 +1,9 @@
+Changelog:
+Random Bone Meal Flowers
+https://www.curseforge.com/minecraft/mc-mods/random-bone-meal-flowers
+
+=========
+v1.1: Modded flowers will now spawn randomly, when they are registered in the ForgeRegistry.
+
+=========
+v1.0: Initial release of mod.
