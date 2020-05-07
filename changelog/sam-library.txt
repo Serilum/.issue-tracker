@@ -1,0 +1,7 @@
+Changelog:
+SAM Library
+https://www.curseforge.com/minecraft/mc-mods/sam-library
+
+=========
+v0.1: Initial alpha release for mod. Use not recommended yet.
+
