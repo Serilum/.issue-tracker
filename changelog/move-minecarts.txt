@@ -1,0 +1,12 @@
+Changelog:
+Move Minecarts
+https://www.curseforge.com/minecraft/mc-mods/move-minecarts
+
+=========
+v1.2: The config file now actually generates.
+
+=========
+v1.1: Updated modid. Added a config option to only pick up the minecart when the player is sneaking.
+
+=========
+v1.0: Initial release of mod.
