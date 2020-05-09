@@ -37,7 +37,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Enchanting Commands](https://curseforge.com/minecraft/mc-mods/enchanting-commands)\
 [End Portal Recipe](https://curseforge.com/minecraft/mc-mods/end-portal-recipe)\
 [Entity Information](https://curseforge.com/minecraft/mc-mods/entity-information)\
-[Extended Bone Meal](https://www.curseforge.com/minecraft/mc-mods/extended-bone-meal)\
+[Extended Bone Meal](https://curseforge.com/minecraft/mc-mods/extended-bone-meal)\
 [Extract Poison](https://curseforge.com/minecraft/mc-mods/extract-poison)\
 [Fall Through Slime](https://curseforge.com/minecraft/mc-mods/fall-through-slime)\
 [Giant Spawn](https://curseforge.com/minecraft/mc-mods/giant-spawn)\
@@ -54,7 +54,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Inventory Totem](https://curseforge.com/minecraft/mc-mods/inventory-totem)\
 [Just Mob Heads](https://curseforge.com/minecraft/mc-mods/just-mob-heads)\
 [Just Player Heads](https://curseforge.com/minecraft/mc-mods/just-player-heads)\
-[Kelp Fertilizer](https://www.curseforge.com/minecraft/mc-mods/kelp-fertilizer)\
+[Kelp Fertilizer](https://curseforge.com/minecraft/mc-mods/kelp-fertilizer)\
 [Milk All The Mobs](https://curseforge.com/minecraft/mc-mods/milk-all-the-mobs)\
 [Mooshroom Spawn](https://curseforge.com/minecraft/mc-mods/mooshroom-spawn)\
 [Mooshroom Tweaks](https://curseforge.com/minecraft/mc-mods/mooshroom-tweaks)\
@@ -74,8 +74,8 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Player Tracking](https://curseforge.com/minecraft/mc-mods/player-tracking)\
 [Player Tracking Compass](https://curseforge.com/minecraft/mc-mods/player-tracking-compass)\
 [Random Bone Meal Flowers](https://curseforge.com/minecraft/mc-mods/random-bone-meal-flowers)\
-[Replanting Crops](https://www.curseforge.com/minecraft/mc-mods/replanting-crops)\
-[Set World Spawn Point](https://www.curseforge.com/minecraft/mc-mods/set-world-spawn-point)\
+[Replanting Crops](https://curseforge.com/minecraft/mc-mods/replanting-crops)\
+[Set World Spawn Point](https://curseforge.com/minecraft/mc-mods/set-world-spawn-point)\
 [Shulker Drops Two](https://curseforge.com/minecraft/mc-mods/shulker-drops-two)\
 [Silence Mobs](https://curseforge.com/minecraft/mc-mods/silence-mobs)\
 [Skeleton Horse Spawn](https://curseforge.com/minecraft/mc-mods/skeleton-horse-spawn)\
@@ -87,8 +87,8 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Stray Spawn](https://curseforge.com/minecraft/mc-mods/stray-spawn)\
 [Superflat World No Slimes](https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes)\
 [TNT Breaks Bedrock](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock)\
-[Transcending Trident](https://www.curseforge.com/minecraft/mc-mods/transcending-trident)\
-[Tree Harvester](https://www.curseforge.com/minecraft/mc-mods/tree-harvester)\
+[Transcending Trident](https://curseforge.com/minecraft/mc-mods/transcending-trident)\
+[Tree Harvester](https://curseforge.com/minecraft/mc-mods/tree-harvester)\
 [Underwater Enchanting](https://curseforge.com/minecraft/mc-mods/underwater-enchanting)\
 [Unmute Mobs](https://curseforge.com/minecraft/mc-mods/unmute-mobs)\
 [Village Spawn Point](https://curseforge.com/minecraft/mc-mods/village-spawn-point)\
