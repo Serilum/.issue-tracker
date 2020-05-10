@@ -26,7 +26,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Conduits Prevent Drowned](https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned)\
 [Configurable Despawn Timer](https://curseforge.com/minecraft/mc-mods/configurable-despawn-timer)\
 [Creative Block Replacer](https://curseforge.com/minecraft/mc-mods/creative-block-replacer)\
-[Crying Ghasts](https://curseforge.com/minecraft/mc-mods/crying-ghasts) \
+[Crying Ghasts](https://curseforge.com/minecraft/mc-mods/crying-ghasts)\
 [Cycle Paintings](https://curseforge.com/minecraft/mc-mods/cycle-paintings)\
 [Despawning Eggs Hatch](https://curseforge.com/minecraft/mc-mods/despawning-eggs-hatch)\
 [Dismount Entity](https://curseforge.com/minecraft/mc-mods/dismount-entity)\
