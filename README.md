@@ -19,7 +19,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Automatic Doors](https://curseforge.com/minecraft/mc-mods/automatic-doors)\
 [Bamboo Spreads](https://curseforge.com/minecraft/mc-mods/bamboo-spreads)\
 [Better Beacon Placement](https://curseforge.com/minecraft/mc-mods/better-beacon-placement)\
-[Better Conduit Placement](https://www.curseforge.com/minecraft/mc-mods/better-conduit-placement)\
+[Better Conduit Placement](https://curseforge.com/minecraft/mc-mods/better-conduit-placement)\
 [Better Spawner Control](https://curseforge.com/minecraft/mc-mods/better-spawner-control)\
 [Bottle Your Xp](https://curseforge.com/minecraft/mc-mods/bottle-your-xp)\
 [Breedable Killer Rabbit](https://curseforge.com/minecraft/mc-mods/breedable-killer-rabbit)\
