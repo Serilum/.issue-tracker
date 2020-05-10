@@ -3,6 +3,11 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v2.1: Updated modid.
+Moved custom name file to the ./config folder instead of ./mods previously.
+Added support for modded villagers, starting with guard-villagers by tallestegg_.
+
+=========
 v2.0: Adds the ability to create a custom name list, see the description for more details.
 
 =========
