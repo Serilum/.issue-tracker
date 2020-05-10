@@ -3,6 +3,9 @@ Sleep Sooner
 https://www.curseforge.com/minecraft/mc-mods/sleep-sooner
 
 =========
+v2.0: You can prevent players from sleeping by setting the config value to > 12540 (default minecraft sleep time). So also later instead of just sooner!
+
+=========
 v1.1: Bed-check rewritten. Mod now works in multiplayer environments.
 
 =========
