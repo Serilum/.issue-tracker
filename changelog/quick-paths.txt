@@ -1,0 +1,6 @@
+Changelog:
+Quick Paths
+https://www.curseforge.com/minecraft/mc-mods/quick-paths
+
+=========
+v1.0: Initial release of mod.
