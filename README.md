@@ -73,6 +73,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Player Death Kick](https://curseforge.com/minecraft/mc-mods/player-death-kick)\
 [Player Tracking](https://curseforge.com/minecraft/mc-mods/player-tracking)\
 [Player Tracking Compass](https://curseforge.com/minecraft/mc-mods/player-tracking-compass)\
+[Quick Paths](https://curseforge.com/minecraft/mc-mods/quick-paths)\
 [Random Bone Meal Flowers](https://curseforge.com/minecraft/mc-mods/random-bone-meal-flowers)\
 [Replanting Crops](https://curseforge.com/minecraft/mc-mods/replanting-crops)\
 [Set World Spawn Point](https://curseforge.com/minecraft/mc-mods/set-world-spawn-point)\
