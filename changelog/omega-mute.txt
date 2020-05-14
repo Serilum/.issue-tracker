@@ -3,4 +3,7 @@ Omega Mute
 https://www.curseforge.com/minecraft/mc-mods/omega-mute
 
 =========
+v1.1: Added culling feature, see the description for more details. For example, you can now play a sound every 10 seconds. Immersive yet not distracting.
+
+=========
 v1.0: Initial release of mod.
