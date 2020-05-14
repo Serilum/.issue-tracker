@@ -3,6 +3,9 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v2.3: Fixed all exception incompatibilities with other mods.
+
+=========
 v2.2: Fixed RuntimeException incompatibility with other mods.
 
 =========
