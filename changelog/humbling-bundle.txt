@@ -3,6 +3,10 @@ Humbling Bundle
 https://www.curseforge.com/minecraft/mc-mods/humbling-bundle
 
 =========
+v1.2: Updated modid.
+Fixed picked up armour and equipment being doubled too. Just entity drops from the loot table now! :)
+
+=========
 v1.1: Fixed a bug where player loot was being doubled too.
 
 =========
