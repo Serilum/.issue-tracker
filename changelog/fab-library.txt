@@ -3,6 +3,9 @@ FAB Library
 https://www.curseforge.com/minecraft/mc-mods/fab-library
 
 =========
+v1.2: Added check-delay config. Improved is-block-around check.
+
+=========
 v1.1: Added manual update function used when a player places a block. See the Wiki for more information.
 
 =========
