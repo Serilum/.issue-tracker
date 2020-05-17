@@ -3,6 +3,9 @@ GUI Clock
 https://www.curseforge.com/minecraft/mc-mods/gui-clock
 
 =========
+v1.7: Added day counter. Enabled by default, can be turned off in the config.
+
+=========
 v1.6: The 12-hour clock format now actually works as intended.
 
 =========
