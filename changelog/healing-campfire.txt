@@ -3,6 +3,9 @@ Healing Campfire
 https://www.curseforge.com/minecraft/mc-mods/healing-campfire
 
 =========
+v2.2: The effect by default now only works when a campfire is lit. This can be toggled in the config.
+
+=========
 v2.1: Added 0.75 seconds to the duration in seconds to prevent the timer from jumping back and forth when close to a campfire.
 The mod now immediately detects a campfire placed and gives the healing effect.
 
