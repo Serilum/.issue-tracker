@@ -3,6 +3,9 @@ No Hostiles Around Campfire
 https://www.curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire
 
 =========
+v2.2: The effect by default now only works when a campfire is lit. This can be toggled in the config.
+
+=========
 v2.1: Minor bug fixes.
 Campfires are now instantly detected when placed.
 
