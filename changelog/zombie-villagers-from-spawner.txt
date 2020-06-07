@@ -3,4 +3,11 @@ Zombie Villagers From Spawner
 https://www.curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner
 
 =========
+v1.2: Fixed incompatibility issues with other Spawn X mobs.
+Added dependency on the Collective library mod.
+
+=========
+v1.1: Test beta release for new Collective library mod.
+
+=========
 v1.0: Initial release of mod.
