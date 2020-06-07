@@ -1,0 +1,10 @@
+Changelog:
+Collective
+https://www.curseforge.com/minecraft/mc-mods/collective
+
+=========
+v1.1: Fixed infinite loop in spawn event.
+Improved some code.
+
+=========
+v1.0: Initial release of library mod.
