@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.2: Forgot to remove debug line, fixed.
+
+=========
 v1.1: Fixed infinite loop in spawn event.
 Improved some code.
 
