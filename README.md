@@ -9,8 +9,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)
 
 ## Library Mods:
-[Find A Block (FAB) Library](https://curseforge.com/minecraft/mc-mods/fab-library)\
-[Spawn A Mob (SAM) Library](https://curseforge.com/minecraft/mc-mods/sam-library) (alpha)
+[Collective](https://curseforge.com/minecraft/mc-mods/collective)
 
 ## Active Mods:
 [All Loot](https://curseforge.com/minecraft/mc-mods/all-loot)\
@@ -118,3 +117,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
   - [Mute Sheep](https://curseforge.com/minecraft/mc-mods/mute-sheep)
   - [Mute Villagers](https://curseforge.com/minecraft/mc-mods/mute-villagers)
   - [Mute Withers](https://curseforge.com/minecraft/mc-mods/mute-withers)
+
+- Mods superseded by [Collective](https://curseforge.com/minecraft/mc-mods/collective):
+  - [Find A Block (FAB) Library](https://curseforge.com/minecraft/mc-mods/fab-library)
+  - [Spawn A Mob (SAM) Library](https://curseforge.com/minecraft/mc-mods/sam-library)
