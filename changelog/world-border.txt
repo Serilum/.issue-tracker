@@ -3,6 +3,10 @@ World Border
 https://www.curseforge.com/minecraft/mc-mods/world-border
 
 =========
+v1.3: Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
 v1.2: Fixed an issue.
 
 =========
