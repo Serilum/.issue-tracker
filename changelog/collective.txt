@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.3: Improved find position function.
+
+=========
 v1.2: Forgot to remove debug line, fixed.
 
 =========
