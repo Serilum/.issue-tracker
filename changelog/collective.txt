@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.6: Added function to determine the level of enchantments in the enchanting table based on the amount of bookshelves as an input.
+
+=========
 v1.5: Added find center of nearby village function for Village Spawn Point.
 
 =========
