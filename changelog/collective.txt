@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.4: Added broadcast function.
+
+=========
 v1.3: Improved find position function.
 
 =========
