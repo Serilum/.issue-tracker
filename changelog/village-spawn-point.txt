@@ -3,4 +3,9 @@ Village Spawn Point
 https://www.curseforge.com/minecraft/mc-mods/village-spawn-point
 
 =========
+v1.1: Released 1.15.2 version.
+Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
 v1.0: Initial release of mod.
