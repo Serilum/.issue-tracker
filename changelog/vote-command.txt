@@ -3,4 +3,7 @@ Vote Command
 https://www.curseforge.com/minecraft/mc-mods/vote-command
 
 =========
+v1.1: Added dependency on the Collective library mod.
+
+=========
 v1.0: Initial release of mod.
