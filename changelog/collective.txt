@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.5: Added find center of nearby village function for Village Spawn Point.
+
+=========
 v1.4: Added broadcast function.
 
 =========
