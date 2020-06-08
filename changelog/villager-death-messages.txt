@@ -3,6 +3,9 @@ Villager Death Messages
 https://www.curseforge.com/minecraft/mc-mods/villager-death-messages
 
 =========
+v1.4: Fixed modded villagers not being mentioned.
+
+=========
 v1.3: The mod is now compatible with modded villagers.
 Improved code efficiency.
 Added dependency on the Collective library mod.
