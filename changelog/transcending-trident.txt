@@ -3,6 +3,9 @@ Transcending Trident
 https://www.curseforge.com/minecraft/mc-mods/transcending-trident
 
 =========
+v1.2: Fixed formatting error in mods.toml
+
+=========
 v1.1: Improved code efficiency.
 Added dependency on the Collective library mod.
 
