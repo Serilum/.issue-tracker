@@ -3,6 +3,10 @@ Replanting Crops
 https://www.curseforge.com/minecraft/mc-mods/replanting-crops
 
 =========
+v1.3: Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
 v1.2: (1.14+) the mod now replants cocoa beans.
 
 =========
