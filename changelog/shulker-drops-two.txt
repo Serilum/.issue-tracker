@@ -3,6 +3,10 @@ Shulker Drops Two
 https://www.curseforge.com/minecraft/mc-mods/shulker-drops-two
 
 =========
+v1.2: Updated mods.toml
+Added dependency on the Collective library mod.
+
+=========
 v1.1: Updated modid. The mod can now be server-side only, or both the client and the server.
 
 =========
