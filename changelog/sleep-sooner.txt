@@ -3,6 +3,11 @@ Sleep Sooner
 https://www.curseforge.com/minecraft/mc-mods/sleep-sooner
 
 =========
+v2.1: Improved code efficiency.
+Added a few more linger messages.
+Added dependency on the Collective library mod.
+
+=========
 v2.0: You can prevent players from sleeping by setting the config value to > 12540 (default minecraft sleep time). So also later instead of just sooner!
 
 =========
