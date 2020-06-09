@@ -3,6 +3,11 @@ Silence Mobs
 https://www.curseforge.com/minecraft/mc-mods/silence-mobs
 
 =========
+v1.3: Fixed incompatibility issues with modded entities.
+Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
 v1.2: Fixed the name colour functionality after jar export.
 
 =========
