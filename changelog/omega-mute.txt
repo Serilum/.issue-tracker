@@ -3,6 +3,11 @@ Omega Mute
 https://www.curseforge.com/minecraft/mc-mods/omega-mute
 
 =========
+v1.2: Fixed the mod causing issues when being loaded in a server environment. It just does nothing now.
+Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
 v1.1: Added culling feature, see the description for more details. For example, you can now play a sound every 10 seconds. Immersive yet not distracting.
 
 =========
