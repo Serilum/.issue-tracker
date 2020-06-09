@@ -3,6 +3,10 @@ Smaller Nether Portals
 https://www.curseforge.com/minecraft/mc-mods/smaller-nether-portals
 
 =========
+v1.3: You can now light smaller portals when holding flint & steel in the offhand.
+Added dependency on the Collective library mod.
+
+=========
 v1.2: Minor code improvements.
 
 You can now place fire around the portal without it disappearing.
