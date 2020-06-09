@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v1.2: Separated sound code to client-only. The mod now works in multiplayer environments again.
+
+=========
 v1.1: The mod now works with all modded trees.
 Fixed sound spam when using the mod to chop down a tree.
 Improved code efficiency.
