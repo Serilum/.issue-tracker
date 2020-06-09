@@ -3,6 +3,10 @@ Skeleton Horse Spawn
 https://www.curseforge.com/minecraft/mc-mods/skeleton-horse-spawn
 
 =========
+v1.2: Fixed incompatibility issues with other Spawn mods.
+Added dependency on the Collective library.
+
+=========
 v1.1.2: Fixed exception unique to the 1.14.4 version.
 
 =========
