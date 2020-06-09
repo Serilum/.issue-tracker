@@ -3,4 +3,8 @@ Softer Hay Bales
 https://www.curseforge.com/minecraft/mc-mods/softer-hay-bales
 
 =========
+v1.1: Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
 v1.0: Initial release of mod.
