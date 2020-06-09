@@ -3,4 +3,8 @@ Stray Spawn
 https://www.curseforge.com/minecraft/mc-mods/stray-spawn
 
 =========
+v1.1: Fixed incompatibility issues with other Spawn mods.
+Added dependency on the Collective library.
+
+=========
 v1.0: Initial release of mod.
