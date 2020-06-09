@@ -3,6 +3,10 @@ Set World Spawn Point
 https://www.curseforge.com/minecraft/mc-mods/set-world-spawn-point
 
 =========
+v1.2: Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
 v1.1: Fixed bed respawn issue. #56
 Tweaked some code.
 
