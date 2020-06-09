@@ -3,6 +3,9 @@ Silence Mobs
 https://www.curseforge.com/minecraft/mc-mods/silence-mobs
 
 =========
+v1.4: Added support for entities with a custom name. Toggling the silence of them will result in "Silenced Name" and "Name" back.
+
+=========
 v1.3: Fixed incompatibility issues with modded entities.
 Improved code efficiency.
 Added dependency on the Collective library mod.
