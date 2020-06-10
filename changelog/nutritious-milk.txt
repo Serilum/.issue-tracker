@@ -3,6 +3,11 @@ Nutritious Milk
 https://www.curseforge.com/minecraft/mc-mods/nutritious-milk
 
 =========
+v1.2: Updated modid.
+Added support for modded milk buckets.
+Added dependency on the Collective library mod.
+
+=========
 v1.1: The mod now works correctly on multiplayer servers.
 
 =========
