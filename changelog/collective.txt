@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.8: Fixed Skeleton Horses and Strays spawning without the respective mods installed.
+Updated the config format.
+
+=========
 v1.7: Changed how the mod handles multiple Spawn mods effecting a single mob. For example, Skeleton Horse Spawn and Stray Spawn. It now for-loops through all possibilities.
 Cleaned up some code.
 
