@@ -3,6 +3,12 @@ Healing Campfire
 https://www.curseforge.com/minecraft/mc-mods/healing-campfire
 
 =========
+v2.3: Improved code efficiency.
+Fixed the regeneration effect not applying correctly.
+Added configurable option for the level of regeneration.
+Switched dependency from FAB Library to the Collective library mod.
+
+=========
 v2.2: The effect by default now only works when a campfire is lit. This can be toggled in the config.
 
 =========
