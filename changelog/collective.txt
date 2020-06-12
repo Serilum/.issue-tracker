@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.10: Removed debug line.
+Updated isMilkable function for Milk All The Mobs so only adult mobs can be.
+
+=========
 v1.9: Fixed horses spawned by Collective not being able to move around.
 
 =========
