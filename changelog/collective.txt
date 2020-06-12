@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.11: Updated Player Head function to the new Mojang API format.
+
+=========
 v1.10: Removed debug line.
 Updated isMilkable function for Milk All The Mobs so only adult mobs can be.
 
