@@ -3,4 +3,9 @@ Milk All The Mobs
 https://www.curseforge.com/minecraft/mc-mods/milk-all-the-mobs
 
 =========
+v1.1: Updated modid.
+Improved code to work the same as milking a cow.
+Added dependency on the Collective library mod.
+
+=========
 v1.0: Initial release of mod.
