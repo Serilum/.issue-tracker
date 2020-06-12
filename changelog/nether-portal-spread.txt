@@ -3,6 +3,13 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v3.1: Updated modid.
+Improved code efficiency.
+Fixed nullpointerexception when switching dimensions.
+Fixed custom spread block not registering correctly.
+Added dependency on the Collective library mod.
+
+=========
 v3.0: Adds a config file in ./config/netherportalspread/ named 'spreadsettings.txt' where can be specified which blocks convert into which and their weight. See the description for more details.
 
 =========
