@@ -3,6 +3,11 @@ Move Boats
 https://www.curseforge.com/minecraft/mc-mods/move-boats
 
 =========
+v1.2: Changed default config value.
+Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
 v1.1: Updated modid. Added a config option to only pick up the boat when the player is sneaking.
 
 =========
