@@ -3,6 +3,11 @@ Move Minecarts
 https://www.curseforge.com/minecraft/mc-mods/move-minecarts
 
 =========
+v1.3: Changed default config value.
+Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
 v1.2: The config file now actually generates.
 
 =========
