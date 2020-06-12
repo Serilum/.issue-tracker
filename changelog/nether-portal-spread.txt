@@ -7,7 +7,7 @@ v3.1: Updated modid.
 Improved code efficiency.
 Fixed nullpointerexception when switching dimensions.
 Fixed custom spread block not registering correctly.
-Updated default spread config file.
+Updated default spread config file. 
 Added dependency on the Collective library mod.
 
 =========
