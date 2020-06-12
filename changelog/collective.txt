@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.9: Fixed horses spawned by Collective not being able to move around.
+
+=========
 v1.8: Fixed Skeleton Horses and Strays spawning without the respective mods installed.
 Updated the config format.
 
