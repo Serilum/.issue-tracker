@@ -109,7 +109,6 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 - Mods superseded by [Omega Mute](https://curseforge.com/minecraft/mc-mods/omega-mute):
   - [Mute Chickens](https://curseforge.com/minecraft/mc-mods/mute-chickens)
-  - [Mute Conduits](https://curseforge.com/minecraft/mc-mods/mute-conduits)
   - [Mute Cows](https://curseforge.com/minecraft/mc-mods/mute-cows)
   - [Mute Droppers and Dispensers](https://curseforge.com/minecraft/mc-mods/mute-droppers-and-dispensers)
   - [Mute Pigs](https://curseforge.com/minecraft/mc-mods/mute-pigs)
