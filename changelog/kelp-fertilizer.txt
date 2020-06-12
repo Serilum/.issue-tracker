@@ -3,4 +3,8 @@ Kelp Fertilizer
 https://www.curseforge.com/minecraft/mc-mods/kelp-fertilizer
 
 =========
+v1.1: You can now put kelp inside dispensers to use the bone meal effect.
+Added dependency on the Collective library mod.
+
+=========
 v1.0: Initial release of mod.
