@@ -3,6 +3,10 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v3.1: Fixed Trader Llamas not dropping their heads.
+Added "/jmh head" command, which allows players to generate any mob head added by the mod.
+
+=========
 v3.0: Updated modid.
 Lots of code rewritten, the mod is now more efficient.
 Added "/jmh reload" command to reload new config file.
