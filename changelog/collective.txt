@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.12: Made some private functions public.
+Done some initial work towards future features.
+
+=========
 v1.11: Updated Player Head function to the new Mojang API format.
 
 =========
