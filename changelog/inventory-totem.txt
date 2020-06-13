@@ -3,4 +3,9 @@ Inventory Totem
 https://www.curseforge.com/minecraft/mc-mods/inventory-totem
 
 =========
+v1.1: Updated modid.
+Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
 v1.0: Initial release of mod.
