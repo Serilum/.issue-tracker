@@ -3,4 +3,9 @@ Husk Spawn
 https://www.curseforge.com/minecraft/mc-mods/husk-spawn
 
 =========
+v1.1: Fixed incompatibility issues with other Spawn mods.
+Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
 v1.0: Initial release of mod.
