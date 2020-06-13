@@ -3,6 +3,10 @@ Healing Soup
 https://www.curseforge.com/minecraft/mc-mods/healing-soup
 
 =========
+v2.1: You can now eat soup held in the offhand.
+Added dependency on the Collective library mod.
+
+=========
 v2.0: Renamed Mushroom Stew to Mushroom Soup.
 
 Added Cactus Soup and Chocolate Milk items and recipes.
