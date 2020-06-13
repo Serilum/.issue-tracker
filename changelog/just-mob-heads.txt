@@ -3,6 +3,15 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v3.0: Updated modid.
+Lots of code rewritten, the mod is now more efficient.
+Added "/jmh reload" command to reload new config file.
+Moved mob head drop chances config to "./config/justmobheads/headchances.txt"
+Added colour/type specific drop chances.
+Added tropical fish head.
+Added dependency on the Collective library mod.
+
+=========
 v2.2: Minor tweaks
 
 =========
