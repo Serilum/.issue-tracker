@@ -3,6 +3,10 @@ Grass Seeds
 https://www.curseforge.com/minecraft/mc-mods/grass-seeds
 
 =========
+v1.2: Updated modid.
+Added dependency on the Collective library mod.
+
+=========
 v1.1: Added the ability to seed grass and tall grass.
 
 =========
