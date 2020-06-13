@@ -3,6 +3,13 @@ GUI Compass
 https://www.curseforge.com/minecraft/mc-mods/gui-compass
 
 =========
+v1.3: Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
+v1.2: Modified code to prevent the compass' rotation desyncing after a while.
+
+=========
 v1.1: Backend code improvement.
 
 =========
