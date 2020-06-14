@@ -3,6 +3,11 @@ Despawning Eggs Hatch
 https://www.curseforge.com/minecraft/mc-mods/despawning-eggs-hatch
 
 =========
+v1.3: Improved code efficiency.
+Added configurable radius option for the entity limiter check.
+Added dependency on the Collective library mod.
+
+=========
 v1.2: Chickens now spawn at the exact location where an egg has despawned, which prevents them from getting stuck in fences and other half-blocks.
 
 =========
