@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.13: Added ItemStack process functions.
+
+=========
 v1.12: Made some private functions public.
 Done some initial work towards future features.
 
