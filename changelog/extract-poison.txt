@@ -3,4 +3,11 @@ Extract Poison
 https://www.curseforge.com/minecraft/mc-mods/extract-poison
 
 =========
+v1.1: Updated modid.
+Improved code efficiency.
+You can now still extract poison with a full inventory, it drops the poison on the ground.
+Fixed created a water bottle too while extracting poison from a pufferfish.
+Added dependency on the Collective library mod.
+
+=========
 v1.0: Initial release of mod.
