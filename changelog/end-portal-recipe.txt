@@ -3,6 +3,14 @@ End Portal Recipe
 https://www.curseforge.com/minecraft/mc-mods/end-portal-recipe
 
 =========
+v1.2: Updated modid.
+Improved code efficiency.
+Added two config options;
+  Only allow portal frames to be picked up with Silk Touch
+  Put broken portal frames directly into the inventory to lower the chance of losing them.
+Added dependency on the Collective library mod.
+
+=========
 v1.1: Changed the way how the mod detects pickaxes. Paxels and other modded pickaxes are now also supported when breaking end portals.
 
 =========
