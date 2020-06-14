@@ -3,4 +3,9 @@ Fall Through Slime
 https://www.curseforge.com/minecraft/mc-mods/fall-through-slime
 
 =========
+v1.1: Updated modid.
+Improved code to work better in multiplayer environments.
+Added dependency on the Collective library mod.
+
+=========
 v1.0: Initial release of mod.
