@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.15: Improved crop grow functions.
+Fixed version inconsistency.
+
+=========
 v1.14: Entities spawned by Entity Spawn mods now transfer their held items and armour over by default. This can be toggled in the config.
 Added crop grow functions.
 
