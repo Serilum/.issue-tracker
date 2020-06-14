@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.16: Added item and entity processing functions.
+
+=========
 v1.15: Improved crop grow functions.
 Fixed version inconsistency.
 
