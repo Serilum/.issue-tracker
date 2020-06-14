@@ -3,7 +3,7 @@ End Portal Recipe
 https://www.curseforge.com/minecraft/mc-mods/end-portal-recipe
 
 =========
-v1.2: Updated modid.
+v2.0: Updated modid.
 Improved code efficiency.
 Added two config options;
   Only allow portal frames to be picked up with Silk Touch
