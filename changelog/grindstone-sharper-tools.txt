@@ -3,6 +3,9 @@ Grindstone Sharper Tools
 https://www.curseforge.com/minecraft/mc-mods/grindstone-sharper-tools
 
 =========
+v1.4: Fixed nullpointerexception incompatibility with other mod.
+
+=========
 v1.3: Improved code efficiency.
 Fixed uses in name not applying with a custom prefix.
 Changed some default config values. 
