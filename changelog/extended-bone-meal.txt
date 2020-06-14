@@ -3,4 +3,11 @@ Extended Bone Meal
 https://www.curseforge.com/minecraft/mc-mods/extended-bone-meal
 
 =========
+v1.1: Updated modid.
+Improved code efficiency.
+Bone meal can now be used in the offhand.
+Added bone meal particle effects on use.
+Added dependency on the Collective library mod.
+
+=========
 v1.0: Initial release of mod.
