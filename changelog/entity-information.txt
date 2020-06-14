@@ -3,6 +3,11 @@ Entity Information
 https://www.curseforge.com/minecraft/mc-mods/entity-information
 
 =========
+v1.2: Updated modid.
+Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
 v1.1: Changed information sent to the player to be more useful.
 
 =========
