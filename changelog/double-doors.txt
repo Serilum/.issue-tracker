@@ -3,6 +3,10 @@ Double Doors
 https://www.curseforge.com/minecraft/mc-mods/double-doors
 
 =========
+v2.1: Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
 v2.0: The mod is now compatible with doors, trapdoors and fence gates.
 Double doors can now be triggered by a single pressure plate or button.
 Also works with fence gates/trapdoors which are on top of each other.
