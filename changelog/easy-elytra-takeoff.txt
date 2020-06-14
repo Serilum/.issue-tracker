@@ -3,6 +3,10 @@ Easy Elytra Takeoff
 https://www.curseforge.com/minecraft/mc-mods/easy-elytra-takeoff
 
 =========
+v1.3: It's now possible to take off from the ground while holding a rocket in your offhand.
+Added dependency on the Collective library mod.
+
+=========
 v1.2: Adds compatibility with Colytra
 
 =========
