@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.20: Fixed RuntimeException from use of Villager Names.
+
+=========
 v1.19: Fixed Block function returning wrong value.
 Fixed NoClassDefFoundError caused by mods without entitymodels when getting an entity string.
 
