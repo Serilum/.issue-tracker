@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.19: Fixed Block function returning wrong value.
+Fixed NoClassDefFoundError caused by mods without entitymodels when getting an entity string.
+
+=========
 v1.18: Updated BlockPos function.
 Added Block function.
 
