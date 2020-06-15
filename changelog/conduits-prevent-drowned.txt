@@ -3,4 +3,9 @@ Conduits Prevent Drowned
 https://www.curseforge.com/minecraft/mc-mods/conduits-prevent-drowned
 
 =========
+v1.1: Updated modid.
+Improved code efficiency.
+Added dependency on the Collective library mod.
+
+=========
 v1.0: Initial release of mod.
