@@ -3,4 +3,11 @@ Better Conduit Placement
 https://www.curseforge.com/minecraft/mc-mods/better-conduit-placement
 
 =========
+v1.1: Improved code efficiency.
+You can now place conduits and its blocks from your offhand.
+Changed replace water function from 5x5 to 3x3 around the conduit.
+When a player is in creative mode it now doesn't use up conduit blocks.
+Added dependency on the Collective library mod.
+
+=========
 v1.0: Initial release of mod.
