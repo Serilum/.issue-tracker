@@ -3,4 +3,11 @@ Better Beacon Placement
 https://www.curseforge.com/minecraft/mc-mods/better-beacon-placement
 
 =========
+v1.1: Improved code efficiency.
+Placing beacons in creative mode now doesn't use up blocks.
+Breaking beacons in creative mode now doesn't drop blocks.
+You can now place beacon blocks while holding them in your offhand.
+Added dependency on the Collective library mod.
+
+=========
 v1.0: Initial release of mod.
