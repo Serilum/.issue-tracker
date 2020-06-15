@@ -3,4 +3,9 @@ Bamboo Spreads
 https://www.curseforge.com/minecraft/mc-mods/bamboo-spreads
 
 =========
+v1.1: Improved code efficiency.
+Updated overridden function name from Forge 1.15 update.
+Added dependency on the Collective library mod.
+
+=========
 v1.0: Initial release of mod
