@@ -3,7 +3,8 @@ Automatic Doors
 https://www.curseforge.com/minecraft/mc-mods/automatic-doors
 
 =========
-v1.4: Improved code efficiency.
+v1.4: Updated modid.
+Improved code efficiency.
 Fixed issue of (double) doors sometimes staying open.
 Added dependency on the Collective library mod.
 
