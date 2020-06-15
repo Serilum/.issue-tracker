@@ -3,6 +3,11 @@ Automatic Doors
 https://www.curseforge.com/minecraft/mc-mods/automatic-doors
 
 =========
+v1.4: Improved code efficiency.
+Fixed issue of (double) doors sometimes staying open.
+Added dependency on the Collective library mod.
+
+=========
 v1.3: Added a config option to not automatically open doors when sneaking.
 Fixed an issue of doors spamming sounds when standing near.
 
