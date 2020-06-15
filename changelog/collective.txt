@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.18: Updated BlockPos function.
+Added Block function.
+
+=========
 v1.17: Added entity damage functions
 
 =========
