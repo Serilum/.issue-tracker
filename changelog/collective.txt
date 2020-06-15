@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.17: Added entity damage functions
+
+=========
 v1.16: Added item and entity processing functions.
 
 =========
