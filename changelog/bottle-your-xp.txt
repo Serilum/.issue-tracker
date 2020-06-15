@@ -3,6 +3,11 @@ Bottle Your Xp
 https://www.curseforge.com/minecraft/mc-mods/bottle-your-xp
 
 =========
+v1.3: Improved code efficiency.
+You can now bottle xp while having the glass bottle in your offhand.
+Added dependency on the Collective library mod.
+
+=========
 v1.2: The mod now runs a death event when a player dies from bottling xp, which makes it compatible with other mods like gravestones.
 
 =========
