@@ -12,7 +12,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Collective](https://curseforge.com/minecraft/mc-mods/collective)
 
 ## Active Mods:
-[All Loot](https://curseforge.com/minecraft/mc-mods/all-loot)\
+[All Loot Drops](https://curseforge.com/minecraft/mc-mods/all-loot-drops)\
 [Altered Damage](https://curseforge.com/minecraft/mc-mods/altered-damage)\
 [Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
 [Automatic Doors](https://curseforge.com/minecraft/mc-mods/automatic-doors)\
