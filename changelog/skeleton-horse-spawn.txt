@@ -3,6 +3,9 @@ Skeleton Horse Spawn
 https://www.curseforge.com/minecraft/mc-mods/skeleton-horse-spawn
 
 =========
+v1.3: Fixed skeleton horses burning in daylight even when there was a solid block above.
+
+=========
 v1.2: Fixed incompatibility issues with other Spawn mods.
 Added dependency on the Collective library.
 
