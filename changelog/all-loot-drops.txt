@@ -3,6 +3,13 @@ All Loot Drops
 https://www.curseforge.com/minecraft/mc-mods/all-loot-drops
 
 =========
+v2.0: Updated mod name and modid.
+Improved code efficiency.
+The mod now works with any entity that has a loot table, modded included. It uses the Collective library to procedurally generate all possible drops on first load.
+Added two config options, which allow the looting enchant to have an effect on loot quantity.
+Added dependency on the Collective library mod.
+
+=========
 v1.3: Improved compatibility with other mods.
 
 =========
