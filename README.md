@@ -120,3 +120,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 - Mods superseded by [Collective](https://curseforge.com/minecraft/mc-mods/collective):
   - [Find A Block (FAB) Library](https://curseforge.com/minecraft/mc-mods/fab-library)
   - [Spawn A Mob (SAM) Library](https://curseforge.com/minecraft/mc-mods/sam-library)
+
+
+## Waiting For Approval Mods:
+[Placeable Blaze Rods](https://curseforge.com/minecraft/mc-mods/placeable-blaze-rods)
