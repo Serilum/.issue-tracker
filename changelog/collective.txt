@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.22: For the Bamboo Spreads mod, fixed function used for bamboo spreading. Now allows spread to modded blocks which support growth.
+
+=========
 v1.21: Added function which procedurally generates all possible loot from all entities, modded included, to a variable. Will only run if a mod depends on it.
 Added configurable option for this function.
 
