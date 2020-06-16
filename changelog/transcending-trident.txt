@@ -3,6 +3,9 @@ Transcending Trident
 https://www.curseforge.com/minecraft/mc-mods/transcending-trident
 
 =========
+v1.3: Fixed mustHoldBucketOfWater config option not working correctly.
+
+=========
 v1.2: Fixed formatting error in mods.toml
 
 =========
