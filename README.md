@@ -123,4 +123,5 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
+[Ice Prevents Crop Growth](https://curseforge.com/minecraft/mc-mods/ice-prevents-crop-growth)\
 [Placeable Blaze Rods](https://curseforge.com/minecraft/mc-mods/placeable-blaze-rods)
