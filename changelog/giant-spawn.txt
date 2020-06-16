@@ -3,6 +3,9 @@ Giant Spawn
 https://www.curseforge.com/minecraft/mc-mods/giant-spawn
 
 =========
+v2.1: Fixed giants burning in daylight even when there was a solid block above.
+
+=========
 v2.0: Improved code efficiency.
 Added custom AI to giants, based on the zombie AI. They now move!
 Added config options to change Giant movement speed and attack damage.
