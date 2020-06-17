@@ -3,6 +3,11 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v3.2: Updated modid.
+Improved code efficiency.
+Added a feature to the mod where on portal creation a message is send to player around the portal informating them of the spread, and how to stop it. Also added a message to confirm the stop of the nether spread when the preventspread blocks are added within the radius. This is connected to 4 new config options to control the functionality.
+
+=========
 v3.1: Updated modid.
 Improved code efficiency.
 Fixed nullpointerexception when switching dimensions.
