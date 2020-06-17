@@ -49,6 +49,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Hide Hands](https://curseforge.com/minecraft/mc-mods/hide-hands)\
 [Humbling Bundle](https://curseforge.com/minecraft/mc-mods/humbling-bundle)\
 [Husk Spawn](https://curseforge.com/minecraft/mc-mods/husk-spawn)\
+[Ice Prevents Crop Growth](https://curseforge.com/minecraft/mc-mods/ice-prevents-crop-growth)\
 [Infinite Trading](https://curseforge.com/minecraft/mc-mods/infinite-trading)\
 [Inventory Totem](https://curseforge.com/minecraft/mc-mods/inventory-totem)\
 [Just Mob Heads](https://curseforge.com/minecraft/mc-mods/just-mob-heads)\
@@ -69,6 +70,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Paper Books](https://curseforge.com/minecraft/mc-mods/paper-books)\
 [Passive Endermen](https://curseforge.com/minecraft/mc-mods/passive-endermen)\
 [Pet Names](https://curseforge.com/minecraft/mc-mods/pet-names)\
+[Placeable Blaze Rods](https://curseforge.com/minecraft/mc-mods/placeable-blaze-rods)\
 [Player Death Kick](https://curseforge.com/minecraft/mc-mods/player-death-kick)\
 [Player Tracking](https://curseforge.com/minecraft/mc-mods/player-tracking)\
 [Player Tracking Compass](https://curseforge.com/minecraft/mc-mods/player-tracking-compass)\
@@ -123,5 +125,3 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[Ice Prevents Crop Growth](https://curseforge.com/minecraft/mc-mods/ice-prevents-crop-growth)\
-[Placeable Blaze Rods](https://curseforge.com/minecraft/mc-mods/placeable-blaze-rods)
