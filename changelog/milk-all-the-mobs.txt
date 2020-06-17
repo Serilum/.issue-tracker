@@ -3,6 +3,9 @@ Milk All The Mobs
 https://www.curseforge.com/minecraft/mc-mods/milk-all-the-mobs
 
 =========
+v1.2: Fixed incompatibility issue with other mods where the milk would be placed on the floor immediately after collecting it.
+
+=========
 v1.1: Updated modid.
 Improved code to work the same as milking a cow.
 Added dependency on the Collective library mod.
