@@ -3,6 +3,11 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.23: Fixed nullpointerexception incompatibility with other mod.
+Added The Farlander modded villagers to be named with Villager Names.
+Added the Wandering Trader to be named with Villager Names.
+
+=========
 v1.22: For the Bamboo Spreads mod, fixed function used for bamboo spreading. Now allows spread to modded blocks which support growth.
 
 =========
