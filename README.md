@@ -126,4 +126,5 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 ## Waiting For Approval Mods:
 [First Join Message](https://curseforge.com/minecraft/mc-mods/first-join-message)\
-[Starter Kit](https://curseforge.com/minecraft/mc-mods/starter-kit)
+[Starter Kit](https://curseforge.com/minecraft/mc-mods/starter-kit)\
+[Zombie Proof Doors](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors)
