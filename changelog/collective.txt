@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.26: Updated "is player joining the world for the first time"-function to use the dependent mod's id, allows more than one query.
+Added isNumeric(string) function.
+
+=========
 v1.25: When using the last of an itemstack which gives an item as a result, collective will now check if there is a non-max-stack and add the item to that prior to setting it to the hand used.
 Added a function to check whether a player has joined a world for the first time.
 
