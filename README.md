@@ -125,3 +125,4 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
+[Starter Kit](https://curseforge.com/minecraft/mc-mods/starter-kit)
