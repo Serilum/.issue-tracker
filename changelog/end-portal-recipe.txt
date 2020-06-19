@@ -3,6 +3,9 @@ End Portal Recipe
 https://www.curseforge.com/minecraft/mc-mods/end-portal-recipe
 
 =========
+v2.1: Fixed config file not generating correctly.
+
+=========
 v2.0: Updated modid.
 Improved code efficiency.
 Added two config options;
