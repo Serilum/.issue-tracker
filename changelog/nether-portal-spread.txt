@@ -3,6 +3,11 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v3.4: Improved code efficiency.
+Changed default amount of preventspread blocks needed from 2 to 4.
+The mod now checks for instanceof NetherPortalBlock to increase compatibility with other modded nether portals.
+
+=========
 v3.3: Fixed latest mod update not working correctly in multiplayer environments.
 Fixed default config values set too low.
 Changed default spread message on portal creation.
