@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.27: Improved efficiency of finding a specific blockstate in the world quite a lot. Used in Healing Campfire and No Hostiles Around Campfire mods.
+
+=========
 v1.26: Updated "is player joining the world for the first time"-function to use the dependent mod's id, allows more than one query.
 Added isNumeric(string) function.
 
