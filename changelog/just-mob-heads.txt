@@ -3,6 +3,10 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v3.2: Updated sheep head textures.
+Added jeb_ sheep mob head.
+
+=========
 v3.1: Fixed Trader Llamas not dropping their heads.
 Added "/jmh head" command, which allows players to generate any mob head added by the mod.
 
