@@ -2,7 +2,7 @@
 name: Submit a feature idea.
 about: Something could be improved or added!
 title: ''
-labels: "! Choose A Mod Label !, A Feature"
+labels: "Mod Label Needed, A Feature"
 assignees: ricksouth
 
 ---
