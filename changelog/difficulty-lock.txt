@@ -1,0 +1,6 @@
+Changelog:
+Difficulty Lock
+https://www.curseforge.com/minecraft/mc-mods/difficulty-lock
+
+=========
+v1.0: initial release of mod.
