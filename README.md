@@ -125,6 +125,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
+[Difficulty Lock](https://curseforge.com/minecraft/mc-mods/difficulty-lock)\
 [First Join Message](https://curseforge.com/minecraft/mc-mods/first-join-message)\
 [Random Sheep Colours](https://curseforge.com/minecraft/mc-mods/random-sheep-colours)\
 [Starter Kit](https://curseforge.com/minecraft/mc-mods/starter-kit)\
