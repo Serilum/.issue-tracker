@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.28: Updated findSurfaceBlock function to work in the nether.
+
+=========
 v1.27: Improved efficiency of finding a specific blockstate in the world quite a lot. Used in Healing Campfire and No Hostiles Around Campfire mods.
 
 =========

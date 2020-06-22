@@ -3,6 +3,11 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v1.3: Improved mod efficiency.
+Improved function to find and break all leaves around trees using the amount of logs found.
+Added config option (enabled by default) to increase exhaustion per log harvested. Same behaviour as vanilla when breaking a block.
+
+=========
 v1.2: Separated sound code to client-only. The mod now works in multiplayer environments again.
 
 =========
