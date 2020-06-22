@@ -28,6 +28,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Crying Ghasts](https://curseforge.com/minecraft/mc-mods/crying-ghasts)\
 [Cycle Paintings](https://curseforge.com/minecraft/mc-mods/cycle-paintings)\
 [Despawning Eggs Hatch](https://curseforge.com/minecraft/mc-mods/despawning-eggs-hatch)\
+[Difficulty Lock](https://curseforge.com/minecraft/mc-mods/difficulty-lock)\
 [Dismount Entity](https://curseforge.com/minecraft/mc-mods/dismount-entity)\
 [Double Doors](https://curseforge.com/minecraft/mc-mods/double-doors)\
 [Dragon Drops Elytra](https://curseforge.com/minecraft/mc-mods/dragon-drops-elytra)\
@@ -125,7 +126,6 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[Difficulty Lock](https://curseforge.com/minecraft/mc-mods/difficulty-lock)\
 [First Join Message](https://curseforge.com/minecraft/mc-mods/first-join-message)\
 [Fixed Anvil Repair Cost](https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost)\
 [Random Sheep Colours](https://curseforge.com/minecraft/mc-mods/random-sheep-colours)\
