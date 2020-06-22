@@ -40,6 +40,8 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Extended Bone Meal](https://curseforge.com/minecraft/mc-mods/extended-bone-meal)\
 [Extract Poison](https://curseforge.com/minecraft/mc-mods/extract-poison)\
 [Fall Through Slime](https://curseforge.com/minecraft/mc-mods/fall-through-slime)\
+[First Join Message](https://curseforge.com/minecraft/mc-mods/first-join-message)\
+[Fixed Anvil Repair Cost](https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost)\
 [Giant Spawn](https://curseforge.com/minecraft/mc-mods/giant-spawn)\
 [Grass Seeds](https://curseforge.com/minecraft/mc-mods/grass-seeds)\
 [Grindstone Sharper Tools](https://curseforge.com/minecraft/mc-mods/grindstone-sharper-tools)\
@@ -77,6 +79,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Player Tracking Compass](https://curseforge.com/minecraft/mc-mods/player-tracking-compass)\
 [Quick Paths](https://curseforge.com/minecraft/mc-mods/quick-paths)\
 [Random Bone Meal Flowers](https://curseforge.com/minecraft/mc-mods/random-bone-meal-flowers)\
+[Random Sheep Colours](https://curseforge.com/minecraft/mc-mods/random-sheep-colours)\
 [Replanting Crops](https://curseforge.com/minecraft/mc-mods/replanting-crops)\
 [Set World Spawn Point](https://curseforge.com/minecraft/mc-mods/set-world-spawn-point)\
 [Shulker Drops Two](https://curseforge.com/minecraft/mc-mods/shulker-drops-two)\
@@ -87,6 +90,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Snowballs Freeze Mobs](https://curseforge.com/minecraft/mc-mods/snowballs-freeze-mobs)\
 [Softer Hay Bales](https://curseforge.com/minecraft/mc-mods/softer-hay-bales)\
 [Spiders Produce Webs](https://curseforge.com/minecraft/mc-mods/spiders-produce-webs)\
+[Starter Kit](https://curseforge.com/minecraft/mc-mods/starter-kit)\
 [Stray Spawn](https://curseforge.com/minecraft/mc-mods/stray-spawn)\
 [Superflat World No Slimes](https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes)\
 [TNT Breaks Bedrock](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock)\
@@ -101,6 +105,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Weaker Spiderwebs](https://curseforge.com/minecraft/mc-mods/weaker-spiderwebs)\
 [World Border](https://curseforge.com/minecraft/mc-mods/world-border)\
 [Zombie Horse Spawn](https://curseforge.com/minecraft/mc-mods/zombie-horse-spawn)\
+[Zombie Proof Doors](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors)
 [Zombie Villagers From Spawner](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner)
 
 ## Discontinued Mods:
@@ -126,8 +131,3 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[First Join Message](https://curseforge.com/minecraft/mc-mods/first-join-message)\
-[Fixed Anvil Repair Cost](https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost)\
-[Random Sheep Colours](https://curseforge.com/minecraft/mc-mods/random-sheep-colours)\
-[Starter Kit](https://curseforge.com/minecraft/mc-mods/starter-kit)\
-[Zombie Proof Doors](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors)
