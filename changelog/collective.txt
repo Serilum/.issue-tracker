@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.29: Added getAllTileEntityPositionsNearbyEntity function, used in Named Areas.
+
+=========
 v1.28: Updated findSurfaceBlock function to work in the nether.
 
 =========
