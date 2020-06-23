@@ -105,7 +105,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Weaker Spiderwebs](https://curseforge.com/minecraft/mc-mods/weaker-spiderwebs)\
 [World Border](https://curseforge.com/minecraft/mc-mods/world-border)\
 [Zombie Horse Spawn](https://curseforge.com/minecraft/mc-mods/zombie-horse-spawn)\
-[Zombie Proof Doors](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors)
+[Zombie Proof Doors](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors)\
 [Zombie Villagers From Spawner](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner)
 
 ## Discontinued Mods:
