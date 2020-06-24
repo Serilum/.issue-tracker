@@ -1,0 +1,6 @@
+Changelog:
+Areas
+https://www.curseforge.com/minecraft/mc-mods/areas
+
+=========
+v1.0: Initial release of mod. Based on Named Areas, but completely rewritten from scratch, with multiplayer in mind.
