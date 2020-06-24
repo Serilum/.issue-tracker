@@ -131,3 +131,4 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
+[Full Brightness Toggle](https://curseforge.com/minecraft/mc-mods/full-brightness-toggle)
