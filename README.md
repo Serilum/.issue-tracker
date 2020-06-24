@@ -64,7 +64,6 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [More Zombie Villagers](https://curseforge.com/minecraft/mc-mods/more-zombie-villagers)\
 [Move Boats](https://curseforge.com/minecraft/mc-mods/move-boats)\
 [Move Minecarts](https://curseforge.com/minecraft/mc-mods/move-minecarts)\
-[Named Areas](https://curseforge.com/minecraft/mc-mods/named-areas)\
 [Naturally Charged Creepers](https://curseforge.com/minecraft/mc-mods/naturally-charged-creepers)\
 [Nether Portal Spread](https://curseforge.com/minecraft/mc-mods/nether-portal-spread)\
 [No Hostiles Around Campfire](https://curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire)\
@@ -124,6 +123,9 @@ I appreciate every submitted issue greatly, and will respond while working throu
   - [Mute Sheep](https://curseforge.com/minecraft/mc-mods/mute-sheep)
   - [Mute Villagers](https://curseforge.com/minecraft/mc-mods/mute-villagers)
   - [Mute Withers](https://curseforge.com/minecraft/mc-mods/mute-withers)
+
+- Mod superseded by [Areas](https://curseforge.com/minecraft/mc-mods/areas):
+  - [Named Areas](https://curseforge.com/minecraft/mc-mods/named-areas)
 
 - Mods superseded by [Collective](https://curseforge.com/minecraft/mc-mods/collective):
   - [Find A Block (FAB) Library](https://curseforge.com/minecraft/mc-mods/fab-library)
