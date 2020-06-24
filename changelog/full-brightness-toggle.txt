@@ -1,0 +1,6 @@
+Changelog:
+Full Brightness Toggle
+https://www.curseforge.com/minecraft/mc-mods/full-brightness-toggle
+
+=========
+v1.0: Initial release of mod.
