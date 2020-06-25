@@ -42,6 +42,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Fall Through Slime](https://curseforge.com/minecraft/mc-mods/fall-through-slime)\
 [First Join Message](https://curseforge.com/minecraft/mc-mods/first-join-message)\
 [Fixed Anvil Repair Cost](https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost)\
+[Full Brightness Toggle](https://curseforge.com/minecraft/mc-mods/full-brightness-toggle)\
 [Giant Spawn](https://curseforge.com/minecraft/mc-mods/giant-spawn)\
 [Grass Seeds](https://curseforge.com/minecraft/mc-mods/grass-seeds)\
 [Grindstone Sharper Tools](https://curseforge.com/minecraft/mc-mods/grindstone-sharper-tools)\
@@ -135,4 +136,4 @@ I appreciate every submitted issue greatly, and will respond while working throu
 ## Waiting For Approval Mods:
 [Areas](https://curseforge.com/minecraft/mc-mods/areas)\
 [Bigger Sponge Absorption Radius](https://curseforge.com/minecraft/mc-mods/bigger-sponge-absorption-radius)\
-[Full Brightness Toggle](https://curseforge.com/minecraft/mc-mods/full-brightness-toggle)
+[Name Tag Tweaks](https://curseforge.com/minecraft/mc-mods/name-tag-tweaks)
