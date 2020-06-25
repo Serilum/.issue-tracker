@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.30: Added function to recursively count the amount of blocks placed next to each other.
+
+=========
 v1.29: Added getAllTileEntityPositionsNearbyEntity function, used in Named Areas.
 
 =========
