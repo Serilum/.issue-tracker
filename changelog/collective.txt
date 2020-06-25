@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.31: Extended function to recursively count the amount of blocks placed next to each other to work with a material as input.
+
+=========
 v1.30: Added function to recursively count the amount of blocks placed next to each other.
 
 =========
