@@ -15,11 +15,13 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [All Loot Drops](https://curseforge.com/minecraft/mc-mods/all-loot-drops)\
 [Altered Damage](https://curseforge.com/minecraft/mc-mods/altered-damage)\
 [Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
+[Areas](https://curseforge.com/minecraft/mc-mods/areas)\
 [Automatic Doors](https://curseforge.com/minecraft/mc-mods/automatic-doors)\
 [Bamboo Spreads](https://curseforge.com/minecraft/mc-mods/bamboo-spreads)\
 [Better Beacon Placement](https://curseforge.com/minecraft/mc-mods/better-beacon-placement)\
 [Better Conduit Placement](https://curseforge.com/minecraft/mc-mods/better-conduit-placement)\
 [Better Spawner Control](https://curseforge.com/minecraft/mc-mods/better-spawner-control)\
+[Bigger Sponge Absorption Radius](https://curseforge.com/minecraft/mc-mods/bigger-sponge-absorption-radius)\
 [Bottle Your Xp](https://curseforge.com/minecraft/mc-mods/bottle-your-xp)\
 [Breedable Killer Rabbit](https://curseforge.com/minecraft/mc-mods/breedable-killer-rabbit)\
 [Conduits Prevent Drowned](https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned)\
@@ -65,6 +67,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [More Zombie Villagers](https://curseforge.com/minecraft/mc-mods/more-zombie-villagers)\
 [Move Boats](https://curseforge.com/minecraft/mc-mods/move-boats)\
 [Move Minecarts](https://curseforge.com/minecraft/mc-mods/move-minecarts)\
+[Name Tag Tweaks](https://curseforge.com/minecraft/mc-mods/name-tag-tweaks)\
 [Naturally Charged Creepers](https://curseforge.com/minecraft/mc-mods/naturally-charged-creepers)\
 [Nether Portal Spread](https://curseforge.com/minecraft/mc-mods/nether-portal-spread)\
 [No Hostiles Around Campfire](https://curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire)\
@@ -134,6 +137,3 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[Areas](https://curseforge.com/minecraft/mc-mods/areas)\
-[Bigger Sponge Absorption Radius](https://curseforge.com/minecraft/mc-mods/bigger-sponge-absorption-radius)\
-[Name Tag Tweaks](https://curseforge.com/minecraft/mc-mods/name-tag-tweaks)
