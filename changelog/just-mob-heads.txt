@@ -3,6 +3,9 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v3.4: The mod now checks existing config files for missing drop values, and appends any missing to the end of the file. This allows for keeping your custom drop values and still get the values for newly added mobs.
+
+=========
 v3.3: Fixed steve heads dropping when the mod couldn't find a head texture, with modded entities. Now drops nothing instead.
 
 =========
