@@ -3,6 +3,14 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v3.4: (1.16 update) Updated mod to Minecraft version 1.16.1.
+ 
+Added head drops for:
+Hoglin, Piglin, Zombified Piglin, Strider and Zoglin.
+
+Removed Zombie Pigman head.
+
+=========
 v3.4: The mod now checks existing config files for missing drop values, and appends any missing to the end of the file. This allows for keeping your custom drop values and still get the values for newly added mobs.
 
 =========
