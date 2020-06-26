@@ -3,7 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
-v1.33: (mc v1.16 only) Fixed colour not applying correctly to sent messages.
+v1.34: [1.16.1 only] Updated functions which generate player and mob heads to work with the new UUID system.
+
+=========
+v1.33: [1.16.1 only] Fixed colour not applying correctly to sent messages.
 
 =========
 v1.32: Added function to receive config values prior to the ConfigHandler registering by reading the config file into a string.
