@@ -3,6 +3,10 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v3.5: Improved backend code.
+Added configurable message to broadcast to players within the radius when a portal is broken.
+
+=========
 v3.4: Improved code efficiency.
 Changed default amount of preventspread blocks needed from 2 to 4.
 The mod now checks for instanceof NetherPortalBlock to increase compatibility with other modded nether portals.
