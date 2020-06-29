@@ -3,6 +3,10 @@ Enchanting Commands
 https://www.curseforge.com/minecraft/mc-mods/enchanting-commands
 
 =========
+v1.2: Added config option to change the default /ec command.
+Fixed type in curse_of_binding enchantment string.
+
+=========
 v1.1: Updated modid.
 Improved code efficiency.
 Fixed mod not working correctly in a multiplayer environment.
