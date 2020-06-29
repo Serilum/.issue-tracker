@@ -3,6 +3,9 @@ Silence Mobs
 https://www.curseforge.com/minecraft/mc-mods/silence-mobs
 
 =========
+v1.5: If an unnamed entity is unsilenced, it now removes the custom nametag completely.
+
+=========
 v1.4: Added support for entities with a custom name. Toggling the silence of them will result in "Silenced Name" and "Name" back.
 
 =========
