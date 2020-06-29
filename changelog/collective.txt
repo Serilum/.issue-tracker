@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.35: Added functions to easily determine which dimension a world is.
+Synced version numbers of previous minecraft versions.
+
+=========
 v1.34: [1.16.1 only] Updated functions which generate player and mob heads to work with the new UUID system.
 
 =========
