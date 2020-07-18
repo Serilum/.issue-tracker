@@ -3,6 +3,9 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v3.5: [1.16.1 only] Updated mod to work with forge version 32.0.67 and above.
+
+=========
 v3.4: (1.16 update) Updated mod to Minecraft version 1.16.1.
  
 Added head drops for:
