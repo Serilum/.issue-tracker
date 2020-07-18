@@ -3,6 +3,9 @@ Just Player Heads
 https://www.curseforge.com/minecraft/mc-mods/just-player-heads
 
 =========
+v1.2: [1.16.1 only] Updated mod to work with forge version 32.0.67 and above.
+
+=========
 v1.1: Updated modid.
 Lots of code rewritten, improved efficiency.
 Updated to work with the latest Mojang API format.
