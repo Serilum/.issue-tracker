@@ -3,6 +3,9 @@ Player Tracking
 https://www.curseforge.com/minecraft/mc-mods/player-tracking
 
 =========
+v1.2: [1.16.1 only] Updated mod to work with forge version 32.0.67 and above.
+
+=========
 v1.1: Updated /track help format.
 Improved code efficiency.
 Added dependency on the Collective library mod.
