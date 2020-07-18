@@ -3,6 +3,9 @@ Vote Command
 https://www.curseforge.com/minecraft/mc-mods/vote-command
 
 =========
+v1.2: [1.16.1 only] Updated mod to work with forge version 32.0.67 and above.
+
+=========
 v1.1: Added dependency on the Collective library mod.
 
 =========
