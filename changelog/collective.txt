@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.37: [1.16.2 only] Fixes ClassCastException when generating a world.
+
+=========
 v1.36: [1.16.2 only] Updated collective library to Minecraft version 1.16.2.
 
 =========
