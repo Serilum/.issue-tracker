@@ -3,6 +3,9 @@ Passive Endermen
 https://www.curseforge.com/minecraft/mc-mods/passive-endermen
 
 =========
+v1.2: Fixed NullPointerException crash when exploring in the nether due to an entity being null.
+
+=========
 v1.1: Improved code efficiency.
 Added dependency on the Collective library mod.
 
