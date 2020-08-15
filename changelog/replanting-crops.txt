@@ -3,6 +3,9 @@ Replanting Crops
 https://www.curseforge.com/minecraft/mc-mods/replanting-crops
 
 =========
+v1.5: [1.16.2 only] Fixes ClassCastException when harvesting a crop.
+
+=========
 v1.4: Fixed the mod not using beetroot seeds for replanting.
 
 =========
