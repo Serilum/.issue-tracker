@@ -3,6 +3,9 @@ Set World Spawn Point
 https://www.curseforge.com/minecraft/mc-mods/set-world-spawn-point
 
 =========
+v1.4: [1.16.2 only] Fixes ClassCastException when generating a world.
+
+=========
 v1.3: Set default spawn point to x=0, z=0 (again).
 
 =========
