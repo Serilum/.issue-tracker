@@ -3,6 +3,10 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v3.6: Updated mod to Minecraft version 1.16.2.
+Added Piglin Brute head.
+
+=========
 v3.5: [1.16.1 only] Updated mod to work with forge version 32.0.67 and above.
 
 =========
