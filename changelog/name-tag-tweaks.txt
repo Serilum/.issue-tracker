@@ -3,6 +3,10 @@ Name Tag Tweaks
 https://www.curseforge.com/minecraft/mc-mods/name-tag-tweaks
 
 =========
+v1.2: Fixes problems with the mod not loading correctly in previous 1.16.x versions.
+Updated mod to Minecraft version 1.16.2.
+
+=========
 v1.1: [1.16.1 only] Updated mod to work with forge version 32.0.67 and above.
 
 =========
