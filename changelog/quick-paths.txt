@@ -3,6 +3,9 @@ Quick Paths
 https://www.curseforge.com/minecraft/mc-mods/quick-paths
 
 =========
+v1.2: [1.16.2 only] Fixes ClassCastException when loading a world.
+
+=========
 v1.1: Improved code efficiency.
 Added dependency on the Collective library mod.
 
