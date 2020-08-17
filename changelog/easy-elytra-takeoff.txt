@@ -3,6 +3,9 @@ Easy Elytra Takeoff
 https://www.curseforge.com/minecraft/mc-mods/easy-elytra-takeoff
 
 =========
+v1.5: Added support for the Curious Elytra mod.
+
+=========
 v1.4: [1.16.2 only] Improved backend code.
 Updated mod to Minecraft version 1.16.2.
 
