@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.38: Synced Collective version for all Minecraft versions.
+Improved mod compatibility with by catching a rare exception on world load.
+
+=========
 v1.37: [1.16.2 only] Fixes ClassCastException when generating a world.
 
 =========
