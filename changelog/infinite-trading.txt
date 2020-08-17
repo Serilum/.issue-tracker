@@ -3,6 +3,9 @@ Infinite Trading
 https://www.curseforge.com/minecraft/mc-mods/infinite-trading
 
 =========
+v1.2: Added support for Wandering Trader trades. Enabled by default, can be turned off in the config.
+
+=========
 v1.1: Updated modid.
 Improved code efficiency.
 Added dependency on the Collective library mod.
