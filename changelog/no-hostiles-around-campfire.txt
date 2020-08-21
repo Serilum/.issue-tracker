@@ -3,6 +3,9 @@ No Hostiles Around Campfire
 https://www.curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire
 
 =========
+v2.4: Improved distance calculations for entities around the campfire. Both to prevent spawn and when they should burn on placement. Should work as intended now.
+
+=========
 v2.3: Improved code efficiency.
 Switched dependency from FAB Library to the Collective library mod.
 
