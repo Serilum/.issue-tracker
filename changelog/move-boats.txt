@@ -3,6 +3,9 @@ Move Boats
 https://www.curseforge.com/minecraft/mc-mods/move-boats
 
 =========
+v1.3: Fixed being able to hold the boat while riding it, resulting in a magical journey through the sky.
+
+=========
 v1.2: Changed default config value.
 Improved code efficiency.
 Added dependency on the Collective library mod.
