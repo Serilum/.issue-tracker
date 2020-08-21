@@ -3,6 +3,9 @@ Villager Death Messages
 https://www.curseforge.com/minecraft/mc-mods/villager-death-messages
 
 =========
+v1.5: Modded villagers and wandering traders are now mentioned by name in the death message if they have one.
+
+=========
 v1.4: Fixed modded villagers not being mentioned.
 
 =========
