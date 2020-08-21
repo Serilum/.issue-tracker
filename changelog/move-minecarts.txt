@@ -3,6 +3,9 @@ Move Minecarts
 https://www.curseforge.com/minecraft/mc-mods/move-minecarts
 
 =========
+v1.4: Fixed being able to hold the minecart while riding it, resulting in a magical journey through the sky.
+
+=========
 v1.3: Changed default config value.
 Improved code efficiency.
 Added dependency on the Collective library mod.
