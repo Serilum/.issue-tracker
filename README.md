@@ -100,7 +100,6 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Transcending Trident](https://curseforge.com/minecraft/mc-mods/transcending-trident)\
 [Tree Harvester](https://curseforge.com/minecraft/mc-mods/tree-harvester)\
 [Underwater Enchanting](https://curseforge.com/minecraft/mc-mods/underwater-enchanting)\
-[Unmute Mobs](https://curseforge.com/minecraft/mc-mods/unmute-mobs)\
 [Village Spawn Point](https://curseforge.com/minecraft/mc-mods/village-spawn-point)\
 [Villager Death Messages](https://curseforge.com/minecraft/mc-mods/villager-death-messages)\
 [Villager Names](https://curseforge.com/minecraft/mc-mods/villager-names)\
@@ -127,6 +126,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
   - [Mute Sheep](https://curseforge.com/minecraft/mc-mods/mute-sheep)
   - [Mute Villagers](https://curseforge.com/minecraft/mc-mods/mute-villagers)
   - [Mute Withers](https://curseforge.com/minecraft/mc-mods/mute-withers)
+  - [Unmute Mobs](https://curseforge.com/minecraft/mc-mods/unmute-mobs)
 
 - Mod superseded by [Areas](https://curseforge.com/minecraft/mc-mods/areas):
   - [Named Areas](https://curseforge.com/minecraft/mc-mods/named-areas)
