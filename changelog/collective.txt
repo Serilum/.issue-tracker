@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.40: Updated Collective to Minecraft version 1.16.3.
+
+=========
 v1.39: Fixed Find A Block function removing passengers by removing old code accidently left in.
 Fixed skeleton- and zombie horses burning when under a tree.
 
