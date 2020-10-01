@@ -137,4 +137,5 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[Realistic Bees](https://www.curseforge.com/minecraft/mc-mods/realistic-bees)
+[Realistic Bees](https://www.curseforge.com/minecraft/mc-mods/realistic-bees)\
+[Respawn Delay](https://www.curseforge.com/minecraft/mc-mods/respawn-delay)
