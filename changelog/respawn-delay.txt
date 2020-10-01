@@ -1,0 +1,6 @@
+Changelog:
+Respawn Delay
+https://www.curseforge.com/minecraft/mc-mods/respawn-delay
+
+=========
+v1.0: Initial release of mod.
