@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.43, v1.44, v1.45: Added spawn point functions for each dimension.
+
+=========
 v1.42: Improved custom message functions. Users can now leave any configurable message empty to prevent it from being sent.
 
 =========
