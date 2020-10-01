@@ -1,0 +1,6 @@
+Changelog:
+Realistic Bees
+https://www.curseforge.com/minecraft/mc-mods/realistic-bees
+
+=========
+v1.0: Initial release of mod.
