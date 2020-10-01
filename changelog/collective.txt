@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.41: Improved backend code. Synchronized code for older Minecraft versions.
+
+=========
 v1.40: Updated Collective to Minecraft version 1.16.3.
 
 =========
