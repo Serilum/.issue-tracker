@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.42: Improved custom message functions. Users can now leave any configurable message empty to prevent it from being sent.
+
+=========
 v1.41: Improved backend code. Synchronized code for older Minecraft versions.
 
 =========
