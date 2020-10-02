@@ -3,4 +3,7 @@ Starter Kit
 https://www.curseforge.com/minecraft/mc-mods/starter-kit
 
 =========
+v1.1: Fixes issue of itemstacks getting out of sync in multiplayer environments.
+
+=========
 v1.0: initial release of mod.
