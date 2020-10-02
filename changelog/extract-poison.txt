@@ -3,6 +3,9 @@ Extract Poison
 https://www.curseforge.com/minecraft/mc-mods/extract-poison
 
 =========
+v1.2: Added support for modded cave spiders.
+
+=========
 v1.1: Updated modid.
 Improved code efficiency.
 You can now still extract poison with a full inventory, it drops the poison on the ground.
