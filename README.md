@@ -50,6 +50,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Grindstone Sharper Tools](https://curseforge.com/minecraft/mc-mods/grindstone-sharper-tools)\
 [GUI Clock](https://curseforge.com/minecraft/mc-mods/gui-clock)\
 [GUI Compass](https://curseforge.com/minecraft/mc-mods/gui-compass)\
+[GUI Followers](https://curseforge.com/minecraft/mc-mods/gui-followers)\
 [Healing Campfire](https://curseforge.com/minecraft/mc-mods/healing-campfire)\
 [Healing Soup](https://curseforge.com/minecraft/mc-mods/healing-soup)\
 [Hide Hands](https://curseforge.com/minecraft/mc-mods/hide-hands)\
@@ -139,4 +140,3 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[GUI Followers](https://curseforge.com/minecraft/mc-mods/gui-followers)
