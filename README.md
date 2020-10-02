@@ -82,8 +82,10 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Player Tracking Compass](https://curseforge.com/minecraft/mc-mods/player-tracking-compass)\
 [Quick Paths](https://curseforge.com/minecraft/mc-mods/quick-paths)\
 [Random Bone Meal Flowers](https://curseforge.com/minecraft/mc-mods/random-bone-meal-flowers)\
-[Random Sheep Colours](https://curseforge.com/minecraft/mc-mods/random-sheep-colours)\
+[Random Sheep Colours](https://curseforge.com/minecraft/mc-mods/random-sheep-clours)\
+[Realistic Bees](https://www.curseforge.com/minecraft/mc-mods/realistic-bees)\
 [Replanting Crops](https://curseforge.com/minecraft/mc-mods/replanting-crops)\
+[Respawn Delay](https://www.curseforge.com/minecraft/mc-mods/respawn-delay)\
 [Set World Spawn Point](https://curseforge.com/minecraft/mc-mods/set-world-spawn-point)\
 [Shulker Drops Two](https://curseforge.com/minecraft/mc-mods/shulker-drops-two)\
 [Silence Mobs](https://curseforge.com/minecraft/mc-mods/silence-mobs)\
@@ -137,5 +139,3 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[Realistic Bees](https://www.curseforge.com/minecraft/mc-mods/realistic-bees)\
-[Respawn Delay](https://www.curseforge.com/minecraft/mc-mods/respawn-delay)
