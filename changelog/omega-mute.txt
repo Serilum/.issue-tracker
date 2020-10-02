@@ -3,6 +3,9 @@ Omega Mute
 https://www.curseforge.com/minecraft/mc-mods/omega-mute
 
 =========
+v1.4: You can now use the omega mute commands without cheats-access. Added configurable hotkey to reload the omega mute sound file. By default it's a dot .
+
+=========
 v1.3: [1.16.1 only] Updated mod to work with forge version 32.0.67 and above.
 
 =========
