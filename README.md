@@ -83,9 +83,9 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Quick Paths](https://curseforge.com/minecraft/mc-mods/quick-paths)\
 [Random Bone Meal Flowers](https://curseforge.com/minecraft/mc-mods/random-bone-meal-flowers)\
 [Random Sheep Colours](https://curseforge.com/minecraft/mc-mods/random-sheep-colours)\
-[Realistic Bees](https://www.curseforge.com/minecraft/mc-mods/realistic-bees)\
+[Realistic Bees](https://curseforge.com/minecraft/mc-mods/realistic-bees)\
 [Replanting Crops](https://curseforge.com/minecraft/mc-mods/replanting-crops)\
-[Respawn Delay](https://www.curseforge.com/minecraft/mc-mods/respawn-delay)\
+[Respawn Delay](https://curseforge.com/minecraft/mc-mods/respawn-delay)\
 [Set World Spawn Point](https://curseforge.com/minecraft/mc-mods/set-world-spawn-point)\
 [Shulker Drops Two](https://curseforge.com/minecraft/mc-mods/shulker-drops-two)\
 [Silence Mobs](https://curseforge.com/minecraft/mc-mods/silence-mobs)\
@@ -139,3 +139,4 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
+[GUI Followers](https://curseforge.com/minecraft/mc-mods/gui-followers)
