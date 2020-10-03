@@ -3,6 +3,9 @@ GUI Clock
 https://www.curseforge.com/minecraft/mc-mods/gui-clock
 
 =========
+v1.9: Added config option 'showOnlyMinecraftClockIcon', disabled by default. Which when enabled makes only the Minecraft clock icon show on the screen instead of time in numbers.
+
+=========
 v1.8: Improved code efficiency.
 Added dependency on the Collective library mod.
 
