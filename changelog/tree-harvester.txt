@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v1.6: Changed the default config value of 'instantBreakLeavesAround' from true to false.
+
+=========
 v1.5: Added config option 'instantBreakLeavesAround' which can be set to false to prevent leaf brocks from being broken when chopping down a tree.
 
 =========
