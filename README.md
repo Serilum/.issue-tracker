@@ -140,3 +140,4 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
+[Extended Creative Inventory](https://curseforge.com/minecraft/mc-mods/extended-creative-inventory)
