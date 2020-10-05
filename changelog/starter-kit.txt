@@ -3,6 +3,9 @@ Starter Kit
 https://www.curseforge.com/minecraft/mc-mods/starter-kit
 
 =========
+v2.0: Added '/starterkit set' command, which writes the entire inventory of the player using the command to the config file. This also means NBT Tags for things like enchantments and written books are now supported.
+
+=========
 v1.1: Fixes issue of itemstacks getting out of sync in multiplayer environments.
 
 =========
