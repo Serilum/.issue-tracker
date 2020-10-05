@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.46: Added functions to read a player inventory to a string/file and back again.
+
+=========
 v1.43, v1.44, v1.45: Added spawn point functions for each dimension.
 
 =========
