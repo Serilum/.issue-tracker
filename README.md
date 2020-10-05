@@ -140,4 +140,5 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[Extended Creative Inventory](https://curseforge.com/minecraft/mc-mods/extended-creative-inventory)
+[Extended Creative Inventory](https://curseforge.com/minecraft/mc-mods/extended-creative-inventory)\
+[Save and Load Inventories](https://www.curseforge.com/minecraft/mc-mods/save-and-load-inventories)
