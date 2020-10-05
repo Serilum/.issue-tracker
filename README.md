@@ -40,6 +40,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [End Portal Recipe](https://curseforge.com/minecraft/mc-mods/end-portal-recipe)\
 [Entity Information](https://curseforge.com/minecraft/mc-mods/entity-information)\
 [Extended Bone Meal](https://curseforge.com/minecraft/mc-mods/extended-bone-meal)\
+[Extended Creative Inventory](https://curseforge.com/minecraft/mc-mods/extended-creative-inventory)\
 [Extract Poison](https://curseforge.com/minecraft/mc-mods/extract-poison)\
 [Fall Through Slime](https://curseforge.com/minecraft/mc-mods/fall-through-slime)\
 [First Join Message](https://curseforge.com/minecraft/mc-mods/first-join-message)\
@@ -87,6 +88,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Realistic Bees](https://curseforge.com/minecraft/mc-mods/realistic-bees)\
 [Replanting Crops](https://curseforge.com/minecraft/mc-mods/replanting-crops)\
 [Respawn Delay](https://curseforge.com/minecraft/mc-mods/respawn-delay)\
+[Save and Load Inventories](https://curseforge.com/minecraft/mc-mods/save-and-load-inventories)\
 [Set World Spawn Point](https://curseforge.com/minecraft/mc-mods/set-world-spawn-point)\
 [Shulker Drops Two](https://curseforge.com/minecraft/mc-mods/shulker-drops-two)\
 [Silence Mobs](https://curseforge.com/minecraft/mc-mods/silence-mobs)\
@@ -140,5 +142,3 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[Extended Creative Inventory](https://curseforge.com/minecraft/mc-mods/extended-creative-inventory)\
-[Save and Load Inventories](https://www.curseforge.com/minecraft/mc-mods/save-and-load-inventories)
