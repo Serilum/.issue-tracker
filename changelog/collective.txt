@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.48: Added function to receive the save folder of a world.
+
+=========
+v1.47: Added functions to easily write and read date formats.
+
+=========
 v1.46: Added functions to read a player inventory to a string/file and back again.
 
 =========
