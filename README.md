@@ -29,6 +29,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Creative Block Replacer](https://curseforge.com/minecraft/mc-mods/creative-block-replacer)\
 [Crying Ghasts](https://curseforge.com/minecraft/mc-mods/crying-ghasts)\
 [Cycle Paintings](https://curseforge.com/minecraft/mc-mods/cycle-paintings)\
+[Death Backup](https://curseforge.com/minecraft/mc-mods/death-backup)\
 [Despawning Eggs Hatch](https://curseforge.com/minecraft/mc-mods/despawning-eggs-hatch)\
 [Difficulty Lock](https://curseforge.com/minecraft/mc-mods/difficulty-lock)\
 [Dismount Entity](https://curseforge.com/minecraft/mc-mods/dismount-entity)\
@@ -142,4 +143,3 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[Death Backup](https://curseforge.com/minecraft/mc-mods/death-backup)
