@@ -1,0 +1,6 @@
+Changelog:
+Death Backup
+https://curseforge.com/minecraft/mc-mods/death-backup
+
+=========
+v1.0: Initial release of mod.
