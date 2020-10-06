@@ -142,3 +142,4 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
+[Death Backup](https://curseforge.com/minecraft/mc-mods/death-backup)
