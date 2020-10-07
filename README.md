@@ -99,6 +99,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Snowballs Freeze Mobs](https://curseforge.com/minecraft/mc-mods/snowballs-freeze-mobs)\
 [Softer Hay Bales](https://curseforge.com/minecraft/mc-mods/softer-hay-bales)\
 [Spiders Produce Webs](https://curseforge.com/minecraft/mc-mods/spiders-produce-webs)\
+[Stack Refill](https://curseforge.com/minecraft/mc-mods/stack-refill)\
 [Starter Kit](https://curseforge.com/minecraft/mc-mods/starter-kit)\
 [Stray Spawn](https://curseforge.com/minecraft/mc-mods/stray-spawn)\
 [Superflat World No Slimes](https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes)\
