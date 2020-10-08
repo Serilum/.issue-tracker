@@ -3,6 +3,12 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+4.0: The mod has been almost completely rewritten. It now saves portal locations in ./world-folder/data/netherportalspread/portals/, and detects portals when a player creates one or when someone goes through an inactive portal from the nether to the overworld. This makes the mod a lot more efficient.
+The spread code now runs entirely on the main thread, solving incompatibility problems with other mods which caused crashes.
+Added option (enabled by default) which displays portal coordinates in portal messages.
+Added a new default config for Minecraft version 1.16, which uses a lot of the new blocks.
+
+=========
 v3.5: Improved backend code.
 Added configurable message to broadcast to players within the radius when a portal is broken.
 
