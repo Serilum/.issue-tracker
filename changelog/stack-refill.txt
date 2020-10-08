@@ -3,4 +3,7 @@ Stack Refill
 https://curseforge.com/minecraft/mc-mods/stack-refill
 
 =========
+v1.1: The mod can now replace items being tossed on the ground.
+
+=========
 v1.0: Initial release of mod.
