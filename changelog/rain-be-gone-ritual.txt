@@ -3,4 +3,7 @@ Rain Be Gone Ritual
 https://curseforge.com/minecraft/mc-mods/rain-be-gone-ritual
 
 =========
+v1.1: Lowered the explosion radius to only 3 blocks. The explosion is harmless to the user but not for mobs around.
+
+=========
 v1.0: Initial release of mod.
