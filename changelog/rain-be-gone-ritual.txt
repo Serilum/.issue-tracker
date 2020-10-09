@@ -1,0 +1,6 @@
+Changelog:
+Rain Be Gone Ritual
+https://curseforge.com/minecraft/mc-mods/rain-be-gone-ritual
+
+=========
+v1.0: Initial release of mod.
