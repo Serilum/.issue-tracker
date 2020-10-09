@@ -3,6 +3,9 @@ Skeleton Horse Spawn
 https://www.curseforge.com/minecraft/mc-mods/skeleton-horse-spawn
 
 =========
+v1.4: Improved mod efficiency, improved backend code.
+
+=========
 v1.3: Fixed skeleton horses burning in daylight even when there was a solid block above.
 
 =========

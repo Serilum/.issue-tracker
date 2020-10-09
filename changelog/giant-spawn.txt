@@ -3,6 +3,9 @@ Giant Spawn
 https://www.curseforge.com/minecraft/mc-mods/giant-spawn
 
 =========
+v2.2: Improved mod efficiency, improved backend code.
+
+=========
 v2.1: Fixed giants burning in daylight even when there was a solid block above.
 
 =========

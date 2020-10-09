@@ -3,6 +3,9 @@ Zombie Horse Spawn
 https://www.curseforge.com/minecraft/mc-mods/zombie-horse-spawn
 
 =========
+v2.5: Improved mod efficiency, improved backend code.
+
+=========
 v2.4: Fixed zombie horses burning in daylight even when there was a solid block above.
 
 =========
