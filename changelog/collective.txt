@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.51: Fixed all world folder related problems, in all environments.
+
+=========
+v1.50: Hotfix to prevent crash when loading wrong world path.
+
+=========
 v1.49: Fixed world save folder path function not returning the correct value in certain environments.
 
 =========
