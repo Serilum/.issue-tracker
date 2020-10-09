@@ -84,6 +84,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Player Tracking](https://curseforge.com/minecraft/mc-mods/player-tracking)\
 [Player Tracking Compass](https://curseforge.com/minecraft/mc-mods/player-tracking-compass)\
 [Quick Paths](https://curseforge.com/minecraft/mc-mods/quick-paths)\
+[Rain Be Gone Ritual](https://curseforge.com/minecraft/mc-mods/rain-be-gone-ritual)\
 [Random Bone Meal Flowers](https://curseforge.com/minecraft/mc-mods/random-bone-meal-flowers)\
 [Random Sheep Colours](https://curseforge.com/minecraft/mc-mods/random-sheep-colours)\
 [Realistic Bees](https://curseforge.com/minecraft/mc-mods/realistic-bees)\
@@ -144,4 +145,3 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[Rain Be Gone Ritual](https://curseforge.com/minecraft/mc-mods/rain-be-gone-ritual)
