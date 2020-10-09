@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.49: Fixed world save folder path function not returning the correct value in certain environments.
+
+=========
 v1.48: Added function to receive the save folder of a world.
 
 =========
