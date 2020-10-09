@@ -144,3 +144,4 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
+[Rain Be Gone Ritual](https://curseforge.com/minecraft/mc-mods/rain-be-gone-ritual)
