@@ -3,6 +3,9 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v4.3: Fixed an incorrect world folder path being used in a server environment.
+
+=========
 v4.2: Improved how the mod handles portals in unloaded chunks.
 
 =========

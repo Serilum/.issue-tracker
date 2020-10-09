@@ -3,4 +3,7 @@ Death Backup
 https://curseforge.com/minecraft/mc-mods/death-backup
 
 =========
+v1.1: Fixed an incorrect world folder path being used in a server environment.
+
+=========
 v1.0: Initial release of mod.
