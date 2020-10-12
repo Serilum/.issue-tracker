@@ -3,4 +3,7 @@ Full Brightness Toggle
 https://www.curseforge.com/minecraft/mc-mods/full-brightness-toggle
 
 =========
+v1.1: Fixed hotkey firing when typing in an open chat.
+
+=========
 v1.0: Initial release of mod.

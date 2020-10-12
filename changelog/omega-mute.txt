@@ -3,6 +3,9 @@ Omega Mute
 https://www.curseforge.com/minecraft/mc-mods/omega-mute
 
 =========
+v1.5: Fixed hotkey firing when typing in an open chat.
+
+=========
 v1.4: You can now use the omega mute commands without cheats-access. Added configurable hotkey to reload the omega mute sound file. By default it's a dot .
 
 =========

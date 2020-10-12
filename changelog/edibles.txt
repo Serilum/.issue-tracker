@@ -3,6 +3,9 @@ Edibles
 https://www.curseforge.com/minecraft/mc-mods/edibles
 
 =========
+v1.2: The glow effect now only works on non-player living entities around.
+
+=========
 v1.1: Improved code efficiency.
 Added dependency on the Collective library mod.
 
