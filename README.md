@@ -91,6 +91,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Replanting Crops](https://curseforge.com/minecraft/mc-mods/replanting-crops)\
 [Respawn Delay](https://curseforge.com/minecraft/mc-mods/respawn-delay)\
 [Save and Load Inventories](https://curseforge.com/minecraft/mc-mods/save-and-load-inventories)\
+[Scaffolding Drops Nearby](https://curseforge.com/minecraft/mc-mods/scaffolding-drops-nearby)\
 [Set World Spawn Point](https://curseforge.com/minecraft/mc-mods/set-world-spawn-point)\
 [Shulker Drops Two](https://curseforge.com/minecraft/mc-mods/shulker-drops-two)\
 [Silence Mobs](https://curseforge.com/minecraft/mc-mods/silence-mobs)\
@@ -145,4 +146,3 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[Scaffolding Drops Nearby](https://curseforge.com/minecraft/mc-mods/scaffolding-drops-nearby)
