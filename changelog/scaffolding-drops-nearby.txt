@@ -1,0 +1,6 @@
+Changelog:
+Scaffolding Drops Nearby
+https://curseforge.com/minecraft/mc-mods/scaffolding-drops-nearby
+
+=========
+v1.0: Initial release of mod.

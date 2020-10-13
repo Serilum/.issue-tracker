@@ -3,6 +3,10 @@ Despawning Eggs Hatch
 https://www.curseforge.com/minecraft/mc-mods/despawning-eggs-hatch
 
 =========
+v2.0: Updated modid.
+Added the config option 'eggOnlyHatchesWhenOnTopOfHayBlock' which when enabled only hatches an egg when it despawns on top of a hay block. This prevents wild chicken colonies from expanding without your knowledge.
+
+=========
 v1.3: Improved code efficiency.
 Added configurable radius option for the entity limiter check.
 Added dependency on the Collective library mod.
