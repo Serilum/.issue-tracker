@@ -1,0 +1,6 @@
+Changelog:
+Mineral Chance
+https://curseforge.com/minecraft/mc-mods/mineral-chance
+
+=========
+v1.0: Initial release of mod.
