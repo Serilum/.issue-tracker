@@ -3,6 +3,10 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v2.5: Fixed nitwit villagers getting their "nitwit profession" appended when interacting with them.
+The config option '_useCustomNames' is now enabled by default.
+
+=========
 v2.4: Improved code efficiency.
 Added dependency on the Collective library mod.
 

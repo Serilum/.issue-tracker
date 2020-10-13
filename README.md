@@ -145,3 +145,4 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
+[Scaffolding Drops Nearby](https://curseforge.com/minecraft/mc-mods/scaffolding-drops-nearby)
