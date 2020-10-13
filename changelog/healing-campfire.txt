@@ -3,6 +3,9 @@ Healing Campfire
 https://www.curseforge.com/minecraft/mc-mods/healing-campfire
 
 =========
+v3.1: Changed the default config value of 'hideEffectParticles' from false to true.
+
+=========
 v3.0: The mod is now more efficient.
 Added the config options 'checkForCampfireDelayInTicks', 'campfireMustBeSignalling', 'enableEffectForNormalCampfires'(1.16+) and 'enableEffectForSoulCampfires'(1.16+).
 Fixed issue of players having the regeneration effect but not getting healed.
