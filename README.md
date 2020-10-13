@@ -65,6 +65,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Just Player Heads](https://curseforge.com/minecraft/mc-mods/just-player-heads)\
 [Kelp Fertilizer](https://curseforge.com/minecraft/mc-mods/kelp-fertilizer)\
 [Milk All The Mobs](https://curseforge.com/minecraft/mc-mods/milk-all-the-mobs)\
+[Mineral Chance](https://curseforge.com/minecraft/mc-mods/mineral-chance)\
 [Mooshroom Spawn](https://curseforge.com/minecraft/mc-mods/mooshroom-spawn)\
 [Mooshroom Tweaks](https://curseforge.com/minecraft/mc-mods/mooshroom-tweaks)\
 [More Zombie Villagers](https://curseforge.com/minecraft/mc-mods/more-zombie-villagers)\
