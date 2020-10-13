@@ -146,3 +146,4 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
+[Mineral Chance](https://curseforge.com/minecraft/mc-mods/mineral-chance)
