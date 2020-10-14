@@ -3,4 +3,7 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v1.1: Fixed the mod crashing when using a custom RGB values with extra spaces. Any amount of spaces is now parsed into the correct numbers.
+
+=========
 v1.0: Initial release of mod. Based on Named Areas, but completely rewritten from scratch, with multiplayer in mind.
