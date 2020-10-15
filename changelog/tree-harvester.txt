@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v1.7: The mod is now compatible with other mods that add a broken-tool variant instead of removing the axe on reaching the maximum durability damage.
+
+=========
 v1.6: Changed the default config value of 'instantBreakLeavesAround' from true to false.
 
 =========
