@@ -3,7 +3,9 @@ Weaker Spiderwebs
 https://www.curseforge.com/minecraft/mc-mods/weaker-spiderwebs
 
 =========
-v1.5: Improved code efficiency.
+v1.5: Updated modid.
+Improved code efficiency.
+Fixed collective dependency set incorrectly.
 Added compatibility for modded spiderwebs extending the default cobweb block.
 
 =========
