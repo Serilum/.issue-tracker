@@ -3,6 +3,13 @@ Edibles
 https://www.curseforge.com/minecraft/mc-mods/edibles
 
 =========
+v2.0: Added global edible cooldown. By default 1 second.
+Added edible ghast tear, gives regeneration.
+Added edible phantom membrane, gives slow falling.
+Added edible rabbit's foot, gives jump boost.
+Fixed itemstack shrinking when using edibles in creative mode.
+
+=========
 v1.2: The glow effect now only works on non-player living entities around.
 
 =========
