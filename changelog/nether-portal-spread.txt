@@ -3,6 +3,9 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v4.4: Added compatibility for the Immersive Portals mod.
+
+=========
 v4.3: Fixed an incorrect world folder path being used in a server environment.
 
 =========
