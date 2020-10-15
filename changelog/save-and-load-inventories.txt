@@ -3,4 +3,8 @@ Save and Load Inventories
 https://curseforge.com/minecraft/mc-mods/save-and-load-inventories
 
 =========
+v1.1: Fixed problem when using /listinventories without any inventories available.
+Added /loadinventory <inventory_name> <player_name> (alias /li) to load kits to other players' inventories.
+
+=========
 v1.0: Initial release of mod.
