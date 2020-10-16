@@ -147,3 +147,4 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
+[Eroding Stone Entities](https://curseforge.com/minecraft/mc-mods/eroding-stone-entities)
