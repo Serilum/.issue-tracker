@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.52, v1.53: Added functions and variables to determine if a block is a stone-type block. Improved some code.
+
+=========
 v1.51: Fixed all world folder related problems, in all environments.
 
 =========
