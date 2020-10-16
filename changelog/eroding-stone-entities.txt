@@ -1,0 +1,6 @@
+Changelog:
+Eroding Stone Entities
+https://curseforge.com/minecraft/mc-mods/eroding-stone-entities
+
+=========
+v1.0: Initial release of mod.
