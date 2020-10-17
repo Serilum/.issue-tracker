@@ -40,6 +40,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Enchanting Commands](https://curseforge.com/minecraft/mc-mods/enchanting-commands)\
 [End Portal Recipe](https://curseforge.com/minecraft/mc-mods/end-portal-recipe)\
 [Entity Information](https://curseforge.com/minecraft/mc-mods/entity-information)\
+[Eroding Stone Entities](https://curseforge.com/minecraft/mc-mods/eroding-stone-entities)\
 [Extended Bone Meal](https://curseforge.com/minecraft/mc-mods/extended-bone-meal)\
 [Extended Creative Inventory](https://curseforge.com/minecraft/mc-mods/extended-creative-inventory)\
 [Extract Poison](https://curseforge.com/minecraft/mc-mods/extract-poison)\
@@ -147,4 +148,3 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[Eroding Stone Entities](https://curseforge.com/minecraft/mc-mods/eroding-stone-entities)
