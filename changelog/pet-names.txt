@@ -3,6 +3,9 @@ Pet Names
 https://www.curseforge.com/minecraft/mc-mods/pet-names
 
 =========
+v1.2: Fixed incorrect mobs being named.
+
+=========
 v1.1: Improved code efficiency.
 Added dependency on the Collective library mod.
 
