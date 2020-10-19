@@ -148,4 +148,5 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[Advancement Screenshot](https://curseforge.com/minecraft/mc-mods/advancement-screenshot)
+[Advancement Screenshot](https://curseforge.com/minecraft/mc-mods/advancement-screenshot)\
+[Wool Tweaks](https://curseforge.com/minecraft/mc-mods/wool-tweaks)
