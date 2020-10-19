@@ -12,6 +12,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Collective](https://curseforge.com/minecraft/mc-mods/collective)
 
 ## Active Mods:
+[Advancement Screenshot](https://curseforge.com/minecraft/mc-mods/advancement-screenshot)\
 [All Loot Drops](https://curseforge.com/minecraft/mc-mods/all-loot-drops)\
 [Altered Damage](https://curseforge.com/minecraft/mc-mods/altered-damage)\
 [Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
@@ -116,6 +117,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Villager Names](https://curseforge.com/minecraft/mc-mods/villager-names)\
 [Vote Command](https://curseforge.com/minecraft/mc-mods/vote-command)\
 [Weaker Spiderwebs](https://curseforge.com/minecraft/mc-mods/weaker-spiderwebs)\
+[Wool Tweaks](https://curseforge.com/minecraft/mc-mods/wool-tweaks)\
 [World Border](https://curseforge.com/minecraft/mc-mods/world-border)\
 [Zombie Horse Spawn](https://curseforge.com/minecraft/mc-mods/zombie-horse-spawn)\
 [Zombie Proof Doors](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors)\
@@ -148,5 +150,3 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[Advancement Screenshot](https://curseforge.com/minecraft/mc-mods/advancement-screenshot)\
-[Wool Tweaks](https://curseforge.com/minecraft/mc-mods/wool-tweaks)
