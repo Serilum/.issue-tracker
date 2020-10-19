@@ -1,0 +1,6 @@
+Changelog:
+Advancement Screenshot
+https://curseforge.com/minecraft/mc-mods/advancement-screenshot
+
+=========
+v1.0: Initial release of mod.
