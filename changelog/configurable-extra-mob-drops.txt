@@ -1,0 +1,9 @@
+Changelog:
+Configurable Extra Mob Drops
+https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops
+
+=========
+v1.1: Added the ability to add a drop chance.
+
+=========
+v1.0: Initial release of mod.
