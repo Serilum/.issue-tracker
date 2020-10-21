@@ -1,0 +1,6 @@
+Changelog:
+Mob Potion Effects
+https://curseforge.com/minecraft/mc-mods/mob-potion-effects
+
+=========
+v1.0: Initial release of mod.
