@@ -28,6 +28,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 [Conduits Prevent Drowned](https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned)\
 [Configurable Despawn Timer](https://curseforge.com/minecraft/mc-mods/configurable-despawn-timer)\
 [Configurable Extra Mob Drops](https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops)\
+[Configurable Mob Potion Effects](https://curseforge.com/minecraft/mc-mods/configurable-mob-potion-effects)\
 [Creative Block Replacer](https://curseforge.com/minecraft/mc-mods/creative-block-replacer)\
 [Crying Ghasts](https://curseforge.com/minecraft/mc-mods/crying-ghasts)\
 [Cycle Paintings](https://curseforge.com/minecraft/mc-mods/cycle-paintings)\
@@ -151,4 +152,3 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 
 ## Waiting For Approval Mods:
-[Mob Potion Effects](https://curseforge.com/minecraft/mc-mods/mob-potion-effects)
