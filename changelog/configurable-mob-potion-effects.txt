@@ -1,0 +1,9 @@
+Changelog:
+Configurable Mob Potion Effects
+https://curseforge.com/minecraft/mc-mods/configurable-mob-potion-effects
+
+=========
+v1.1: Fixed typo in cmpe reload command.
+
+=========
+v1.0: Initial release of mod.
