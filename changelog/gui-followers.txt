@@ -1,0 +1,9 @@
+Changelog:
+GUI Followers
+https://curseforge.com/minecraft/mc-mods/gui-followers
+
+=========
+v1.1: Fixed the mod preventing a server from launching when included in the mods folder. This is a client-side only mod, but the server will ignore it when present.
+
+=========
+v1.0: Initial release of mod.
