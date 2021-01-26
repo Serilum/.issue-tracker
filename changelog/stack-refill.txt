@@ -3,6 +3,9 @@ Stack Refill
 https://curseforge.com/minecraft/mc-mods/stack-refill
 
 =========
+v1.2: Added compatibility for milk buckets and fishing rods.
+
+=========
 v1.1: The mod can now replace items being tossed on the ground.
 
 =========
