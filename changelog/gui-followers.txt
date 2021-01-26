@@ -1,6 +1,6 @@
 Changelog:
-Advancement Screenshot
-https://curseforge.com/minecraft/mc-mods/advancement-screenshot
+GUI Followers
+https://curseforge.com/minecraft/mc-mods/gui-followers
 
 =========
 v1.1: Fixed the mod preventing a server from launching when included in the mods folder. This is a client-side only mod, but the server will ignore it when present.

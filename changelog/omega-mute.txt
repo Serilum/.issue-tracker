@@ -3,6 +3,9 @@ Omega Mute
 https://www.curseforge.com/minecraft/mc-mods/omega-mute
 
 =========
+v1.6: Fixed the mod preventing a server from launching when included in the mods folder. This is a client-side only mod, but the server will ignore it when present.
+
+=========
 v1.5: Fixed hotkey firing when typing in an open chat.
 
 =========
