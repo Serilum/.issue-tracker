@@ -5,6 +5,11 @@ Following the [Forge LTS Standard](https://www.minecraftforge.net/forum/topic/79
 
 I appreciate every submitted issue greatly, and will respond while working through them. This might take some time!
 
+![line](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/line.jpg)
+![promo0](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/BisectHosting/promo0.jpg)
+![promo1](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/BisectHosting/promo1.jpg)
+![line](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/line.jpg)
+
 ## Modpacks:
 [The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)
 
