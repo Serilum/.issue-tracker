@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.54: Synced code with the 1.12 Collective version.
+Added distance functions.
+
+=========
 v1.52, v1.53: Added functions and variables to determine if a block is a stone-type block. Improved some code.
 
 =========
