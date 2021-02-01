@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.55: Added entity functions. Improved backend code.
+
+=========
 v1.54: Synced code with the 1.12 Collective version.
 Added distance functions.
 
