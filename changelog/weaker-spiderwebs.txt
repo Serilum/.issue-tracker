@@ -3,6 +3,9 @@ Weaker Spiderwebs
 https://www.curseforge.com/minecraft/mc-mods/weaker-spiderwebs
 
 =========
+v1.6: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.5: Updated modid.
 Improved code efficiency.
 Fixed collective dependency set incorrectly.

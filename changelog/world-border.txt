@@ -3,6 +3,9 @@ World Border
 https://www.curseforge.com/minecraft/mc-mods/world-border
 
 =========
+v2.1: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v2.0: Mod code completely rewritten.
 Added support for multiple dimensions.
 Added new config options.
