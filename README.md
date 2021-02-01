@@ -1,7 +1,7 @@
 ## A hub for issues and content suggestions for Serilum's mods on CurseForge.
 You can create an [issue](https://github.com/ricksouth/serilum-mc-mods/issues/new/choose) if you have found a bug, got a feature idea, want to say something or just want to ask a question.<br>**Please specify the correct labels, thanks! :)**
 
-Following the [Forge LTS Standard](https://www.minecraftforge.net/forum/topic/79304-112114-and-lts-system/), I'll only be updating mods for Minecraft version 1.14+. This will drastically reduce my workload, as Forge 1.13 has changed a lot of code. I might however in some cases make an exception.
+As of February 2021 I've started to support 1.12.2 for most of my mods again. Support is limited, but most mods should continue to be updated for 1.12.2.
 
 I appreciate every submitted issue greatly, and will respond while working through them. This might take some time!
 
