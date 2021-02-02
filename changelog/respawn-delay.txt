@@ -3,6 +3,9 @@ Respawn Delay
 https://www.curseforge.com/minecraft/mc-mods/respawn-delay
 
 =========
+v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.1: Added the 'lowestPossibleYCoordinate' config option, which is the y coordinate a player's position will be set to when they fall into the void.
 
 =========

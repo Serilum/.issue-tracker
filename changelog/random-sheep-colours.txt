@@ -3,6 +3,9 @@ Random Sheep Colours
 https://www.curseforge.com/minecraft/mc-mods/random-sheep-colours
 
 =========
+v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.1: Fixed baby sheep changing colour when they're grown. They now remain the same colour they were when born.
 
 =========
