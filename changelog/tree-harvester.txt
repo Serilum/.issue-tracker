@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v2.1: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v2.0: Added fast leaf decay function. The sapling can get replaced after the last leaf block has been broken.
 
 =========

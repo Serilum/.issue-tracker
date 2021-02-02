@@ -3,6 +3,9 @@ Village Spawn Point
 https://www.curseforge.com/minecraft/mc-mods/village-spawn-point
 
 =========
+v1.4: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.3: [1.16.2 only] Fixes ClassCastException when generating a world.
 
 =========

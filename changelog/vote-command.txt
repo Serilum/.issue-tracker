@@ -3,6 +3,9 @@ Vote Command
 https://www.curseforge.com/minecraft/mc-mods/vote-command
 
 =========
+v1.3: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.2: [1.16.1 only] Updated mod to work with forge version 32.0.67 and above.
 
 =========
