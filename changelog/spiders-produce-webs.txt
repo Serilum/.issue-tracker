@@ -3,6 +3,9 @@ Spiders Produce Webs
 https://www.curseforge.com/minecraft/mc-mods/spiders-produce-webs
 
 =========
+v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version. Updated modid.
+
+=========
 v1.1: Updated modid.
 Added dependency on the Collective library mod.
 

@@ -3,6 +3,9 @@ Silence Mobs
 https://www.curseforge.com/minecraft/mc-mods/silence-mobs
 
 =========
+v1.7: Updated backend code. Synced release code to work alongside the 1.12.2 version. Fixed config descriptions.
+
+=========
 v1.6: [1.16.1 only] Updated mod to work with forge version 32.0.67 and above.
 
 =========

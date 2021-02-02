@@ -3,6 +3,9 @@ Starter Kit
 https://www.curseforge.com/minecraft/mc-mods/starter-kit
 
 =========
+v2.2: Updated backend code. Synced release code to work alongside the 1.12.2 version. Fixed non-critical error message in console.
+
+=========
 v2.1: Fixed starter kit config not being accepted with extra lines in the file.
 
 =========

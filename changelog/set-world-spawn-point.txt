@@ -3,6 +3,9 @@ Set World Spawn Point
 https://www.curseforge.com/minecraft/mc-mods/set-world-spawn-point
 
 =========
+v1.5: Updated backend code. Synced release code to work alongside the 1.12.2 version. Updated modid.
+
+=========
 v1.4: [1.16.2 only] Fixes ClassCastException when generating a world.
 
 =========

@@ -3,6 +3,9 @@ Stack Refill
 https://curseforge.com/minecraft/mc-mods/stack-refill
 
 =========
+v1.3: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.2: Added compatibility for milk buckets and fishing rods.
 
 =========
