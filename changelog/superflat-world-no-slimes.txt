@@ -3,6 +3,9 @@ Superflat World No Slimes
 https://www.curseforge.com/minecraft/mc-mods/superflat-world-no-slimes
 
 =========
+v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version. Updated modid. Fixed project url reference.
+
+=========
 v1.1: Improved code efficiency.
 Added dependency on the Collective library mod.
 
