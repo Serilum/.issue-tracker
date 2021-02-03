@@ -3,6 +3,9 @@ Rain Be Gone Ritual
 https://curseforge.com/minecraft/mc-mods/rain-be-gone-ritual
 
 =========
+v1.3: Fix file upload error CurseForge.
+
+=========
 v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version.
 
 =========

@@ -3,6 +3,9 @@ Move Minecarts
 https://www.curseforge.com/minecraft/mc-mods/move-minecarts
 
 =========
+v1.5: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.4: Fixed being able to hold the minecart while riding it, resulting in a magical journey through the sky.
 
 =========

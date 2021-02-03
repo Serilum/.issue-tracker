@@ -3,6 +3,9 @@ Quick Paths
 https://www.curseforge.com/minecraft/mc-mods/quick-paths
 
 =========
+v1.3: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.2: [1.16.2 only] Fixes ClassCastException when loading a world.
 
 =========

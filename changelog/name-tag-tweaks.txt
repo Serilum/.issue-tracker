@@ -3,6 +3,9 @@ Name Tag Tweaks
 https://www.curseforge.com/minecraft/mc-mods/name-tag-tweaks
 
 =========
+v1.1: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.2: Fixes problems with the mod not loading correctly in previous 1.16.x versions.
 Updated mod to Minecraft version 1.16.2.
 

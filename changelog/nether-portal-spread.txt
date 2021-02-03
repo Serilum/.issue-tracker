@@ -3,6 +3,9 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v4.5: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v4.4: Added compatibility for the Immersive Portals mod.
 
 =========

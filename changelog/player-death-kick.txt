@@ -3,6 +3,9 @@ Player Death Kick
 https://www.curseforge.com/minecraft/mc-mods/player-death-kick
 
 =========
+v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.1: Added a configurable option to broadcast a message to the online players whenever someone dies and is kicked.
 Added dependency on the Collective library mod.
 

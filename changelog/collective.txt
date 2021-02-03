@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.56: Fixed 1.12 player head generating function. Improved isTool function to make it more versatile.
+
+=========
 v1.55: Added entity functions. Improved backend code.
 
 =========

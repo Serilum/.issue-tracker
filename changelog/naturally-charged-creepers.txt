@@ -3,6 +3,9 @@ Naturally Charged Creepers
 https://www.curseforge.com/minecraft/mc-mods/naturally-charged-creepers
 
 =========
+v1.3: Updated backend code. Synced release code to work alongside the 1.12.2 version. Updated modid. Fixed config typo.
+
+=========
 v1.2: Improved code efficiency.
 Added dependency on the Collective library mod.
 

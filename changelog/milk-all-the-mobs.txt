@@ -3,6 +3,9 @@ Milk All The Mobs
 https://www.curseforge.com/minecraft/mc-mods/milk-all-the-mobs
 
 =========
+v1.3: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.2: Fixed incompatibility issue with other mods where the milk would be placed on the floor immediately after collecting it.
 
 =========

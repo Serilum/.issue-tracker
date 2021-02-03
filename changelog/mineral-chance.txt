@@ -3,4 +3,7 @@ Mineral Chance
 https://curseforge.com/minecraft/mc-mods/mineral-chance
 
 =========
+v1.1: Updated backend code. Synced release code to work alongside the 1.12.2 version. Fixed minerals dropping for players in creative mode.
+
+=========
 v1.0: Initial release of mod.
