@@ -3,6 +3,9 @@ Extended Bone Meal
 https://www.curseforge.com/minecraft/mc-mods/extended-bone-meal
 
 =========
+v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.1: Updated modid.
 Improved code efficiency.
 Bone meal can now be used in the offhand.

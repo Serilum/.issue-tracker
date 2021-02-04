@@ -3,6 +3,9 @@ End Portal Recipe
 https://www.curseforge.com/minecraft/mc-mods/end-portal-recipe
 
 =========
+v2.2: Updated backend code. Synced release code to work alongside the 1.12.2 version. Fixed recipe typo. Improved how the dragon egg drops from the Ender Dragon.
+
+=========
 v2.1: Fixed config file not generating correctly.
 
 =========

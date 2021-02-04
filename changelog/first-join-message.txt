@@ -3,4 +3,7 @@ First Join Message
 https://www.curseforge.com/minecraft/mc-mods/first-join-message
 
 =========
+v1.1: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.0: initial release of mod.

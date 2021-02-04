@@ -3,6 +3,9 @@ GUI Clock
 https://www.curseforge.com/minecraft/mc-mods/gui-clock
 
 =========
+v2.1: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v2.0: Fixed potion effects overlapping the GUI clock.
 
 =========

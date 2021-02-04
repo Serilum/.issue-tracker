@@ -3,6 +3,9 @@ Fixed Anvil Repair Cost
 https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost
 
 =========
+v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.1: Fixed incorrect behaviour when combining items and using the wrong material to repair.
 
 =========
