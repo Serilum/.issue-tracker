@@ -3,6 +3,9 @@ Just Player Heads
 https://www.curseforge.com/minecraft/mc-mods/just-player-heads
 
 =========
+v1.5: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.4: Added a cache for player head textures. Can be disabled in the config. The cache is emptied on a server reboot or when an administrator uses the '/jph cache' command.
 
 =========

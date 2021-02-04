@@ -3,6 +3,9 @@ GUI Compass
 https://www.curseforge.com/minecraft/mc-mods/gui-compass
 
 =========
+v1.4: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.3: Improved code efficiency.
 Added dependency on the Collective library mod.
 

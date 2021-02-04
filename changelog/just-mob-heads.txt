@@ -3,6 +3,9 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v3.8: Updated backend code. Synced release code to work alongside the 1.12.2 version. Changed jeb_sheep droprate to 0.2.
+
+=========
 v3.7: Added 'onlyAdultMobsDropTheirHead' config option. Which when enabled makes only adult tameable mobs have a chance to drop their head on death.
 
 =========

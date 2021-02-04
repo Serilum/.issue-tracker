@@ -3,6 +3,9 @@ Hide Hands
 https://www.curseforge.com/minecraft/mc-mods/hide-hands
 
 =========
+v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.1: Improved code efficiency.
 Added dependency on the Collective library mod.
 
