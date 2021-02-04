@@ -3,6 +3,9 @@ Crying Ghasts
 https://www.curseforge.com/minecraft/mc-mods/crying-ghasts
 
 =========
+v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version. Improved code efficiency.
+
+=========
 v1.1: Updated modid
 Improved code efficiency.
 Added dependency on the Collective library mod.

@@ -3,6 +3,9 @@ Edibles
 https://www.curseforge.com/minecraft/mc-mods/edibles
 
 =========
+v2.1: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v2.0: Added global edible cooldown. By default 1 second.
 Added edible ghast tear, gives regeneration.
 Added edible phantom membrane, gives slow falling.

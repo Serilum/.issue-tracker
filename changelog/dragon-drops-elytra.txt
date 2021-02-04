@@ -3,6 +3,9 @@ Dragon Drops Elytra
 https://www.curseforge.com/minecraft/mc-mods/dragon-drops-elytra
 
 =========
+v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.1: Updated modid.
 Improved code efficiency.
 Better support for multiplayer environments. The elytra drop message is now broadcasted to all players in the End, and the player who did the final damage gets an extra message saying the elytra dropped at their feet.
