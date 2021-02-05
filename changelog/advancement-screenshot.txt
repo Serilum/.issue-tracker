@@ -3,6 +3,9 @@ Advancement Screenshot
 https://curseforge.com/minecraft/mc-mods/advancement-screenshot
 
 =========
+v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.1: Fixed the mod preventing a server from launching when included in the mods folder. This is a client-side only mod, but the server will ignore it when present.
 
 =========

@@ -3,6 +3,9 @@ Bottle Your Xp
 https://www.curseforge.com/minecraft/mc-mods/bottle-your-xp
 
 =========
+v1.4: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.3: Improved code efficiency.
 You can now bottle xp while having the glass bottle in your offhand.
 Added dependency on the Collective library mod.
