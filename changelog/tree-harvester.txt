@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v2.2: Fixed issue of saplings not being replaced. Fixed issues of axes not breaking correctly. Improved code efficiency. Improved the way the mod chooses the correct sapling from drops.
+
+=========
 v2.1: Updated backend code. Synced release code to work alongside the 1.12.2 version.
 
 =========
