@@ -3,6 +3,9 @@ Stack Refill
 https://curseforge.com/minecraft/mc-mods/stack-refill
 
 =========
+v1.4: Fixed water buckets being replaced when catching fish. Improved support for modded blocks, such as a sieve from Ex Nihilo.
+
+=========
 v1.3: Updated backend code. Synced release code to work alongside the 1.12.2 version.
 
 =========
