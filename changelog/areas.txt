@@ -3,6 +3,9 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v1.2: Improved mod compatibility, in this case specifically Minecolonies. Fixed IllegalArgumentException when using custom RGB values.
+
+=========
 v1.1: Fixed the mod crashing when using a custom RGB values with extra spaces. Any amount of spaces is now parsed into the correct numbers.
 
 =========

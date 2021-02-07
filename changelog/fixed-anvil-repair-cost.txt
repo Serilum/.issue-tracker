@@ -3,6 +3,9 @@ Fixed Anvil Repair Cost
 https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost
 
 =========
+v1.3: Changed the minimum config value of the level and material cost to 1 (or 0 for vanilla behaviour) because of the vanilla code limitation. Fixes the issue of not being able to grab the output with a value of 0.
+
+=========
 v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version.
 
 =========
