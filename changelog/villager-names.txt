@@ -3,6 +3,12 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v2.8: Added support for custom names with multiple names, every first letter is capitalized.
+
+=========
+v2.7: Improved code efficiency. Extended support for modded villagers.
+
+=========
 v2.6: Updated backend code. Synced release code to work alongside the 1.12.2 version.
 
 =========

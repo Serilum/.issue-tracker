@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.58: Fixed rare ArrayIndexOutOfBoundsException on startup when using multiple Spawn mods. Added capitalize every word functions to assist Villager Names.
+
+=========
 v1.57: Improved the broadcast function to work server-side only.
 
 =========

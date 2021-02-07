@@ -3,6 +3,9 @@ Scaffolding Drops Nearby
 https://curseforge.com/minecraft/mc-mods/scaffolding-drops-nearby
 
 =========
+v1.2: Improved code efficiency. Fixed nullpointerexception caused by incompatibility with other mod.
+
+=========
 v1.1: The mod now works with any scaffolding tower height.
 
 =========
