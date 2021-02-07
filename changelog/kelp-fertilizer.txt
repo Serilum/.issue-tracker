@@ -3,6 +3,9 @@ Kelp Fertilizer
 https://www.curseforge.com/minecraft/mc-mods/kelp-fertilizer
 
 =========
+v1.2: Kelp can now be used from the offhand as well as the main hand. Fixed the kelp itemstack being decreased when the player was in creative mode.
+
+=========
 v1.1: You can now put kelp inside dispensers to use the bone meal effect.
 Added dependency on the Collective library mod.
 
