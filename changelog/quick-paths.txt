@@ -3,6 +3,9 @@ Quick Paths
 https://www.curseforge.com/minecraft/mc-mods/quick-paths
 
 =========
+v1.4: Moved the clean path memory function to the ServerTickEvent. This solves servers not being able to shutdown correctly with the mod loaded.
+
+=========
 v1.3: Updated backend code. Synced release code to work alongside the 1.12.2 version.
 
 =========
