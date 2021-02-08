@@ -3,6 +3,9 @@ All Loot Drops
 https://www.curseforge.com/minecraft/mc-mods/all-loot-drops
 
 =========
+v2.1: Fixed old name format in mod reference. Fixed mobs not always dropping all their loot.
+
+=========
 v2.0: Updated mod name and modid.
 Improved code efficiency.
 The mod now works with any entity that has a loot table, modded included. It uses the Collective library to procedurally generate all possible drops on first load.

@@ -3,6 +3,9 @@ TNT Breaks Bedrock
 https://www.curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock
 
 =========
+v1.4: Improved code efficiency. TNT detonated by a redstone torch now breaks bedrock, thanks Lughbaloo for the extended bug rerport.
+
+=========
 v1.3: Updated backend code. Synced release code to work alongside the 1.12.2 version. Updated modid.
 
 =========
