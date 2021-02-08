@@ -3,6 +3,9 @@ Stack Refill
 https://curseforge.com/minecraft/mc-mods/stack-refill
 
 =========
+v1.5: Thrown eggs can now be replaced. Removed debug console logs accidentally left in.
+
+=========
 v1.4: Fixed water buckets being replaced when catching fish. Improved support for modded blocks, such as a sieve from Ex Nihilo.
 
 =========
