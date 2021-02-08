@@ -3,6 +3,9 @@ Infinite Trading
 https://www.curseforge.com/minecraft/mc-mods/infinite-trading
 
 =========
+v1.3: Updated backend code. Synced release code to work alongside the 1.12.2 version.
+
+=========
 v1.2: Added support for Wandering Trader trades. Enabled by default, can be turned off in the config.
 
 =========
