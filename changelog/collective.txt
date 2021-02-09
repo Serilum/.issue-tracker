@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.59: Improved getSurfaceBlockPos function to work correctly with ice blocks.
+
+=========
 v1.58: Fixed rare ArrayIndexOutOfBoundsException on startup when using multiple Spawn mods. Added capitalize every word functions to assist Villager Names.
 
 =========
