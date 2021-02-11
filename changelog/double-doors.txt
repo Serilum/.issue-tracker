@@ -3,6 +3,9 @@ Double Doors
 https://www.curseforge.com/minecraft/mc-mods/double-doors
 
 =========
+v2.2: Added config options to disable separate functions within the mod.
+
+=========
 v2.1: Improved code efficiency.
 Added dependency on the Collective library mod.
 
