@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.60: Added block break functions.
+
+=========
 v1.59: Improved getSurfaceBlockPos function to work correctly with ice blocks.
 
 =========
