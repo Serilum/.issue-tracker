@@ -1,0 +1,9 @@
+Changelog:
+Random Mob Effects
+https://curseforge.com/minecraft/mc-mods/random-mob-effects
+
+=========
+v1.1: Fixed the potion effect level which was 1 too high than the config specified.
+
+=========
+v1.0: Initial release of mod.
