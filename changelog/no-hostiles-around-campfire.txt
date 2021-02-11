@@ -3,6 +3,9 @@ No Hostiles Around Campfire
 https://www.curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire
 
 =========
+v3.1: Added compatibility for potential modded campfire blocks. Fixed issue when checking for a lit campfire. Updated modid.
+
+=========
 v3.0: Improved mod efficiency.
 Added config options 'campfireMustBeSignalling', 'enableEffectForNormalCampfires'(1.16+), 'enableEffectForSoulCampfires'(1.16+)
 Fixed mod not working correctly with mob spawners and 'preventMobSpawnerSpawns' enabled.
