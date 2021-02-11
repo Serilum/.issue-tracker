@@ -3,6 +3,9 @@ Respawn Delay
 https://www.curseforge.com/minecraft/mc-mods/respawn-delay
 
 =========
+v2.0: The mod is now compatible with Gravestone mods. Fixed a problem in the 1.12.2 version which caused a crash on load.
+
+=========
 v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version.
 
 =========
