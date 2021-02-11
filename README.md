@@ -160,3 +160,4 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 
 
 ## Waiting For Approval Mods:
+[Random Mob Effects](https://curseforge.com/minecraft/mc-mods/random-mob-effects)
