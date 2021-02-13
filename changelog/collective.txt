@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.61: Added raytrace functions to determine which block the player is looking at from a distance.
+
+=========
 v1.60: Added block break functions.
 
 =========
