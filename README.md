@@ -162,3 +162,4 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 
 
 ## Waiting For Approval Mods:
+[Recipe Commands](https://curseforge.com/minecraft/mc-mods/recipe-commands)
