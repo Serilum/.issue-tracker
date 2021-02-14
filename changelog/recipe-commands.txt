@@ -1,0 +1,6 @@
+Changelog:
+Recipe Commands
+https://curseforge.com/minecraft/mc-mods/recipe-commands
+
+=========
+v1.0: Initial release of mod.
