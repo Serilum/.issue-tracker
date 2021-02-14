@@ -55,6 +55,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Extended Creative Inventory](https://curseforge.com/minecraft/mc-mods/extended-creative-inventory)\
 [Extract Poison](https://curseforge.com/minecraft/mc-mods/extract-poison)\
 [Fall Through Slime](https://curseforge.com/minecraft/mc-mods/fall-through-slime)\
+[Fire Spread Tweaks](https://curseforge.com/minecraft/mc-mods/fire-spread-tweaks)\
 [First Join Message](https://curseforge.com/minecraft/mc-mods/first-join-message)\
 [Fixed Anvil Repair Cost](https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost)\
 [Full Brightness Toggle](https://curseforge.com/minecraft/mc-mods/full-brightness-toggle)\
@@ -98,6 +99,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Quick Paths](https://curseforge.com/minecraft/mc-mods/quick-paths)\
 [Rain Be Gone Ritual](https://curseforge.com/minecraft/mc-mods/rain-be-gone-ritual)\
 [Random Bone Meal Flowers](https://curseforge.com/minecraft/mc-mods/random-bone-meal-flowers)\
+[Random Mob Effects](https://curseforge.com/minecraft/mc-mods/random-mob-effects)\
 [Random Sheep Colours](https://curseforge.com/minecraft/mc-mods/random-sheep-colours)\
 [Realistic Bees](https://curseforge.com/minecraft/mc-mods/realistic-bees)\
 [Recast](https://curseforge.com/minecraft/mc-mods/recast)\
@@ -160,5 +162,3 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 
 
 ## Waiting For Approval Mods:
-[Fire Spread Tweaks](https://curseforge.com/minecraft/mc-mods/fire-spread-tweaks)\
-[Random Mob Effects](https://curseforge.com/minecraft/mc-mods/random-mob-effects)
