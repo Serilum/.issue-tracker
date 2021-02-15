@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.62, v1.63, v1.64, v1.65, v1.66: Improved backend code.
+
+=========
 v1.61: Added raytrace functions to determine which block the player is looking at from a distance.
 
 =========
