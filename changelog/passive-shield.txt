@@ -3,4 +3,7 @@ Passive Shield
 https://curseforge.com/minecraft/mc-mods/passive-shield
 
 =========
+v1.1: The mod now works in server environments.
+
+=========
 v1.0: Initial release of mod.
