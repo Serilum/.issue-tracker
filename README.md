@@ -91,6 +91,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Omega Mute](https://curseforge.com/minecraft/mc-mods/omega-mute)\
 [Paper Books](https://curseforge.com/minecraft/mc-mods/paper-books)\
 [Passive Endermen](https://curseforge.com/minecraft/mc-mods/passive-endermen)\
+[Passive Shield](https://curseforge.com/minecraft/mc-mods/passive-shield)\
 [Pet Names](https://curseforge.com/minecraft/mc-mods/pet-names)\
 [Placeable Blaze Rods](https://curseforge.com/minecraft/mc-mods/placeable-blaze-rods)\
 [Player Death Kick](https://curseforge.com/minecraft/mc-mods/player-death-kick)\
@@ -163,4 +164,3 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 
 
 ## Waiting For Approval Mods:
-[Passive Shield](https://curseforge.com/minecraft/mc-mods/passive-shield)
