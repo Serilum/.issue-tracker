@@ -1,0 +1,6 @@
+Changelog:
+Passive Shield
+https://curseforge.com/minecraft/mc-mods/passive-shield
+
+=========
+v1.0: Initial release of mod.
