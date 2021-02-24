@@ -3,4 +3,7 @@ Recast
 https://curseforge.com/minecraft/mc-mods/recast
 
 =========
+v1.1: Fixed fishing bobber changing location after recast.
+
+=========
 v1.0: Initial release of mod.
