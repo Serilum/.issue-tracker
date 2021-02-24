@@ -1,0 +1,6 @@
+Changelog:
+Trample Everything
+https://curseforge.com/minecraft/mc-mods/trample-everything
+
+=========
+v1.0: Initial release of mod.
