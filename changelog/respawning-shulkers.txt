@@ -1,0 +1,9 @@
+Changelog:
+Respawning Shulkers
+https://curseforge.com/minecraft/mc-mods/respawning-shulkers
+
+=========
+v1.1: Pending shulker spawns will now process immediately on a server/world shutdown.
+
+=========
+v1.0: Initial release of mod.
