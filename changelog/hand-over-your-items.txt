@@ -1,0 +1,6 @@
+Changelog:
+Hand Over Your Items
+https://curseforge.com/minecraft/mc-mods/hand-over-your-items
+
+=========
+v1.0: Initial release of mod.
