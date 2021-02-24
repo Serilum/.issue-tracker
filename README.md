@@ -65,6 +65,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [GUI Clock](https://curseforge.com/minecraft/mc-mods/gui-clock)\
 [GUI Compass](https://curseforge.com/minecraft/mc-mods/gui-compass)\
 [GUI Followers](https://curseforge.com/minecraft/mc-mods/gui-followers)\
+[Hand Over Your Items](https://curseforge.com/minecraft/mc-mods/hand-over-your-items)\
 [Healing Campfire](https://curseforge.com/minecraft/mc-mods/healing-campfire)\
 [Healing Soup](https://curseforge.com/minecraft/mc-mods/healing-soup)\
 [Hide Hands](https://curseforge.com/minecraft/mc-mods/hide-hands)\
@@ -165,4 +166,3 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 
 
 ## Waiting For Approval Mods:
-[Hand Over Your Items](https://curseforge.com/minecraft/mc-mods/hand-over-your-items)
