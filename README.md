@@ -107,6 +107,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Recipe Commands](https://curseforge.com/minecraft/mc-mods/recipe-commands)\
 [Replanting Crops](https://curseforge.com/minecraft/mc-mods/replanting-crops)\
 [Respawn Delay](https://curseforge.com/minecraft/mc-mods/respawn-delay)\
+[Respawning Shulkers](https://curseforge.com/minecraft/mc-mods/respawning-shulkers)\
 [Save and Load Inventories](https://curseforge.com/minecraft/mc-mods/save-and-load-inventories)\
 [Scaffolding Drops Nearby](https://curseforge.com/minecraft/mc-mods/scaffolding-drops-nearby)\
 [Set World Spawn Point](https://curseforge.com/minecraft/mc-mods/set-world-spawn-point)\
@@ -164,4 +165,4 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 
 
 ## Waiting For Approval Mods:
-[Respawning Shulkers](https://curseforge.com/minecraft/mc-mods/respawning-shulkers)
+[Hand Over Your Items](https://curseforge.com/minecraft/mc-mods/hand-over-your-items)
