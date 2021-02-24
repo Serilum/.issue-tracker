@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.67: Added functions to get correct readable strings from itemstacks.
+
+=========
 v1.62, v1.63, v1.64, v1.65, v1.66: Improved backend code.
 
 =========
