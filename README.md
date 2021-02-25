@@ -167,3 +167,4 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 
 
 ## Waiting For Approval Mods:
+[Random Shulker Colours](https://curseforge.com/minecraft/mc-mods/random-shulker-colours)
