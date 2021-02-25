@@ -55,6 +55,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Extended Creative Inventory](https://curseforge.com/minecraft/mc-mods/extended-creative-inventory)\
 [Extract Poison](https://curseforge.com/minecraft/mc-mods/extract-poison)\
 [Fall Through Slime](https://curseforge.com/minecraft/mc-mods/fall-through-slime)\
+[Fish On The Line](https://curseforge.com/minecraft/mc-mods/fish-on-the-line)\
 [Fire Spread Tweaks](https://curseforge.com/minecraft/mc-mods/fire-spread-tweaks)\
 [First Join Message](https://curseforge.com/minecraft/mc-mods/first-join-message)\
 [Fixed Anvil Repair Cost](https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost)\
@@ -103,6 +104,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Random Bone Meal Flowers](https://curseforge.com/minecraft/mc-mods/random-bone-meal-flowers)\
 [Random Mob Effects](https://curseforge.com/minecraft/mc-mods/random-mob-effects)\
 [Random Sheep Colours](https://curseforge.com/minecraft/mc-mods/random-sheep-colours)\
+[Random Shulker Colours](https://curseforge.com/minecraft/mc-mods/random-shulker-colours)\
 [Realistic Bees](https://curseforge.com/minecraft/mc-mods/realistic-bees)\
 [Recast](https://curseforge.com/minecraft/mc-mods/recast)\
 [Recipe Commands](https://curseforge.com/minecraft/mc-mods/recipe-commands)\
@@ -130,6 +132,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Tree Harvester](https://curseforge.com/minecraft/mc-mods/tree-harvester)\
 [Underwater Enchanting](https://curseforge.com/minecraft/mc-mods/underwater-enchanting)\
 [Village Spawn Point](https://curseforge.com/minecraft/mc-mods/village-spawn-point)\
+[Village Bell Recipe](https://curseforge.com/minecraft/mc-mods/village-bell-recipe)\
 [Villager Death Messages](https://curseforge.com/minecraft/mc-mods/villager-death-messages)\
 [Villager Names](https://curseforge.com/minecraft/mc-mods/villager-names)\
 [Vote Command](https://curseforge.com/minecraft/mc-mods/vote-command)\
@@ -167,6 +170,3 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 
 
 ## Waiting For Approval Mods:
-[Fish On The Line](https://curseforge.com/minecraft/mc-mods/fish-on-the-line)\
-[Random Shulker Colours](https://curseforge.com/minecraft/mc-mods/random-shulker-colours)\
-[Village Bell Recipe](https://curseforge.com/minecraft/mc-mods/village-bell-recipe)
