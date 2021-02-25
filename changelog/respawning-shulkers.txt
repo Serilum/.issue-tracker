@@ -3,6 +3,9 @@ Respawning Shulkers
 https://curseforge.com/minecraft/mc-mods/respawning-shulkers
 
 =========
+v1.3: Added config option 'shulkersFromSpawnersDoNotRespawn' which when enabled prevents shulkers which originate from spawners to respawn. Enabled by default.
+
+=========
 v1.2: Improved code efficiency. Changed default respawn delay from 600 to 1200 ticks.
 
 =========
