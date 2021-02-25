@@ -125,6 +125,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Stray Spawn](https://curseforge.com/minecraft/mc-mods/stray-spawn)\
 [Superflat World No Slimes](https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes)\
 [TNT Breaks Bedrock](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock)\
+[Trample Everything](https://curseforge.com/minecraft/mc-mods/trample-everything)\
 [Transcending Trident](https://curseforge.com/minecraft/mc-mods/transcending-trident)\
 [Tree Harvester](https://curseforge.com/minecraft/mc-mods/tree-harvester)\
 [Underwater Enchanting](https://curseforge.com/minecraft/mc-mods/underwater-enchanting)\
@@ -166,4 +167,3 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 
 
 ## Waiting For Approval Mods:
-[Trample Everything](https://curseforge.com/minecraft/mc-mods/trample-everything)
