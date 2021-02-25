@@ -3,6 +3,9 @@ Random Sheep Colours
 https://www.curseforge.com/minecraft/mc-mods/random-sheep-colours
 
 =========
+v1.3: Fixed config not generating correctly.
+
+=========
 v1.2: Updated backend code. Synced release code to work alongside the 1.12.2 version.
 
 =========
