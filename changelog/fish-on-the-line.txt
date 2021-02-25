@@ -1,0 +1,6 @@
+Changelog:
+Fish On The Line
+https://curseforge.com/minecraft/mc-mods/fish-on-the-line
+
+=========
+v1.0: Initial release of mod.
