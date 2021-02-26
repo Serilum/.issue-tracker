@@ -3,6 +3,9 @@ Automatic Doors
 https://www.curseforge.com/minecraft/mc-mods/automatic-doors
 
 =========
+v1.7: Fixed doors not automatically opening when on top of a path block.
+
+=========
 v1.6: Fixed doors opening automatically when in spectator mode.
 
 =========
