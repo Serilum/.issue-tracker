@@ -3,4 +3,7 @@ Realistic Bees
 https://www.curseforge.com/minecraft/mc-mods/realistic-bees
 
 =========
+v1.1: Improved compatibility with chunk pre-generation mods.
+
+=========
 v1.0: Initial release of mod.
