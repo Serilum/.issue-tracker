@@ -3,6 +3,9 @@ Villager Death Messages
 https://www.curseforge.com/minecraft/mc-mods/villager-death-messages
 
 =========
+v1.7: Fixed error caused by incompatibility with other mod.
+
+=========
 v1.6: Updated backend code. Synced release code to work alongside the 1.12.2 version. Updated modid.
 
 =========

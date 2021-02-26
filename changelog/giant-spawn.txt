@@ -3,6 +3,9 @@ Giant Spawn
 https://www.curseforge.com/minecraft/mc-mods/giant-spawn
 
 =========
+v2.3: Improved code efficiency. Backend code tweaks.
+
+=========
 v2.2: Improved mod efficiency, improved backend code.
 
 =========

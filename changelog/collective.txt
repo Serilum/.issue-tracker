@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.68: Backend code tweaks, mainly dimension related.
+
+=========
 v1.67: Added functions to get correct readable strings from itemstacks.
 
 =========

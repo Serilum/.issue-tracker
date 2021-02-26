@@ -3,6 +3,9 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v3.9: Fixed steve heads dropping for mobs without head texture data.
+
+=========
 v3.8: Updated backend code. Synced release code to work alongside the 1.12.2 version. Changed jeb_sheep droprate to 0.2.
 
 =========

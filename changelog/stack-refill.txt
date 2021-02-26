@@ -3,6 +3,9 @@ Stack Refill
 https://curseforge.com/minecraft/mc-mods/stack-refill
 
 =========
+v1.6: Increased compatibility with other mods.
+
+=========
 v1.5: Thrown eggs can now be replaced. Removed debug console logs accidentally left in.
 
 =========

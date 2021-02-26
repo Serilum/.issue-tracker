@@ -3,6 +3,9 @@ Kelp Fertilizer
 https://www.curseforge.com/minecraft/mc-mods/kelp-fertilizer
 
 =========
+v1.3: Fixed error during complete event phase due to mod incompatibility.
+
+=========
 v1.2: Kelp can now be used from the offhand as well as the main hand. Fixed the kelp itemstack being decreased when the player was in creative mode.
 
 =========
