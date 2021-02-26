@@ -3,6 +3,9 @@ Passive Shield
 https://curseforge.com/minecraft/mc-mods/passive-shield
 
 =========
+v1.2: Fixed shield sometimes not rendering when holding right-click.
+
+=========
 v1.1: The mod now works in server environments.
 
 =========
