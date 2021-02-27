@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.0: Updated to version 2.0! Added check in an attempt to prevent mod reposting. If you're downloading from the original source (here on CurseForge) you won't be affected by this.
+If the source is illegitimate, a message will be sent once on first world join. Thank you for downloading mods on CurseForge.
+Added some new String Functions.
+Updated some backend code.
+
+=========
 v1.68: Backend code tweaks, mainly dimension related.
 
 =========
