@@ -3,6 +3,9 @@ Pet Names
 https://www.curseforge.com/minecraft/mc-mods/pet-names
 
 =========
+v1.4: Updated Pet Names to work with the new Collective update. The update attempts to inform players which download mods from illegitimate sources that it can be harmful to do so. If you are reading this on CurseForge and download your mods here, this won't affect you. Thank you for downloading mods from CurseForge and supporting the mod developers.
+
+=========
 v1.3: Updated backend code. Synced release code to work alongside the 1.12.2 version.
 
 =========

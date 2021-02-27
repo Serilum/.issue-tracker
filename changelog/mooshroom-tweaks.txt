@@ -3,6 +3,9 @@ Mooshroom Tweaks
 https://www.curseforge.com/minecraft/mc-mods/mooshroom-tweaks
 
 =========
+v1.3: Updated Mooshroom Tweaks to work with the new Collective update. The update attempts to inform players which download mods from illegitimate sources that it can be harmful to do so. If you are reading this on CurseForge and download your mods here, this won't affect you. Thank you for downloading mods from CurseForge and supporting the mod developers.
+
+=========
 v1.2: Fixed becomeBrownChance config value accidentally being becomeRedChance. It now works as intended.
 
 =========

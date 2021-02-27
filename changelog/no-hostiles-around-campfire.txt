@@ -3,6 +3,9 @@ No Hostiles Around Campfire
 https://www.curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire
 
 =========
+v3.2: Updated No Hostiles Around Campfire to work with the new Collective update. The update attempts to inform players which download mods from illegitimate sources that it can be harmful to do so. If you are reading this on CurseForge and download your mods here, this won't affect you. Thank you for downloading mods from CurseForge and supporting the mod developers.
+
+=========
 v3.1: Added compatibility for potential modded campfire blocks. Fixed issue when checking for a lit campfire. Updated modid.
 
 =========

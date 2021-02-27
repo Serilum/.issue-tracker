@@ -3,6 +3,9 @@ Random Bone Meal Flowers
 https://www.curseforge.com/minecraft/mc-mods/random-bone-meal-flowers
 
 =========
+v1.3: Updated Random Bone Meal Flowers to work with the new Collective update. The update attempts to inform players which download mods from illegitimate sources that it can be harmful to do so. If you are reading this on CurseForge and download your mods here, this won't affect you. Thank you for downloading mods from CurseForge and supporting the mod developers.
+
+=========
 v1.2: Improved code efficiency.
 Added blacklist feature. The mod now generates a file in /config/randombonemealflowers/ named blacklist.txt. Here you can prevent the mod from spawning a flower by adding an exclamation mark in front of the name. See the description for more details.
 Added dependency on the Collective library mod.
