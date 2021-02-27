@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v2.4: Updated Tree Harvester to work with the new Collective update. The update attempts to inform players which download mods from illegitimate sources that it can be harmful to do so. If you are reading this on CurseForge and download your mods here, this won't affect you. Thank you for downloading mods from CurseForge and supporting the mod developers.
+
+=========
 v2.3: Improved a lot of backend code. The mod is now correctly runs events to make it compatible with other statistic mods. Improved fast leaf decay for bigger trees. Fixed modded tool durability behaving incorrectly.
 
 =========
