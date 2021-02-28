@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.6: Updated backend code. Added list of random possible town names.
+
+=========
+v2.5: Updated player inventory management functions.
+
+=========
 v2.4: Fixed collective throwing an error when ran in a development environment.
 
 =========
