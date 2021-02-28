@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.4: Fixed collective throwing an error when ran in a development environment.
+
+=========
 v2.2, v2.3: Fixed inventory strings not being parsed correctly when saved in a different encoding format.
 
 =========
