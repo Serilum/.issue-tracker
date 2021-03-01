@@ -1,0 +1,6 @@
+Changelog:
+Random Village Names
+https://curseforge.com/minecraft/mc-mods/random-village-names
+
+=========
+v1.0: Initial release of mod.
