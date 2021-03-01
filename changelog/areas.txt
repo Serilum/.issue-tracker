@@ -3,6 +3,9 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v1.4: Added config option 'giveUnnamedAreasRandomName', enabled by default, which generates a random name for an area if there is no name input. See the description for an example.
+
+=========
 v1.3: Updated Areas to work with the new Collective update. The update attempts to inform players which download mods from illegitimate sources that it can be harmful to do so. If you are reading this on CurseForge and download your mods here, this won't affect you. Thank you for downloading mods from CurseForge and supporting the mod developers.
 
 =========
