@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.7: Added functions to update a specific tile entity in the world.
+
+=========
 v2.6: Updated backend code. Added list of random possible town names.
 
 =========
