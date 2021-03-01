@@ -3,6 +3,12 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v2.0: Extended sign caching to improve code efficiency.
+Overlapping areas with the same name will now work correctly, and not display the entering/leaving message.
+Added config option 'HUD_FontSizeScaleModifier' to add the ability to increase font size.
+Signs now change their content to a default state when entering only the zone prefix and nothing else.
+
+=========
 v1.4: Added config option 'giveUnnamedAreasRandomName', enabled by default, which generates a random name for an area if there is no name input. See the description for an example.
 
 =========
