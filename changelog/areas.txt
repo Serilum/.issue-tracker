@@ -3,6 +3,9 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v2.1: Added /areas command which displays all area signs nearby, so you won't lose them.
+
+=========
 v2.0: Extended sign caching to improve code efficiency.
 Overlapping areas with the same name will now work correctly, and not display the entering/leaving message.
 Added config option 'HUD_FontSizeScaleModifier' to add the ability to increase font size.
