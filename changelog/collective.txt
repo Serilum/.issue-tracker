@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.8: Extended functions to find the center of a nearby structure.
+
+=========
 v2.7: Added functions to update a specific tile entity in the world.
 
 =========
