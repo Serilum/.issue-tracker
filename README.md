@@ -105,6 +105,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Random Mob Effects](https://curseforge.com/minecraft/mc-mods/random-mob-effects)\
 [Random Sheep Colours](https://curseforge.com/minecraft/mc-mods/random-sheep-colours)\
 [Random Shulker Colours](https://curseforge.com/minecraft/mc-mods/random-shulker-colours)\
+[Random Village Names](https://curseforge.com/minecraft/mc-mods/random-village-names)\
 [Realistic Bees](https://curseforge.com/minecraft/mc-mods/realistic-bees)\
 [Recast](https://curseforge.com/minecraft/mc-mods/recast)\
 [Recipe Commands](https://curseforge.com/minecraft/mc-mods/recipe-commands)\
@@ -170,4 +171,3 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 
 
 ## Waiting For Approval Mods:
-[Random Village Names](https://curseforge.com/minecraft/mc-mods/random-village-names)
