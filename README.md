@@ -32,6 +32,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Bigger Sponge Absorption Radius](https://curseforge.com/minecraft/mc-mods/bigger-sponge-absorption-radius)\
 [Bottle Your Xp](https://curseforge.com/minecraft/mc-mods/bottle-your-xp)\
 [Breedable Killer Rabbit](https://curseforge.com/minecraft/mc-mods/breedable-killer-rabbit)\
+[Campfire Spawn and Tweaks](https://curseforge.com/minecraft/mc-mods/campfire-spawn-and-tweaks)\
 [Conduits Prevent Drowned](https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned)\
 [Configurable Despawn Timer](https://curseforge.com/minecraft/mc-mods/configurable-despawn-timer)\
 [Configurable Extra Mob Drops](https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops)\
