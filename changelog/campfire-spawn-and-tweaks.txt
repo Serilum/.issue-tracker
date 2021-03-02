@@ -3,4 +3,7 @@ Campfire Spawn and Tweaks
 https://curseforge.com/minecraft/mc-mods/campfire-spawn-and-tweaks
 
 =========
+v1.1: Fixed a block being removed below the campfire when respawning.
+
+=========
 v1.0: Initial release of mod.
