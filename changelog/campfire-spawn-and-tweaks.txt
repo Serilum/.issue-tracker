@@ -1,0 +1,6 @@
+Changelog:
+Campfire Spawn and Tweaks
+https://curseforge.com/minecraft/mc-mods/campfire-spawn-and-tweaks
+
+=========
+v1.0: Initial release of mod.
