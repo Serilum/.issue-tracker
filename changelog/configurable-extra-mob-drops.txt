@@ -3,6 +3,11 @@ Configurable Extra Mob Drops
 https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops
 
 =========
+v1.4: Fixed the command not choosing the right entity from the input.
+Fixed drops not being able to stack with others due to an nbt tag.
+Added itemstack amount in confirmation message.
+
+=========
 v1.3: Updated Configurable Extra Mob Drops to work with the new Collective update. The update attempts to inform players which download mods from illegitimate sources that it can be harmful to do so. If you are reading this on CurseForge and download your mods here, this won't affect you. Thank you for downloading mods from CurseForge and supporting the mod developers.
 
 =========
