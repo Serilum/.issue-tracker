@@ -3,6 +3,10 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v5.0: The mod now works multi-dimensional. If a dimension is added where nether portals are allowed, it'll be able to spread.
+Changed delay config to work with ticks. Minimum is 1 tick. The config value has been changed to spreadDelayTicks.
+
+=========
 v4.6: Updated Nether Portal Spread to work with the new Collective update. The update attempts to inform players which download mods from illegitimate sources that it can be harmful to do so. If you are reading this on CurseForge and download your mods here, this won't affect you. Thank you for downloading mods from CurseForge and supporting the mod developers.
 
 =========
