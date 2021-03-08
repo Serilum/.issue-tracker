@@ -3,6 +3,9 @@ Campfire Spawn and Tweaks
 https://curseforge.com/minecraft/mc-mods/campfire-spawn-and-tweaks
 
 =========
+v1.3: Improved backend code.
+
+=========
 v1.2: You can now put anything on the campfire without your spawn being changed.
 It now only changes when right-clicking a fire with flint & steel or a lit fire with an empty hand.
 You can now extinguish fire with more blocks.
