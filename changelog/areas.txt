@@ -3,6 +3,9 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v2.2: Updated backend code.
+
+=========
 v2.1: Added /areas command which displays all area signs nearby, so you won't lose them.
 
 =========
