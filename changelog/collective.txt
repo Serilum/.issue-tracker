@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.12: Updated config-related functions.
+
+=========
 v2.11: Improved dimension-related functions.
 
 =========
