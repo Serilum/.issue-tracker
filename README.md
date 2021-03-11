@@ -128,6 +128,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Starter Kit](https://curseforge.com/minecraft/mc-mods/starter-kit)\
 [Stray Spawn](https://curseforge.com/minecraft/mc-mods/stray-spawn)\
 [Superflat World No Slimes](https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes)\
+[The Vanilla Experience](https://curseforge.com/minecraft/mc-mods/the-vanilla-experience)\
 [TNT Breaks Bedrock](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock)\
 [Trample Everything](https://curseforge.com/minecraft/mc-mods/trample-everything)\
 [Transcending Trident](https://curseforge.com/minecraft/mc-mods/transcending-trident)\
