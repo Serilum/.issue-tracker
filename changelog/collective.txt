@@ -3,10 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
-v2.20: Updated Spawn A Mob backend code.
-
-=========
-v2.15, v2.16, v2.17, v2.18, v2.19: Backported Spawn A Mob functions from 1.14+ to 1.12. Preparation for the Spawn Mob mods release for 1.12.2. Improved backend code.
+v2.15 - v2.24: Skipped a few subversions during local development.
+Backported Spawn A Mob functions from 1.14+ to 1.12. Preparation for the Spawn Mob mods release for 1.12.2.
+Fixed mob spawn event not canceling correctly. Improved backend code.
 
 =========
 v2.14: Added player-related functions.
