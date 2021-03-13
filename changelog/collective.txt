@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.14: Added player-related functions.
+
+=========
 v2.13: Updated data-related functions.
 
 =========
