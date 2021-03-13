@@ -11,6 +11,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [![promo0](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/BisectHosting/promo0.jpg)](https://bisecthosting.com/serilum)
 [![promo1](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/BisectHosting/promo1.jpg)](https://github.com/ricksouth/serilum-mc-mods/wiki/Dedicated-Minecraft-Server)
 [![line](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/line.jpg)](#)
+[![line](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Patreon/patrons.jpg)](#)
 
 ## Modpacks:
 [The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)
