@@ -3,4 +3,7 @@ The Vanilla Experience
 https://curseforge.com/minecraft/mc-mods/the-vanilla-experience
 
 =========
+v1.1: Fixed mod not loading correctly in a multiplayer environment.
+
+=========
 v1.0: Initial release of mod.
