@@ -1,0 +1,6 @@
+Changelog:
+Hidden Recipe Book
+https://curseforge.com/minecraft/mc-mods/hidden-recipe-book
+
+=========
+v1.0: Initial release of mod.
