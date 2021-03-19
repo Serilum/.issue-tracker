@@ -174,3 +174,4 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 
 
 ## Waiting For Approval Mods:
+[Hidden Recipe Book](https://curseforge.com/minecraft/mc-mods/hidden-recipe-book)
