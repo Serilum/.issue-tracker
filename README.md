@@ -71,6 +71,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Hand Over Your Items](https://curseforge.com/minecraft/mc-mods/hand-over-your-items)\
 [Healing Campfire](https://curseforge.com/minecraft/mc-mods/healing-campfire)\
 [Healing Soup](https://curseforge.com/minecraft/mc-mods/healing-soup)\
+[Hidden Recipe Book](https://curseforge.com/minecraft/mc-mods/hidden-recipe-book)\
 [Hide Hands](https://curseforge.com/minecraft/mc-mods/hide-hands)\
 [Humbling Bundle](https://curseforge.com/minecraft/mc-mods/humbling-bundle)\
 [Husk Spawn](https://curseforge.com/minecraft/mc-mods/husk-spawn)\
@@ -174,4 +175,3 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 
 
 ## Waiting For Approval Mods:
-[Hidden Recipe Book](https://curseforge.com/minecraft/mc-mods/hidden-recipe-book)
