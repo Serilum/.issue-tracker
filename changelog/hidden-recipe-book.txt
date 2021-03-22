@@ -3,4 +3,7 @@ Hidden Recipe Book
 https://curseforge.com/minecraft/mc-mods/hidden-recipe-book
 
 =========
+v2.0: Added hotkey function to toggle the visibility of the recipe book button. See the description for more details.
+
+=========
 v1.0: Initial release of mod.
