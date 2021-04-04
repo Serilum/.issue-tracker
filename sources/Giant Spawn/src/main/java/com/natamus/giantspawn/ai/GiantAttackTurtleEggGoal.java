@@ -1,0 +1,45 @@
+/*
+ * This is the latest source code of Giant Spawn.
+ * Minecraft version: 1.16.5, mod version: 2.5.
+ *
+ * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
+ * You'll be added to a private repository which contains all versions' source of Giant Spawn ever released, along with some other perks.
+ *
+ * Github Sponsor link: https://github.com/sponsors/ricksouth
+ * Patreon link: https://patreon.com/ricksouth
+ *
+ * Becoming a Sponsor or Patron allows me to dedicate more time to the development of mods.
+ * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
+ */
+
+package com.natamus.giantspawn.ai;
+
+import com.natamus.collective.data.GlobalVariables;
+
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.ai.goal.BreakBlockGoal;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
+
+public class GiantAttackTurtleEggGoal extends BreakBlockGoal {
+	public GiantAttackTurtleEggGoal(CreatureEntity p_i50465_2_, double p_i50465_3_, int p_i50465_5_) {
+		super(Blocks.TURTLE_EGG, p_i50465_2_, p_i50465_3_, p_i50465_5_);
+	}
+	
+	public void playBreakingSound(IWorld p_203114_1_, BlockPos p_203114_2_) {
+		p_203114_1_.playSound((PlayerEntity)null, p_203114_2_, SoundEvents.ENTITY_ZOMBIE_DESTROY_EGG, SoundCategory.HOSTILE, 0.5F, 0.9F + GlobalVariables.random.nextFloat() * 0.2F);
+	}
+	
+	public void playBrokenSound(World p_203116_1_, BlockPos p_203116_2_) {
+		p_203116_1_.playSound((PlayerEntity)null, p_203116_2_, SoundEvents.ENTITY_TURTLE_EGG_BREAK, SoundCategory.BLOCKS, 0.7F, 0.9F + p_203116_1_.rand.nextFloat() * 0.2F);
+	}
+	
+	public double getTargetDistanceSq() {
+		return 1.14D;
+	}
+}

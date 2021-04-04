@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Bamboo%20Spreads"
+
+[[mods]]
+modId="bamboospreads"
+version="1.9"
+displayName="Bamboo Spreads"
+displayURL="https://curseforge.com/minecraft/mc-mods/bamboo-spreads"
+authors="Rick South"
+description="Bamboo has a chance to create a new chute on a nearby block when growing."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, Kreezcraft.com, Tyler Hadley   
+'''
+
+[[dependencies.bamboospreads]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.9,)"
+    ordering="NONE"
+    side="BOTH"

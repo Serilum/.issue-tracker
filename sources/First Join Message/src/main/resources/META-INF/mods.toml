@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20First%20Join%20Message"
+
+[[mods]]
+modId="firstjoinmessage"
+version="1.2"
+displayName="First Join Message"
+displayURL="https://curseforge.com/minecraft/mc-mods/first-join-message"
+authors="Rick South"
+description="Sends players who join a world for the first time a configurable message."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, Kreezcraft.com, Tyler Hadley   
+'''
+
+[[dependencies.firstjoinmessage]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.0,)"
+    ordering="NONE"
+    side="BOTH"

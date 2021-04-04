@@ -1,0 +1,86 @@
+/*
+ * This is the latest source code of Just Player Heads.
+ * Minecraft version: 1.16.5, mod version: 1.6.
+ *
+ * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
+ * You'll be added to a private repository which contains all versions' source of Just Player Heads ever released, along with some other perks.
+ *
+ * Github Sponsor link: https://github.com/sponsors/ricksouth
+ * Patreon link: https://patreon.com/ricksouth
+ *
+ * Becoming a Sponsor or Patron allows me to dedicate more time to the development of mods.
+ * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
+ */
+
+package com.natamus.justplayerheads.events;
+
+import com.natamus.collective.data.GlobalVariables;
+import com.natamus.collective.functions.HeadFunctions;
+import com.natamus.justplayerheads.cmds.CommandJph;
+import com.natamus.justplayerheads.config.ConfigHandler;
+import com.natamus.justplayerheads.util.Variables;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+
+@EventBusSubscriber
+public class PlayerEvent {
+    @SubscribeEvent
+    public void registerCommands(RegisterCommandsEvent e) {
+    	CommandJph.register(e.getDispatcher());
+    }
+	
+	@SubscribeEvent
+	public void entityDeath(LivingDeathEvent e) {
+		Entity entity = e.getEntity();
+		World world = entity.getEntityWorld();
+		if (world.isRemote) {
+			return;
+		}
+		
+		if (!ConfigHandler.GENERAL.playerDropsHeadOnDeath.get()) {
+			return;
+		}
+		
+		if (entity instanceof PlayerEntity == false) {
+			return;
+		}
+		
+		double num = GlobalVariables.random.nextDouble();
+		if (num > ConfigHandler.GENERAL.playerHeadDropChance.get()) {
+			return;
+		}
+		
+		PlayerEntity player = (PlayerEntity)entity;
+		String name = player.getName().getString();
+		
+		ItemStack head = null;
+		if (ConfigHandler.GENERAL.enablePlayerHeadCaching.get()) {
+			if (Variables.headcache.containsKey(name.toLowerCase())) {
+				head = Variables.headcache.get(name.toLowerCase());
+			}
+		}
+		
+		if (head == null) {
+			head = HeadFunctions.getPlayerHead(name, 1);
+			
+			if (head != null && ConfigHandler.GENERAL.enablePlayerHeadCaching.get()) {
+				ItemStack cachehead = head.copy();
+				
+				Variables.headcache.put(name.toLowerCase(), cachehead);
+			}
+		}
+		
+		if (head == null) {
+			return;
+		}
+		
+		player.entityDropItem(head, 1);
+	}
+}

@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Quick%20Paths"
+
+[[mods]]
+modId="quickpaths"
+version="1.5"
+displayName="Quick Paths"
+displayURL="https://curseforge.com/minecraft/mc-mods/quick-paths"
+authors="Rick South"
+description="Create long paths instantly by setting a start and end point."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, Kreezcraft.com, Tyler Hadley   
+'''
+
+[[dependencies.quickpaths]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.0,)"
+    ordering="NONE"
+    side="BOTH"

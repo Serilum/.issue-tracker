@@ -1,0 +1,181 @@
+/*
+ * This is the latest source code of Player Tracking.
+ * Minecraft version: 1.16.5, mod version: 1.4.
+ *
+ * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
+ * You'll be added to a private repository which contains all versions' source of Player Tracking ever released, along with some other perks.
+ *
+ * Github Sponsor link: https://github.com/sponsors/ricksouth
+ * Patreon link: https://patreon.com/ricksouth
+ *
+ * Becoming a Sponsor or Patron allows me to dedicate more time to the development of mods.
+ * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
+ */
+
+package com.natamus.playertracking.util;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.natamus.collective.functions.StringFunctions;
+import com.natamus.playertracking.Main;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
+
+public class Tracking {	
+	public Tracking(Main instance) {
+		this.instance = instance;
+	}
+
+	public void setLoc(int x, int y, int z) {
+		mx = x;
+		my = y;
+		mz = z;
+	}
+
+	public boolean checkPlayer(PlayerEntity pl, int x, int z) {
+		BlockPos pos = pl.getPosition();
+		
+		int num = 0;
+		if(x == 0) {
+			int plz = pos.getZ();
+			num = Math.abs(z);
+			if(Math.abs(mz - plz) < num)
+				if(z < 0) {
+					if(plz < mz)
+						return true;
+				} else
+					if(plz > mz)
+						return true;
+		} else
+			if(z == 0) {
+				int plz = pos.getX();
+				num = Math.abs(x);
+				if(Math.abs(mx - plz) < num)
+					if(x < 0) {
+						if(plz < mx)
+							return true;
+					} else
+						if(plz > mx)
+							return true;
+			}
+		return false;
+	}
+
+	public void TrackDir(PlayerEntity player, int x, int z, PlayerEntity player2) {
+		String compass = "West";
+		List<? extends PlayerEntity> plist = player.getEntityWorld().getPlayers();
+		List<PlayerEntity> in = new ArrayList<PlayerEntity>();
+		int num = Math.abs(x) + Math.abs(z);
+		if(player2 == null) {
+			for(int i = 0; i < plist.size(); i++)
+			{
+				PlayerEntity pl = (PlayerEntity)plist.get(i);
+				boolean can = checkPlayer(pl, x, z);
+				if(can)
+					in.add(pl);
+			}
+
+		} else {
+			boolean can = checkPlayer(player2, x, z);
+			if(can)
+				in.add(player2);
+		}
+		if(z < 0)
+			compass = "North";
+		else
+			if(z > 0)
+				compass = "South";
+		if(x < 0)
+			compass = "West";
+		else
+			if(x > 0)
+				compass = "East";
+		String str = "";
+		for(int i = 0; i < in.size(); i++)
+			str = (new StringBuilder(String.valueOf(str))).append(((PlayerEntity)in.get(i)).getName()).append(",").toString();
+
+		StringFunctions.sendMessage(player, compass + "<" + num + ">: " + str, TextFormatting.GRAY);
+	}
+
+	public int findBlock(World world, int x, int z, Block block1, Block block2) {
+		boolean hasmat = true;
+		int length = 0;
+		for(int i = 1; i < 10000; i++) {
+			BlockPos bpos = new BlockPos(mx + x * i, my, mz + z * i);
+			Block block = world.getBlockState(bpos).getBlock();
+
+			if(!hasmat)
+				continue;
+			if(block.equals(block1)) {
+				length++;
+				if(block1.equals(Blocks.COBBLESTONE))
+					world.setBlockState(bpos, Blocks.AIR.getDefaultState());
+				continue;
+			}
+			if(block.equals(block2)) {
+				hasmat = false;
+				length++;
+				if(block1.equals(Blocks.COBBLESTONE))
+					world.setBlockState(bpos, Blocks.AIR.getDefaultState());
+			} else {
+				return 0;
+			}
+			break;
+		}
+
+		if(length > 0 && !hasmat)
+			return length;
+		else
+			return 0;
+	}
+
+	public void Track(Block block1, Block block2, PlayerEntity player, PlayerEntity player2) {
+		World world = player.getEntityWorld();
+		BlockPos bpos = player.getPosition().down().toImmutable();
+		Block block = world.getBlockState(bpos).getBlock();
+		int northDist = findBlock(world, -1, 0, block1, block2);
+		int southDist = findBlock(world, 1, 0, block1, block2);
+		int eastDist = findBlock(world, 0, -1, block1, block2);
+		int westDist = findBlock(world, 0, 1, block1, block2);
+		
+		StringFunctions.sendMessage(player, "Tracking Data:          Use F3 for directions", TextFormatting.DARK_GRAY);
+		if(northDist > 0)
+			TrackDir(player, -northDist * 25, 0, player2);
+		if(southDist > 0)
+			TrackDir(player, southDist * 25, 0, player2);
+		if(eastDist > 0)
+			TrackDir(player, 0, -eastDist * 25, player2);
+		if(westDist > 0)
+			TrackDir(player, 0, westDist * 25, player2);
+		if(block.equals(Blocks.OBSIDIAN) && northDist + southDist + eastDist + westDist >= 25)
+			world.setBlockState(bpos, Blocks.AIR.getDefaultState());
+	}
+
+	public void Track(PlayerEntity player, PlayerEntity player2) {
+		World world = player.getEntityWorld();
+		BlockPos bpos = player.getPosition().down().toImmutable();
+		Block block = world.getBlockState(bpos).getBlock();
+		if(block.equals(Blocks.DIAMOND_BLOCK)) {
+			Track(Blocks.OBSIDIAN, Blocks.GOLD_BLOCK, player, player2);
+			return;
+		}
+		if(block.equals(Blocks.OBSIDIAN)) {
+			Track(Blocks.COBBLESTONE, Blocks.STONE, player, player2);
+			return;
+		}
+		
+		StringFunctions.sendMessage(player, "You need to be on a tracking block to do that.", TextFormatting.GRAY);
+		StringFunctions.sendMessage(player, "Do '/track help' for more information.", TextFormatting.GRAY);
+	}
+
+	public Main instance;
+	int mx;
+	int my;
+	int mz;
+}

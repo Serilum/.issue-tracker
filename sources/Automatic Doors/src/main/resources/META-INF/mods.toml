@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Automatic%20Doors"
+
+[[mods]]
+modId="automaticdoors"
+version="1.8"
+displayName="Automatic Doors"
+displayURL="https://curseforge.com/minecraft/mc-mods/automatic-doors"
+authors="Rick South"
+description="Automatically opens doors in front of the player and closes them with a configurable delay."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, Kreezcraft.com, Tyler Hadley   
+'''
+
+[[dependencies.automaticdoors]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.0,)"
+    ordering="NONE"
+    side="BOTH"

@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Random%20Village%20Names"
+
+[[mods]]
+modId="randomvillagenames"
+version="1.1"
+displayName="Random Village Names"
+displayURL="https://curseforge.com/minecraft/mc-mods/random-village-names"
+authors="Rick South"
+description="Gives all villages a random name from a preset list. Uses the Areas mod to display the name in the GUI."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, Kreezcraft.com, Tyler Hadley   
+'''
+
+[[dependencies.randomvillagenames]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.9,)"
+    ordering="NONE"
+    side="BOTH"
+    
+[[dependencies.randomvillagenames]]
+    modId="areas"
+    mandatory=true
+    versionRange="[2.0,)"
+    ordering="NONE"
+    side="BOTH"

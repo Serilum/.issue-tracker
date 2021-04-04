@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20World%20Border"
+
+[[mods]]
+modId="worldborder"
+version="2.3"
+displayName="World Border"
+displayURL="https://curseforge.com/minecraft/mc-mods/world-border"
+authors="Rick South"
+description="Allows the creation of a configurable world border for each dimension, limiting the world size."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, Kreezcraft.com, Tyler Hadley   
+'''
+
+[[dependencies.worldborder]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.0,)"
+    ordering="NONE"
+    side="BOTH"

@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Random%20Shulker%20Colours"
+
+[[mods]]
+modId="randomshulkercolours"
+version="1.1"
+displayName="Random Shulker Colours"
+displayURL="https://curseforge.com/minecraft/mc-mods/random-shulker-colours"
+authors="Rick South"
+description="Gives new shulker spawns a random shell colour based on a configurable list."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, Kreezcraft.com, Tyler Hadley   
+'''
+
+[[dependencies.randomshulkercolours]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.0,)"
+    ordering="NONE"
+    side="BOTH"

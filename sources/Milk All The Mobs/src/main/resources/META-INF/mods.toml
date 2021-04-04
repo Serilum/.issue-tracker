@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Milk%20All%20The%20Mobs"
+
+[[mods]]
+modId="milkallthemobs"
+version="1.4"
+displayName="Milk All The Mobs"
+displayURL="https://curseforge.com/minecraft/mc-mods/milk-all-the-mobs"
+authors="Rick South"
+description="Allows sheep, llamas, pigs, donkeys, horses and mules to produce a bucket of milk."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, Kreezcraft.com, Tyler Hadley   
+'''
+
+[[dependencies.milkallthemobs]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.0,)"
+    ordering="NONE"
+    side="BOTH"

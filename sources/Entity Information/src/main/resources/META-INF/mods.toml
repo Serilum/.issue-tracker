@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Entity%20Information"
+
+[[mods]]
+modId="entityinformation"
+version="1.5"
+displayName="Entity Information"
+displayURL="https://curseforge.com/minecraft/mc-mods/entity-information"
+authors="Rick South"
+description="Displays entity information on hit with the Information Stick. Useful for debugging and developing. Usage: /informationstick or /ist"
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, Kreezcraft.com, Tyler Hadley   
+'''
+
+[[dependencies.entityinformation]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.0,)"
+    ordering="NONE"
+    side="BOTH"

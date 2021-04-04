@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Omega%20Mute"
+
+[[mods]]
+modId="omegamute"
+version="1.7"
+displayName="Omega Mute"
+displayURL="https://curseforge.com/minecraft/mc-mods/omega-mute"
+authors="Rick South"
+description="[Client] The last mod you'll ever need for culling and silencing Minecraft sounds while in-game or via a file."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, Kreezcraft.com, Tyler Hadley   
+'''
+
+[[dependencies.omegamute]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.0,)"
+    ordering="NONE"
+    side="BOTH"

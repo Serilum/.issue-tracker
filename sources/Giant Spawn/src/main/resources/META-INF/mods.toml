@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Giant%20Spawn"
+
+[[mods]]
+modId="giantspawn"
+version="2.5"
+displayName="Giant Spawn"
+displayURL="https://curseforge.com/minecraft/mc-mods/giant-spawn"
+authors="Rick South"
+description="Allows the giant to spawn naturally and other tweaks."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, Alister, Kreezcraft.com, Tyler Hadley   
+'''
+
+[[dependencies.giantspawn]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.24,)"
+    ordering="NONE"
+    side="BOTH"

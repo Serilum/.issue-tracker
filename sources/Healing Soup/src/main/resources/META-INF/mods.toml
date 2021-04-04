@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Healing%20Soup"
+
+[[mods]]
+modId="healingsoup"
+version="2.2"
+displayName="Healing Soup"
+displayURL="https://curseforge.com/minecraft/mc-mods/healing-soup"
+authors="Rick South"
+description="Soup heals hearts. Adds cactus soup, mushroom soup and chocolate milk items and recipes."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, Kreezcraft.com, Tyler Hadley   
+'''
+
+[[dependencies.healingsoup]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.0,)"
+    ordering="NONE"
+    side="BOTH"

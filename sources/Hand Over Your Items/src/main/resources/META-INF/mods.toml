@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Hand%20Over%20Your%20Items"
+
+[[mods]]
+modId="handoveryouritems"
+version="1.2"
+displayName="Hand Over Your Items"
+displayURL="https://curseforge.com/minecraft/mc-mods/hand-over-your-items"
+authors="Rick South"
+description="Adds to ability to give other players items without dropping them on the floor."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, Kreezcraft.com, Tyler Hadley   
+'''
+
+[[dependencies.handoveryouritems]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.11,)"
+    ordering="NONE"
+    side="BOTH"

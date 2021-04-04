@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Softer%20Hay%20Bales"
+
+[[mods]]
+modId="softerhaybales"
+version="1.3"
+displayName="Softer Hay Bales"
+displayURL="https://curseforge.com/minecraft/mc-mods/softer-hay-bales"
+authors="Rick South"
+description="Makes hay bales negate fall damage entirely, Assassin's Creed style."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, Kreezcraft.com, Tyler Hadley   
+'''
+
+[[dependencies.softerhaybales]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.0,)"
+    ordering="NONE"
+    side="BOTH"
