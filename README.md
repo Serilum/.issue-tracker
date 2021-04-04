@@ -1,4 +1,4 @@
-## A hub for issues and content suggestions for Serilum's mods on CurseForge.
+## A hub for source code, issues and content suggestions for Serilum's mods on CurseForge.
 You can create an [issue](https://github.com/ricksouth/serilum-mc-mods/issues/new/choose) if you have found a bug, got a feature idea, want to say something or just want to ask a question.<br>**Please specify the correct labels, thanks! :)**
 
 As of February 2021 I've started to support 1.12.2 for most of my mods again. Support is limited, but most mods should continue to be updated for 1.12.2.
