@@ -3,6 +3,9 @@ Configurable Extra Mob Drops
 https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops
 
 =========
+v1.5: Added support to the cemd command for modded entities with the same name.
+
+=========
 v1.4: Fixed the command not choosing the right entity from the input.
 Fixed drops not being able to stack with others due to an nbt tag.
 Added itemstack amount in confirmation message.
