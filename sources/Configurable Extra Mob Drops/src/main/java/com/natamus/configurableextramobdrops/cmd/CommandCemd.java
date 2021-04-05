@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Extra Mob Drops.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.16.5, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Extra Mob Drops ever released, along with some other perks.
@@ -56,12 +56,18 @@ public class CommandCemd {
 				
 				ArrayList<String> mobnames = new ArrayList<String>();
 				for (EntityType<?> et : Util.mobdrops.keySet()) {
-					String[] nspl = et.getRegistryName().toString().toLowerCase().split(":");
+					String lowerregister = et.getRegistryName().toString().toLowerCase();
+					String[] nspl = lowerregister.split(":");
 					if (nspl.length < 2) {
 						continue;
 					}
 					
-					mobnames.add(nspl[1]);
+					String after = nspl[1];
+					if (!nspl[0].equalsIgnoreCase("minecraft")) {
+						after = lowerregister.replace(":", "-");
+					}
+					
+					mobnames.add(after);
 				}
 				
 				Collections.sort(mobnames);
@@ -80,6 +86,8 @@ public class CommandCemd {
 				StringFunctions.sendMessage(source, "Available entity names:", TextFormatting.DARK_GREEN, true);
 				StringFunctions.sendMessage(source, output, TextFormatting.YELLOW);
 				StringFunctions.sendMessage(source, "To add a drop: /cemd addhand <entity-name>", TextFormatting.DARK_GRAY);
+				StringFunctions.sendMessage(source, "Note: for modded entities use - not :", TextFormatting.RED);
+				StringFunctions.sendMessage(source, "", TextFormatting.RED);
 				return 1;
 			}))
 			.then(Commands.literal("reload")
@@ -124,14 +132,19 @@ public class CommandCemd {
 				String entityname = StringArgumentType.getString(command, "entity-name").toLowerCase().trim();
 				EntityType<?> entitytype = null;
 				
-				
 				for (EntityType<?> et : Util.mobdrops.keySet()) {
 					String registrystring = et.getRegistryName().toString();
 					if (!registrystring.contains(":")) {
 						continue;
 					}
-
-					if (registrystring.split(":")[1].equalsIgnoreCase(entityname)) {
+					
+					if (entityname.contains("-")) {
+						if (registrystring.equalsIgnoreCase(entityname.replace("-", ":"))) {
+							entitytype = et;
+							break;
+						}
+					}
+					else if (registrystring.split(":")[1].equalsIgnoreCase(entityname)) {
 						entitytype = et;
 						break;
 					}
@@ -182,12 +195,18 @@ public class CommandCemd {
 		EntityType<?> entitytype = null;
 		
 		for (EntityType<?> et : Util.mobdrops.keySet()) {
-			String registryname = et.getRegistryName().toString().toLowerCase();
-			if (!registryname.contains(":")) {
+			String registrystring = et.getRegistryName().toString();
+			if (!registrystring.contains(":")) {
 				continue;
 			}
 			
-			if (registryname.split(":")[1].equalsIgnoreCase(entityname)) {
+			if (entityname.contains("-")) {
+				if (registrystring.equalsIgnoreCase(entityname.replace("-", ":"))) {
+					entitytype = et;
+					break;
+				}
+			}
+			else if (registrystring.split(":")[1].equalsIgnoreCase(entityname)) {
 				entitytype = et;
 				break;
 			}
