@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.26: Merged events. Updated code efficiency. ClassNotFoundException fix.
+
+=========
 v2.25: Improved backend code.
 
 =========
