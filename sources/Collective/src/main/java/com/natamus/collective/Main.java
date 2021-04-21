@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.25.
+ * Minecraft version: 1.16.5, mod version: 2.26.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -17,8 +17,7 @@ package com.natamus.collective;
 import com.natamus.collective.check.RegisterMod;
 import com.natamus.collective.config.ConfigHandler;
 import com.natamus.collective.data.GlobalVariables;
-import com.natamus.collective.events.JoinWorldEvent;
-import com.natamus.collective.events.MobSpawnEvents;
+import com.natamus.collective.events.EntityEvents;
 import com.natamus.collective.util.Reference;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -48,7 +47,6 @@ public class Main {
     private void loadComplete(final FMLLoadCompleteEvent event) {
     	GlobalVariables.generateHashMaps();
     	
-    	MinecraftForge.EVENT_BUS.register(new MobSpawnEvents());
-    	MinecraftForge.EVENT_BUS.register(new JoinWorldEvent());
+    	MinecraftForge.EVENT_BUS.register(new EntityEvents());
 	}
 }
