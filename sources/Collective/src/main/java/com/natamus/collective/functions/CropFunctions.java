@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.26.
+ * Minecraft version: 1.16.5, mod version: 2.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -36,16 +36,16 @@ public class CropFunctions {
 			return false;
 		}
 		
-		ItemStack hand = player.getHeldItem(Hand.MAIN_HAND);
+		ItemStack hand = player.getItemInHand(Hand.MAIN_HAND);
 		Block block = state.getBlock();
 
 		if (block instanceof IGrowable) {
 			IGrowable igrowable = (IGrowable)block;
-			while (igrowable.canGrow(world, pos, state, world.isRemote)) {
-				if (!igrowable.canUseBonemeal(world, world.rand, pos, state)) {
+			while (igrowable.isValidBonemealTarget(world, pos, state, world.isClientSide)) {
+				if (!igrowable.isBonemealSuccess(world, world.random, pos, state)) {
 					break;
 				}
-				igrowable.grow((ServerWorld)world, world.rand, pos, state);
+				igrowable.performBonemeal((ServerWorld)world, world.random, pos, state);
 				state = world.getBlockState(pos);
 				hand.shrink(1);
 				if (hand.getCount() == 0) {
@@ -64,13 +64,13 @@ public class CropFunctions {
 					if (name.equals("age")) {
 						Comparable<?> cv = state.getValues().get(property);
 						int value = Integer.parseUnsignedInt(cv.toString());
-						int max = Collections.max(prop.getAllowedValues());
+						int max = Collections.max(prop.getPossibleValues());
 						if (value == max) {
 							return false;
 						}
 	
 						while (value < max) {
-							world.setBlockState(pos, world.getBlockState(pos).func_235896_a_(property));
+							world.setBlockAndUpdate(pos, world.getBlockState(pos).cycle(property));
 							if (!player.isCreative()) {
 								hand.shrink(1);
 								if (hand.getCount() == 0) {
@@ -79,7 +79,7 @@ public class CropFunctions {
 							}
 							value+=1;
 							
-							if (!player.isSneaking()) {
+							if (!player.isShiftKeyDown()) {
 								break;
 							}
 						}
@@ -88,7 +88,7 @@ public class CropFunctions {
 			}
 		}
 		
-		world.playEvent(2005, pos, 0);
+		world.levelEvent(2005, pos, 0);
 		return true;
 	}
 	
@@ -98,9 +98,9 @@ public class CropFunctions {
 			Block block = world.getBlockState(uppos).getBlock();
 			if (block != Blocks.CACTUS) {
 				if (block.equals(Blocks.AIR)) {
-					world.setBlockState(uppos, Blocks.CACTUS.getDefaultState());
-					world.playEvent(2005, uppos, 0);
-					world.playEvent(2005, uppos.up(), 0);
+					world.setBlockAndUpdate(uppos, Blocks.CACTUS.defaultBlockState());
+					world.levelEvent(2005, uppos, 0);
+					world.levelEvent(2005, uppos.above(), 0);
 					return true;
 				}
 				break;
@@ -115,9 +115,9 @@ public class CropFunctions {
 			Block block = world.getBlockState(uppos).getBlock();
 			if (block != Blocks.SUGAR_CANE) {
 				if (block.equals(Blocks.AIR)) {
-					world.setBlockState(uppos, Blocks.SUGAR_CANE.getDefaultState());
-					world.playEvent(2005, uppos, 0);
-					world.playEvent(2005, uppos.up(), 0);
+					world.setBlockAndUpdate(uppos, Blocks.SUGAR_CANE.defaultBlockState());
+					world.levelEvent(2005, uppos, 0);
+					world.levelEvent(2005, uppos.above(), 0);
 					return true;
 				}
 				break;
@@ -132,9 +132,9 @@ public class CropFunctions {
 			Block block = world.getBlockState(downpos).getBlock();
 			if (block != Blocks.VINE) {
 				if (block.equals(Blocks.AIR)) {
-					world.setBlockState(downpos, world.getBlockState(pos));
-					world.playEvent(2005, downpos, 0);
-					world.playEvent(2005, downpos.down(), 0);
+					world.setBlockAndUpdate(downpos, world.getBlockState(pos));
+					world.levelEvent(2005, downpos, 0);
+					world.levelEvent(2005, downpos.below(), 0);
 					return true;
 				}
 				break;

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.26.
+ * Minecraft version: 1.16.5, mod version: 2.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -40,16 +40,16 @@ public class FABFunctions {
 	
 	public static List<BlockPos> getAllTileEntityPositionsNearbyEntity(TileEntityType<?> tetype, Integer radius,  World world, Entity entity) {
 		List<BlockPos> nearbypositions = new ArrayList<BlockPos>();
-		for (TileEntity loadedtileentity : world.loadedTileEntityList) {
+		for (TileEntity loadedtileentity : world.blockEntityList) {
 			TileEntityType<?> loadedtiletype = loadedtileentity.getType();
 			if (loadedtiletype == null) {
 				continue;
 			}
 			
 			if (loadedtiletype.equals(tetype)) {
-				BlockPos ltepos = loadedtileentity.getPos();
-				if (ltepos.withinDistance(entity.getPositionVec(), radius)) {
-					nearbypositions.add(loadedtileentity.getPos());
+				BlockPos ltepos = loadedtileentity.getBlockPos();
+				if (ltepos.closerThan(entity.position(), radius)) {
+					nearbypositions.add(loadedtileentity.getBlockPos());
 				}
 			}
 		}
@@ -61,7 +61,7 @@ public class FABFunctions {
 		Block requestedblock = processCommonBlock(rawqueryblock);
 		Map<World,List<BlockPos>> worldblocks = getMap(requestedblock);
 
-		BlockPos epos = entity.getPosition();
+		BlockPos epos = entity.blockPosition();
 		
 		List<BlockPos> currentblocks;
 		BlockPos removeblockpos = null;
@@ -71,7 +71,7 @@ public class FABFunctions {
 			
 			List<BlockPos> cbtoremove = new ArrayList<BlockPos>(); 
 			for (BlockPos cblock : currentblocks) {
-				if (!world.getChunkProvider().chunkExists(cblock.getX() >> 4, cblock.getZ() >> 4)) {
+				if (!world.getChunkSource().hasChunk(cblock.getX() >> 4, cblock.getZ() >> 4)) {
 					cbtoremove.add(cblock);
 					continue;
 				}
@@ -80,9 +80,9 @@ public class FABFunctions {
 					continue;
 				}
 				
-				if (cblock.withinDistance(epos, radius*radiusmodifier)) {
-					removeblockpos = cblock.toImmutable();
-					return cblock.toImmutable();
+				if (cblock.closerThan(epos, radius*radiusmodifier)) {
+					removeblockpos = cblock.immutable();
+					return cblock.immutable();
 				}
 			}
 			
@@ -107,7 +107,7 @@ public class FABFunctions {
 				for (Date todate : timeouts.keySet()) {
 					BlockPos toepos = timeouts.get(todate);
 					if (removeblockpos != null) {
-						if (toepos.withinDistance(removeblockpos, 64)) {
+						if (toepos.closerThan(removeblockpos, 64)) {
 							totoremove.add(todate);
 						}
 					}
@@ -116,7 +116,7 @@ public class FABFunctions {
 						totoremove.add(todate);
 						continue;
 					}
-					if (toepos.withinDistance(epos, radius*radiusmodifier)) {
+					if (toepos.closerThan(epos, radius*radiusmodifier)) {
 						return null;
 					}
 				}
@@ -135,7 +135,7 @@ public class FABFunctions {
 		if (GlobalVariables.blocksWithTileEntity.containsKey(requestedblock)) {
 			TileEntityType<?> tiletypetofind = GlobalVariables.blocksWithTileEntity.get(requestedblock);
 			
-			List<TileEntity> loadedtileentities = world.loadedTileEntityList;
+			List<TileEntity> loadedtileentities = world.blockEntityList;
 			for (TileEntity loadedtileentity : loadedtileentities) {
 				TileEntityType<?> loadedtiletype = loadedtileentity.getType();
 				if (loadedtiletype == null) {
@@ -143,14 +143,14 @@ public class FABFunctions {
 				}
 				
 				if (loadedtiletype.equals(tiletypetofind)) {
-					BlockPos ltepos = loadedtileentity.getPos();
+					BlockPos ltepos = loadedtileentity.getBlockPos();
 				
-					if (ltepos.withinDistance(epos, radius*radiusmodifier)) {
-						currentblocks.add(ltepos.toImmutable());
+					if (ltepos.closerThan(epos, radius*radiusmodifier)) {
+						currentblocks.add(ltepos.immutable());
 						worldblocks.put(world, currentblocks);
 						getMapFromBlock.put(requestedblock, worldblocks);
 						
-						return ltepos.toImmutable();
+						return ltepos.immutable();
 					}
 				}
 			}
@@ -160,21 +160,21 @@ public class FABFunctions {
 			for (int x = -r; x < r; x++) {
 				for (int y = -r; y < r; y++) {
 					for (int z = -r; z < r; z++) {
-						BlockPos cpos = epos.east(x).north(y).up(z);
+						BlockPos cpos = epos.east(x).north(y).above(z);
 						BlockState state = world.getBlockState(cpos);
 						if (state.getBlock().equals(requestedblock)) {
-							currentblocks.add(cpos.toImmutable());
+							currentblocks.add(cpos.immutable());
 							worldblocks.put(world, currentblocks);
 							getMapFromBlock.put(requestedblock, worldblocks);
 							
-							return cpos.toImmutable();
+							return cpos.immutable();
 						}
 					}
 				}
 			}		
 		}
 		
-		timeouts.put(new Date(), epos.toImmutable());
+		timeouts.put(new Date(), epos.immutable());
 		timeoutpositions.put(world, timeouts);
 		return null;
 	}

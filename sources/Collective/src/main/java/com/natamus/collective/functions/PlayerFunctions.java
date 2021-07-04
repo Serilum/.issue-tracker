@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.26.
+ * Minecraft version: 1.16.5, mod version: 2.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -54,23 +54,23 @@ public class PlayerFunctions {
 		MinecraftServer server = world.getServer();
 		ServerPlayerEntity serverplayer = (ServerPlayerEntity)player;
 		
-		if (serverplayer.queuedEndExit) {
-			serverplayer.queuedEndExit = false;
-			serverplayer = server.getPlayerList().func_232644_a_(serverplayer, true);
-			CriteriaTriggers.CHANGED_DIMENSION.testForAll(serverplayer, World.THE_END, World.OVERWORLD);
+		if (serverplayer.wonGame) {
+			serverplayer.wonGame = false;
+			serverplayer = server.getPlayerList().respawn(serverplayer, true);
+			CriteriaTriggers.CHANGED_DIMENSION.trigger(serverplayer, World.END, World.OVERWORLD);
 		}
 		else if (serverplayer.getHealth() <= 0.0F) {
-			serverplayer = server.getPlayerList().func_232644_a_(serverplayer, false);
+			serverplayer = server.getPlayerList().respawn(serverplayer, false);
 		}
 		
 		return true;
 	}
 	
 	public static PlayerEntity matchPlayer(PlayerEntity player, String other) {
-		return matchPlayer(player.getEntityWorld(), other);
+		return matchPlayer(player.getCommandSenderWorld(), other);
 	}
 	public static PlayerEntity matchPlayer(World world, String other) {
-		List<? extends PlayerEntity> players = world.getPlayers();
+		List<? extends PlayerEntity> players = world.players();
 
 		for (PlayerEntity onlineplayer : players) {
 			if (onlineplayer.getName().getString().toLowerCase().equals(other)) {
@@ -81,7 +81,7 @@ public class PlayerFunctions {
 	}
 	
 	public static boolean isHoldingWater(PlayerEntity player) {
-		if (player.getHeldItem(Hand.OFF_HAND).getItem().equals(Items.WATER_BUCKET) || player.getHeldItem(Hand.MAIN_HAND).getItem().equals(Items.WATER_BUCKET)) {
+		if (player.getItemInHand(Hand.OFF_HAND).getItem().equals(Items.WATER_BUCKET) || player.getItemInHand(Hand.MAIN_HAND).getItem().equals(Items.WATER_BUCKET)) {
 			return true;
 		}
 		return false;
@@ -100,7 +100,7 @@ public class PlayerFunctions {
 		PlayerInventory inv = player.inventory;
 		boolean isempty = true;
 		for (int i=0; i < 36; i++) {
-			if (!inv.getStackInSlot(i).isEmpty()) {
+			if (!inv.getItem(i).isEmpty()) {
 				isempty = false;
 				break;
 			}
@@ -111,13 +111,13 @@ public class PlayerFunctions {
 		}
 		
 		
-		World world = player.getEntityWorld();
+		World world = player.getCommandSenderWorld();
 		ServerWorld serverworld = (ServerWorld)world;
-		BlockPos wspos = serverworld.getSpawnPoint();
-		BlockPos ppos = player.getPosition();
+		BlockPos wspos = serverworld.getSharedSpawnPos();
+		BlockPos ppos = player.blockPosition();
 		BlockPos cpos = new BlockPos(ppos.getX(), wspos.getY(), ppos.getZ());
 		
-		if (cpos.withinDistance(wspos, 50)) {
+		if (cpos.closerThan(wspos, 50)) {
 			return true;
 		}
 		return false;
@@ -131,17 +131,17 @@ public class PlayerFunctions {
 		ServerPlayerEntity serverplayer = (ServerPlayerEntity)player;
 		ServerWorld serverworld = (ServerWorld)world;
 		
-		BlockPos respawnlocation = serverworld.getSpawnPoint(); // get spawn point
+		BlockPos respawnlocation = serverworld.getSharedSpawnPos(); // get spawn point
 		Vector3d respawnvec = new Vector3d(respawnlocation.getX(), respawnlocation.getY(), respawnlocation.getZ());
 		
-		BlockPos bedpos = serverplayer.func_241140_K_();
+		BlockPos bedpos = serverplayer.getRespawnPosition();
 		if (bedpos != null) { 
-			Optional<Vector3d> optionalbed = PlayerEntity.func_242374_a(serverworld, bedpos, 1.0f, false, false);
+			Optional<Vector3d> optionalbed = PlayerEntity.findRespawnPositionAndUseSpawnBlock(serverworld, bedpos, 1.0f, false, false);
 			if (optionalbed != null) {
 				if (optionalbed.isPresent()) {
 					Vector3d bedvec = optionalbed.get();
 					BlockPos bp = new BlockPos(bedvec);
-					Iterator<BlockPos> it = BlockPos.getAllInBox(bp.getX()-1, bp.getY()-1, bp.getZ()-1, bp.getX()+1, bp.getY()+1, bp.getZ()+1).iterator();
+					Iterator<BlockPos> it = BlockPos.betweenClosedStream(bp.getX()-1, bp.getY()-1, bp.getZ()-1, bp.getX()+1, bp.getY()+1, bp.getZ()+1).iterator();
 					while (it.hasNext()) {
 						BlockPos np = it.next();
 						BlockState state = world.getBlockState(np);
@@ -163,10 +163,10 @@ public class PlayerFunctions {
 	public static String getPlayerGearString(PlayerEntity player) {
 		String skconfig = "";
 		
-		ItemStack offhand = player.getItemStackFromSlot(EquipmentSlotType.OFFHAND);
+		ItemStack offhand = player.getItemBySlot(EquipmentSlotType.OFFHAND);
 		if (!offhand.isEmpty()) {
 			CompoundNBT nbt = new CompoundNBT();
-			nbt = offhand.write(nbt);
+			nbt = offhand.save(nbt);
 			String nbtstring = nbt.toString();
 			skconfig += "'offhand'" + " : " + "'" + nbtstring + "',";
 		}
@@ -174,10 +174,10 @@ public class PlayerFunctions {
 			skconfig += "'offhand'" + " : " + "'',";
 		}
 		
-		ItemStack head = player.getItemStackFromSlot(EquipmentSlotType.HEAD);
+		ItemStack head = player.getItemBySlot(EquipmentSlotType.HEAD);
 		if (!head.isEmpty()) {
 			CompoundNBT nbt = new CompoundNBT();
-			nbt = head.write(nbt);
+			nbt = head.save(nbt);
 			String nbtstring = nbt.toString();
 			skconfig += "\n" + "'head'" + " : " + "'" + nbtstring + "',";
 		}
@@ -185,10 +185,10 @@ public class PlayerFunctions {
 			skconfig += "\n" + "'head'" + " : " + "'',";
 		}
 		
-		ItemStack chest = player.getItemStackFromSlot(EquipmentSlotType.CHEST);
+		ItemStack chest = player.getItemBySlot(EquipmentSlotType.CHEST);
 		if (!chest.isEmpty()) {
 			CompoundNBT nbt = new CompoundNBT();
-			nbt = chest.write(nbt);
+			nbt = chest.save(nbt);
 			String nbtstring = nbt.toString();
 			skconfig += "\n" + "'chest'" + " : " + "'" + nbtstring + "',";
 		}
@@ -196,10 +196,10 @@ public class PlayerFunctions {
 			skconfig += "\n" + "'chest'" + " : " + "'',";
 		}
 		
-		ItemStack legs = player.getItemStackFromSlot(EquipmentSlotType.LEGS);
+		ItemStack legs = player.getItemBySlot(EquipmentSlotType.LEGS);
 		if (!legs.isEmpty()) {
 			CompoundNBT nbt = new CompoundNBT();
-			nbt = legs.write(nbt);
+			nbt = legs.save(nbt);
 			String nbtstring = nbt.toString();
 			skconfig += "\n" + "'legs'" + " : " + "'" + nbtstring + "',";
 		}
@@ -207,10 +207,10 @@ public class PlayerFunctions {
 			skconfig += "\n" + "'legs'" + " : " + "'',";
 		}
 		
-		ItemStack feet = player.getItemStackFromSlot(EquipmentSlotType.FEET);
+		ItemStack feet = player.getItemBySlot(EquipmentSlotType.FEET);
 		if (!feet.isEmpty()) {
 			CompoundNBT nbt = new CompoundNBT();
-			nbt = feet.write(nbt);
+			nbt = feet.save(nbt);
 			String nbtstring = nbt.toString();
 			skconfig += "\n" + "'feet'" + " : " + "'" + nbtstring + "',";
 		}
@@ -220,10 +220,10 @@ public class PlayerFunctions {
 		
 		PlayerInventory inv = player.inventory;
 		for (int i=0; i < 36; i++) {
-			ItemStack slot = inv.getStackInSlot(i);
+			ItemStack slot = inv.getItem(i);
 			if (!slot.isEmpty()) {
 				CompoundNBT nbt = new CompoundNBT();
-				nbt = slot.write(nbt);
+				nbt = slot.save(nbt);
 				String nbtstring = nbt.toString();
 				skconfig += "\n" + i + " : " + "'" + nbtstring + "',";
 			}
@@ -243,7 +243,7 @@ public class PlayerFunctions {
 			String specialslotstring = "";
 			if (gear.containsKey(specialslot)) {
 				CompoundNBT nbt = new CompoundNBT();
-				nbt = gear.get(specialslot).write(nbt);
+				nbt = gear.get(specialslot).save(nbt);
 				specialslotstring = nbt.toString();
 			}
 			if (gearstring != "") {
@@ -257,7 +257,7 @@ public class PlayerFunctions {
 			String itemstring = "";
 			if (gear.containsKey("" + i)) {
 				CompoundNBT nbt = new CompoundNBT();
-				nbt = gear.get("" + i).write(nbt);
+				nbt = gear.get("" + i).save(nbt);
 				itemstring = nbt.toString();
 			}
 			gearstring += "\n" + i + " : '" + itemstring + "',";
@@ -296,8 +296,8 @@ public class PlayerFunctions {
 			
 			ItemStack itemstack = null;
 			try {
-				CompoundNBT newnbt = JsonToNBT.getTagFromJson(data);
-				itemstack = ItemStack.read(newnbt);
+				CompoundNBT newnbt = JsonToNBT.parseTag(data);
+				itemstack = ItemStack.of(newnbt);
 			} catch (CommandSyntaxException e) {}
 			
 			if (itemstack == null) {
@@ -307,12 +307,12 @@ public class PlayerFunctions {
 			
 			if (!cleared) {
 				cleared = true;
-				player.inventory.clear();
+				player.inventory.clearContent();
 			}
 			
 			if (NumberFunctions.isNumeric(slotstring)) {
 				int slot = Integer.parseInt(slotstring);
-				player.inventory.setInventorySlotContents(slot, itemstack);
+				player.inventory.setItem(slot, itemstack);
 				continue;
 			}
 			
@@ -340,7 +340,7 @@ public class PlayerFunctions {
 				continue;
 			}
 			
-			player.setItemStackToSlot(type, itemstack);
+			player.setItemSlot(type, itemstack);
 		}
 	}
 }

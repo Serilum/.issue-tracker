@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.26.
+ * Minecraft version: 1.16.5, mod version: 2.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -43,7 +43,7 @@ public class WorldFunctions {
 	
 	// Dimension functions
 	public static String getWorldDimensionName(World world) {
-		return world.getDimensionKey().getLocation().toString();
+		return world.dimension().location().toString();
 	}
 	public static boolean isOverworld(World world) {
 		return getWorldDimensionName(world).toLowerCase().endsWith("overworld");
@@ -57,7 +57,7 @@ public class WorldFunctions {
 	
 	// IWorld functions
 	public static World getWorldIfInstanceOfAndNotRemote(IWorld iworld) {
-		if (iworld.isRemote()) {
+		if (iworld.isClientSide()) {
 			return null;
 		}
 		if (iworld instanceof World) {
@@ -68,7 +68,7 @@ public class WorldFunctions {
 	
 	// Path
 	public static String getWorldPath(ServerWorld serverworld) {
-		String worldpath = serverworld.getServer().func_240776_a_(FolderName.DOT).toString();
+		String worldpath = serverworld.getServer().getWorldPath(FolderName.ROOT).toString();
 		return worldpath.substring(0, worldpath.length() - 2);
 	}
 }

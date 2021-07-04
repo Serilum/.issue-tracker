@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.26.
+ * Minecraft version: 1.16.5, mod version: 2.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -61,7 +61,7 @@ public class EntityEvents {
 	@SubscribeEvent
 	public void onEntityJoinWorld(EntityJoinWorldEvent e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -127,7 +127,7 @@ public class EntityEvents {
 				continue;
 			}
 			
-			Vector3d evec = entity.getPositionVec();
+			Vector3d evec = entity.position();
 			if (sam.surface) {
 				if (!BlockPosFunctions.isOnSurface(world, evec)) {
 					continue;
@@ -135,15 +135,15 @@ public class EntityEvents {
 			}
 			
 			Entity to = sam.totype.create(world);
-			to.setWorld(world);
-			to.setPosition(evec.x, evec.y, evec.z);
+			to.setLevel(world);
+			to.setPos(evec.x, evec.y, evec.z);
 			
 			boolean ignoremainhand = false;
 			if (sam.helditem != null) {
 				if (to instanceof LivingEntity) {
 					LivingEntity le = (LivingEntity)to;
-					if (!le.getHeldItemMainhand().getItem().equals(sam.helditem)) {
-						le.setHeldItem(Hand.MAIN_HAND, new ItemStack(sam.helditem, 1));
+					if (!le.getMainHandItem().getItem().equals(sam.helditem)) {
+						le.setItemInHand(Hand.MAIN_HAND, new ItemStack(sam.helditem, 1));
 						ignoremainhand = true;
 					}
 				}
@@ -152,7 +152,7 @@ public class EntityEvents {
 			boolean ride = false;
 			if (EntityFunctions.isHorse(to) && sam.rideable) {
 				AbstractHorseEntity ah = (AbstractHorseEntity)to;
-				ah.setHorseTamed(true);
+				ah.setTamed(true);
 				to = ah;
 				
 				ride = true;
@@ -164,7 +164,7 @@ public class EntityEvents {
 			}
 			
 			to.addTag(Reference.MOD_ID + ".checked");
-			world.addEntity(to);
+			world.addFreshEntity(to);
 			
 			if (ride) {
 				entity.startRiding(to);

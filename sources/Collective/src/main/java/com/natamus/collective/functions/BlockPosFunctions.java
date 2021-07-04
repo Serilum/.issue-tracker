@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.26.
+ * Minecraft version: 1.16.5, mod version: 2.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -39,9 +39,9 @@ public class BlockPosFunctions {
 		around.add(pos.east());
 		around.add(pos.south());
 		around.add(pos.west());
-		around.add(pos.up());
+		around.add(pos.above());
 		if (down) {
-			around.add(pos.down());
+			around.add(pos.below());
 		}
 		return around;
 	}
@@ -111,12 +111,12 @@ public class BlockPosFunctions {
 			for (int y = maxheight; y > 0; y--) {
 				BlockState blockstate = serverworld.getBlockState(pos);
 				Material material = blockstate.getMaterial();
-				if (blockstate.getOpacity(serverworld, pos) >= 15 || material.equals(Material.ICE) || material.equals(Material.PACKED_ICE)) {
-					returnpos = pos.up().toImmutable();
+				if (blockstate.getLightBlock(serverworld, pos) >= 15 || material.equals(Material.ICE) || material.equals(Material.ICE_SOLID)) {
+					returnpos = pos.above().immutable();
 					break;
 				}
 				
-				pos = pos.down();
+				pos = pos.below();
 			}
 		}
 		else {
@@ -125,14 +125,14 @@ public class BlockPosFunctions {
 			for (int y = 0; y < maxheight; y++) {
 				BlockState blockstate = serverworld.getBlockState(pos);
 				if (blockstate.getBlock().equals(Blocks.AIR)) {
-					BlockState upstate = serverworld.getBlockState(pos.up());
+					BlockState upstate = serverworld.getBlockState(pos.above());
 					if (upstate.getBlock().equals(Blocks.AIR)) {
-						returnpos = pos.toImmutable();
+						returnpos = pos.immutable();
 						break;
 					}
 				}
 				
-				pos = pos.up();
+				pos = pos.above();
 			}
 		}
 		
@@ -153,7 +153,7 @@ public class BlockPosFunctions {
 		return getNearbyStructure(serverworld, structure, nearpos, 9999);
 	}	
 	public static BlockPos getNearbyStructure(ServerWorld serverworld, Structure<?> structure, BlockPos nearpos, int radius) {
-		BlockPos villagepos = serverworld.func_241117_a_(structure, nearpos, radius, false);
+		BlockPos villagepos = serverworld.findNearestMapFeature(structure, nearpos, radius, false);
 		if (villagepos == null) {
 			return null;
 		}
@@ -164,7 +164,7 @@ public class BlockPosFunctions {
 			if (serverworld.getBlockState(checkpos).getBlock().equals(Blocks.AIR)) {
 				continue;
 			}
-			spawnpos = checkpos.up().toImmutable();
+			spawnpos = checkpos.above().immutable();
 			break;
 		}
 		
@@ -173,7 +173,7 @@ public class BlockPosFunctions {
 	
 	public static BlockPos getCenterBiome(ServerWorld serverworld, Biome biome) {
 		BlockPos centerpos = new BlockPos(0, 0, 0);
-		BlockPos biomepos = serverworld.func_241116_a_(biome, centerpos, 999999, 0);
+		BlockPos biomepos = serverworld.findNearestBiome(biome, centerpos, 999999, 0);
 		if (biomepos == null) {
 			return null;
 		}
@@ -184,7 +184,7 @@ public class BlockPosFunctions {
 			if (serverworld.getBlockState(checkpos).getBlock().equals(Blocks.AIR)) {
 				continue;
 			}
-			spawnpos = checkpos.up().toImmutable();
+			spawnpos = checkpos.above().immutable();
 			break;
 		}
 		
@@ -193,9 +193,9 @@ public class BlockPosFunctions {
 	
 	public static BlockPos getBlockPlayerIsLookingAt(World world, PlayerEntity player, boolean stopOnLiquid) {
         RayTraceResult raytraceresult = RayTraceFunctions.rayTrace(world, player, stopOnLiquid);
-        double posX = raytraceresult.getHitVec().x;
-        double posY = Math.floor(raytraceresult.getHitVec().y);
-        double posZ = raytraceresult.getHitVec().z;
+        double posX = raytraceresult.getLocation().x;
+        double posY = Math.floor(raytraceresult.getLocation().y);
+        double posZ = raytraceresult.getLocation().z;
 
         return new BlockPos(posX, posY, posZ);
 	}
@@ -207,11 +207,11 @@ public class BlockPosFunctions {
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		int maxheight = world.getHeight();
+		int maxheight = world.getMaxBuildHeight();
 		
 		for (int y0 = y; y0 < maxheight; y0++) {
 			BlockState blockstate = world.getBlockState(new BlockPos(x, y0, z));
-			if (blockstate.getOpacity(world, pos) >= 15 && !(blockstate.getBlock() instanceof LeavesBlock)) {
+			if (blockstate.getLightBlock(world, pos) >= 15 && !(blockstate.getBlock() instanceof LeavesBlock)) {
 				return false;
 			}
 		}
@@ -230,7 +230,7 @@ public class BlockPosFunctions {
 		return false;
 	}
 	public static Boolean withinDistance(BlockPos start, BlockPos end, double distance) {
-		if (start.withinDistance(end, distance)) {
+		if (start.closerThan(end, distance)) {
 			return true;
 		}
 		return false;

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.26.
+ * Minecraft version: 1.16.5, mod version: 2.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -73,7 +73,7 @@ public class EntityFunctions {
 			}
 			
 			AnimalEntity animal = (AnimalEntity)entity;
-			if (animal.isChild()) {
+			if (animal.isBaby()) {
 				return false;
 			}
 			return true;
@@ -105,23 +105,23 @@ public class EntityFunctions {
 	public static void addPotionEffect(Entity entity, Effect effect, Integer ms) {
 		EffectInstance freeze = new EffectInstance(effect, ms/50);
 		LivingEntity le = (LivingEntity)entity;
-		le.addPotionEffect(freeze);
+		le.addEffect(freeze);
 	}
 	public static void removePotionEffect(Entity entity, Effect effect) {
 		LivingEntity le = (LivingEntity)entity;
-		le.removePotionEffect(effect);
+		le.removeEffect(effect);
 	}
 	
 	public static void chargeEntity(Entity entity) {
-		World world = entity.getEntityWorld();
-		Vector3d evec = entity.getPositionVec();
+		World world = entity.getCommandSenderWorld();
+		Vector3d evec = entity.position();
 		
 		LightningBoltEntity lightning = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, world);
-		lightning.setPosition(evec.getX(), evec.getY(), evec.getZ());
-		lightning.setUniqueId(new UUID(0, (int)(GlobalVariables.random.nextInt()*1000000)));
-		entity.func_241841_a((ServerWorld)world, lightning);
+		lightning.setPos(evec.x(), evec.y(), evec.z());
+		lightning.setUUID(new UUID(0, (int)(GlobalVariables.random.nextInt()*1000000)));
+		entity.thunderHit((ServerWorld)world, lightning);
 		
-		entity.extinguish();
+		entity.clearFire();
 	}
 
 	public static void transferItemsBetweenEntities(Entity from, Entity to, boolean ignoremainhand) {
@@ -137,9 +137,9 @@ public class EntityFunctions {
 				}
 			}
 			
-			ItemStack itemstack = mobfrom.getItemStackFromSlot(equipmentslottype);
+			ItemStack itemstack = mobfrom.getItemBySlot(equipmentslottype);
 			if (!itemstack.isEmpty()) {
-				to.setItemStackToSlot(equipmentslottype, itemstack.copy());
+				to.setItemSlot(equipmentslottype, itemstack.copy());
 			}
 		}
 	}
@@ -153,11 +153,11 @@ public class EntityFunctions {
 	public static Boolean doesEntitySurviveThisDamage(LivingEntity entity, int halfheartdamage) {
 		float newhealth = entity.getHealth() - (float)halfheartdamage;
 		if (newhealth > 0f) {
-			entity.attackEntityFrom(DamageSource.MAGIC, 0.1F);
+			entity.hurt(DamageSource.MAGIC, 0.1F);
 			entity.setHealth(newhealth);
 		}
 		else {
-			entity.attackEntityFrom(DamageSource.MAGIC, Float.MAX_VALUE);
+			entity.hurt(DamageSource.MAGIC, Float.MAX_VALUE);
 			return false;
 		}
 		return true;

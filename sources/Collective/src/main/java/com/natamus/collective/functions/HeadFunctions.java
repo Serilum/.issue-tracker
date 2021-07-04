@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.26.
+ * Minecraft version: 1.16.5, mod version: 2.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -72,10 +72,10 @@ public class HeadFunctions {
 
 		properties.put("textures", textures);
 		skullOwner.put("Properties", properties);
-		texturedhead.setTagInfo("SkullOwner", skullOwner);
+		texturedhead.addTagElement("SkullOwner", skullOwner);
 		
 		ITextComponent tcname = new StringTextComponent(headname);
-		texturedhead.setDisplayName(tcname);		
+		texturedhead.setHoverName(tcname);		
 		return texturedhead;
 	}
 	

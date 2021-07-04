@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.26.
+ * Minecraft version: 1.16.5, mod version: 2.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -37,20 +37,20 @@ public class ExperienceFunctions {
 		}
 
 		if (ep instanceof ServerPlayerEntity) {
-			((ServerPlayerEntity) ep).connection.sendPacket(new SEntityStatusPacket(ep, (byte) 9));
+			((ServerPlayerEntity) ep).connection.send(new SEntityStatusPacket(ep, (byte) 9));
 		}
 	}
 
 	public static int getPlayerXP(final PlayerEntity player) {
-		return (int) (getExperienceForLevel(player.experienceLevel) + player.experience * player.xpBarCap());
+		return (int) (getExperienceForLevel(player.experienceLevel) + player.experienceProgress * player.getXpNeededForNextLevel());
 	}
 
 	public static void addPlayerXP(final PlayerEntity player, final int amount) {
 		final int experience = getPlayerXP(player) + amount;
-		player.experienceTotal = experience;
+		player.totalExperience = experience;
 		player.experienceLevel = getLevelForExperience(experience);
 		final int expForLevel = getExperienceForLevel(player.experienceLevel);
-		player.experience = (float) (experience - expForLevel) / (float) player.xpBarCap();
+		player.experienceProgress = (float) (experience - expForLevel) / (float) player.getXpNeededForNextLevel();
 	}
 
 	private static int sum(final int n, final int a0, final int d) {

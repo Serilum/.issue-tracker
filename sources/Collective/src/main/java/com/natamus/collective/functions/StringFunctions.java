@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.26.
+ * Minecraft version: 1.16.5, mod version: 2.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -65,11 +65,11 @@ public class StringFunctions {
 		}
 		
 		if (emptyline) {
-			source.sendFeedback(new StringTextComponent(""), true);
+			source.sendSuccess(new StringTextComponent(""), true);
 		}
 		
 		StringTextComponent message = new StringTextComponent(m);
-		message.mergeStyle(colour);
+		message.withStyle(colour);
 		if (m.contains("http") || url != "") {
 			if (url == "") {
 				for (String word : m.split(" ")) {
@@ -81,11 +81,11 @@ public class StringFunctions {
 			}
 			
 			if (url != "") {
-				Style clickstyle = message.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
-				message.mergeStyle(clickstyle);
+				Style clickstyle = message.getStyle().withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
+				message.withStyle(clickstyle);
 			}
 		}
-		source.sendFeedback(message, true);
+		source.sendSuccess(message, true);
 	}
 
 	public static void sendMessage(PlayerEntity player, String m, TextFormatting colour, boolean emptyline, String url) {
@@ -94,11 +94,11 @@ public class StringFunctions {
 		}
 		
 		if (emptyline) {
-			player.sendMessage(new StringTextComponent(""), player.getUniqueID());
+			player.sendMessage(new StringTextComponent(""), player.getUUID());
 		}
 		
 		StringTextComponent message = new StringTextComponent(m);
-		message.mergeStyle(colour);
+		message.withStyle(colour);
 		if (m.contains("http") || url != "") {
 			if (url == "") {
 				for (String word : m.split(" ")) {
@@ -110,11 +110,11 @@ public class StringFunctions {
 			}
 			
 			if (url != "") {
-				Style clickstyle = message.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
-				message.mergeStyle(clickstyle);
+				Style clickstyle = message.getStyle().withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
+				message.withStyle(clickstyle);
 			}
 		}
-		player.sendMessage(message, player.getUniqueID());
+		player.sendMessage(message, player.getUUID());
 	}
 	
 	public static void broadcastMessage(World world, String m, TextFormatting colour) {
@@ -123,7 +123,7 @@ public class StringFunctions {
 		}
 		
 		StringTextComponent message = new StringTextComponent(m);
-		message.mergeStyle(colour);
+		message.withStyle(colour);
 		MinecraftServer server = world.getServer();
 		if (server == null) {
 			return;
@@ -139,7 +139,7 @@ public class StringFunctions {
 			return;
 		}
 		
-		Iterator<Entity> entitiesaround = world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(p.getX()-radius, p.getY()-radius, p.getZ()-radius, p.getX()+radius, p.getY()+radius, p.getZ()+radius)).iterator();
+		Iterator<Entity> entitiesaround = world.getEntities(null, new AxisAlignedBB(p.getX()-radius, p.getY()-radius, p.getZ()-radius, p.getX()+radius, p.getY()+radius, p.getZ()+radius)).iterator();
 		while (entitiesaround.hasNext()) {
 			Entity around = entitiesaround.next();
 			if (around instanceof PlayerEntity) {

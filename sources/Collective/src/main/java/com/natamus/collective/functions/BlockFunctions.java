@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.26.
+ * Minecraft version: 1.16.5, mod version: 2.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -49,7 +49,7 @@ public class BlockFunctions {
 			return false;
 		}
 		
-		Block tocheckblock = Block.getBlockFromItem(tocheckitem);
+		Block tocheckblock = Block.byItem(tocheckitem);
 		return isSpecificBlock(specificblock, tocheckblock);
 	}
 	public static Boolean isSpecificBlock(Block specificblock, World world, BlockPos pos) {
@@ -60,9 +60,9 @@ public class BlockFunctions {
 	
 	public static void dropBlock(World world, BlockPos pos) {
 		BlockState blockstate = world.getBlockState(pos);
-		TileEntity tileentity = blockstate.hasTileEntity() ? world.getTileEntity(pos) : null;
-		Block.spawnDrops(blockstate, world, pos, tileentity);
-		world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+		TileEntity tileentity = blockstate.hasTileEntity() ? world.getBlockEntity(pos) : null;
+		Block.dropResources(blockstate, world, pos, tileentity);
+		world.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
 	}
 	
 	// START: Check whether the block to check is one of the blocks in the array.
@@ -88,7 +88,7 @@ public class BlockFunctions {
 			return false;
 		}
 		
-		Block tocheckblock = Block.getBlockFromItem(tocheckitem);
+		Block tocheckblock = Block.byItem(tocheckitem);
 		return isOneOfBlocks(blocks, tocheckblock);
 	}
 	public static Boolean isOneOfBlocks(List<Block> blocks, World world, BlockPos pos) {
@@ -99,8 +99,8 @@ public class BlockFunctions {
 	
 	// For bamboo
 	public static boolean isGrowBlock(Block block) {
-		BlockState state = block.getDefaultState();
-		if (state.getBlock().isIn(BlockTags.BAMBOO_PLANTABLE_ON)) {
+		BlockState state = block.defaultBlockState();
+		if (state.getBlock().is(BlockTags.BAMBOO_PLANTABLE_ON)) {
 			return true;
 		}
 		if (GlobalVariables.growblocks.contains(block)) {
@@ -122,12 +122,12 @@ public class BlockFunctions {
 			return false;
 		}
 		
-		return blockstate.get(EndPortalFrameBlock.EYE);
+		return blockstate.getValue(EndPortalFrameBlock.HAS_EYE);
 	}
 	
 	public static String blockToReadableString(Block block, int amount) {
 		String blockstring = "";
-		String[] blockspl = block.getTranslationKey().replace("block.", "").split("\\.");
+		String[] blockspl = block.getDescriptionId().replace("block.", "").split("\\.");
 		if (blockspl.length > 1) {
 			blockstring = blockspl[1];
 		}

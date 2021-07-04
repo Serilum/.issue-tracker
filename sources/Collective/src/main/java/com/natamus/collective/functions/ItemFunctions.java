@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.26.
+ * Minecraft version: 1.16.5, mod version: 2.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -65,8 +65,8 @@ public class ItemFunctions {
 		Vector3d vec = new Vector3d(0, 0, 0);
 		
 		ItemStack lootingsword = new ItemStack(Items.DIAMOND_SWORD, 1);
-		lootingsword.addEnchantment(Enchantments.LOOTING, 10);
-		fakeplayer.setItemStackToSlot(EquipmentSlotType.MAINHAND, lootingsword);
+		lootingsword.enchant(Enchantments.MOB_LOOTING, 10);
+		fakeplayer.setItemSlot(EquipmentSlotType.MAINHAND, lootingsword);
 		
 		Collection<EntityType<?>> entitytypes = ForgeRegistries.ENTITIES.getValues();
 		for (EntityType<?> type : entitytypes) {
@@ -79,21 +79,21 @@ public class ItemFunctions {
 			}
 			
 			LivingEntity le = (LivingEntity)entity;
-			ResourceLocation lootlocation = le.getType().getLootTable();
+			ResourceLocation lootlocation = le.getType().getDefaultLootTable();
 			
-			LootTable loottable = server.getLootTableManager().getLootTableFromLocation(lootlocation);
+			LootTable loottable = server.getLootTables().get(lootlocation);
 			LootContext context = new LootContext.Builder((ServerWorld) world)
 	                .withRandom(world.getRandom())
 	                .withLuck(1000000F)
 	                .withParameter(LootParameters.THIS_ENTITY, entity)
-	                .withParameter(LootParameters.field_237457_g_, vec)
+	                .withParameter(LootParameters.ORIGIN, vec)
 	                .withParameter(LootParameters.KILLER_ENTITY, fakeplayer)
-	                .withParameter(LootParameters.DAMAGE_SOURCE, DamageSource.causePlayerDamage(fakeplayer))
-	                .build(LootParameterSets.ENTITY);
+	                .withParameter(LootParameters.DAMAGE_SOURCE, DamageSource.playerAttack(fakeplayer))
+	                .create(LootParameterSets.ENTITY);
 			
 			List<Item> alldrops = new ArrayList<Item>();
 			for (int n = 0; n < ConfigHandler.COLLECTIVE.loopsAmountUsedToGetAllEntityDrops.get(); n++) {
-				List<ItemStack> newdrops = loottable.generate(context);
+				List<ItemStack> newdrops = loottable.getRandomItems(context);
 				for (ItemStack newdrop : newdrops) {
 					Item newitem = newdrop.getItem();
 					if (!alldrops.contains(newitem) && !newitem.equals(Items.AIR)) {
@@ -129,7 +129,7 @@ public class ItemFunctions {
 		if (used.isEmpty()) {
 			Item giveitem = give.getItem();
 			int maxstacksize = give.getMaxStackSize();
-			List<ItemStack> inventory = player.inventory.mainInventory;
+			List<ItemStack> inventory = player.inventory.items;
 			
 			boolean increased = false;
 			for (int n = 0; n < inventory.size(); n++) {
@@ -145,17 +145,17 @@ public class ItemFunctions {
 			}
 			
 			if (!increased) {
-				player.setHeldItem(hand, give);
+				player.setItemInHand(hand, give);
 			}
 		}
-		else if (!player.inventory.addItemStackToInventory(give)) {
-			player.dropItem(give, false);
+		else if (!player.inventory.add(give)) {
+			player.drop(give, false);
 		}
 	}
 	
 	public static void giveOrDropItemStack(PlayerEntity player, ItemStack give) {
-		if (!player.inventory.addItemStackToInventory(give)) {
-			player.dropItem(give, false);
+		if (!player.inventory.add(give)) {
+			player.drop(give, false);
 		}
 	}
 	
@@ -168,9 +168,9 @@ public class ItemFunctions {
 	
 	public static String itemToReadableString(Item item, int amount) {
 		String itemstring = "";
-		String translationkey = item.getTranslationKey();
+		String translationkey = item.getDescriptionId();
 		if (translationkey.contains("block.")) {
-			return BlockFunctions.blockToReadableString(Block.getBlockFromItem(item), amount);
+			return BlockFunctions.blockToReadableString(Block.byItem(item), amount);
 		}
 		
 		String[] itemspl = translationkey.replace("item.", "").split("\\.");
