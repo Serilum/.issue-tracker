@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Reci
 
 [[mods]]
 modId="recipecommands"
-version="1.1"
+version="1.2"
 displayName="Recipe Commands"
 displayURL="https://curseforge.com/minecraft/mc-mods/recipe-commands"
 authors="Rick South"
 description="Adds the ability to receive the pattern and ingredients of any recipe via chat by a command."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.recipecommands]]
     modId="collective"
     mandatory=true
-    versionRange="[2.0,)"
+    versionRange="[2.27,)"
     ordering="NONE"
     side="BOTH"

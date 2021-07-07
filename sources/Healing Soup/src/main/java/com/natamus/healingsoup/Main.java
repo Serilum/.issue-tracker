@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Healing Soup.
- * Minecraft version: 1.16.5, mod version: 2.2.
+ * Minecraft version: 1.16.5, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Healing Soup ever released, along with some other perks.
@@ -64,9 +64,9 @@ public class Main {
 		
 		IForgeRegistry<Item> registry = e.getRegistry();
 		registry.registerAll(
-				(SoupItems.MUSHROOM_SOUP = new SoupItem((new Item.Properties()).maxStackSize(1).group(ItemGroup.FOOD).food(SoupFoods.MUSHROOM_SOUP)).setRegistryName(Reference.MOD_ID, "mushroom_soup")),
-				(SoupItems.CACTUS_SOUP = new SoupItem((new Item.Properties()).maxStackSize(1).group(ItemGroup.FOOD).food(SoupFoods.CACTUS_SOUP)).setRegistryName(Reference.MOD_ID, "cactus_soup")),
-				(SoupItems.CHOCOLATE_MILK = new SoupItem((new Item.Properties()).maxStackSize(1).group(ItemGroup.FOOD).food(SoupFoods.CHOCOLATE_MILK)).setRegistryName(Reference.MOD_ID, "chocolate_milk")));
+				(SoupItems.MUSHROOM_SOUP = new SoupItem((new Item.Properties()).stacksTo(1).tab(ItemGroup.TAB_FOOD).food(SoupFoods.MUSHROOM_SOUP)).setRegistryName(Reference.MOD_ID, "mushroom_soup")),
+				(SoupItems.CACTUS_SOUP = new SoupItem((new Item.Properties()).stacksTo(1).tab(ItemGroup.TAB_FOOD).food(SoupFoods.CACTUS_SOUP)).setRegistryName(Reference.MOD_ID, "cactus_soup")),
+				(SoupItems.CHOCOLATE_MILK = new SoupItem((new Item.Properties()).stacksTo(1).tab(ItemGroup.TAB_FOOD).food(SoupFoods.CHOCOLATE_MILK)).setRegistryName(Reference.MOD_ID, "chocolate_milk")));
 	
 		SoupItems.soups.add(SoupItems.MUSHROOM_SOUP);
 		SoupItems.soups.add(SoupItems.CACTUS_SOUP);

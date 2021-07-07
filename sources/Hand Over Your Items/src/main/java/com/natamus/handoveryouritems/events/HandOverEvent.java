@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hand Over Your Items.
- * Minecraft version: 1.16.5, mod version: 1.2.
+ * Minecraft version: 1.16.5, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Hand Over Your Items ever released, along with some other perks.
@@ -34,7 +34,7 @@ public class HandOverEvent {
 	@SubscribeEvent
 	public void onPlayerClick(PlayerInteractEvent.EntityInteract e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -76,7 +76,7 @@ public class HandOverEvent {
 			StringFunctions.sendMessage(player, "You have given " + stacksize + " " + itemstring + " to " + target.getName().getString() + ".", TextFormatting.BLUE);
 		}
 		
-		player.container.detectAndSendChanges();
-		playertarget.container.detectAndSendChanges();
+		player.inventoryMenu.broadcastChanges();
+		playertarget.inventoryMenu.broadcastChanges();
 	}
 }

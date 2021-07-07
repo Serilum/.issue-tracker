@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -30,7 +30,7 @@ public class GrassSeedsGrassEvent {
 	@SubscribeEvent
 	public void onDirtClick(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -43,12 +43,12 @@ public class GrassSeedsGrassEvent {
 		Block block = world.getBlockState(cpos).getBlock();
 		if (block.equals(Blocks.DIRT)) {
 			hand.shrink(1);
-			world.setBlockState(cpos, Blocks.GRASS_BLOCK.getDefaultState());
+			world.setBlockAndUpdate(cpos, Blocks.GRASS_BLOCK.defaultBlockState());
 		}
 		else if (block.equals(Blocks.GRASS_BLOCK)) {
-			BlockPos up = cpos.up();
+			BlockPos up = cpos.above();
 			if (world.getBlockState(up).getBlock().equals(Blocks.AIR)) {
-				world.setBlockState(up, Blocks.GRASS.getDefaultState());
+				world.setBlockAndUpdate(up, Blocks.GRASS.defaultBlockState());
 			}
 			else if (world.getBlockState(up).getBlock().equals(Blocks.GRASS)) {
 				upgradeGrass(world, up);
@@ -66,7 +66,7 @@ public class GrassSeedsGrassEvent {
 	
 	public void upgradeGrass(World world, BlockPos pos) {
 	      DoublePlantBlock blockdoubleplant = (DoublePlantBlock)Blocks.TALL_GRASS;
-	      if (blockdoubleplant.getDefaultState().isValidPosition(world, pos) && world.isAirBlock(pos.up())) {
+	      if (blockdoubleplant.defaultBlockState().canSurvive(world, pos) && world.isEmptyBlock(pos.above())) {
 	         blockdoubleplant.placeAt(world, pos, 2);
 	      }
 	}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Naturally Charged Creepers.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.16.5, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Naturally Charged Creepers ever released, along with some other perks.
@@ -44,7 +44,7 @@ public class EntityEvent {
 	@SubscribeEvent
 	public void onClick(RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -53,7 +53,7 @@ public class EntityEvent {
 		}
 		
 		PlayerEntity player = e.getPlayer();
-		ItemStack mainhand = player.getHeldItem(Hand.MAIN_HAND);
+		ItemStack mainhand = player.getItemInHand(Hand.MAIN_HAND);
 		if (mainhand.getItem() instanceof SpawnEggItem == false) {
 			return;
 		}
@@ -63,8 +63,8 @@ public class EntityEvent {
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -92,8 +92,8 @@ public class EntityEvent {
 	@SubscribeEvent
 	public void CreeperSpawn(LivingSpawnEvent.CheckSpawn e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -115,7 +115,7 @@ public class EntityEvent {
 	
 	private static ArrayList<UUID> processeduuids = new ArrayList<UUID>();
 	public void processCreeper(CreeperEntity creeper) {
-		UUID uuid = creeper.getUniqueID();
+		UUID uuid = creeper.getUUID();
 		if (!processeduuids.contains(uuid)) {
 			processeduuids.add(uuid);
 		}

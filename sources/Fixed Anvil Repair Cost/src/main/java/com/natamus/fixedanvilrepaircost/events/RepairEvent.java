@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Fixed Anvil Repair Cost.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.16.5, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Fixed Anvil Repair Cost ever released, along with some other perks.
@@ -33,7 +33,7 @@ public class RepairEvent {
 		
 		if (!rightstack.getItem().equals(Items.ENCHANTED_BOOK) && !leftstack.getItem().equals(rightstack.getItem()) && outputstack.isEmpty()) {
 			Item leftitem = leftstack.getItem();
-			if (!leftitem.getIsRepairable(leftstack, rightstack)) {
+			if (!leftitem.isValidRepairItem(leftstack, rightstack)) {
 				return;
 			}
 			
@@ -48,7 +48,7 @@ public class RepairEvent {
 					e.setMaterialCost(materialcost);
 				}
 				
-				int currentdamage = leftstack.getDamage();
+				int currentdamage = leftstack.getDamageValue();
 				int maxdamage = leftstack.getMaxDamage();
 				int repairamount = (int)(maxdamage * ConfigHandler.GENERAL.percentRepairedPerAction.get());
 				
@@ -58,7 +58,7 @@ public class RepairEvent {
 				}
 				
 				ItemStack newoutputstack = leftstack.copy();
-				newoutputstack.setDamage(currentdamage);
+				newoutputstack.setDamageValue(currentdamage);
 				
 				e.setOutput(newoutputstack);
 			}

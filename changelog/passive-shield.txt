@@ -3,6 +3,9 @@ Passive Shield
 https://curseforge.com/minecraft/mc-mods/passive-shield
 
 =========
+v1.4: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
+
+=========
 v1.3: Updated Passive Shield to work with the new Collective update. The update attempts to inform players which download mods from illegitimate sources that it can be harmful to do so. If you are reading this on CurseForge and download your mods here, this won't affect you. Thank you for downloading mods from CurseForge and supporting the mod developers.
 
 =========

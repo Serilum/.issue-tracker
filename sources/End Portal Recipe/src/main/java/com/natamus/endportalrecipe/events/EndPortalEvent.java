@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of End Portal Recipe.
- * Minecraft version: 1.16.5, mod version: 2.3.
+ * Minecraft version: 1.16.5, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of End Portal Recipe ever released, along with some other perks.
@@ -47,8 +47,8 @@ public class EndPortalEvent {
 	@SubscribeEvent
 	public void mobItemDrop(LivingDropsEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -56,7 +56,7 @@ public class EndPortalEvent {
 			return;
 		}
 		
-		Entity source = e.getSource().getTrueSource();
+		Entity source = e.getSource().getEntity();
 		if (entity instanceof PlayerEntity == false) {
 			return;
 		}
@@ -69,7 +69,7 @@ public class EndPortalEvent {
 	@SubscribeEvent
 	public void onRightClick(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -79,17 +79,17 @@ public class EndPortalEvent {
 			BlockPos centerpos = null;
 			
 			BlockPos cpos = e.getPos();
-			Iterator<BlockPos> it = BlockPos.getAllInBox(cpos.getX()-1, cpos.getY()+1, cpos.getZ()-1, cpos.getX()+1, cpos.getY()+1, cpos.getZ()+1).iterator();
+			Iterator<BlockPos> it = BlockPos.betweenClosedStream(cpos.getX()-1, cpos.getY()+1, cpos.getZ()-1, cpos.getX()+1, cpos.getY()+1, cpos.getZ()+1).iterator();
 			while (it.hasNext()) {
 				aircount = 0;
 				BlockPos np = it.next();
-				Iterator<BlockPos> npit = BlockPos.getAllInBox(np.getX()-1, np.getY(), np.getZ()-1, np.getX()+1, np.getY(), np.getZ()+1).iterator();
+				Iterator<BlockPos> npit = BlockPos.betweenClosedStream(np.getX()-1, np.getY(), np.getZ()-1, np.getX()+1, np.getY(), np.getZ()+1).iterator();
 				while (npit.hasNext()) {
 					BlockPos npp = npit.next();
 					Block block = world.getBlockState(npp).getBlock();
 					if (block.equals(Blocks.AIR) || block.equals(Blocks.FIRE)) {
 						if (aircount == 4) {
-							centerpos = npp.toImmutable();
+							centerpos = npp.immutable();
 						}
 						aircount++;
 					}
@@ -113,7 +113,7 @@ public class EndPortalEvent {
 				List<Integer> portalnumbers = new ArrayList<Integer>(Ints.asList(1, 2, 3, 5, 9, 10, 14, 15, 19, 21, 22, 23));
 				
 				int pi = 0;
-				Iterator<BlockPos> centerit = BlockPos.getAllInBox(centerpos.getX()-2, centerpos.getY(), centerpos.getZ()-2, centerpos.getX()+2, centerpos.getY(), centerpos.getZ()+2).iterator();
+				Iterator<BlockPos> centerit = BlockPos.betweenClosedStream(centerpos.getX()-2, centerpos.getY(), centerpos.getZ()-2, centerpos.getX()+2, centerpos.getY(), centerpos.getZ()+2).iterator();
 				while (centerit.hasNext()) {
 					BlockPos ncp = centerit.next();
 					if (portalnumbers.contains(pi)) {
@@ -131,10 +131,10 @@ public class EndPortalEvent {
 				}
 				
 				if (pi == 25) {
-					Iterator<BlockPos> portalposses = BlockPos.getAllInBox(centerpos.getX()-1, centerpos.getY(), centerpos.getZ()-1, centerpos.getX()+1, centerpos.getY(), centerpos.getZ()+1).iterator();
+					Iterator<BlockPos> portalposses = BlockPos.betweenClosedStream(centerpos.getX()-1, centerpos.getY(), centerpos.getZ()-1, centerpos.getX()+1, centerpos.getY(), centerpos.getZ()+1).iterator();
 					while (portalposses.hasNext()) {
 						BlockPos ppp = portalposses.next();
-						world.setBlockState(ppp, Blocks.END_PORTAL.getDefaultState());
+						world.setBlockAndUpdate(ppp, Blocks.END_PORTAL.defaultBlockState());
 					}
 				}
 			}
@@ -144,19 +144,19 @@ public class EndPortalEvent {
 	@SubscribeEvent
 	public void onLeftClick(PlayerInteractEvent.LeftClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
 		ItemStack hand = e.getItemStack();
 		if (hand.getToolTypes().contains(ToolType.PICKAXE)) {
 			if (ConfigHandler.GENERAL.mustHaveSilkTouchToBreakPortal.get()) {
-				if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, hand) < 1) {
+				if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, hand) < 1) {
 					return;
 				}
 			}
 			
-			BlockPos cpos = e.getPos().toImmutable();
+			BlockPos cpos = e.getPos().immutable();
 			BlockState cbs = world.getBlockState(cpos);
 			if (cbs.getBlock().equals(Blocks.END_PORTAL_FRAME)) {
 				PlayerEntity player = e.getPlayer();
@@ -171,20 +171,20 @@ public class EndPortalEvent {
 				}
 				else {
 					ItemEntity frame = new ItemEntity(world, cpos.getX(), cpos.getY()+1, cpos.getZ(), portalframe);
-					world.addEntity(frame);
+					world.addFreshEntity(frame);
 					
 					if (BlockFunctions.isFilledPortalFrame(cbs)) {
 						ItemEntity eoe = new ItemEntity(world, cpos.getX(), cpos.getY()+1, cpos.getZ(), endereye);
-						world.addEntity(eoe);
+						world.addFreshEntity(eoe);
 					}
 				}
 				
 				world.destroyBlock(cpos, false);
-				Iterator<BlockPos> it = BlockPos.getAllInBox(cpos.getX()-3,  cpos.getY(), cpos.getZ()-3, cpos.getX()+3, cpos.getY(), cpos.getZ()+3).iterator();
+				Iterator<BlockPos> it = BlockPos.betweenClosedStream(cpos.getX()-3,  cpos.getY(), cpos.getZ()-3, cpos.getX()+3, cpos.getY(), cpos.getZ()+3).iterator();
 				while (it.hasNext()) {
 					BlockPos np = it.next();
 					if (world.getBlockState(np).getBlock().equals(Blocks.END_PORTAL)) {
-						world.setBlockState(np, Blocks.AIR.getDefaultState());
+						world.setBlockAndUpdate(np, Blocks.AIR.defaultBlockState());
 					}
 				}
 			}

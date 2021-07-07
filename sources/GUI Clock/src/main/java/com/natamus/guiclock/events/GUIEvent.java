@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Clock.
- * Minecraft version: 1.16.5, mod version: 2.3.
+ * Minecraft version: 1.16.5, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Clock ever released, along with some other perks.
@@ -58,16 +58,16 @@ public class GUIEvent extends IngameGui {
 		if (gametimeb || realtimeb) {
 			PlayerInventory inv = mc.player.inventory;
 			for (int n = 0; n <= 35; n++) {
-				if (inv.getStackInSlot(n).getItem().equals(Items.CLOCK)) {
+				if (inv.getItem(n).getItem().equals(Items.CLOCK)) {
 					found = true;
 					break;
 				}
 			}
 		}
 		
-		FontRenderer fontRender = mc.fontRenderer;
-		MainWindow scaled = mc.getMainWindow();
-		int width = scaled.getScaledWidth();
+		FontRenderer fontRender = mc.font;
+		MainWindow scaled = mc.getWindow();
+		int width = scaled.getGuiScaledWidth();
 		
 		int heightoffset = ConfigHandler.GENERAL.clockHeightOffset.get();
 		if (heightoffset < 5) {
@@ -92,7 +92,7 @@ public class GUIEvent extends IngameGui {
 			}
 			
 			ItemRenderer itemrenderer = mc.getItemRenderer();
-			itemrenderer.renderItemAndEffectIntoGUI(new ItemStack(Items.CLOCK), xcoord, heightoffset);
+			itemrenderer.renderAndDecorateItem(new ItemStack(Items.CLOCK), xcoord, heightoffset);
 		}
 		else {
 			String time = "";
@@ -135,8 +135,8 @@ public class GUIEvent extends IngameGui {
 				return;
 			}
 			
-			int stringWidth = fontRender.getStringWidth(time);
-			int daystringWidth = fontRender.getStringWidth(daystring);
+			int stringWidth = fontRender.width(time);
+			int daystringWidth = fontRender.width(daystring);
 			
 			Color colour = new Color(ConfigHandler.GENERAL.RGB_R.get(), ConfigHandler.GENERAL.RGB_G.get(), ConfigHandler.GENERAL.RGB_B.get(), 255);
 			
@@ -155,9 +155,9 @@ public class GUIEvent extends IngameGui {
 			
 			MatrixStack ms = new MatrixStack();
 			
-			fontRender.drawString(ms, time, xcoord, heightoffset, colour.getRGB());
+			fontRender.draw(ms, time, xcoord, heightoffset, colour.getRGB());
 			if (daystring != "") {
-				fontRender.drawString(ms, daystring, daycoord, heightoffset+10, colour.getRGB());
+				fontRender.draw(ms, daystring, daycoord, heightoffset+10, colour.getRGB());
 			}
 		}
 		
@@ -167,7 +167,7 @@ public class GUIEvent extends IngameGui {
 	
 	private static String getGameTime() {
 		int time = 0;
-		int gametime = (int)mc.world.getDayTime();
+		int gametime = (int)mc.level.getDayTime();
 		int daysplayed = 0;
 		
 		while (gametime >= 24000) {

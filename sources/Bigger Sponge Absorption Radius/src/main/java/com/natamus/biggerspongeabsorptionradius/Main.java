@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bigger Sponge Absorption Radius.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.16.5, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Bigger Sponge Absorption Radius ever released, along with some other perks.
@@ -35,6 +35,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import net.minecraft.block.AbstractBlock;
+
 @Mod(Reference.MOD_ID)
 public class Main {
 	public static Main instance;
@@ -58,14 +60,14 @@ public class Main {
 	@SubscribeEvent
 	public void registerBlocks(RegistryEvent.Register<Block> e) {
 		e.getRegistry().registerAll(
-				Variables.spongeblock = new ExtendedSpongeBlock(Block.Properties.create(Material.SPONGE).hardnessAndResistance(0.6F).sound(SoundType.PLANT)).setRegistryName(Blocks.SPONGE.getRegistryName())
+				Variables.spongeblock = new ExtendedSpongeBlock(AbstractBlock.Properties.of(Material.SPONGE).strength(0.6F).sound(SoundType.GRASS)).setRegistryName(Blocks.SPONGE.getRegistryName())
 		);
 	}
 	
 	@SubscribeEvent
 	public void registerItems(RegistryEvent.Register<Item> e) {
 		e.getRegistry().registerAll(
-				new BlockItem(Variables.spongeblock, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(Items.SPONGE.getRegistryName())
+				new BlockItem(Variables.spongeblock, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)).setRegistryName(Items.SPONGE.getRegistryName())
 		);
 	}
 }

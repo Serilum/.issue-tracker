@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Name Tag Tweaks.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.16.5, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Name Tag Tweaks ever released, along with some other perks.
@@ -33,15 +33,15 @@ public class NameTagEvent {
 	@SubscribeEvent
 	public void mobItemDrop(LivingDeathEvent e) {
 		LivingEntity entity = e.getEntityLiving();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
 		if (entity.hasCustomName()) {
 			if (entity instanceof SlimeEntity) {
 				SlimeEntity slime = (SlimeEntity)entity;
-				int slimesize = slime.getSlimeSize();
+				int slimesize = slime.getSize();
 				if (slimesize != 4) {
 					return;
 				}
@@ -50,13 +50,13 @@ public class NameTagEvent {
 			ItemStack nametagstack = new ItemStack(Items.NAME_TAG, 1);
 			if (ConfigHandler.GENERAL.droppedNameTagbyEntityKeepsNameValue.get()) {
 				ITextComponent name = entity.getName();
-				nametagstack.setDisplayName(name);
+				nametagstack.setHoverName(name);
 			}
 			nametagstack.setRepairCost(0);
 			
-			Vector3d evec = entity.getPositionVec();
-			ItemEntity ie = new ItemEntity(world, evec.getX(), evec.getY()+1, evec.getZ(), nametagstack);
-			world.addEntity(ie);
+			Vector3d evec = entity.position();
+			ItemEntity ie = new ItemEntity(world, evec.x(), evec.y()+1, evec.z(), nametagstack);
+			world.addFreshEntity(ie);
 		}
 	}
 }

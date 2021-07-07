@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Death Kick.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.16.5, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Player Death Kick ever released, along with some other perks.
@@ -32,8 +32,8 @@ public class DeathEvent {
 	@SubscribeEvent
 	public void onDeathEvent(LivingDeathEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -44,7 +44,7 @@ public class DeathEvent {
 		ServerPlayerEntity serverplayer = (ServerPlayerEntity)entity;
 		
 		if (ConfigHandler.GENERAL.exemptAdminPlayers.get()) {
-			if (serverplayer.hasPermissionLevel(2)) {
+			if (serverplayer.hasPermissions(2)) {
 				return;
 			}
 		}
@@ -53,10 +53,10 @@ public class DeathEvent {
 		
 		if (ConfigHandler.GENERAL.addDeathCauseToMessage.get()) {
 			DamageSource source = e.getSource();
-			String imsourcename = source.getDamageType();
+			String imsourcename = source.getMsgId();
 			String sourcename = "";
 			
-			Entity truesource = source.getTrueSource();
+			Entity truesource = source.getEntity();
 			if (truesource != null) {
 				sourcename = truesource.getName().getString();
 			}

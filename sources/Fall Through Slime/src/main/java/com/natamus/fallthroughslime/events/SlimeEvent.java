@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Fall Through Slime.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.16.5, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Fall Through Slime ever released, along with some other perks.
@@ -35,8 +35,8 @@ public class SlimeEvent {
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
 		PlayerEntity player = e.player;
-		World world = player.getEntityWorld();
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
@@ -53,8 +53,8 @@ public class SlimeEvent {
 		}
 		lastticks.put(playername, 20);
 		
-		BlockPos ppos = player.getPosition();
-		Vector3d pvec = player.getPositionVec();
+		BlockPos ppos = player.blockPosition();
+		Vector3d pvec = player.position();
 		
 		Vector3d lastvec = lastvecs.get(playername);
 		lastvecs.put(playername, pvec);
@@ -67,9 +67,9 @@ public class SlimeEvent {
 			return;
 		}
 		
-		Block down = world.getBlockState(ppos.down()).getBlock();
+		Block down = world.getBlockState(ppos.below()).getBlock();
 		if (down.equals(Blocks.SLIME_BLOCK)) {
-			player.setPositionAndUpdate(pvec.x, pvec.y-0.2, pvec.z);
+			player.teleportTo(pvec.x, pvec.y-0.2, pvec.z);
 		}
 	}
 }

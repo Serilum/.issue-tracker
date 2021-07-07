@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -48,7 +48,7 @@ public class ExtractPoisonEntityEvent {
 	@SubscribeEvent
 	public void onEntityInteract(PlayerInteractEvent.EntityInteract e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -61,7 +61,7 @@ public class ExtractPoisonEntityEvent {
 				e.setCanceled(true);
 				
 				LocalTime now = LocalTime.now();
-				UUID targetuuid = target.getUniqueID();
+				UUID targetuuid = target.getUUID();
 				if (lastuse.containsKey(targetuuid)) {
 					LocalTime lastnow = lastuse.get(targetuuid); 
 					
@@ -72,7 +72,7 @@ public class ExtractPoisonEntityEvent {
 				}
 				
 				ItemStack poison = new ItemStack(Items.POTION, 1);
-				PotionUtils.addPotionToItemStack(poison, Potions.POISON);
+				PotionUtils.setPotion(poison, Potions.POISON);
 				
 				ItemFunctions.shrinkGiveOrDropItemStack(player, e.getHand(), itemstack, poison);
 				lastuse.put(targetuuid, now);
@@ -83,7 +83,7 @@ public class ExtractPoisonEntityEvent {
 	@SubscribeEvent
 	public void onWaterClick(PlayerInteractEvent.RightClickItem e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -91,7 +91,7 @@ public class ExtractPoisonEntityEvent {
 		if (itemstack.getItem().equals(Items.GLASS_BOTTLE)) {
 			PlayerEntity player = e.getPlayer();
 			BlockPos pos = e.getPos();
-			List<Entity> entitiesaround = world.getEntitiesWithinAABBExcludingEntity(player, new AxisAlignedBB(pos.getX()-1, pos.getY()-1, pos.getZ()-1, pos.getX()+1, pos.getY()+1, pos.getZ()+1));
+			List<Entity> entitiesaround = world.getEntities(player, new AxisAlignedBB(pos.getX()-1, pos.getY()-1, pos.getZ()-1, pos.getX()+1, pos.getY()+1, pos.getZ()+1));
 			for (Entity ea : entitiesaround) {
 				if (ea instanceof PufferfishEntity) {
 					e.setCanceled(true);

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -36,7 +36,7 @@ public class ZombieHorseSpawnZombieHorseEvent {
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -53,7 +53,7 @@ public class ZombieHorseSpawnZombieHorseEvent {
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
 		World world = e.world;
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
@@ -67,17 +67,17 @@ public class ZombieHorseSpawnZombieHorseEvent {
 			return;
 		}
 		
-		if (!world.isDaytime()) {
+		if (!world.isDay()) {
 			return;
 		}
 		
 		
 		for (Entity zombiehorse : zombiehorses) {
 			if (zombiehorse.isAlive()) {
-				if (!zombiehorse.isInWaterRainOrBubbleColumn()) {
-					BlockPos epos = zombiehorse.getPosition();
+				if (!zombiehorse.isInWaterRainOrBubble()) {
+					BlockPos epos = zombiehorse.blockPosition();
 					if (BlockPosFunctions.isOnSurface(world, epos)) {
-						zombiehorse.setFire(3);
+						zombiehorse.setSecondsOnFire(3);
 					}
 				}	
 			}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Transcending Trident.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.16.5, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Transcending Trident ever released, along with some other perks.
@@ -44,48 +44,48 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 public class ExtendedTridentItem extends TridentItem {
-	public final Multimap<Attribute, AttributeModifier> field_234812_a_;
+	public final Multimap<Attribute, AttributeModifier> defaultModifiers;
 	
 	public ExtendedTridentItem(Item.Properties p_i48788_1_) {
 		super(p_i48788_1_);
 		Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-		builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", 8.0D, AttributeModifier.Operation.ADDITION));
-		builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)-2.9F, AttributeModifier.Operation.ADDITION));
-		this.field_234812_a_ = builder.build();
+		builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Tool modifier", 8.0D, AttributeModifier.Operation.ADDITION));
+		builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Tool modifier", (double)-2.9F, AttributeModifier.Operation.ADDITION));
+		this.defaultModifiers = builder.build();
 	}
 	
 	@Override
-	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
+	public void releaseUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
 		if (entityLiving instanceof PlayerEntity) {
 			PlayerEntity playerentity = (PlayerEntity)entityLiving;
 			int i = this.getUseDuration(stack) - timeLeft;
 			if (i >= ConfigHandler.GENERAL.tridentUseDuration.get()) {
-				int j = EnchantmentHelper.getRiptideModifier(stack);
-				if (j <= 0 || playerentity.isWet() || (PlayerFunctions.isHoldingWater(playerentity) || !ConfigHandler.GENERAL.mustHoldBucketOfWater.get())) {
-					if (!worldIn.isRemote) {
-						stack.damageItem(1, playerentity, (p_220047_1_) -> {
-							p_220047_1_.sendBreakAnimation(entityLiving.getActiveHand());
+				int j = EnchantmentHelper.getRiptide(stack);
+				if (j <= 0 || playerentity.isInWaterOrRain() || (PlayerFunctions.isHoldingWater(playerentity) || !ConfigHandler.GENERAL.mustHoldBucketOfWater.get())) {
+					if (!worldIn.isClientSide) {
+						stack.hurtAndBreak(1, playerentity, (p_220047_1_) -> {
+							p_220047_1_.broadcastBreakEvent(entityLiving.getUsedItemHand());
 						});
 						
 						if (j == 0) {
 							TridentEntity tridententity = new TridentEntity(worldIn, playerentity, stack);
-							tridententity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
-							if (playerentity.abilities.isCreativeMode) {
-								tridententity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+							tridententity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot, 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
+							if (playerentity.abilities.instabuild) {
+								tridententity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
 							}
 						
-							worldIn.addEntity(tridententity);
-							worldIn.playMovingSound((PlayerEntity)null, tridententity, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
-							if (!playerentity.abilities.isCreativeMode) {
-								playerentity.inventory.deleteStack(stack);
+							worldIn.addFreshEntity(tridententity);
+							worldIn.playSound((PlayerEntity)null, tridententity, SoundEvents.TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
+							if (!playerentity.abilities.instabuild) {
+								playerentity.inventory.removeItem(stack);
 							}
 						}
 					}
 					
-					playerentity.addStat(Stats.ITEM_USED.get(this));
+					playerentity.awardStat(Stats.ITEM_USED.get(this));
 					if (j > 0) {
-						float f7 = playerentity.rotationYaw;
-						float f = playerentity.rotationPitch;
+						float f7 = playerentity.yRot;
+						float f = playerentity.xRot;
 						float f1 = -MathHelper.sin(f7 * ((float)Math.PI / 180F)) * MathHelper.cos(f * ((float)Math.PI / 180F));
 						float f2 = -MathHelper.sin(f * ((float)Math.PI / 180F));
 						float f3 = MathHelper.cos(f7 * ((float)Math.PI / 180F)) * MathHelper.cos(f * ((float)Math.PI / 180F));
@@ -94,8 +94,8 @@ public class ExtendedTridentItem extends TridentItem {
 						f1 = f1 * (f5 / f4);
 						f2 = f2 * (f5 / f4);
 						f3 = f3 * (f5 / f4);
-						playerentity.addVelocity((double)f1, (double)f2, (double)f3);
-						playerentity.startSpinAttack(20);
+						playerentity.push((double)f1, (double)f2, (double)f3);
+						playerentity.startAutoSpinAttack(20);
 						
 						if (playerentity.isOnGround()) {
 							float f6 = 1.1999999F;
@@ -104,16 +104,16 @@ public class ExtendedTridentItem extends TridentItem {
 						
 						SoundEvent soundevent;
 						if (j >= 3) {
-							soundevent = SoundEvents.ITEM_TRIDENT_RIPTIDE_3;
+							soundevent = SoundEvents.TRIDENT_RIPTIDE_3;
 						} 
 						else if (j == 2) {
-							soundevent = SoundEvents.ITEM_TRIDENT_RIPTIDE_2;
+							soundevent = SoundEvents.TRIDENT_RIPTIDE_2;
 						} 
 						else {
-							soundevent = SoundEvents.ITEM_TRIDENT_RIPTIDE_1;
+							soundevent = SoundEvents.TRIDENT_RIPTIDE_1;
 						}
 						
-						worldIn.playMovingSound((PlayerEntity)null, playerentity, soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
+						worldIn.playSound((PlayerEntity)null, playerentity, soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
 					}
 				
 				}
@@ -122,16 +122,16 @@ public class ExtendedTridentItem extends TridentItem {
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-		ItemStack itemstack = playerIn.getHeldItem(handIn);
-			if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
+	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+		ItemStack itemstack = playerIn.getItemInHand(handIn);
+			if (itemstack.getDamageValue() >= itemstack.getMaxDamage()) {
 			return new ActionResult<>(ActionResultType.FAIL, itemstack);
 		} 
-		else if (EnchantmentHelper.getRiptideModifier(itemstack) > 0 && !playerIn.isWet() && (!PlayerFunctions.isHoldingWater(playerIn) && ConfigHandler.GENERAL.mustHoldBucketOfWater.get())) {
+		else if (EnchantmentHelper.getRiptide(itemstack) > 0 && !playerIn.isInWaterOrRain() && (!PlayerFunctions.isHoldingWater(playerIn) && ConfigHandler.GENERAL.mustHoldBucketOfWater.get())) {
 			return new ActionResult<>(ActionResultType.FAIL, itemstack);
 		} 
 		else {
-			playerIn.setActiveHand(handIn);
+			playerIn.startUsingItem(handIn);
 			return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
 		}
 	}

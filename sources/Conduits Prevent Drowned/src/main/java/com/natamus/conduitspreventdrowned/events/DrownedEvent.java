@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Conduits Prevent Drowned.
- * Minecraft version: 1.16.5, mod version: 1.2.
+ * Minecraft version: 1.16.5, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Conduits Prevent Drowned ever released, along with some other perks.
@@ -45,17 +45,17 @@ public class DrownedEvent {
 			return;
 		}
 		
-		BlockPos epos = entity.getPosition();
+		BlockPos epos = entity.blockPosition();
 		int r = ConfigHandler.GENERAL.preventDrownedInRange.get();
 		
-		for (PlayerEntity player : world.getPlayers()) {
-			BlockPos playerpos = new BlockPos(player.getPosX(), 1, player.getPosZ());
-			if (playerpos.withinDistance(new BlockPos(epos.getX(), 1, epos.getZ()), r)) {
-				Collection<EffectInstance> activeeffects = player.getActivePotionEffects();
+		for (PlayerEntity player : world.players()) {
+			BlockPos playerpos = new BlockPos(player.getX(), 1, player.getZ());
+			if (playerpos.closerThan(new BlockPos(epos.getX(), 1, epos.getZ()), r)) {
+				Collection<EffectInstance> activeeffects = player.getActiveEffects();
 				if (activeeffects.size() > 0) {
 					boolean foundconduit = false;
 					for (EffectInstance pe : activeeffects) {
-						if (pe.getPotion().equals(Effects.CONDUIT_POWER)) {
+						if (pe.getEffect().equals(Effects.CONDUIT_POWER)) {
 							foundconduit = true;
 							break;
 						}

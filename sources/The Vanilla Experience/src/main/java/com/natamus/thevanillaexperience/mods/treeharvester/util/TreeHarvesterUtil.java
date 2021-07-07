@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -58,7 +58,7 @@ public class TreeHarvesterUtil {
 			prevleafcount = leafcount;
 			prevlogcount = logcount;
 			
-			Iterator<BlockPos> it = BlockPos.getAllInBox(pos.getX()-2, pos.getY()+(y-1), pos.getZ()-2, pos.getX()+2, pos.getY()+(y-1), pos.getZ()+2).iterator();
+			Iterator<BlockPos> it = BlockPos.betweenClosedStream(pos.getX()-2, pos.getY()+(y-1), pos.getZ()-2, pos.getX()+2, pos.getY()+(y-1), pos.getZ()+2).iterator();
 			while (it.hasNext()) {
 				BlockPos npos = it.next();
 				Block nblock = world.getBlockState(npos).getBlock();
@@ -74,7 +74,7 @@ public class TreeHarvesterUtil {
 			}
 		}
 		
-		highestleaf.put(pos.toImmutable(), highesty);
+		highestleaf.put(pos.immutable(), highesty);
 		
 		if (leafcount < 0) {
 			return logcount;
@@ -98,7 +98,7 @@ public class TreeHarvesterUtil {
 	
 	public static boolean isSapling(ItemStack itemstack) {
 		Item item = itemstack.getItem();
-		if (Block.getBlockFromItem(item) instanceof SaplingBlock) {
+		if (Block.byItem(item) instanceof SaplingBlock) {
 			return true;
 		}
 		return false;
@@ -107,13 +107,13 @@ public class TreeHarvesterUtil {
 	public static List<BlockPos> getAllLogsToBreak(World world, BlockPos pos, int logcount) {
 		CopyOnWriteArrayList<BlockPos> bottomlogs = new CopyOnWriteArrayList<BlockPos>();
 		if (TreeHarvesterConfigHandler.GENERAL.replaceSaplingIfBottomLogIsBroken.get()) {
-			if (world.getBlockState(pos.down()).getBlock().equals(Blocks.DIRT)) {
-				Iterator<BlockPos> it = BlockPos.getAllInBox(pos.getX()-1, pos.getY(), pos.getZ()-1, pos.getX()+1, pos.getY(), pos.getZ()+1).iterator();
+			if (world.getBlockState(pos.below()).getBlock().equals(Blocks.DIRT)) {
+				Iterator<BlockPos> it = BlockPos.betweenClosedStream(pos.getX()-1, pos.getY(), pos.getZ()-1, pos.getX()+1, pos.getY(), pos.getZ()+1).iterator();
 				while (it.hasNext()) {
 					BlockPos npos = it.next();
 					Block block = world.getBlockState(npos).getBlock();
 					if (isTreeLog(block)) {
-						bottomlogs.add(npos.toImmutable());
+						bottomlogs.add(npos.immutable());
 					}
 				}
 			}
@@ -124,7 +124,7 @@ public class TreeHarvesterUtil {
 				replaceSapling(world, pos, bottomlogs, 1);
 			}
 			else if (TreeHarvesterConfigHandler.GENERAL.enableFastLeafDecay.get()){
-				lowerlogs.add(new Pair<BlockPos, CopyOnWriteArrayList<BlockPos>>(pos.toImmutable(), bottomlogs));
+				lowerlogs.add(new Pair<BlockPos, CopyOnWriteArrayList<BlockPos>>(pos.immutable(), bottomlogs));
 			}
 		}
 		
@@ -136,7 +136,7 @@ public class TreeHarvesterUtil {
     	int rc = reducecount;
 		ItemStack sapling = null;
 		
-		Iterator<Entity> entitiesaround = world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(pos.getX()-radius, pos.getY()-2, pos.getZ()-radius, pos.getX()+radius, pos.getY()+30, pos.getZ()+radius)).iterator();
+		Iterator<Entity> entitiesaround = world.getEntities(null, new AxisAlignedBB(pos.getX()-radius, pos.getY()-2, pos.getZ()-radius, pos.getX()+radius, pos.getY()+30, pos.getZ()+radius)).iterator();
 		while (entitiesaround.hasNext()) {
 			Entity ea = entitiesaround.next();
 			if (ea instanceof ItemEntity) {
@@ -177,7 +177,7 @@ public class TreeHarvesterUtil {
 				break;
 			}
 			
-			world.setBlockState(bottompos, Block.getBlockFromItem(sapling.getItem()).getDefaultState());
+			world.setBlockAndUpdate(bottompos, Block.byItem(sapling.getItem()).defaultBlockState());
 			setsaplings-=1;
 			bottomlogs.remove(bottompos);
 		}
@@ -193,9 +193,9 @@ public class TreeHarvesterUtil {
 	private static List<BlockPos> getLogsToBreak(World world, BlockPos pos, List<BlockPos> logstobreak, int logcount) {
 		List<BlockPos> checkaround = new ArrayList<BlockPos>();
 		
-		Iterator<BlockPos> aroundlogs = BlockPos.getAllInBox(pos.getX()-1, pos.getY(), pos.getZ()-1, pos.getX()+1, pos.getY()+1, pos.getZ()+1).iterator();
+		Iterator<BlockPos> aroundlogs = BlockPos.betweenClosedStream(pos.getX()-1, pos.getY(), pos.getZ()-1, pos.getX()+1, pos.getY()+1, pos.getZ()+1).iterator();
 		while (aroundlogs.hasNext()) {
-			BlockPos nalogpos = aroundlogs.next().toImmutable();
+			BlockPos nalogpos = aroundlogs.next().immutable();
 			if (logstobreak.contains(nalogpos)) {
 				continue;
 			}
@@ -209,7 +209,7 @@ public class TreeHarvesterUtil {
 				int h = hv.getFirst();
 				int v = hv.getSecond();
 
-				Iterator<BlockPos> aroundleaves = BlockPos.getAllInBox(pos.getX()-h, pos.getY(), pos.getZ()-h, pos.getX()+h, pos.getY()+v, pos.getZ()+h).iterator();
+				Iterator<BlockPos> aroundleaves = BlockPos.betweenClosedStream(pos.getX()-h, pos.getY(), pos.getZ()-h, pos.getX()+h, pos.getY()+v, pos.getZ()+h).iterator();
 				while (aroundleaves.hasNext()) {
 					BlockPos naleafpos = aroundleaves.next();
 					Block leafblock = world.getBlockState(naleafpos).getBlock();
@@ -229,13 +229,13 @@ public class TreeHarvesterUtil {
 		for (BlockPos capos : checkaround) {
 			for (BlockPos logpos : getLogsToBreak(world, capos, logstobreak, logcount)) {
 				if (!logstobreak.contains(logpos)) {
-					logstobreak.add(logpos.toImmutable());
+					logstobreak.add(logpos.immutable());
 				}
 			}
 		}
 		
-		BlockPos up = pos.up(2);
-		return getLogsToBreak(world, up.toImmutable(), logstobreak, logcount);
+		BlockPos up = pos.above(2);
+		return getLogsToBreak(world, up.immutable(), logstobreak, logcount);
 	}
 	
 	public static Pair<Integer, Integer> getHorizontalAndVerticalValue(int logcount) {

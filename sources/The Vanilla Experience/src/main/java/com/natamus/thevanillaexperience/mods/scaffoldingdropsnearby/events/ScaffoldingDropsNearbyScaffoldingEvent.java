@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -42,7 +42,7 @@ public class ScaffoldingDropsNearbyScaffoldingEvent {
 	@SubscribeEvent
 	public void onScaffoldingItem(EntityJoinWorldEvent e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -59,7 +59,7 @@ public class ScaffoldingDropsNearbyScaffoldingEvent {
 		
 		Date now = new Date();
 		
-		BlockPos scafpos = entity.getPosition();
+		BlockPos scafpos = entity.blockPosition();
 		BlockPos lowscafpos = new BlockPos(scafpos.getX(), 1, scafpos.getZ());
 		for (BlockPos lspos : lastScaffoldings) {
 			if (lastaction.containsKey(lspos)) {
@@ -72,9 +72,9 @@ public class ScaffoldingDropsNearbyScaffoldingEvent {
 				}			
 			}
 			
-			if (lowscafpos.withinDistance(new BlockPos(lspos.getX(), 1, lspos.getZ()), 20)) {
-				entity.setPositionAndUpdate(lspos.getX(), lspos.getY()+1, lspos.getZ());
-				lastaction.put(lspos.toImmutable(), now);
+			if (lowscafpos.closerThan(new BlockPos(lspos.getX(), 1, lspos.getZ()), 20)) {
+				entity.teleportTo(lspos.getX(), lspos.getY()+1, lspos.getZ());
+				lastaction.put(lspos.immutable(), now);
 			}
 		}
 	}
@@ -89,7 +89,7 @@ public class ScaffoldingDropsNearbyScaffoldingEvent {
 		BlockState state = e.getState();
 		Block block = state.getBlock();
 		if (block.equals(Blocks.SCAFFOLDING)) {
-			BlockPos pos = e.getPos().toImmutable();
+			BlockPos pos = e.getPos().immutable();
 			lastScaffoldings.add(pos);
 			lastaction.put(pos, new Date());
 		}

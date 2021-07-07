@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -241,6 +241,8 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
+
+import net.minecraft.block.AbstractBlock;
 
 @Mod(Reference.MOD_ID)
 public class Main {
@@ -702,7 +704,7 @@ public class Main {
 	public void registerBlocks(RegistryEvent.Register<Block> e) {
 			if ((ConfigHandler.GENERAL.enableBiggerSpongeAbsorptionRadius.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Bigger Sponge Absorption Radius")) {
 			e.getRegistry().registerAll(
-				BiggerSpongeAbsorptionRadiusVariables.spongeblock = new ExtendedSpongeBlock(Block.Properties.create(Material.SPONGE).hardnessAndResistance(0.6F).sound(SoundType.PLANT)).setRegistryName(Blocks.SPONGE.getRegistryName())
+				BiggerSpongeAbsorptionRadiusVariables.spongeblock = new ExtendedSpongeBlock(AbstractBlock.Properties.of(Material.SPONGE).strength(0.6F).sound(SoundType.GRASS)).setRegistryName(Blocks.SPONGE.getRegistryName())
 			);
 		}
 	}
@@ -711,7 +713,7 @@ public class Main {
 	public void registerItems(RegistryEvent.Register<Item> e) {
 			if ((ConfigHandler.GENERAL.enableBiggerSpongeAbsorptionRadius.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Bigger Sponge Absorption Radius")) {
 			e.getRegistry().registerAll(
-				new BlockItem(BiggerSpongeAbsorptionRadiusVariables.spongeblock, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(Items.SPONGE.getRegistryName())
+				new BlockItem(BiggerSpongeAbsorptionRadiusVariables.spongeblock, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)).setRegistryName(Items.SPONGE.getRegistryName())
 			);
 		}
 			if ((ConfigHandler.GENERAL.enableExtendedCreativeInventory.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Extended Creative Inventory")) {
@@ -729,7 +731,7 @@ public class Main {
 		}
 			if (ExtendedCreativeInventoryVariables.item_group == null) {
 			for (Field field : Item.class.getDeclaredFields()) {
-				if (field.toString().contains("group") || field.toString().contains("field_77701_a")) {
+				if (field.toString().contains("group") || field.toString().contains("category")) {
 						ExtendedCreativeInventoryVariables.item_group = field;
 						break;
 					}
@@ -744,7 +746,7 @@ public class Main {
 			if (item.equals(Items.AIR)) {
 				continue;
 			}
-			ItemGroup itemgroup = item.getGroup();
+			ItemGroup itemgroup = item.getItemCategory();
 			if (itemgroup == null) {
 				try {
 						ExtendedCreativeInventoryVariables.item_group.set(item, ExtendedCreativeInventoryVariables.EXTENDED);
@@ -755,7 +757,7 @@ public class Main {
 		}
 			if ((ConfigHandler.GENERAL.enableTranscendingTrident.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Transcending Trident")) {
 			e.getRegistry().registerAll(
-				(new ExtendedTridentItem((new Item.Properties()).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(Items.TRIDENT.getRegistryName()))
+				(new ExtendedTridentItem((new Item.Properties()).durability(250).tab(ItemGroup.TAB_COMBAT)).setRegistryName(Items.TRIDENT.getRegistryName()))
 			);
 		}
 	}

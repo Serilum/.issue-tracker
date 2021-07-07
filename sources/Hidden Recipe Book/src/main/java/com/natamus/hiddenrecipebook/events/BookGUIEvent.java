@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hidden Recipe Book.
- * Minecraft version: 1.16.5, mod version: 2.0.
+ * Minecraft version: 1.16.5, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Hidden Recipe Book ever released, along with some other perks.
@@ -54,7 +54,7 @@ public class BookGUIEvent {
     		lastguipost = e;
     		if (imageButton_resourceLocation == null) {
 				for (Field field : ImageButton.class.getDeclaredFields()) {
-					if (field.toString().contains("resourceLocation") || field.toString().contains("field_191750_o")) {
+					if (field.toString().contains("resourceLocation") || field.toString().contains("resourceLocation")) {
 						imageButton_resourceLocation = field;
 						break;
 					}
@@ -115,11 +115,11 @@ public class BookGUIEvent {
 			mc = Minecraft.getInstance();
 		}
 		
-		if (mc.currentScreen instanceof ChatScreen) {
+		if (mc.screen instanceof ChatScreen) {
 			return;
 		}
 		
-		if (e.getKeyCode() == Variables.hotkey.getKey().getKeyCode()) {
+		if (e.getKeyCode() == Variables.hotkey.getKey().getValue()) {
 			if (mc.player != null) {
 				Date now = new Date();
 				if (lastpress != null) {

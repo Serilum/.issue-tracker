@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Bone Meal Flowers.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.16.5, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Random Bone Meal Flowers ever released, along with some other perks.
@@ -32,7 +32,7 @@ public class FlowerEvent {
 	@SubscribeEvent
 	public void onBonemeal(BonemealEvent e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -42,7 +42,7 @@ public class FlowerEvent {
 		int z = pos.getZ();
 		
 		List<Block> oldblocks = new ArrayList<Block>();
-		Iterator<BlockPos> it = BlockPos.getAllInBox(x-4, y, z-4, x+4, y+1, z+4).iterator();
+		Iterator<BlockPos> it = BlockPos.betweenClosedStream(x-4, y, z-4, x+4, y+1, z+4).iterator();
 		while (it.hasNext()) {
 			BlockPos bp = it.next();
 			Block block = world.getBlockState(bp).getBlock();
@@ -53,14 +53,14 @@ public class FlowerEvent {
 	        public void run()  {
 	            try  { Thread.sleep( 0 ); }
 	            catch (InterruptedException ie)  {}
-	            Iterator<BlockPos> newit = BlockPos.getAllInBox(x-4, y, z-4, x+4, y+1, z+4).iterator();
+	            Iterator<BlockPos> newit = BlockPos.betweenClosedStream(x-4, y, z-4, x+4, y+1, z+4).iterator();
 	            while (newit.hasNext()) {
 	            	BlockPos bp = newit.next();
 	            	Block block = world.getBlockState(bp).getBlock();
 	            	if (Util.allflowers.contains(block) && !Util.allflowers.contains(oldblocks.get(0))) {
 	            		Block randomflower = Util.getRandomFlower();
 	            		
-	            		world.setBlockState(bp, randomflower.getDefaultState());
+	            		world.setBlockAndUpdate(bp, randomflower.defaultBlockState());
 	    			}
 
 	            	oldblocks.remove(0);

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -55,18 +55,18 @@ public class ReplantingCropsCropEvent {
 		}
 		
 		if (ReplantingCropsConfigHandler.GENERAL.mustHoldHoeForReplanting.get()) {
-			if (player.getHeldItemMainhand().getItem() instanceof HoeItem == false) {
-				if (player.getHeldItemOffhand().getItem() instanceof HoeItem == false) {
+			if (player.getMainHandItem().getItem() instanceof HoeItem == false) {
+				if (player.getOffhandItem().getItem() instanceof HoeItem == false) {
 					return;
 				}
 			}
 		}
 		
-		if (player.isSneaking()) {
+		if (player.isShiftKeyDown()) {
 			return;
 		}
 		
-		BlockPos hpos = e.getPos().toImmutable();
+		BlockPos hpos = e.getPos().immutable();
 		BlockState state = world.getBlockState(hpos);
 		Block block = state.getBlock();
 		
@@ -94,7 +94,7 @@ public class ReplantingCropsCropEvent {
 	@SubscribeEvent
 	public void onHarvest(EntityJoinWorldEvent e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -103,7 +103,7 @@ public class ReplantingCropsCropEvent {
 			return;
 		}
 		
-		BlockPos ipos = entity.getPosition();
+		BlockPos ipos = entity.blockPosition();
 		if (!checkreplant.containsKey(ipos)) {
 			return;
 		}
@@ -112,26 +112,26 @@ public class ReplantingCropsCropEvent {
 		ItemStack itemstack = itementity.getItem();
 		Item item = itemstack.getItem();
 		if (item.equals(Items.WHEAT_SEEDS)) {
-			world.setBlockState(ipos, Blocks.WHEAT.getDefaultState());
+			world.setBlockAndUpdate(ipos, Blocks.WHEAT.defaultBlockState());
 		}
 		else if (item.equals(Items.CARROT)) {
-			world.setBlockState(ipos, Blocks.CARROTS.getDefaultState());
+			world.setBlockAndUpdate(ipos, Blocks.CARROTS.defaultBlockState());
 		}
 		else if (item.equals(Items.POTATO)) {
-			world.setBlockState(ipos, Blocks.POTATOES.getDefaultState());
+			world.setBlockAndUpdate(ipos, Blocks.POTATOES.defaultBlockState());
 		}
 		else if (item.equals(Items.BEETROOT_SEEDS)) {
-			world.setBlockState(ipos, Blocks.BEETROOTS.getDefaultState());
+			world.setBlockAndUpdate(ipos, Blocks.BEETROOTS.defaultBlockState());
 		}
 		else if (item.equals(Items.NETHER_WART)) {
-			world.setBlockState(ipos, Blocks.NETHER_WART.getDefaultState());
+			world.setBlockAndUpdate(ipos, Blocks.NETHER_WART.defaultBlockState());
 		}
 		else if (item.equals(Items.COCOA_BEANS)) {
 			if (!cocoaStates.containsKey(ipos)) {
 				checkreplant.remove(ipos);
 				return;
 			}
-			world.setBlockState(ipos, cocoaStates.get(ipos).with(CocoaBlock.AGE, 0));
+			world.setBlockAndUpdate(ipos, cocoaStates.get(ipos).setValue(CocoaBlock.AGE, 0));
 			cocoaStates.remove(ipos);
 		}
 		else {

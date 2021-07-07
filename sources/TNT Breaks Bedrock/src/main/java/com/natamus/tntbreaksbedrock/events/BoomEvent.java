@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of TNT Breaks Bedrock.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.16.5, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of TNT Breaks Bedrock ever released, along with some other perks.
@@ -38,26 +38,26 @@ public class BoomEvent {
 	@SubscribeEvent
 	public void onExplosion(ExplosionEvent.Detonate e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
 		Explosion explosion = e.getExplosion();
 		Vector3d exvec = explosion.getPosition();
 		
-		List<BlockPos> affected = explosion.getAffectedBlockPositions();
+		List<BlockPos> affected = explosion.getToBlow();
 		if (affected.size() == 0) {
 			return;
 		}
 		
 		Boolean found = false;
 		
-		Iterator<Entity> eit = world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(exvec.x-2, exvec.y-2, exvec.z-2, exvec.x+2, exvec.y+2, exvec.z+2)).iterator();
+		Iterator<Entity> eit = world.getEntities(null, new AxisAlignedBB(exvec.x-2, exvec.y-2, exvec.z-2, exvec.x+2, exvec.y+2, exvec.z+2)).iterator();
 		while (eit.hasNext()) {
 			Entity ne = eit.next();
 			if (ne instanceof TNTEntity) {
 				TNTEntity tnt = (TNTEntity)ne;
-				int fuseleft = tnt.getFuse();
+				int fuseleft = tnt.getLife();
 				if (fuseleft < 5) {
 					found = true;
 					break;
@@ -71,16 +71,16 @@ public class BoomEvent {
 		
 		List<BlockPos> bedrocks = new ArrayList<BlockPos>();
 		for (BlockPos pos : affected) {
-			for (BlockPos bedpos : Util.getBedrocks(world, pos.toImmutable())) {
-				if (!bedrocks.contains(bedpos.toImmutable())) {
-					bedrocks.add(bedpos.toImmutable());
+			for (BlockPos bedpos : Util.getBedrocks(world, pos.immutable())) {
+				if (!bedrocks.contains(bedpos.immutable())) {
+					bedrocks.add(bedpos.immutable());
 				}
 			}
 		}
 		
-		BlockState air = Blocks.AIR.getDefaultState();
+		BlockState air = Blocks.AIR.defaultBlockState();
 		for (BlockPos bedrock : bedrocks) {
-			world.setBlockState(bedrock, air);
+			world.setBlockAndUpdate(bedrock, air);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Zombie Horse Spawn.
- * Minecraft version: 1.16.5, mod version: 2.7.
+ * Minecraft version: 1.16.5, mod version: 2.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Zombie Horse Spawn ever released, along with some other perks.
@@ -36,7 +36,7 @@ public class ZombieHorseEvent {
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -53,7 +53,7 @@ public class ZombieHorseEvent {
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
 		World world = e.world;
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
@@ -67,17 +67,17 @@ public class ZombieHorseEvent {
 			return;
 		}
 		
-		if (!world.isDaytime()) {
+		if (!world.isDay()) {
 			return;
 		}
 		
 		
 		for (Entity zombiehorse : zombiehorses) {
 			if (zombiehorse.isAlive()) {
-				if (!zombiehorse.isInWaterRainOrBubbleColumn()) {
-					BlockPos epos = zombiehorse.getPosition();
+				if (!zombiehorse.isInWaterRainOrBubble()) {
+					BlockPos epos = zombiehorse.blockPosition();
 					if (BlockPosFunctions.isOnSurface(world, epos)) {
-						zombiehorse.setFire(3);
+						zombiehorse.setSecondsOnFire(3);
 					}
 				}	
 			}

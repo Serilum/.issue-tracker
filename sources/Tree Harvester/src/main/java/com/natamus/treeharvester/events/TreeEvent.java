@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.16.5, mod version: 2.4.
+ * Minecraft version: 1.16.5, mod version: 2.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -61,7 +61,7 @@ public class TreeEvent {
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
 		World world = e.world;
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
@@ -86,7 +86,7 @@ public class TreeEvent {
 					leaves.remove(0);					
 				}
 				
-				lasttr = tr.toImmutable();
+				lasttr = tr.immutable();
 			}
 			
 			if (leaves.size() == 0) {
@@ -125,17 +125,17 @@ public class TreeEvent {
 		
 		PlayerEntity player = e.getPlayer();
 		if (ConfigHandler.GENERAL.treeHarvestWithoutSneak.get()) {
-			if (player.isSneaking()) {
+			if (player.isShiftKeyDown()) {
 				return;
 			}
 		}
 		else {
-			if (!player.isSneaking()) {
+			if (!player.isShiftKeyDown()) {
 				return;
 			}
 		}
 		
-		ItemStack hand = player.getHeldItem(Hand.MAIN_HAND);
+		ItemStack hand = player.getItemInHand(Hand.MAIN_HAND);
 		if (ConfigHandler.GENERAL.mustHoldAxeForTreeHarvest.get()) {
 			if (!hand.getToolTypes().contains(ToolType.AXE)) {
 				return;
@@ -160,13 +160,13 @@ public class TreeEvent {
 			
 			if (log.canHarvestBlock(logstate, world, logpos, player)) {
 				world.destroyBlock(logpos, false);
-				log.harvestBlock(world, player, logpos, logstate, null, hand);
+				log.playerDestroy(world, player, logpos, logstate, null, hand);
 				if (!player.isCreative()) {
 					if (ConfigHandler.GENERAL.loseDurabilityPerHarvestedLog.get()) {
-						handitem.onBlockDestroyed(hand, world, logstate, logpos, player);
+						handitem.mineBlock(hand, world, logstate, logpos, player);
 					}
 					if (ConfigHandler.GENERAL.increaseExhaustionPerHarvestedLog.get()) {
-						player.addExhaustion(0.025F);
+						player.causeFoodExhaustion(0.025F);
 					}
 				}
 			}
@@ -182,24 +182,24 @@ public class TreeEvent {
 			List<BlockPos> logs = new ArrayList<BlockPos>();
 			List<BlockPos> leaves = new ArrayList<BlockPos>();
 			
-			Iterator<BlockPos> possiblelogs = BlockPos.getAllInBoxMutable(bpos.getX()-8, bpos.getY(), bpos.getZ()-8, bpos.getX()+8, Util.highestleaf.get(bpos), bpos.getZ()+8).iterator();
+			Iterator<BlockPos> possiblelogs = BlockPos.betweenClosed(bpos.getX()-8, bpos.getY(), bpos.getZ()-8, bpos.getX()+8, Util.highestleaf.get(bpos), bpos.getZ()+8).iterator();
 			while(possiblelogs.hasNext()) {
 				BlockPos next = possiblelogs.next();
 				if (Util.isTreeLog(world.getBlockState(next).getBlock())) {
-					logs.add(next.toImmutable());
+					logs.add(next.immutable());
 				}
 			}
 			
 			Pair<Integer, Integer> hv = Util.getHorizontalAndVerticalValue(logcount);
 			int h = hv.getFirst();
 			
-			Iterator<BlockPos> possibleleaves = BlockPos.getAllInBoxMutable(bpos.getX()-h, bpos.getY(), bpos.getZ()-h, bpos.getX()+h, Util.highestleaf.get(bpos), bpos.getZ()+h).iterator();
+			Iterator<BlockPos> possibleleaves = BlockPos.betweenClosed(bpos.getX()-h, bpos.getY(), bpos.getZ()-h, bpos.getX()+h, Util.highestleaf.get(bpos), bpos.getZ()+h).iterator();
 			while (possibleleaves.hasNext()) {
 				BlockPos next = possibleleaves.next();
 				if (Util.isTreeLeaf(world.getBlockState(next).getBlock())) {
 					boolean logclose = false;
 					for (BlockPos log : logs) {
-						double distance = log.distanceSq(next);
+						double distance = log.distSqr(next);
 						if (distance < 7) {
 							logclose = true;
 							break;
@@ -207,7 +207,7 @@ public class TreeEvent {
 					}
 					
 					if (!logclose) {
-						leaves.add(next.toImmutable());
+						leaves.add(next.immutable());
 					}
 				}
 			}

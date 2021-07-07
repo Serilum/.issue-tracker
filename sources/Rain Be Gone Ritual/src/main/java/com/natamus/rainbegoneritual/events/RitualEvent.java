@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Rain Be Gone Ritual.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.16.5, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Rain Be Gone Ritual ever released, along with some other perks.
@@ -49,7 +49,7 @@ public class RitualEvent {
 	@SubscribeEvent
 	public void onClick(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -69,16 +69,16 @@ public class RitualEvent {
         		return;
         	}
         	
-        	BlockPos firepos = cp.up();
+        	BlockPos firepos = cp.above();
         	Block prefireblock = world.getBlockState(firepos).getBlock();
         	if (prefireblock.equals(Blocks.AIR)) {
         		List<BlockPos> cauldronposses = new ArrayList<BlockPos>();
         		
-        		Iterator<BlockPos> it = BlockPos.getAllInBoxMutable(cp.getX()-1, cp.getY(), cp.getZ()-1, cp.getX()+1, cp.getY(), cp.getZ()+1).iterator();
+        		Iterator<BlockPos> it = BlockPos.betweenClosed(cp.getX()-1, cp.getY(), cp.getZ()-1, cp.getX()+1, cp.getY(), cp.getZ()+1).iterator();
         		while (it.hasNext()) {
         			BlockPos np = it.next();
         			if (world.getBlockState(np).getBlock().equals(Blocks.CAULDRON)) {
-        				cauldronposses.add(np.toImmutable());
+        				cauldronposses.add(np.immutable());
         			}
         		}
         		
@@ -88,18 +88,18 @@ public class RitualEvent {
         		
         		Vector3d firevec = new Vector3d(firepos.getX(), firepos.getY(), firepos.getZ());
         		
-        		lastritual = new Pair<Date, BlockPos>(new Date(), firepos.toImmutable());
-        		world.createExplosion(null, new DamageSource("explosion").setExplosion(), null, firevec.x, firevec.y, firevec.z, 3.0f, false, Explosion.Mode.NONE);
+        		lastritual = new Pair<Date, BlockPos>(new Date(), firepos.immutable());
+        		world.explode(null, new DamageSource("explosion").setExplosion(), null, firevec.x, firevec.y, firevec.z, 3.0f, false, Explosion.Mode.NONE);
         		for (BlockPos cauldronpos : cauldronposses) {
         			BlockState cauldronstate = world.getBlockState(cauldronpos);
         			CauldronBlock cauldronblock = (CauldronBlock)cauldronstate.getBlock();
         			cauldronblock.setWaterLevel(world, cauldronpos, cauldronstate, 3);
         		}
         		
-        		world.setBlockState(firepos, Blocks.AIR.getDefaultState());
-        		world.setBlockState(cp, Blocks.AIR.getDefaultState());
+        		world.setBlockAndUpdate(firepos, Blocks.AIR.defaultBlockState());
+        		world.setBlockAndUpdate(cp, Blocks.AIR.defaultBlockState());
         		
-        		IWorldInfo info = world.getWorldInfo();
+        		IWorldInfo info = world.getLevelData();
         		info.setRaining(false);
         	}
 		}
@@ -108,8 +108,8 @@ public class RitualEvent {
 	@SubscribeEvent
 	public void onExplosionDamage(LivingHurtEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -124,7 +124,7 @@ public class RitualEvent {
 		DamageSource source = e.getSource();
 		if (source.isExplosion()) {
 			PlayerEntity player = (PlayerEntity)entity;
-			BlockPos ppos = player.getPosition();
+			BlockPos ppos = player.blockPosition();
 			
 			Date now = new Date();
 			Date lastdate = lastritual.getFirst();
@@ -135,7 +135,7 @@ public class RitualEvent {
 			}
 			
 			BlockPos ritualpos = lastritual.getSecond();
-			if (ppos.withinDistance(ritualpos, 10.0)) {
+			if (ppos.closerThan(ritualpos, 10.0)) {
 				e.setCanceled(true);
 			}
 		}

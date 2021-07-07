@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -57,7 +57,7 @@ public class StackRefillRefillEvent {
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
 		World world = e.world;
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
@@ -66,15 +66,15 @@ public class StackRefillRefillEvent {
 			PlayerEntity player = addstackcheck.getFirst();
 			ItemStack togive = addstackcheck.getSecond();
 			
-			ItemStack heldmainhand = player.getHeldItemMainhand();
+			ItemStack heldmainhand = player.getMainHandItem();
 			if (heldmainhand.isEmpty()) {
-				player.setHeldItem(Hand.MAIN_HAND, togive);
+				player.setItemInHand(Hand.MAIN_HAND, togive);
 			}
 			else {
 				ItemFunctions.giveOrDropItemStack(player, togive);
 			}
 			
-			player.container.detectAndSendChanges();
+			player.inventoryMenu.broadcastChanges();
 			addstack.remove(0);
 		}
 		if (addsingle.size() > 0) {
@@ -83,9 +83,9 @@ public class StackRefillRefillEvent {
 			
 			Hand hand = pair.getFirst();
 			PlayerEntity player = insidepair.getFirst();
-			player.setHeldItem(hand, insidepair.getSecond());
+			player.setItemInHand(hand, insidepair.getSecond());
 			
-			player.container.detectAndSendChanges();
+			player.inventoryMenu.broadcastChanges();
 			addsingle.remove(0);
 		}
 		if (checkfishingrod.size() > 0) {
@@ -93,20 +93,20 @@ public class StackRefillRefillEvent {
 			
 			PlayerEntity player = pair.getFirst();
 			Hand hand = pair.getSecond();
-			if (player.getHeldItem(hand).isEmpty()) {
+			if (player.getItemInHand(hand).isEmpty()) {
 				PlayerInventory inv = player.inventory;
 				
 				for (int i=35; i > 8; i--) {
-					ItemStack slot = inv.getStackInSlot(i);
+					ItemStack slot = inv.getItem(i);
 					if (slot.getItem() instanceof FishingRodItem) {
-						player.setHeldItem(hand, slot.copy());
+						player.setItemInHand(hand, slot.copy());
 						slot.setCount(0);
 						break;
 					}
 				}
 			}
 			
-			player.container.detectAndSendChanges();
+			player.inventoryMenu.broadcastChanges();
 			checkfishingrod.remove(0);
 		}
 		if (checkitemused.size() > 0) { 
@@ -115,20 +115,20 @@ public class StackRefillRefillEvent {
 			
 			Hand hand = pair.getFirst();
 			PlayerEntity player = insidepair.getFirst();
-			if (player.getHeldItem(hand).isEmpty()) {
+			if (player.getItemInHand(hand).isEmpty()) {
 				Item useditem = insidepair.getSecond();
 				PlayerInventory inv = player.inventory;
 				
 				for (int i=35; i > 8; i--) {
-					ItemStack slot = inv.getStackInSlot(i);
+					ItemStack slot = inv.getItem(i);
 					if (useditem.equals(slot.getItem())) {
-						player.setHeldItem(hand, slot.copy());
+						player.setItemInHand(hand, slot.copy());
 						slot.setCount(0);
 						break;
 					}
 				}
 				
-				player.container.detectAndSendChanges();
+				player.inventoryMenu.broadcastChanges();
 			}
 			
 			checkitemused.remove(0);
@@ -153,9 +153,9 @@ public class StackRefillRefillEvent {
 		}
 		
 		Hand activehand = Hand.MAIN_HAND;
-		ItemStack active = player.getHeldItemMainhand();
+		ItemStack active = player.getMainHandItem();
 		if (active.getItem() instanceof BlockItem == false) {
-			active = player.getHeldItemOffhand();
+			active = player.getOffhandItem();
 			if (active.getItem() instanceof BlockItem == false) {
 				return;
 			}
@@ -172,7 +172,7 @@ public class StackRefillRefillEvent {
 		PlayerInventory inv = player.inventory;
 		
 		for (int i=35; i > 8; i--) {
-			ItemStack slot = inv.getStackInSlot(i);
+			ItemStack slot = inv.getItem(i);
 			if (activeitem.equals(slot.getItem())) {
 				int slotcount = slot.getCount();
 				if (slotcount < 2) {
@@ -180,7 +180,7 @@ public class StackRefillRefillEvent {
 					addstack.add(toadd);
 				}
 				else {
-					player.setHeldItem(activehand, slot.copy());
+					player.setItemInHand(activehand, slot.copy());
 				}
 
 				slot.setCount(0);
@@ -188,14 +188,14 @@ public class StackRefillRefillEvent {
 			}
 		}
 		
-		player.container.detectAndSendChanges();
+		player.inventoryMenu.broadcastChanges();
 	}
 	
 	@SubscribeEvent
 	public void onItemUse(LivingEntityUseItemEvent.Finish e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -219,11 +219,11 @@ public class StackRefillRefillEvent {
 
 		PlayerInventory inv = player.inventory;
 		for (int i=35; i > 8; i--) {
-			ItemStack slot = inv.getStackInSlot(i);
+			ItemStack slot = inv.getItem(i);
 			Item slotitem = slot.getItem();
 			if (useditem.equals(slotitem)) {
 				if (slotitem instanceof PotionItem) {
-					if (!PotionUtils.getPotionFromItem(used).equals(PotionUtils.getPotionFromItem(slot))) {
+					if (!PotionUtils.getPotion(used).equals(PotionUtils.getPotion(slot))) {
 						continue;
 					}
 					ItemFunctions.giveOrDropItemStack(player, new ItemStack(Items.GLASS_BOTTLE, 1));
@@ -238,14 +238,14 @@ public class StackRefillRefillEvent {
 			}
 		}
 		
-		player.container.detectAndSendChanges();
+		player.inventoryMenu.broadcastChanges();
 	}
 	
 	@SubscribeEvent
 	public void onItemBreak(PlayerDestroyItemEvent e) {
 		PlayerEntity player = e.getPlayer();
-		World world = player.getEntityWorld();
-		if (world.isRemote) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -279,7 +279,7 @@ public class StackRefillRefillEvent {
 
 		PlayerInventory inv = player.inventory;
 		for (int i=35; i > 8; i--) {
-			ItemStack slot = inv.getStackInSlot(i);
+			ItemStack slot = inv.getItem(i);
 			Item slotitem = slot.getItem();
 			if (useditem.equals(slotitem)) {
 				Pair<PlayerEntity, ItemStack> insidepair = new Pair<PlayerEntity, ItemStack>(player, slot.copy());
@@ -290,14 +290,14 @@ public class StackRefillRefillEvent {
 			}
 		}
 		
-		player.container.detectAndSendChanges();
+		player.inventoryMenu.broadcastChanges();
 	}
 	
 	@SubscribeEvent
 	public void onItemToss(ItemTossEvent e) {
 		PlayerEntity player = e.getPlayer();
-		World world = player.getEntityWorld();
-		if (world.isRemote) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -309,13 +309,13 @@ public class StackRefillRefillEvent {
 		Item tosseditem = tossed.getItem();
 		
 		Hand activehand = Hand.MAIN_HAND;
-		ItemStack active = player.getHeldItemMainhand();
+		ItemStack active = player.getMainHandItem();
 		if (!active.isEmpty()) {
 			if (active.getItem().equals(tosseditem)) {
 				return;
 			}
 			
-			active = player.getHeldItemOffhand();
+			active = player.getOffhandItem();
 			if (!active.isEmpty()) {
 				return;
 			}
@@ -332,7 +332,7 @@ public class StackRefillRefillEvent {
 		
 		PlayerInventory inv = player.inventory;
 		for (int i=35; i > 8; i--) {
-			ItemStack slot = inv.getStackInSlot(i);
+			ItemStack slot = inv.getItem(i);
 			if (tosseditem.equals(slot.getItem())) {
 				int slotcount = slot.getCount();
 				if (slotcount < 2) {
@@ -340,7 +340,7 @@ public class StackRefillRefillEvent {
 					addstack.add(toadd);
 				}
 				else {
-					player.setHeldItem(activehand, slot.copy());
+					player.setItemInHand(activehand, slot.copy());
 				}
 
 				slot.setCount(0);
@@ -348,20 +348,20 @@ public class StackRefillRefillEvent {
 			}
 		}
 		
-		player.container.detectAndSendChanges();
+		player.inventoryMenu.broadcastChanges();
 	}
 	
 	@SubscribeEvent
 	public void onItemBreak(PlayerInteractEvent.RightClickItem e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
 		ItemStack stack = e.getItemStack();
 		Item item = stack.getItem();
 		if (item instanceof FishingRodItem) {
-			int damage = stack.getDamage();
+			int damage = stack.getDamageValue();
 			int maxdamage = stack.getMaxDamage();
 			
 			if (maxdamage - damage < 5) {
@@ -385,7 +385,7 @@ public class StackRefillRefillEvent {
 	@SubscribeEvent
 	public void onBlockRightClick(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -400,7 +400,7 @@ public class StackRefillRefillEvent {
 		}
 		
 		Hand activehand = e.getHand();
-		ItemStack active = player.getHeldItemMainhand();
+		ItemStack active = player.getMainHandItem();
 		
 		int amount = active.getCount();
 		if (amount > 26) {

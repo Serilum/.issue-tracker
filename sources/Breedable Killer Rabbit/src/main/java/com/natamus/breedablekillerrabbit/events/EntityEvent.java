@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Breedable Killer Rabbit.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.16.5, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Breedable Killer Rabbit ever released, along with some other perks.
@@ -40,8 +40,8 @@ public class EntityEvent {
 	@SubscribeEvent
 	public void onBaby(BabyEntitySpawnEvent e) {
 		AgeableEntity child = e.getChild();
-		World world = child.getEntityWorld();
-		if (world.isRemote) {
+		World world = child.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -68,7 +68,7 @@ public class EntityEvent {
 	@SubscribeEvent
 	public void onEntityInteract(PlayerInteractEvent.EntityInteract e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -88,25 +88,25 @@ public class EntityEvent {
 		if (rabbit.getRabbitType() != 99) {
 			return;
 		}
-		if (rabbit.getHeldItem(Hand.MAIN_HAND).getItem().equals(Items.GOLDEN_CARROT)) {
+		if (rabbit.getItemInHand(Hand.MAIN_HAND).getItem().equals(Items.GOLDEN_CARROT)) {
 			StringFunctions.sendMessage(player, "The killer rabbit has already been tamed.", TextFormatting.DARK_GREEN);
 			return;
 		}
 		
-		rabbit.setHeldItem(Hand.MAIN_HAND, new ItemStack(Items.GOLDEN_CARROT, 1));
+		rabbit.setItemInHand(Hand.MAIN_HAND, new ItemStack(Items.GOLDEN_CARROT, 1));
 		itemstack.shrink(1);
 		StringFunctions.sendMessage(player, "The killer rabbit has been tamed!", TextFormatting.DARK_GREEN);
 	}
 	
 	@SubscribeEvent
 	public void onTarget(LivingAttackEvent e) {
-		Entity source = e.getSource().getImmediateSource();
+		Entity source = e.getSource().getDirectEntity();
 		if (source == null) {
 			return;
 		}
 		
-		World world = source.getEntityWorld();
-		if (world.isRemote) {
+		World world = source.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -114,7 +114,7 @@ public class EntityEvent {
 			return;
 		}
 		
-		if (((RabbitEntity)source).getHeldItem(Hand.MAIN_HAND).getItem().equals(Items.GOLDEN_CARROT)) {
+		if (((RabbitEntity)source).getItemInHand(Hand.MAIN_HAND).getItem().equals(Items.GOLDEN_CARROT)) {
 			e.setCanceled(true);
 		}
 	}
@@ -122,7 +122,7 @@ public class EntityEvent {
 	@SubscribeEvent
 	public void mobSpawn(EntityJoinWorldEvent e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -148,8 +148,8 @@ public class EntityEvent {
 	@SubscribeEvent
 	public void onPlayerDamage(LivingHurtEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -157,7 +157,7 @@ public class EntityEvent {
 			return;
 		}
 		
-		Entity source = e.getSource().getImmediateSource();
+		Entity source = e.getSource().getDirectEntity();
 		if (source == null) {
 			return;
 		}

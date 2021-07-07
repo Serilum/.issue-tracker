@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -38,7 +38,7 @@ public class BetterConduitPlacementConduitEvent {
 	@SubscribeEvent
 	public void onWaterClick(PlayerInteractEvent.RightClickItem e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -48,11 +48,11 @@ public class BetterConduitPlacementConduitEvent {
 		}
 		
 		PlayerEntity player = e.getPlayer();
-		Vector3d look = player.getLookVec();
+		Vector3d look = player.getLookAngle();
 		float distance = 2.0F;
-		double dx = player.getPosX() + (look.x * distance);
-		double dy = player.getPosY() + (look.y * distance) + 2;
-		double dz = player.getPosZ() + (look.z * distance);
+		double dx = player.getX() + (look.x * distance);
+		double dy = player.getY() + (look.y * distance) + 2;
+		double dz = player.getZ() + (look.z * distance);
 		
 		BlockPos frontpos = new BlockPos(dx, dy, dz);
 		
@@ -64,13 +64,13 @@ public class BetterConduitPlacementConduitEvent {
 			itemstack.shrink(1);
 		}
 		
-		world.setBlockState(frontpos, Blocks.CONDUIT.getDefaultState());
+		world.setBlockAndUpdate(frontpos, Blocks.CONDUIT.defaultBlockState());
 	}
 	
 	@SubscribeEvent
 	public void onConduitClick(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -96,7 +96,7 @@ public class BetterConduitPlacementConduitEvent {
 			if (BetterConduitPlacementConfigHandler.GENERAL.dropReplacedBlockTopConduit.get()) {
 				if (!block.equals(Blocks.AIR) && !block.equals(Blocks.WATER)) {
 					ItemEntity ei = new ItemEntity(world, cpos.getX(), cpos.getY()+1, cpos.getZ(), new ItemStack(block, 1));
-					world.addEntity(ei);
+					world.addFreshEntity(ei);
 				}
 			}
 			
@@ -104,10 +104,10 @@ public class BetterConduitPlacementConduitEvent {
 				hand.shrink(1);
 			}
 			
-			world.setBlockState(nextpos, Block.getBlockFromItem(hand.getItem()).getDefaultState());
+			world.setBlockAndUpdate(nextpos, Block.byItem(hand.getItem()).defaultBlockState());
 			
 			set = true;
-			if (!player.isSneaking()) {
+			if (!player.isShiftKeyDown()) {
 				break;
 			}
 		}

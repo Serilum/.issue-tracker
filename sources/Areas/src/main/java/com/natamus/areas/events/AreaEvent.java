@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.16.5, mod version: 2.2.
+ * Minecraft version: 1.16.5, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Areas ever released, along with some other perks.
@@ -58,16 +58,16 @@ public class AreaEvent {
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
 		PlayerEntity player = e.player;
-		World world = player.getEntityWorld();
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
-		if (player.ticksExisted % 20 != 0) {
+		if (player.tickCount % 20 != 0) {
 			return;
 		}
 		
-		BlockPos ppos = player.getPosition();
+		BlockPos ppos = player.blockPosition();
 		
 		List<AreaObject> aos = new ArrayList<AreaObject>();
 		List<String> enteredareas = new ArrayList<String>();
@@ -97,7 +97,7 @@ public class AreaEvent {
 			}
 			
 			BlockPos nspos = ao.location;
-			if (ppos.withinDistance(nspos, ao.radius)) {
+			if (ppos.closerThan(nspos, ao.radius)) {
 				if (ao.containsplayers.contains(player)) {
 					continue;
 				}

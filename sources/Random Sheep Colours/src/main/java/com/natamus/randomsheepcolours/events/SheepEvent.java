@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Sheep Colours.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.16.5, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Random Sheep Colours ever released, along with some other perks.
@@ -35,7 +35,7 @@ public class SheepEvent {
 	@SubscribeEvent
 	public void onSheepSpawn(EntityJoinWorldEvent e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -59,7 +59,7 @@ public class SheepEvent {
 		
 		SheepEntity sheep = (SheepEntity)entity;
 		
-		if (!((AgeableEntity)entity).isChild()) {
+		if (!((AgeableEntity)entity).isBaby()) {
 			int randomindex = GlobalVariables.random.nextInt(Util.possibleColours.size());
 			final DyeColor randomcolour = Util.possibleColours.get(randomindex);
 			
@@ -72,7 +72,7 @@ public class SheepEvent {
 				sheep.setCustomNameVisible(false);
 			}
 			else {
-				sheep.setFleeceColor(randomcolour);
+				sheep.setColor(randomcolour);
 			}
 		}
 		

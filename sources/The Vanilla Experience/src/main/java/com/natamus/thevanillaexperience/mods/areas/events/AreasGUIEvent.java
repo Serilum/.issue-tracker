@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -54,11 +54,11 @@ public class AreasGUIEvent extends IngameGui {
 		}
 
 		if (hudmessage != "") {
-			FontRenderer fontRender = mc.fontRenderer;
-			MainWindow scaled = mc.getMainWindow();
-			int width = scaled.getScaledWidth();
+			FontRenderer fontRender = mc.font;
+			MainWindow scaled = mc.getWindow();
+			int width = scaled.getGuiScaledWidth();
 
-			double stringWidth = fontRender.getStringWidth(hudmessage);
+			double stringWidth = fontRender.width(hudmessage);
 			
 			if (gopacity <= 0) {
 				gopacity = 0;
@@ -117,7 +117,7 @@ public class AreasGUIEvent extends IngameGui {
 			}
 			
 			MatrixStack ms = new MatrixStack();
-			fontRender.drawString(ms, hudmessage, (int)(Math.round((width / 2) / modifier) - stringWidth/2), AreasConfigHandler.HUD.HUDMessageHeightOffset.get(), colour.getRGB());
+			fontRender.draw(ms, hudmessage, (int)(Math.round((width / 2) / modifier) - stringWidth/2), AreasConfigHandler.HUD.HUDMessageHeightOffset.get(), colour.getRGB());
 			
 			GL11.glPopMatrix();
 			

@@ -3,6 +3,9 @@ Configurable Extra Mob Drops
 https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops
 
 =========
+v1.6: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
+
+=========
 v1.5: Added support to the cemd command for modded entities with the same name.
 
 =========

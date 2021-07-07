@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Healing Campfire.
- * Minecraft version: 1.16.5, mod version: 3.2.
+ * Minecraft version: 1.16.5, mod version: 3.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Healing Campfire ever released, along with some other perks.
@@ -43,12 +43,12 @@ public class CampfireEvent {
 	@SubscribeEvent
 	public void playerTickEvent(PlayerTickEvent e) {
 		PlayerEntity player = e.player;
-		World world = player.getEntityWorld();
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
-		if (player.ticksExisted % ConfigHandler.GENERAL.checkForCampfireDelayInTicks.get() != 0) {
+		if (player.tickCount % ConfigHandler.GENERAL.checkForCampfireDelayInTicks.get() != 0) {
 			return;
 		}
 		
@@ -82,19 +82,19 @@ public class CampfireEvent {
 			}
 			
 			if (ConfigHandler.GENERAL.campfireMustBeLit.get()) {
-				Boolean islit = campfirestate.get(CampfireBlock.LIT);
+				Boolean islit = campfirestate.getValue(CampfireBlock.LIT);
 				if (!islit) {
 					continue;
 				}
 			}
 			if (ConfigHandler.GENERAL.campfireMustBeSignalling.get()) {
-				Boolean issignalling = campfirestate.get(CampfireBlock.SIGNAL_FIRE);
+				Boolean issignalling = campfirestate.getValue(CampfireBlock.SIGNAL_FIRE);
 				if (!issignalling) {
 					continue;
 				}
 			}
 			
-			campfire = nearbycampfire.toImmutable();
+			campfire = nearbycampfire.immutable();
 			break;
 		}
 		
@@ -102,11 +102,11 @@ public class CampfireEvent {
 			return;
 		}
 		
-		BlockPos ppos = player.getPosition();
+		BlockPos ppos = player.blockPosition();
 		double r = (double)ConfigHandler.GENERAL.healingRadius.get();
-		if (ppos.withinDistance(campfire, r)) {
+		if (ppos.closerThan(campfire, r)) {
 			boolean addeffect = true;
-			EffectInstance currentregen = player.getActivePotionEffect(effectinstance.getPotion());
+			EffectInstance currentregen = player.getEffect(effectinstance.getEffect());
 			if (currentregen != null) {
 				int currentduration = currentregen.getDuration();
 				if (currentduration > (ConfigHandler.GENERAL.effectDurationSeconds.get()*10)) {
@@ -115,16 +115,16 @@ public class CampfireEvent {
 			}
 			
 			if (addeffect) {
-				player.addPotionEffect(effectinstance);
+				player.addEffect(effectinstance);
 			}
 		}
 		if (ConfigHandler.GENERAL.healPassiveMobs.get()) {
-			for (Entity entity : world.getEntitiesWithinAABBExcludingEntity(player, new AxisAlignedBB(campfire.getX()-r, campfire.getY()-r, campfire.getZ()-r, campfire.getX()+r, campfire.getY()+r, campfire.getZ()+r))) {
-				if (entity instanceof LivingEntity && (entity instanceof PlayerEntity == false) && !entity.getType().getClassification().equals(EntityClassification.MONSTER)) {
+			for (Entity entity : world.getEntities(player, new AxisAlignedBB(campfire.getX()-r, campfire.getY()-r, campfire.getZ()-r, campfire.getX()+r, campfire.getY()+r, campfire.getZ()+r))) {
+				if (entity instanceof LivingEntity && (entity instanceof PlayerEntity == false) && !entity.getType().getCategory().equals(EntityClassification.MONSTER)) {
 					LivingEntity le = (LivingEntity)entity;
 					
 					boolean addeffect = true;
-					EffectInstance currentregen = le.getActivePotionEffect(effectinstance.getPotion());
+					EffectInstance currentregen = le.getEffect(effectinstance.getEffect());
 					if (currentregen != null) {
 						int currentduration = currentregen.getDuration();
 						if (currentduration > (ConfigHandler.GENERAL.effectDurationSeconds.get()*10)) {
@@ -133,7 +133,7 @@ public class CampfireEvent {
 					}
 					
 					if (addeffect) {
-						le.addPotionEffect(effectinstance);
+						le.addEffect(effectinstance);
 					}
 				}
 			}

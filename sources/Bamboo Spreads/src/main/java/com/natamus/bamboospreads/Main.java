@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bamboo Spreads.
- * Minecraft version: 1.16.5, mod version: 1.9.
+ * Minecraft version: 1.16.5, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Bamboo Spreads ever released, along with some other perks.
@@ -65,8 +65,8 @@ public class Main {
 	@SubscribeEvent
 	public void registerBlocks(RegistryEvent.Register<Block> e) {
 		e.getRegistry().registerAll(
-			BlockVariables.SPREADING_BAMBOO_BLOCK = new ExtendedBambooBlock(Block.Properties.create(Material.BAMBOO, MaterialColor.FOLIAGE).tickRandomly().hardnessAndResistance(1.0F).sound(SoundType.BAMBOO)).setRegistryName(Reference.MOD_ID, "spreadingbamboo"),
-			BlockVariables.SPREADING_BAMBOO_SAPLING_BLOCK = new ExtendedBambooSaplingBlock(AbstractBlock.Properties.create(Material.BAMBOO_SAPLING).tickRandomly().zeroHardnessAndResistance().doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.BAMBOO_SAPLING)).setRegistryName(Reference.MOD_ID, "spreadingbamboo_sapling")
+			BlockVariables.SPREADING_BAMBOO_BLOCK = new ExtendedBambooBlock(AbstractBlock.Properties.of(Material.BAMBOO, MaterialColor.PLANT).randomTicks().strength(1.0F).sound(SoundType.BAMBOO)).setRegistryName(Reference.MOD_ID, "spreadingbamboo"),
+			BlockVariables.SPREADING_BAMBOO_SAPLING_BLOCK = new ExtendedBambooSaplingBlock(AbstractBlock.Properties.of(Material.BAMBOO_SAPLING).randomTicks().instabreak().noCollission().strength(1.0F).sound(SoundType.BAMBOO_SAPLING)).setRegistryName(Reference.MOD_ID, "spreadingbamboo_sapling")
 		);
 	}
 	

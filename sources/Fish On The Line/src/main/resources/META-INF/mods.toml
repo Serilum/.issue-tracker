@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Fish
 
 [[mods]]
 modId="fishontheline"
-version="1.1"
+version="1.2"
 displayName="Fish On The Line"
 displayURL="https://curseforge.com/minecraft/mc-mods/fish-on-the-line"
 authors="Rick South"
 description="Rings the bell held in your offhand when you are fishing and something's on the line."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.fishontheline]]
     modId="collective"
     mandatory=true
-    versionRange="[2.0,)"
+    versionRange="[2.27,)"
     ordering="NONE"
     side="BOTH"

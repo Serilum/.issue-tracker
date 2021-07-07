@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.16.5, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Followers ever released, along with some other perks.
@@ -46,11 +46,11 @@ public class FollowerEvent {
 			return;
 		}
 		
-		if (player.ticksExisted % (20* ConfigHandler.GENERAL.timeBetweenChecksInSeconds.get()) != 0) {
+		if (player.tickCount % (20* ConfigHandler.GENERAL.timeBetweenChecksInSeconds.get()) != 0) {
 			return;
 		}
 		
-		World world = player.getEntityWorld();
+		World world = player.getCommandSenderWorld();
 		if (world == null) {
 			return;
 		}
@@ -60,23 +60,23 @@ public class FollowerEvent {
 			return;
 		}
 		
-		Vector3d pvec = player.getPositionVec();
-		List<Entity> entitiesaround = world.getEntitiesWithinAABBExcludingEntity(player, new AxisAlignedBB(pvec.x-dc, pvec.y-dc, pvec.z-dc, pvec.x+dc, pvec.y+dc, pvec.z+dc));
+		Vector3d pvec = player.position();
+		List<Entity> entitiesaround = world.getEntities(player, new AxisAlignedBB(pvec.x-dc, pvec.y-dc, pvec.z-dc, pvec.x+dc, pvec.y+dc, pvec.z+dc));
 		for (Entity ea : entitiesaround) {
 			if (ea instanceof TameableEntity == false) {
 				continue;
 			}
 			
 			TameableEntity te = (TameableEntity)ea;
-			if (!te.isTamed()) {
+			if (!te.isTame()) {
 				continue;
 			}
 			
-			if (!te.isOwner(player)) {
+			if (!te.isOwnedBy(player)) {
 				continue;
 			}
 			
-			if (te.isEntitySleeping()) {
+			if (te.isInSittingPose()) {
 				continue;
 			}
 			
@@ -97,7 +97,7 @@ public class FollowerEvent {
 			return;
 		}
 
-		if (e.getKey() == Variables.clearlist_hotkey.getKey().getKeyCode()) {
+		if (e.getKey() == Variables.clearlist_hotkey.getKey().getValue()) {
 			Variables.activefollowers = new ArrayList<Entity>();
 		}
 	}

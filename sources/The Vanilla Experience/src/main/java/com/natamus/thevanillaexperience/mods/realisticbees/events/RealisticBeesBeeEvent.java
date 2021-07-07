@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -55,7 +55,7 @@ public class RealisticBeesBeeEvent {
 	@SubscribeEvent
 	public void onBeeSpawn(EntityJoinWorldEvent e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -69,8 +69,8 @@ public class RealisticBeesBeeEvent {
 			return;
 		}
 		
-		BlockPos entitypos = entity.getPosition();
-		if (!world.chunkExists(MathHelper.floor(entitypos.getX()) >> 4, MathHelper.floor(entitypos.getZ()) >> 4)) {
+		BlockPos entitypos = entity.blockPosition();
+		if (!world.hasChunk(MathHelper.floor(entitypos.getX()) >> 4, MathHelper.floor(entitypos.getZ()) >> 4)) {
 			return;
 		}
 		
@@ -79,13 +79,13 @@ public class RealisticBeesBeeEvent {
 			return;
 		}
 		
-		Vector3d beevec = entity.getPositionVec();
+		Vector3d beevec = entity.position();
 		for (int i = 0; i < extrabees; i++) {
 			BeeEntity newbee = EntityType.BEE.create(world);
-			newbee.setWorld(world);
-			newbee.setPosition(beevec.x, beevec.y, beevec.z);
+			newbee.setLevel(world);
+			newbee.setPos(beevec.x, beevec.y, beevec.z);
 			newbee.addTag(Reference.MOD_ID + ".ignorebee");
-			world.addEntity(newbee);
+			world.addFreshEntity(newbee);
 		}
 		
 		entity.addTag(Reference.MOD_ID + ".ignorebee");
@@ -94,12 +94,12 @@ public class RealisticBeesBeeEvent {
 	@SubscribeEvent
 	public void onEntityDamageTaken(LivingHurtEvent e) {
 		Entity target = e.getEntity();
-		World world = target.getEntityWorld();
-		if (world.isRemote) {
+		World world = target.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
-		Entity truesource = e.getSource().getTrueSource();
+		Entity truesource = e.getSource().getEntity();
 		if (truesource instanceof BeeEntity == false) {
 			return;
 		}
@@ -154,8 +154,8 @@ public class RealisticBeesBeeEvent {
 	@SubscribeEvent
 	public void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -165,7 +165,7 @@ public class RealisticBeesBeeEvent {
 			}
 			
 			LivingEntity le = (LivingEntity)entity;
-			EffectInstance badluck = le.getActivePotionEffect(Effects.UNLUCK);
+			EffectInstance badluck = le.getEffect(Effects.UNLUCK);
 			if (badluck == null) {
 				return;
 			}
@@ -173,18 +173,18 @@ public class RealisticBeesBeeEvent {
 			int ticksleft = badluck.getDuration();
 			if (ticksleft < 5) {
 				stingerless_bees.remove(le);
-				le.attackEntityFrom(DamageSource.STARVE, Float.MAX_VALUE);
+				le.hurt(DamageSource.STARVE, Float.MAX_VALUE);
 				return;
 			}
 			
-			Vector3d beevec = le.getPositionVec();
+			Vector3d beevec = le.position();
 			if (!stingerless_bees.containsKey(le)) {
 				stingerless_bees.put(le, beevec);
 				return;
 			}
 			
 			Vector3d lastvec = stingerless_bees.get(le);
-			le.setPositionAndUpdate(lastvec.x, beevec.y, lastvec.z);
+			le.teleportTo(lastvec.x, beevec.y, lastvec.z);
 		}
 		else if (entity instanceof PlayerEntity) {
 			if (entity instanceof LivingEntity == false) {
@@ -194,7 +194,7 @@ public class RealisticBeesBeeEvent {
 			PlayerEntity player = (PlayerEntity)entity;
 			if (stung_players.containsKey(player)) {
 				LivingEntity le = (LivingEntity)entity;
-				EffectInstance poison = le.getActivePotionEffect(Effects.POISON);
+				EffectInstance poison = le.getEffect(Effects.POISON);
 				if (poison == null) {
 					Date now = new Date();
 					Date last_sting = last_sting_player.get(player);
@@ -214,7 +214,7 @@ public class RealisticBeesBeeEvent {
 	@SubscribeEvent
 	public void onStingerPull(PlayerInteractEvent.RightClickItem e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		

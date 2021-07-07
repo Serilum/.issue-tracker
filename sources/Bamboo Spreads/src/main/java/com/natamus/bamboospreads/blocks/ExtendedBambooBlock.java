@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bamboo Spreads.
- * Minecraft version: 1.16.5, mod version: 1.9.
+ * Minecraft version: 1.16.5, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Bamboo Spreads ever released, along with some other perks.
@@ -49,14 +49,16 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class ExtendedBambooBlock extends BambooBlock {
 	public ExtendedBambooBlock(Properties p_i49998_1_) {
 		super(p_i49998_1_);
-		this.setDefaultState(this.stateContainer.getBaseState().with(PROPERTY_AGE, Integer.valueOf(0)).with(PROPERTY_BAMBOO_LEAVES, BambooLeaves.NONE).with(PROPERTY_STAGE, Integer.valueOf(0)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)).setValue(LEAVES, BambooLeaves.NONE).setValue(STAGE, Integer.valueOf(0)));
 	}
 	
-	  protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-	      builder.add(PROPERTY_AGE, PROPERTY_BAMBOO_LEAVES, PROPERTY_STAGE);
+	  protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+	      builder.add(AGE, LEAVES, STAGE);
 	   }
 
 	   /**
@@ -71,36 +73,36 @@ public class ExtendedBambooBlock extends BambooBlock {
 	   }
 
 	   public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-	      VoxelShape voxelshape = state.get(PROPERTY_BAMBOO_LEAVES) == BambooLeaves.LARGE ? SHAPE_LARGE_LEAVES : SHAPE_NORMAL;
+	      VoxelShape voxelshape = state.getValue(LEAVES) == BambooLeaves.LARGE ? LARGE_SHAPE : SMALL_SHAPE;
 	      Vector3d vector3d = state.getOffset(worldIn, pos);
-	      return voxelshape.withOffset(vector3d.x, vector3d.y, vector3d.z);
+	      return voxelshape.move(vector3d.x, vector3d.y, vector3d.z);
 	   }
 
-	   public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+	   public boolean isPathfindable(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
 	      return false;
 	   }
 
 	   public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 	      Vector3d vector3d = state.getOffset(worldIn, pos);
-	      return SHAPE_COLLISION.withOffset(vector3d.x, vector3d.y, vector3d.z);
+	      return COLLISION_SHAPE.move(vector3d.x, vector3d.y, vector3d.z);
 	   }
 
 	   @Nullable
 	   public BlockState getStateForPlacement(BlockItemUseContext context) {
-	      FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
+	      FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
 	      if (!fluidstate.isEmpty()) {
 	         return null;
 	      } else {
-	         BlockState blockstate = context.getWorld().getBlockState(context.getPos().down());
-	         if (blockstate.isIn(BlockTags.BAMBOO_PLANTABLE_ON)) {
-	            if (blockstate.isIn(BlockVariables.SPREADING_BAMBOO_SAPLING_BLOCK)) {
-	               return this.getDefaultState().with(PROPERTY_AGE, Integer.valueOf(0));
-	            } else if (blockstate.isIn(BlockVariables.SPREADING_BAMBOO_BLOCK)) {
-	               int i = blockstate.get(PROPERTY_AGE) > 0 ? 1 : 0;
-	               return this.getDefaultState().with(PROPERTY_AGE, Integer.valueOf(i));
+	         BlockState blockstate = context.getLevel().getBlockState(context.getClickedPos().below());
+	         if (blockstate.is(BlockTags.BAMBOO_PLANTABLE_ON)) {
+	            if (blockstate.is(BlockVariables.SPREADING_BAMBOO_SAPLING_BLOCK)) {
+	               return this.defaultBlockState().setValue(AGE, Integer.valueOf(0));
+	            } else if (blockstate.is(BlockVariables.SPREADING_BAMBOO_BLOCK)) {
+	               int i = blockstate.getValue(AGE) > 0 ? 1 : 0;
+	               return this.defaultBlockState().setValue(AGE, Integer.valueOf(i));
 	            } else {
-	               BlockState blockstate1 = context.getWorld().getBlockState(context.getPos().up());
-	               return !blockstate1.isIn(BlockVariables.SPREADING_BAMBOO_BLOCK) && !blockstate1.isIn(BlockVariables.SPREADING_BAMBOO_SAPLING_BLOCK) ? BlockVariables.SPREADING_BAMBOO_SAPLING_BLOCK.getDefaultState() : this.getDefaultState().with(PROPERTY_AGE, blockstate1.get(PROPERTY_AGE));
+	               BlockState blockstate1 = context.getLevel().getBlockState(context.getClickedPos().above());
+	               return !blockstate1.is(BlockVariables.SPREADING_BAMBOO_BLOCK) && !blockstate1.is(BlockVariables.SPREADING_BAMBOO_SAPLING_BLOCK) ? BlockVariables.SPREADING_BAMBOO_SAPLING_BLOCK.defaultBlockState() : this.defaultBlockState().setValue(AGE, blockstate1.getValue(AGE));
 	            }
 	         } else {
 	            return null;
@@ -109,7 +111,7 @@ public class ExtendedBambooBlock extends BambooBlock {
 	   }
 
 	   public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-	      if (!state.isValidPosition(worldIn, pos)) {
+	      if (!state.canSurvive(worldIn, pos)) {
 	         worldIn.destroyBlock(pos, true);
 	      }
 
@@ -119,19 +121,19 @@ public class ExtendedBambooBlock extends BambooBlock {
 	    * Returns whether or not this block is of a type that needs random ticking. Called for ref-counting purposes by
 	    * ExtendedBlockStorage in order to broadly cull a chunk from the random chunk update list for efficiency's sake.
 	    */
-	   public boolean ticksRandomly(BlockState state) {
-	      return state.get(PROPERTY_STAGE) == 0;
+	   public boolean isRandomlyTicking(BlockState state) {
+	      return state.getValue(STAGE) == 0;
 	   }
 
 	   /**
 	    * Performs a random tick on a block.
 	    */
 	   public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-	      if (state.get(PROPERTY_STAGE) == 0) {
-	         if (worldIn.isAirBlock(pos.up()) && worldIn.getLightSubtracted(pos.up(), 0) >= 9) {
-	            int i = this.getNumBambooBlocksBelow(worldIn, pos) + 1;
+	      if (state.getValue(STAGE) == 0) {
+	         if (worldIn.isEmptyBlock(pos.above()) && worldIn.getRawBrightness(pos.above(), 0) >= 9) {
+	            int i = this.getHeightBelowUpToMax(worldIn, pos) + 1;
 	            if (i < 16 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt(3) == 0)) {
-	               this.grow(state, worldIn, pos, random, i);
+	               this.growBamboo(state, worldIn, pos, random, i);
 	               net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
 	            }
 	         }
@@ -139,8 +141,8 @@ public class ExtendedBambooBlock extends BambooBlock {
 	      }
 	   }
 
-	   public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-	      return worldIn.getBlockState(pos.down()).isIn(BlockTags.BAMBOO_PLANTABLE_ON);
+	   public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+	      return worldIn.getBlockState(pos.below()).is(BlockTags.BAMBOO_PLANTABLE_ON);
 	   }
 
 	   /**
@@ -149,45 +151,45 @@ public class ExtendedBambooBlock extends BambooBlock {
 	    * returns its solidified counterpart.
 	    * Note that this method should ideally consider only the specific face passed in.
 	    */
-	   public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-	      if (!stateIn.isValidPosition(worldIn, currentPos)) {
-	         worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
+	   public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+	      if (!stateIn.canSurvive(worldIn, currentPos)) {
+	         worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
 	      }
 
-	      if (facing == Direction.UP && facingState.isIn(BlockVariables.SPREADING_BAMBOO_BLOCK) && facingState.get(PROPERTY_AGE) > stateIn.get(PROPERTY_AGE)) {
-	         worldIn.setBlockState(currentPos, stateIn.func_235896_a_(PROPERTY_AGE), 2);
+	      if (facing == Direction.UP && facingState.is(BlockVariables.SPREADING_BAMBOO_BLOCK) && facingState.getValue(AGE) > stateIn.getValue(AGE)) {
+	         worldIn.setBlock(currentPos, stateIn.cycle(AGE), 2);
 	      }
 
-	      return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+	      return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	   }
 
 	   /**
 	    * Whether this IGrowable can grow
 	    */
-	   public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
-	      int i = this.getNumBambooBlocksAbove(worldIn, pos);
-	      int j = this.getNumBambooBlocksBelow(worldIn, pos);
-	      return i + j + 1 < 16 && worldIn.getBlockState(pos.up(i)).get(PROPERTY_STAGE) != 1;
+	   public boolean isValidBonemealTarget(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+	      int i = this.getHeightAboveUpToMax(worldIn, pos);
+	      int j = this.getHeightBelowUpToMax(worldIn, pos);
+	      return i + j + 1 < 16 && worldIn.getBlockState(pos.above(i)).getValue(STAGE) != 1;
 	   }
 
-	   public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
+	   public boolean isBonemealSuccess(World worldIn, Random rand, BlockPos pos, BlockState state) {
 	      return true;
 	   }
 
-	   public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-	      int i = this.getNumBambooBlocksAbove(worldIn, pos);
-	      int j = this.getNumBambooBlocksBelow(worldIn, pos);
+	   public void performBonemeal(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+	      int i = this.getHeightAboveUpToMax(worldIn, pos);
+	      int j = this.getHeightBelowUpToMax(worldIn, pos);
 	      int k = i + j + 1;
 	      int l = 1 + rand.nextInt(2);
 
 	      for(int i1 = 0; i1 < l; ++i1) {
-	         BlockPos blockpos = pos.up(i);
+	         BlockPos blockpos = pos.above(i);
 	         BlockState blockstate = worldIn.getBlockState(blockpos);
-	         if (k >= 16 || blockstate.get(PROPERTY_STAGE) == 1 || !worldIn.isAirBlock(blockpos.up())) {
+	         if (k >= 16 || blockstate.getValue(STAGE) == 1 || !worldIn.isEmptyBlock(blockpos.above())) {
 	            return;
 	         }
 
-	         this.grow(blockstate, worldIn, blockpos, rand, k);
+	         this.growBamboo(blockstate, worldIn, blockpos, rand, k);
 	         ++i;
 	         ++k;
 	      }
@@ -199,31 +201,31 @@ public class ExtendedBambooBlock extends BambooBlock {
 	    * @deprecated call via {@link IBlockState#getPlayerRelativeBlockHardness(EntityPlayer,World,BlockPos)} whenever
 	    * possible. Implementing/overriding is fine.
 	    */
-	   public float getPlayerRelativeBlockHardness(BlockState state, PlayerEntity player, IBlockReader worldIn, BlockPos pos) {
-	      return player.getHeldItemMainhand().getItem() instanceof SwordItem ? 1.0F : super.getPlayerRelativeBlockHardness(state, player, worldIn, pos);
+	   public float getDestroyProgress(BlockState state, PlayerEntity player, IBlockReader worldIn, BlockPos pos) {
+	      return player.getMainHandItem().getItem() instanceof SwordItem ? 1.0F : super.getDestroyProgress(state, player, worldIn, pos);
 	   }
 
 	@Override
-	protected void grow(BlockState p_220258_1_, World p_220258_2_, BlockPos p_220258_3_, Random p_220258_4_, int p_220258_5_) {
-		if (!p_220258_2_.isRemote) {
+	protected void growBamboo(BlockState p_220258_1_, World p_220258_2_, BlockPos p_220258_3_, Random p_220258_4_, int p_220258_5_) {
+		if (!p_220258_2_.isClientSide) {
 			if (p_220258_4_.nextDouble() <= ConfigHandler.GENERAL.newChuteOnGrowthChance.get()) {
-				BlockPos lowestpos = p_220258_3_.toImmutable();
+				BlockPos lowestpos = p_220258_3_.immutable();
 				for (int yn = p_220258_3_.getY(); yn >= 1; yn--) {
 					BlockPos lowerpos = new BlockPos(p_220258_3_.getX(), yn, p_220258_3_.getZ());
 					Block lowerbamboo = p_220258_2_.getBlockState(lowerpos).getBlock();
 					if (lowerbamboo.equals(BlockVariables.SPREADING_BAMBOO_BLOCK) || lowerbamboo.equals(BlockVariables.SPREADING_BAMBOO_SAPLING_BLOCK)) {
-						lowestpos = lowerpos.toImmutable();
+						lowestpos = lowerpos.immutable();
 					}
 				}
 				
 				List<BlockPos> potentials = new ArrayList<BlockPos>();
-				Iterator<BlockPos> blocksaround = BlockPos.getAllInBoxMutable(lowestpos.getX()-1, lowestpos.getY(), lowestpos.getZ()-1, lowestpos.getX()+1, lowestpos.getY(), lowestpos.getZ()+1).iterator();
+				Iterator<BlockPos> blocksaround = BlockPos.betweenClosed(lowestpos.getX()-1, lowestpos.getY(), lowestpos.getZ()-1, lowestpos.getX()+1, lowestpos.getY(), lowestpos.getZ()+1).iterator();
 				while (blocksaround.hasNext()) {
 					BlockPos npos = blocksaround.next();
 					if (p_220258_2_.getBlockState(npos).getBlock().equals(Blocks.AIR)) {
-						Block belowblock = p_220258_2_.getBlockState(npos.down().toImmutable()).getBlock();
+						Block belowblock = p_220258_2_.getBlockState(npos.below().immutable()).getBlock();
 						if (BlockFunctions.isGrowBlock(belowblock)) {
-							potentials.add(npos.toImmutable());
+							potentials.add(npos.immutable());
 						}
 					}
 				}
@@ -231,22 +233,22 @@ public class ExtendedBambooBlock extends BambooBlock {
 				int size = potentials.size();
 				if (size > 0) {
 					BlockPos spreadpos = potentials.get(p_220258_4_.nextInt(size));
-					p_220258_2_.setBlockState(spreadpos, BlockVariables.SPREADING_BAMBOO_SAPLING_BLOCK.getDefaultState());
+					p_220258_2_.setBlockAndUpdate(spreadpos, BlockVariables.SPREADING_BAMBOO_SAPLING_BLOCK.defaultBlockState());
 				}
 			}
 		}
 		
-		BlockState blockstate = p_220258_2_.getBlockState(p_220258_3_.down());
-		BlockPos blockpos = p_220258_3_.down(2);
+		BlockState blockstate = p_220258_2_.getBlockState(p_220258_3_.below());
+		BlockPos blockpos = p_220258_3_.below(2);
 		BlockState blockstate1 = p_220258_2_.getBlockState(blockpos);
 		BambooLeaves bambooleaves = BambooLeaves.NONE;
 		if (p_220258_5_ >= 1) {
-			if (blockstate.getBlock() == BlockVariables.SPREADING_BAMBOO_BLOCK && blockstate.get(PROPERTY_BAMBOO_LEAVES) != BambooLeaves.NONE) {
-				if (blockstate.getBlock() == BlockVariables.SPREADING_BAMBOO_BLOCK && blockstate.get(PROPERTY_BAMBOO_LEAVES) != BambooLeaves.NONE) {
+			if (blockstate.getBlock() == BlockVariables.SPREADING_BAMBOO_BLOCK && blockstate.getValue(LEAVES) != BambooLeaves.NONE) {
+				if (blockstate.getBlock() == BlockVariables.SPREADING_BAMBOO_BLOCK && blockstate.getValue(LEAVES) != BambooLeaves.NONE) {
 					bambooleaves = BambooLeaves.LARGE;
 					if (blockstate1.getBlock() == BlockVariables.SPREADING_BAMBOO_BLOCK) {
-						p_220258_2_.setBlockState(p_220258_3_.down(), blockstate.with(PROPERTY_BAMBOO_LEAVES, BambooLeaves.SMALL), 3);
-						p_220258_2_.setBlockState(blockpos, blockstate1.with(PROPERTY_BAMBOO_LEAVES, BambooLeaves.NONE), 3);
+						p_220258_2_.setBlock(p_220258_3_.below(), blockstate.setValue(LEAVES, BambooLeaves.SMALL), 3);
+						p_220258_2_.setBlock(blockpos, blockstate1.setValue(LEAVES, BambooLeaves.NONE), 3);
 					}
 				}
 			} 
@@ -255,18 +257,18 @@ public class ExtendedBambooBlock extends BambooBlock {
 			}
 		}
 		
-		int i = p_220258_1_.get(PROPERTY_AGE) != 1 && blockstate1.getBlock() != BlockVariables.SPREADING_BAMBOO_BLOCK ? 0 : 1;
+		int i = p_220258_1_.getValue(AGE) != 1 && blockstate1.getBlock() != BlockVariables.SPREADING_BAMBOO_BLOCK ? 0 : 1;
 		int j = (p_220258_5_ < 11 || !(p_220258_4_.nextFloat() < 0.25F)) && p_220258_5_ != 15 ? 0 : 1;
-		p_220258_2_.setBlockState(p_220258_3_.up(), this.getDefaultState().with(PROPERTY_AGE, Integer.valueOf(i)).with(PROPERTY_BAMBOO_LEAVES, bambooleaves).with(PROPERTY_STAGE, Integer.valueOf(j)), 3);
+		p_220258_2_.setBlock(p_220258_3_.above(), this.defaultBlockState().setValue(AGE, Integer.valueOf(i)).setValue(LEAVES, bambooleaves).setValue(STAGE, Integer.valueOf(j)), 3);
 	}
 	
 
 	   /**
 	    * Returns the number of continuous bamboo blocks above the position passed in, up to 16.
 	    */
-	   protected int getNumBambooBlocksAbove(IBlockReader worldIn, BlockPos pos) {
+	   protected int getHeightAboveUpToMax(IBlockReader worldIn, BlockPos pos) {
 	      int i;
-	      for(i = 0; i < 16 && worldIn.getBlockState(pos.up(i + 1)).isIn(BlockVariables.SPREADING_BAMBOO_BLOCK); ++i) {
+	      for(i = 0; i < 16 && worldIn.getBlockState(pos.above(i + 1)).is(BlockVariables.SPREADING_BAMBOO_BLOCK); ++i) {
 	      }
 
 	      return i;
@@ -275,9 +277,9 @@ public class ExtendedBambooBlock extends BambooBlock {
 	   /**
 	    * Returns the number of continuous bamboo blocks below the position passed in, up to 16.
 	    */
-	   protected int getNumBambooBlocksBelow(IBlockReader worldIn, BlockPos pos) {
+	   protected int getHeightBelowUpToMax(IBlockReader worldIn, BlockPos pos) {
 	      int i;
-	      for(i = 0; i < 16 && worldIn.getBlockState(pos.down(i + 1)).isIn(BlockVariables.SPREADING_BAMBOO_BLOCK); ++i) {
+	      for(i = 0; i < 16 && worldIn.getBlockState(pos.below(i + 1)).is(BlockVariables.SPREADING_BAMBOO_BLOCK); ++i) {
 	      }
 
 	      return i;

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Extra Mob Drops.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.16.5, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Extra Mob Drops ever released, along with some other perks.
@@ -36,7 +36,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class CommandCemd {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
-    	dispatcher.register(Commands.literal("cemd").requires((iCommandSender) -> iCommandSender.hasPermissionLevel(2))
+    	dispatcher.register(Commands.literal("cemd").requires((iCommandSender) -> iCommandSender.hasPermission(2))
 			.executes((command) -> {
 				CommandSource source = command.getSource();
 				
@@ -173,7 +173,7 @@ public class CommandCemd {
 					ex.printStackTrace();
 				}
 				
-				StringFunctions.sendMessage(source, "Successfully cleared all drops for the entity '" + entitytype.getName().getString() + "'.", TextFormatting.DARK_GREEN);
+				StringFunctions.sendMessage(source, "Successfully cleared all drops for the entity '" + entitytype.getDescription().getString() + "'.", TextFormatting.DARK_GREEN);
 				return 1;
 			})))
 		);
@@ -184,7 +184,7 @@ public class CommandCemd {
     	
     	PlayerEntity player;
 		try {
-			player = source.asPlayer();
+			player = source.getPlayerOrException();
 		}
 		catch (CommandSyntaxException ex) {
 			StringFunctions.sendMessage(source, "This command can only be executed as a player in-game.", TextFormatting.RED);
@@ -224,7 +224,7 @@ public class CommandCemd {
 			return 0;					
 		}
 		
-		ItemStack hand = player.getHeldItemMainhand();
+		ItemStack hand = player.getMainHandItem();
 		if (hand.isEmpty()) {
 			StringFunctions.sendMessage(source, "Your hand is empty! Unable to add drop.", TextFormatting.RED);
 			return 0;
@@ -246,7 +246,7 @@ public class CommandCemd {
 			ex.printStackTrace();
 		}
 		
-		StringFunctions.sendMessage(source, "Successfully added '" + toadd.getCount() + " " + toadd.getDisplayName().getString().toLowerCase() + "' as a drop for the entity '" + entitytype.getName().getString() + "' with a drop chance of '" + dropchance + "'.", TextFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(source, "Successfully added '" + toadd.getCount() + " " + toadd.getHoverName().getString().toLowerCase() + "' as a drop for the entity '" + entitytype.getDescription().getString() + "' with a drop chance of '" + dropchance + "'.", TextFormatting.DARK_GREEN);
 		return 1;
     }
     

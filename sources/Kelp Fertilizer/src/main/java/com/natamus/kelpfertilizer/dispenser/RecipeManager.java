@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Kelp Fertilizer.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.16.5, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Kelp Fertilizer ever released, along with some other perks.
@@ -20,7 +20,7 @@ import net.minecraft.item.Items;
 public class RecipeManager {
 	public static void initDispenserBehavior() {
 		try {
-			DispenserBlock.registerDispenseBehavior(Items.KELP, new BehaviourKelpDispenser(Items.KELP));
+			DispenserBlock.registerBehavior(Items.KELP, new BehaviourKelpDispenser(Items.KELP));
 		}
 		catch (ArrayIndexOutOfBoundsException ex) {
 			System.out.println("!!! Kelp Fertilizer: Something went wrong when adding the kelp behaviour to dispensers. Ignoring.");

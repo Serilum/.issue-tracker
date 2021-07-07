@@ -3,6 +3,9 @@ Mooshroom Spawn
 https://www.curseforge.com/minecraft/mc-mods/mooshroom-spawn
 
 =========
+v1.4: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
+
+=========
 v1.3: Updated backend code. Released an up-to-date 1.12.2 version.
 
 =========

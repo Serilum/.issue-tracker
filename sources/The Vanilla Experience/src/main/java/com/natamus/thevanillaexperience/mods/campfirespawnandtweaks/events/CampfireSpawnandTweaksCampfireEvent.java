@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -80,7 +80,7 @@ public class CampfireSpawnandTweaksCampfireEvent {
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
 		World world = e.world;
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -88,7 +88,7 @@ public class CampfireSpawnandTweaksCampfireEvent {
 			BlockPos campfirepos = firestoextinguish.get(world).get(0);
 			BlockState state = world.getBlockState(campfirepos);
 			if (state.getBlock() instanceof CampfireBlock) {
-				world.setBlockState(campfirepos, state.with(CampfireBlock.LIT, false).with(CampfireBlock.WATERLOGGED, false));
+				world.setBlockAndUpdate(campfirepos, state.setValue(CampfireBlock.LIT, false).setValue(CampfireBlock.WATERLOGGED, false));
 			}
 			
 			firestoextinguish.get(world).remove(0);
@@ -117,7 +117,7 @@ public class CampfireSpawnandTweaksCampfireEvent {
 					
 					if (CampfireSpawnandTweaksConfigHandler.GENERAL.createAirPocketIfBlocksAboveCampfire.get()) {
 						BlockPos tsbp = new BlockPos(ts.x, ts.y, ts.z);
-						Iterator<BlockPos> posaround = BlockPos.getAllInBox(tsbp.getX(), tsbp.getY(), tsbp.getZ(), tsbp.getX(), tsbp.getY()+1, tsbp.getZ()).iterator();
+						Iterator<BlockPos> posaround = BlockPos.betweenClosedStream(tsbp.getX(), tsbp.getY(), tsbp.getZ(), tsbp.getX(), tsbp.getY()+1, tsbp.getZ()).iterator();
 						while (posaround.hasNext()) {
 							BlockPos around = posaround.next();
 							Block block = world.getBlockState(around).getBlock();
@@ -130,7 +130,7 @@ public class CampfireSpawnandTweaksCampfireEvent {
 						
 					}
 					
-					serverplayer.teleport(serverworld, ts.x, ts.y, ts.z, player.rotationYaw, player.rotationPitch);
+					serverplayer.teleportTo(serverworld, ts.x, ts.y, ts.z, player.yRot, player.xRot);
 				}
 				else {
 					String playername = player.getName().toString();
@@ -162,12 +162,12 @@ public class CampfireSpawnandTweaksCampfireEvent {
 		Block block = state.getBlock();
 		if (block instanceof CampfireBlock) {
 			PlayerEntity player = (PlayerEntity)entity;
-			if (player.getHeldItemMainhand().getItem() instanceof FlintAndSteelItem || player.getHeldItemOffhand().getItem() instanceof FlintAndSteelItem) {
+			if (player.getMainHandItem().getItem() instanceof FlintAndSteelItem || player.getOffhandItem().getItem() instanceof FlintAndSteelItem) {
 				return;
 			}
 			
 			if (CampfireSpawnandTweaksConfigHandler.GENERAL.campfiresStartUnlit.get()) {
-				world.setBlockState(pos, state.with(CampfireBlock.LIT, false));
+				world.setBlockAndUpdate(pos, state.setValue(CampfireBlock.LIT, false));
 			}
 		}
 	}
@@ -175,7 +175,7 @@ public class CampfireSpawnandTweaksCampfireEvent {
 	@SubscribeEvent
 	public void onRightClickCampfireBlock(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -186,7 +186,7 @@ public class CampfireSpawnandTweaksCampfireEvent {
 		
 		if (block instanceof CampfireBlock) {
 			String playername = player.getName().getString();
-			if (player.isSneaking()) {
+			if (player.isShiftKeyDown()) {
 				if (CampfireSpawnandTweaksConfigHandler.GENERAL.sneakRightClickCampfireToUnset.get()) {
 					if (CampfireSpawnandTweaksUtil.checkForCampfireSpawnRemoval(world, playername, pos)) {
 						if (CampfireSpawnandTweaksConfigHandler.GENERAL.sendMessageOnNewCampfireSpawnSet.get()) {
@@ -201,24 +201,24 @@ public class CampfireSpawnandTweaksCampfireEvent {
 			Item item = itemstack.getItem();
 			
 			boolean holdinglighter = false;
-			if (player.getHeldItemMainhand().getItem() instanceof FlintAndSteelItem || player.getHeldItemOffhand().getItem() instanceof FlintAndSteelItem) {
+			if (player.getMainHandItem().getItem() instanceof FlintAndSteelItem || player.getOffhandItem().getItem() instanceof FlintAndSteelItem) {
 				holdinglighter = true;
-				if (state.get(CampfireBlock.LIT)) {
+				if (state.getValue(CampfireBlock.LIT)) {
 					e.setCanceled(true);
 				}
 			}
 			
 			boolean removed = false;
-			if (state.get(CampfireBlock.LIT) || holdinglighter) {				
+			if (state.getValue(CampfireBlock.LIT) || holdinglighter) {				
 				boolean iswaterbucket = item.equals(Items.WATER_BUCKET);
-				Block itemblock = Block.getBlockFromItem(item);
+				Block itemblock = Block.byItem(item);
 				if (extinguishblocks.contains(itemblock) || iswaterbucket && !holdinglighter) {
 					if (!player.isCreative() && !iswaterbucket) {
 						itemstack.shrink(1);
 					}
 					
 					e.setCanceled(true);
-					world.setBlockState(pos, state.with(CampfireBlock.LIT, false));
+					world.setBlockAndUpdate(pos, state.setValue(CampfireBlock.LIT, false));
 					
 					if (iswaterbucket) {
 						firestoextinguish.get(world).add(pos);
@@ -237,14 +237,14 @@ public class CampfireSpawnandTweaksCampfireEvent {
 					boolean replaced = playercampfires.containsKey(playername.toLowerCase());
 					BlockPos oldpos = null;
 					if (replaced) {
-						oldpos = playercampfires.get(playername.toLowerCase()).getSecond().toImmutable();
+						oldpos = playercampfires.get(playername.toLowerCase()).getSecond().immutable();
 					}
 					
 					if (CampfireSpawnandTweaksUtil.setCampfireSpawn(world, playername, pos)) {
 						if (CampfireSpawnandTweaksConfigHandler.GENERAL.sendMessageOnNewCampfireSpawnSet.get()) {
 							if (holdinglighter) {
-								world.setBlockState(pos, state.with(CampfireBlock.WATERLOGGED, false));
-								player.swingArm(e.getHand());
+								world.setBlockAndUpdate(pos, state.setValue(CampfireBlock.WATERLOGGED, false));
+								player.swing(e.getHand());
 							}
 							
 							if (replaced) {
@@ -263,7 +263,7 @@ public class CampfireSpawnandTweaksCampfireEvent {
 			}
 		}
 		else if (block instanceof BedBlock) {
-			if (player.isSneaking()) {
+			if (player.isShiftKeyDown()) {
 				if (!CampfireSpawnandTweaksConfigHandler.GENERAL.bedsOverrideCampfireSpawnOnSneakRightClick.get()) {
 					return;
 				}
@@ -316,8 +316,8 @@ public class CampfireSpawnandTweaksCampfireEvent {
 	@SubscribeEvent
 	public void onPlayerRespawn(PlayerRespawnEvent e) {
 		PlayerEntity player = e.getPlayer();
-		World world = player.getEntityWorld();
-		if (world.isRemote) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -327,6 +327,6 @@ public class CampfireSpawnandTweaksCampfireEvent {
 		}
 		
 		Pair<World, BlockPos> pair = playercampfires.get(playername);
-		playerstorespawn.get(pair.getFirst()).add(new Pair<PlayerEntity, BlockPos>(player, pair.getSecond().toImmutable()));
+		playerstorespawn.get(pair.getFirst()).add(new Pair<PlayerEntity, BlockPos>(player, pair.getSecond().immutable()));
 	}
 }

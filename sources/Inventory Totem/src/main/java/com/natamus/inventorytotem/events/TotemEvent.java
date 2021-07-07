@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Inventory Totem.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.16.5, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Inventory Totem ever released, along with some other perks.
@@ -34,8 +34,8 @@ public class TotemEvent {
 	@SubscribeEvent
 	public void onPlayerDeath(LivingDeathEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -44,7 +44,7 @@ public class TotemEvent {
 		}
 		
 		PlayerEntity player = (PlayerEntity)entity;
-		if (player.getHeldItemMainhand().getItem().equals(Items.TOTEM_OF_UNDYING) || player.getHeldItemOffhand().getItem().equals(Items.TOTEM_OF_UNDYING)) {
+		if (player.getMainHandItem().getItem().equals(Items.TOTEM_OF_UNDYING) || player.getOffhandItem().getItem().equals(Items.TOTEM_OF_UNDYING)) {
 			return;
 		}
 		
@@ -54,8 +54,8 @@ public class TotemEvent {
 		}
 		
 		ItemStack totemstack = null;
-		for(int i = 0; i < inv.getSizeInventory(); i++) {
-			ItemStack stack = inv.getStackInSlot(i);
+		for(int i = 0; i < inv.getContainerSize(); i++) {
+			ItemStack stack = inv.getItem(i);
 			if (stack.getItem().equals(Items.TOTEM_OF_UNDYING)) {
 				totemstack = stack;
 				break;
@@ -69,15 +69,15 @@ public class TotemEvent {
 		e.setCanceled(true);
 		if (player instanceof ServerPlayerEntity) {
 			ServerPlayerEntity entityplayermp = (ServerPlayerEntity)player;
-            entityplayermp.addStat(Stats.ITEM_USED.get(Items.TOTEM_OF_UNDYING));
+            entityplayermp.awardStat(Stats.ITEM_USED.get(Items.TOTEM_OF_UNDYING));
             CriteriaTriggers.USED_TOTEM.trigger(entityplayermp, totemstack);
         }
 
         player.setHealth(1.0F);
-        player.clearActivePotions();
-        player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 900, 1));
-        player.addPotionEffect(new EffectInstance(Effects.ABSORPTION, 100, 1));
-        world.setEntityState(player, (byte)35);
+        player.removeAllEffects();
+        player.addEffect(new EffectInstance(Effects.REGENERATION, 900, 1));
+        player.addEffect(new EffectInstance(Effects.ABSORPTION, 100, 1));
+        world.broadcastEntityEvent(player, (byte)35);
         totemstack.shrink(1);
 	}
 }

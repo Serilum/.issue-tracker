@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Tracking.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.16.5, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Player Tracking ever released, along with some other perks.
@@ -39,7 +39,7 @@ public class Tracking {
 	}
 
 	public boolean checkPlayer(PlayerEntity pl, int x, int z) {
-		BlockPos pos = pl.getPosition();
+		BlockPos pos = pl.blockPosition();
 		
 		int num = 0;
 		if(x == 0) {
@@ -69,7 +69,7 @@ public class Tracking {
 
 	public void TrackDir(PlayerEntity player, int x, int z, PlayerEntity player2) {
 		String compass = "West";
-		List<? extends PlayerEntity> plist = player.getEntityWorld().getPlayers();
+		List<? extends PlayerEntity> plist = player.getCommandSenderWorld().players();
 		List<PlayerEntity> in = new ArrayList<PlayerEntity>();
 		int num = Math.abs(x) + Math.abs(z);
 		if(player2 == null) {
@@ -115,14 +115,14 @@ public class Tracking {
 			if(block.equals(block1)) {
 				length++;
 				if(block1.equals(Blocks.COBBLESTONE))
-					world.setBlockState(bpos, Blocks.AIR.getDefaultState());
+					world.setBlockAndUpdate(bpos, Blocks.AIR.defaultBlockState());
 				continue;
 			}
 			if(block.equals(block2)) {
 				hasmat = false;
 				length++;
 				if(block1.equals(Blocks.COBBLESTONE))
-					world.setBlockState(bpos, Blocks.AIR.getDefaultState());
+					world.setBlockAndUpdate(bpos, Blocks.AIR.defaultBlockState());
 			} else {
 				return 0;
 			}
@@ -136,8 +136,8 @@ public class Tracking {
 	}
 
 	public void Track(Block block1, Block block2, PlayerEntity player, PlayerEntity player2) {
-		World world = player.getEntityWorld();
-		BlockPos bpos = player.getPosition().down().toImmutable();
+		World world = player.getCommandSenderWorld();
+		BlockPos bpos = player.blockPosition().below().immutable();
 		Block block = world.getBlockState(bpos).getBlock();
 		int northDist = findBlock(world, -1, 0, block1, block2);
 		int southDist = findBlock(world, 1, 0, block1, block2);
@@ -154,12 +154,12 @@ public class Tracking {
 		if(westDist > 0)
 			TrackDir(player, 0, westDist * 25, player2);
 		if(block.equals(Blocks.OBSIDIAN) && northDist + southDist + eastDist + westDist >= 25)
-			world.setBlockState(bpos, Blocks.AIR.getDefaultState());
+			world.setBlockAndUpdate(bpos, Blocks.AIR.defaultBlockState());
 	}
 
 	public void Track(PlayerEntity player, PlayerEntity player2) {
-		World world = player.getEntityWorld();
-		BlockPos bpos = player.getPosition().down().toImmutable();
+		World world = player.getCommandSenderWorld();
+		BlockPos bpos = player.blockPosition().below().immutable();
 		Block block = world.getBlockState(bpos).getBlock();
 		if(block.equals(Blocks.DIAMOND_BLOCK)) {
 			Track(Blocks.OBSIDIAN, Blocks.GOLD_BLOCK, player, player2);

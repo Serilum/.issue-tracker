@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Stac
 
 [[mods]]
 modId="stackrefill"
-version="1.7"
+version="1.8"
 displayName="Stack Refill"
 displayURL="https://curseforge.com/minecraft/mc-mods/stack-refill"
 authors="Rick South"
 description="Automatically refills the item in the hand of the player when using the final item if possible."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.stackrefill]]
     modId="collective"
     mandatory=true
-    versionRange="[2.0,)"
+    versionRange="[2.27,)"
     ordering="NONE"
     side="BOTH"

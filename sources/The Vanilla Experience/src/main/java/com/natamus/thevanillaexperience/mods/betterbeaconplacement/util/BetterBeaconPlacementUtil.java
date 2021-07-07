@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -37,7 +37,7 @@ public class BetterBeaconPlacementUtil {
 		int z = beaconpos.getZ();
 		
 		for (int n = 1; n <= 4; n++) {
-			Iterator<BlockPos> layer = BlockPos.getAllInBox(x-n, y-n, z-n, x+n, y-n, z+n).iterator();
+			Iterator<BlockPos> layer = BlockPos.betweenClosedStream(x-n, y-n, z-n, x+n, y-n, z+n).iterator();
 			BlockPos result = checkIterator(world, layer);
 			if (result != null) {
 				if (BlockFunctions.isSpecificBlock(Blocks.BEDROCK, world, result)) {
@@ -56,7 +56,7 @@ public class BetterBeaconPlacementUtil {
 		int z = beaconpos.getZ();
 		
 		for (int n = 1; n <= 4; n++) {
-			breakBase(world, beaconpos, BlockPos.getAllInBox(x-n, y-n, z-n, x+n, y-n, z+n).iterator(), iscreative);
+			breakBase(world, beaconpos, BlockPos.betweenClosedStream(x-n, y-n, z-n, x+n, y-n, z+n).iterator(), iscreative);
 		}
 	}
 	
@@ -65,10 +65,10 @@ public class BetterBeaconPlacementUtil {
 			BlockPos np = it.next();
 			Block block = world.getBlockState(np).getBlock();
 			if (BlockFunctions.isOneOfBlocks(mineralblocks, block)) {
-				world.setBlockState(np, Blocks.AIR.getDefaultState());
+				world.setBlockAndUpdate(np, Blocks.AIR.defaultBlockState());
 				if (!iscreative) {
 					ItemEntity ei = new ItemEntity(world, beaconpos.getX(), beaconpos.getY()+2, beaconpos.getZ(), new ItemStack(block, 1));
-					world.addEntity(ei);
+					world.addFreshEntity(ei);
 				}
 			}
 		}
@@ -79,7 +79,7 @@ public class BetterBeaconPlacementUtil {
 			BlockPos np = it.next();
 			Block block = world.getBlockState(np).getBlock();
 			if (!BlockFunctions.isOneOfBlocks(mineralblocks, block)) {
-				return np.toImmutable();
+				return np.immutable();
 			}
 		}
 		return null;

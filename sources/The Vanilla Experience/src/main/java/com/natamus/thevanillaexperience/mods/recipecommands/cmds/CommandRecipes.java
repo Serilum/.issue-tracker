@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -53,7 +53,7 @@ public class CommandRecipes {
 				sendUsage(source);
 				return 1;
 			})
-			.then(Commands.argument("recipe", ResourceLocationArgument.resourceLocation()).suggests(SuggestionProviders.ALL_RECIPES)
+			.then(Commands.argument("recipe", ResourceLocationArgument.id()).suggests(SuggestionProviders.ALL_RECIPES)
 			.executes((command) -> {
 				CommandSource source = command.getSource();
 				
@@ -74,7 +74,7 @@ public class CommandRecipes {
     				sendUsage(source);
     				return 1;
     			})
-    			.then(Commands.argument("recipe", ResourceLocationArgument.resourceLocation()).suggests(SuggestionProviders.ALL_RECIPES)
+    			.then(Commands.argument("recipe", ResourceLocationArgument.id()).suggests(SuggestionProviders.ALL_RECIPES)
     			.executes((command) -> {
     				CommandSource source = command.getSource();
     				
@@ -97,9 +97,9 @@ public class CommandRecipes {
     @SuppressWarnings("unchecked")
 	private static void sendRecipe(CommandContext<CommandSource> command) throws CommandSyntaxException {
     	CommandSource source = command.getSource();
-    	PlayerEntity player = source.asPlayer();
-    	World world = player.getEntityWorld();
-    	if (world.isRemote) {
+    	PlayerEntity player = source.getPlayerOrException();
+    	World world = player.getCommandSenderWorld();
+    	if (world.isClientSide) {
     		return;
     	}
     	
@@ -112,7 +112,7 @@ public class CommandRecipes {
     	
     	List<Ingredient> ingredients = recipe.getIngredients();
     	for (Ingredient ingredient : ingredients) {
-    		ItemStack[] possiblestacks = ingredient.getMatchingStacks();
+    		ItemStack[] possiblestacks = ingredient.getItems();
     		if (possiblestacks.length <= 0) {
     			continue;
     		}
@@ -182,7 +182,7 @@ public class CommandRecipes {
 	    	}
     	}
     	
-    	ItemStack output = recipe.getRecipeOutput();
+    	ItemStack output = recipe.getResultItem();
     	String outputname = output.getItem().toString();
     	outputname = StringFunctions.capitalizeEveryWord(outputname.replace("_", " "));
 		

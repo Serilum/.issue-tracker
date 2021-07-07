@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Healing Soup.
- * Minecraft version: 1.16.5, mod version: 2.2.
+ * Minecraft version: 1.16.5, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Healing Soup ever released, along with some other perks.
@@ -17,7 +17,7 @@ package com.natamus.healingsoup.items;
 import net.minecraft.item.Food;
 
 public class SoupFoods {
-	public static final Food MUSHROOM_SOUP = (new Food.Builder()).hunger(6).saturation(0.6F).build();
-	public static final Food CACTUS_SOUP = (new Food.Builder()).hunger(6).saturation(0.6F).build();
-	public static final Food CHOCOLATE_MILK = (new Food.Builder()).hunger(6).saturation(0.6F).build();
+	public static final Food MUSHROOM_SOUP = (new Food.Builder()).nutrition(6).saturationMod(0.6F).build();
+	public static final Food CACTUS_SOUP = (new Food.Builder()).nutrition(6).saturationMod(0.6F).build();
+	public static final Food CHOCOLATE_MILK = (new Food.Builder()).nutrition(6).saturationMod(0.6F).build();
 }

@@ -3,6 +3,9 @@ Extended Creative Inventory
 https://curseforge.com/minecraft/mc-mods/extended-creative-inventory
 
 =========
+v1.3: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
+
+=========
 v1.2: Updated backend code.
 
 =========

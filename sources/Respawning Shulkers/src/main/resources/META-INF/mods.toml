@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Resp
 
 [[mods]]
 modId="respawningshulkers"
-version="1.4"
+version="1.5"
 displayName="Respawning Shulkers"
 displayURL="https://curseforge.com/minecraft/mc-mods/respawning-shulkers"
 authors="Rick South"
 description="Shulkers will respawn on their death location after a configurable delay to make them more sustainable."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.respawningshulkers]]
     modId="collective"
     mandatory=true
-    versionRange="[2.0,)"
+    versionRange="[2.27,)"
     ordering="NONE"
     side="BOTH"

@@ -3,6 +3,9 @@ Random Village Names
 https://curseforge.com/minecraft/mc-mods/random-village-names
 
 =========
+v1.2: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
+
+=========
 v1.1: Fixed crash when there weren't any villages nearby.
 
 =========

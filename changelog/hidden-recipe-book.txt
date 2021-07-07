@@ -3,6 +3,9 @@ Hidden Recipe Book
 https://curseforge.com/minecraft/mc-mods/hidden-recipe-book
 
 =========
+v2.1: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
+
+=========
 v2.0: Added hotkey function to toggle the visibility of the recipe book button. See the description for more details.
 
 =========

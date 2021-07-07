@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Omega Mute.
- * Minecraft version: 1.16.5, mod version: 1.7.
+ * Minecraft version: 1.16.5, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Omega Mute ever released, along with some other perks.
@@ -80,7 +80,7 @@ public class CommandOmega {
 			.then(Commands.literal("listen").requires((iCommandSender) -> iCommandSender.getEntity() instanceof PlayerEntity)
 			.executes((command) -> {
 				CommandSource source = command.getSource();
-				PlayerEntity player = (PlayerEntity)source.asPlayer();
+				PlayerEntity player = (PlayerEntity)source.getPlayerOrException();
 				if (MuteEvent.listeningplayers.contains(player)) {
 					MuteEvent.listeningplayers.remove(player);
 					StringFunctions.sendMessage(player, "You have stopped listening to the active sounds. To toggle it on use '/omegamute listen' again.", TextFormatting.DARK_GREEN);

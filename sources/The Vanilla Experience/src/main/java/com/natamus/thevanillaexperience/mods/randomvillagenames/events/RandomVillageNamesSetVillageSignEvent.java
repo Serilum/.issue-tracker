@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -62,8 +62,8 @@ public class RandomVillageNamesSetVillageSignEvent {
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
 		PlayerEntity player = e.player;
-		World world = player.getEntityWorld();
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
@@ -81,7 +81,7 @@ public class RandomVillageNamesSetVillageSignEvent {
 		lastticks.put(playername, 200);
 		
 		ServerWorld serverworld = (ServerWorld)world;
-		BlockPos ppos = player.getPosition();
+		BlockPos ppos = player.blockPosition();
 		
 		BlockPos villagepos = BlockPosFunctions.getNearbyStructure(serverworld, Structure.VILLAGE, ppos, 100);
 		if (villagepos == null) {
@@ -92,13 +92,13 @@ public class RandomVillageNamesSetVillageSignEvent {
 			return;
 		}
 		
-		BlockPos twonorth = villagepos.toImmutable().north(2);
+		BlockPos twonorth = villagepos.immutable().north(2);
 		BlockPos signpos = BlockPosFunctions.getSurfaceBlockPos(serverworld, twonorth.getX(), twonorth.getZ());
 		
 		BlockState state = world.getBlockState(signpos);
 		Block block = state.getBlock();
 		while (!RandomVillageNamesUtil.isOverwritableBlockOrSign(block)) {
-			signpos = signpos.up().toImmutable();
+			signpos = signpos.above().immutable();
 			if (signpos.getY() >= 256) {
 				ignorevillages.get(world).add(villagepos);
 				return;
@@ -115,19 +115,19 @@ public class RandomVillageNamesSetVillageSignEvent {
 		
 		Block northblock = world.getBlockState(signpos.north()).getBlock();
 		if (!RandomVillageNamesUtil.isOverwritableBlockOrSign(northblock)) {
-			world.setBlockState(signpos, Blocks.OAK_WALL_SIGN.getDefaultState().with(WallSignBlock.FACING, Direction.SOUTH));
+			world.setBlockAndUpdate(signpos, Blocks.OAK_WALL_SIGN.defaultBlockState().setValue(WallSignBlock.FACING, Direction.SOUTH));
 		}
 		else {
-			world.setBlockState(signpos, Blocks.OAK_SIGN.getDefaultState());
+			world.setBlockAndUpdate(signpos, Blocks.OAK_SIGN.defaultBlockState());
 		}
 		
-		TileEntity te = world.getTileEntity(signpos);
+		TileEntity te = world.getBlockEntity(signpos);
 		if (te instanceof SignTileEntity == false) {
 			return;
 		}
 		
 		SignTileEntity signentity = (SignTileEntity)te;
-		signentity.setText(0, new StringTextComponent("[Area] 60"));
+		signentity.setMessage(0, new StringTextComponent("[Area] 60"));
 		TileEntityFunctions.updateTileEntity(serverworld, signpos, signentity);
 	}
 	

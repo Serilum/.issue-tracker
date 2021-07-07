@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -39,7 +39,7 @@ import net.minecraft.util.text.TextFormatting;
 public class CommandEc {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
     	dispatcher.register(Commands.literal(EnchantingCommandsConfigHandler.GENERAL.enchantCommandString.get())
-			.requires((iCommandSender) -> iCommandSender.hasPermissionLevel(2))
+			.requires((iCommandSender) -> iCommandSender.hasPermission(2))
 			.executes((command) -> {
 				sendUsage(command.getSource());
 				return 1;
@@ -65,7 +65,7 @@ public class CommandEc {
 				}
 				
 				PlayerEntity player = (ServerPlayerEntity)entity;
-				ItemStack held = player.getHeldItemMainhand();
+				ItemStack held = player.getMainHandItem();
 				
 				String enchantment = StringArgumentType.getString(command, "enchantment");
 				Integer level = IntegerArgumentType.getInteger(command, "level");
@@ -82,23 +82,23 @@ public class CommandEc {
 				}
 				
 				@SuppressWarnings("deprecation")
-				Enchantment enchant = Registry.ENCHANTMENT.getByValue(EnchantingCommandsUtil.getEnchantmentID(enchantment.toLowerCase()));
+				Enchantment enchant = Registry.ENCHANTMENT.byId(EnchantingCommandsUtil.getEnchantmentID(enchantment.toLowerCase()));
 				
-				ItemStack temp = new ItemStack(Item.getItemById(1));
-				temp.addEnchantment(enchant, level);
-				String estringtemp = temp.getEnchantmentTagList().get(0).toString().split("id:")[1];
+				ItemStack temp = new ItemStack(Item.byId(1));
+				temp.enchant(enchant, level);
+				String estringtemp = temp.getEnchantmentTags().get(0).toString().split("id:")[1];
 				
 				Boolean removed = false;
-				for (INBT nbt : held.getEnchantmentTagList()) {
+				for (INBT nbt : held.getEnchantmentTags()) {
 					if (estringtemp.equals(nbt.toString().split("id:")[1])) {
-						held.getEnchantmentTagList().remove(nbt);
+						held.getEnchantmentTags().remove(nbt);
 						removed = true;
 						break;
 					}
 				}
 				
 				if (level != 0) {
-					held.addEnchantment(enchant, level);
+					held.enchant(enchant, level);
 					StringFunctions.sendMessage(player, "The enchantment '" + enchantment.toLowerCase() + "' has been added to the item with a level of " + level + ".", TextFormatting.DARK_GREEN);
 				}
 				else if (removed) {

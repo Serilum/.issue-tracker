@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -35,7 +35,7 @@ import net.minecraft.util.text.TextFormatting;
 public class CommandJph {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
     	dispatcher.register(Commands.literal("jph")
-    			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof PlayerEntity && iCommandSender.hasPermissionLevel(2))
+    			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof PlayerEntity && iCommandSender.hasPermission(2))
     			.then(Commands.argument("name", StringArgumentType.word())
     			.then(Commands.argument("amount", IntegerArgumentType.integer(1, 64))
     			.executes((command) -> {
@@ -105,8 +105,8 @@ public class CommandJph {
 			message = "Succesfully generated the head of the player '" + target + "'.";
 			StringFunctions.sendMessage(source, message, TextFormatting.DARK_GREEN);
 			
-			PlayerEntity player = source.asPlayer();
-			player.entityDropItem(head, 1);
+			PlayerEntity player = source.getPlayerOrException();
+			player.spawnAtLocation(head, 1);
 		}
     }
 }

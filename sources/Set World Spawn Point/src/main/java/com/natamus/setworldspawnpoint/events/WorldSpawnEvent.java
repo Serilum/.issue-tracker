@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Set World Spawn Point.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.16.5, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Set World Spawn Point ever released, along with some other perks.
@@ -62,14 +62,14 @@ public class WorldSpawnEvent {
 		BlockPos spawnpos = new BlockPos(x, y, z);
 		
 		e.setCanceled(true);
-		serverworld.func_241124_a__(spawnpos, 1.0f);
+		serverworld.setDefaultSpawnPos(spawnpos, 1.0f);
 	}
 	
 	@SubscribeEvent
 	public void onPlayerRespawn(PlayerRespawnEvent e) {
 		PlayerEntity player = e.getPlayer();
-		World world = player.world;
-		if (world.isRemote) {
+		World world = player.level;
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -77,43 +77,43 @@ public class WorldSpawnEvent {
 			ServerPlayerEntity serverplayer = (ServerPlayerEntity)player;
 			ServerWorld serverworld = (ServerWorld)world;
 			
-			BlockPos respawnlocation = serverworld.getSpawnPoint(); // get spawn point
+			BlockPos respawnlocation = serverworld.getSharedSpawnPos(); // get spawn point
 			Vector3d respawnvec = new Vector3d(respawnlocation.getX(), respawnlocation.getY(), respawnlocation.getZ());
 			
-			BlockPos bedpos = serverplayer.func_241140_K_();
+			BlockPos bedpos = serverplayer.getRespawnPosition();
 			if (bedpos != null) {
-				Optional<Vector3d> optionalbed = PlayerEntity.func_242374_a(serverworld, bedpos, 1.0f, false, false);
+				Optional<Vector3d> optionalbed = PlayerEntity.findRespawnPositionAndUseSpawnBlock(serverworld, bedpos, 1.0f, false, false);
 				if (optionalbed != null) {
 					if (optionalbed.isPresent()) {
 						Vector3d bedlocation = optionalbed.get();
-						BlockPos bl = new BlockPos(bedlocation.getX(), bedlocation.getY(), bedlocation.getZ());
+						BlockPos bl = new BlockPos(bedlocation.x(), bedlocation.y(), bedlocation.z());
 			
-						Iterator<BlockPos> it = BlockPos.getAllInBox(bl.getX()-1, bl.getY()-1, bl.getZ()-1, bl.getX()+1, bl.getY()+1, bl.getZ()+1).iterator();
+						Iterator<BlockPos> it = BlockPos.betweenClosedStream(bl.getX()-1, bl.getY()-1, bl.getZ()-1, bl.getX()+1, bl.getY()+1, bl.getZ()+1).iterator();
 						while (it.hasNext()) {
 							BlockPos np = it.next();
 							BlockState state = world.getBlockState(np);
 							Block block = state.getBlock();
 							if (block instanceof BedBlock) {
-								if (state.get(BedBlock.PART).equals(BedPart.FOOT)) {
+								if (state.getValue(BedBlock.PART).equals(BedPart.FOOT)) {
 									bedlocation = new Vector3d(np.getX()+0.5, np.getY(), np.getZ()+0.5);
 									break;
 								}
 							}
 						}
 						
-						respawnvec = new Vector3d(bedlocation.getX(), bedlocation.getY(), bedlocation.getZ());
+						respawnvec = new Vector3d(bedlocation.x(), bedlocation.y(), bedlocation.z());
 					}
 				}
 			}
 			
-			player.setPositionAndUpdate(respawnvec.x, respawnvec.y, respawnvec.z);
+			player.teleportTo(respawnvec.x, respawnvec.y, respawnvec.z);
 		}
 	}
 	
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -133,12 +133,12 @@ public class WorldSpawnEvent {
 		
 		ServerWorld serverworld = (ServerWorld)world;
 		
-		BlockPos wspos = serverworld.getSpawnPoint();
-		BlockPos ppos = player.getPosition();
+		BlockPos wspos = serverworld.getSharedSpawnPos();
+		BlockPos ppos = player.blockPosition();
 		BlockPos cpos = new BlockPos(ppos.getX(), wspos.getY(), ppos.getZ());
 		
-		if (cpos.withinDistance(wspos, 50)) {
-			player.setPositionAndUpdate(wspos.getX(), wspos.getY(), wspos.getZ());
+		if (cpos.closerThan(wspos, 50)) {
+			player.teleportTo(wspos.getX(), wspos.getY(), wspos.getZ());
 		}
 	}
 }

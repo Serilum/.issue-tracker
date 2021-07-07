@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Mineral Chance.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.16.5, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Mineral Chance ever released, along with some other perks.
@@ -89,7 +89,7 @@ public class MiningEvent {
 		}
 		
 		ItemEntity mineralentity = new ItemEntity(world, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, new ItemStack(randommineral, 1));
-		world.addEntity(mineralentity);
+		world.addFreshEntity(mineralentity);
 		
 		if (ConfigHandler.GENERAL.sendMessageOnMineralFind.get()) {
 			StringFunctions.sendMessage(player, ConfigHandler.GENERAL.foundMineralMessage.get(), TextFormatting.DARK_GREEN);

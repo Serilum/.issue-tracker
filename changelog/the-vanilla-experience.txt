@@ -3,6 +3,9 @@ The Vanilla Experience
 https://curseforge.com/minecraft/mc-mods/the-vanilla-experience
 
 =========
+v1.2: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
+
+=========
 v1.1: Fixed mod not loading correctly in a multiplayer environment.
 
 =========

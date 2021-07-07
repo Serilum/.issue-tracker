@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.16.5, mod version: 4.0.
+ * Minecraft version: 1.16.5, mod version: 4.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Mob Heads ever released, along with some other perks.
@@ -76,7 +76,7 @@ public class MobHeads {
 			mobhead = new ItemStack(Items.SKELETON_SKULL, 1);
 		}
 		
-		mobhead.setDisplayName(new StringTextComponent(headname));
+		mobhead.setHoverName(new StringTextComponent(headname));
 		return mobhead;
 	}
 	
@@ -87,7 +87,7 @@ public class MobHeads {
 		
 		if (entity instanceof CreeperEntity) {
 			CreeperEntity creeper = (CreeperEntity)entity;
-			if (creeper.isCharged()) {
+			if (creeper.isPowered()) {
 				mobname = "charged_creeper";
 			}
 		}
@@ -155,13 +155,13 @@ public class MobHeads {
 			}
 			
 			if (checktype) {
-				DyeColor type = sheep.getFleeceColor();
+				DyeColor type = sheep.getColor();
 				mobname = type.toString().toLowerCase() + "_sheep";
 			}
 		}
 		else if (entity instanceof MooshroomEntity) {
 			MooshroomEntity mooshroom = (MooshroomEntity)entity;
-			if (mooshroom.getMooshroomType() == MooshroomEntity.Type.BROWN) {
+			if (mooshroom.getMushroomType() == MooshroomEntity.Type.BROWN) {
 				mobname = "brown_mooshroom";
 			}	
 		}

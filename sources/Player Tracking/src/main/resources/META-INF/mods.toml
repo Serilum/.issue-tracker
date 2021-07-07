@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Play
 
 [[mods]]
 modId="playertracking"
-version="1.4"
+version="1.5"
 displayName="Player Tracking"
 displayURL="https://curseforge.com/minecraft/mc-mods/player-tracking"
 authors="Rick South"
 description="A PvP mod which allows tracking players via trackers in the world, originally created by mcpvp."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.playertracking]]
     modId="collective"
     mandatory=true
-    versionRange="[2.0,)"
+    versionRange="[2.27,)"
     ordering="NONE"
     side="BOTH"

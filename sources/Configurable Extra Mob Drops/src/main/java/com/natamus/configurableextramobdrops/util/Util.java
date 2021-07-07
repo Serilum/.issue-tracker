@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Extra Mob Drops.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.16.5, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Extra Mob Drops ever released, along with some other perks.
@@ -85,8 +85,8 @@ public class Util {
 					for (String itemdata : itemstring.split(StringFunctions.escapeSpecialRegexChars("|||"))) {
 						ItemStack itemstack = null;
 						try {
-							CompoundNBT newnbt = JsonToNBT.getTagFromJson(itemdata);
-							itemstack = ItemStack.read(newnbt);
+							CompoundNBT newnbt = JsonToNBT.parseTag(itemdata);
+							itemstack = ItemStack.of(newnbt);
 						} catch (CommandSyntaxException e) {}
 						
 						if (itemstack != null) {
@@ -101,7 +101,7 @@ public class Util {
 		
 		if (writer != null) {
 			for (EntityType<?> entitytype : ForgeRegistries.ENTITIES) {
-				EntityClassification classification = entitytype.getClassification();
+				EntityClassification classification = entitytype.getCategory();
 				if (!classification.equals(EntityClassification.MISC)) {
 					ResourceLocation rl = entitytype.getRegistryName();
 					writer.println("'" + rl.toString() + "'" + " : '',");
@@ -122,7 +122,7 @@ public class Util {
 		PrintWriter writer = new PrintWriter(dirpath + File.separator + "mobdropconfig.txt", "UTF-8");
 		
 		for (EntityType<?> entitytype : ForgeRegistries.ENTITIES) {
-			EntityClassification classification = entitytype.getClassification();
+			EntityClassification classification = entitytype.getCategory();
 			if (!classification.equals(EntityClassification.MISC)) {
 				ResourceLocation rl = entitytype.getRegistryName();
 				
@@ -136,7 +136,7 @@ public class Util {
 							}
 							
 							CompoundNBT nbt = new CompoundNBT();
-							nbt = drop.write(nbt);
+							nbt = drop.save(nbt);
 							String nbtstring = nbt.toString();
 							
 							itemdata += nbtstring;

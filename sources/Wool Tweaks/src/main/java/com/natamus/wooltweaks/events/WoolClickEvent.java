@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Wool Tweaks.
- * Minecraft version: 1.16.5, mod version: 1.2.
+ * Minecraft version: 1.16.5, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Wool Tweaks ever released, along with some other perks.
@@ -39,7 +39,7 @@ public class WoolClickEvent {
 	@SubscribeEvent
 	public void onWoolClick(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -77,36 +77,36 @@ public class WoolClickEvent {
 		
 		e.setCanceled(true);
 		
-		BlockState newstate = newblock.getDefaultState();
+		BlockState newstate = newblock.defaultBlockState();
 		if (block instanceof BedBlock) {
-			Direction direction = state.get(BedBlock.HORIZONTAL_FACING);
-			newstate = newstate.with(BedBlock.HORIZONTAL_FACING, direction);
-			newstate = newstate.with(BedBlock.OCCUPIED, state.get(BedBlock.OCCUPIED));
+			Direction direction = state.getValue(BedBlock.FACING);
+			newstate = newstate.setValue(BedBlock.FACING, direction);
+			newstate = newstate.setValue(BedBlock.OCCUPIED, state.getValue(BedBlock.OCCUPIED));
 			
-			BedPart bedpart = state.get(BedBlock.PART);
-			newstate = newstate.with(BedBlock.PART, bedpart);
+			BedPart bedpart = state.getValue(BedBlock.PART);
+			newstate = newstate.setValue(BedBlock.PART, bedpart);
 			
-			BlockPos othertarget = target.toImmutable();
+			BlockPos othertarget = target.immutable();
 			BedPart otherpart;
 			if (bedpart.equals(BedPart.HEAD)) {
 				otherpart = BedPart.FOOT;
-				othertarget = target.offset(direction.getOpposite());
+				othertarget = target.relative(direction.getOpposite());
 				
-				world.setBlockState(target, Blocks.AIR.getDefaultState());
-				world.setBlockState(othertarget, Blocks.AIR.getDefaultState());
+				world.setBlockAndUpdate(target, Blocks.AIR.defaultBlockState());
+				world.setBlockAndUpdate(othertarget, Blocks.AIR.defaultBlockState());
 			}
 			else {
 				otherpart = BedPart.HEAD;
-				othertarget = target.offset(direction);
+				othertarget = target.relative(direction);
 				
-				world.setBlockState(othertarget, Blocks.AIR.getDefaultState());
-				world.setBlockState(target, Blocks.AIR.getDefaultState());
+				world.setBlockAndUpdate(othertarget, Blocks.AIR.defaultBlockState());
+				world.setBlockAndUpdate(target, Blocks.AIR.defaultBlockState());
 			}
 			
-			world.setBlockState(othertarget, newstate.with(BedBlock.PART, otherpart));
+			world.setBlockAndUpdate(othertarget, newstate.setValue(BedBlock.PART, otherpart));
 		}
 		
-		world.setBlockState(target, newstate);
+		world.setBlockAndUpdate(target, newstate);
 		
 		PlayerEntity player = e.getPlayer();
 		if (!player.isCreative()) {

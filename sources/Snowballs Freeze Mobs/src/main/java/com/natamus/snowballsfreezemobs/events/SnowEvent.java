@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Snowballs Freeze Mobs.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.16.5, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Snowballs Freeze Mobs ever released, along with some other perks.
@@ -39,12 +39,12 @@ public class SnowEvent {
 	@SubscribeEvent
 	public void onEntityHurt(LivingHurtEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
-		if (e.getSource().getImmediateSource() instanceof SnowballEntity == false) {
+		if (e.getSource().getDirectEntity() instanceof SnowballEntity == false) {
 			return;
 		}
 		
@@ -54,14 +54,14 @@ public class SnowEvent {
 		
 		e.setCanceled(true);
 		EntityFunctions.addPotionEffect(entity, Effects.BLINDNESS, ConfigHandler.GENERAL.freezeTimeMs.get());
-		hitentities.put((LivingEntity)entity, entity.getPositionVec());
+		hitentities.put((LivingEntity)entity, entity.position());
 	}
 	
 	@SubscribeEvent
 	public void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -70,10 +70,10 @@ public class SnowEvent {
 		}
 		LivingEntity le = (LivingEntity)entity;
 		
-		if (le.getActivePotionEffect(Effects.BLINDNESS) != null) {
+		if (le.getEffect(Effects.BLINDNESS) != null) {
 			if (hitentities.containsKey(le)) {
 				Vector3d lastvec = hitentities.get(le);
-				le.setPositionAndUpdate(lastvec.x, le.getPosY(), lastvec.z);
+				le.teleportTo(lastvec.x, le.getY(), lastvec.z);
 			}
 		}
 		else {

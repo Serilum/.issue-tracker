@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nether Portal Spread.
- * Minecraft version: 1.16.5, mod version: 5.1.
+ * Minecraft version: 1.16.5, mod version: 5.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Nether Portal Spread ever released, along with some other perks.
@@ -212,7 +212,7 @@ public class Util {
 						
 						if (ConfigHandler.GENERAL.preventSpreadWithBlock.get()) {
 							int coalcount = 0;
-							Iterator<BlockPos> it = BlockPos.getAllInBox(portal.getX()-r, portal.getY()-r, portal.getZ()-r, portal.getX()+r, portal.getY()+r, portal.getZ()+r).iterator();
+							Iterator<BlockPos> it = BlockPos.betweenClosedStream(portal.getX()-r, portal.getY()-r, portal.getZ()-r, portal.getX()+r, portal.getY()+r, portal.getZ()+r).iterator();
 							while (it.hasNext()) {
 								try {
 									BlockPos np = it.next();
@@ -258,7 +258,7 @@ public class Util {
 	
 	private static Boolean portalExists(World world, BlockPos pos) {
 		for (BlockPos portalpos : portals.get(world)) {
-			Double distance = pos.distanceSq(portalpos.getX(), portalpos.getY(), portalpos.getZ(), true);
+			Double distance = pos.distSqr(portalpos.getX(), portalpos.getY(), portalpos.getZ(), true);
 			if (distance < 10) {
 				return true;
 			}
@@ -270,12 +270,12 @@ public class Util {
 		BlockPos rawportal = null;
 		
 		int r = 3;
-		Iterator<BlockPos> it = BlockPos.getAllInBox(p.getX()-r, p.getY()-r, p.getZ()-r, p.getX()+r, p.getY()+r, p.getZ()+r).iterator();
+		Iterator<BlockPos> it = BlockPos.betweenClosedStream(p.getX()-r, p.getY()-r, p.getZ()-r, p.getX()+r, p.getY()+r, p.getZ()+r).iterator();
 		while (it.hasNext()) {		
 			BlockPos nextpos = it.next();
 			Block block = world.getBlockState(nextpos).getBlock();
 			if (isPortalBlock(block)) {
-				rawportal = nextpos.toImmutable();
+				rawportal = nextpos.immutable();
 				break;
 			}
 		}
@@ -284,14 +284,14 @@ public class Util {
 			return;
 		}
 		
-		while (isPortalBlock(world.getBlockState(rawportal.down()).getBlock())) {
-			rawportal = rawportal.down().toImmutable();
+		while (isPortalBlock(world.getBlockState(rawportal.below()).getBlock())) {
+			rawportal = rawportal.below().immutable();
 		}
 		while (isPortalBlock(world.getBlockState(rawportal.west()).getBlock())) {
-			rawportal = rawportal.west().toImmutable();
+			rawportal = rawportal.west().immutable();
 		}
 		while (isPortalBlock(world.getBlockState(rawportal.north()).getBlock())) {
-			rawportal = rawportal.north().toImmutable();
+			rawportal = rawportal.north().immutable();
 		}
 		
 		if (portals.get(world).contains(rawportal) || preventedportals.get(world).containsKey(rawportal)) {
@@ -335,7 +335,7 @@ public class Util {
 	}
 	
 	public static Boolean spreadNextBlock(World world, BlockPos portal) {
-		if (!world.chunkExists(portal.getX() >> 4, portal.getZ() >> 4)) {
+		if (!world.hasChunk(portal.getX() >> 4, portal.getZ() >> 4)) {
 			return true;
 		}
 		
@@ -356,7 +356,7 @@ public class Util {
 		int coalcount = 0;
 		
 		Integer psamount = ConfigHandler.GENERAL.preventSpreadBlockAmountNeeded.get();
-		Iterator<BlockPos> it = BlockPos.getAllInBox(portal.getX()-r, portal.getY()-r, portal.getZ()-r, portal.getX()+r, portal.getY()+r, portal.getZ()+r).iterator();
+		Iterator<BlockPos> it = BlockPos.betweenClosedStream(portal.getX()-r, portal.getY()-r, portal.getZ()-r, portal.getX()+r, portal.getY()+r, portal.getZ()+r).iterator();
 		while (it.hasNext()) {
 			try {
 				BlockPos np = it.next();
@@ -368,11 +368,11 @@ public class Util {
 						}
 					}
 				}
-				double npnd = portal.distanceSq(np.getX(), np.getY(), np.getZ(), true);
+				double npnd = portal.distSqr(np.getX(), np.getY(), np.getZ(), true);
 				if (npnd < nearestdistance) {
 					if (isNetherTarget(world, np, false)) {
 						nearestdistance = npnd;
-						closest = np.toImmutable();
+						closest = np.immutable();
 					}
 				}
 			}
@@ -418,7 +418,7 @@ public class Util {
 		int nethercount = 0;
 		int r = ConfigHandler.GENERAL.portalSpreadRadius.get();
 		
-		Iterator<BlockPos> it = BlockPos.getAllInBox(p.getX()-r, p.getY()-r, p.getZ()-r, p.getX()+r, p.getY()+r, p.getZ()+r).iterator();
+		Iterator<BlockPos> it = BlockPos.betweenClosedStream(p.getX()-r, p.getY()-r, p.getZ()-r, p.getX()+r, p.getY()+r, p.getZ()+r).iterator();
 		while (it.hasNext()) {
 			BlockPos np = it.next();
 			if (isNetherTarget(world, np, true)) {
@@ -468,11 +468,11 @@ public class Util {
 				rc.add(weight*100, b0);
 			}
 			
-			newblockstate = rc.next().getDefaultState();
+			newblockstate = rc.next().defaultBlockState();
 		}
 		
 		if (newblockstate != null) {
-			world.setBlockState(pos, newblockstate);
+			world.setBlockAndUpdate(pos, newblockstate);
 		}
 	}
 	

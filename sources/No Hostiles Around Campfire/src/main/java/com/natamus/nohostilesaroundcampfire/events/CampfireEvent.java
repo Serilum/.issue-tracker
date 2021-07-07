@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of No Hostiles Around Campfire.
- * Minecraft version: 1.16.5, mod version: 3.3.
+ * Minecraft version: 1.16.5, mod version: 3.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of No Hostiles Around Campfire ever released, along with some other perks.
@@ -64,7 +64,7 @@ public class CampfireEvent {
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
 		World world = e.world;
-		if (world.isRemote || !e.phase.equals(Phase.END)) {
+		if (world.isClientSide || !e.phase.equals(Phase.END)) {
 			return;
 		}
 		
@@ -74,15 +74,15 @@ public class CampfireEvent {
 			if (campfirestate.getBlock() instanceof CampfireBlock) {
 				boolean islit = true;
 				if (ConfigHandler.GENERAL.campfireMustBeLit.get()) {
-					islit = campfirestate.get(CampfireBlock.LIT);
+					islit = campfirestate.getValue(CampfireBlock.LIT);
 				}
 				
 				if (islit) {
 					int r = (int)(ConfigHandler.GENERAL.preventHostilesRadius.get() * ConfigHandler.GENERAL.burnHostilesRadiusModifier.get());
-					List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(campfirepos.getX()-r, campfirepos.getY()-r, campfirepos.getZ()-r, campfirepos.getX()+r, campfirepos.getY()+r, campfirepos.getZ()+r));
+					List<Entity> entities = world.getEntities(null, new AxisAlignedBB(campfirepos.getX()-r, campfirepos.getY()-r, campfirepos.getZ()-r, campfirepos.getX()+r, campfirepos.getY()+r, campfirepos.getZ()+r));
 					for (Entity entity : entities) {
-						if (entity.getType().getClassification().equals(EntityClassification.MONSTER)) {
-							entity.setFire(30);
+						if (entity.getType().getCategory().equals(EntityClassification.MONSTER)) {
+							entity.setSecondsOnFire(30);
 						}
 					}
 				}
@@ -113,7 +113,7 @@ public class CampfireEvent {
 			}
 		}
 		
-		if (!entity.getType().getClassification().equals(EntityClassification.MONSTER)) {
+		if (!entity.getType().getCategory().equals(EntityClassification.MONSTER)) {
 			return;
 		}
 		
@@ -141,19 +141,19 @@ public class CampfireEvent {
 			}
 			
 			if (ConfigHandler.GENERAL.campfireMustBeLit.get()) {
-				Boolean islit = campfirestate.get(CampfireBlock.LIT);
+				Boolean islit = campfirestate.getValue(CampfireBlock.LIT);
 				if (!islit) {
 					continue;
 				}
 			}
 			if (ConfigHandler.GENERAL.campfireMustBeSignalling.get()) {
-				Boolean issignalling = campfirestate.get(CampfireBlock.SIGNAL_FIRE);
+				Boolean issignalling = campfirestate.getValue(CampfireBlock.SIGNAL_FIRE);
 				if (!issignalling) {
 					continue;
 				}
 			}
 			
-			campfire = nearbycampfire.toImmutable();
+			campfire = nearbycampfire.immutable();
 			break;
 		}
 		
@@ -204,13 +204,13 @@ public class CampfireEvent {
 		}
 		
 		BlockPos pos = e.getPos();
-		checkCampfireBurn.get(world).add(pos.toImmutable());
+		checkCampfireBurn.get(world).add(pos.immutable());
 	}
 	
 	@SubscribeEvent
 	public void onRightClickCampfireBlock(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -220,12 +220,12 @@ public class CampfireEvent {
 		Block block = state.getBlock();
 		
 		if (block instanceof CampfireBlock) {
-			if (state.get(CampfireBlock.LIT)) {
+			if (state.getValue(CampfireBlock.LIT)) {
 				return;
 			}
 			
-			if (player.getHeldItemMainhand().getItem() instanceof FlintAndSteelItem || player.getHeldItemOffhand().getItem() instanceof FlintAndSteelItem) {
-				checkCampfireBurn.get(world).add(pos.toImmutable());
+			if (player.getMainHandItem().getItem() instanceof FlintAndSteelItem || player.getOffhandItem().getItem() instanceof FlintAndSteelItem) {
+				checkCampfireBurn.get(world).add(pos.immutable());
 			}
 		}
 	}
@@ -259,12 +259,12 @@ public class CampfireEvent {
 
 		int r = (int)(ConfigHandler.GENERAL.preventHostilesRadius.get() * ConfigHandler.GENERAL.burnHostilesRadiusModifier.get());
 		BlockPos ppos = e.getPos();
-		List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(ppos.getX()-r, ppos.getY()-r, ppos.getZ()-r, ppos.getX()+r, ppos.getY()+r, ppos.getZ()+r));
+		List<Entity> entities = world.getEntities(null, new AxisAlignedBB(ppos.getX()-r, ppos.getY()-r, ppos.getZ()-r, ppos.getX()+r, ppos.getY()+r, ppos.getZ()+r));
 		for (Entity entity : entities) {
-			if (entity.getType().getClassification().equals(EntityClassification.MONSTER)) {
-				if (entity.isBurning()) {
-					entity.extinguish();
-					entity.setFire(2);
+			if (entity.getType().getCategory().equals(EntityClassification.MONSTER)) {
+				if (entity.isOnFire()) {
+					entity.clearFire();
+					entity.setSecondsOnFire(2);
 				}
 			}
 		}	

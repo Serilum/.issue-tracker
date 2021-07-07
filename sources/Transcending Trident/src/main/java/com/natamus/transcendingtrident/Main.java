@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Transcending Trident.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.16.5, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Transcending Trident ever released, along with some other perks.
@@ -59,7 +59,7 @@ public class Main {
 	@SubscribeEvent
 	public void registerItems(RegistryEvent.Register<Item> e) {
 		e.getRegistry().registerAll(
-				(new ExtendedTridentItem((new Item.Properties()).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(Items.TRIDENT.getRegistryName()))
+				(new ExtendedTridentItem((new Item.Properties()).durability(250).tab(ItemGroup.TAB_COMBAT)).setRegistryName(Items.TRIDENT.getRegistryName()))
 		);
 	}
 }

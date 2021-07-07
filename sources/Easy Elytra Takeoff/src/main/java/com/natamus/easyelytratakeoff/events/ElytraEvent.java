@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Easy Elytra Takeoff.
- * Minecraft version: 1.16.5, mod version: 1.7.
+ * Minecraft version: 1.16.5, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Easy Elytra Takeoff ever released, along with some other perks.
@@ -38,7 +38,7 @@ public class ElytraEvent {
 	@SubscribeEvent
 	public void onFirework(PlayerInteractEvent.RightClickItem e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -48,12 +48,12 @@ public class ElytraEvent {
 		}
 		
 		PlayerEntity player = e.getPlayer();
-		if (player.isElytraFlying()) {
+		if (player.isFallFlying()) {
 			return;
 		}
 		
 		boolean foundelytra = false;
-		Iterator<ItemStack> it = player.getArmorInventoryList().iterator();
+		Iterator<ItemStack> it = player.getArmorSlots().iterator();
 		while (it.hasNext()) {
 			ItemStack nis = it.next();
 			if (nis.getItem() instanceof ElytraItem) {
@@ -63,9 +63,9 @@ public class ElytraEvent {
 		}
 		
 		if (!foundelytra) {
-			Collection<ModifiableAttributeInstance> atrb = player.getAttributeManager().getWatchedInstances();
+			Collection<ModifiableAttributeInstance> atrb = player.getAttributes().getSyncableAttributes();
 			for (ModifiableAttributeInstance ai : atrb) {
-				for (AttributeModifier m : ai.getModifierListCopy()) {
+				for (AttributeModifier m : ai.getModifiers()) {
 					String name = m.getName().toLowerCase();
 					if (name.equals("flight modifier") || name.equals("elytra curio modifier")) {
 						if (m.getAmount() >= 1.0) {
@@ -85,7 +85,7 @@ public class ElytraEvent {
 		
 		if (setFlag == null) {
 			for (Method method : Entity.class.getDeclaredMethods()) {
-				if (method.toString().contains("setFlag") || method.toString().contains("func_70052_a")) {
+				if (method.toString().contains("setFlag") || method.toString().contains("setSharedFlag")) {
 					setFlag = method;
 					break;
 				}
@@ -112,7 +112,7 @@ public class ElytraEvent {
 	        	try  { Thread.sleep( 10 ); }
 	            catch (InterruptedException ie)  {}
 	        	
-	        	world.addEntity(efr1);
+	        	world.addFreshEntity(efr1);
 	    		try {
 	    			setFlag.invoke(player, 7, true);
 	    		} catch (Exception ex) { 
@@ -123,7 +123,7 @@ public class ElytraEvent {
 	    	        	try  { Thread.sleep( 10 ); }
 	    	            catch (InterruptedException ie)  {}
 	    	        	
-	    	        	world.addEntity(efr2);
+	    	        	world.addFreshEntity(efr2);
 	    	    		try {
 	    	    			setFlag.invoke(player, 7, true);
 	    	    		} catch (Exception ex) { 
@@ -134,7 +134,7 @@ public class ElytraEvent {
 	    	    	        	try  { Thread.sleep( 10 ); }
 	    	    	            catch (InterruptedException ie)  {}
 	    	    	        	
-	    	    	        	world.addEntity(efr3);
+	    	    	        	world.addFreshEntity(efr3);
 	    	    	    		try {
 	    	    	    			setFlag.invoke(player, 7, true);
 	    	    	    		} catch (Exception ex) { 
@@ -145,7 +145,7 @@ public class ElytraEvent {
 	    	    	    	        	try  { Thread.sleep( 30 ); }
 	    	    	    	            catch (InterruptedException ie)  {}
 	    	    	    	        	
-	    	    	    	        	world.addEntity(efr4);
+	    	    	    	        	world.addFreshEntity(efr4);
 	    	    	    	    	}
 	    	    	    	    } ).start();
 	    	    	    	}

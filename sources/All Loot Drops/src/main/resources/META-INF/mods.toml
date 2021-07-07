@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20All%
 
 [[mods]]
 modId="alllootdrops"
-version="2.2"
+version="2.3"
 displayName="All Loot Drops"
 displayURL="https://curseforge.com/minecraft/mc-mods/all-loot-drops"
 authors="Rick South"
 description="A minimalistic mod that has entities always drop all their possible loot in a configurable amount."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.alllootdrops]]
     modId="collective"
     mandatory=true
-    versionRange="[2.0,)"
+    versionRange="[2.27,)"
     ordering="NONE"
     side="BOTH"

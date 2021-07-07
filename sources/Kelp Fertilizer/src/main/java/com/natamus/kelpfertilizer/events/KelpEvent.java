@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Kelp Fertilizer.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.16.5, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Kelp Fertilizer ever released, along with some other perks.
@@ -29,7 +29,7 @@ public class KelpEvent {
 	@SubscribeEvent
 	public void onKelpUse(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -41,7 +41,7 @@ public class KelpEvent {
 		PlayerEntity player = e.getPlayer();
 		BlockPos cpos = e.getPos();
 		if (BoneMealItem.applyBonemeal(itemstack, world, cpos, player)) {
-			world.playEvent(2005, cpos, 0);
+			world.levelEvent(2005, cpos, 0);
 			
 			if (player.isCreative()) {
 				itemstack.grow(1);

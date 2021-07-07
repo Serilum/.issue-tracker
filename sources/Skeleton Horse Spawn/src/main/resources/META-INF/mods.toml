@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Skel
 
 [[mods]]
 modId="skeletonhorsespawn"
-version="1.6"
+version="1.7"
 displayName="Skeleton Horse Spawn"
 displayURL="https://curseforge.com/minecraft/mc-mods/skeleton-horse-spawn"
 authors="Rick South"
 description="Allows the skeleton horse to spawn naturally with a skeleton riding it and other tweaks."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Alister, Kreezcraft.com, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.skeletonhorsespawn]]
     modId="collective"
     mandatory=true
-    versionRange="[2.24,)"
+    versionRange="[2.27,)"
     ordering="NONE"
     side="BOTH"

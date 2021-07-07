@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -50,7 +50,7 @@ public class GiantSpawnGiantEvent {
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -74,7 +74,7 @@ public class GiantSpawnGiantEvent {
 		giant.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(giant, PlayerEntity.class, true));
 		giant.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(giant, AbstractVillagerEntity.class, false));
 		giant.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(giant, IronGolemEntity.class, true));
-		giant.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(giant, TurtleEntity.class, 10, true, false, TurtleEntity.TARGET_DRY_BABY));	   
+		giant.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(giant, TurtleEntity.class, 10, true, false, TurtleEntity.BABY_ON_LAND_SELECTOR));	   
 		
 		giant.getAttribute(Attributes.FOLLOW_RANGE).setBaseValue(35.0D); // FOLLOW_RANGE
 		giant.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double)0.23F * GiantSpawnConfigHandler.GENERAL.giantMovementSpeedModifier.get()); // MOVEMENT_SPEED
@@ -87,7 +87,7 @@ public class GiantSpawnGiantEvent {
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
 		World world = e.world;
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
@@ -101,7 +101,7 @@ public class GiantSpawnGiantEvent {
 			return;
 		}
 		
-		if (!world.isDaytime()) {
+		if (!world.isDay()) {
 			return;
 		}
 		
@@ -111,10 +111,10 @@ public class GiantSpawnGiantEvent {
 		
 		for (Entity giant : giants.get(world)) {
 			if (giant.isAlive()) {
-				if (!giant.isInWaterRainOrBubbleColumn()) {
-					BlockPos epos = giant.getPosition();
+				if (!giant.isInWaterRainOrBubble()) {
+					BlockPos epos = giant.blockPosition();
 					if (BlockPosFunctions.isOnSurface(world, epos)) {
-						giant.setFire(3);
+						giant.setSecondsOnFire(3);
 					}
 				}	
 			}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of World Border.
- * Minecraft version: 1.16.5, mod version: 2.3.
+ * Minecraft version: 1.16.5, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of World Border ever released, along with some other perks.
@@ -40,17 +40,17 @@ public class BorderEvent {
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
 		PlayerEntity player = e.player;
-		World world = player.getEntityWorld();
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
-		if (player.ticksExisted % 20 != 0) {
+		if (player.tickCount % 20 != 0) {
 			return;
 		}
 		
 		ServerWorld serverworld = (ServerWorld)world;
-		String dimension = serverworld.getDimensionKey().getLocation().toString();
+		String dimension = serverworld.dimension().location().toString();
 		
 		int posx = 0;
 		int negx = 0;
@@ -90,7 +90,7 @@ public class BorderEvent {
 			return;
 		}
 		
-		BlockPos ppos = player.getPosition();
+		BlockPos ppos = player.blockPosition();
 		boolean altered = false;
 		boolean shouldloop = ConfigHandler.GENERAL.shouldLoopToOppositeBorder.get();
 		
@@ -139,12 +139,12 @@ public class BorderEvent {
 			BlockPos centerpos = new BlockPos(0, 0, 0);
 			BlockPos newpos = BlockPosFunctions.getSurfaceBlockPos(serverworld, x, z);
 			if ((newpos.equals(centerpos) && dimension.equals("minecraft:the_nether") || (newpos.getY() == 128 && dimension.equals("minecraft:the_nether")))) {
-				Iterator<BlockPos> posaround = BlockPos.getAllInBoxMutable(x-5, 0, z-5, x+5, 128, z+5).iterator();
+				Iterator<BlockPos> posaround = BlockPos.betweenClosed(x-5, 0, z-5, x+5, 128, z+5).iterator();
 				while(posaround.hasNext()) {
 					BlockPos around = posaround.next();
 					if (world.getBlockState(around).getBlock().equals(Blocks.AIR)) {
-						if (world.getBlockState(around.up()).getBlock().equals(Blocks.AIR)) {
-							newpos = around.toImmutable();
+						if (world.getBlockState(around.above()).getBlock().equals(Blocks.AIR)) {
+							newpos = around.immutable();
 							break;
 						}
 					}
@@ -152,29 +152,29 @@ public class BorderEvent {
 			}
 			
 			if (dimension.equals("minecraft:the_nether")) {
-				Iterator<BlockPos> checkforlavablocks = BlockPos.getAllInBoxMutable(newpos.getX()-1, newpos.getY()-1, newpos.getZ()-1, newpos.getX()+1, newpos.getY()+1, newpos.getZ()+1).iterator();
+				Iterator<BlockPos> checkforlavablocks = BlockPos.betweenClosed(newpos.getX()-1, newpos.getY()-1, newpos.getZ()-1, newpos.getX()+1, newpos.getY()+1, newpos.getZ()+1).iterator();
 				while (checkforlavablocks.hasNext()) {
 					BlockPos checkforlavapos = checkforlavablocks.next();
 					if (checkforlavapos.getY() > newpos.getY()-1) {
-						world.setBlockState(checkforlavapos, Blocks.AIR.getDefaultState());
+						world.setBlockAndUpdate(checkforlavapos, Blocks.AIR.defaultBlockState());
 					}
 					else if (world.getBlockState(checkforlavapos).getBlock().equals(Blocks.LAVA)) {
-						world.setBlockState(checkforlavapos, Blocks.OBSIDIAN.getDefaultState());
+						world.setBlockAndUpdate(checkforlavapos, Blocks.OBSIDIAN.defaultBlockState());
 					}
 				}
 			}
 			
 			if (newpos.getY() < 0) {
-				newpos = newpos.up().toImmutable();
+				newpos = newpos.above().immutable();
 			}
 			
-			Entity ride = player.getRidingEntity();
+			Entity ride = player.getVehicle();
 			if (ride != null) {
-				ride.removePassengers();
-				ride.setPositionAndUpdate(newpos.getX(), newpos.getY(), newpos.getZ());
+				ride.ejectPassengers();
+				ride.teleportTo(newpos.getX(), newpos.getY(), newpos.getZ());
 			}
 			
-			player.setPositionAndUpdate(newpos.getX(), newpos.getY(), newpos.getZ());
+			player.teleportTo(newpos.getX(), newpos.getY(), newpos.getZ());
 			
 			if (shouldloop) {
 				StringFunctions.sendMessage(player, ConfigHandler.GENERAL.loopBorderMessage.get(), TextFormatting.DARK_GREEN);
@@ -209,12 +209,12 @@ public class BorderEvent {
 			
 			if (shouldmessage) {
 				String playername = player.getName().getString();
-				BlockPos lastpos = ppos.toImmutable();
+				BlockPos lastpos = ppos.immutable();
 				if (lastplayerpos.containsKey(playername)) {
 					lastpos = lastplayerpos.get(playername);
 				}
 				
-				lastplayerpos.put(playername, ppos.toImmutable());
+				lastplayerpos.put(playername, ppos.immutable());
 				if (lastpos.equals(ppos)) {
 					return;
 				}

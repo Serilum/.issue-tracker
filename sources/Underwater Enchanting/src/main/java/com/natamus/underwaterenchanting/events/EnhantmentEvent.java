@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Underwater Enchanting.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.16.5, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Underwater Enchanting ever released, along with some other perks.
@@ -30,7 +30,7 @@ public class EnhantmentEvent {
 	@SubscribeEvent
 	public void onEnchanting(EnchantmentLevelSetEvent e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -41,7 +41,7 @@ public class EnhantmentEvent {
 			int bookshelfcount = 0;
 			
 			BlockPos epos = e.getPos();
-			Iterator<BlockPos> it = BlockPos.getAllInBox(epos.getX()-2, epos.getY()-2, epos.getZ()-2, epos.getX()+2, epos.getY()+2, epos.getZ()+2).iterator();
+			Iterator<BlockPos> it = BlockPos.betweenClosedStream(epos.getX()-2, epos.getY()-2, epos.getZ()-2, epos.getX()+2, epos.getY()+2, epos.getZ()+2).iterator();
 			while (it.hasNext()) {
 				BlockPos np = it.next();
 				if (world.getBlockState(np).getBlock().equals(Blocks.BOOKSHELF)) {

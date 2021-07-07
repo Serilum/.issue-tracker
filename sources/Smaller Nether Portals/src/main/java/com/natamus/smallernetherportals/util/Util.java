@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Smaller Nether Portals.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.16.5, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Smaller Nether Portals ever released, along with some other perks.
@@ -76,17 +76,17 @@ public class Util {
 		else {
 			return;
 		}
-		bottomleft = bottomleft.toImmutable();
+		bottomleft = bottomleft.immutable();
 		
 		int height = -1;
-		if (!world.getBlockState(bottomleft.down()).getBlock().equals(Blocks.OBSIDIAN)) {
+		if (!world.getBlockState(bottomleft.below()).getBlock().equals(Blocks.OBSIDIAN)) {
 			return;
 		}
 		
-		if (world.getBlockState(bottomleft.up(2)).getBlock().equals(Blocks.OBSIDIAN)) {
+		if (world.getBlockState(bottomleft.above(2)).getBlock().equals(Blocks.OBSIDIAN)) {
 			height = 2;
 		}
-		else if (world.getBlockState(bottomleft.up(3)).getBlock().equals(Blocks.OBSIDIAN)) {
+		else if (world.getBlockState(bottomleft.above(3)).getBlock().equals(Blocks.OBSIDIAN)) {
 			height = 3;
 		}
 		else {
@@ -97,7 +97,7 @@ public class Util {
 		
 		int heighti;
 		for (heighti = height; heighti > 0; heighti--) {
-			toportals.add(bottomleft.up(heighti-1).toImmutable());
+			toportals.add(bottomleft.above(heighti-1).immutable());
 			if (airdirection != "none") {
 				if (airdirection == "south") {
 					if (!world.getBlockState(bottomleft.north()).getBlock().equals(Blocks.OBSIDIAN)) {
@@ -109,7 +109,7 @@ public class Util {
 						if (!world.getBlockState(bottomleft.south(2)).getBlock().equals(Blocks.OBSIDIAN)) {
 							break;
 						}
-						toportals.add(bottomleft.up(heighti-1).south().toImmutable());
+						toportals.add(bottomleft.above(heighti-1).south().immutable());
 					}
 					else if (!wblock.equals(Blocks.OBSIDIAN)) {
 						break;
@@ -125,7 +125,7 @@ public class Util {
 						if (!world.getBlockState(bottomleft.east(2)).getBlock().equals(Blocks.OBSIDIAN)) {
 							break;
 						}
-						toportals.add(bottomleft.up(heighti-1).east().toImmutable());
+						toportals.add(bottomleft.above(heighti-1).east().immutable());
 					}
 					else if (!wblock.equals(Blocks.OBSIDIAN)) {
 						break;
@@ -148,7 +148,7 @@ public class Util {
 			int obsidiancount = 0;
 			
 			for (BlockPos tp0 : toportals) {
-				for (BlockPos tp0around : getBlocksAround(tp0.toImmutable(), rotation)) {
+				for (BlockPos tp0around : getBlocksAround(tp0.immutable(), rotation)) {
 					Block tp0block = world.getBlockState(tp0around).getBlock();
 					if (isObsidian(tp0block)) {
 						obsidiancount++;
@@ -169,7 +169,7 @@ public class Util {
 			
 			BlockPos portalpos = null;
 			for (BlockPos tp : toportals) {
-				world.setBlockState(tp, Blocks.NETHER_PORTAL.getDefaultState().rotate(world, tp, rotation), 2);
+				world.setBlock(tp, Blocks.NETHER_PORTAL.defaultBlockState().rotate(world, tp, rotation), 2);
 				portalpos = tp;
 			}
 			
@@ -199,18 +199,18 @@ public class Util {
 	
 	public static List<BlockPos> getBlocksAround(BlockPos pos, Rotation rot) {
 		List<BlockPos> around = new ArrayList<BlockPos>();
-		BlockPos impos = pos.toImmutable();
+		BlockPos impos = pos.immutable();
 		
-		around.add(impos.up().toImmutable());
-		around.add(impos.down().toImmutable());
+		around.add(impos.above().immutable());
+		around.add(impos.below().immutable());
 		
 		if (rot.equals(Rotation.CLOCKWISE_90)) {
-			around.add(impos.north().toImmutable());
-			around.add(impos.south().toImmutable());
+			around.add(impos.north().immutable());
+			around.add(impos.south().immutable());
 		}
 		else {
-			around.add(impos.east().toImmutable());
-			around.add(impos.west().toImmutable());
+			around.add(impos.east().immutable());
+			around.add(impos.west().immutable());
 		}
 		
 		return around;
@@ -228,23 +228,23 @@ public class Util {
 		}
 		else {
 			if (isPortal(world.getBlockState(portalblock.north()))) {
-				portalblock = portalblock.north().toImmutable();
+				portalblock = portalblock.north().immutable();
 			}
 			else if (isPortal(world.getBlockState(portalblock.west()))) {
-				portalblock = portalblock.west().toImmutable();
+				portalblock = portalblock.west().immutable();
 			}
 		}
 		
 		if (!isPortalOrObsidian(world.getBlockState(portalblock.west()))) {
-			returnblocks.add(portalblock.west().down().toImmutable());
+			returnblocks.add(portalblock.west().below().immutable());
 			if (!smallest) {
-				returnblocks.add(portalblock.west().south().down().toImmutable());
+				returnblocks.add(portalblock.west().south().below().immutable());
 			}
 		}
 		else {
-			returnblocks.add(portalblock.south().down().toImmutable());
+			returnblocks.add(portalblock.south().below().immutable());
 			if (!smallest) {
-				returnblocks.add(portalblock.south().east().down().toImmutable());
+				returnblocks.add(portalblock.south().east().below().immutable());
 			}
 		}
 		
@@ -255,12 +255,12 @@ public class Util {
 		BlockPos portalpos = null;
 		
 		for (int i = 0; i < 10; i++) {
-			BlockPos cpos = pos.up(i).toImmutable();
-			Iterator<BlockPos> around = BlockPos.getAllInBox(cpos.getX()-1, cpos.getY(), cpos.getZ()-1, cpos.getX()+1, cpos.getY(), cpos.getZ()+1).iterator();
+			BlockPos cpos = pos.above(i).immutable();
+			Iterator<BlockPos> around = BlockPos.betweenClosedStream(cpos.getX()-1, cpos.getY(), cpos.getZ()-1, cpos.getX()+1, cpos.getY(), cpos.getZ()+1).iterator();
 			while (around.hasNext()) {
 				BlockPos ap = around.next();
 				if (isPortal(world.getBlockState(ap))) {
-					portalpos = ap.toImmutable();
+					portalpos = ap.immutable();
 					break;
 				}
 			}
@@ -274,12 +274,12 @@ public class Util {
 	public static void setObsidian(World world, List<BlockPos> toblocks) {
 		for (BlockPos tbs : toblocks) {
 			if (shouldMakeFront(world.getBlockState(tbs))) {
-				world.setBlockState(tbs, Blocks.OBSIDIAN.getDefaultState());
+				world.setBlockAndUpdate(tbs, Blocks.OBSIDIAN.defaultBlockState());
 			}
 			for (int i = 1; i < 3; i++) {
-				BlockPos up = tbs.up(i);
+				BlockPos up = tbs.above(i);
 				if (!isAir(world.getBlockState(up))) {
-					world.setBlockState(up, Blocks.AIR.getDefaultState());
+					world.setBlockAndUpdate(up, Blocks.AIR.defaultBlockState());
 				}
 			}
 		}

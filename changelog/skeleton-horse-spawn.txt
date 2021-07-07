@@ -3,6 +3,9 @@ Skeleton Horse Spawn
 https://www.curseforge.com/minecraft/mc-mods/skeleton-horse-spawn
 
 =========
+v1.7: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
+
+=========
 v1.6: Updated backend code. Released an up-to-date 1.12.2 version.
 
 =========

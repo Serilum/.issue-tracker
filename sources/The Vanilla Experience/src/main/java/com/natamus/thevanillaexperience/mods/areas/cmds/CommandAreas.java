@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -41,15 +41,15 @@ public class CommandAreas {
 			.executes((command) -> {
 				CommandSource source = command.getSource();
 				
-				PlayerEntity player = source.asPlayer();
-				World world = player.getEntityWorld();
+				PlayerEntity player = source.getPlayerOrException();
+				World world = player.getCommandSenderWorld();
 				
-				Vector3d pvec = player.getPositionVec();
+				Vector3d pvec = player.position();
 				boolean sentfirst = false;
 				
 				List<BlockPos> signsaround = FABFunctions.getAllTileEntityPositionsNearbyEntity(TileEntityType.SIGN, 200, world, player);
 				for (BlockPos signpos : signsaround) {
-					TileEntity te = world.getTileEntity(signpos);
+					TileEntity te = world.getBlockEntity(signpos);
 					if (te instanceof SignTileEntity) {
 						if (AreasUtil.hasZonePrefix((SignTileEntity)te)) {
 							if (!sentfirst) {
@@ -62,7 +62,7 @@ public class CommandAreas {
 								prefix = ao.areaname + " a";
 							}
 							
-							double distance = Math.round(Math.sqrt(signpos.distanceSq(pvec.x, pvec.y, pvec.z, true)) * 100.0) / 100.0;
+							double distance = Math.round(Math.sqrt(signpos.distSqr(pvec.x, pvec.y, pvec.z, true)) * 100.0) / 100.0;
 							String blocksaway = " (" + distance + " blocks)";
 							
 							StringFunctions.sendMessage(player, " " + prefix + "t x=" + signpos.getX() + ", y=" + signpos.getY() + ", z=" + signpos.getZ() + "." + blocksaway, TextFormatting.YELLOW);

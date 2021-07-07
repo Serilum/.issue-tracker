@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Smaller Nether Portals.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.16.5, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Smaller Nether Portals ever released, along with some other perks.
@@ -42,7 +42,7 @@ public class PortalEvent {
 	@SubscribeEvent
 	public void onClick(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -51,7 +51,7 @@ public class PortalEvent {
         	BlockPos clickpos = e.getPos();
         	
         	int obsidiancount = 0;
-        	Iterator<BlockPos> it = BlockPos.getAllInBox(clickpos.getX()-3, clickpos.getY()-3, clickpos.getZ()-3, clickpos.getX()+3, clickpos.getY()+3, clickpos.getZ()+3).iterator();
+        	Iterator<BlockPos> it = BlockPos.betweenClosedStream(clickpos.getX()-3, clickpos.getY()-3, clickpos.getZ()-3, clickpos.getX()+3, clickpos.getY()+3, clickpos.getZ()+3).iterator();
         	while (it.hasNext()) {
         		BlockPos np = it.next();
         		if (world.getBlockState(np).getBlock().equals(Blocks.OBSIDIAN)) {
@@ -68,7 +68,7 @@ public class PortalEvent {
 			        	BlockPos topos = clickpos;
 			        	
 			        	Boolean foundportal = false;
-			        	Iterator<BlockPos> it = BlockPos.getAllInBox(clickpos.getX()-1, clickpos.getY()-1, clickpos.getZ()-1, clickpos.getX()+1, clickpos.getY()+1, clickpos.getZ()+1).iterator();
+			        	Iterator<BlockPos> it = BlockPos.betweenClosedStream(clickpos.getX()-1, clickpos.getY()-1, clickpos.getZ()-1, clickpos.getX()+1, clickpos.getY()+1, clickpos.getZ()+1).iterator();
 			        	while (it.hasNext()) {
 			        		BlockPos np = it.next();
 			        		Block bsblock = world.getBlockState(np).getBlock();
@@ -76,21 +76,21 @@ public class PortalEvent {
 			        			foundportal = true;
 			        		}
 			        		else if (bsblock.equals(Blocks.FIRE)) {
-			        			if (Util.isAir(world.getBlockState(np.down(1)))) {
-			        				topos = np.down(1).toImmutable();
+			        			if (Util.isAir(world.getBlockState(np.below(1)))) {
+			        				topos = np.below(1).immutable();
 			        			}
-			        			else if (Util.isAir(world.getBlockState(np.down(2)))) {
-			        				topos = np.down(2).toImmutable();
+			        			else if (Util.isAir(world.getBlockState(np.below(2)))) {
+			        				topos = np.below(2).immutable();
 			        			}
 			        			else {
-			        				topos = np.toImmutable();
+			        				topos = np.immutable();
 			        			}
 			        		}
 			        	}
 			        	
 			        	if (!foundportal) {
 			        		if (Util.isAir(world.getBlockState(topos))) {
-			        			Util.processSmallerPortal(world, topos.toImmutable());
+			        			Util.processSmallerPortal(world, topos.immutable());
 			        		}
 			        	}
 			    	}
@@ -102,12 +102,12 @@ public class PortalEvent {
 	@SubscribeEvent
 	public void onDimensionChange(PlayerChangedDimensionEvent e) {
 		PlayerEntity player = e.getPlayer();
-		World world = player.world;
-		if (world.isRemote) {
+		World world = player.level;
+		if (world.isClientSide) {
 			return;
 		}
 		
-		BlockPos pos = player.getPosition();
+		BlockPos pos = player.blockPosition();
 		Block block = world.getBlockState(pos).getBlock();
 		
 		if (block instanceof NetherPortalBlock) {
@@ -122,7 +122,7 @@ public class PortalEvent {
 				List<BlockPos> frontblocks = Util.getFrontBlocks(world, foundpos);
 				Util.setObsidian(world, frontblocks);
 				
-	        	toposes.put(playername, frontblocks.get(frontblocks.size()-1).up().toImmutable());
+	        	toposes.put(playername, frontblocks.get(frontblocks.size()-1).above().immutable());
 			}
 		}
 	}
@@ -130,8 +130,8 @@ public class PortalEvent {
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
 		PlayerEntity player = e.player;
-		World world = player.getEntityWorld();
-		if (world.isRemote) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -142,8 +142,8 @@ public class PortalEvent {
 		
 		BlockPos topos = toposes.get(playername); 
 		
-		player.func_242279_ag(); // reset time until portal
-		player.setPositionAndUpdate(((double)topos.getX())+0.5, (double)topos.getY(), ((double)topos.getZ())+0.5);
+		player.setPortalCooldown(); // reset time until portal
+		player.teleportTo(((double)topos.getX())+0.5, (double)topos.getY(), ((double)topos.getZ())+0.5);
 		toposes.remove(playername);
 	}
 }

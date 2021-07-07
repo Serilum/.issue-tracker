@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Double Doors.
- * Minecraft version: 1.16.5, mod version: 2.3.
+ * Minecraft version: 1.16.5, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Double Doors ever released, along with some other perks.
@@ -58,7 +58,7 @@ public class DoorEvent {
 		}
 		
 		BooleanProperty proppowered = BlockStateProperties.POWERED;
-		BlockPos pos = e.getPos().toImmutable();
+		BlockPos pos = e.getPos().immutable();
 		BlockState state = e.getState();
 		Block block = state.getBlock();
 		
@@ -75,7 +75,7 @@ public class DoorEvent {
 					return;
 				}
 				
-				if (!state.get(proppowered)) {
+				if (!state.getValue(proppowered)) {
 					if (!prevpoweredpos.contains(pos)) {
 						return;
 					}
@@ -84,7 +84,7 @@ public class DoorEvent {
 			}
 		}
 		else {
-			if (!state.get(proppowered)) {
+			if (!state.getValue(proppowered)) {
 				if (!prevpoweredpos.contains(pos)) {
 					return;
 				}
@@ -92,13 +92,13 @@ public class DoorEvent {
 		}
 		
 		boolean playsound = true;
-		boolean stateprop = state.get(proppowered);
+		boolean stateprop = state.getValue(proppowered);
 		
-		Iterator<BlockPos> blocksaround = BlockPos.getAllInBox(pos.getX()-1, pos.getY(), pos.getZ()-1, pos.getX()+1, pos.getY()+1, pos.getZ()+1).iterator();
+		Iterator<BlockPos> blocksaround = BlockPos.betweenClosedStream(pos.getX()-1, pos.getY(), pos.getZ()-1, pos.getX()+1, pos.getY()+1, pos.getZ()+1).iterator();
 		
 		BlockPos doorpos = null;
 		while (blocksaround.hasNext()) {
-			BlockPos npos = blocksaround.next().toImmutable();
+			BlockPos npos = blocksaround.next().immutable();
 			BlockState ostate = world.getBlockState(npos);
 			if (Util.isDoorBlock(ostate)) {
 				doorpos = npos;
@@ -118,12 +118,12 @@ public class DoorEvent {
 	@SubscribeEvent
 	public void onDoorClick(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote && e.getHand().equals(Hand.MAIN_HAND)) {
+		if (world.isClientSide && e.getHand().equals(Hand.MAIN_HAND)) {
 			return;
 		}
 		
 		PlayerEntity player = e.getPlayer();
-		if (player.isSneaking()) {
+		if (player.isShiftKeyDown()) {
 			return;
 		}
 		
@@ -133,7 +133,7 @@ public class DoorEvent {
 		if (!Util.isDoorBlock(clickstate)) {
 			return;
 		}
-		if (clickstate.getMaterial().equals(Material.IRON)) {
+		if (clickstate.getMaterial().equals(Material.METAL)) {
 			return;
 		}
 		
@@ -146,14 +146,14 @@ public class DoorEvent {
 	private boolean processDoor(World world, BlockPos pos, BlockState state, Boolean isopen, Boolean playsound) {
 		Block block = state.getBlock();
 		if (block instanceof DoorBlock) {
-			if (state.get(DoorBlock.HALF).equals(DoubleBlockHalf.UPPER)) {
-				pos = pos.down().toImmutable();
+			if (state.getValue(DoorBlock.HALF).equals(DoubleBlockHalf.UPPER)) {
+				pos = pos.below().immutable();
 				state = world.getBlockState(pos);
 			}
 		}
 		
 		if (isopen == null) {
-			isopen = !state.get(BlockStateProperties.OPEN);
+			isopen = !state.getValue(BlockStateProperties.OPEN);
 		}
 		
 		int yoffset = 0;
@@ -161,7 +161,7 @@ public class DoorEvent {
 			yoffset = 1;
 		}
 		
-		Iterator<BlockPos> blocksaround = BlockPos.getAllInBox(pos.getX()-1, pos.getY()-1, pos.getZ()-1, pos.getX()+1, pos.getY()+yoffset, pos.getZ()+1).iterator();
+		Iterator<BlockPos> blocksaround = BlockPos.betweenClosedStream(pos.getX()-1, pos.getY()-1, pos.getZ()-1, pos.getX()+1, pos.getY()+yoffset, pos.getZ()+1).iterator();
 		while (blocksaround.hasNext()) {
 			BlockPos bpa = blocksaround.next();
 			if (bpa.equals(pos)) {
@@ -177,17 +177,17 @@ public class DoorEvent {
 						}
 						
 						DoorBlock door = (DoorBlock)oblock;
-						if (state.get(DoorBlock.HINGE).equals(ostate.get(DoorBlock.HINGE))) {
+						if (state.getValue(DoorBlock.HINGE).equals(ostate.getValue(DoorBlock.HINGE))) {
 							continue;
 						}
 						
 						if (playsound) {
-							door.openDoor(world, state, pos, isopen); // toggleDoor
+							door.setOpen(world, state, pos, isopen); // toggleDoor
 						}
 						else {
-							world.setBlockState(pos, state.with(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);
+							world.setBlock(pos, state.setValue(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);
 						}
-						world.setBlockState(bpa, ostate.with(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);
+						world.setBlock(bpa, ostate.setValue(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);
 						return true;
 					}
 					else if (oblock instanceof TrapDoorBlock) {
@@ -197,16 +197,16 @@ public class DoorEvent {
 						
 						if (playsound) {
 							if (isopen) {
-								int i = ostate.getMaterial() == Material.IRON ? 1037 : 1007;
-								world.playEvent(null, i, pos, 0);
+								int i = ostate.getMaterial() == Material.METAL ? 1037 : 1007;
+								world.levelEvent(null, i, pos, 0);
 							} else {
-								int j = ostate.getMaterial() == Material.IRON ? 1036 : 1013;
-								world.playEvent(null, j, pos, 0);
+								int j = ostate.getMaterial() == Material.METAL ? 1036 : 1013;
+								world.levelEvent(null, j, pos, 0);
 							}
 						}
 
-						world.setBlockState(pos, state.with(BlockStateProperties.OPEN, Boolean.valueOf(isopen)), 10);
-						world.setBlockState(bpa, ostate.with(BlockStateProperties.OPEN, Boolean.valueOf(isopen)), 10);
+						world.setBlock(pos, state.setValue(BlockStateProperties.OPEN, Boolean.valueOf(isopen)), 10);
+						world.setBlock(bpa, ostate.setValue(BlockStateProperties.OPEN, Boolean.valueOf(isopen)), 10);
 						return true;
 					}
 					else if (oblock instanceof FenceGateBlock) {
@@ -214,8 +214,8 @@ public class DoorEvent {
 							continue;
 						}
 						
-						world.setBlockState(pos, state.with(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);
-						world.setBlockState(bpa, ostate.with(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);
+						world.setBlock(pos, state.setValue(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);
+						world.setBlock(bpa, ostate.setValue(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);
 						return true;
 					}
 				}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Advancement Screenshot.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.16.5, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Advancement Screenshot ever released, along with some other perks.
@@ -47,10 +47,10 @@ public class AdvancementGetEvent {
 			}
 			
 			Minecraft mc = Minecraft.getInstance();
-			ScreenShotHelper.saveScreenshot(mc.gameDir, mc.getMainWindow().getFramebufferWidth(), mc.getMainWindow().getFramebufferHeight(), mc.getFramebuffer(), (context) -> {
+			ScreenShotHelper.grab(mc.gameDirectory, mc.getWindow().getWidth(), mc.getWindow().getHeight(), mc.getMainRenderTarget(), (context) -> {
 				mc.execute(() -> {
 					if (ConfigHandler.GENERAL.showScreenshotTakenMessage.get()) {
-						mc.ingameGUI.getChatGUI().printChatMessage(context);
+						mc.gui.getChat().addMessage(context);
 					}
 				});
 			});

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Recast.
- * Minecraft version: 1.16.5, mod version: 1.2.
+ * Minecraft version: 1.16.5, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Recast ever released, along with some other perks.
@@ -44,8 +44,8 @@ public class RecastEvent {
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
 		PlayerEntity player = e.player;
-		World world = player.getEntityWorld();
-		if (world.isRemote) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -54,9 +54,9 @@ public class RecastEvent {
 		}
 		
 		ItemStack activestack = null;
-		ItemStack mainhand = player.getHeldItemMainhand();
+		ItemStack mainhand = player.getMainHandItem();
 		if (mainhand.getItem() instanceof FishingRodItem == false) {
-			ItemStack offhand = player.getHeldItemOffhand();
+			ItemStack offhand = player.getOffhandItem();
 			if (offhand.getItem() instanceof FishingRodItem == false) {
 				recasting.remove(player);
 				return;
@@ -69,16 +69,16 @@ public class RecastEvent {
 		
 		Vector3d fbvec = recasting.get(player);
 		
-		world.playSound((PlayerEntity)null, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ENTITY_FISHING_BOBBER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (GlobalVariables.random.nextFloat() * 0.4F + 0.8F));
+		world.playSound((PlayerEntity)null, player.getX(), player.getY(), player.getZ(), SoundEvents.FISHING_BOBBER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (GlobalVariables.random.nextFloat() * 0.4F + 0.8F));
         
 		int k = EnchantmentHelper.getFishingSpeedBonus(activestack);
         int j = EnchantmentHelper.getFishingLuckBonus(activestack);
         
         FishingBobberEntity fbe = new FishingBobberEntity(player, world, j, k);
-        fbe.setPositionAndUpdate(fbvec.x, fbvec.y, fbvec.z);
-        world.addEntity(fbe);
+        fbe.teleportTo(fbvec.x, fbvec.y, fbvec.z);
+        world.addFreshEntity(fbe);
         
-        player.addStat(Stats.ITEM_USED.get(Items.FISHING_ROD));
+        player.awardStat(Stats.ITEM_USED.get(Items.FISHING_ROD));
         
         recasting.remove(player);
         lastcastlocation.put(fbe, fbvec);
@@ -87,13 +87,13 @@ public class RecastEvent {
 	@SubscribeEvent
 	public void onFishingCatch(ItemFishedEvent e) {
 		PlayerEntity player = e.getPlayer();
-		World world = player.getEntityWorld();
-		if (world.isRemote) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
 		FishingBobberEntity fbe = e.getHookEntity();
-		Vector3d fbvec = fbe.getPositionVec();
+		Vector3d fbvec = fbe.position();
 		if (lastcastlocation.containsKey(fbe)) {
 			Vector3d lastvec = lastcastlocation.get(fbe);
 			if (BlockPosFunctions.withinDistance(new BlockPos(fbvec.x, fbvec.y, fbvec.z), new BlockPos(lastvec.x, lastvec.y, lastvec.z), 3)) {

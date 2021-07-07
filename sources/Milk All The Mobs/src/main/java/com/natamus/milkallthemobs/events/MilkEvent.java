@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Milk All The Mobs.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.16.5, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Milk All The Mobs ever released, along with some other perks.
@@ -32,7 +32,7 @@ public class MilkEvent {
 	@SubscribeEvent
 	public void onEntityInteract(PlayerInteractEvent.EntityInteract e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -42,14 +42,14 @@ public class MilkEvent {
 			if (EntityFunctions.isMilkable(target)) {
 				PlayerEntity player = e.getPlayer();
 				
-				player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
+				player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
 				itemstack.shrink(1);
 				
 				if (itemstack.isEmpty()) {
-					player.setHeldItem(e.getHand(), new ItemStack(Items.MILK_BUCKET));
+					player.setItemInHand(e.getHand(), new ItemStack(Items.MILK_BUCKET));
 				}
-				else if (!player.inventory.addItemStackToInventory(new ItemStack(Items.MILK_BUCKET))) {
-					player.dropItem(new ItemStack(Items.MILK_BUCKET), false);
+				else if (!player.inventory.add(new ItemStack(Items.MILK_BUCKET))) {
+					player.drop(new ItemStack(Items.MILK_BUCKET), false);
 				}
 				e.setCancellationResult(ActionResultType.SUCCESS);
 			}

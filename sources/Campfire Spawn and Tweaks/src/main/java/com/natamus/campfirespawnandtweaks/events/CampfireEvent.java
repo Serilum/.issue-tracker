@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Campfire Spawn and Tweaks.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.16.5, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Campfire Spawn and Tweaks ever released, along with some other perks.
@@ -80,7 +80,7 @@ public class CampfireEvent {
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
 		World world = e.world;
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -88,7 +88,7 @@ public class CampfireEvent {
 			BlockPos campfirepos = firestoextinguish.get(world).get(0);
 			BlockState state = world.getBlockState(campfirepos);
 			if (state.getBlock() instanceof CampfireBlock) {
-				world.setBlockState(campfirepos, state.with(CampfireBlock.LIT, false).with(CampfireBlock.WATERLOGGED, false));
+				world.setBlockAndUpdate(campfirepos, state.setValue(CampfireBlock.LIT, false).setValue(CampfireBlock.WATERLOGGED, false));
 			}
 			
 			firestoextinguish.get(world).remove(0);
@@ -117,7 +117,7 @@ public class CampfireEvent {
 					
 					if (ConfigHandler.GENERAL.createAirPocketIfBlocksAboveCampfire.get()) {
 						BlockPos tsbp = new BlockPos(ts.x, ts.y, ts.z);
-						Iterator<BlockPos> posaround = BlockPos.getAllInBox(tsbp.getX(), tsbp.getY(), tsbp.getZ(), tsbp.getX(), tsbp.getY()+1, tsbp.getZ()).iterator();
+						Iterator<BlockPos> posaround = BlockPos.betweenClosedStream(tsbp.getX(), tsbp.getY(), tsbp.getZ(), tsbp.getX(), tsbp.getY()+1, tsbp.getZ()).iterator();
 						while (posaround.hasNext()) {
 							BlockPos around = posaround.next();
 							Block block = world.getBlockState(around).getBlock();
@@ -130,7 +130,7 @@ public class CampfireEvent {
 						
 					}
 					
-					serverplayer.teleport(serverworld, ts.x, ts.y, ts.z, player.rotationYaw, player.rotationPitch);
+					serverplayer.teleportTo(serverworld, ts.x, ts.y, ts.z, player.yRot, player.xRot);
 				}
 				else {
 					String playername = player.getName().toString();
@@ -162,12 +162,12 @@ public class CampfireEvent {
 		Block block = state.getBlock();
 		if (block instanceof CampfireBlock) {
 			PlayerEntity player = (PlayerEntity)entity;
-			if (player.getHeldItemMainhand().getItem() instanceof FlintAndSteelItem || player.getHeldItemOffhand().getItem() instanceof FlintAndSteelItem) {
+			if (player.getMainHandItem().getItem() instanceof FlintAndSteelItem || player.getOffhandItem().getItem() instanceof FlintAndSteelItem) {
 				return;
 			}
 			
 			if (ConfigHandler.GENERAL.campfiresStartUnlit.get()) {
-				world.setBlockState(pos, state.with(CampfireBlock.LIT, false));
+				world.setBlockAndUpdate(pos, state.setValue(CampfireBlock.LIT, false));
 			}
 		}
 	}
@@ -175,7 +175,7 @@ public class CampfireEvent {
 	@SubscribeEvent
 	public void onRightClickCampfireBlock(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -186,7 +186,7 @@ public class CampfireEvent {
 		
 		if (block instanceof CampfireBlock) {
 			String playername = player.getName().getString();
-			if (player.isSneaking()) {
+			if (player.isShiftKeyDown()) {
 				if (ConfigHandler.GENERAL.sneakRightClickCampfireToUnset.get()) {
 					if (Util.checkForCampfireSpawnRemoval(world, playername, pos)) {
 						if (ConfigHandler.GENERAL.sendMessageOnNewCampfireSpawnSet.get()) {
@@ -201,24 +201,24 @@ public class CampfireEvent {
 			Item item = itemstack.getItem();
 			
 			boolean holdinglighter = false;
-			if (player.getHeldItemMainhand().getItem() instanceof FlintAndSteelItem || player.getHeldItemOffhand().getItem() instanceof FlintAndSteelItem) {
+			if (player.getMainHandItem().getItem() instanceof FlintAndSteelItem || player.getOffhandItem().getItem() instanceof FlintAndSteelItem) {
 				holdinglighter = true;
-				if (state.get(CampfireBlock.LIT)) {
+				if (state.getValue(CampfireBlock.LIT)) {
 					e.setCanceled(true);
 				}
 			}
 			
 			boolean removed = false;
-			if (state.get(CampfireBlock.LIT) || holdinglighter) {				
+			if (state.getValue(CampfireBlock.LIT) || holdinglighter) {				
 				boolean iswaterbucket = item.equals(Items.WATER_BUCKET);
-				Block itemblock = Block.getBlockFromItem(item);
+				Block itemblock = Block.byItem(item);
 				if (extinguishblocks.contains(itemblock) || iswaterbucket && !holdinglighter) {
 					if (!player.isCreative() && !iswaterbucket) {
 						itemstack.shrink(1);
 					}
 					
 					e.setCanceled(true);
-					world.setBlockState(pos, state.with(CampfireBlock.LIT, false));
+					world.setBlockAndUpdate(pos, state.setValue(CampfireBlock.LIT, false));
 					
 					if (iswaterbucket) {
 						firestoextinguish.get(world).add(pos);
@@ -237,14 +237,14 @@ public class CampfireEvent {
 					boolean replaced = playercampfires.containsKey(playername.toLowerCase());
 					BlockPos oldpos = null;
 					if (replaced) {
-						oldpos = playercampfires.get(playername.toLowerCase()).getSecond().toImmutable();
+						oldpos = playercampfires.get(playername.toLowerCase()).getSecond().immutable();
 					}
 					
 					if (Util.setCampfireSpawn(world, playername, pos)) {
 						if (ConfigHandler.GENERAL.sendMessageOnNewCampfireSpawnSet.get()) {
 							if (holdinglighter) {
-								world.setBlockState(pos, state.with(CampfireBlock.WATERLOGGED, false));
-								player.swingArm(e.getHand());
+								world.setBlockAndUpdate(pos, state.setValue(CampfireBlock.WATERLOGGED, false));
+								player.swing(e.getHand());
 							}
 							
 							if (replaced) {
@@ -263,7 +263,7 @@ public class CampfireEvent {
 			}
 		}
 		else if (block instanceof BedBlock) {
-			if (player.isSneaking()) {
+			if (player.isShiftKeyDown()) {
 				if (!ConfigHandler.GENERAL.bedsOverrideCampfireSpawnOnSneakRightClick.get()) {
 					return;
 				}
@@ -316,8 +316,8 @@ public class CampfireEvent {
 	@SubscribeEvent
 	public void onPlayerRespawn(PlayerRespawnEvent e) {
 		PlayerEntity player = e.getPlayer();
-		World world = player.getEntityWorld();
-		if (world.isRemote) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -327,6 +327,6 @@ public class CampfireEvent {
 		}
 		
 		Pair<World, BlockPos> pair = playercampfires.get(playername);
-		playerstorespawn.get(pair.getFirst()).add(new Pair<PlayerEntity, BlockPos>(player, pair.getSecond().toImmutable()));
+		playerstorespawn.get(pair.getFirst()).add(new Pair<PlayerEntity, BlockPos>(player, pair.getSecond().immutable()));
 	}
 }

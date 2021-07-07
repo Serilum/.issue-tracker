@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -55,18 +55,18 @@ public class GUIFollowersGUIEvent extends IngameGui {
 			return;
 		}
 
-		FontRenderer fontRender = mc.fontRenderer;
-		MainWindow scaled = mc.getMainWindow();
+		FontRenderer fontRender = mc.font;
+		MainWindow scaled = mc.getWindow();
 		GL11.glPushMatrix();
 		
 		if (GUIFollowersVariables.activefollowers.size() > 0) {
 			MatrixStack ms = new MatrixStack();
 			
-			int width = scaled.getScaledWidth();
+			int width = scaled.getGuiScaledWidth();
 			
 			String displaystring = GUIFollowersConfigHandler.GENERAL.followerListHeaderFormat.get();
 			
-			int stringWidth = fontRender.getStringWidth(displaystring);
+			int stringWidth = fontRender.width(displaystring);
 			
 			Color colour = new Color(GUIFollowersConfigHandler.GENERAL.RGB_R.get(), GUIFollowersConfigHandler.GENERAL.RGB_G.get(), GUIFollowersConfigHandler.GENERAL.RGB_B.get(), 255);
 			
@@ -86,13 +86,13 @@ public class GUIFollowersGUIEvent extends IngameGui {
 			int heightoffset = GUIFollowersConfigHandler.GENERAL.followerListHeightOffset.get();
 			
 			ClientPlayerEntity player = mc.player;
-			String playerdimension = WorldFunctions.getWorldDimensionName(player.getEntityWorld());
+			String playerdimension = WorldFunctions.getWorldDimensionName(player.getCommandSenderWorld());
 			
 			List<Entity> toremove = new ArrayList<Entity>();
 			Iterator<Entity> it = new ArrayList<Entity>(GUIFollowersVariables.activefollowers).iterator();
 			while (it.hasNext()) {
 				Entity follower = it.next();
-				String followerdimension = WorldFunctions.getWorldDimensionName(follower.getEntityWorld());
+				String followerdimension = WorldFunctions.getWorldDimensionName(follower.getCommandSenderWorld());
 				if (!playerdimension.equals(followerdimension)) {
 					toremove.add(follower);
 					continue;
@@ -104,7 +104,7 @@ public class GUIFollowersGUIEvent extends IngameGui {
 				}
 				
 				TameableEntity te = (TameableEntity)follower;
-				if (te.isSitting()) {
+				if (te.isOrderedToSit()) {
 					toremove.add(follower);
 					continue;
 				}
@@ -126,15 +126,15 @@ public class GUIFollowersGUIEvent extends IngameGui {
 				}
 				
 				if (GUIFollowersConfigHandler.GENERAL.showFollowerDistance.get()) {
-					Vector3d pvec = player.getPositionVec();
-					Vector3d fvec = follower.getPositionVec();
+					Vector3d pvec = player.position();
+					Vector3d fvec = follower.position();
 					
 					double distance = pvec.distanceTo(fvec);
 					String distanceformat = GUIFollowersConfigHandler.GENERAL.followerDistanceFormat.get();
 					follower_string = follower_string + distanceformat.replaceAll("<distance>", String.format("%.2f", distance));
 				}
 				
-				int follower_stringWidth = fontRender.getStringWidth(follower_string);
+				int follower_stringWidth = fontRender.width(follower_string);
 				
 				if (GUIFollowersConfigHandler.GENERAL.followerListPositionIsCenter.get()) {
 					xcoord = (width/2) - (follower_stringWidth/2) - xoffset;
@@ -144,12 +144,12 @@ public class GUIFollowersGUIEvent extends IngameGui {
 				}
 				
 				if (!drawnfirst) {
-					fontRender.drawString(ms, displaystring, xcoord, heightoffset, colour.getRGB());
+					fontRender.draw(ms, displaystring, xcoord, heightoffset, colour.getRGB());
 					drawnfirst = true;
 				}
 				
 				heightoffset += 10;
-				fontRender.drawString(ms, follower_string, xcoord + xoffset, heightoffset, colour.getRGB());
+				fontRender.draw(ms, follower_string, xcoord + xoffset, heightoffset, colour.getRGB());
 			}
 			
 			if (toremove.size() > 0) {

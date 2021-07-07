@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -35,7 +35,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class CommandJmh {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
-    	dispatcher.register(Commands.literal("jmh").requires((iCommandSender) -> iCommandSender.hasPermissionLevel(2))
+    	dispatcher.register(Commands.literal("jmh").requires((iCommandSender) -> iCommandSender.hasPermission(2))
 			.then(Commands.literal("reload")
 			.executes((command) -> {
 				CommandSource source = command.getSource();
@@ -83,7 +83,7 @@ public class CommandJmh {
 				
 				PlayerEntity player;
 				try {
-					player = source.asPlayer();
+					player = source.getPlayerOrException();
 				}
 				catch (CommandSyntaxException ex) {
 					StringFunctions.sendMessage(source, "This command can only be executed as a player in-game.", TextFormatting.RED);
@@ -91,8 +91,8 @@ public class CommandJmh {
 				}
 				
 				ItemStack headstack = MobHeads.getMobHead(mobname, amount);
-				if (!player.inventory.addItemStackToInventory(headstack)) {
-					player.dropItem(headstack, false);
+				if (!player.inventory.add(headstack)) {
+					player.drop(headstack, false);
 				}
 				StringFunctions.sendMessage(source, "Successfully generated " + amount + " " + StringFunctions.capitalizeFirst(mobname.replace("_", " ")) + " heads.", TextFormatting.DARK_GREEN);
 				return 1;

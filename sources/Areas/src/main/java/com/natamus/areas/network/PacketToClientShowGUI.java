@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.16.5, mod version: 2.2.
+ * Minecraft version: 1.16.5, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Areas ever released, along with some other perks.
@@ -33,13 +33,13 @@ public class PacketToClientShowGUI {
 	}
 
 	public PacketToClientShowGUI(PacketBuffer buf) {
-		message = buf.readString();
-		rgbvalue = buf.readString();
+		message = buf.readUtf();
+		rgbvalue = buf.readUtf();
 	}
 
 	public void toBytes(PacketBuffer buf) {
-		buf.writeString(message);
-		buf.writeString(rgbvalue);
+		buf.writeUtf(message);
+		buf.writeUtf(rgbvalue);
 	}
 
 	public void handle(Supplier<NetworkEvent.Context> ctx) {

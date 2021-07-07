@@ -3,6 +3,9 @@ Starter Kit
 https://www.curseforge.com/minecraft/mc-mods/starter-kit
 
 =========
+v2.5: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
+
+=========
 v2.4: Improved a lot of the backend code, the mod now runs more efficiently.
 
 =========

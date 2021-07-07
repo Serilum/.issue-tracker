@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Name Tag Tweaks.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.16.5, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Name Tag Tweaks ever released, along with some other perks.
@@ -39,14 +39,14 @@ public class NametagCommand {
 			})
 			.then(Commands.argument("name", StringArgumentType.word())
 			.executes((command) -> {
-				PlayerEntity player = command.getSource().asPlayer();
+				PlayerEntity player = command.getSource().getPlayerOrException();
 				
 				ItemStack nametagstack;
-				if (player.getHeldItem(Hand.MAIN_HAND).getItem().equals(Items.NAME_TAG)) {
-					nametagstack = player.getHeldItem(Hand.MAIN_HAND);
+				if (player.getItemInHand(Hand.MAIN_HAND).getItem().equals(Items.NAME_TAG)) {
+					nametagstack = player.getItemInHand(Hand.MAIN_HAND);
 				}
-				else if (player.getHeldItem(Hand.OFF_HAND).getItem().equals(Items.NAME_TAG)) {
-					nametagstack = player.getHeldItem(Hand.OFF_HAND);
+				else if (player.getItemInHand(Hand.OFF_HAND).getItem().equals(Items.NAME_TAG)) {
+					nametagstack = player.getItemInHand(Hand.OFF_HAND);
 				}
 				else {
 					StringFunctions.sendMessage(player, "Usage: '/nametag <name>' while holding a name tag.", TextFormatting.RED);
@@ -58,7 +58,7 @@ public class NametagCommand {
 					name = name.replace("_", " ");
 				}
 				
-				nametagstack.setDisplayName(new StringTextComponent(name));
+				nametagstack.setHoverName(new StringTextComponent(name));
 				nametagstack.setRepairCost(0);
 				StringFunctions.sendMessage(player, "Set name value to '" + name + "'.", TextFormatting.DARK_GREEN);
 				return 1;

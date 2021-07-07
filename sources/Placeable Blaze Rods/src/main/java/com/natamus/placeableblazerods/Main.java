@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Placeable Blaze Rods.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Placeable Blaze Rods ever released, along with some other perks.
@@ -33,6 +33,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import net.minecraft.block.AbstractBlock;
+
 @Mod(Reference.MOD_ID)
 public class Main {
 	private static Block blazerodblock;
@@ -57,16 +59,16 @@ public class Main {
 	@SubscribeEvent
 	public void registerBlocks(RegistryEvent.Register<Block> e) {
 		e.getRegistry().registerAll(
-				blazerodblock = new BlazeRodBlock(Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F).setLightLevel((p_235454_0_) -> {
+				blazerodblock = new BlazeRodBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F).lightLevel((p_235454_0_) -> {
 				      return 14;
-				   }).sound(SoundType.WOOD).notSolid()).setRegistryName(Reference.MOD_ID, "blaze_rod")
+				   }).sound(SoundType.WOOD).noOcclusion()).setRegistryName(Reference.MOD_ID, "blaze_rod")
 		);
 	}
 	
 	@SubscribeEvent
 	public void registerItems(RegistryEvent.Register<Item> e) {
 		e.getRegistry().registerAll(
-				new BlockItem(blazerodblock, new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(Items.BLAZE_ROD.getRegistryName())
+				new BlockItem(blazerodblock, new Item.Properties().tab(ItemGroup.TAB_MATERIALS)).setRegistryName(Items.BLAZE_ROD.getRegistryName())
 		);
 	}
 }

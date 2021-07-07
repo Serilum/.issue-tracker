@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Beacon Placement.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.16.5, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Better Beacon Placement ever released, along with some other perks.
@@ -36,7 +36,7 @@ public class BeaconEvent {
 	@SubscribeEvent
 	public void onBeaconClick(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -65,7 +65,7 @@ public class BeaconEvent {
 			if (ConfigHandler.GENERAL.dropReplacedBlockTopBeacon.get()) {
 				if (!block.equals(Blocks.AIR) && !player.isCreative()) {
 					ItemEntity ei = new ItemEntity(world, cpos.getX(), cpos.getY()+2, cpos.getZ(), new ItemStack(block, 1));
-					world.addEntity(ei);
+					world.addFreshEntity(ei);
 				}
 			}
 			
@@ -73,10 +73,10 @@ public class BeaconEvent {
 				hand.shrink(1);
 			}
 			
-			world.setBlockState(nextpos, Block.getBlockFromItem(hand.getItem()).getDefaultState());
+			world.setBlockAndUpdate(nextpos, Block.byItem(hand.getItem()).defaultBlockState());
 			
 			set = true;
-			if (!player.isSneaking()) {
+			if (!player.isShiftKeyDown()) {
 				break;
 			}
 		}

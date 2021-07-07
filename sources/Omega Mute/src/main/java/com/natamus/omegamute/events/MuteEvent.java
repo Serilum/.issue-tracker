@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Omega Mute.
- * Minecraft version: 1.16.5, mod version: 1.7.
+ * Minecraft version: 1.16.5, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Omega Mute ever released, along with some other perks.
@@ -92,11 +92,11 @@ public class MuteEvent {
 			mc = Minecraft.getInstance();
 		}
 		
-		if (mc.currentScreen instanceof ChatScreen) {
+		if (mc.screen instanceof ChatScreen) {
 			return;
 		}
 		
-		if (e.getKey() == Variables.hotkey.getKey().getKeyCode()) {
+		if (e.getKey() == Variables.hotkey.getKey().getValue()) {
 			try {
 				Util.loadSoundFile();
 			} catch (Exception ex) { return; }

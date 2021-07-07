@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Entity Information.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.16.5, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Entity Information ever released, along with some other perks.
@@ -31,13 +31,13 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class EntityEvent {
 	@SubscribeEvent
 	public void onEntityDamage(LivingAttackEvent e) {
-		Entity source = e.getSource().getTrueSource();
+		Entity source = e.getSource().getEntity();
 		if (source == null) {
 			return;
 		}
 		
-		World world = source.getEntityWorld();
-		if (world.isRemote) {
+		World world = source.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -48,12 +48,12 @@ public class EntityEvent {
 		Entity entity = e.getEntity();
 		PlayerEntity player = (PlayerEntity)source;
 
-		ItemStack mainhand = player.getHeldItem(Hand.MAIN_HAND);
+		ItemStack mainhand = player.getItemInHand(Hand.MAIN_HAND);
 		if (!mainhand.getItem().equals(Items.STICK)) {
 			return;
 		}
 		
-		if (!mainhand.getDisplayName().getString().equals(TextFormatting.BLUE + "The Information Stick")) {
+		if (!mainhand.getHoverName().getString().equals(TextFormatting.BLUE + "The Information Stick")) {
 			return;
 		}
 
@@ -63,11 +63,11 @@ public class EntityEvent {
 			entityName = "EntityName: " + entity.toString().split("\\[")[0];
 		}
 		catch (Exception ex) {}
-		String entityId = "EntityId: " + Integer.toString(entity.getEntityId());
-		String UUID = "UUID: " + entity.getUniqueID().toString();
-		String position = "Position: " + entity.getPosition().toString().replace("BlockPos{", "").replace("}", "");
+		String entityId = "EntityId: " + Integer.toString(entity.getId());
+		String UUID = "UUID: " + entity.getUUID().toString();
+		String position = "Position: " + entity.blockPosition().toString().replace("BlockPos{", "").replace("}", "");
 		String isSilent = "isSilent: " + String.valueOf(entity.isSilent());
-		String ticksExisted = "ticksExisted: " + Integer.toString(entity.ticksExisted);
+		String ticksExisted = "ticksExisted: " + Integer.toString(entity.tickCount);
 
 		StringFunctions.sendMessage(player, "---- Entity Information:", TextFormatting.BLUE, true);
 		StringFunctions.sendMessage(player, name, TextFormatting.BLUE);

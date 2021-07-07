@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -33,15 +33,15 @@ public class JustMobHeadsHeadDropEvent {
 	@SubscribeEvent
 	public void mobItemDrop(LivingDropsEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
 		if (JustMobHeadsConfigHandler.GENERAL.onlyAdultMobsDropTheirHead.get()) {
 			if (entity instanceof TameableEntity) {
 				TameableEntity te = (TameableEntity)entity;
-				if (te.isChild()) {
+				if (te.isBaby()) {
 					return;
 				}
 			}
@@ -95,7 +95,7 @@ public class JustMobHeadsHeadDropEvent {
 			return;
 		}
 		
-		BlockPos pos = entity.getPosition();
+		BlockPos pos = entity.blockPosition();
 		
 		ItemEntity mobhead;
 		if (headname.equals("")) {
@@ -110,6 +110,6 @@ public class JustMobHeadsHeadDropEvent {
 			mobhead = new ItemEntity(world,pos.getX(), pos.getY()+1, pos.getZ(), MobHeads.getStandardHead(headname));
 		}
 		
-		world.addEntity(mobhead);
+		world.addFreshEntity(mobhead);
 	}
 }

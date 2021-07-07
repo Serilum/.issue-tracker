@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Mob Potion Effects.
- * Minecraft version: 1.16.5, mod version: 1.2.
+ * Minecraft version: 1.16.5, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Mob Potion Effects ever released, along with some other perks.
@@ -181,7 +181,7 @@ public class Util {
 			for (String entitytypestring : sortedentities) {
 				EntityType<?> entitytype = ehm.get(entitytypestring);
 				
-				EntityClassification classification = entitytype.getClassification();
+				EntityClassification classification = entitytype.getCategory();
 				if (!classification.equals(EntityClassification.MISC)) {
 					ResourceLocation rl = entitytype.getRegistryName();
 					permanentwriter.println("'" + rl.toString() + "'" + " : '" + emptypermanenteffects + "'," + "\n");
@@ -198,7 +198,7 @@ public class Util {
 			for (String entitytypestring : sortedentities) {
 				EntityType<?> entitytype = ehm.get(entitytypestring);
 				
-				EntityClassification classification = entitytype.getClassification();
+				EntityClassification classification = entitytype.getCategory();
 				if (!classification.equals(EntityClassification.MISC)) {
 					ResourceLocation rl = entitytype.getRegistryName();
 					damagewriter.println("'" + rl.toString() + "'" + " : '" + emptydamageeffects + "'," + "\n");

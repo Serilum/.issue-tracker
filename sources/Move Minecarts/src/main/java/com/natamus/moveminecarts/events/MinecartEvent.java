@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Move Minecarts.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.16.5, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Move Minecarts ever released, along with some other perks.
@@ -39,24 +39,24 @@ public class MinecartEvent {
 		}
 		
 		PlayerEntity player = e.player;
-		World world = player.getEntityWorld();
-		if (world.isRemote || e.phase != Phase.START) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide || e.phase != Phase.START) {
 			return;
 		}
 		
 		for (Entity passenger : pickedupminecart.getPassengers()) {
-			if (passenger.isEntityEqual(player)) {
+			if (passenger.is(player)) {
 				pickedupminecart = null;
 				return;
 			}
 		}
 		
-		Vector3d look = player.getLookVec();
+		Vector3d look = player.getLookAngle();
 		float distance = 2.0F;
-		double dx = player.getPosX() + (look.x * distance);
-		double dy = player.getPosY() + player.getEyeHeight();
-		double dz = player.getPosZ() + (look.z * distance);
-		pickedupminecart.setPosition(dx, dy, dz);
+		double dx = player.getX() + (look.x * distance);
+		double dy = player.getY() + player.getEyeHeight();
+		double dz = player.getZ() + (look.z * distance);
+		pickedupminecart.setPos(dx, dy, dz);
 	}
 	
 	@SubscribeEvent
@@ -65,7 +65,7 @@ public class MinecartEvent {
 			return;
 		}
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		if (ConfigHandler.GENERAL.mustSneakToPickUp.get()) {

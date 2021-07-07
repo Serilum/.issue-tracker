@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Starter Kit.
- * Minecraft version: 1.16.5, mod version: 2.4.
+ * Minecraft version: 1.16.5, mod version: 2.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Starter Kit ever released, along with some other perks.
@@ -27,13 +27,13 @@ import net.minecraft.util.text.TextFormatting;
 
 public class CommandStarterkit {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
-    	dispatcher.register(Commands.literal("starterkit").requires((iCommandSender) -> iCommandSender.hasPermissionLevel(2))
+    	dispatcher.register(Commands.literal("starterkit").requires((iCommandSender) -> iCommandSender.hasPermission(2))
 			.then(Commands.literal("set")
 			.executes((command) -> {
 				CommandSource source = command.getSource();
 				PlayerEntity player;
 				try {
-					player = source.asPlayer();
+					player = source.getPlayerOrException();
 				}
 				catch (CommandSyntaxException ex) {
 					StringFunctions.sendMessage(source, "This command can only be executed as a player in-game.", TextFormatting.RED);

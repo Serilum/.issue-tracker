@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Tracking Compass.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.16.5, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Player Tracking Compass ever released, along with some other perks.
@@ -41,18 +41,18 @@ public class RequestServerPacket {
 			BlockPos targetpos = new BlockPos(0, 0, 0);
 			
 			ServerPlayerEntity serverplayer = ctx.get().getSender();
-			BlockPos serverplayerpos = serverplayer.getPosition();
+			BlockPos serverplayerpos = serverplayer.blockPosition();
 			BlockPos comparepp = new BlockPos(serverplayerpos.getX(), 1, serverplayerpos.getZ());
 			
 			ServerPlayerEntity closestplayer = null;
 			double closestdistance = 999999999999.0;
 			
-			ServerWorld world = serverplayer.getServerWorld();
-			for (ServerPlayerEntity oplayer : world.getPlayers()) {
-				BlockPos oplayerpos = oplayer.getPosition();
+			ServerWorld world = serverplayer.getLevel();
+			for (ServerPlayerEntity oplayer : world.players()) {
+				BlockPos oplayerpos = oplayer.blockPosition();
 				BlockPos compareop = new BlockPos(oplayerpos.getX(), 1, oplayerpos.getZ());
 
-				double distance = comparepp.manhattanDistance(compareop);
+				double distance = comparepp.distManhattan(compareop);
 				if (distance < 10) {
 					continue;
 				}
@@ -63,14 +63,14 @@ public class RequestServerPacket {
 			}
 			
 			if (closestplayer != null) {
-				targetpos = closestplayer.getPosition().toImmutable();
+				targetpos = closestplayer.blockPosition().immutable();
 				
 				StringFunctions.sendMessage(serverplayer, "The compass is pointing at " + closestplayer.getName().getString() + ".", TextFormatting.YELLOW);
 			}
 			else {
 				StringFunctions.sendMessage(serverplayer, "Unable to redirect the compass. There are no players around or they're too close.", TextFormatting.YELLOW);
 			}
-			Main.network.sendTo(new PacketToClientUpdateTarget(targetpos), serverplayer.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
+			Main.network.sendTo(new PacketToClientUpdateTarget(targetpos), serverplayer.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
 		});
 		ctx.get().setPacketHandled(true);
 	}

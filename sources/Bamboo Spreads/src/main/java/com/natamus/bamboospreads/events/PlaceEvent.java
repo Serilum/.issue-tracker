@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bamboo Spreads.
- * Minecraft version: 1.16.5, mod version: 1.9.
+ * Minecraft version: 1.16.5, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Bamboo Spreads ever released, along with some other perks.
@@ -39,7 +39,7 @@ public class PlaceEvent {
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
 		World world = e.world;
-		if (world.isRemote || !e.phase.equals(Phase.END)) {
+		if (world.isClientSide || !e.phase.equals(Phase.END)) {
 			return;
 		}
 		
@@ -48,7 +48,7 @@ public class PlaceEvent {
 			
 			BlockState state = world.getBlockState(bamboo);
 			if (state.getBlock() instanceof BambooBlock) {
-				world.setBlockState(bamboo, BlockVariables.SPREADING_BAMBOO_BLOCK.getDefaultState());
+				world.setBlockAndUpdate(bamboo, BlockVariables.SPREADING_BAMBOO_BLOCK.defaultBlockState());
 			}
 			
 			bambootoreplace.get(world).remove(0);
@@ -75,7 +75,7 @@ public class PlaceEvent {
 		BlockState state = e.getPlacedBlock();
 		if (state.getBlock() instanceof BambooBlock) {
 			BlockPos pos = e.getPos();
-			bambootoreplace.get(world).add(pos.toImmutable());
+			bambootoreplace.get(world).add(pos.immutable());
 		}
 	}
 }

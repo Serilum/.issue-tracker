@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Respawn Delay.
- * Minecraft version: 1.16.5, mod version: 2.3.
+ * Minecraft version: 1.16.5, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Respawn Delay ever released, along with some other perks.
@@ -50,12 +50,12 @@ public class RespawningEvent {
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
 		PlayerEntity player = e.player;
-		World world = player.getEntityWorld();
-		if (world.isRemote || e.phase != Phase.START) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide || e.phase != Phase.START) {
 			return;
 		}
 		
-		if (player.ticksExisted % 20 != 0) {
+		if (player.tickCount % 20 != 0) {
 			return;
 		}
 		
@@ -91,8 +91,8 @@ public class RespawningEvent {
 	@SubscribeEvent
 	public void onPlayerDeath(LivingDeathEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -102,7 +102,7 @@ public class RespawningEvent {
 		
 		PlayerEntity player = (PlayerEntity)entity;
 		if (ConfigHandler.GENERAL.ignoreAdministratorPlayers.get()) {
-			if (player.hasPermissionLevel(2)) {
+			if (player.hasPermissions(2)) {
 				return;
 			}
 		}
@@ -114,18 +114,18 @@ public class RespawningEvent {
 		}
 		
 		e.setCanceled(true);
-		player.setGameType(GameType.SPECTATOR);
+		player.setGameMode(GameType.SPECTATOR);
 		player.setHealth(20);
-		player.addStat(Stats.DEATHS);
-		player.takeStat(Stats.CUSTOM.get(Stats.TIME_SINCE_DEATH));
-		player.takeStat(Stats.CUSTOM.get(Stats.TIME_SINCE_REST));
-		player.extinguish();
+		player.awardStat(Stats.DEATHS);
+		player.resetStat(Stats.CUSTOM.get(Stats.TIME_SINCE_DEATH));
+		player.resetStat(Stats.CUSTOM.get(Stats.TIME_SINCE_REST));
+		player.clearFire();
 		
-		Vector3d pvec = player.getPositionVec();
-		if (pvec.getY() < ConfigHandler.GENERAL.lowestPossibleYCoordinate.get()) {
-			pvec = new Vector3d(pvec.getX(), ConfigHandler.GENERAL.lowestPossibleYCoordinate.get(), pvec.getZ());
-			player.setMotion(0, 0, 0);
-			player.setPositionAndUpdate(pvec.getX(), pvec.getY(), pvec.getZ());
+		Vector3d pvec = player.position();
+		if (pvec.y() < ConfigHandler.GENERAL.lowestPossibleYCoordinate.get()) {
+			pvec = new Vector3d(pvec.x(), ConfigHandler.GENERAL.lowestPossibleYCoordinate.get(), pvec.z());
+			player.setDeltaMovement(0, 0, 0);
+			player.teleportTo(pvec.x(), pvec.y(), pvec.z());
 		}
 		
 		if (!ConfigHandler.GENERAL.keepItemsOnDeath.get()) {
@@ -133,14 +133,14 @@ public class RespawningEvent {
 			
 			PlayerInventory inv = player.inventory;
 			for (int i=0; i < 36; i++) {
-				ItemStack slot = inv.getStackInSlot(i);
+				ItemStack slot = inv.getItem(i);
 				if (!slot.isEmpty()) {
 					playerdrops.add(new ItemEntity(world, pvec.x, pvec.y+1, pvec.z, slot.copy()));
 					slot.setCount(0);
 				}
 			}
 			
-			Iterator<ItemStack> it = player.getEquipmentAndArmor().iterator();
+			Iterator<ItemStack> it = player.getAllSlots().iterator();
 			while (it.hasNext()) {
 				ItemStack next = it.next();
 				if (!next.isEmpty()) {
@@ -153,7 +153,7 @@ public class RespawningEvent {
 			
 			if (ConfigHandler.GENERAL.dropItemsOnDeath.get()) {
 				for (ItemEntity drop : playerdrops) {
-					world.addEntity(drop);
+					world.addFreshEntity(drop);
 				}
 			}
 		}
@@ -167,8 +167,8 @@ public class RespawningEvent {
 	@SubscribeEvent
 	public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent e) {
 		PlayerEntity player = e.getPlayer();
-		World world = player.getEntityWorld();
-		if (world.isRemote) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -180,8 +180,8 @@ public class RespawningEvent {
 	@SubscribeEvent
 	public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent e) {
 		PlayerEntity player = e.getPlayer();
-		World world = player.getEntityWorld();
-		if (world.isRemote) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		

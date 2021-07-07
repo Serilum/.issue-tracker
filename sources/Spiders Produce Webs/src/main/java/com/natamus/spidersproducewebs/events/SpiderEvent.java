@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Spiders Produce Webs.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.16.5, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Spiders Produce Webs ever released, along with some other perks.
@@ -36,24 +36,24 @@ public class SpiderEvent {
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
 		PlayerEntity player = e.player;
-		World world = player.getEntityWorld();
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
-		if (player.ticksExisted % ConfigHandler.GENERAL.spiderWebProduceDelayTicks.get() != 0) {
+		if (player.tickCount % ConfigHandler.GENERAL.spiderWebProduceDelayTicks.get() != 0) {
 			return;
 		}
 		
-		BlockPos ppos = player.getPosition();
+		BlockPos ppos = player.blockPosition();
 		
 		int r = ConfigHandler.GENERAL.maxDistanceToSpiderBlocks.get();
-		List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(player, new AxisAlignedBB(ppos.getX()-r, ppos.getY()-r, ppos.getZ()-r, ppos.getX()+r, ppos.getY()+r, ppos.getZ()+r));
+		List<Entity> entities = world.getEntities(player, new AxisAlignedBB(ppos.getX()-r, ppos.getY()-r, ppos.getZ()-r, ppos.getX()+r, ppos.getY()+r, ppos.getZ()+r));
 		for (Entity entity : entities) {
 			if (entity instanceof SpiderEntity || entity instanceof CaveSpiderEntity) {
-				BlockPos epos = entity.getPosition();
+				BlockPos epos = entity.blockPosition();
 				if (world.getBlockState(epos).getBlock().equals(Blocks.AIR)) {
-					world.setBlockState(epos, Blocks.COBWEB.getDefaultState());
+					world.setBlockAndUpdate(epos, Blocks.COBWEB.defaultBlockState());
 				}
 			}
 		}

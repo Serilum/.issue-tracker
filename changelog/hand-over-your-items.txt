@@ -3,6 +3,9 @@ Hand Over Your Items
 https://curseforge.com/minecraft/mc-mods/hand-over-your-items
 
 =========
+v1.3: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
+
+=========
 v1.2: Only items held in the main hand will now be given to another player, to prevent giving shields or torches accidentally.
 
 =========

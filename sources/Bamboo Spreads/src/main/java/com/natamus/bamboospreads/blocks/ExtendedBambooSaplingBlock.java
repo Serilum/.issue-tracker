@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bamboo Spreads.
- * Minecraft version: 1.16.5, mod version: 1.9.
+ * Minecraft version: 1.16.5, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Bamboo Spreads ever released, along with some other perks.
@@ -40,6 +40,8 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class ExtendedBambooSaplingBlock extends BambooSaplingBlock {
 
 	public ExtendedBambooSaplingBlock(Properties properties) {
@@ -56,21 +58,21 @@ public class ExtendedBambooSaplingBlock extends BambooSaplingBlock {
 
 	   public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 	      Vector3d vector3d = state.getOffset(worldIn, pos);
-	      return SHAPE.withOffset(vector3d.x, vector3d.y, vector3d.z);
+	      return SAPLING_SHAPE.move(vector3d.x, vector3d.y, vector3d.z);
 	   }
 
 	   /**
 	    * Performs a random tick on a block.
 	    */
 	   public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-	      if (random.nextInt(3) == 0 && worldIn.isAirBlock(pos.up()) && worldIn.getLightSubtracted(pos.up(), 0) >= 9) {
+	      if (random.nextInt(3) == 0 && worldIn.isEmptyBlock(pos.above()) && worldIn.getRawBrightness(pos.above(), 0) >= 9) {
 	         this.growBamboo(worldIn, pos);
 	      }
 
 	   }
 
-	   public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-	      return worldIn.getBlockState(pos.down()).isIn(BlockTags.BAMBOO_PLANTABLE_ON);
+	   public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+	      return worldIn.getBlockState(pos.below()).is(BlockTags.BAMBOO_PLANTABLE_ON);
 	   }
 
 	   /**
@@ -79,19 +81,19 @@ public class ExtendedBambooSaplingBlock extends BambooSaplingBlock {
 	    * returns its solidified counterpart.
 	    * Note that this method should ideally consider only the specific face passed in.
 	    */
-	   public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-	      if (!stateIn.isValidPosition(worldIn, currentPos)) {
-	         return Blocks.AIR.getDefaultState();
+	   public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+	      if (!stateIn.canSurvive(worldIn, currentPos)) {
+	         return Blocks.AIR.defaultBlockState();
 	      } else {
-	         if (facing == Direction.UP && facingState.isIn(BlockVariables.SPREADING_BAMBOO_BLOCK)) {
-	            worldIn.setBlockState(currentPos, BlockVariables.SPREADING_BAMBOO_BLOCK.getDefaultState(), 2);
+	         if (facing == Direction.UP && facingState.is(BlockVariables.SPREADING_BAMBOO_BLOCK)) {
+	            worldIn.setBlock(currentPos, BlockVariables.SPREADING_BAMBOO_BLOCK.defaultBlockState(), 2);
 	         }
 
-	         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+	         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	      }
 	   }
 
-	   public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
+	   public ItemStack getCloneItemStack(IBlockReader worldIn, BlockPos pos, BlockState state) {
 	      return new ItemStack(Items.BAMBOO);
 	   }
 
@@ -99,15 +101,15 @@ public class ExtendedBambooSaplingBlock extends BambooSaplingBlock {
 	    * Whether this IGrowable can grow
 	    */
 	   @SuppressWarnings("deprecation")
-	   public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
-	      return worldIn.getBlockState(pos.up()).isAir();
+	   public boolean isValidBonemealTarget(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+	      return worldIn.getBlockState(pos.above()).isAir();
 	   }
 
-	   public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
+	   public boolean isBonemealSuccess(World worldIn, Random rand, BlockPos pos, BlockState state) {
 	      return true;
 	   }
 
-	   public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+	   public void performBonemeal(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
 	      this.growBamboo(worldIn, pos);
 	   }
 
@@ -116,11 +118,11 @@ public class ExtendedBambooSaplingBlock extends BambooSaplingBlock {
 	    * @deprecated call via {@link IBlockState#getPlayerRelativeBlockHardness(EntityPlayer,World,BlockPos)} whenever
 	    * possible. Implementing/overriding is fine.
 	    */
-	   public float getPlayerRelativeBlockHardness(BlockState state, PlayerEntity player, IBlockReader worldIn, BlockPos pos) {
-	      return player.getHeldItemMainhand().getItem() instanceof SwordItem ? 1.0F : super.getPlayerRelativeBlockHardness(state, player, worldIn, pos);
+	   public float getDestroyProgress(BlockState state, PlayerEntity player, IBlockReader worldIn, BlockPos pos) {
+	      return player.getMainHandItem().getItem() instanceof SwordItem ? 1.0F : super.getDestroyProgress(state, player, worldIn, pos);
 	   }
 
 	   protected void growBamboo(World world, BlockPos state) {
-	      world.setBlockState(state.up(), BlockVariables.SPREADING_BAMBOO_BLOCK.getDefaultState().with(BambooBlock.PROPERTY_BAMBOO_LEAVES, BambooLeaves.SMALL), 3);
+	      world.setBlock(state.above(), BlockVariables.SPREADING_BAMBOO_BLOCK.defaultBlockState().setValue(BambooBlock.LEAVES, BambooLeaves.SMALL), 3);
 	   }
 }

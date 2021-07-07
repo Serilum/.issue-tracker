@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Alte
 
 [[mods]]
 modId="altereddamage"
-version="1.4"
+version="1.5"
 displayName="Altered Damage"
 displayURL="https://curseforge.com/minecraft/mc-mods/altered-damage"
 authors="Rick South"
 description="A minimalistic configurable mod that alters damage taken with a modifier by players and other entities."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.altereddamage]]
     modId="collective"
     mandatory=true
-    versionRange="[2.0,)"
+    versionRange="[2.27,)"
     ordering="NONE"
     side="BOTH"

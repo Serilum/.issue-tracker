@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Mob Potion Effects.
- * Minecraft version: 1.16.5, mod version: 1.2.
+ * Minecraft version: 1.16.5, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Mob Potion Effects ever released, along with some other perks.
@@ -33,7 +33,7 @@ public class MobEffectsEvent {
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -54,8 +54,8 @@ public class MobEffectsEvent {
 			for (EffectInstance effectinstance : effectinstances) {
 				EffectInstance ei = new EffectInstance(effectinstance);
 				
-				le.removePotionEffect(ei.getPotion());
-				le.addPotionEffect(ei);
+				le.removeEffect(ei.getEffect());
+				le.addEffect(ei);
 			}
 		}
 	}
@@ -63,12 +63,12 @@ public class MobEffectsEvent {
 	@SubscribeEvent
 	public void onEntityDamage(LivingHurtEvent e) {
 		LivingEntity le = e.getEntityLiving();
-		World world = le.getEntityWorld();
-		if (world.isRemote) {
+		World world = le.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
-		Entity source = e.getSource().getTrueSource();
+		Entity source = e.getSource().getEntity();
 		if (source == null) {
 			return;
 		}
@@ -83,8 +83,8 @@ public class MobEffectsEvent {
 			for (EffectInstance effectinstance : effectinstances) {
 				EffectInstance ei = new EffectInstance(effectinstance);
 				
-				le.removePotionEffect(ei.getPotion());
-				le.addPotionEffect(ei);
+				le.removeEffect(ei.getEffect());
+				le.addEffect(ei);
 			}
 		}		
 	}

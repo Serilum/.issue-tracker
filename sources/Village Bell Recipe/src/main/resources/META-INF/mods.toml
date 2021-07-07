@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Vill
 
 [[mods]]
 modId="villagebellrecipe"
-version="1.1"
+version="1.2"
 displayName="Village Bell Recipe"
 displayURL="https://curseforge.com/minecraft/mc-mods/village-bell-recipe"
 authors="Rick South"
 description="Adds a recipe for the village bell item."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.villagebellrecipe]]
     modId="collective"
     mandatory=true
-    versionRange="[2.0,)"
+    versionRange="[2.27,)"
     ordering="NONE"
     side="BOTH"

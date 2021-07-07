@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Extra Mob Drops.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.16.5, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Extra Mob Drops ever released, along with some other perks.
@@ -35,8 +35,8 @@ public class MobDropEvent {
 	@SubscribeEvent
 	public void mobItemDrop(LivingDropsEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -47,14 +47,14 @@ public class MobDropEvent {
 		
 		CopyOnWriteArrayList<ItemStack> extradrops = Util.mobdrops.get(entitytype);
 		if (extradrops.size() > 0) {
-			BlockPos epos = entity.getPosition();
+			BlockPos epos = entity.blockPosition();
 			
 			for (ItemStack itemstack : extradrops) {
 				ItemStack newstack = itemstack.copy();
 				CompoundNBT tag = newstack.getOrCreateTag();
 				
 				CompoundNBT nbt = new CompoundNBT();
-				newstack.write(nbt);
+				newstack.save(nbt);
 				
 				
 				if (tag.contains("dropchance")) {
@@ -68,7 +68,7 @@ public class MobDropEvent {
 					tag.remove("dropchance");
 					if (tag.size() == 0) {
 						nbt.remove("tag");
-						newstack = ItemStack.read(nbt);
+						newstack = ItemStack.of(nbt);
 					}
 					else {
 						newstack.setTag(tag);

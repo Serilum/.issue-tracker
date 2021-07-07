@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Respawn Delay.
- * Minecraft version: 1.16.5, mod version: 2.3.
+ * Minecraft version: 1.16.5, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Respawn Delay ever released, along with some other perks.
@@ -32,10 +32,10 @@ public class Util {
 		}
 		
 		RespawningEvent.death_times.remove(player);
-		player.setGameType(GameType.SURVIVAL);
+		player.setGameMode(GameType.SURVIVAL);
 		if (ConfigHandler.GENERAL.respawnAtWorldSpawn.get()) {
 			BlockPos spawnpos = PlayerFunctions.getSpawnPoint(world, player);
-			player.setPositionAndUpdate(spawnpos.getX(), spawnpos.getY(), spawnpos.getZ());
+			player.teleportTo(spawnpos.getX(), spawnpos.getY(), spawnpos.getZ());
 		}
 		
 		StringFunctions.sendMessage(player, ConfigHandler.GENERAL.onRespawnMessage.get(), TextFormatting.DARK_GREEN);

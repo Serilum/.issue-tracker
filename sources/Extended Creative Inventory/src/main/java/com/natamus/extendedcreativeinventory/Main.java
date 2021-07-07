@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Extended Creative Inventory.
- * Minecraft version: 1.16.5, mod version: 1.2.
+ * Minecraft version: 1.16.5, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Extended Creative Inventory ever released, along with some other perks.
@@ -75,7 +75,7 @@ public class Main {
 		
 		if (Variables.item_group == null) {
 			for (Field field : Item.class.getDeclaredFields()) {
-				if (field.toString().contains("group") || field.toString().contains("field_77701_a")) {
+				if (field.toString().contains("group") || field.toString().contains("category")) {
 					Variables.item_group = field;
 					break;
 				}
@@ -93,7 +93,7 @@ public class Main {
     			continue;
     		}
     		
-    		ItemGroup itemgroup = item.getGroup();
+    		ItemGroup itemgroup = item.getItemCategory();
     		if (itemgroup == null) {
     			try {
     				Variables.item_group.set(item, Variables.EXTENDED);

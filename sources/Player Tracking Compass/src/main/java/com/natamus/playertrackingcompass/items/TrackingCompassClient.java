@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Tracking Compass.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.16.5, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Player Tracking Compass ever released, along with some other perks.
@@ -36,7 +36,7 @@ public class TrackingCompassClient implements IItemPropertyGetter {
 
 	@SubscribeEvent
 	public static void models(FMLClientSetupEvent e) {
-		ItemModelsProperties.registerProperty(CompassVariables.TRACKING_COMPASS, new ResourceLocation("angle"), new TrackingCompassClient());
+		ItemModelsProperties.register(CompassVariables.TRACKING_COMPASS, new ResourceLocation("angle"), new TrackingCompassClient());
 	}
 
 	private double prevAngle = 0.0D;
@@ -55,14 +55,14 @@ public class TrackingCompassClient implements IItemPropertyGetter {
 	public float call(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity livingEntity) {
 		boolean isLiving = livingEntity != null;
 
-		if (!isLiving && !stack.isOnItemFrame()) {
+		if (!isLiving && !stack.isFramed()) {
 			return 0;
 		}
 
-		Entity entity = isLiving ? livingEntity : stack.getItemFrame();
+		Entity entity = isLiving ? livingEntity : stack.getFrame();
 
 		if (world == null) {
-			world = (ClientWorld)entity.world;
+			world = (ClientWorld)entity.level;
 		}
 
 		if (CompassVariables.trackingTarget == null) {
@@ -70,7 +70,7 @@ public class TrackingCompassClient implements IItemPropertyGetter {
 		}
 		double angle;
 
-		double entityAngle = isLiving ? entity.rotationYaw : getFrameAngle((ItemFrameEntity) entity);
+		double entityAngle = isLiving ? entity.yRot : getFrameAngle((ItemFrameEntity) entity);
 		entityAngle /= 360.0D;
 		entityAngle = MathHelper.positiveModulo(entityAngle, 1.0D);
 		double posAngle = getPosToAngle(CompassVariables.trackingTarget, entity);
@@ -111,7 +111,7 @@ public class TrackingCompassClient implements IItemPropertyGetter {
 	 * @return The angle
 	 */
 	private double getFrameAngle(ItemFrameEntity entity) {
-		return MathHelper.wrapDegrees(180 + entity.getHorizontalFacing().getHorizontalIndex() * 90);
+		return MathHelper.wrapDegrees(180 + entity.getDirection().get2DDataValue() * 90);
 	}
 
 	/**
@@ -122,6 +122,6 @@ public class TrackingCompassClient implements IItemPropertyGetter {
 	 * @return The angle
 	 */
 	private double getPosToAngle(int[] pos, Entity entity) {
-		return Math.atan2(pos[2] - entity.getPosZ(), pos[0] - entity.getPosX());
+		return Math.atan2(pos[2] - entity.getZ(), pos[0] - entity.getX());
 	}
 }

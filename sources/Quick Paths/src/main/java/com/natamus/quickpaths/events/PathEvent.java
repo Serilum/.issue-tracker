@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Quick Paths.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.16.5, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Quick Paths ever released, along with some other perks.
@@ -76,7 +76,7 @@ public class PathEvent {
 	@SubscribeEvent
 	public void onRightClickGrass(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -100,8 +100,8 @@ public class PathEvent {
 				long ms = (now.getTime()-pair.getFirst().getTime());
 				if (ms < 300000) {
 					for (BlockPos pathpos : pair.getSecond()) {
-						if (world.getBlockState(pathpos).getBlock().equals(Blocks.GRASS_PATH) && world.getBlockState(pathpos.toImmutable().up()).getBlock().equals(Blocks.AIR)) {
-							world.setBlockState(pathpos, Blocks.GRASS_BLOCK.getDefaultState());
+						if (world.getBlockState(pathpos).getBlock().equals(Blocks.GRASS_PATH) && world.getBlockState(pathpos.immutable().above()).getBlock().equals(Blocks.AIR)) {
+							world.setBlockAndUpdate(pathpos, Blocks.GRASS_BLOCK.defaultBlockState());
 							count+=1;
 						}
 					}
@@ -116,7 +116,7 @@ public class PathEvent {
 			return;
 		}
 		
-		if (hand.getDamage() >= hand.getMaxDamage()-1 && player.isCrouching()) {
+		if (hand.getDamageValue() >= hand.getMaxDamage()-1 && player.isCrouching()) {
 			e.setCanceled(true);
 			StringFunctions.sendMessage(player, "[Quick Paths] Your shovel is too damaged to create paths.", TextFormatting.RED);
 			return;
@@ -160,22 +160,22 @@ public class PathEvent {
 					Pair<Integer, Integer> xz = new Pair<>(targetpos.getX()+difx, targetpos.getZ()+difz);
 					if (!xzset.contains(xz)) {
 						BlockPos betweenpos = new BlockPos(targetpos.getX() + difx, lyd, targetpos.getZ() + difz);
-						if (world.getBlockState(betweenpos).getBlock().equals(Blocks.GRASS_BLOCK) && world.getBlockState(betweenpos.toImmutable().up()).getBlock().equals(Blocks.AIR)) {
-							world.setBlockState(betweenpos, Blocks.GRASS_PATH.getDefaultState());
+						if (world.getBlockState(betweenpos).getBlock().equals(Blocks.GRASS_BLOCK) && world.getBlockState(betweenpos.immutable().above()).getBlock().equals(Blocks.AIR)) {
+							world.setBlockAndUpdate(betweenpos, Blocks.GRASS_PATH.defaultBlockState());
 							
-							pathpositions.add(betweenpos.toImmutable());
+							pathpositions.add(betweenpos.immutable());
 							xzset.add(xz);
 							
 							if (!player.isCreative()) {
-								 hand.attemptDamageItem(1, world.rand, null);
+								 hand.hurt(1, world.random, null);
 							}
 						}
 					}
 				}
 			}
 			
-			if (hand.getDamage() > hand.getMaxDamage()) {
-				hand.setDamage(hand.getMaxDamage()-1);
+			if (hand.getDamageValue() > hand.getMaxDamage()) {
+				hand.setDamageValue(hand.getMaxDamage()-1);
 			}
 			
 			lastpath.put(targetpos, new Pair<>(now, pathpositions));
@@ -188,14 +188,14 @@ public class PathEvent {
 			}
 			
 			e.setCanceled(true);
-			world.setBlockState(targetpos, Blocks.GRASS_PATH.getDefaultState());
+			world.setBlockAndUpdate(targetpos, Blocks.GRASS_PATH.defaultBlockState());
 			
 			if (playernamelastpos.containsKey(playername)) {
 				BlockPos lastpos = playernamelastpos.get(playername);
 				
 				if (lastpos != targetpos) {
 					if (world.getBlockState(lastpos).getBlock().equals(Blocks.GRASS_PATH)) {
-						world.setBlockState(lastpos, Blocks.GRASS_BLOCK.getDefaultState());
+						world.setBlockAndUpdate(lastpos, Blocks.GRASS_BLOCK.defaultBlockState());
 					}
 				}
 			}

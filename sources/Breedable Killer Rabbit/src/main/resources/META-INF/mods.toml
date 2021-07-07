@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Bree
 
 [[mods]]
 modId="breedablekillerrabbit"
-version="1.4"
+version="1.5"
 displayName="Breedable Killer Rabbit"
 displayURL="https://curseforge.com/minecraft/mc-mods/breedable-killer-rabbit"
 authors="Rick South"
 description="A minimalistic configurable mod which makes the killer rabbit tamable and available by breeding."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.breedablekillerrabbit]]
     modId="collective"
     mandatory=true
-    versionRange="[2.0,)"
+    versionRange="[2.27,)"
     ordering="NONE"
     side="BOTH"

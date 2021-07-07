@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Campfire Spawn and Tweaks.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.16.5, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Campfire Spawn and Tweaks ever released, along with some other perks.
@@ -73,7 +73,7 @@ public class Util {
 						int z = Integer.parseInt(cs[2]);
 						
 						BlockPos spawnpos = new BlockPos(x, y, z);
-						CampfireEvent.playercampfires.put(playername, new Pair<World, BlockPos>(world, spawnpos.toImmutable()));
+						CampfireEvent.playercampfires.put(playername, new Pair<World, BlockPos>(world, spawnpos.immutable()));
 					}
 						
 				}
@@ -96,7 +96,7 @@ public class Util {
 			return false;
 		}
 		
-		CampfireEvent.playercampfires.put(playername.toLowerCase(), new Pair<World, BlockPos>(world, campfirepos.toImmutable()));
+		CampfireEvent.playercampfires.put(playername.toLowerCase(), new Pair<World, BlockPos>(world, campfirepos.immutable()));
 		return true;
 	}
 	

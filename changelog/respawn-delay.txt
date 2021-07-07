@@ -3,6 +3,9 @@ Respawn Delay
 https://www.curseforge.com/minecraft/mc-mods/respawn-delay
 
 =========
+v2.4: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
+
+=========
 v2.3: Fixed the mod not working correctly in a multiplayer environment.
 
 =========

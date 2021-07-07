@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Gras
 
 [[mods]]
 modId="grassseeds"
-version="1.4"
+version="1.5"
 displayName="Grass Seeds"
 displayURL="https://curseforge.com/minecraft/mc-mods/grass-seeds"
 authors="Rick South"
 description="A minimalistic mod which allows players to use normal seeds to transform dirt to grass."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.grassseeds]]
     modId="collective"
     mandatory=true
-    versionRange="[2.0,)"
+    versionRange="[2.27,)"
     ordering="NONE"
     side="BOTH"

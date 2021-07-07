@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.16.5, mod version: 2.2.
+ * Minecraft version: 1.16.5, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Areas ever released, along with some other perks.
@@ -52,7 +52,7 @@ public class Util {
 	private static Field signText = null;
 	
 	public static AreaObject getAreaSign(World world, BlockPos signpos) {
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return null;
 		}
 		
@@ -69,7 +69,7 @@ public class Util {
 			}
 		}
 		
-		TileEntity te = world.getTileEntity(signpos);
+		TileEntity te = world.getBlockEntity(signpos);
 		if (te == null) {
 			return null;
 		}
@@ -174,7 +174,7 @@ public class Util {
 				
 				i = 0;
 				for (String line : newsigncontentlist) {
-					signentity.setText(i, new StringTextComponent(line));
+					signentity.setMessage(i, new StringTextComponent(line));
 					i+=1;
 				}
 				
@@ -194,7 +194,7 @@ public class Util {
 						line = "[" + zoneprefix + "] " + radius;
 					}
 					
-					signentity.setText(i, new StringTextComponent(line));
+					signentity.setMessage(i, new StringTextComponent(line));
 					i+=1;
 				}
 				
@@ -320,7 +320,7 @@ public class Util {
 			StringFunctions.sendMessage(player, message, TextFormatting.DARK_GREEN);
 		}
 		if (ConfigHandler.GENERAL.showHUDMessages.get()) {
-			network.sendTo(new PacketToClientShowGUI(message, rgb), ((ServerPlayerEntity)player).connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);	
+			network.sendTo(new PacketToClientShowGUI(message, rgb), ((ServerPlayerEntity)player).connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);	
 		}		
 	}
 	
@@ -331,7 +331,7 @@ public class Util {
 		return false;
 	}
 	public static Boolean isSignItem(Item item) {
-		if (isSignBlock(Block.getBlockFromItem(item))) {
+		if (isSignBlock(Block.byItem(item))) {
 			return true;
 		}
 		return false;
@@ -340,7 +340,7 @@ public class Util {
 	private static boolean setSignField() {
 		if (signText == null) {
 			for (Field field : SignTileEntity.class.getDeclaredFields()) {
-				if (field.toString().contains("signText") || field.toString().contains("field_145915_a")) {
+				if (field.toString().contains("signText") || field.toString().contains("messages")) {
 					signText = field;
 					break;
 				}

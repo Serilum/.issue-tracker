@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Compass.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.16.5, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Compass ever released, along with some other perks.
@@ -56,7 +56,7 @@ public class GUIEvent extends IngameGui {
 			boolean found = false;
 			PlayerInventory inv = mc.player.inventory;
 			for (int n = 0; n <= 35; n++) {
-				if (inv.getStackInSlot(n).getItem().equals(Items.COMPASS)) {
+				if (inv.getItem(n).getItem().equals(Items.COMPASS)) {
 					found = true;
 					break;
 				}
@@ -68,11 +68,11 @@ public class GUIEvent extends IngameGui {
 		
 		String coordinates = getCoordinates();
 
-		FontRenderer fontRender = mc.fontRenderer;
-		MainWindow scaled = mc.getMainWindow();
-		int width = scaled.getScaledWidth();
+		FontRenderer fontRender = mc.font;
+		MainWindow scaled = mc.getWindow();
+		int width = scaled.getGuiScaledWidth();
 		
-		int stringWidth = fontRender.getStringWidth(coordinates);
+		int stringWidth = fontRender.width(coordinates);
 		
 		Color colour = new Color(ConfigHandler.GENERAL.RGB_R.get(), ConfigHandler.GENERAL.RGB_G.get(), ConfigHandler.GENERAL.RGB_B.get(), 255);
 			
@@ -89,7 +89,7 @@ public class GUIEvent extends IngameGui {
 			xcoord = width - stringWidth - 5;
 		}
 
-		fontRender.drawString(new MatrixStack(), coordinates, xcoord, ConfigHandler.GENERAL.compassHeightOffset.get(), colour.getRGB());
+		fontRender.draw(new MatrixStack(), coordinates, xcoord, ConfigHandler.GENERAL.compassHeightOffset.get(), colour.getRGB());
 		
 		GL11.glPopMatrix();
 	}
@@ -97,9 +97,9 @@ public class GUIEvent extends IngameGui {
 	private static List<String> direction = new ArrayList<String>(Arrays.asList("S", "SW", "W", "NW", "N", "NE", "E", "SE"));
 	private static String getCoordinates() {
 		ClientPlayerEntity player = mc.player;
-		BlockPos ppos = player.getPosition();
+		BlockPos ppos = player.blockPosition();
 		
-		int yaw = (int)player.getRotationYawHead();
+		int yaw = (int)player.getYHeadRot();
 		if (yaw < 0) {
 			yaw += 360;
 		}

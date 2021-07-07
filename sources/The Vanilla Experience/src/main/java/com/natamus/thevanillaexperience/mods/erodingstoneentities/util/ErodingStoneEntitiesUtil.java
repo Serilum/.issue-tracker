@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -103,9 +103,9 @@ public class ErodingStoneEntitiesUtil {
 		
 		Item toitem = erodeinto.get(item);
 		
-		ItemEntity newie = new ItemEntity(world, ie.getPosX(), ie.getPosY(), ie.getPosZ(), new ItemStack(toitem, stack.getCount()));
+		ItemEntity newie = new ItemEntity(world, ie.getX(), ie.getY(), ie.getZ(), new ItemStack(toitem, stack.getCount()));
 		ie.remove();
-		world.addEntity(newie);
+		world.addFreshEntity(newie);
 	}
 	
 	public static boolean isIceBlock(Block block) {

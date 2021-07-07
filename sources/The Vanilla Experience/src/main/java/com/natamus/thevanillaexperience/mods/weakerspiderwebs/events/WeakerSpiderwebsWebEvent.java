@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -38,8 +38,8 @@ public class WeakerSpiderwebsWebEvent {
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
 		PlayerEntity player = e.player;
-		World world = player.getEntityWorld();
-		if (world.isRemote || !e.phase.equals(Phase.END)) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide || !e.phase.equals(Phase.END)) {
 			return;
 		}
 		
@@ -61,26 +61,26 @@ public class WeakerSpiderwebsWebEvent {
 			}
 		}
 		
-		if (player.ticksExisted % 20 != 0) {
+		if (player.tickCount % 20 != 0) {
 			return;
 		}
 		
-		BlockPos pos = player.getPosition().toImmutable();
-		if (world.getBlockState(pos).getBlock() instanceof WebBlock || world.getBlockState(pos.up()).getBlock() instanceof WebBlock) {
+		BlockPos pos = player.blockPosition().immutable();
+		if (world.getBlockState(pos).getBlock() instanceof WebBlock || world.getBlockState(pos.above()).getBlock() instanceof WebBlock) {
 			new Thread( new Runnable() {
 		    	public void run()  {
 		        	try  { Thread.sleep( WeakerSpiderwebsConfigHandler.GENERAL.breakSpiderwebDelay.get() ); }
 		            catch (InterruptedException ie)  {}
 		        	
-		        	BlockPos nowpos = player.getPosition().toImmutable();
+		        	BlockPos nowpos = player.blockPosition().immutable();
 		        	if (pos.getX() != nowpos.getX() || pos.getZ() != nowpos.getZ()) {
 		        		return;
 		        	}
 		        	if (world.getBlockState(pos).getBlock() instanceof WebBlock) {
-		        		todestroy.get(playername).add(pos.toImmutable());
+		        		todestroy.get(playername).add(pos.immutable());
 		        	}
-		        	if (world.getBlockState(pos.up()).getBlock() instanceof WebBlock) {
-		        		todestroy.get(playername).add(pos.up().toImmutable());
+		        	if (world.getBlockState(pos.above()).getBlock() instanceof WebBlock) {
+		        		todestroy.get(playername).add(pos.above().immutable());
 		        	}
 		    	}
 		    } ).start();

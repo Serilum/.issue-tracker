@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Vote Command.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.16.5, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Vote Command ever released, along with some other perks.
@@ -28,7 +28,7 @@ public class CommandVote {
     	dispatcher.register(Commands.literal("vote")
 			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof PlayerEntity)
 			.executes((command) -> {
-				PlayerEntity player = (PlayerEntity)command.getSource().asPlayer();
+				PlayerEntity player = (PlayerEntity)command.getSource().getPlayerOrException();
 				
 				StringFunctions.sendMessage(player, ConfigHandler.GENERAL.voteCommandMessage.get(), TextFormatting.DARK_GREEN);
 				return 1;

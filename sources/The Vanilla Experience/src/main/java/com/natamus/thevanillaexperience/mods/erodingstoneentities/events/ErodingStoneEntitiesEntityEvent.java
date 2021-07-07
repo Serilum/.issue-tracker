@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -46,7 +46,7 @@ public class ErodingStoneEntitiesEntityEvent {
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
 		World world = e.world;
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
@@ -75,13 +75,13 @@ public class ErodingStoneEntitiesEntityEvent {
 				}
 				
 				int timeleft = iecount.get(ie);
-				BlockPos iepos = ie.getPosition();
+				BlockPos iepos = ie.blockPosition();
 				BlockState ieposstate = world.getBlockState(iepos);
 				if (ieposstate.getBlock().equals(Blocks.WATER)) {
-					int level = ieposstate.get(FlowingFluidBlock.LEVEL);
+					int level = ieposstate.getValue(FlowingFluidBlock.LEVEL);
 					if (level > 0) { // flowing
 						if (ErodingStoneEntitiesConfigHandler.GENERAL.preventErosionIfAboveIceBlock.get()) {
-							Block belowblock = world.getBlockState(iepos.down()).getBlock();
+							Block belowblock = world.getBlockState(iepos.below()).getBlock();
 							if (ErodingStoneEntitiesUtil.isIceBlock(belowblock)) {
 								continue;
 							}

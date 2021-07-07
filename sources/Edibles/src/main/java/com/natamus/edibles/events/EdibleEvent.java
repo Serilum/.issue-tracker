@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Edibles.
- * Minecraft version: 1.16.5, mod version: 2.2.
+ * Minecraft version: 1.16.5, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Edibles ever released, along with some other perks.
@@ -46,7 +46,7 @@ public class EdibleEvent {
 	@SubscribeEvent
 	public void onClickEmpty(PlayerInteractEvent.RightClickItem e) {
 		World world = e.getWorld();
-		if (world.isRemote) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -62,8 +62,8 @@ public class EdibleEvent {
 				return;
 			}
 			
-			EffectInstance effect = new EffectInstance(Effects.STRENGTH, ConfigHandler.OTHER.blazePowderStrengthDurationSeconds.get()*20);
-			player.addPotionEffect(effect);
+			EffectInstance effect = new EffectInstance(Effects.DAMAGE_BOOST, ConfigHandler.OTHER.blazePowderStrengthDurationSeconds.get()*20);
+			player.addEffect(effect);
 		}
 		else if (itemstack.getItem().equals(Items.MAGMA_CREAM)) {
 			if (ConfigHandler.OTHER.magmaCreamFireResistanceDurationSeconds.get() == 0) {
@@ -74,7 +74,7 @@ public class EdibleEvent {
 			}
 			
 			EffectInstance effect = new EffectInstance(Effects.FIRE_RESISTANCE, ConfigHandler.OTHER.magmaCreamFireResistanceDurationSeconds.get()*20);
-			player.addPotionEffect(effect);
+			player.addEffect(effect);
 		}
 		else if (itemstack.getItem().equals(Items.SUGAR)) {
 			if (ConfigHandler.OTHER.sugarSpeedDurationSeconds.get() == 0) {
@@ -84,8 +84,8 @@ public class EdibleEvent {
 				return;
 			}
 			
-			EffectInstance effect = new EffectInstance(Effects.SPEED, ConfigHandler.OTHER.sugarSpeedDurationSeconds.get()*20);
-			player.addPotionEffect(effect);
+			EffectInstance effect = new EffectInstance(Effects.MOVEMENT_SPEED, ConfigHandler.OTHER.sugarSpeedDurationSeconds.get()*20);
+			player.addEffect(effect);
 		}
 		else if (itemstack.getItem().equals(Items.GHAST_TEAR)) {
 			if (ConfigHandler.OTHER.ghastTearDurationSeconds.get() == 0) {
@@ -96,7 +96,7 @@ public class EdibleEvent {
 			}
 			
 			EffectInstance effect = new EffectInstance(Effects.REGENERATION, ConfigHandler.OTHER.ghastTearDurationSeconds.get()*20);
-			player.addPotionEffect(effect);
+			player.addEffect(effect);
 		}
 		else if (itemstack.getItem().equals(Items.PHANTOM_MEMBRANE)) {
 			if (ConfigHandler.OTHER.phantomMembraneDurationSeconds.get() == 0) {
@@ -107,7 +107,7 @@ public class EdibleEvent {
 			}
 			
 			EffectInstance effect = new EffectInstance(Effects.SLOW_FALLING, ConfigHandler.OTHER.phantomMembraneDurationSeconds.get()*20);
-			player.addPotionEffect(effect);
+			player.addEffect(effect);
 		}
 		else if (itemstack.getItem().equals(Items.RABBIT_FOOT)) {
 			if (ConfigHandler.OTHER.rabbitsFootDurationSeconds.get() == 0) {
@@ -117,8 +117,8 @@ public class EdibleEvent {
 				return;
 			}
 			
-			EffectInstance effect = new EffectInstance(Effects.JUMP_BOOST, ConfigHandler.OTHER.rabbitsFootDurationSeconds.get()*20);
-			player.addPotionEffect(effect);
+			EffectInstance effect = new EffectInstance(Effects.JUMP, ConfigHandler.OTHER.rabbitsFootDurationSeconds.get()*20);
+			player.addEffect(effect);
 		}
 		else if (itemstack.getItem().equals(Items.GLOWSTONE_DUST)) {
 			if (ConfigHandler.GLOW.glowEntityDurationSeconds.get() == 0) {
@@ -128,15 +128,15 @@ public class EdibleEvent {
 				return;
 			}
 			
-			BlockPos pos = player.getPosition();
+			BlockPos pos = player.blockPosition();
 			int r = ConfigHandler.GLOW.glowEntitiesAroundAffectedRadiusBlocks.get();
 			EffectInstance effect = new EffectInstance(Effects.GLOWING, ConfigHandler.GLOW.glowEntityDurationSeconds.get()*200);
 			
-			Iterator<Entity> it = world.getEntitiesWithinAABBExcludingEntity(player, new AxisAlignedBB(pos.getX()-r, pos.getY()-r, pos.getZ()-r, pos.getX()+r, pos.getY()+r, pos.getZ()+r)).iterator();
+			Iterator<Entity> it = world.getEntities(player, new AxisAlignedBB(pos.getX()-r, pos.getY()-r, pos.getZ()-r, pos.getX()+r, pos.getY()+r, pos.getZ()+r)).iterator();
 			while (it.hasNext()) {
 				Entity ne = it.next();
 				if (ne instanceof LivingEntity && (ne instanceof PlayerEntity == false)) {
-					((LivingEntity)ne).addPotionEffect(effect);
+					((LivingEntity)ne).addEffect(effect);
 				}
 			}		
 		}
@@ -171,7 +171,7 @@ public class EdibleEvent {
 			
 			if (dayuses > ConfigHandler.WEAKNESS.maxItemUsesPerDaySingleItem.get() && ConfigHandler.WEAKNESS.maxItemUsesPerDaySingleItem.get() != -1) {
 				EffectInstance weakness = new EffectInstance(Effects.WEAKNESS, ConfigHandler.WEAKNESS.weaknessDurationSeconds.get()*20);
-				player.addPotionEffect(weakness);
+				player.addEffect(weakness);
 			}
 			else if (currentuses.size() > 1 && ConfigHandler.WEAKNESS.maxItemUsesPerDayTotal.get() != -1) {
 				int totaluses = 0;
@@ -181,7 +181,7 @@ public class EdibleEvent {
 				
 				if (totaluses > ConfigHandler.WEAKNESS.maxItemUsesPerDayTotal.get()) {
 					EffectInstance weakness = new EffectInstance(Effects.WEAKNESS, ConfigHandler.WEAKNESS.weaknessDurationSeconds.get()*20);
-					player.addPotionEffect(weakness);	
+					player.addEffect(weakness);	
 				}
 			}
 			

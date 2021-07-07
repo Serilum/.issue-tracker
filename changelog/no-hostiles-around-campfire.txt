@@ -3,6 +3,9 @@ No Hostiles Around Campfire
 https://www.curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire
 
 =========
+v3.4: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
+
+=========
 v3.3: Now checks if a campfire is placed unlit. And if unlit, will not burn entities around. Adds compatibility with others mods.
 
 =========

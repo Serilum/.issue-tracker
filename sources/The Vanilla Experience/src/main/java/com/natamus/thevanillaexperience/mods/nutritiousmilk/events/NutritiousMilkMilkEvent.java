@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -37,8 +37,8 @@ public class NutritiousMilkMilkEvent {
 	@SubscribeEvent
 	public void onDrink(LivingEntityUseItemEvent.Finish e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		if (entity instanceof PlayerEntity == false) {
@@ -50,7 +50,7 @@ public class NutritiousMilkMilkEvent {
 		String registryname = item.getRegistryName().toString();
 		if (item.equals(Items.MILK_BUCKET) || registryname.contains("milk_bucket")) {
 			PlayerEntity player = (PlayerEntity)entity;
-			FoodStats fs = player.getFoodStats();
+			FoodStats fs = player.getFoodData();
 			
 			fs.setFoodLevel(fs.getFoodLevel() + NutritiousMilkConfigHandler.GENERAL.hungerLevelIncrease.get());
 			
@@ -58,7 +58,7 @@ public class NutritiousMilkMilkEvent {
 			if (player instanceof ServerPlayerEntity) {
 				if (foodStats_foodSaturationLevel == null) {
 					for (Field field : FoodStats.class.getDeclaredFields()) {
-						if (field.toString().contains("foodSaturationLevel") || field.toString().contains("field_75125_b")) {
+						if (field.toString().contains("foodSaturationLevel") || field.toString().contains("saturationLevel")) {
 							foodStats_foodSaturationLevel = field;
 							break;
 						}
@@ -74,7 +74,7 @@ public class NutritiousMilkMilkEvent {
 				} catch (Exception ex) { }
 				return;
 			}
-			fs.setFoodSaturationLevel(saturation);
+			fs.setSaturation(saturation);
 		}
 	}
 }

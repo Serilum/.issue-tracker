@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -31,15 +31,15 @@ public class GiantAttackTurtleEggGoal extends BreakBlockGoal {
 		super(Blocks.TURTLE_EGG, p_i50465_2_, p_i50465_3_, p_i50465_5_);
 	}
 	
-	public void playBreakingSound(IWorld p_203114_1_, BlockPos p_203114_2_) {
-		p_203114_1_.playSound((PlayerEntity)null, p_203114_2_, SoundEvents.ENTITY_ZOMBIE_DESTROY_EGG, SoundCategory.HOSTILE, 0.5F, 0.9F + GlobalVariables.random.nextFloat() * 0.2F);
+	public void playDestroyProgressSound(IWorld p_203114_1_, BlockPos p_203114_2_) {
+		p_203114_1_.playSound((PlayerEntity)null, p_203114_2_, SoundEvents.ZOMBIE_DESTROY_EGG, SoundCategory.HOSTILE, 0.5F, 0.9F + GlobalVariables.random.nextFloat() * 0.2F);
 	}
 	
-	public void playBrokenSound(World p_203116_1_, BlockPos p_203116_2_) {
-		p_203116_1_.playSound((PlayerEntity)null, p_203116_2_, SoundEvents.ENTITY_TURTLE_EGG_BREAK, SoundCategory.BLOCKS, 0.7F, 0.9F + p_203116_1_.rand.nextFloat() * 0.2F);
+	public void playBreakSound(World p_203116_1_, BlockPos p_203116_2_) {
+		p_203116_1_.playSound((PlayerEntity)null, p_203116_2_, SoundEvents.TURTLE_EGG_BREAK, SoundCategory.BLOCKS, 0.7F, 0.9F + p_203116_1_.random.nextFloat() * 0.2F);
 	}
 	
-	public double getTargetDistanceSq() {
+	public double acceptedDistance() {
 		return 1.14D;
 	}
 }

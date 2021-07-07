@@ -3,6 +3,9 @@ Village Spawn Point
 https://www.curseforge.com/minecraft/mc-mods/village-spawn-point
 
 =========
+v1.6: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
+
+=========
 v1.5: Updated Village Spawn Point to work with the new Collective update. The update attempts to inform players which download mods from illegitimate sources that it can be harmful to do so. If you are reading this on CurseForge and download your mods here, this won't affect you. Thank you for downloading mods from CurseForge and supporting the mod developers.
 
 =========

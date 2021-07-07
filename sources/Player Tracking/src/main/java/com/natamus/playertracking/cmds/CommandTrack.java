@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Tracking.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.16.5, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Player Tracking ever released, along with some other perks.
@@ -37,7 +37,7 @@ public class CommandTrack {
 	    			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof PlayerEntity)
 	    			.then(Commands.literal("help")
 	    			.executes((command) -> {
-	    				PlayerEntity player = command.getSource().asPlayer();
+	    				PlayerEntity player = command.getSource().getPlayerOrException();
 	    				
 	    				StringFunctions.sendMessage(player, "Tracking Help Page (1/5)", TextFormatting.DARK_GRAY, true);
 	    				StringFunctions.sendMessage(player, "For an introduction to tracking read page 2.", TextFormatting.GRAY);
@@ -50,7 +50,7 @@ public class CommandTrack {
 	    			.then(Commands.literal("help")
 	    			.then(Commands.argument("page", IntegerArgumentType.integer(1, 5))
 	    			.executes((command) -> {
-	    				PlayerEntity player = command.getSource().asPlayer();
+	    				PlayerEntity player = command.getSource().getPlayerOrException();
 	    				
 	    				Integer page = IntegerArgumentType.getInteger(command, "page");
 	    				
@@ -99,7 +99,7 @@ public class CommandTrack {
 	    			.then(Commands.argument("page", IntegerArgumentType.integer(3, 3))
 	    			.then(Commands.literal("layout")
 	    			.executes((command) -> {
-	    				PlayerEntity player = command.getSource().asPlayer();
+	    				PlayerEntity player = command.getSource().getPlayerOrException();
 	    				
 						StringFunctions.sendMessage(player, "Tracking Help Page (3/5) - Building LAYOUT", TextFormatting.DARK_GRAY, true);
 						StringFunctions.sendMessage(player, "In the picture below you can see multiple letters and dashes. The dashes are Obsidian blocks, D is a Diamond block, and G are Gold blocks.", TextFormatting.GRAY);
@@ -113,10 +113,10 @@ public class CommandTrack {
 	    			}))))
 	    			.then(Commands.literal("all")
 	    			.executes((command) -> {
-	    				PlayerEntity player = command.getSource().asPlayer();
+	    				PlayerEntity player = command.getSource().getPlayerOrException();
 	    				
-	    				World world = player.getEntityWorld();
-	    				BlockPos bpos = player.getPosition().down().toImmutable();
+	    				World world = player.getCommandSenderWorld();
+	    				BlockPos bpos = player.blockPosition().below().immutable();
 	    				Block block = world.getBlockState(bpos).getBlock();
 	    				if(block.equals(Blocks.DIAMOND_BLOCK)) {
 	    					Tracking tracker = new Tracking(Main.instance);
@@ -135,13 +135,13 @@ public class CommandTrack {
 			        }))
 	    			.then(Commands.argument("playerName", StringArgumentType.string())
 	    			.executes((command) -> {
-	    				PlayerEntity player = command.getSource().asPlayer();
+	    				PlayerEntity player = command.getSource().getPlayerOrException();
 	    				String playername = StringArgumentType.getString(command, "playerName");
 	    				
 	    				PlayerEntity other = PlayerFunctions.matchPlayer(player, playername);
 	    				if(other != null) {
 	    					Tracking tracker = new Tracking(Main.instance);
-	    					BlockPos bpos = player.getPosition().down().toImmutable();
+	    					BlockPos bpos = player.blockPosition().below().immutable();
 	    					tracker.setLoc(bpos.getX(), bpos.getY(), bpos.getZ());
 	    					tracker.Track(player, other);
 	    					return 1;
@@ -150,7 +150,7 @@ public class CommandTrack {
 	    				return 1;
 	    			}))
 	    			.executes((command) -> {
-	    				PlayerEntity player = command.getSource().asPlayer();
+	    				PlayerEntity player = command.getSource().getPlayerOrException();
 	    				StringFunctions.sendMessage(player, "Use '/track [playerName]'  or '/track all'.", TextFormatting.GRAY);
 	    				StringFunctions.sendMessage(player, "Or do '/track help' for information.", TextFormatting.GRAY);
 	    				return 1;

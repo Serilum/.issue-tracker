@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Save and Load Inventories.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.16.5, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Save and Load Inventories ever released, along with some other perks.
@@ -29,7 +29,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class CommandLoadinventory {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
-    	dispatcher.register(Commands.literal("loadinventory").requires((iCommandSender) -> iCommandSender.hasPermissionLevel(2))
+    	dispatcher.register(Commands.literal("loadinventory").requires((iCommandSender) -> iCommandSender.hasPermission(2))
 			.then(Commands.argument("inventory-name", StringArgumentType.word())
 			.executes((command) -> {
 				return loadInventory(command);
@@ -40,7 +40,7 @@ public class CommandLoadinventory {
 				return loadInventoryForPlayerName(command);
 			})))
 		);
-    	dispatcher.register(Commands.literal("li").requires((iCommandSender) -> iCommandSender.hasPermissionLevel(2))
+    	dispatcher.register(Commands.literal("li").requires((iCommandSender) -> iCommandSender.hasPermission(2))
 			.then(Commands.argument("inventory-name", StringArgumentType.word())
 			.executes((command) -> {
 				return loadInventory(command);
@@ -58,7 +58,7 @@ public class CommandLoadinventory {
     	
     	PlayerEntity player;
 		try {
-			player = source.asPlayer();
+			player = source.getPlayerOrException();
 		}
 		catch (CommandSyntaxException ex) {
 			StringFunctions.sendMessage(source, "This command can only be executed as a player in-game.", TextFormatting.RED);
@@ -87,7 +87,7 @@ public class CommandLoadinventory {
     	
     	PlayerEntity player;
 		try {
-			player = source.asPlayer();
+			player = source.getPlayerOrException();
 		}
 		catch (CommandSyntaxException ex) {
 			StringFunctions.sendMessage(source, "This command can only be executed as a player in-game.", TextFormatting.RED);

@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Neth
 
 [[mods]]
 modId="netherportalspread"
-version="5.1"
+version="5.2"
 displayName="Nether Portal Spread"
 displayURL="https://curseforge.com/minecraft/mc-mods/nether-portal-spread"
 authors="Rick South"
 description="Nether portals spread (custom) nether blocks to the overworld around the portal in a configurable radius."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.netherportalspread]]
     modId="collective"
     mandatory=true
-    versionRange="[2.11,)"
+    versionRange="[2.27,)"
     ordering="NONE"
     side="BOTH"

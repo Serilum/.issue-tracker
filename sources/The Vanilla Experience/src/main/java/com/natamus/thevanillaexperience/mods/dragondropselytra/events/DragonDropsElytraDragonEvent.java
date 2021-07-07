@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -37,8 +37,8 @@ public class DragonDropsElytraDragonEvent {
 	@SubscribeEvent
 	public void mobItemDrop(LivingDropsEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getEntityWorld();
-		if (world.isRemote) {
+		World world = entity.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -47,11 +47,11 @@ public class DragonDropsElytraDragonEvent {
 		}
 		
 		PlayerEntity player = null;
-		BlockPos epos = entity.getPosition();
-		Entity source = e.getSource().getTrueSource();
+		BlockPos epos = entity.blockPosition();
+		Entity source = e.getSource().getEntity();
 		
 		if (source == null) {
-			List<Entity> entitiesaround = world.getEntitiesWithinAABBExcludingEntity(entity, new AxisAlignedBB(epos.getX()-30, epos.getY()-30, epos.getZ()-30, epos.getX()+30, epos.getY()+30, epos.getZ()+30));
+			List<Entity> entitiesaround = world.getEntities(entity, new AxisAlignedBB(epos.getX()-30, epos.getY()-30, epos.getZ()-30, epos.getX()+30, epos.getY()+30, epos.getZ()+30));
 			for (Entity ea : entitiesaround) {
 				if (ea instanceof PlayerEntity) {
 					player = (PlayerEntity)ea;
@@ -70,9 +70,9 @@ public class DragonDropsElytraDragonEvent {
 			e.getDrops().add(new ItemEntity(world, epos.getX(), epos.getY()+1, epos.getZ(), elytrastack));
 		}
 		else {
-			BlockPos pos = player.getPosition();
+			BlockPos pos = player.blockPosition();
 			ItemEntity elytra = new ItemEntity(world, pos.getX(), pos.getY()+1, pos.getZ(), elytrastack);
-			world.addEntity(elytra);
+			world.addFreshEntity(elytra);
 			
 			StringFunctions.sendMessage(player, "The elytra dropped at your position!", TextFormatting.YELLOW);
 		}

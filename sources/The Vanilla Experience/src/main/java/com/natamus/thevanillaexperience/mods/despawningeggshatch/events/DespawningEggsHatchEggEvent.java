@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -40,8 +40,8 @@ public class DespawningEggsHatchEggEvent {
 	@SubscribeEvent
 	public void onItemExpire(ItemExpireEvent e) {
 		ItemEntity entityitem = e.getEntityItem();
-		World world = entityitem.getEntityWorld();
-		if (world.isRemote) {
+		World world = entityitem.getCommandSenderWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -51,8 +51,8 @@ public class DespawningEggsHatchEggEvent {
 		}
 		
 		if (DespawningEggsHatchConfigHandler.GENERAL.eggOnlyHatchesWhenOnTopOfHayBlock.get()) {
-			BlockPos blockpos = entityitem.getPosition();
-			Block belowblock = world.getBlockState(blockpos.down()).getBlock();
+			BlockPos blockpos = entityitem.blockPosition();
+			Block belowblock = world.getBlockState(blockpos.below()).getBlock();
 			if (belowblock instanceof HayBlock == false) {
 				return;
 			}
@@ -63,11 +63,11 @@ public class DespawningEggsHatchEggEvent {
 			int itemamount = itemstack.getCount();
 			
 			int moblimit = DespawningEggsHatchConfigHandler.GENERAL.onlyHatchIfLessChickensAroundThan.get();
-			Vector3d iposvec = entityitem.getPositionVec();
+			Vector3d iposvec = entityitem.position();
 			
 			int r = DespawningEggsHatchConfigHandler.GENERAL.radiusEntityLimiterCheck.get();
 			int chickencount = 0;
-			Iterator<Entity> it = world.getEntitiesWithinAABBExcludingEntity(entityitem, new AxisAlignedBB(iposvec.getX()-r, iposvec.getY()-r, iposvec.getZ()-r, iposvec.getX()+r, iposvec.getY()+r, iposvec.getZ()+r)).iterator();
+			Iterator<Entity> it = world.getEntities(entityitem, new AxisAlignedBB(iposvec.x()-r, iposvec.y()-r, iposvec.z()-r, iposvec.x()+r, iposvec.y()+r, iposvec.z()+r)).iterator();
 			while (it.hasNext()) {
 				Entity ne = it.next();
 				if (ne instanceof ChickenEntity) {
@@ -81,12 +81,12 @@ public class DespawningEggsHatchEggEvent {
 				}
 				
 				ChickenEntity chicken = new ChickenEntity(EntityType.CHICKEN, world);
-				chicken.setPosition(iposvec.x, iposvec.y+1, iposvec.z);
+				chicken.setPos(iposvec.x, iposvec.y+1, iposvec.z);
 				if (DespawningEggsHatchConfigHandler.GENERAL.newHatchlingIsBaby.get()) {
-					chicken.setGrowingAge(-24000);
+					chicken.setAge(-24000);
 				}
 				
-				world.addEntity(chicken);
+				world.addFreshEntity(chicken);
 				chickencount++;
 			}
 		}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Tracking Compass.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.16.5, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Player Tracking Compass ever released, along with some other perks.
@@ -25,17 +25,19 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class TrackingCompassItem extends Item {
 	public TrackingCompassItem (Properties builder) {
 		super(builder);
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-		if (world.isRemote) {
+	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+		if (world.isClientSide) {
 			Main.network.sendToServer(new RequestServerPacket());
 		}
 	
-		return new ActionResult<ItemStack>(ActionResultType.PASS, player.getHeldItem(hand));
+		return new ActionResult<ItemStack>(ActionResultType.PASS, player.getItemInHand(hand));
 	}
 }

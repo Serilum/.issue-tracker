@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Fish On The Line.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Fish On The Line ever released, along with some other perks.
@@ -41,18 +41,18 @@ public class FishOnTheLineEvent {
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
 		PlayerEntity player = e.player;
-		World world = player.getEntityWorld();
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
-		FishingBobberEntity fbe = player.fishingBobber;
+		FishingBobberEntity fbe = player.fishing;
 		if (fbe == null) {
 			return;
 		}
 		
 		if (ConfigHandler.GENERAL.mustHoldBellInOffhand.get()) {
-			ItemStack offhandstack = player.getHeldItemOffhand();
+			ItemStack offhandstack = player.getOffhandItem();
 			if (!offhandstack.getItem().equals(Items.BELL)) {
 				return;
 			}
@@ -61,7 +61,7 @@ public class FishOnTheLineEvent {
 		boolean fishontheline = false;
 		int booleancount = 0;
 		
-		EntityDataManager datamanager = fbe.getDataManager();
+		EntityDataManager datamanager = fbe.getEntityData();
 		List<DataEntry<?>> entries = datamanager.getAll();
 		for (DataEntry<?> entry : entries) {
 			String entryvalue = entry.getValue().toString();
@@ -85,7 +85,7 @@ public class FishOnTheLineEvent {
 			}
 			
 			if (delay == 0) {
-				world.playSound((PlayerEntity)null, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 0.5F, 0.4F / (GlobalVariables.random.nextFloat() * 0.4F + 0.8F));
+				world.playSound((PlayerEntity)null, player.getX(), player.getY(), player.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 0.5F, 0.4F / (GlobalVariables.random.nextFloat() * 0.4F + 0.8F));
 				delay = 7;
 			}
 			else {

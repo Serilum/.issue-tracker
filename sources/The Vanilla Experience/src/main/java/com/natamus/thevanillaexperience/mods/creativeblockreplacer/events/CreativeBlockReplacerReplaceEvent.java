@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -43,8 +43,8 @@ public class CreativeBlockReplacerReplaceEvent {
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
 		PlayerEntity player = e.player;
-		World world = player.getEntityWorld();
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		if (!player.isCreative()) {
@@ -52,7 +52,7 @@ public class CreativeBlockReplacerReplaceEvent {
 		}
 		
 		String playername = player.getName().getString();
-		BlockPos playerpos = player.getPosition();
+		BlockPos playerpos = player.blockPosition();
 		if (lastpos.containsKey(playername)) {
 			if (sneaktotal.containsKey(playername)) {
 				if (!lastpos.get(playername).equals(playerpos)) {
@@ -65,7 +65,7 @@ public class CreativeBlockReplacerReplaceEvent {
 		}
 		lastpos.put(playername, playerpos);
 		
-		if (player.isSneaking()) {
+		if (player.isShiftKeyDown()) {
 			if (sneakcurrent.containsKey(playername)) {
 				return;
 			}
@@ -106,7 +106,7 @@ public class CreativeBlockReplacerReplaceEvent {
 	@SubscribeEvent
 	public void onBlockClick(PlayerInteractEvent.RightClickBlock e) {
 		World world = e.getWorld();
-		if (world.isRemote || !e.getHand().equals(Hand.MAIN_HAND)) {
+		if (world.isClientSide || !e.getHand().equals(Hand.MAIN_HAND)) {
 			return;
 		}
 		
@@ -127,10 +127,10 @@ public class CreativeBlockReplacerReplaceEvent {
 		BlockPos cpos = e.getPos();
 		ItemStack hand = e.getItemStack();
 		
-		Block toblock = Block.getBlockFromItem(hand.getItem());
-		BlockState tostate = toblock.getDefaultState();
+		Block toblock = Block.byItem(hand.getItem());
+		BlockState tostate = toblock.defaultBlockState();
 		
-		world.setBlockState(cpos, tostate);
+		world.setBlockAndUpdate(cpos, tostate);
 		e.setCanceled(true);
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.16.5, mod version: 1.1.
+ * Minecraft version: 1.16.5, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -40,8 +40,8 @@ public class AutomaticDoorsDoorEvent {
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
 		PlayerEntity player = e.player;
-		World world = player.getEntityWorld();
-		if (world.isRemote || !e.phase.equals(Phase.START)) {
+		World world = player.getCommandSenderWorld();
+		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
@@ -54,7 +54,7 @@ public class AutomaticDoorsDoorEvent {
 			newclosedoors = new ArrayList<BlockPos>();
 		}
 		
-		BlockPos ppos = player.getPosition().up().toImmutable();
+		BlockPos ppos = player.blockPosition().above().immutable();
 		if (toclosedoors.size() > 0) {
 			List<BlockPos> closetoremove = new ArrayList<BlockPos>();
 			
@@ -70,14 +70,14 @@ public class AutomaticDoorsDoorEvent {
 					continue;
 				}
 								
-				if (!ppos.withinDistance(bp, 3) || (AutomaticDoorsConfigHandler.GENERAL.preventOpeningOnSneak.get() && player.isSneaking())) {
-					Iterator<BlockPos> it0 = BlockPos.getAllInBoxMutable(bp.getX()-1, bp.getY(), bp.getZ()-1, bp.getX()+1, bp.getY(), bp.getZ()+1).iterator();
+				if (!ppos.closerThan(bp, 3) || (AutomaticDoorsConfigHandler.GENERAL.preventOpeningOnSneak.get() && player.isShiftKeyDown())) {
+					Iterator<BlockPos> it0 = BlockPos.betweenClosed(bp.getX()-1, bp.getY(), bp.getZ()-1, bp.getX()+1, bp.getY(), bp.getZ()+1).iterator();
 					while (it0.hasNext()) {
 						BlockPos aroundpos = it0.next();
 						BlockState aroundstate = world.getBlockState(aroundpos);
 						Block aroundblock = aroundstate.getBlock();
 						if (AutomaticDoorsUtil.isDoor(aroundblock)) {
-							((DoorBlock)block).openDoor(world, aroundstate, aroundpos, false); // toggleDoor
+							((DoorBlock)block).setOpen(world, aroundstate, aroundpos, false); // toggleDoor
 						}
 					}
 					
@@ -92,13 +92,13 @@ public class AutomaticDoorsDoorEvent {
 			}
 		}
 		
-		if (player.isSneaking()) {
+		if (player.isShiftKeyDown()) {
 			if (AutomaticDoorsConfigHandler.GENERAL.preventOpeningOnSneak.get()) {
 				return;
 			}
 		}
 		
-		Iterator<BlockPos> it1 = BlockPos.getAllInBox(ppos.getX()-1, ppos.getY(), ppos.getZ()-1, ppos.getX()+1, ppos.getY(), ppos.getZ()+1).iterator();
+		Iterator<BlockPos> it1 = BlockPos.betweenClosedStream(ppos.getX()-1, ppos.getY(), ppos.getZ()-1, ppos.getX()+1, ppos.getY(), ppos.getZ()+1).iterator();
 		while (it1.hasNext()) {
 			BlockPos np = it1.next();
 			BlockState state = world.getBlockState(np);
@@ -108,8 +108,8 @@ public class AutomaticDoorsDoorEvent {
 					continue;
 				}
 				
-				((DoorBlock)block).openDoor(world, state, np, true); // toggleDoor
-				AutomaticDoorsUtil.delayDoorClose(np.toImmutable());
+				((DoorBlock)block).setOpen(world, state, np, true); // toggleDoor
+				AutomaticDoorsUtil.delayDoorClose(np.immutable());
 			}
 		}
 	}
