@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,21 +14,21 @@
 
 package com.natamus.collective.functions;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class TileEntityFunctions {
-	public static void updateTileEntity(World world, BlockPos pos) {
-		TileEntity tileentity = world.getBlockEntity(pos); // CHECK FOR NULL
+	public static void updateTileEntity(Level world, BlockPos pos) {
+		BlockEntity tileentity = world.getBlockEntity(pos); // CHECK FOR NULL
 		updateTileEntity(world, pos, tileentity);
 	}
-	public static void updateTileEntity(World world, BlockPos pos, TileEntity tileentity) {
+	public static void updateTileEntity(Level world, BlockPos pos, BlockEntity tileentity) {
 		BlockState state = world.getBlockState(pos);
 		updateTileEntity(world, pos, state, tileentity);
 	}
-	public static void updateTileEntity(World world, BlockPos pos, BlockState state, TileEntity tileentity) {
+	public static void updateTileEntity(Level world, BlockPos pos, BlockState state, BlockEntity tileentity) {
 		world.setBlocksDirty(pos, state, state);
 		world.sendBlockUpdated(pos, state, state, 3);
 		tileentity.setChanged();

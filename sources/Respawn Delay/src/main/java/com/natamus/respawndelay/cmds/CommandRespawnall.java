@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Respawn Delay.
- * Minecraft version: 1.16.5, mod version: 2.4.
+ * Minecraft version: 1.17.1, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Respawn Delay ever released, along with some other perks.
@@ -22,23 +22,24 @@ import com.natamus.collective.functions.StringFunctions;
 import com.natamus.respawndelay.events.RespawningEvent;
 import com.natamus.respawndelay.util.Util;
 
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 
 public class CommandRespawnall {
-    public static void register(CommandDispatcher<CommandSource> dispatcher) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
     	dispatcher.register(Commands.literal("respawnall").requires((iCommandSender) -> iCommandSender.hasPermission(2))
 			.executes((command) -> {
-				CommandSource source = command.getSource();
+				CommandSourceStack source = command.getSource();
 				
 				int amountrespawned = 0;
-				Set<PlayerEntity> spectating_players = RespawningEvent.death_times.keySet();
-				Iterator<PlayerEntity> it = spectating_players.iterator();
+				Set<Player> spectating_players = RespawningEvent.death_times.keySet();
+				Iterator<Player> it = spectating_players.iterator();
 				while (it.hasNext()) {
-					PlayerEntity nextplayer = it.next();
-					Util.respawnPlayer(nextplayer.getCommandSenderWorld(), nextplayer);
+					Player nextplayer = it.next();
+					Util.respawnPlayer(nextplayer.getCommandSenderWorld(), (ServerPlayer)nextplayer);
 					amountrespawned += 1;
 				}
 				
@@ -47,7 +48,7 @@ public class CommandRespawnall {
 					s = "s";
 				}
 				
-				StringFunctions.sendMessage(source, "Successfully made " + amountrespawned + " player" + s + " respawn.", TextFormatting.DARK_GREEN);
+				StringFunctions.sendMessage(source, "Successfully made " + amountrespawned + " player" + s + " respawn.", ChatFormatting.DARK_GREEN);
 				return 1;
 			})
 		);

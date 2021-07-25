@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,6 +14,7 @@
 
 package com.natamus.collective.functions;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,33 +24,51 @@ import java.util.Map;
 import com.natamus.collective.config.ConfigHandler;
 import com.natamus.collective.data.GlobalVariables;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.StandingSignBlock;
-import net.minecraft.block.WallSignBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.StandingSignBlock;
+import net.minecraft.world.level.block.WallSignBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.TickingBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
+@SuppressWarnings("unchecked")
 public class FABFunctions {
-	private static Map<Block, Map<World, List<BlockPos>>> getMapFromBlock = new HashMap<Block, Map<World, List<BlockPos>>>();
-	private static Map<World, Map<Date, BlockPos>> timeoutpositions = new HashMap<World, Map<Date, BlockPos>>();
+	public static Field level_blockEntityTickers = null;
 	
-	public static List<BlockPos> getAllTileEntityPositionsNearbyEntity(TileEntityType<?> tetype, Integer radius,  World world, Entity entity) {
+	private static Map<Block, Map<Level, List<BlockPos>>> getMapFromBlock = new HashMap<Block, Map<Level, List<BlockPos>>>();
+	private static Map<Level, Map<Date, BlockPos>> timeoutpositions = new HashMap<Level, Map<Date, BlockPos>>();
+	
+	public static List<BlockPos> getAllTileEntityPositionsNearbyEntity(BlockEntityType<?> tetype, Integer radius,  Level world, Entity entity) {
+		if (level_blockEntityTickers == null) {
+			setReflectionField();
+		}
+		
 		List<BlockPos> nearbypositions = new ArrayList<BlockPos>();
-		for (TileEntity loadedtileentity : world.blockEntityList) {
-			TileEntityType<?> loadedtiletype = loadedtileentity.getType();
+		List<TickingBlockEntity> blockentities = null;
+		
+		try {
+			blockentities = (List<TickingBlockEntity>) level_blockEntityTickers.get(world);
+		} catch (Exception ex) { }
+		
+		if (blockentities == null) {
+			return nearbypositions;
+		}
+		
+		for (TickingBlockEntity loadedtileentity : blockentities) {
+			BlockEntityType<?> loadedtiletype = ((BlockEntity)loadedtileentity).getType();
 			if (loadedtiletype == null) {
 				continue;
 			}
 			
 			if (loadedtiletype.equals(tetype)) {
-				BlockPos ltepos = loadedtileentity.getBlockPos();
+				BlockPos ltepos = loadedtileentity.getPos();
 				if (ltepos.closerThan(entity.position(), radius)) {
-					nearbypositions.add(loadedtileentity.getBlockPos());
+					nearbypositions.add(loadedtileentity.getPos());
 				}
 			}
 		}
@@ -57,9 +76,22 @@ public class FABFunctions {
 		return nearbypositions;
 	}
 	
-	public static BlockPos getRequestedBlockAroundEntitySpawn(Block rawqueryblock, Integer radius, Double radiusmodifier, World world, Entity entity) {
+	public static BlockPos getRequestedBlockAroundEntitySpawn(Block rawqueryblock, Integer radius, Double radiusmodifier, Level world, Entity entity) {
+		if (level_blockEntityTickers == null) {
+			setReflectionField();
+		}
+		
+		List<TickingBlockEntity> blockentities = null;
+		try {
+			blockentities = (List<TickingBlockEntity>) level_blockEntityTickers.get(world);
+		} catch (Exception ex) { }
+		
+		if (blockentities == null) {
+			return null;
+		}
+		
 		Block requestedblock = processCommonBlock(rawqueryblock);
-		Map<World,List<BlockPos>> worldblocks = getMap(requestedblock);
+		Map<Level, List<BlockPos>> worldblocks = getMap(requestedblock);
 
 		BlockPos epos = entity.blockPosition();
 		
@@ -133,17 +165,16 @@ public class FABFunctions {
 		}
 		
 		if (GlobalVariables.blocksWithTileEntity.containsKey(requestedblock)) {
-			TileEntityType<?> tiletypetofind = GlobalVariables.blocksWithTileEntity.get(requestedblock);
+			BlockEntityType<?> tiletypetofind = GlobalVariables.blocksWithTileEntity.get(requestedblock);
 			
-			List<TileEntity> loadedtileentities = world.blockEntityList;
-			for (TileEntity loadedtileentity : loadedtileentities) {
-				TileEntityType<?> loadedtiletype = loadedtileentity.getType();
+			for (TickingBlockEntity loadedtileentity : blockentities) {
+				BlockEntityType<?> loadedtiletype = ((BlockEntity)loadedtileentity).getType();
 				if (loadedtiletype == null) {
 					continue;
 				}
 				
 				if (loadedtiletype.equals(tiletypetofind)) {
-					BlockPos ltepos = loadedtileentity.getBlockPos();
+					BlockPos ltepos = loadedtileentity.getPos();
 				
 					if (ltepos.closerThan(epos, radius*radiusmodifier)) {
 						currentblocks.add(ltepos.immutable());
@@ -179,10 +210,10 @@ public class FABFunctions {
 		return null;
 	}
 	
-	public static BlockPos updatePlacedBlock(Block requestedblock, BlockPos bpos, World world) {
+	public static BlockPos updatePlacedBlock(Block requestedblock, BlockPos bpos, Level world) {
 		BlockState state = world.getBlockState(bpos);
 		if (state.getBlock().equals(requestedblock)) {
-			Map<World, List<BlockPos>> worldblocks = getMap(requestedblock);
+			Map<Level, List<BlockPos>> worldblocks = getMap(requestedblock);
 			
 			List<BlockPos> currentblocks;
 			if (worldblocks.containsKey(world)) {
@@ -204,13 +235,13 @@ public class FABFunctions {
 	}
 	
 	// Internal util functions
-	private static Map<World,List<BlockPos>> getMap(Block requestedblock) {
-		Map<World,List<BlockPos>> worldblocks;
+	private static Map<Level,List<BlockPos>> getMap(Block requestedblock) {
+		Map<Level,List<BlockPos>> worldblocks;
 		if (getMapFromBlock.containsKey(requestedblock)) {
 			worldblocks = getMapFromBlock.get(requestedblock);
 		}
 		else {
-			worldblocks = new HashMap<World, List<BlockPos>>();
+			worldblocks = new HashMap<Level, List<BlockPos>>();
 		}
 		return worldblocks;
 	}
@@ -222,5 +253,20 @@ public class FABFunctions {
 		}
 		
 		return blocktoreturn;
+	}
+	
+	private static void setReflectionField() {
+		if (level_blockEntityTickers == null) {
+			for (Field field : Level.class.getDeclaredFields()) {
+				if (field.toString().contains("blockEntityTickers") || field.toString().contains("saturationLevel")) {
+					level_blockEntityTickers = field;
+					break;
+				}
+			}
+			if (level_blockEntityTickers == null) {
+				return;
+			}
+			level_blockEntityTickers.setAccessible(true);
+		}
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Respawn Delay.
- * Minecraft version: 1.16.5, mod version: 2.4.
+ * Minecraft version: 1.17.1, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Respawn Delay ever released, along with some other perks.
@@ -19,25 +19,25 @@ import com.natamus.collective.functions.StringFunctions;
 import com.natamus.respawndelay.config.ConfigHandler;
 import com.natamus.respawndelay.events.RespawningEvent;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.GameType;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.Level;
 
 public class Util {
-	public static void respawnPlayer(World world, PlayerEntity player) {
-		if (!PlayerFunctions.respawnPlayer(world, player)) {
+	public static void respawnPlayer(Level world, ServerPlayer serverplayer) {
+		if (!PlayerFunctions.respawnPlayer(world, serverplayer)) {
 			return;
 		}
 		
-		RespawningEvent.death_times.remove(player);
-		player.setGameMode(GameType.SURVIVAL);
+		RespawningEvent.death_times.remove(serverplayer);
+		serverplayer.setGameMode(GameType.SURVIVAL);
 		if (ConfigHandler.GENERAL.respawnAtWorldSpawn.get()) {
-			BlockPos spawnpos = PlayerFunctions.getSpawnPoint(world, player);
-			player.teleportTo(spawnpos.getX(), spawnpos.getY(), spawnpos.getZ());
+			BlockPos spawnpos = PlayerFunctions.getSpawnPoint(world, serverplayer);
+			serverplayer.teleportTo(spawnpos.getX(), spawnpos.getY(), spawnpos.getZ());
 		}
 		
-		StringFunctions.sendMessage(player, ConfigHandler.GENERAL.onRespawnMessage.get(), TextFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(serverplayer, ConfigHandler.GENERAL.onRespawnMessage.get(), ChatFormatting.DARK_GREEN);
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,35 +14,35 @@
 
 package com.natamus.collective.functions;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.util.math.RayTraceContext.FluidMode;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.ClipContext.Fluid;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class RayTraceFunctions {
-	public static RayTraceResult rayTrace(World worldIn, PlayerEntity player, boolean stopOnLiquid) {
-		FluidMode fluidMode;
+	public static HitResult rayTrace(Level worldIn, Player player, boolean stopOnLiquid) {
+		Fluid fluidMode;
 		if (stopOnLiquid) {
-			fluidMode = FluidMode.ANY;
+			fluidMode = Fluid.ANY;
 		}
 		else {
-			fluidMode = FluidMode.NONE;
+			fluidMode = Fluid.NONE;
 		}
 			
-		float f = player.xRot;
-		float f1 = player.yRot;
-		Vector3d vec3d = player.getEyePosition(1.0F);
-		float f2 = MathHelper.cos(-f1 * ((float)Math.PI / 180F) - (float)Math.PI);
-		float f3 = MathHelper.sin(-f1 * ((float)Math.PI / 180F) - (float)Math.PI);
-		float f4 = -MathHelper.cos(-f * ((float)Math.PI / 180F));
-		float f5 = MathHelper.sin(-f * ((float)Math.PI / 180F));
+		float f = player.getXRot();
+		float f1 = player.getYRot();
+		Vec3 vec3d = player.getEyePosition(1.0F);
+		float f2 = Mth.cos(-f1 * ((float)Math.PI / 180F) - (float)Math.PI);
+		float f3 = Mth.sin(-f1 * ((float)Math.PI / 180F) - (float)Math.PI);
+		float f4 = -Mth.cos(-f * ((float)Math.PI / 180F));
+		float f5 = Mth.sin(-f * ((float)Math.PI / 180F));
 		float f6 = f3 * f4;
 		float f7 = f2 * f4;
 		double d0 = 8192;
-		Vector3d vec3d1 = vec3d.add((double)f6 * d0, (double)f5 * d0, (double)f7 * d0);
-		return worldIn.clip(new RayTraceContext(vec3d, vec3d1, RayTraceContext.BlockMode.OUTLINE, fluidMode, player));
+		Vec3 vec3d1 = vec3d.add((double)f6 * d0, (double)f5 * d0, (double)f7 * d0);
+		return worldIn.clip(new ClipContext(vec3d, vec3d1, ClipContext.Block.OUTLINE, fluidMode, player));
 	}
 }

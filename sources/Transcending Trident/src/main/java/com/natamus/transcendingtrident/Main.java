@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Transcending Trident.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Transcending Trident ever released, along with some other perks.
@@ -20,9 +20,9 @@ import com.natamus.transcendingtrident.events.TridentEvent;
 import com.natamus.transcendingtrident.items.ExtendedTridentItem;
 import com.natamus.transcendingtrident.util.Reference;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -59,7 +59,7 @@ public class Main {
 	@SubscribeEvent
 	public void registerItems(RegistryEvent.Register<Item> e) {
 		e.getRegistry().registerAll(
-				(new ExtendedTridentItem((new Item.Properties()).durability(250).tab(ItemGroup.TAB_COMBAT)).setRegistryName(Items.TRIDENT.getRegistryName()))
+				(new ExtendedTridentItem((new Item.Properties()).durability(250).tab(CreativeModeTab.TAB_COMBAT)).setRegistryName(Items.TRIDENT.getRegistryName()))
 		);
 	}
 }

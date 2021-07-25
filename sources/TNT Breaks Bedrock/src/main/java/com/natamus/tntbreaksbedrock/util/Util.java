@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of TNT Breaks Bedrock.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.17.1, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of TNT Breaks Bedrock ever released, along with some other perks.
@@ -18,12 +18,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 public class Util {
-	public static List<BlockPos> getBedrocks(World world, BlockPos p) {
+	public static List<BlockPos> getBedrocks(Level world, BlockPos p) {
 		List<BlockPos> bedrocks = new ArrayList<BlockPos>();
 		
 		Iterator<BlockPos> it = BlockPos.betweenClosedStream(p.getX(), p.getY()-1, p.getZ(), p.getX(), p.getY()+1, p.getZ()).iterator();

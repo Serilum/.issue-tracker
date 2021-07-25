@@ -1,11 +1,11 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[37,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Library%3A%20Collective"
 
 [[mods]]
 modId="collective"
-version="2.27"
+version="2.29"
 displayName="Collective"
 displayURL="https://curseforge.com/minecraft/mc-mods/collective"
 authors="Rick South"
@@ -14,13 +14,13 @@ description="Collective is a shared library with common code for all of Serilum'
 [[dependencies.collective]]
     modId="forge"
     mandatory=true
-    versionRange="[36,)"
+    versionRange="[37,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.collective]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5]"
+    versionRange="[1.17.1]"
     ordering="NONE"
     side="BOTH"

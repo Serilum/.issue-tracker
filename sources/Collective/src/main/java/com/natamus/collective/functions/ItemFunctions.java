@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -22,38 +22,37 @@ import java.util.List;
 import com.natamus.collective.config.ConfigHandler;
 import com.natamus.collective.data.GlobalVariables;
 
-import net.minecraft.block.Block;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.item.SwordItem;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameterSets;
-import net.minecraft.loot.LootParameters;
-import net.minecraft.loot.LootTable;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ItemFunctions {
-	public static void generateEntityDropsFromLootTable(World world) {
+	public static void generateEntityDropsFromLootTable(Level world) {
 		MinecraftServer server = world.getServer();
 		if (server == null) {
 			return;
@@ -61,12 +60,12 @@ public class ItemFunctions {
 		
 		GlobalVariables.entitydrops = new HashMap<EntityType<?>, List<Item>>();
 		
-		FakePlayer fakeplayer = FakePlayerFactory.getMinecraft((ServerWorld)world);
-		Vector3d vec = new Vector3d(0, 0, 0);
+		FakePlayer fakeplayer = FakePlayerFactory.getMinecraft((ServerLevel)world);
+		//Vector3d vec = new Vector3d(0, 0, 0);
 		
 		ItemStack lootingsword = new ItemStack(Items.DIAMOND_SWORD, 1);
 		lootingsword.enchant(Enchantments.MOB_LOOTING, 10);
-		fakeplayer.setItemSlot(EquipmentSlotType.MAINHAND, lootingsword);
+		fakeplayer.setItemSlot(EquipmentSlot.MAINHAND, lootingsword);
 		
 		Collection<EntityType<?>> entitytypes = ForgeRegistries.ENTITIES.getValues();
 		for (EntityType<?> type : entitytypes) {
@@ -82,14 +81,14 @@ public class ItemFunctions {
 			ResourceLocation lootlocation = le.getType().getDefaultLootTable();
 			
 			LootTable loottable = server.getLootTables().get(lootlocation);
-			LootContext context = new LootContext.Builder((ServerWorld) world)
+			LootContext context = new LootContext.Builder((ServerLevel) world)
 	                .withRandom(world.getRandom())
 	                .withLuck(1000000F)
-	                .withParameter(LootParameters.THIS_ENTITY, entity)
-	                .withParameter(LootParameters.ORIGIN, vec)
-	                .withParameter(LootParameters.KILLER_ENTITY, fakeplayer)
-	                .withParameter(LootParameters.DAMAGE_SOURCE, DamageSource.playerAttack(fakeplayer))
-	                .create(LootParameterSets.ENTITY);
+	                .withParameter(LootContextParams.THIS_ENTITY, entity)
+	                //.withParameter(LootContextParams.ORIGIN, vec)
+	                .withParameter(LootContextParams.KILLER_ENTITY, fakeplayer)
+	                .withParameter(LootContextParams.DAMAGE_SOURCE, DamageSource.playerAttack(fakeplayer))
+	                .create(LootContextParamSets.ENTITY);
 			
 			List<Item> alldrops = new ArrayList<Item>();
 			for (int n = 0; n < ConfigHandler.COLLECTIVE.loopsAmountUsedToGetAllEntityDrops.get(); n++) {
@@ -123,13 +122,13 @@ public class ItemFunctions {
 		return false;
 	}
 	
-	public static void shrinkGiveOrDropItemStack(PlayerEntity player, Hand hand, ItemStack used, ItemStack give) {
+	public static void shrinkGiveOrDropItemStack(Player player, InteractionHand hand, ItemStack used, ItemStack give) {
 		used.shrink(1);
 		
 		if (used.isEmpty()) {
 			Item giveitem = give.getItem();
 			int maxstacksize = give.getMaxStackSize();
-			List<ItemStack> inventory = player.inventory.items;
+			List<ItemStack> inventory = player.getInventory().items;
 			
 			boolean increased = false;
 			for (int n = 0; n < inventory.size(); n++) {
@@ -148,13 +147,13 @@ public class ItemFunctions {
 				player.setItemInHand(hand, give);
 			}
 		}
-		else if (!player.inventory.add(give)) {
+		else if (!player.getInventory().add(give)) {
 			player.drop(give, false);
 		}
 	}
 	
-	public static void giveOrDropItemStack(PlayerEntity player, ItemStack give) {
-		if (!player.inventory.add(give)) {
+	public static void giveOrDropItemStack(Player player, ItemStack give) {
+		if (!player.getInventory().add(give)) {
 			player.drop(give, false);
 		}
 	}

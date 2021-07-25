@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -18,34 +18,34 @@ import java.util.UUID;
 
 import com.natamus.collective.data.GlobalVariables;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.effect.LightningBoltEntity;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.PigEntity;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.entity.passive.horse.AbstractHorseEntity;
-import net.minecraft.entity.passive.horse.DonkeyEntity;
-import net.minecraft.entity.passive.horse.HorseEntity;
-import net.minecraft.entity.passive.horse.LlamaEntity;
-import net.minecraft.entity.passive.horse.MuleEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Pig;
+import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.animal.horse.Donkey;
+import net.minecraft.world.entity.animal.horse.Horse;
+import net.minecraft.world.entity.animal.horse.Llama;
+import net.minecraft.world.entity.animal.horse.Mule;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 public class EntityFunctions {
 	// START: CHECK functions
 	public static Boolean isHorse(Entity entity) {
-		if (entity instanceof AbstractHorseEntity) {
+		if (entity instanceof AbstractHorse) {
 			return true;
 		}
 		
@@ -67,12 +67,12 @@ public class EntityFunctions {
 	}
 	
 	public static boolean isMilkable(Entity entity) {
-		if (entity instanceof SheepEntity || entity instanceof LlamaEntity || entity instanceof PigEntity || entity instanceof DonkeyEntity || entity instanceof HorseEntity || entity instanceof MuleEntity) {
-			if (entity instanceof AnimalEntity == false) {
+		if (entity instanceof Sheep || entity instanceof Llama || entity instanceof Pig || entity instanceof Donkey || entity instanceof Horse || entity instanceof Mule) {
+			if (entity instanceof Animal == false) {
 				return false;
 			}
 			
-			AnimalEntity animal = (AnimalEntity)entity;
+			Animal animal = (Animal)entity;
 			if (animal.isBaby()) {
 				return false;
 			}
@@ -98,41 +98,41 @@ public class EntityFunctions {
 	// Do functions
 	public static void nameEntity(Entity entity, String name) {
 		if (name != "") {
-			entity.setCustomName(new StringTextComponent(name));
+			entity.setCustomName(new TextComponent(name));
 		}
 	}
 	
-	public static void addPotionEffect(Entity entity, Effect effect, Integer ms) {
-		EffectInstance freeze = new EffectInstance(effect, ms/50);
+	public static void addPotionEffect(Entity entity, MobEffect effect, Integer ms) {
+		MobEffectInstance freeze = new MobEffectInstance(effect, ms/50);
 		LivingEntity le = (LivingEntity)entity;
 		le.addEffect(freeze);
 	}
-	public static void removePotionEffect(Entity entity, Effect effect) {
+	public static void removePotionEffect(Entity entity, MobEffect effect) {
 		LivingEntity le = (LivingEntity)entity;
 		le.removeEffect(effect);
 	}
 	
 	public static void chargeEntity(Entity entity) {
-		World world = entity.getCommandSenderWorld();
-		Vector3d evec = entity.position();
+		Level world = entity.getCommandSenderWorld();
+		Vec3 evec = entity.position();
 		
-		LightningBoltEntity lightning = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, world);
+		LightningBolt lightning = new LightningBolt(EntityType.LIGHTNING_BOLT, world);
 		lightning.setPos(evec.x(), evec.y(), evec.z());
 		lightning.setUUID(new UUID(0, (int)(GlobalVariables.random.nextInt()*1000000)));
-		entity.thunderHit((ServerWorld)world, lightning);
+		entity.thunderHit((ServerLevel)world, lightning);
 		
 		entity.clearFire();
 	}
 
 	public static void transferItemsBetweenEntities(Entity from, Entity to, boolean ignoremainhand) {
-		if (from instanceof MobEntity == false) {
+		if (from instanceof Mob == false) {
 			return;
 		}
-		MobEntity mobfrom = (MobEntity)from;
+		Mob mobfrom = (Mob)from;
 		
-		for(EquipmentSlotType equipmentslottype : EquipmentSlotType.values()) {
+		for(EquipmentSlot equipmentslottype : EquipmentSlot.values()) {
 			if (ignoremainhand) {
-				if (equipmentslottype.equals(EquipmentSlotType.MAINHAND)) {
+				if (equipmentslottype.equals(EquipmentSlot.MAINHAND)) {
 					continue;
 				}
 			}
@@ -147,7 +147,7 @@ public class EntityFunctions {
 		transferItemsBetweenEntities(from, to, false);
 	}
 	
-	public static Boolean doesEntitySurviveThisDamage(PlayerEntity player, int halfheartdamage) {
+	public static Boolean doesEntitySurviveThisDamage(Player player, int halfheartdamage) {
 		return doesEntitySurviveThisDamage((LivingEntity)player, halfheartdamage);
 	}	
 	public static Boolean doesEntitySurviveThisDamage(LivingEntity entity, int halfheartdamage) {

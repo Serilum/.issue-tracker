@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -24,12 +24,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.natamus.collective.objects.SAMObject;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public class GlobalVariables {
 	public static Random random = new Random();
@@ -59,12 +59,12 @@ public class GlobalVariables {
 	public static String skindataurl = "https://sessionserver.mojang.com/session/minecraft/profile/";
 	
 	// HashMaps to generate
-	public static Map<Block, TileEntityType<?>> blocksWithTileEntity = new HashMap<Block, TileEntityType<?>>();
+	public static Map<Block, BlockEntityType<?>> blocksWithTileEntity = new HashMap<Block, BlockEntityType<?>>();
 	
 	public static void generateHashMaps() {
 		// FAB tile entities.
-		blocksWithTileEntity.put(Blocks.CAMPFIRE, TileEntityType.CAMPFIRE);
-		blocksWithTileEntity.put(Blocks.OAK_SIGN, TileEntityType.SIGN);
+		blocksWithTileEntity.put(Blocks.CAMPFIRE, BlockEntityType.CAMPFIRE);
+		blocksWithTileEntity.put(Blocks.OAK_SIGN, BlockEntityType.SIGN);
 	}
 		
 	// Block and item collections

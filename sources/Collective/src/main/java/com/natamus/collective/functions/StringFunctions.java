@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -26,49 +26,49 @@ import java.util.stream.Stream;
 
 import com.natamus.collective.data.GlobalVariables;
 
-import net.minecraft.command.CommandSource;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.ClickEvent;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.event.ClickEvent;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 
 public class StringFunctions {
 	// START: DO functions
-	public static void sendMessage(CommandSource source, String m, TextFormatting colour) {
+	public static void sendMessage(CommandSourceStack source, String m, ChatFormatting colour) {
 		sendMessage(source, m, colour, false);
 	}
-	public static void sendMessage(PlayerEntity player, String m, TextFormatting colour) {
+	public static void sendMessage(Player player, String m, ChatFormatting colour) {
 		sendMessage(player, m, colour, false);
 	}
-	public static void sendMessage(CommandSource source, String m, TextFormatting colour, boolean emptyline) {
+	public static void sendMessage(CommandSourceStack source, String m, ChatFormatting colour, boolean emptyline) {
 		sendMessage(source, m, colour, emptyline, "");
 	}
-	public static void sendMessage(PlayerEntity player, String m, TextFormatting colour, boolean emptyline) {
+	public static void sendMessage(Player player, String m, ChatFormatting colour, boolean emptyline) {
 		sendMessage(player, m, colour, emptyline, "");
 	}
-	public static void sendMessage(CommandSource source, String m, TextFormatting colour, String url) {
+	public static void sendMessage(CommandSourceStack source, String m, ChatFormatting colour, String url) {
 		sendMessage(source, m, colour, false, url);
 	}
-	public static void sendMessage(PlayerEntity player, String m, TextFormatting colour, String url) {
+	public static void sendMessage(Player player, String m, ChatFormatting colour, String url) {
 		sendMessage(player, m, colour, false, url);
 	}
 	
-	public static void sendMessage(CommandSource source, String m, TextFormatting colour, boolean emptyline, String url) {
+	public static void sendMessage(CommandSourceStack source, String m, ChatFormatting colour, boolean emptyline, String url) {
 		if (m == "") {
 			return;
 		}
 		
 		if (emptyline) {
-			source.sendSuccess(new StringTextComponent(""), true);
+			source.sendSuccess(new TextComponent(""), false);
 		}
 		
-		StringTextComponent message = new StringTextComponent(m);
+		TextComponent message = new TextComponent(m);
 		message.withStyle(colour);
 		if (m.contains("http") || url != "") {
 			if (url == "") {
@@ -85,19 +85,19 @@ public class StringFunctions {
 				message.withStyle(clickstyle);
 			}
 		}
-		source.sendSuccess(message, true);
+		source.sendSuccess(message, false);
 	}
 
-	public static void sendMessage(PlayerEntity player, String m, TextFormatting colour, boolean emptyline, String url) {
+	public static void sendMessage(Player player, String m, ChatFormatting colour, boolean emptyline, String url) {
 		if (m == "") {
 			return;
 		}
 		
 		if (emptyline) {
-			player.sendMessage(new StringTextComponent(""), player.getUUID());
+			player.sendMessage(new TextComponent(""), player.getUUID());
 		}
 		
-		StringTextComponent message = new StringTextComponent(m);
+		TextComponent message = new TextComponent(m);
 		message.withStyle(colour);
 		if (m.contains("http") || url != "") {
 			if (url == "") {
@@ -117,33 +117,33 @@ public class StringFunctions {
 		player.sendMessage(message, player.getUUID());
 	}
 	
-	public static void broadcastMessage(World world, String m, TextFormatting colour) {
+	public static void broadcastMessage(Level world, String m, ChatFormatting colour) {
 		if (m == "") {
 			return;
 		}
 		
-		StringTextComponent message = new StringTextComponent(m);
+		TextComponent message = new TextComponent(m);
 		message.withStyle(colour);
 		MinecraftServer server = world.getServer();
 		if (server == null) {
 			return;
 		}
 		
-		for (PlayerEntity player : server.getPlayerList().getPlayers()) {
+		for (Player player : server.getPlayerList().getPlayers()) {
 			sendMessage(player, m, colour);
 		}
 	}
 	
-	public static void sendMessageToPlayersAround(World world, BlockPos p, int radius, String message, TextFormatting colour) {
+	public static void sendMessageToPlayersAround(Level world, BlockPos p, int radius, String message, ChatFormatting colour) {
 		if (message == "") {
 			return;
 		}
 		
-		Iterator<Entity> entitiesaround = world.getEntities(null, new AxisAlignedBB(p.getX()-radius, p.getY()-radius, p.getZ()-radius, p.getX()+radius, p.getY()+radius, p.getZ()+radius)).iterator();
+		Iterator<Entity> entitiesaround = world.getEntities(null, new AABB(p.getX()-radius, p.getY()-radius, p.getZ()-radius, p.getX()+radius, p.getY()+radius, p.getZ()+radius)).iterator();
 		while (entitiesaround.hasNext()) {
 			Entity around = entitiesaround.next();
-			if (around instanceof PlayerEntity) {
-				sendMessage((PlayerEntity)around, message, colour);
+			if (around instanceof Player) {
+				sendMessage((Player)around, message, colour);
 			}
 		}
 	}

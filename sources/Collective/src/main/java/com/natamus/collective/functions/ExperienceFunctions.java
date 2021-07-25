@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,19 +14,19 @@
 
 package com.natamus.collective.functions;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.play.server.SEntityStatusPacket;
+import net.minecraft.network.protocol.game.ClientboundEntityEventPacket;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 
 public class ExperienceFunctions {
-	public static boolean canConsumeXp(final PlayerEntity ep, final int xp) {
+	public static boolean canConsumeXp(final Player ep, final int xp) {
 		if (ep.isCreative()) {
 			return true;
 		}
 		return xp <= 0 || getPlayerXP(ep) >= xp;
 	}
 
-	public static void consumeXp(final PlayerEntity ep, final int xp) {
+	public static void consumeXp(final Player ep, final int xp) {
 		if (xp <= 0) {
 			return;
 		}
@@ -36,16 +36,16 @@ public class ExperienceFunctions {
 			addPlayerXP(ep, -xp);
 		}
 
-		if (ep instanceof ServerPlayerEntity) {
-			((ServerPlayerEntity) ep).connection.send(new SEntityStatusPacket(ep, (byte) 9));
+		if (ep instanceof ServerPlayer) {
+			((ServerPlayer) ep).connection.send(new ClientboundEntityEventPacket(ep, (byte) 9));
 		}
 	}
 
-	public static int getPlayerXP(final PlayerEntity player) {
+	public static int getPlayerXP(final Player player) {
 		return (int) (getExperienceForLevel(player.experienceLevel) + player.experienceProgress * player.getXpNeededForNextLevel());
 	}
 
-	public static void addPlayerXP(final PlayerEntity player, final int amount) {
+	public static void addPlayerXP(final Player player, final int amount) {
 		final int experience = getPlayerXP(player) + amount;
 		player.totalExperience = experience;
 		player.experienceLevel = getLevelForExperience(experience);

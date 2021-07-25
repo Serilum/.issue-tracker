@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of World Border.
- * Minecraft version: 1.16.5, mod version: 2.4.
+ * Minecraft version: 1.17.1, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of World Border ever released, along with some other perks.
@@ -21,13 +21,13 @@ import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.worldborder.config.ConfigHandler;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.BlockPos;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -39,8 +39,8 @@ public class BorderEvent {
 	
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
-		PlayerEntity player = e.player;
-		World world = player.getCommandSenderWorld();
+		Player player = e.player;
+		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
@@ -49,7 +49,7 @@ public class BorderEvent {
 			return;
 		}
 		
-		ServerWorld serverworld = (ServerWorld)world;
+		ServerLevel serverworld = (ServerLevel)world;
 		String dimension = serverworld.dimension().location().toString();
 		
 		int posx = 0;
@@ -177,10 +177,10 @@ public class BorderEvent {
 			player.teleportTo(newpos.getX(), newpos.getY(), newpos.getZ());
 			
 			if (shouldloop) {
-				StringFunctions.sendMessage(player, ConfigHandler.GENERAL.loopBorderMessage.get(), TextFormatting.DARK_GREEN);
+				StringFunctions.sendMessage(player, ConfigHandler.GENERAL.loopBorderMessage.get(), ChatFormatting.DARK_GREEN);
 			}
 			else {
-				StringFunctions.sendMessage(player, ConfigHandler.GENERAL.hitBorderMessage.get(), TextFormatting.RED);
+				StringFunctions.sendMessage(player, ConfigHandler.GENERAL.hitBorderMessage.get(), ChatFormatting.RED);
 			}
 		}
 		else {
@@ -219,7 +219,7 @@ public class BorderEvent {
 					return;
 				}
 				
-				StringFunctions.sendMessage(player, ConfigHandler.GENERAL.nearBorderMessage.get(), TextFormatting.YELLOW);
+				StringFunctions.sendMessage(player, ConfigHandler.GENERAL.nearBorderMessage.get(), ChatFormatting.YELLOW);
 			}
 		}
 	}

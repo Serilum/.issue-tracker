@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Respawn Delay.
- * Minecraft version: 1.16.5, mod version: 2.4.
+ * Minecraft version: 1.17.1, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Respawn Delay ever released, along with some other perks.
@@ -24,17 +24,18 @@ import com.natamus.collective.functions.StringFunctions;
 import com.natamus.respawndelay.config.ConfigHandler;
 import com.natamus.respawndelay.util.Util;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
+import net.minecraft.ChatFormatting;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.GameType;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
@@ -45,12 +46,12 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class RespawningEvent {
-	public static HashMap<PlayerEntity, Date> death_times = new HashMap<PlayerEntity, Date>();
+	public static HashMap<Player, Date> death_times = new HashMap<Player, Date>();
 	
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
-		PlayerEntity player = e.player;
-		World world = player.getCommandSenderWorld();
+		Player player = e.player;
+		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide || e.phase != Phase.START) {
 			return;
 		}
@@ -77,7 +78,7 @@ public class RespawningEvent {
 		
 		long ms = (now.getTime()-timedied.getTime());
 		if (ms > respawndelay*1000) {
-			Util.respawnPlayer(world, player);
+			Util.respawnPlayer(world, (ServerPlayer)player);
 			return;
 		}
 		
@@ -85,22 +86,26 @@ public class RespawningEvent {
 		String waitingmessage = ConfigHandler.GENERAL.waitingForRespawnMessage.get();
 		waitingmessage = waitingmessage.replaceAll("<seconds_left>", seconds + "");
 		
-		StringFunctions.sendMessage(player, waitingmessage, TextFormatting.GRAY);
+		StringFunctions.sendMessage(player, waitingmessage, ChatFormatting.GRAY);
 	}
 	
 	@SubscribeEvent
 	public void onPlayerDeath(LivingDeathEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		if (entity instanceof PlayerEntity == false) {
+		if (entity instanceof Player == false) {
 			return;
 		}
 		
-		PlayerEntity player = (PlayerEntity)entity;
+		Player player = (Player)entity;
+		if (player instanceof ServerPlayer == false) {
+			return;
+		}
+		
 		if (ConfigHandler.GENERAL.ignoreAdministratorPlayers.get()) {
 			if (player.hasPermissions(2)) {
 				return;
@@ -113,17 +118,19 @@ public class RespawningEvent {
 			}
 		}
 		
+		ServerPlayer serverplayer = (ServerPlayer)player;
+		
 		e.setCanceled(true);
-		player.setGameMode(GameType.SPECTATOR);
+		serverplayer.setGameMode(GameType.SPECTATOR);
 		player.setHealth(20);
 		player.awardStat(Stats.DEATHS);
 		player.resetStat(Stats.CUSTOM.get(Stats.TIME_SINCE_DEATH));
 		player.resetStat(Stats.CUSTOM.get(Stats.TIME_SINCE_REST));
 		player.clearFire();
 		
-		Vector3d pvec = player.position();
+		Vec3 pvec = player.position();
 		if (pvec.y() < ConfigHandler.GENERAL.lowestPossibleYCoordinate.get()) {
-			pvec = new Vector3d(pvec.x(), ConfigHandler.GENERAL.lowestPossibleYCoordinate.get(), pvec.z());
+			pvec = new Vec3(pvec.x(), ConfigHandler.GENERAL.lowestPossibleYCoordinate.get(), pvec.z());
 			player.setDeltaMovement(0, 0, 0);
 			player.teleportTo(pvec.x(), pvec.y(), pvec.z());
 		}
@@ -131,7 +138,7 @@ public class RespawningEvent {
 		if (!ConfigHandler.GENERAL.keepItemsOnDeath.get()) {
 			Collection<ItemEntity> playerdrops = new ArrayList<ItemEntity>();
 			
-			PlayerInventory inv = player.inventory;
+			Inventory inv = player.getInventory();
 			for (int i=0; i < 36; i++) {
 				ItemStack slot = inv.getItem(i);
 				if (!slot.isEmpty()) {
@@ -161,32 +168,40 @@ public class RespawningEvent {
 		Date now = new Date();
 		death_times.put(player, now);
 		
-		StringFunctions.sendMessage(player, ConfigHandler.GENERAL.onDeathMessage.get(), TextFormatting.DARK_RED);
+		StringFunctions.sendMessage(player, ConfigHandler.GENERAL.onDeathMessage.get(), ChatFormatting.DARK_RED);
 	}
 	
 	@SubscribeEvent
 	public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent e) {
-		PlayerEntity player = e.getPlayer();
-		World world = player.getCommandSenderWorld();
+		Player player = e.getPlayer();
+		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
+		if (player instanceof ServerPlayer == false) {
+			return;
+		}
+		
 		if (death_times.containsKey(player)) {
-			Util.respawnPlayer(world, player);
+			Util.respawnPlayer(world, (ServerPlayer)player);
 		}
 	}
 	
 	@SubscribeEvent
 	public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent e) {
-		PlayerEntity player = e.getPlayer();
-		World world = player.getCommandSenderWorld();
+		Player player = e.getPlayer();
+		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
+		if (player instanceof ServerPlayer == false) {
+			return;
+		}
+		
 		if (player.isSpectator() && !death_times.containsKey(player)) {
-			Util.respawnPlayer(world, player);
+			Util.respawnPlayer(world, (ServerPlayer)player);
 		}
 	}
 }

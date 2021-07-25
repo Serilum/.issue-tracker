@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
+import net.minecraftforge.forgespi.language.IModInfo;
 
 public class DataFunctions {
 	public static String readStringFromURL(String requestURL) {
@@ -38,8 +38,8 @@ public class DataFunctions {
 	public static List<String> getInstalledModJars() {
 		List<String> installedmods = new ArrayList<String>();
 		
-		List<ModInfo> mods = ModList.get().getMods();
-		for (ModInfo modinfo : mods) {
+		List<IModInfo> mods = ModList.get().getMods();
+		for (IModInfo modinfo : mods) {
 			String filename = modinfo.getOwningFile().getFile().getFileName().replaceAll(" +\\([0-9]+\\)", "");
 			installedmods.add(filename);
 		}

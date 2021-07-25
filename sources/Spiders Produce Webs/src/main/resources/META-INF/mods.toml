@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[37,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Spiders%20Produce%20Webs"
 
@@ -11,12 +11,12 @@ displayURL="https://curseforge.com/minecraft/mc-mods/spiders-produce-webs"
 authors="Rick South"
 description="Spiders and cave spiders can periodically produce a web when a player is close."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.spidersproducewebs]]
     modId="collective"
     mandatory=true
-    versionRange="[2.27,)"
+    versionRange="[2.29,)"
     ordering="NONE"
     side="BOTH"

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -28,15 +28,15 @@ import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.collective.objects.SAMObject;
 import com.natamus.collective.util.Reference;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.horse.AbstractHorseEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -46,8 +46,8 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class EntityEvents {
 	@SubscribeEvent
 	public void onMobSpawnerSpawn(LivingSpawnEvent.SpecialSpawn e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
-		if (world == null) {
+		Level Level = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		if (Level == null) {
 			return;
 		}
 		
@@ -59,9 +59,9 @@ public class EntityEvents {
 	}
 	
 	@SubscribeEvent
-	public void onEntityJoinWorld(EntityJoinWorldEvent e) {
-		World world = e.getWorld();
-		if (world.isClientSide) {
+	public void onEntityJoinLevel(EntityJoinWorldEvent e) {
+		Level Level = e.getWorld();
+		if (Level.isClientSide) {
 			return;
 		}
 		
@@ -71,8 +71,8 @@ public class EntityEvents {
 		}
 		
 		if (RegisterMod.shouldDoCheck) {
-			if (entity instanceof PlayerEntity) {
-				RegisterMod.joinWorldProcess(world, (PlayerEntity)entity);
+			if (entity instanceof Player) {
+				RegisterMod.joinWorldProcess(Level, (Player)entity);
 			}
 		}
 		
@@ -127,15 +127,15 @@ public class EntityEvents {
 				continue;
 			}
 			
-			Vector3d evec = entity.position();
+			Vec3 evec = entity.position();
 			if (sam.surface) {
-				if (!BlockPosFunctions.isOnSurface(world, evec)) {
+				if (!BlockPosFunctions.isOnSurface(Level, evec)) {
 					continue;
 				}
 			}
 			
-			Entity to = sam.totype.create(world);
-			to.setLevel(world);
+			Entity to = sam.totype.create(Level);
+			//to.setWorld(Level);
 			to.setPos(evec.x, evec.y, evec.z);
 			
 			boolean ignoremainhand = false;
@@ -143,7 +143,7 @@ public class EntityEvents {
 				if (to instanceof LivingEntity) {
 					LivingEntity le = (LivingEntity)to;
 					if (!le.getMainHandItem().getItem().equals(sam.helditem)) {
-						le.setItemInHand(Hand.MAIN_HAND, new ItemStack(sam.helditem, 1));
+						le.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(sam.helditem, 1));
 						ignoremainhand = true;
 					}
 				}
@@ -151,7 +151,7 @@ public class EntityEvents {
 			
 			boolean ride = false;
 			if (EntityFunctions.isHorse(to) && sam.rideable) {
-				AbstractHorseEntity ah = (AbstractHorseEntity)to;
+				AbstractHorse ah = (AbstractHorse)to;
 				ah.setTamed(true);
 				to = ah;
 				
@@ -164,7 +164,7 @@ public class EntityEvents {
 			}
 			
 			to.addTag(Reference.MOD_ID + ".checked");
-			world.addFreshEntity(to);
+			Level.addFreshEntity(to);
 			
 			if (ride) {
 				entity.startRiding(to);

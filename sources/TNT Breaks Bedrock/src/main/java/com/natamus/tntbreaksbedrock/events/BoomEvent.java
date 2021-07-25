@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of TNT Breaks Bedrock.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.17.1, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of TNT Breaks Bedrock ever released, along with some other perks.
@@ -15,20 +15,16 @@
 package com.natamus.tntbreaksbedrock.events;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import com.natamus.tntbreaksbedrock.util.Util;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.TNTEntity;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.item.PrimedTnt;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -37,35 +33,19 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class BoomEvent {
 	@SubscribeEvent
 	public void onExplosion(ExplosionEvent.Detonate e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		Explosion explosion = e.getExplosion();
-		Vector3d exvec = explosion.getPosition();
 		
 		List<BlockPos> affected = explosion.getToBlow();
 		if (affected.size() == 0) {
 			return;
 		}
 		
-		Boolean found = false;
-		
-		Iterator<Entity> eit = world.getEntities(null, new AxisAlignedBB(exvec.x-2, exvec.y-2, exvec.z-2, exvec.x+2, exvec.y+2, exvec.z+2)).iterator();
-		while (eit.hasNext()) {
-			Entity ne = eit.next();
-			if (ne instanceof TNTEntity) {
-				TNTEntity tnt = (TNTEntity)ne;
-				int fuseleft = tnt.getLife();
-				if (fuseleft < 5) {
-					found = true;
-					break;
-				}
-			}
-		}
-		
-		if (!found) {
+		if (explosion.getExploder() instanceof PrimedTnt == false) {
 			return;
 		}
 		

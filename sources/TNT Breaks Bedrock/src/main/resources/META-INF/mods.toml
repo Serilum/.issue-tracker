@@ -1,22 +1,22 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[37,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20TNT%20Breaks%20Bedrock"
 
 [[mods]]
 modId="tntbreaksbedrock"
-version="1.6"
+version="1.7"
 displayName="TNT Breaks Bedrock"
 displayURL="https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock"
 authors="Rick South"
 description="Allows TNT to break bedrock. Now you've finally got easy access to the nether roof."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.tntbreaksbedrock]]
     modId="collective"
     mandatory=true
-    versionRange="[2.27,)"
+    versionRange="[2.28,)"
     ordering="NONE"
     side="BOTH"

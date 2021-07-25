@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Zombie Proof Doors.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Zombie Proof Doors ever released, along with some other perks.
@@ -14,9 +14,9 @@
 
 package com.natamus.zombieproofdoors.events;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -25,17 +25,17 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class ZombieJoinEvent {
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof ZombieEntity == false) {
+		if (entity instanceof Zombie == false) {
 			return;
 		}
 		
-		ZombieEntity zombie = (ZombieEntity)entity;
+		Zombie zombie = (Zombie)entity;
 		zombie.setCanBreakDoors(false);
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -20,12 +20,11 @@ import java.util.UUID;
 
 import com.natamus.collective.data.GlobalVariables;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 public class HeadFunctions {
 	public static ItemStack getPlayerHead(String playername, Integer amount) {
@@ -61,12 +60,12 @@ public class HeadFunctions {
 		
 		List<Integer> intarray = UUIDFunctions.oldIdToIntArray(oldid);
 		
-		CompoundNBT skullOwner = new CompoundNBT();
+		CompoundTag skullOwner = new CompoundTag();
 		skullOwner.putIntArray("Id", intarray);
 		
-		CompoundNBT properties = new CompoundNBT();
-		ListNBT textures = new ListNBT();
-		CompoundNBT tex = new CompoundNBT();
+		CompoundTag properties = new CompoundTag();
+		ListTag textures = new ListTag();
+		CompoundTag tex = new CompoundTag();
 		tex.putString("Value", texture);
 		textures.add(tex);
 
@@ -74,7 +73,7 @@ public class HeadFunctions {
 		skullOwner.put("Properties", properties);
 		texturedhead.addTagElement("SkullOwner", skullOwner);
 		
-		ITextComponent tcname = new StringTextComponent(headname);
+		TextComponent tcname = new TextComponent(headname);
 		texturedhead.setHoverName(tcname);		
 		return texturedhead;
 	}

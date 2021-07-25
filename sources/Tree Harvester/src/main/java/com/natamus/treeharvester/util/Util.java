@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.16.5, mod version: 2.5.
+ * Minecraft version: 1.17.1, mod version: 2.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -23,26 +23,26 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import com.mojang.datafixers.util.Pair;
 import com.natamus.treeharvester.config.ConfigHandler;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.BushBlock;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.block.SaplingBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 public class Util {
 	public static HashMap<BlockPos, Integer> highestleaf = new HashMap<BlockPos, Integer>();
 	public static CopyOnWriteArrayList<Pair<BlockPos, CopyOnWriteArrayList<BlockPos>>> lowerlogs = new CopyOnWriteArrayList<Pair<BlockPos, CopyOnWriteArrayList<BlockPos>>>();
 	
-	public static int isTreeAndReturnLogAmount(World world, BlockPos pos) {
+	public static int isTreeAndReturnLogAmount(Level world, BlockPos pos) {
 		highestleaf.put(pos, 0);
 		
 		int leafcount = 20;
@@ -104,7 +104,7 @@ public class Util {
 		return false;
 	}
 	
-	public static List<BlockPos> getAllLogsToBreak(World world, BlockPos pos, int logcount) {
+	public static List<BlockPos> getAllLogsToBreak(Level world, BlockPos pos, int logcount) {
 		CopyOnWriteArrayList<BlockPos> bottomlogs = new CopyOnWriteArrayList<BlockPos>();
 		if (ConfigHandler.GENERAL.replaceSaplingIfBottomLogIsBroken.get()) {
 			if (world.getBlockState(pos.below()).getBlock().equals(Blocks.DIRT)) {
@@ -131,12 +131,12 @@ public class Util {
 		return getLogsToBreak(world, pos, new ArrayList<BlockPos>(), logcount);
 	}
 	
-	public static void replaceSapling(World world, BlockPos pos, CopyOnWriteArrayList<BlockPos> bottomlogs, int radius) {
+	public static void replaceSapling(Level world, BlockPos pos, CopyOnWriteArrayList<BlockPos> bottomlogs, int radius) {
     	int reducecount = bottomlogs.size();
     	int rc = reducecount;
 		ItemStack sapling = null;
 		
-		Iterator<Entity> entitiesaround = world.getEntities(null, new AxisAlignedBB(pos.getX()-radius, pos.getY()-2, pos.getZ()-radius, pos.getX()+radius, pos.getY()+30, pos.getZ()+radius)).iterator();
+		Iterator<Entity> entitiesaround = world.getEntities(null, new AABB(pos.getX()-radius, pos.getY()-2, pos.getZ()-radius, pos.getX()+radius, pos.getY()+30, pos.getZ()+radius)).iterator();
 		while (entitiesaround.hasNext()) {
 			Entity ea = entitiesaround.next();
 			if (ea instanceof ItemEntity) {
@@ -161,7 +161,7 @@ public class Util {
 					}
 					else {
 						rc-=1;
-						eia.remove();;
+						eia.remove(false);
 					}
 					
 					if (rc == 0) {
@@ -190,7 +190,7 @@ public class Util {
 		}
 	}
 	
-	private static List<BlockPos> getLogsToBreak(World world, BlockPos pos, List<BlockPos> logstobreak, int logcount) {
+	private static List<BlockPos> getLogsToBreak(Level world, BlockPos pos, List<BlockPos> logstobreak, int logcount) {
 		List<BlockPos> checkaround = new ArrayList<BlockPos>();
 		
 		Iterator<BlockPos> aroundlogs = BlockPos.betweenClosedStream(pos.getX()-1, pos.getY(), pos.getZ()-1, pos.getX()+1, pos.getY()+1, pos.getZ()+1).iterator();

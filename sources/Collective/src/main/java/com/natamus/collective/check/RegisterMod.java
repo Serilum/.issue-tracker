@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -26,10 +26,10 @@ import com.natamus.collective.functions.DataFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.ChatFormatting;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 
 public class RegisterMod {
 	private static List<String> jarlist = new ArrayList<String>();
@@ -55,8 +55,8 @@ public class RegisterMod {
 		}
 	}
 	
-	public static void joinWorldProcess(World world, PlayerEntity player) {
-		if (world instanceof ServerWorld == false) {
+	public static void joinWorldProcess(Level world, Player player) {
+		if (world instanceof ServerLevel == false) {
 			return;
 		}
 		
@@ -69,16 +69,16 @@ public class RegisterMod {
 				}
 				
 				String projecturl = "https://curseforge.com/members/serilum/projects";
-				StringFunctions.sendMessage(player, "Mod" + s + " from incorrect sources:", TextFormatting.RED, projecturl);
+				StringFunctions.sendMessage(player, "Mod" + s + " from incorrect sources:", ChatFormatting.RED, projecturl);
 				for (String wrongmodname : wrongmodnames) {
-					StringFunctions.sendMessage(player, " " + wrongmodname, TextFormatting.YELLOW, projecturl);
+					StringFunctions.sendMessage(player, " " + wrongmodname, ChatFormatting.YELLOW, projecturl);
 				}
 				
-				StringFunctions.sendMessage(player, "You are receiving this message because you are using some of Serilum's mods, but probably haven't downloaded them from the original source. Unofficial sources can contain malicious software, supply no income for developers and host outdated versions.", TextFormatting.RED, projecturl);
-				StringFunctions.sendMessage(player, "Serilum's mod downloads are only officially available at:", TextFormatting.DARK_GREEN, projecturl);
-				StringFunctions.sendMessage(player, " https://curseforge.com/members/serilum/projects (click)", TextFormatting.YELLOW, projecturl);
-				StringFunctions.sendMessage(player, "You won't see this message again in this instance. Thank you for reading.", TextFormatting.DARK_GREEN, projecturl);
-				StringFunctions.sendMessage(player, "-Rick (Serilum)", TextFormatting.YELLOW, projecturl);
+				StringFunctions.sendMessage(player, "You are receiving this message because you are using some of Serilum's mods, but probably haven't downloaded them from the original source. Unofficial sources can contain malicious software, supply no income for developers and host outdated versions.", ChatFormatting.RED, projecturl);
+				StringFunctions.sendMessage(player, "Serilum's mod downloads are only officially available at:", ChatFormatting.DARK_GREEN, projecturl);
+				StringFunctions.sendMessage(player, " https://curseforge.com/members/serilum/projects (click)", ChatFormatting.YELLOW, projecturl);
+				StringFunctions.sendMessage(player, "You won't see this message again in this instance. Thank you for reading.", ChatFormatting.DARK_GREEN, projecturl);
+				StringFunctions.sendMessage(player, "-Rick (Serilum)", ChatFormatting.YELLOW, projecturl);
 				
 				processPostJoinWorldCheck(world);
 			}
@@ -87,8 +87,8 @@ public class RegisterMod {
 		shouldDoCheck = false;
 	}
 	
-	private static boolean processPreJoinWorldCheck(World world) {
-		String checkfilepath = WorldFunctions.getWorldPath((ServerWorld)world) + File.separator + "data" + File.separator + "collective" + File.separator + "checked.txt";
+	private static boolean processPreJoinWorldCheck(Level world) {
+		String checkfilepath = WorldFunctions.getWorldPath((ServerLevel)world) + File.separator + "data" + File.separator + "collective" + File.separator + "checked.txt";
 		File checkfile = new File(checkfilepath);
 		if (checkfile.exists()) {
 			shouldDoCheck = false;
@@ -100,10 +100,10 @@ public class RegisterMod {
 		return shouldDoCheck;
 	}
 	
-	private static void processPostJoinWorldCheck(World world) {
+	private static void processPostJoinWorldCheck(Level world) {
 		shouldDoCheck = false;
 
-		String worlddatapath = WorldFunctions.getWorldPath((ServerWorld)world) + File.separator + "data" + File.separator + "collective";
+		String worlddatapath = WorldFunctions.getWorldPath((ServerLevel)world) + File.separator + "data" + File.separator + "collective";
 		File dir = new File(worlddatapath);
 		dir.mkdirs();
 		

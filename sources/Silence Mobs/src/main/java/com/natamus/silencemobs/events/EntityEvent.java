@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Silence Mobs.
- * Minecraft version: 1.16.5, mod version: 1.9.
+ * Minecraft version: 1.17.1, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Silence Mobs ever released, along with some other perks.
@@ -18,13 +18,13 @@ import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.silencemobs.config.ConfigHandler;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -34,23 +34,23 @@ public class EntityEvent {
 	@SubscribeEvent
 	public void onEntityDamage(LivingAttackEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		Entity source = e.getSource().getEntity();
-		if (source instanceof PlayerEntity == false) {
+		if (source instanceof Player == false) {
 			return;
 		}
 		
-		if (entity instanceof PlayerEntity) {
+		if (entity instanceof Player) {
 			return;
 		}
 		
-		PlayerEntity player = (PlayerEntity)source;
-		ItemStack mainhand = player.getItemInHand(Hand.MAIN_HAND);
-		if (!mainhand.getHoverName().getString().equals(TextFormatting.GOLD + "The Silence Stick")) {
+		Player player = (Player)source;
+		ItemStack mainhand = player.getItemInHand(InteractionHand.MAIN_HAND);
+		if (!mainhand.getHoverName().getString().equals(ChatFormatting.GOLD + "The Silence Stick")) {
 			return;
 		}
 		
@@ -74,7 +74,7 @@ public class EntityEvent {
 						entity.setCustomName(null);
 					}
 					else {
-						entity.setCustomName(new StringTextComponent(entityname.trim()));
+						entity.setCustomName(new TextComponent(entityname.trim()));
 					}
 				}
 				else {
@@ -82,16 +82,16 @@ public class EntityEvent {
 				}
 			}
 			else {
-				StringFunctions.sendMessage(player, "The " + entityname.toLowerCase() + " has been unsilenced.", TextFormatting.DARK_GREEN);
+				StringFunctions.sendMessage(player, "The " + entityname.toLowerCase() + " has been unsilenced.", ChatFormatting.DARK_GREEN);
 			}
 		}
 		else {
 			entity.setSilent(true);
 			if (ConfigHandler.GENERAL.renameSilencedMobs.get()) {
-				entity.setCustomName(new StringTextComponent("Silenced " + entityname));
+				entity.setCustomName(new TextComponent("Silenced " + entityname));
 			}
 			else {
-				StringFunctions.sendMessage(player, "The " + entityname.toLowerCase() + " has been silenced.", TextFormatting.DARK_GREEN);
+				StringFunctions.sendMessage(player, "The " + entityname.toLowerCase() + " has been silenced.", ChatFormatting.DARK_GREEN);
 			}
 		}
 		e.setCanceled(true);

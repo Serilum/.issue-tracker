@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -18,16 +18,15 @@ import java.util.List;
 
 import com.natamus.collective.data.GlobalVariables;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.EndPortalFrameBlock;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EndPortalFrameBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class BlockFunctions {
 	// START: Checks whether specificblock equals tocheckblock
@@ -52,15 +51,15 @@ public class BlockFunctions {
 		Block tocheckblock = Block.byItem(tocheckitem);
 		return isSpecificBlock(specificblock, tocheckblock);
 	}
-	public static Boolean isSpecificBlock(Block specificblock, World world, BlockPos pos) {
+	public static Boolean isSpecificBlock(Block specificblock, Level world, BlockPos pos) {
 		Block tocheckblock = world.getBlockState(pos).getBlock();
 		return isSpecificBlock(specificblock, tocheckblock);
 	}
 	// END: Checks whether specificblock equals tocheckblock
 	
-	public static void dropBlock(World world, BlockPos pos) {
+	public static void dropBlock(Level world, BlockPos pos) {
 		BlockState blockstate = world.getBlockState(pos);
-		TileEntity tileentity = blockstate.hasTileEntity() ? world.getBlockEntity(pos) : null;
+		BlockEntity tileentity = blockstate.hasBlockEntity() ? world.getBlockEntity(pos) : null;
 		Block.dropResources(blockstate, world, pos, tileentity);
 		world.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
 	}
@@ -91,7 +90,7 @@ public class BlockFunctions {
 		Block tocheckblock = Block.byItem(tocheckitem);
 		return isOneOfBlocks(blocks, tocheckblock);
 	}
-	public static Boolean isOneOfBlocks(List<Block> blocks, World world, BlockPos pos) {
+	public static Boolean isOneOfBlocks(List<Block> blocks, Level world, BlockPos pos) {
 		Block tocheckblock = world.getBlockState(pos).getBlock();
 		return isOneOfBlocks(blocks, tocheckblock);
 	}
@@ -99,10 +98,10 @@ public class BlockFunctions {
 	
 	// For bamboo
 	public static boolean isGrowBlock(Block block) {
-		BlockState state = block.defaultBlockState();
-		if (state.getBlock().is(BlockTags.BAMBOO_PLANTABLE_ON)) {
-			return true;
-		}
+		//BlockState state = block.defaultBlockState();
+		//if (state.getBlock().is(BlockTags.BAMBOO_PLANTABLE_ON)) {
+		//	return true;
+		//}
 		if (GlobalVariables.growblocks.contains(block)) {
 			return true;
 		}

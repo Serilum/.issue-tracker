@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Skeleton Horse Spawn.
- * Minecraft version: 1.16.5, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Skeleton Horse Spawn ever released, along with some other perks.
@@ -19,10 +19,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.skeletonhorsespawn.config.ConfigHandler;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.horse.SkeletonHorseEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.horse.SkeletonHorse;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -35,13 +35,13 @@ public class SkeletonHorseEvent {
 	
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof SkeletonHorseEntity) {
+		if (entity instanceof SkeletonHorse) {
 			if (!skeletonhorses.contains(entity)) {
 				skeletonhorses.add(entity);
 			}
@@ -52,7 +52,7 @@ public class SkeletonHorseEvent {
 	
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
-		World world = e.world;
+		Level world = e.world;
 		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}

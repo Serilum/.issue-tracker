@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -26,38 +26,38 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.natamus.collective.util.Reference;
 
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.block.BedBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.JsonToNBT;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.TagParser;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.Hand;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 
 public class PlayerFunctions {
-	public static boolean respawnPlayer(World world, PlayerEntity player) {
-		if (player instanceof ServerPlayerEntity == false) {
+	public static boolean respawnPlayer(Level world, Player player) {
+		if (player instanceof ServerPlayer == false) {
 			return false;
 		}
 		
 		MinecraftServer server = world.getServer();
-		ServerPlayerEntity serverplayer = (ServerPlayerEntity)player;
+		ServerPlayer serverplayer = (ServerPlayer)player;
 		
 		if (serverplayer.wonGame) {
 			serverplayer.wonGame = false;
 			serverplayer = server.getPlayerList().respawn(serverplayer, true);
-			CriteriaTriggers.CHANGED_DIMENSION.trigger(serverplayer, World.END, World.OVERWORLD);
+			CriteriaTriggers.CHANGED_DIMENSION.trigger(serverplayer, Level.END, Level.OVERWORLD);
 		}
 		else if (serverplayer.getHealth() <= 0.0F) {
 			serverplayer = server.getPlayerList().respawn(serverplayer, false);
@@ -66,13 +66,13 @@ public class PlayerFunctions {
 		return true;
 	}
 	
-	public static PlayerEntity matchPlayer(PlayerEntity player, String other) {
+	public static Player matchPlayer(Player player, String other) {
 		return matchPlayer(player.getCommandSenderWorld(), other);
 	}
-	public static PlayerEntity matchPlayer(World world, String other) {
-		List<? extends PlayerEntity> players = world.players();
+	public static Player matchPlayer(Level world, String other) {
+		List<? extends Player> players = world.players();
 
-		for (PlayerEntity onlineplayer : players) {
+		for (Player onlineplayer : players) {
 			if (onlineplayer.getName().getString().toLowerCase().equals(other)) {
 				return onlineplayer;
 			}
@@ -80,14 +80,14 @@ public class PlayerFunctions {
 		return null;
 	}
 	
-	public static boolean isHoldingWater(PlayerEntity player) {
-		if (player.getItemInHand(Hand.OFF_HAND).getItem().equals(Items.WATER_BUCKET) || player.getItemInHand(Hand.MAIN_HAND).getItem().equals(Items.WATER_BUCKET)) {
+	public static boolean isHoldingWater(Player player) {
+		if (player.getItemInHand(InteractionHand.OFF_HAND).getItem().equals(Items.WATER_BUCKET) || player.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(Items.WATER_BUCKET)) {
 			return true;
 		}
 		return false;
 	}
 	
-	public static boolean isJoiningWorldForTheFirstTime(PlayerEntity player, String modid) {
+	public static boolean isJoiningWorldForTheFirstTime(Player player, String modid) {
 		String firstjointag = Reference.MOD_ID + ".firstJoin." + modid;
 		
 		Set<String> tags = player.getTags();
@@ -97,7 +97,7 @@ public class PlayerFunctions {
 		
 		player.addTag(firstjointag);
 		
-		PlayerInventory inv = player.inventory;
+		Inventory inv = player.getInventory();
 		boolean isempty = true;
 		for (int i=0; i < 36; i++) {
 			if (!inv.getItem(i).isEmpty()) {
@@ -111,9 +111,9 @@ public class PlayerFunctions {
 		}
 		
 		
-		World world = player.getCommandSenderWorld();
-		ServerWorld serverworld = (ServerWorld)world;
-		BlockPos wspos = serverworld.getSharedSpawnPos();
+		Level world = player.getCommandSenderWorld();
+		ServerLevel ServerLevel = (ServerLevel)world;
+		BlockPos wspos = ServerLevel.getSharedSpawnPos();
 		BlockPos ppos = player.blockPosition();
 		BlockPos cpos = new BlockPos(ppos.getX(), wspos.getY(), ppos.getZ());
 		
@@ -123,23 +123,23 @@ public class PlayerFunctions {
 		return false;
 	}
 	
-	public static BlockPos getSpawnPoint(World world, PlayerEntity player) {
-		Vector3d spawnvec = getSpawnVec(world, player);
+	public static BlockPos getSpawnPoint(Level world, Player player) {
+		Vec3 spawnvec = getSpawnVec(world, player);
 		return new BlockPos(spawnvec.x, spawnvec.y, spawnvec.z);
 	}
-	public static Vector3d getSpawnVec(World world, PlayerEntity player) {
-		ServerPlayerEntity serverplayer = (ServerPlayerEntity)player;
-		ServerWorld serverworld = (ServerWorld)world;
+	public static Vec3 getSpawnVec(Level world, Player player) {
+		ServerPlayer serverplayer = (ServerPlayer)player;
+		ServerLevel ServerLevel = (ServerLevel)world;
 		
-		BlockPos respawnlocation = serverworld.getSharedSpawnPos(); // get spawn point
-		Vector3d respawnvec = new Vector3d(respawnlocation.getX(), respawnlocation.getY(), respawnlocation.getZ());
+		BlockPos respawnlocation = ServerLevel.getSharedSpawnPos(); // get spawn point
+		Vec3 respawnvec = new Vec3(respawnlocation.getX(), respawnlocation.getY(), respawnlocation.getZ());
 		
 		BlockPos bedpos = serverplayer.getRespawnPosition();
-		if (bedpos != null) { 
-			Optional<Vector3d> optionalbed = PlayerEntity.findRespawnPositionAndUseSpawnBlock(serverworld, bedpos, 1.0f, false, false);
+		if (bedpos != null) {
+			Optional<Vec3> optionalbed = Player.findRespawnPositionAndUseSpawnBlock(ServerLevel, bedpos, 1.0f, false, false);
 			if (optionalbed != null) {
 				if (optionalbed.isPresent()) {
-					Vector3d bedvec = optionalbed.get();
+					Vec3 bedvec = optionalbed.get();
 					BlockPos bp = new BlockPos(bedvec);
 					Iterator<BlockPos> it = BlockPos.betweenClosedStream(bp.getX()-1, bp.getY()-1, bp.getZ()-1, bp.getX()+1, bp.getY()+1, bp.getZ()+1).iterator();
 					while (it.hasNext()) {
@@ -160,12 +160,12 @@ public class PlayerFunctions {
 	
 	
 	// Player Gear Functions
-	public static String getPlayerGearString(PlayerEntity player) {
+	public static String getPlayerGearString(Player player) {
 		String skconfig = "";
 		
-		ItemStack offhand = player.getItemBySlot(EquipmentSlotType.OFFHAND);
+		ItemStack offhand = player.getItemBySlot(EquipmentSlot.OFFHAND);
 		if (!offhand.isEmpty()) {
-			CompoundNBT nbt = new CompoundNBT();
+			CompoundTag nbt = new CompoundTag();
 			nbt = offhand.save(nbt);
 			String nbtstring = nbt.toString();
 			skconfig += "'offhand'" + " : " + "'" + nbtstring + "',";
@@ -174,9 +174,9 @@ public class PlayerFunctions {
 			skconfig += "'offhand'" + " : " + "'',";
 		}
 		
-		ItemStack head = player.getItemBySlot(EquipmentSlotType.HEAD);
+		ItemStack head = player.getItemBySlot(EquipmentSlot.HEAD);
 		if (!head.isEmpty()) {
-			CompoundNBT nbt = new CompoundNBT();
+			CompoundTag nbt = new CompoundTag();
 			nbt = head.save(nbt);
 			String nbtstring = nbt.toString();
 			skconfig += "\n" + "'head'" + " : " + "'" + nbtstring + "',";
@@ -185,9 +185,9 @@ public class PlayerFunctions {
 			skconfig += "\n" + "'head'" + " : " + "'',";
 		}
 		
-		ItemStack chest = player.getItemBySlot(EquipmentSlotType.CHEST);
+		ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
 		if (!chest.isEmpty()) {
-			CompoundNBT nbt = new CompoundNBT();
+			CompoundTag nbt = new CompoundTag();
 			nbt = chest.save(nbt);
 			String nbtstring = nbt.toString();
 			skconfig += "\n" + "'chest'" + " : " + "'" + nbtstring + "',";
@@ -196,9 +196,9 @@ public class PlayerFunctions {
 			skconfig += "\n" + "'chest'" + " : " + "'',";
 		}
 		
-		ItemStack legs = player.getItemBySlot(EquipmentSlotType.LEGS);
+		ItemStack legs = player.getItemBySlot(EquipmentSlot.LEGS);
 		if (!legs.isEmpty()) {
-			CompoundNBT nbt = new CompoundNBT();
+			CompoundTag nbt = new CompoundTag();
 			nbt = legs.save(nbt);
 			String nbtstring = nbt.toString();
 			skconfig += "\n" + "'legs'" + " : " + "'" + nbtstring + "',";
@@ -207,9 +207,9 @@ public class PlayerFunctions {
 			skconfig += "\n" + "'legs'" + " : " + "'',";
 		}
 		
-		ItemStack feet = player.getItemBySlot(EquipmentSlotType.FEET);
+		ItemStack feet = player.getItemBySlot(EquipmentSlot.FEET);
 		if (!feet.isEmpty()) {
-			CompoundNBT nbt = new CompoundNBT();
+			CompoundTag nbt = new CompoundTag();
 			nbt = feet.save(nbt);
 			String nbtstring = nbt.toString();
 			skconfig += "\n" + "'feet'" + " : " + "'" + nbtstring + "',";
@@ -218,11 +218,11 @@ public class PlayerFunctions {
 			skconfig += "\n" + "'feet'" + " : " + "'',";
 		}
 		
-		PlayerInventory inv = player.inventory;
+		Inventory inv = player.getInventory();
 		for (int i=0; i < 36; i++) {
 			ItemStack slot = inv.getItem(i);
 			if (!slot.isEmpty()) {
-				CompoundNBT nbt = new CompoundNBT();
+				CompoundTag nbt = new CompoundTag();
 				nbt = slot.save(nbt);
 				String nbtstring = nbt.toString();
 				skconfig += "\n" + i + " : " + "'" + nbtstring + "',";
@@ -242,7 +242,7 @@ public class PlayerFunctions {
 		for (String specialslot : specialslots) {
 			String specialslotstring = "";
 			if (gear.containsKey(specialslot)) {
-				CompoundNBT nbt = new CompoundNBT();
+				CompoundTag nbt = new CompoundTag();
 				nbt = gear.get(specialslot).save(nbt);
 				specialslotstring = nbt.toString();
 			}
@@ -256,7 +256,7 @@ public class PlayerFunctions {
 		for (int i = 0; i < emptyinventory.size(); i++) {
 			String itemstring = "";
 			if (gear.containsKey("" + i)) {
-				CompoundNBT nbt = new CompoundNBT();
+				CompoundTag nbt = new CompoundTag();
 				nbt = gear.get("" + i).save(nbt);
 				itemstring = nbt.toString();
 			}
@@ -266,7 +266,7 @@ public class PlayerFunctions {
 		return gearstring;
 	}
 	
-	public static void setPlayerGearFromString(PlayerEntity player, String gearconfig) {
+	public static void setPlayerGearFromString(Player player, String gearconfig) {
 		String[] gearspl = gearconfig.split("\n");
 		int newlinecount = gearspl.length;
 		if (newlinecount < 40) {
@@ -296,7 +296,7 @@ public class PlayerFunctions {
 			
 			ItemStack itemstack = null;
 			try {
-				CompoundNBT newnbt = JsonToNBT.parseTag(data);
+				CompoundTag newnbt = TagParser.parseTag(data);
 				itemstack = ItemStack.of(newnbt);
 			} catch (CommandSyntaxException e) {}
 			
@@ -307,30 +307,30 @@ public class PlayerFunctions {
 			
 			if (!cleared) {
 				cleared = true;
-				player.inventory.clearContent();
+				player.getInventory().clearContent();
 			}
 			
 			if (NumberFunctions.isNumeric(slotstring)) {
 				int slot = Integer.parseInt(slotstring);
-				player.inventory.setItem(slot, itemstack);
+				player.getInventory().setItem(slot, itemstack);
 				continue;
 			}
 			
-			EquipmentSlotType type = null;
+			EquipmentSlot type = null;
 			if (slotstring.equals("offhand")) {
-				type = EquipmentSlotType.OFFHAND;
+				type = EquipmentSlot.OFFHAND;
 			}
 			else if (slotstring.equals("head")) {
-				type = EquipmentSlotType.HEAD;
+				type = EquipmentSlot.HEAD;
 			}
 			else if (slotstring.equals("chest")) {
-				type = EquipmentSlotType.CHEST;
+				type = EquipmentSlot.CHEST;
 			}
 			else if (slotstring.equals("legs")) {
-				type = EquipmentSlotType.LEGS;
+				type = EquipmentSlot.LEGS;
 			}
 			else if (slotstring.equals("feet")) {
-				type = EquipmentSlotType.FEET;
+				type = EquipmentSlot.FEET;
 			}
 			else {
 				continue;

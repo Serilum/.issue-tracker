@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -17,19 +17,19 @@ package com.natamus.collective.functions;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class BlockPosFunctions {
 	// START: GET functions
@@ -47,7 +47,7 @@ public class BlockPosFunctions {
 	}
 	
 	// START: RECURSIVE GET BLOCKS
-	public static List<BlockPos> getBlocksNextToEachOther(World world, BlockPos startpos, List<Block> possibleblocks) {
+	public static List<BlockPos> getBlocksNextToEachOther(Level world, BlockPos startpos, List<Block> possibleblocks) {
 		List<BlockPos> checkedblocks = new ArrayList<BlockPos>();
 		List<BlockPos> theblocksaround = new ArrayList<BlockPos>();
 		if (possibleblocks.contains(world.getBlockState(startpos).getBlock())) {
@@ -58,7 +58,7 @@ public class BlockPosFunctions {
 		recursiveGetNextBlocks(world, startpos, possibleblocks, theblocksaround, checkedblocks);
 		return theblocksaround;
 	}
-	private static void recursiveGetNextBlocks(World world, BlockPos pos, List<Block> possibleblocks, List<BlockPos> theblocksaround, List<BlockPos> checkedblocks) {
+	private static void recursiveGetNextBlocks(Level world, BlockPos pos, List<Block> possibleblocks, List<BlockPos> theblocksaround, List<BlockPos> checkedblocks) {
 		List<BlockPos> possibleblocksaround = getBlocksAround(pos, true);
 		for (BlockPos pba : possibleblocksaround) {
 			if (checkedblocks.contains(pba)) {
@@ -74,7 +74,7 @@ public class BlockPosFunctions {
 			}
 		}
 	}
-	public static List<BlockPos> getBlocksNextToEachOtherMaterial(World world, BlockPos startpos, List<Material> possiblematerials) {
+	public static List<BlockPos> getBlocksNextToEachOtherMaterial(Level world, BlockPos startpos, List<Material> possiblematerials) {
 		List<BlockPos> checkedblocks = new ArrayList<BlockPos>();
 		List<BlockPos> theblocksaround = new ArrayList<BlockPos>();
 		if (possiblematerials.contains(world.getBlockState(startpos).getMaterial())) {
@@ -85,7 +85,7 @@ public class BlockPosFunctions {
 		recursiveGetNextBlocksMaterial(world, startpos, possiblematerials, theblocksaround, checkedblocks);
 		return theblocksaround;
 	}
-	private static void recursiveGetNextBlocksMaterial(World world, BlockPos pos, List<Material> possiblematerials, List<BlockPos> theblocksaround, List<BlockPos> checkedblocks) {
+	private static void recursiveGetNextBlocksMaterial(Level world, BlockPos pos, List<Material> possiblematerials, List<BlockPos> theblocksaround, List<BlockPos> checkedblocks) {
 		List<BlockPos> possibleblocksaround = getBlocksAround(pos, true);
 		for (BlockPos pba : possibleblocksaround) {
 			if (checkedblocks.contains(pba)) {
@@ -103,7 +103,7 @@ public class BlockPosFunctions {
 	}
 	// END RECURSIVE GET BLOCKS
 	
-	public static BlockPos getSurfaceBlockPos(ServerWorld serverworld, int x, int z) {
+	public static BlockPos getSurfaceBlockPos(ServerLevel serverworld, int x, int z) {
 		BlockPos returnpos = new BlockPos(x, 255, z);
 		if (!WorldFunctions.isNether(serverworld)) {
 			int maxheight = 256;
@@ -139,20 +139,20 @@ public class BlockPosFunctions {
 		return returnpos;
 	}
 	
-	public static BlockPos getCenterNearbyVillage(ServerWorld serverworld) {
+	public static BlockPos getCenterNearbyVillage(ServerLevel serverworld) {
 		return getNearbyVillage(serverworld, new BlockPos(0, 0, 0));
 	}
-	public static BlockPos getNearbyVillage(ServerWorld serverworld, BlockPos nearpos) {
-		return getNearbyStructure(serverworld, Structure.VILLAGE, nearpos, 9999);
+	public static BlockPos getNearbyVillage(ServerLevel serverworld, BlockPos nearpos) {
+		return getNearbyStructure(serverworld, StructureFeature.VILLAGE, nearpos, 9999);
 	}
 	
-	public static BlockPos getCenterNearbyStructure(ServerWorld serverworld, Structure<?> structure) {
+	public static BlockPos getCenterNearbyStructure(ServerLevel serverworld, StructureFeature<?> structure) {
 		return getNearbyStructure(serverworld, structure, new BlockPos(0, 0, 0));
 	}
-	public static BlockPos getNearbyStructure(ServerWorld serverworld, Structure<?> structure, BlockPos nearpos) {
+	public static BlockPos getNearbyStructure(ServerLevel serverworld, StructureFeature<?> structure, BlockPos nearpos) {
 		return getNearbyStructure(serverworld, structure, nearpos, 9999);
 	}	
-	public static BlockPos getNearbyStructure(ServerWorld serverworld, Structure<?> structure, BlockPos nearpos, int radius) {
+	public static BlockPos getNearbyStructure(ServerLevel serverworld, StructureFeature<?> structure, BlockPos nearpos, int radius) {
 		BlockPos villagepos = serverworld.findNearestMapFeature(structure, nearpos, radius, false);
 		if (villagepos == null) {
 			return null;
@@ -171,7 +171,7 @@ public class BlockPosFunctions {
 		return spawnpos;
 	}
 	
-	public static BlockPos getCenterBiome(ServerWorld serverworld, Biome biome) {
+	public static BlockPos getCenterBiome(ServerLevel serverworld, Biome biome) {
 		BlockPos centerpos = new BlockPos(0, 0, 0);
 		BlockPos biomepos = serverworld.findNearestBiome(biome, centerpos, 999999, 0);
 		if (biomepos == null) {
@@ -191,8 +191,8 @@ public class BlockPosFunctions {
 		return spawnpos;
 	}
 	
-	public static BlockPos getBlockPlayerIsLookingAt(World world, PlayerEntity player, boolean stopOnLiquid) {
-        RayTraceResult raytraceresult = RayTraceFunctions.rayTrace(world, player, stopOnLiquid);
+	public static BlockPos getBlockPlayerIsLookingAt(Level world, Player player, boolean stopOnLiquid) {
+		HitResult raytraceresult = RayTraceFunctions.rayTrace(world, player, stopOnLiquid);
         double posX = raytraceresult.getLocation().x;
         double posY = Math.floor(raytraceresult.getLocation().y);
         double posZ = raytraceresult.getLocation().z;
@@ -203,7 +203,7 @@ public class BlockPosFunctions {
 	
 	
 	// START: CHECK functions
-	public static Boolean isOnSurface(World world, BlockPos pos) {
+	public static Boolean isOnSurface(Level world, BlockPos pos) {
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
@@ -218,7 +218,7 @@ public class BlockPosFunctions {
 		
 		return true;
 	}
-	public static Boolean isOnSurface(World world, Vector3d vecpos) {
+	public static Boolean isOnSurface(Level world, Vec3 vecpos) {
 		return isOnSurface(world, new BlockPos(vecpos.x, vecpos.y, vecpos.z));
 	}
 	

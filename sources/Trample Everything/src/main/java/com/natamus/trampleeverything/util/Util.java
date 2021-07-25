@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Trample Everything.
- * Minecraft version: 1.16.5, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Trample Everything ever released, along with some other perks.
@@ -17,34 +17,34 @@ package com.natamus.trampleeverything.util;
 import com.natamus.collective.functions.BlockFunctions;
 import com.natamus.trampleeverything.config.ConfigHandler;
 
-import net.minecraft.block.AttachedStemBlock;
-import net.minecraft.block.BambooSaplingBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.CropsBlock;
-import net.minecraft.block.DeadBushBlock;
-import net.minecraft.block.DoublePlantBlock;
-import net.minecraft.block.FarmlandBlock;
-import net.minecraft.block.FlowerBlock;
-import net.minecraft.block.FungusBlock;
-import net.minecraft.block.LilyPadBlock;
-import net.minecraft.block.MushroomBlock;
-import net.minecraft.block.NetherRootsBlock;
-import net.minecraft.block.NetherSproutsBlock;
-import net.minecraft.block.NetherWartBlock;
-import net.minecraft.block.SaplingBlock;
-import net.minecraft.block.SeaGrassBlock;
-import net.minecraft.block.SeaPickleBlock;
-import net.minecraft.block.SnowBlock;
-import net.minecraft.block.StemBlock;
-import net.minecraft.block.SugarCaneBlock;
-import net.minecraft.block.SweetBerryBushBlock;
-import net.minecraft.block.TallGrassBlock;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.AttachedStemBlock;
+import net.minecraft.world.level.block.BambooSaplingBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.DeadBushBlock;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.FarmBlock;
+import net.minecraft.world.level.block.FlowerBlock;
+import net.minecraft.world.level.block.FungusBlock;
+import net.minecraft.world.level.block.WaterlilyBlock;
+import net.minecraft.world.level.block.MushroomBlock;
+import net.minecraft.world.level.block.RootsBlock;
+import net.minecraft.world.level.block.NetherSproutsBlock;
+import net.minecraft.world.level.block.NetherWartBlock;
+import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.SeagrassBlock;
+import net.minecraft.world.level.block.SeaPickleBlock;
+import net.minecraft.world.level.block.SnowLayerBlock;
+import net.minecraft.world.level.block.StemBlock;
+import net.minecraft.world.level.block.SugarCaneBlock;
+import net.minecraft.world.level.block.SweetBerryBushBlock;
+import net.minecraft.world.level.block.TallGrassBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 public class Util {
-	public static void trampleCheck(World world, BlockPos pos, Block block) {
-		if (block instanceof FarmlandBlock) {
+	public static void trampleCheck(Level world, BlockPos pos, Block block) {
+		if (block instanceof FarmBlock) {
 			pos = pos.above().immutable();
 			block = world.getBlockState(pos).getBlock();
 		}
@@ -62,7 +62,7 @@ public class Util {
 	}
 	
 	private static boolean isTrampleBlock(Block block) {
-		if (block instanceof SnowBlock) {
+		if (block instanceof SnowLayerBlock) {
 			if (ConfigHandler.GENERAL.trampleSnow.get()) {
 				return true;
 			}
@@ -76,7 +76,7 @@ public class Util {
 			}
 			return false;
 		}
-		if (block instanceof CropsBlock) {
+		if (block instanceof CropBlock) {
 			if (ConfigHandler.GENERAL.trampleCrops.get()) {
 				return true;
 			}
@@ -106,7 +106,7 @@ public class Util {
 			}
 			return false;
 		}
-		if (block instanceof LilyPadBlock) {
+		if (block instanceof WaterlilyBlock) {
 			if (ConfigHandler.GENERAL.trampleLilyPads.get()) {
 				return true;
 			}
@@ -118,7 +118,7 @@ public class Util {
 			}
 			return false;
 		}
-		if (block instanceof NetherRootsBlock) {
+		if (block instanceof RootsBlock) {
 			if (ConfigHandler.GENERAL.trampleNetherRoots.get()) {
 				return true;
 			}
@@ -142,7 +142,7 @@ public class Util {
 			}
 			return false;
 		}
-		if (block instanceof SeaGrassBlock) {
+		if (block instanceof SeagrassBlock) {
 			if (ConfigHandler.GENERAL.trampleSeaGrass.get()) {
 				return true;
 			}

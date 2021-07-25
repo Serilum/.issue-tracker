@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.16.5, mod version: 2.27.
+ * Minecraft version: 1.17.1, mod version: 2.29.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -17,35 +17,35 @@ package com.natamus.collective.functions;
 import java.util.Collections;
 import java.util.Iterator;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.IGrowable;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.Property;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 
 public class CropFunctions {
-	public static boolean growCrop(World world, PlayerEntity player, BlockState state, BlockPos pos) {
-		if (world instanceof ServerWorld == false) {
+	public static boolean growCrop(Level world, Player player, BlockState state, BlockPos pos) {
+		if (world instanceof ServerLevel == false) {
 			return false;
 		}
 		
-		ItemStack hand = player.getItemInHand(Hand.MAIN_HAND);
+		ItemStack hand = player.getItemInHand(InteractionHand.MAIN_HAND);
 		Block block = state.getBlock();
 
-		if (block instanceof IGrowable) {
-			IGrowable igrowable = (IGrowable)block;
+		if (block instanceof BonemealableBlock) {
+			BonemealableBlock igrowable = (BonemealableBlock)block;
 			while (igrowable.isValidBonemealTarget(world, pos, state, world.isClientSide)) {
 				if (!igrowable.isBonemealSuccess(world, world.random, pos, state)) {
 					break;
 				}
-				igrowable.performBonemeal((ServerWorld)world, world.random, pos, state);
+				igrowable.performBonemeal((ServerLevel)world, world.random, pos, state);
 				state = world.getBlockState(pos);
 				hand.shrink(1);
 				if (hand.getCount() == 0) {
@@ -92,7 +92,7 @@ public class CropFunctions {
 		return true;
 	}
 	
-	public static boolean growCactus(World world, BlockPos pos) {
+	public static boolean growCactus(Level world, BlockPos pos) {
 		for (int y = pos.getY(); y <= 256; y++) {
 			BlockPos uppos = new BlockPos(pos.getX(), y, pos.getZ());
 			Block block = world.getBlockState(uppos).getBlock();
@@ -109,7 +109,7 @@ public class CropFunctions {
 		return false;
 	}
 	
-	public static boolean growSugarcane(World world, BlockPos pos) {
+	public static boolean growSugarcane(Level world, BlockPos pos) {
 		for (int y = pos.getY(); y <= 256; y++) {
 			BlockPos uppos = new BlockPos(pos.getX(), y, pos.getZ());
 			Block block = world.getBlockState(uppos).getBlock();
@@ -126,7 +126,7 @@ public class CropFunctions {
 		return false;
 	}
 	
-	public static boolean growVine(World world, BlockPos pos) {
+	public static boolean growVine(Level world, BlockPos pos) {
 		for (int y = pos.getY(); y > 0; y--) {
 			BlockPos downpos = new BlockPos(pos.getX(), y, pos.getZ());
 			Block block = world.getBlockState(downpos).getBlock();

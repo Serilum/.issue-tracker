@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Set World Spawn Point.
- * Minecraft version: 1.16.5, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Set World Spawn Point ever released, along with some other perks.
@@ -23,17 +23,17 @@ import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.setworldspawnpoint.config.ConfigHandler;
 import com.natamus.setworldspawnpoint.util.Reference;
 
-import net.minecraft.block.BedBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.state.properties.BedPart;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.block.state.properties.BedPart;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -44,12 +44,12 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class WorldSpawnEvent {
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.CreateSpawnPosition e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
 		
-		ServerWorld serverworld = (ServerWorld)world;
+		ServerLevel serverworld = (ServerLevel)world;
 		int x = ConfigHandler.GENERAL.xCoordSpawnPoint.get();
 		int y = ConfigHandler.GENERAL.yCoordSpawnPoint.get();
 		int z = ConfigHandler.GENERAL.zCoordSpawnPoint.get();
@@ -67,25 +67,25 @@ public class WorldSpawnEvent {
 	
 	@SubscribeEvent
 	public void onPlayerRespawn(PlayerRespawnEvent e) {
-		PlayerEntity player = e.getPlayer();
-		World world = player.level;
+		Player player = e.getPlayer();
+		Level world = player.level;
 		if (world.isClientSide) {
 			return;
 		}
 		
 		if (ConfigHandler.GENERAL._forceExactSpawn.get()) {
-			ServerPlayerEntity serverplayer = (ServerPlayerEntity)player;
-			ServerWorld serverworld = (ServerWorld)world;
+			ServerPlayer serverplayer = (ServerPlayer)player;
+			ServerLevel serverworld = (ServerLevel)world;
 			
 			BlockPos respawnlocation = serverworld.getSharedSpawnPos(); // get spawn point
-			Vector3d respawnvec = new Vector3d(respawnlocation.getX(), respawnlocation.getY(), respawnlocation.getZ());
+			Vec3 respawnvec = new Vec3(respawnlocation.getX(), respawnlocation.getY(), respawnlocation.getZ());
 			
 			BlockPos bedpos = serverplayer.getRespawnPosition();
 			if (bedpos != null) {
-				Optional<Vector3d> optionalbed = PlayerEntity.findRespawnPositionAndUseSpawnBlock(serverworld, bedpos, 1.0f, false, false);
+				Optional<Vec3> optionalbed = Player.findRespawnPositionAndUseSpawnBlock(serverworld, bedpos, 1.0f, false, false);
 				if (optionalbed != null) {
 					if (optionalbed.isPresent()) {
-						Vector3d bedlocation = optionalbed.get();
+						Vec3 bedlocation = optionalbed.get();
 						BlockPos bl = new BlockPos(bedlocation.x(), bedlocation.y(), bedlocation.z());
 			
 						Iterator<BlockPos> it = BlockPos.betweenClosedStream(bl.getX()-1, bl.getY()-1, bl.getZ()-1, bl.getX()+1, bl.getY()+1, bl.getZ()+1).iterator();
@@ -95,13 +95,13 @@ public class WorldSpawnEvent {
 							Block block = state.getBlock();
 							if (block instanceof BedBlock) {
 								if (state.getValue(BedBlock.PART).equals(BedPart.FOOT)) {
-									bedlocation = new Vector3d(np.getX()+0.5, np.getY(), np.getZ()+0.5);
+									bedlocation = new Vec3(np.getX()+0.5, np.getY(), np.getZ()+0.5);
 									break;
 								}
 							}
 						}
 						
-						respawnvec = new Vector3d(bedlocation.x(), bedlocation.y(), bedlocation.z());
+						respawnvec = new Vec3(bedlocation.x(), bedlocation.y(), bedlocation.z());
 					}
 				}
 			}
@@ -112,7 +112,7 @@ public class WorldSpawnEvent {
 	
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -122,16 +122,16 @@ public class WorldSpawnEvent {
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof PlayerEntity == false) {
+		if (entity instanceof Player == false) {
 			return;
 		}
 		
-		PlayerEntity player = (PlayerEntity)entity;
+		Player player = (Player)entity;
 		if (!PlayerFunctions.isJoiningWorldForTheFirstTime(player, Reference.MOD_ID)) {
 			return;
 		}
 		
-		ServerWorld serverworld = (ServerWorld)world;
+		ServerLevel serverworld = (ServerLevel)world;
 		
 		BlockPos wspos = serverworld.getSharedSpawnPos();
 		BlockPos ppos = player.blockPosition();
