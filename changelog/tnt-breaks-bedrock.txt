@@ -3,6 +3,9 @@ TNT Breaks Bedrock
 https://www.curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock
 
 =========
+v1.7: Improved code efficiency.
+
+=========
 v1.6: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========
