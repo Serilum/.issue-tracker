@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.29: Updated string related functions.
+
+=========
+v2.28: Updated Collective to Minecraft version 1.17.1.
+
+=========
 v2.27: Updated collective to work with the official Mojang mappings. In preparation for 1.17 and future mod updates.
 
 =========
