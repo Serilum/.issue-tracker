@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Recipe Commands.
- * Minecraft version: 1.16.5, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Recipe Commands ever released, along with some other perks.
@@ -28,82 +28,82 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.recipecommands.util.Recipes;
 
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.command.arguments.ResourceLocationArgument;
-import net.minecraft.command.arguments.SuggestionProviders;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.ResourceLocationArgument;
+import net.minecraft.commands.synchronization.SuggestionProviders;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.Level;
 
 public class CommandRecipes {
-    public static void register(CommandDispatcher<CommandSource> dispatcher) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
     	dispatcher.register(Commands.literal("recipes")
-			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof ServerPlayerEntity)
+			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof ServerPlayer)
 			.executes((command) -> {
-				CommandSource source = command.getSource();
+				CommandSourceStack source = command.getSource();
 				
 				sendUsage(source);
 				return 1;
 			})
 			.then(Commands.argument("recipe", ResourceLocationArgument.id()).suggests(SuggestionProviders.ALL_RECIPES)
 			.executes((command) -> {
-				CommandSource source = command.getSource();
+				CommandSourceStack source = command.getSource();
 				
 				try {
 					sendRecipe(command);
 				}
 				catch (CommandSyntaxException ex) {
-					StringFunctions.sendMessage(source, "Unable to find recipe.", TextFormatting.RED);
+					StringFunctions.sendMessage(source, "Unable to find recipe.", ChatFormatting.RED);
 				}
 				return 1;
 			}))
 		);
     	dispatcher.register(Commands.literal("rec")
-    			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof ServerPlayerEntity)
+    			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof ServerPlayer)
     			.executes((command) -> {
-    				CommandSource source = command.getSource();
+    				CommandSourceStack source = command.getSource();
     				
     				sendUsage(source);
     				return 1;
     			})
     			.then(Commands.argument("recipe", ResourceLocationArgument.id()).suggests(SuggestionProviders.ALL_RECIPES)
     			.executes((command) -> {
-    				CommandSource source = command.getSource();
+    				CommandSourceStack source = command.getSource();
     				
     				try {
     					sendRecipe(command);
     				}
     				catch (CommandSyntaxException ex) {
-    					StringFunctions.sendMessage(source, "Unable to find recipe.", TextFormatting.RED);
+    					StringFunctions.sendMessage(source, "Unable to find recipe.", ChatFormatting.RED);
     				}
     				return 1;
     			}))
     		);
     }
     
-    private static void sendUsage(CommandSource source) {
-    	StringFunctions.sendMessage(source, "Recipe Commands Usage:", TextFormatting.DARK_GREEN);
-    	StringFunctions.sendMessage(source, " /rec <recipe>", TextFormatting.DARK_GREEN);
+    private static void sendUsage(CommandSourceStack source) {
+    	StringFunctions.sendMessage(source, "Recipe Commands Usage:", ChatFormatting.DARK_GREEN);
+    	StringFunctions.sendMessage(source, " /rec <recipe>", ChatFormatting.DARK_GREEN);
     }
     
     @SuppressWarnings("unchecked")
-	private static void sendRecipe(CommandContext<CommandSource> command) throws CommandSyntaxException {
-    	CommandSource source = command.getSource();
-    	PlayerEntity player = source.getPlayerOrException();
-    	World world = player.getCommandSenderWorld();
+	private static void sendRecipe(CommandContext<CommandSourceStack> command) throws CommandSyntaxException {
+    	CommandSourceStack source = command.getSource();
+    	Player player = source.getPlayerOrException();
+    	Level world = player.getCommandSenderWorld();
     	if (world.isClientSide) {
     		return;
     	}
     	
-    	IRecipe<?> recipe = ResourceLocationArgument.getRecipe(command, "recipe");
+    	Recipe<?> recipe = ResourceLocationArgument.getRecipe(command, "recipe");
     	ResourceLocation recipelocation = recipe.getId();
     	String recipename = recipelocation.getPath().toString();
     	
@@ -142,7 +142,7 @@ public class CommandRecipes {
     	
     	Collections.sort(items);
     	
-    	IRecipeSerializer<?> serializer = recipe.getSerializer();
+    	RecipeSerializer<?> serializer = recipe.getSerializer();
     	ResourceLocation srl = serializer.getRegistryName();
 
     	List<String> pattern = new ArrayList<String>();
@@ -186,8 +186,8 @@ public class CommandRecipes {
     	String outputname = output.getItem().toString();
     	outputname = StringFunctions.capitalizeEveryWord(outputname.replace("_", " "));
 		
-    	StringFunctions.sendMessage(source, outputname + " has a " + shape + " recipe.", TextFormatting.DARK_GREEN, true);
-    	StringFunctions.sendMessage(source, " Ingredients:", TextFormatting.DARK_GREEN);
+    	StringFunctions.sendMessage(source, outputname + " has a " + shape + " recipe.", ChatFormatting.DARK_GREEN, true);
+    	StringFunctions.sendMessage(source, " Ingredients:", ChatFormatting.DARK_GREEN);
     	for (String itemname : items) {
     		int count = itemcount.get(itemname);
     		String todisplayname = itemname;
@@ -201,18 +201,18 @@ public class CommandRecipes {
     		
     		todisplayname = todisplayname.replace("_", " ");
     		
-        	StringFunctions.sendMessage(source, "  " + count + "x " + todisplayname, TextFormatting.DARK_GREEN);
+        	StringFunctions.sendMessage(source, "  " + count + "x " + todisplayname, ChatFormatting.DARK_GREEN);
     	}
     	
     	if (shape.equalsIgnoreCase("shaped")) { 		
     		if (pattern.size() > 0) {
-    			StringFunctions.sendMessage(source, " Pattern:", TextFormatting.DARK_GREEN);
+    			StringFunctions.sendMessage(source, " Pattern:", ChatFormatting.DARK_GREEN);
     			
         		for (String line : pattern) {
         			for (String toreplace : Recipes.replacekeys.keySet()) {
         				line = line.replaceAll(toreplace, Recipes.replacekeys.get(toreplace));
         			}
-        			StringFunctions.sendMessage(source, "  " + line.replace(" ", "_"), TextFormatting.DARK_GREEN);
+        			StringFunctions.sendMessage(source, "  " + line.replace(" ", "_"), ChatFormatting.DARK_GREEN);
         		}
     		}
     	}

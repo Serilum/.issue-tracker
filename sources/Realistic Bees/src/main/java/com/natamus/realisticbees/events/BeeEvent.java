@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Realistic Bees.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Realistic Bees ever released, along with some other perks.
@@ -24,21 +24,21 @@ import com.natamus.collective.functions.StringFunctions;
 import com.natamus.realisticbees.config.ConfigHandler;
 import com.natamus.realisticbees.util.Reference;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.BeeEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShearsItem;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShearsItem;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -48,19 +48,19 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class BeeEvent {
-	private static HashMap<PlayerEntity, Integer> stung_players = new HashMap<PlayerEntity, Integer>();
-	private static HashMap<PlayerEntity, Date> last_sting_player = new HashMap<PlayerEntity, Date>();
-	private static HashMap<LivingEntity, Vector3d> stingerless_bees = new HashMap<LivingEntity, Vector3d>();
+	private static HashMap<Player, Integer> stung_players = new HashMap<Player, Integer>();
+	private static HashMap<Player, Date> last_sting_player = new HashMap<Player, Date>();
+	private static HashMap<LivingEntity, Vec3> stingerless_bees = new HashMap<LivingEntity, Vec3>();
 	
 	@SubscribeEvent
 	public void onBeeSpawn(EntityJoinWorldEvent e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof BeeEntity == false) {
+		if (entity instanceof Bee == false) {
 			return;
 		}
 		
@@ -70,7 +70,7 @@ public class BeeEvent {
 		}
 		
 		BlockPos entitypos = entity.blockPosition();
-		if (!world.hasChunk(MathHelper.floor(entitypos.getX()) >> 4, MathHelper.floor(entitypos.getZ()) >> 4)) {
+		if (!world.hasChunk(Mth.floor(entitypos.getX()) >> 4, Mth.floor(entitypos.getZ()) >> 4)) {
 			return;
 		}
 		
@@ -79,10 +79,10 @@ public class BeeEvent {
 			return;
 		}
 		
-		Vector3d beevec = entity.position();
+		Vec3 beevec = entity.position();
 		for (int i = 0; i < extrabees; i++) {
-			BeeEntity newbee = EntityType.BEE.create(world);
-			newbee.setLevel(world);
+			Bee newbee = EntityType.BEE.create(world);
+			newbee.level = world;
 			newbee.setPos(beevec.x, beevec.y, beevec.z);
 			newbee.addTag(Reference.MOD_ID + ".ignorebee");
 			world.addFreshEntity(newbee);
@@ -94,18 +94,18 @@ public class BeeEvent {
 	@SubscribeEvent
 	public void onEntityDamageTaken(LivingHurtEvent e) {
 		Entity target = e.getEntity();
-		World world = target.getCommandSenderWorld();
+		Level world = target.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		Entity truesource = e.getSource().getEntity();
-		if (truesource instanceof BeeEntity == false) {
+		if (truesource instanceof Bee == false) {
 			return;
 		}
 		
 		boolean targetisplayer = false;
-		if (target instanceof PlayerEntity) {
+		if (target instanceof Player) {
 			targetisplayer = true;
 		}
 		
@@ -126,10 +126,10 @@ public class BeeEvent {
 			return;
 		}
 		
-		EntityFunctions.addPotionEffect(truesource, Effects.UNLUCK, ConfigHandler.GENERAL.timeInSecondsBeeWithoutStingerDies.get()*1000);
+		EntityFunctions.addPotionEffect(truesource, MobEffects.UNLUCK, ConfigHandler.GENERAL.timeInSecondsBeeWithoutStingerDies.get()*1000);
 		
 		if (targetisplayer) {
-			PlayerEntity player = (PlayerEntity)target;
+			Player player = (Player)target;
 			
 			int timesstung = 1;
 			if (stung_players.containsKey(player)) {
@@ -146,7 +146,7 @@ public class BeeEvent {
 			stung_players.put(player, timesstung);
 			
 			if (ConfigHandler.GENERAL.sendStungPlayerWithStingerAMessage.get()) {
-				StringFunctions.sendMessage(player, "You have been stung" + times + " with the stinger left behind! You can try and get it out by using some shears as pliers.", TextFormatting.YELLOW);
+				StringFunctions.sendMessage(player, "You have been stung" + times + " with the stinger left behind! You can try and get it out by using some shears as pliers.", ChatFormatting.YELLOW);
 			}
 		}
 	}
@@ -154,18 +154,18 @@ public class BeeEvent {
 	@SubscribeEvent
 	public void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		if(entity instanceof BeeEntity) {
+		if(entity instanceof Bee) {
 			if (entity instanceof LivingEntity == false) {
 				return;
 			}
 			
 			LivingEntity le = (LivingEntity)entity;
-			EffectInstance badluck = le.getEffect(Effects.UNLUCK);
+			MobEffectInstance badluck = le.getEffect(MobEffects.UNLUCK);
 			if (badluck == null) {
 				return;
 			}
@@ -177,35 +177,35 @@ public class BeeEvent {
 				return;
 			}
 			
-			Vector3d beevec = le.position();
+			Vec3 beevec = le.position();
 			if (!stingerless_bees.containsKey(le)) {
 				stingerless_bees.put(le, beevec);
 				return;
 			}
 			
-			Vector3d lastvec = stingerless_bees.get(le);
+			Vec3 lastvec = stingerless_bees.get(le);
 			le.teleportTo(lastvec.x, beevec.y, lastvec.z);
 		}
-		else if (entity instanceof PlayerEntity) {
+		else if (entity instanceof Player) {
 			if (entity instanceof LivingEntity == false) {
 				return;
 			}
 			
-			PlayerEntity player = (PlayerEntity)entity;
+			Player player = (Player)entity;
 			if (stung_players.containsKey(player)) {
 				LivingEntity le = (LivingEntity)entity;
-				EffectInstance poison = le.getEffect(Effects.POISON);
+				MobEffectInstance poison = le.getEffect(MobEffects.POISON);
 				if (poison == null) {
 					Date now = new Date();
 					Date last_sting = last_sting_player.get(player);
 					long ms = (now.getTime()-last_sting.getTime());
 					if (ms >= ConfigHandler.GENERAL.timeInSecondsStingerPumpsPoison.get()*1000) {
-						StringFunctions.sendMessage(player, "All stingers have stopped pumping poison.", TextFormatting.DARK_GREEN);
+						StringFunctions.sendMessage(player, "All stingers have stopped pumping poison.", ChatFormatting.DARK_GREEN);
 						stung_players.remove(player);
 						return;
 					}
 					
-					EntityFunctions.addPotionEffect(le, Effects.POISON, 5000);
+					EntityFunctions.addPotionEffect(le, MobEffects.POISON, 5000);
 				}
 			}
 		}
@@ -213,12 +213,12 @@ public class BeeEvent {
 	
 	@SubscribeEvent
 	public void onStingerPull(PlayerInteractEvent.RightClickItem e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		if (stung_players.containsKey(player)) {
 			ItemStack hand = e.getItemStack();
 			if (hand.getItem() instanceof ShearsItem == false) {
@@ -227,7 +227,7 @@ public class BeeEvent {
 			
 			Double chance = GlobalVariables.random.nextDouble();
 			if (chance > ConfigHandler.GENERAL.chanceBeeStingerIsPulledOut.get()) {
-				StringFunctions.sendMessage(player, "You failed to get the stinger out!", TextFormatting.YELLOW);
+				StringFunctions.sendMessage(player, "You failed to get the stinger out!", ChatFormatting.YELLOW);
 				return;
 			}
 			
@@ -235,7 +235,7 @@ public class BeeEvent {
 			int newamount = timesstung-1;
 			
 			if (newamount == 0) {
-				StringFunctions.sendMessage(player, "You successfully took all the stingers out.", TextFormatting.DARK_GREEN);
+				StringFunctions.sendMessage(player, "You successfully took all the stingers out.", ChatFormatting.DARK_GREEN);
 				stung_players.remove(player);
 				return;
 			}
@@ -245,7 +245,7 @@ public class BeeEvent {
 				are = "are " + newamount;
 			}
 			
-			StringFunctions.sendMessage(player, "You took out a stinger! There " + are + " left.", TextFormatting.YELLOW);
+			StringFunctions.sendMessage(player, "You took out a stinger! There " + are + " left.", ChatFormatting.YELLOW);
 			stung_players.put(player, newamount);
 		}
 	}

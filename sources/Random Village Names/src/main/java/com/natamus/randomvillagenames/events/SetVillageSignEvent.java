@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Village Names.
- * Minecraft version: 1.16.5, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Random Village Names ever released, along with some other perks.
@@ -22,19 +22,19 @@ import com.natamus.collective.functions.TileEntityFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.randomvillagenames.util.Util;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.WallSignBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.tileentity.SignTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.WallSignBlock;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.entity.SignBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -44,12 +44,12 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class SetVillageSignEvent {
-	private static HashMap<World, CopyOnWriteArrayList<BlockPos>> ignorevillages = new HashMap<World, CopyOnWriteArrayList<BlockPos>>();
+	private static HashMap<Level, CopyOnWriteArrayList<BlockPos>> ignorevillages = new HashMap<Level, CopyOnWriteArrayList<BlockPos>>();
 	private static HashMap<String, Integer> lastticks = new HashMap<String, Integer>();
 	
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
@@ -61,8 +61,8 @@ public class SetVillageSignEvent {
 	
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
-		PlayerEntity player = e.player;
-		World world = player.getCommandSenderWorld();
+		Player player = e.player;
+		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
@@ -80,10 +80,10 @@ public class SetVillageSignEvent {
 		}
 		lastticks.put(playername, 200);
 		
-		ServerWorld serverworld = (ServerWorld)world;
+		ServerLevel serverworld = (ServerLevel)world;
 		BlockPos ppos = player.blockPosition();
 		
-		BlockPos villagepos = BlockPosFunctions.getNearbyStructure(serverworld, Structure.VILLAGE, ppos, 100);
+		BlockPos villagepos = BlockPosFunctions.getNearbyStructure(serverworld, StructureFeature.VILLAGE, ppos, 100);
 		if (villagepos == null) {
 			return;
 		}
@@ -121,19 +121,19 @@ public class SetVillageSignEvent {
 			world.setBlockAndUpdate(signpos, Blocks.OAK_SIGN.defaultBlockState());
 		}
 		
-		TileEntity te = world.getBlockEntity(signpos);
-		if (te instanceof SignTileEntity == false) {
+		BlockEntity te = world.getBlockEntity(signpos);
+		if (te instanceof SignBlockEntity == false) {
 			return;
 		}
 		
-		SignTileEntity signentity = (SignTileEntity)te;
-		signentity.setMessage(0, new StringTextComponent("[Area] 60"));
+		SignBlockEntity signentity = (SignBlockEntity)te;
+		signentity.setMessage(0, new TextComponent("[Area] 60"));
 		TileEntityFunctions.updateTileEntity(serverworld, signpos, signentity);
 	}
 	
 	@SubscribeEvent
 	public void onSignBreak(BlockEvent.BreakEvent e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
