@@ -3,7 +3,7 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
-v2.30-2.35: Skipped some subversions during development. Updated how the mod handles tile/block entities.
+v2.30-2.35: Updated how the mod handles tile/block entities. Skipped some subversions during development.
 
 =========
 v2.29: Updated string related functions.
