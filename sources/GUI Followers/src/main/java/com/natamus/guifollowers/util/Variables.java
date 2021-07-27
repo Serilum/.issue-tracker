@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Followers ever released, along with some other perks.
@@ -17,11 +17,11 @@ package com.natamus.guifollowers.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.world.entity.Entity;
 
 public class Variables {
-	public static KeyBinding clearlist_hotkey;
+	public static KeyMapping clearlist_hotkey;
 	
 	public static List<Entity> activefollowers = new ArrayList<Entity>();
 }

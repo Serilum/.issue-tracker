@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hidden Recipe Book.
- * Minecraft version: 1.16.5, mod version: 2.1.
+ * Minecraft version: 1.17.1, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Hidden Recipe Book ever released, along with some other perks.
@@ -23,13 +23,13 @@ import com.natamus.collective.functions.StringFunctions;
 import com.natamus.hiddenrecipebook.config.ConfigHandler;
 import com.natamus.hiddenrecipebook.util.Variables;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.ChatScreen;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.Widget;
-import net.minecraft.client.gui.widget.button.ImageButton;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.components.events.GuiEventListener;
+import net.minecraft.client.gui.screens.ChatScreen;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.GuiScreenEvent;
@@ -54,7 +54,7 @@ public class BookGUIEvent {
     		lastguipost = e;
     		if (imageButton_resourceLocation == null) {
 				for (Field field : ImageButton.class.getDeclaredFields()) {
-					if (field.toString().contains("resourceLocation") || field.toString().contains("resourceLocation")) {
+					if (field.toString().contains("resourceLocation") || field.toString().contains("field_191750_o")) {
 						imageButton_resourceLocation = field;
 						break;
 					}
@@ -65,10 +65,10 @@ public class BookGUIEvent {
 				imageButton_resourceLocation.setAccessible(true);
 			}
 			
-    		List<Widget> widgets = e.getWidgetList();
+    		List<GuiEventListener> widgets = e.getWidgetList();
     		
     		ImageButton imagebutton = null;
-    		for (Widget widget : widgets) {
+    		for (GuiEventListener widget : widgets) {
     			if (widget instanceof ImageButton) {
     				imagebutton = (ImageButton)widget;
     				try {
@@ -151,7 +151,7 @@ public class BookGUIEvent {
 				}
 				
 				if (ConfigHandler.GENERAL.showMessageOnRecipeBookToggle.get()) {
-					StringFunctions.sendMessage(mc.player, message, TextFormatting.DARK_GREEN);
+					StringFunctions.sendMessage(mc.player, message, ChatFormatting.DARK_GREEN);
 				}
 			}
 		}

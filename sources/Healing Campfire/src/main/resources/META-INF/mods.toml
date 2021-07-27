@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[37,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Healing%20Campfire"
 
@@ -11,12 +11,12 @@ displayURL="https://curseforge.com/minecraft/mc-mods/healing-campfire"
 authors="Rick South"
 description="A minimalistic mod which creates an area around the campfire where players and passive mobs receive the regeneration effect in a configurable radius."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.healingcampfire]]
     modId="collective"
     mandatory=true
-    versionRange="[2.27,)"
+    versionRange="[2.35,)"
     ordering="NONE"
     side="BOTH"

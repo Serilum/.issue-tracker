@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.36: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
+
+=========
 v2.30-2.35: Updated how the mod handles tile/block entities. Skipped some subversions during development.
 
 =========

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Healing Soup.
- * Minecraft version: 1.16.5, mod version: 2.3.
+ * Minecraft version: 1.17.1, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Healing Soup ever released, along with some other perks.
@@ -21,9 +21,9 @@ import com.natamus.healingsoup.items.SoupFoods;
 import com.natamus.healingsoup.items.SoupItems;
 import com.natamus.healingsoup.util.Reference;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.SoupItem;
+import net.minecraft.world.item.BowlFoodItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -60,13 +60,11 @@ public class Main {
     
 	@SubscribeEvent
 	public void registerItems(RegistryEvent.Register<Item> e) {
-		System.out.println("RAN REGISTER ITEM");
-		
 		IForgeRegistry<Item> registry = e.getRegistry();
 		registry.registerAll(
-				(SoupItems.MUSHROOM_SOUP = new SoupItem((new Item.Properties()).stacksTo(1).tab(ItemGroup.TAB_FOOD).food(SoupFoods.MUSHROOM_SOUP)).setRegistryName(Reference.MOD_ID, "mushroom_soup")),
-				(SoupItems.CACTUS_SOUP = new SoupItem((new Item.Properties()).stacksTo(1).tab(ItemGroup.TAB_FOOD).food(SoupFoods.CACTUS_SOUP)).setRegistryName(Reference.MOD_ID, "cactus_soup")),
-				(SoupItems.CHOCOLATE_MILK = new SoupItem((new Item.Properties()).stacksTo(1).tab(ItemGroup.TAB_FOOD).food(SoupFoods.CHOCOLATE_MILK)).setRegistryName(Reference.MOD_ID, "chocolate_milk")));
+				(SoupItems.MUSHROOM_SOUP = new BowlFoodItem((new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_FOOD).food(SoupFoods.MUSHROOM_SOUP)).setRegistryName(Reference.MOD_ID, "mushroom_soup")),
+				(SoupItems.CACTUS_SOUP = new BowlFoodItem((new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_FOOD).food(SoupFoods.CACTUS_SOUP)).setRegistryName(Reference.MOD_ID, "cactus_soup")),
+				(SoupItems.CHOCOLATE_MILK = new BowlFoodItem((new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_FOOD).food(SoupFoods.CHOCOLATE_MILK)).setRegistryName(Reference.MOD_ID, "chocolate_milk")));
 	
 		SoupItems.soups.add(SoupItems.MUSHROOM_SOUP);
 		SoupItems.soups.add(SoupItems.CACTUS_SOUP);

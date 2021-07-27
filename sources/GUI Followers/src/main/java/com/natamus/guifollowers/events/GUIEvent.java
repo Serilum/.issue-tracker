@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Followers ever released, along with some other perks.
@@ -19,28 +19,26 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
-
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.guifollowers.config.ConfigHandler;
 import com.natamus.guifollowers.util.Variables;
 
-import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.IngameGui;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class GUIEvent extends IngameGui {
+public class GUIEvent extends Gui {
 	private static Minecraft mc;
 
 	public GUIEvent(Minecraft mc){
@@ -55,12 +53,13 @@ public class GUIEvent extends IngameGui {
 			return;
 		}
 
-		FontRenderer fontRender = mc.font;
-		MainWindow scaled = mc.getWindow();
-		GL11.glPushMatrix();
+		Font fontRender = mc.font;
+		Window scaled = mc.getWindow();
+		PoseStack stack = e.getMatrixStack();
+		stack.pushPose();
 		
 		if (Variables.activefollowers.size() > 0) {
-			MatrixStack ms = new MatrixStack();
+			PoseStack ms = new PoseStack();
 			
 			int width = scaled.getGuiScaledWidth();
 			
@@ -85,7 +84,7 @@ public class GUIEvent extends IngameGui {
 			boolean drawnfirst = false;
 			int heightoffset = ConfigHandler.GENERAL.followerListHeightOffset.get();
 			
-			ClientPlayerEntity player = mc.player;
+			LocalPlayer player = mc.player;
 			String playerdimension = WorldFunctions.getWorldDimensionName(player.getCommandSenderWorld());
 			
 			List<Entity> toremove = new ArrayList<Entity>();
@@ -98,12 +97,12 @@ public class GUIEvent extends IngameGui {
 					continue;
 				}
 				
-				if (!follower.isAlive() || follower instanceof TameableEntity == false) {
+				if (!follower.isAlive() || follower instanceof TamableAnimal == false) {
 					toremove.add(follower);
 					continue;
 				}
 				
-				TameableEntity te = (TameableEntity)follower;
+				TamableAnimal te = (TamableAnimal)follower;
 				if (te.isOrderedToSit()) {
 					toremove.add(follower);
 					continue;
@@ -126,8 +125,8 @@ public class GUIEvent extends IngameGui {
 				}
 				
 				if (ConfigHandler.GENERAL.showFollowerDistance.get()) {
-					Vector3d pvec = player.position();
-					Vector3d fvec = follower.position();
+					Vec3 pvec = player.position();
+					Vec3 fvec = follower.position();
 					
 					double distance = pvec.distanceTo(fvec);
 					String distanceformat = ConfigHandler.GENERAL.followerDistanceFormat.get();
@@ -159,6 +158,6 @@ public class GUIEvent extends IngameGui {
 			}
 		}
 		
-		GL11.glPopMatrix();
+		stack.popPose();
 	}
 }
