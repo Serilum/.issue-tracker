@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Tracking Compass.
- * Minecraft version: 1.16.5, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Player Tracking Compass ever released, along with some other perks.
@@ -16,27 +16,28 @@ package com.natamus.playertrackingcompass.items;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemFrameEntity;
-import net.minecraft.item.IItemPropertyGetter;
-import net.minecraft.item.ItemModelsProperties;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.renderer.item.ItemPropertyFunction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.decoration.ItemFrame;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
+@SuppressWarnings("deprecation")
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class TrackingCompassClient implements IItemPropertyGetter {
+public class TrackingCompassClient implements ItemPropertyFunction {
 
 	@SubscribeEvent
 	public static void models(FMLClientSetupEvent e) {
-		ItemModelsProperties.register(CompassVariables.TRACKING_COMPASS, new ResourceLocation("angle"), new TrackingCompassClient());
+		ItemProperties.register(CompassVariables.TRACKING_COMPASS, new ResourceLocation("angle"), new TrackingCompassClient());
 	}
 
 	private double prevAngle = 0.0D;
@@ -52,7 +53,7 @@ public class TrackingCompassClient implements IItemPropertyGetter {
 	 * @return The angle
 	 */
 	@Override
-	public float call(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity livingEntity) {
+	public float call(ItemStack stack, @Nullable ClientLevel world, @Nullable LivingEntity livingEntity, int i) {
 		boolean isLiving = livingEntity != null;
 
 		if (!isLiving && !stack.isFramed()) {
@@ -62,7 +63,7 @@ public class TrackingCompassClient implements IItemPropertyGetter {
 		Entity entity = isLiving ? livingEntity : stack.getFrame();
 
 		if (world == null) {
-			world = (ClientWorld)entity.level;
+			world = (ClientLevel)entity.level;
 		}
 
 		if (CompassVariables.trackingTarget == null) {
@@ -70,9 +71,9 @@ public class TrackingCompassClient implements IItemPropertyGetter {
 		}
 		double angle;
 
-		double entityAngle = isLiving ? entity.yRot : getFrameAngle((ItemFrameEntity) entity);
+		double entityAngle = isLiving ? entity.getYRot() : getFrameAngle((ItemFrame) entity);
 		entityAngle /= 360.0D;
-		entityAngle = MathHelper.positiveModulo(entityAngle, 1.0D);
+		entityAngle = Mth.positiveModulo(entityAngle, 1.0D);
 		double posAngle = getPosToAngle(CompassVariables.trackingTarget, entity);
 		posAngle /= Math.PI * 2D;
 		angle = 0.5D - (entityAngle - 0.25D - posAngle);
@@ -81,7 +82,7 @@ public class TrackingCompassClient implements IItemPropertyGetter {
 			angle = wobble(world, angle);
 		}
 
-		return MathHelper.positiveModulo((float) angle, 1.0F);
+		return Mth.positiveModulo((float) angle, 1.0F);
 	}
 
 	/**
@@ -91,15 +92,15 @@ public class TrackingCompassClient implements IItemPropertyGetter {
 	 * @param angle The current angle
 	 * @return The new, wobbly angle
 	 */
-	private double wobble(World world, double angle) {
+	private double wobble(Level world, double angle) {
 		long worldTime = world.getGameTime();
 		if (worldTime != prevWorldTime) {
 			prevWorldTime = worldTime;
 			double angleDifference = angle - prevAngle;
-			angleDifference = MathHelper.positiveModulo(angleDifference + 0.5D, 1.0D) - 0.5D;
+			angleDifference = Mth.positiveModulo(angleDifference + 0.5D, 1.0D) - 0.5D;
 			prevWobble += angleDifference * 0.1D;
 			prevWobble *= 0.8D;
-			prevAngle = MathHelper.positiveModulo(prevAngle + prevWobble, 1.0D);
+			prevAngle = Mth.positiveModulo(prevAngle + prevWobble, 1.0D);
 		}
 		return prevAngle;
 	}
@@ -110,8 +111,8 @@ public class TrackingCompassClient implements IItemPropertyGetter {
 	 * @param entity The entity instance of the item frame
 	 * @return The angle
 	 */
-	private double getFrameAngle(ItemFrameEntity entity) {
-		return MathHelper.wrapDegrees(180 + entity.getDirection().get2DDataValue() * 90);
+	private double getFrameAngle(ItemFrame entity) {
+		return Mth.wrapDegrees(180 + entity.getDirection().get2DDataValue() * 90);
 	}
 
 	/**

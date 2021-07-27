@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Scaf
 
 [[mods]]
 modId="scaffoldingdropsnearby"
-version="1.4"
+version="1.5"
 displayName="Scaffolding Drops Nearby"
 displayURL="https://curseforge.com/minecraft/mc-mods/scaffolding-drops-nearby"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley
 [[dependencies.scaffoldingdropsnearby]]
     modId="collective"
     mandatory=true
-    versionRange="[2.29,)"
+    versionRange="[2.35,)"
     ordering="NONE"
     side="BOTH"

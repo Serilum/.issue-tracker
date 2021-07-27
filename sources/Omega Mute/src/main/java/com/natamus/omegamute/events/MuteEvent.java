@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Omega Mute.
- * Minecraft version: 1.16.5, mod version: 1.8.
+ * Minecraft version: 1.17.1, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Omega Mute ever released, along with some other perks.
@@ -23,10 +23,10 @@ import com.natamus.collective.functions.StringFunctions;
 import com.natamus.omegamute.util.Util;
 import com.natamus.omegamute.util.Variables;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.ChatScreen;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.client.gui.screens.ChatScreen;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
@@ -36,7 +36,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class MuteEvent {
-	public static List<PlayerEntity> listeningplayers = new ArrayList<PlayerEntity>();
+	public static List<Player> listeningplayers = new ArrayList<Player>();
 	public static HashMap<String, Integer> ismutedsoundmap = new HashMap<String, Integer>();
 	public static HashMap<String, Date> lastplayedsound = new HashMap<String, Date>();
 	
@@ -73,8 +73,8 @@ public class MuteEvent {
 		}
 		
 		if (listeningplayers.size() > 0) {
-			for (PlayerEntity player : listeningplayers) {
-				StringFunctions.sendMessage(player, name, TextFormatting.WHITE);
+			for (Player player : listeningplayers) {
+				StringFunctions.sendMessage(player, name, ChatFormatting.WHITE);
 			}
 		}
 	}
@@ -102,16 +102,16 @@ public class MuteEvent {
 			} catch (Exception ex) { return; }
 			
 			if (mc.player != null) {
-				StringFunctions.sendMessage(mc.player, "Reloading the omega mute soundmap file now.", TextFormatting.DARK_GREEN);
+				StringFunctions.sendMessage(mc.player, "Reloading the omega mute soundmap file now.", ChatFormatting.DARK_GREEN);
 				try {
 					if (Util.loadSoundFile()) {
-						StringFunctions.sendMessage(mc.player, "New soundmap changes successfully loaded.", TextFormatting.DARK_GREEN);
+						StringFunctions.sendMessage(mc.player, "New soundmap changes successfully loaded.", ChatFormatting.DARK_GREEN);
 					}
 					else {
-						StringFunctions.sendMessage(mc.player, "No soundmap found, a new one has been generated.", TextFormatting.DARK_GREEN);
+						StringFunctions.sendMessage(mc.player, "No soundmap found, a new one has been generated.", ChatFormatting.DARK_GREEN);
 					}
 				} catch (Exception ex) {
-					StringFunctions.sendMessage(mc.player, "Something went wrong while loading the soundmap file.", TextFormatting.RED);
+					StringFunctions.sendMessage(mc.player, "Something went wrong while loading the soundmap file.", ChatFormatting.RED);
 				}	
 			}
 		}

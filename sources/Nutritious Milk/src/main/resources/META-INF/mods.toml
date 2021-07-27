@@ -1,22 +1,22 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[37,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Nutritious%20Milk"
 
 [[mods]]
 modId="nutritiousmilk"
-version="1.5"
+version="1.6"
 displayName="Nutritious Milk"
 displayURL="https://curseforge.com/minecraft/mc-mods/nutritious-milk"
 authors="Rick South"
 description="Adds a nutritious value to milk, filling up the food bar and saturation when consumed."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.nutritiousmilk]]
     modId="collective"
     mandatory=true
-    versionRange="[2.27,)"
+    versionRange="[2.35,)"
     ordering="NONE"
     side="BOTH"

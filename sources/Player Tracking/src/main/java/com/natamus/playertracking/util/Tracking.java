@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Tracking.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Player Tracking ever released, along with some other perks.
@@ -20,12 +20,12 @@ import java.util.List;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.playertracking.Main;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.BlockPos;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
 
 public class Tracking {	
 	public Tracking(Main instance) {
@@ -38,7 +38,7 @@ public class Tracking {
 		mz = z;
 	}
 
-	public boolean checkPlayer(PlayerEntity pl, int x, int z) {
+	public boolean checkPlayer(Player pl, int x, int z) {
 		BlockPos pos = pl.blockPosition();
 		
 		int num = 0;
@@ -67,15 +67,15 @@ public class Tracking {
 		return false;
 	}
 
-	public void TrackDir(PlayerEntity player, int x, int z, PlayerEntity player2) {
+	public void TrackDir(Player player, int x, int z, Player player2) {
 		String compass = "West";
-		List<? extends PlayerEntity> plist = player.getCommandSenderWorld().players();
-		List<PlayerEntity> in = new ArrayList<PlayerEntity>();
+		List<? extends Player> plist = player.getCommandSenderWorld().players();
+		List<Player> in = new ArrayList<Player>();
 		int num = Math.abs(x) + Math.abs(z);
 		if(player2 == null) {
 			for(int i = 0; i < plist.size(); i++)
 			{
-				PlayerEntity pl = (PlayerEntity)plist.get(i);
+				Player pl = (Player)plist.get(i);
 				boolean can = checkPlayer(pl, x, z);
 				if(can)
 					in.add(pl);
@@ -98,12 +98,12 @@ public class Tracking {
 				compass = "East";
 		String str = "";
 		for(int i = 0; i < in.size(); i++)
-			str = (new StringBuilder(String.valueOf(str))).append(((PlayerEntity)in.get(i)).getName()).append(",").toString();
+			str = (new StringBuilder(String.valueOf(str))).append(((Player)in.get(i)).getName()).append(",").toString();
 
-		StringFunctions.sendMessage(player, compass + "<" + num + ">: " + str, TextFormatting.GRAY);
+		StringFunctions.sendMessage(player, compass + "<" + num + ">: " + str, ChatFormatting.GRAY);
 	}
 
-	public int findBlock(World world, int x, int z, Block block1, Block block2) {
+	public int findBlock(Level world, int x, int z, Block block1, Block block2) {
 		boolean hasmat = true;
 		int length = 0;
 		for(int i = 1; i < 10000; i++) {
@@ -135,8 +135,8 @@ public class Tracking {
 			return 0;
 	}
 
-	public void Track(Block block1, Block block2, PlayerEntity player, PlayerEntity player2) {
-		World world = player.getCommandSenderWorld();
+	public void Track(Block block1, Block block2, Player player, Player player2) {
+		Level world = player.getCommandSenderWorld();
 		BlockPos bpos = player.blockPosition().below().immutable();
 		Block block = world.getBlockState(bpos).getBlock();
 		int northDist = findBlock(world, -1, 0, block1, block2);
@@ -144,7 +144,7 @@ public class Tracking {
 		int eastDist = findBlock(world, 0, -1, block1, block2);
 		int westDist = findBlock(world, 0, 1, block1, block2);
 		
-		StringFunctions.sendMessage(player, "Tracking Data:          Use F3 for directions", TextFormatting.DARK_GRAY);
+		StringFunctions.sendMessage(player, "Tracking Data:          Use F3 for directions", ChatFormatting.DARK_GRAY);
 		if(northDist > 0)
 			TrackDir(player, -northDist * 25, 0, player2);
 		if(southDist > 0)
@@ -157,8 +157,8 @@ public class Tracking {
 			world.setBlockAndUpdate(bpos, Blocks.AIR.defaultBlockState());
 	}
 
-	public void Track(PlayerEntity player, PlayerEntity player2) {
-		World world = player.getCommandSenderWorld();
+	public void Track(Player player, Player player2) {
+		Level world = player.getCommandSenderWorld();
 		BlockPos bpos = player.blockPosition().below().immutable();
 		Block block = world.getBlockState(bpos).getBlock();
 		if(block.equals(Blocks.DIAMOND_BLOCK)) {
@@ -170,8 +170,8 @@ public class Tracking {
 			return;
 		}
 		
-		StringFunctions.sendMessage(player, "You need to be on a tracking block to do that.", TextFormatting.GRAY);
-		StringFunctions.sendMessage(player, "Do '/track help' for more information.", TextFormatting.GRAY);
+		StringFunctions.sendMessage(player, "You need to be on a tracking block to do that.", ChatFormatting.GRAY);
+		StringFunctions.sendMessage(player, "Do '/track help' for more information.", ChatFormatting.GRAY);
 	}
 
 	public Main instance;

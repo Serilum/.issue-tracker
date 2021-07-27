@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Naturally Charged Creepers.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Naturally Charged Creepers ever released, along with some other perks.
@@ -24,13 +24,13 @@ import javax.swing.Timer;
 import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.naturallychargedcreepers.config.ConfigHandler;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
@@ -43,7 +43,7 @@ public class EntityEvent {
 	
 	@SubscribeEvent
 	public void onClick(RightClickBlock e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -52,8 +52,8 @@ public class EntityEvent {
 			return;
 		}
 		
-		PlayerEntity player = e.getPlayer();
-		ItemStack mainhand = player.getItemInHand(Hand.MAIN_HAND);
+		Player player = e.getPlayer();
+		ItemStack mainhand = player.getItemInHand(InteractionHand.MAIN_HAND);
 		if (mainhand.getItem() instanceof SpawnEggItem == false) {
 			return;
 		}
@@ -63,7 +63,7 @@ public class EntityEvent {
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -72,7 +72,7 @@ public class EntityEvent {
 			return;
 		}		
 		
-		if (entity instanceof CreeperEntity == false) {
+		if (entity instanceof Creeper == false) {
 			return;
 		}
 		if (!checkNext) {
@@ -85,14 +85,14 @@ public class EntityEvent {
 			return;
 		}	
 		
-		CreeperEntity creeper = (CreeperEntity)entity;
+		Creeper creeper = (Creeper)entity;
 		processCreeper(creeper);
 	}
 	
 	@SubscribeEvent
 	public void CreeperSpawn(LivingSpawnEvent.CheckSpawn e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -101,7 +101,7 @@ public class EntityEvent {
 			return;
 		}
 		
-		if (entity instanceof CreeperEntity == false) {
+		if (entity instanceof Creeper == false) {
 			return;
 		}
 		double num = Math.random();
@@ -109,12 +109,12 @@ public class EntityEvent {
 			return;
 		}
 		
-		CreeperEntity creeper = (CreeperEntity)entity;
+		Creeper creeper = (Creeper)entity;
 		processCreeper(creeper);
 	}
 	
 	private static ArrayList<UUID> processeduuids = new ArrayList<UUID>();
-	public void processCreeper(CreeperEntity creeper) {
+	public void processCreeper(Creeper creeper) {
 		UUID uuid = creeper.getUUID();
 		if (!processeduuids.contains(uuid)) {
 			processeduuids.add(uuid);

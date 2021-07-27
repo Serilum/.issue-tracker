@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Mob Effects.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Random Mob Effects ever released, along with some other perks.
@@ -20,12 +20,12 @@ import com.natamus.collective.util.Reference;
 import com.natamus.randommobeffects.config.ConfigHandler;
 import com.natamus.randommobeffects.util.Util;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.world.World;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -34,7 +34,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class AddEffectEvent {
 	@SubscribeEvent
 	public void onSheepSpawn(EntityJoinWorldEvent e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -43,7 +43,7 @@ public class AddEffectEvent {
 		if (entity instanceof LivingEntity == false) {
 			return;
 		}
-		if (!entity.getType().getCategory().equals(EntityClassification.MONSTER)) {
+		if (!entity.getType().getCategory().equals(MobCategory.MONSTER)) {
 			return;
 		}
 		
@@ -54,14 +54,14 @@ public class AddEffectEvent {
 		}
 		
 		LivingEntity le = (LivingEntity)entity;
-		Effect randomeffect = Util.getRandomEffect();
+		MobEffect randomeffect = Util.getRandomEffect();
 		
-		EffectInstance effectinstance;
+		MobEffectInstance effectinstance;
 		if (ConfigHandler.GENERAL.hideEffectParticles.get()) {
-			effectinstance = new EffectInstance(randomeffect, Integer.MAX_VALUE, ConfigHandler.GENERAL.potionEffectLevel.get()-1, true, false);
+			effectinstance = new MobEffectInstance(randomeffect, Integer.MAX_VALUE, ConfigHandler.GENERAL.potionEffectLevel.get()-1, true, false);
 		}
 		else {
-			effectinstance = new EffectInstance(randomeffect, Integer.MAX_VALUE, ConfigHandler.GENERAL.potionEffectLevel.get()-1);
+			effectinstance = new MobEffectInstance(randomeffect, Integer.MAX_VALUE, ConfigHandler.GENERAL.potionEffectLevel.get()-1);
 		}
 		
 		le.addEffect(effectinstance);

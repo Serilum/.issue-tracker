@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Tracking Compass.
- * Minecraft version: 1.16.5, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Player Tracking Compass ever released, along with some other perks.
@@ -17,10 +17,10 @@ package com.natamus.playertrackingcompass.util;
 import com.natamus.playertrackingcompass.items.CompassVariables;
 import com.natamus.playertrackingcompass.items.TrackingCompassItem;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -32,6 +32,6 @@ public class RegistryHandler {
     }
 
     public static final RegistryObject<Item> TRACKING_COMPASS = ITEMS.register("tracking_compass", () ->
-    	CompassVariables.TRACKING_COMPASS = new TrackingCompassItem((new Item.Properties()).tab(ItemGroup.TAB_TOOLS))
+    	CompassVariables.TRACKING_COMPASS = new TrackingCompassItem((new Item.Properties()).tab(CreativeModeTab.TAB_TOOLS))
     );
 }

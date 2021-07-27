@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Mineral Chance.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.17.1, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Mineral Chance ever released, along with some other perks.
@@ -20,15 +20,15 @@ import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.mineralchance.config.ConfigHandler;
 import com.natamus.mineralchance.util.Util;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.BlockPos;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -38,12 +38,12 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MiningEvent {
 	@SubscribeEvent
 	public void onBlockBreak(BlockEvent.BreakEvent e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
 		
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		if (ConfigHandler.GENERAL.ignoreFakePlayers.get()) {
 			if (player instanceof FakePlayer) {
 				return;
@@ -92,7 +92,7 @@ public class MiningEvent {
 		world.addFreshEntity(mineralentity);
 		
 		if (ConfigHandler.GENERAL.sendMessageOnMineralFind.get()) {
-			StringFunctions.sendMessage(player, ConfigHandler.GENERAL.foundMineralMessage.get(), TextFormatting.DARK_GREEN);
+			StringFunctions.sendMessage(player, ConfigHandler.GENERAL.foundMineralMessage.get(), ChatFormatting.DARK_GREEN);
 		}
 	}
 }

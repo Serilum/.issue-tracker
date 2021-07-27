@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.16.5, mod version: 4.1.
+ * Minecraft version: 1.17.1, mod version: 4.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Mob Heads ever released, along with some other perks.
@@ -18,12 +18,12 @@ import com.natamus.justmobheads.config.ConfigHandler;
 import com.natamus.justmobheads.util.HeadData;
 import com.natamus.justmobheads.util.MobHeads;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -33,14 +33,14 @@ public class HeadDropEvent {
 	@SubscribeEvent
 	public void mobItemDrop(LivingDropsEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		if (ConfigHandler.GENERAL.onlyAdultMobsDropTheirHead.get()) {
-			if (entity instanceof TameableEntity) {
-				TameableEntity te = (TameableEntity)entity;
+			if (entity instanceof TamableAnimal) {
+				TamableAnimal te = (TamableAnimal)entity;
 				if (te.isBaby()) {
 					return;
 				}

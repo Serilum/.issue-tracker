@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Kelp Fertilizer.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Kelp Fertilizer ever released, along with some other perks.
@@ -14,12 +14,12 @@
 
 package com.natamus.kelpfertilizer.events;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BoneMealItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BoneMealItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -28,7 +28,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class KelpEvent {
 	@SubscribeEvent
 	public void onKelpUse(PlayerInteractEvent.RightClickBlock e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -38,7 +38,7 @@ public class KelpEvent {
 			return;
 		}
 		
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		BlockPos cpos = e.getPos();
 		if (BoneMealItem.applyBonemeal(itemstack, world, cpos, player)) {
 			world.levelEvent(2005, cpos, 0);

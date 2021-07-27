@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Mooshroom Spawn.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.17.1, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Mooshroom Spawn ever released, along with some other perks.
@@ -19,7 +19,7 @@ import com.natamus.collective.objects.SAMObject;
 import com.natamus.mooshroomspawn.config.ConfigHandler;
 import com.natamus.mooshroomspawn.util.Reference;
 
-import net.minecraft.entity.EntityType;
+import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;

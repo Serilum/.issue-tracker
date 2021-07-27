@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Mob Effects.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Random Mob Effects ever released, along with some other perks.
@@ -27,13 +27,13 @@ import java.util.List;
 
 import com.natamus.collective.data.GlobalVariables;
 
-import net.minecraft.potion.Effect;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class Util {
 	private static List<String> defaultblacklist = new ArrayList<String>(Arrays.asList("minecraft:instant_health", "minecraft:instant_damage", "minecraft:invisibility", "minecraft:wither", "minecraft:glowing", "minecraft:levitation", "minecraft:bad_omen", "minecraft:hero_of_the_village"));
-	private static List<Effect> potioneffects = new ArrayList<Effect>();
+	private static List<MobEffect> potioneffects = new ArrayList<MobEffect>();
 	
 	private static String dirpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "randommobeffects";
 	private static File dir = new File(dirpath);
@@ -57,7 +57,7 @@ public class Util {
 			}
 		}
 		
-		for (Effect effect : ForgeRegistries.POTIONS) {
+		for (MobEffect effect : ForgeRegistries.POTIONS) {
 			ResourceLocation rl = effect.getRegistryName();
 			if (rl == null) {
 				continue;
@@ -90,7 +90,7 @@ public class Util {
 		return false;
 	}
 	
-	public static Effect getRandomEffect() {
+	public static MobEffect getRandomEffect() {
 		int i = GlobalVariables.random.nextInt(potioneffects.size());
 		return potioneffects.get(i);
 	}

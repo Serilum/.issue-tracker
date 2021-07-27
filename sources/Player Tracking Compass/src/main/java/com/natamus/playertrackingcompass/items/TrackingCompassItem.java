@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Tracking Compass.
- * Minecraft version: 1.16.5, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Player Tracking Compass ever released, along with some other perks.
@@ -17,15 +17,13 @@ package com.natamus.playertrackingcompass.items;
 import com.natamus.playertrackingcompass.Main;
 import com.natamus.playertrackingcompass.network.RequestServerPacket;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
-
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class TrackingCompassItem extends Item {
 	public TrackingCompassItem (Properties builder) {
@@ -33,11 +31,11 @@ public class TrackingCompassItem extends Item {
 	}
 	
 	@Override
-	public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+	public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
 		if (world.isClientSide) {
 			Main.network.sendToServer(new RequestServerPacket());
 		}
 	
-		return new ActionResult<ItemStack>(ActionResultType.PASS, player.getItemInHand(hand));
+		return new InteractionResultHolder<ItemStack>(InteractionResult.PASS, player.getItemInHand(hand));
 	}
 }

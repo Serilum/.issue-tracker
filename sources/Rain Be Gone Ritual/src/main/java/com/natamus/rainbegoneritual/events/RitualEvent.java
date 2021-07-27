@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Rain Be Gone Ritual.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Rain Be Gone Ritual ever released, along with some other perks.
@@ -22,21 +22,20 @@ import java.util.List;
 import com.mojang.datafixers.util.Pair;
 import com.natamus.collective.functions.WorldFunctions;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CauldronBlock;
-import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
-import net.minecraft.world.storage.IWorldInfo;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LayeredCauldronBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.storage.LevelData;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -48,7 +47,7 @@ public class RitualEvent {
 	
 	@SubscribeEvent
 	public void onClick(PlayerInteractEvent.RightClickBlock e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -86,20 +85,18 @@ public class RitualEvent {
         			return;
         		}
         		
-        		Vector3d firevec = new Vector3d(firepos.getX(), firepos.getY(), firepos.getZ());
+        		Vec3 firevec = new Vec3(firepos.getX(), firepos.getY(), firepos.getZ());
         		
         		lastritual = new Pair<Date, BlockPos>(new Date(), firepos.immutable());
-        		world.explode(null, new DamageSource("explosion").setExplosion(), null, firevec.x, firevec.y, firevec.z, 3.0f, false, Explosion.Mode.NONE);
+        		world.explode(null, new DamageSource("explosion").setExplosion(), null, firevec.x, firevec.y, firevec.z, 3.0f, false, Explosion.BlockInteraction.NONE);
         		for (BlockPos cauldronpos : cauldronposses) {
-        			BlockState cauldronstate = world.getBlockState(cauldronpos);
-        			CauldronBlock cauldronblock = (CauldronBlock)cauldronstate.getBlock();
-        			cauldronblock.setWaterLevel(world, cauldronpos, cauldronstate, 3);
+        			world.setBlock(cauldronpos, Blocks.WATER_CAULDRON.defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3), 3);
         		}
         		
         		world.setBlockAndUpdate(firepos, Blocks.AIR.defaultBlockState());
         		world.setBlockAndUpdate(cp, Blocks.AIR.defaultBlockState());
         		
-        		IWorldInfo info = world.getLevelData();
+        		LevelData info = world.getLevelData();
         		info.setRaining(false);
         	}
 		}
@@ -108,12 +105,12 @@ public class RitualEvent {
 	@SubscribeEvent
 	public void onExplosionDamage(LivingHurtEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		if (entity instanceof PlayerEntity == false) {
+		if (entity instanceof Player == false) {
 			return;
 		}
 		
@@ -123,7 +120,7 @@ public class RitualEvent {
 		
 		DamageSource source = e.getSource();
 		if (source.isExplosion()) {
-			PlayerEntity player = (PlayerEntity)entity;
+			Player player = (Player)entity;
 			BlockPos ppos = player.blockPosition();
 			
 			Date now = new Date();

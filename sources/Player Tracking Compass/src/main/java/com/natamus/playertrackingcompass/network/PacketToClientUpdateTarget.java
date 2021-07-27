@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Tracking Compass.
- * Minecraft version: 1.16.5, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Player Tracking Compass ever released, along with some other perks.
@@ -18,9 +18,9 @@ import java.util.function.Supplier;
 
 import com.natamus.playertrackingcompass.items.CompassVariables;
 
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.BlockPos;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 public class PacketToClientUpdateTarget {
 	private int x;
@@ -35,13 +35,13 @@ public class PacketToClientUpdateTarget {
 		this.z = newTarget.getZ();
 	}
 
-	public PacketToClientUpdateTarget(PacketBuffer buf) {
+	public PacketToClientUpdateTarget(FriendlyByteBuf buf) {
 		x = buf.readInt();
 		y = buf.readInt();
 		z = buf.readInt();
 	}
 
-	public void toBytes(PacketBuffer buf) {
+	public void toBytes(FriendlyByteBuf buf) {
 		buf.writeInt(x);
 		buf.writeInt(y);
 		buf.writeInt(z);

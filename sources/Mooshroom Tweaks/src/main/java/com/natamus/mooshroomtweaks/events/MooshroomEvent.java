@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Mooshroom Tweaks.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.17.1, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Mooshroom Tweaks ever released, along with some other perks.
@@ -22,12 +22,12 @@ import javax.swing.Timer;
 import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.mooshroomtweaks.config.ConfigHandler;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.MooshroomEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.MushroomCow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
@@ -44,7 +44,7 @@ public class MooshroomEvent {
 			return;
 		}
 		
-		ItemStack mainhand = e.getPlayer().getItemInHand(Hand.MAIN_HAND);
+		ItemStack mainhand = e.getPlayer().getItemInHand(InteractionHand.MAIN_HAND);
 		if (mainhand.getItem() instanceof SpawnEggItem == false) {
 			return;
 		}
@@ -58,11 +58,11 @@ public class MooshroomEvent {
 		}		
 		
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide()) {
 			return;
 		}
-		if (entity instanceof MooshroomEntity == false) {
+		if (entity instanceof MushroomCow == false) {
 			return;
 		}
 		if (!checkNext) {
@@ -75,7 +75,7 @@ public class MooshroomEvent {
 			return;
 		}	
 		
-		MooshroomEntity mooshroom = (MooshroomEntity)entity;
+		MushroomCow mooshroom = (MushroomCow)entity;
 		processMooshroom(mooshroom);
 	}
 	
@@ -86,11 +86,11 @@ public class MooshroomEvent {
 		}
 		
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide()) {
 			return;
 		}
-		if (entity instanceof MooshroomEntity == false) {
+		if (entity instanceof MushroomCow == false) {
 			return;
 		}
 		double num = Math.random();
@@ -98,11 +98,11 @@ public class MooshroomEvent {
 			return;
 		}
 		
-		MooshroomEntity mooshroom = (MooshroomEntity)entity;
+		MushroomCow mooshroom = (MushroomCow)entity;
 		processMooshroom(mooshroom);
 	}
 	
-	public void processMooshroom(MooshroomEntity mooshroom) {
+	public void processMooshroom(MushroomCow mooshroom) {
 		Timer timer = new Timer(50, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

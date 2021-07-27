@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Player Heads.
- * Minecraft version: 1.16.5, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Player Heads ever released, along with some other perks.
@@ -20,10 +20,10 @@ import com.natamus.justplayerheads.cmds.CommandJph;
 import com.natamus.justplayerheads.config.ConfigHandler;
 import com.natamus.justplayerheads.util.Variables;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -39,7 +39,7 @@ public class PlayerEvent {
 	@SubscribeEvent
 	public void entityDeath(LivingDeathEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -48,7 +48,7 @@ public class PlayerEvent {
 			return;
 		}
 		
-		if (entity instanceof PlayerEntity == false) {
+		if (entity instanceof Player == false) {
 			return;
 		}
 		
@@ -57,7 +57,7 @@ public class PlayerEvent {
 			return;
 		}
 		
-		PlayerEntity player = (PlayerEntity)entity;
+		Player player = (Player)entity;
 		String name = player.getName().getString();
 		
 		ItemStack head = null;

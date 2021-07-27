@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Placeable Blaze Rods.
- * Minecraft version: 1.16.5, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Placeable Blaze Rods ever released, along with some other perks.
@@ -18,13 +18,13 @@ import com.natamus.collective.check.RegisterMod;
 import com.natamus.placeableblazerods.blocks.BlazeRodBlock;
 import com.natamus.placeableblazerods.util.Reference;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -33,7 +33,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import net.minecraft.block.AbstractBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 @Mod(Reference.MOD_ID)
 public class Main {
@@ -59,7 +59,7 @@ public class Main {
 	@SubscribeEvent
 	public void registerBlocks(RegistryEvent.Register<Block> e) {
 		e.getRegistry().registerAll(
-				blazerodblock = new BlazeRodBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F).lightLevel((p_235454_0_) -> {
+				blazerodblock = new BlazeRodBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F).lightLevel((p_235454_0_) -> {
 				      return 14;
 				   }).sound(SoundType.WOOD).noOcclusion()).setRegistryName(Reference.MOD_ID, "blaze_rod")
 		);
@@ -68,7 +68,7 @@ public class Main {
 	@SubscribeEvent
 	public void registerItems(RegistryEvent.Register<Item> e) {
 		e.getRegistry().registerAll(
-				new BlockItem(blazerodblock, new Item.Properties().tab(ItemGroup.TAB_MATERIALS)).setRegistryName(Items.BLAZE_ROD.getRegistryName())
+				new BlockItem(blazerodblock, new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS)).setRegistryName(Items.BLAZE_ROD.getRegistryName())
 		);
 	}
 }

@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Vill
 
 [[mods]]
 modId="villagespawnpoint"
-version="1.6"
+version="1.7"
 displayName="Village Spawn Point"
 displayURL="https://curseforge.com/minecraft/mc-mods/village-spawn-point"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley
 [[dependencies.villagespawnpoint]]
     modId="collective"
     mandatory=true
-    versionRange="[2.28,)"
+    versionRange="[2.35,)"
     ordering="NONE"
     side="BOTH"

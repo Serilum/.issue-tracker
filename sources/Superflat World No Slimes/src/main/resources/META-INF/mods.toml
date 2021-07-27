@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Supe
 
 [[mods]]
 modId="superflatworldnoslimes"
-version="1.4"
+version="1.5"
 displayName="Superflat World No Slimes"
 displayURL="https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley
 [[dependencies.superflatworldnoslimes]]
     modId="collective"
     mandatory=true
-    versionRange="[2.28,)"
+    versionRange="[2.35,)"
     ordering="NONE"
     side="BOTH"

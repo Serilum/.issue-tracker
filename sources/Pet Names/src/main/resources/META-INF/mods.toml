@@ -1,22 +1,22 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[37,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Pet%20Names"
 
 [[mods]]
 modId="petnames"
-version="1.5"
+version="1.6"
 displayName="Pet Names"
 displayURL="https://curseforge.com/minecraft/mc-mods/pet-names"
 authors="Rick South"
 description="Gives tamable baby animals a pre-defined name. For Wolves, Cats, Horses, Donkeys, Mules and Llamas."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.petnames]]
     modId="collective"
     mandatory=true
-    versionRange="[2.27,)"
+    versionRange="[2.35,)"
     ordering="NONE"
     side="BOTH"

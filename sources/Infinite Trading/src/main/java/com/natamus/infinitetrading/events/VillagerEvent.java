@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Infinite Trading.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Infinite Trading ever released, along with some other perks.
@@ -18,12 +18,12 @@ import java.lang.reflect.Field;
 
 import com.natamus.infinitetrading.config.ConfigHandler;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.merchant.villager.WanderingTraderEntity;
-import net.minecraft.item.MerchantOffer;
-import net.minecraft.item.MerchantOffers;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.WanderingTrader;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.item.trading.MerchantOffers;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -35,7 +35,7 @@ public class VillagerEvent {
 	
 	@SubscribeEvent
 	public void onVillagerClick(PlayerInteractEvent.EntityInteract e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -43,16 +43,16 @@ public class VillagerEvent {
 		Entity target = e.getTarget();
 		MerchantOffers offers = null;
 		
-		if (target instanceof VillagerEntity == false) {
+		if (target instanceof Villager == false) {
 			if (ConfigHandler.GENERAL.wanderingTraderInfiniteTrades.get()) {
-				if (target instanceof WanderingTraderEntity) {
-					WanderingTraderEntity wanderer = (WanderingTraderEntity)target;
+				if (target instanceof WanderingTrader) {
+					WanderingTrader wanderer = (WanderingTrader)target;
 					offers = wanderer.getOffers();
 				}
 			}
 		}
 		else {
-			VillagerEntity villager = (VillagerEntity)target;
+			Villager villager = (Villager)target;
 			offers = villager.getOffers();
 		}
 		
@@ -62,10 +62,10 @@ public class VillagerEvent {
 		
 		if (usesField == null || maxUsesField == null) {
 			for (Field field : MerchantOffer.class.getDeclaredFields()) {
-				if (field.toString().contains("uses") || field.toString().contains("uses")) {
+				if (field.toString().contains("uses") || field.toString().contains("f_45313_")) {
 					usesField = field;
 				}
-				if (field.toString().contains("maxUses") || field.toString().contains("maxUses")) {
+				if (field.toString().contains("maxUses") || field.toString().contains("f_45314_")) {
 					maxUsesField = field;
 				}
 			}

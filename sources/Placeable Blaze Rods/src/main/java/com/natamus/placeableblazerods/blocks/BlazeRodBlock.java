@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Placeable Blaze Rods.
- * Minecraft version: 1.16.5, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Placeable Blaze Rods ever released, along with some other perks.
@@ -21,31 +21,29 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.DirectionalBlock;
-import net.minecraft.block.material.PushReaction;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootContext;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DirectionalBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import net.minecraft.block.AbstractBlock.Properties;
 
 public class BlazeRodBlock extends DirectionalBlock {
 	protected static final VoxelShape BLAZE_ROD_VERTICAL_AABB = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
@@ -63,11 +61,11 @@ public class BlazeRodBlock extends DirectionalBlock {
 		      return new ArrayList<ItemStack>(Arrays.asList(new ItemStack(Items.BLAZE_ROD, 1)));
 	   }
 	   
-	   public static List<ItemStack> getDrops(BlockState state, ServerWorld worldIn, BlockPos pos, @Nullable TileEntity tileEntityIn) {
+	   public static List<ItemStack> getDrops(BlockState state, ServerLevel worldIn, BlockPos pos, @Nullable BlockEntity tileEntityIn) {
 		      return new ArrayList<ItemStack>(Arrays.asList(new ItemStack(Items.BLAZE_ROD, 1)));
 	   }
 
-	   public static List<ItemStack> getDrops(BlockState state, ServerWorld worldIn, BlockPos pos, @Nullable TileEntity tileEntityIn, Entity entityIn, ItemStack stack) {
+	   public static List<ItemStack> getDrops(BlockState state, ServerLevel worldIn, BlockPos pos, @Nullable BlockEntity tileEntityIn, Entity entityIn, ItemStack stack) {
 		      return new ArrayList<ItemStack>(Arrays.asList(new ItemStack(Items.BLAZE_ROD, 1)));
 	   }
 
@@ -90,7 +88,7 @@ public class BlazeRodBlock extends DirectionalBlock {
 	      return state.setValue(FACING, mirrorIn.mirror(state.getValue(FACING)));
 	   }
 
-	   public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+	   public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
 	      switch(state.getValue(FACING).getAxis()) {
 	      case X:
 	      default:
@@ -102,7 +100,7 @@ public class BlazeRodBlock extends DirectionalBlock {
 	      }
 	   }
 
-	   public BlockState getStateForPlacement(BlockItemUseContext context) {
+	   public BlockState getStateForPlacement(BlockPlaceContext context) {
 	      Direction direction = context.getClickedFace();
 	      BlockState blockstate = context.getLevel().getBlockState(context.getClickedPos().relative(direction.getOpposite()));
 	      return blockstate.getBlock() == this && blockstate.getValue(FACING) == direction ? this.defaultBlockState().setValue(FACING, direction.getOpposite()) : this.defaultBlockState().setValue(FACING, direction);
@@ -114,7 +112,7 @@ public class BlazeRodBlock extends DirectionalBlock {
 	    * of whether the block can receive random update ticks
 	    */
 	   @OnlyIn(Dist.CLIENT)
-	   public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+	   public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
 	      Direction direction = stateIn.getValue(FACING);
 	      double d0 = (double)pos.getX() + 0.55D - (double)(rand.nextFloat() * 0.1F);
 	      double d1 = (double)pos.getY() + 0.55D - (double)(rand.nextFloat() * 0.1F);
@@ -126,7 +124,7 @@ public class BlazeRodBlock extends DirectionalBlock {
 
 	   }
 
-	   protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+	   protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 	      builder.add(FACING);
 	   }
 

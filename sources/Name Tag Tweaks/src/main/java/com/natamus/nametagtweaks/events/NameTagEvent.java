@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Name Tag Tweaks.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.17.1, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Name Tag Tweaks ever released, along with some other perks.
@@ -16,14 +16,14 @@ package com.natamus.nametagtweaks.events;
 
 import com.natamus.nametagtweaks.config.ConfigHandler;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.SlimeEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Slime;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -33,14 +33,14 @@ public class NameTagEvent {
 	@SubscribeEvent
 	public void mobItemDrop(LivingDeathEvent e) {
 		LivingEntity entity = e.getEntityLiving();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		if (entity.hasCustomName()) {
-			if (entity instanceof SlimeEntity) {
-				SlimeEntity slime = (SlimeEntity)entity;
+			if (entity instanceof Slime) {
+				Slime slime = (Slime)entity;
 				int slimesize = slime.getSize();
 				if (slimesize != 4) {
 					return;
@@ -49,12 +49,12 @@ public class NameTagEvent {
 			
 			ItemStack nametagstack = new ItemStack(Items.NAME_TAG, 1);
 			if (ConfigHandler.GENERAL.droppedNameTagbyEntityKeepsNameValue.get()) {
-				ITextComponent name = entity.getName();
+				Component name = entity.getName();
 				nametagstack.setHoverName(name);
 			}
 			nametagstack.setRepairCost(0);
 			
-			Vector3d evec = entity.position();
+			Vec3 evec = entity.position();
 			ItemEntity ie = new ItemEntity(world, evec.x(), evec.y()+1, evec.z(), nametagstack);
 			world.addFreshEntity(ie);
 		}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Tracking Compass.
- * Minecraft version: 1.16.5, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Player Tracking Compass ever released, along with some other perks.
@@ -19,36 +19,36 @@ import java.util.function.Supplier;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.playertrackingcompass.Main;
 
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.network.NetworkDirection;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.BlockPos;
+import net.minecraft.ChatFormatting;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraftforge.fmllegacy.network.NetworkDirection;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 public class RequestServerPacket {
 	public RequestServerPacket() {}
 
-	public RequestServerPacket(PacketBuffer buf) {}
+	public RequestServerPacket(FriendlyByteBuf buf) {}
 
-	public void fromBytes(PacketBuffer buf) {}
+	public void fromBytes(FriendlyByteBuf buf) {}
 
-	public void toBytes(PacketBuffer buf) {}
+	public void toBytes(FriendlyByteBuf buf) {}
 
 	public void handle(Supplier<NetworkEvent.Context> ctx) {
 		ctx.get().enqueueWork(() -> {
 			BlockPos targetpos = new BlockPos(0, 0, 0);
 			
-			ServerPlayerEntity serverplayer = ctx.get().getSender();
+			ServerPlayer serverplayer = ctx.get().getSender();
 			BlockPos serverplayerpos = serverplayer.blockPosition();
 			BlockPos comparepp = new BlockPos(serverplayerpos.getX(), 1, serverplayerpos.getZ());
 			
-			ServerPlayerEntity closestplayer = null;
+			ServerPlayer closestplayer = null;
 			double closestdistance = 999999999999.0;
 			
-			ServerWorld world = serverplayer.getLevel();
-			for (ServerPlayerEntity oplayer : world.players()) {
+			ServerLevel world = serverplayer.getLevel();
+			for (ServerPlayer oplayer : world.players()) {
 				BlockPos oplayerpos = oplayer.blockPosition();
 				BlockPos compareop = new BlockPos(oplayerpos.getX(), 1, oplayerpos.getZ());
 
@@ -65,10 +65,10 @@ public class RequestServerPacket {
 			if (closestplayer != null) {
 				targetpos = closestplayer.blockPosition().immutable();
 				
-				StringFunctions.sendMessage(serverplayer, "The compass is pointing at " + closestplayer.getName().getString() + ".", TextFormatting.YELLOW);
+				StringFunctions.sendMessage(serverplayer, "The compass is pointing at " + closestplayer.getName().getString() + ".", ChatFormatting.YELLOW);
 			}
 			else {
-				StringFunctions.sendMessage(serverplayer, "Unable to redirect the compass. There are no players around or they're too close.", TextFormatting.YELLOW);
+				StringFunctions.sendMessage(serverplayer, "Unable to redirect the compass. There are no players around or they're too close.", ChatFormatting.YELLOW);
 			}
 			Main.network.sendTo(new PacketToClientUpdateTarget(targetpos), serverplayer.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
 		});

@@ -3,6 +3,9 @@ Zombie Villagers From Spawner
 https://www.curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner
 
 =========
+v1.6: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
+
+=========
 v1.5: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

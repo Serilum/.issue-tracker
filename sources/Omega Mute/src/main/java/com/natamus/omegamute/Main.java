@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Omega Mute.
- * Minecraft version: 1.16.5, mod version: 1.8.
+ * Minecraft version: 1.17.1, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Omega Mute ever released, along with some other perks.
@@ -21,13 +21,13 @@ import com.natamus.omegamute.util.Reference;
 import com.natamus.omegamute.util.Util;
 import com.natamus.omegamute.util.Variables;
 
-import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.KeyMapping;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fmlclient.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -59,7 +59,7 @@ public class Main {
     }
     
     private void initClient(final FMLClientSetupEvent event) {
-    	Variables.hotkey = new KeyBinding("Reload Omega Mute config", 46, "key.categories.misc");
+    	Variables.hotkey = new KeyMapping("Reload Omega Mute config", 46, "key.categories.misc");
     	ClientRegistry.registerKeyBinding(Variables.hotkey);    	
     }
 	

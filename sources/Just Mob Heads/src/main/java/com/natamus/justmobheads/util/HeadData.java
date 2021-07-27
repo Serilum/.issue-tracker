@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.16.5, mod version: 4.1.
+ * Minecraft version: 1.17.1, mod version: 4.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Mob Heads ever released, along with some other perks.
@@ -199,11 +199,12 @@ public class HeadData {
 		
 		boolean onefifteen = Reference.ACCEPTED_VERSIONS.contains("1.15.");
 		boolean onesixteen = Reference.ACCEPTED_VERSIONS.contains("1.16.");
+		boolean oneseventeen = Reference.ACCEPTED_VERSIONS.contains("1.17.");
 		
-		if (onefifteen || onesixteen) {
+		if (onefifteen || onesixteen || oneseventeen) {
 			defaultchances.put("bee", 0.1); headdata.put("bee", new Pair<String, String>("77342662-8870-445a-869f-f0aef1406b3d", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTlhYzE2ZjI5NmI0NjFkMDVlYTA3ODVkNDc3MDMzZTUyNzM1OGI0ZjMwYzI2NmFhMDJmMDIwMTU3ZmZjYTczNiJ9fX0="));
 		}
-		if (onesixteen) {
+		if (onesixteen || oneseventeen) {
 			defaultchances.put("hoglin", 0.1); headdata.put("hoglin", new Pair<String, String>("8196c240-e96a-4434-b630-6b191ceeb480", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWJiOWJjMGYwMWRiZDc2MmEwOGQ5ZTc3YzA4MDY5ZWQ3Yzk1MzY0YWEzMGNhMTA3MjIwODU2MWI3MzBlOGQ3NSJ9fX0="));
 			defaultchances.put("piglin", 0.05); headdata.put("piglin", new Pair<String, String>("dcc2d7eb-daca-4b6f-805a-a454e0d1d902", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTBiYzlkYmI0NDA0YjgwMGY4Y2YwMjU2MjIwZmY3NGIwYjcxZGJhOGI2NjYwMGI2NzM0ZjRkNjMzNjE2MThmNSJ9fX0="));
 			defaultchances.put("piglin_brute", 0.1); headdata.put("piglin_brute", new Pair<String, String>("a6db33b5-1e60-4cbe-a38f-881579f94336", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2UzMDBlOTAyNzM0OWM0OTA3NDk3NDM4YmFjMjllM2E0Yzg3YTg0OGM1MGIzNGMyMTI0MjcyN2I1N2Y0ZTFjZiJ9fX0="));
@@ -213,6 +214,16 @@ public class HeadData {
 		}
 		else {
 			defaultchances.put("zombie_pigman", 0.05); headdata.put("zombie_pigman", new Pair<String, String>("6540c046-d6ea-4aff-9766-32a54ebe6958", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzRlOWM2ZTk4NTgyZmZkOGZmOGZlYjMzMjJjZDE4NDljNDNmYjE2YjE1OGFiYjExY2E3YjQyZWRhNzc0M2ViIn19fQ=="));
+		}
+		if (oneseventeen) {
+			defaultchances.put("lucy_axolotl", 0.5); headdata.put("lucy_axolotl", new Pair<String, String>("c6c9c2a1-f74a-4797-9d5d-e4b01f71e641", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjRhZDExYWNkMjkzYTNmMzk0NGQ4ZGUwM2YwNWU3MzFiOGYwMmQ5OWNlMGMyYTY4NWJlNzA1YzU2MjY0NzYxYSJ9fX0="));
+			defaultchances.put("wild_axolotl", 0.5); headdata.put("wild_axolotl", new Pair<String, String>("ac89cebb-a384-45b6-a1b3-a55e4749e1ff", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWExMGJjNGYzNjhlMTJjY2JkZWE0NjA2ZDJkM2ZiMjE5ZTkyNjM0MTA1ZDE5NzRkZTcxMGQxZmRiOWIwMjlhYyJ9fX0="));
+			defaultchances.put("gold_axolotl", 0.5); headdata.put("gold_axolotl", new Pair<String, String>("c661202e-5e98-4f87-a0f7-63987d9f12a8", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjIwZTgxNzU3MThlYWMzOTY3MmU5ZGM2YzRlZWNjMGEzMmI0YzYyOTcwZDQ2YWJmNTIxN2FjNjUyYzU2ZjMxNyJ9fX0="));
+			defaultchances.put("cyan_axolotl", 0.5); headdata.put("cyan_axolotl", new Pair<String, String>("21b65fda-f0a8-4996-94b5-f90e96ec6115", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWE4NTAyZjgwODBmYWUwNTE3ZWUxZDU4NDc5ZDE1OWEwMzdhYjljNDZhZjlkNzExZTJhNWU4NjBlZTdiNjM3NSJ9fX0="));
+			defaultchances.put("blue_axolotl", 0.5); headdata.put("blue_axolotl", new Pair<String, String>("fe7d686c-4f4b-49b3-b97b-7cbe52410f5a", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmQwMDU2NjIyMzU5NzRjZmRhZjAzZmY1MTg0ZDM0NWM0MDlmN2YyNWEwYTBkMGZjN2FiODdjNTk3MWIwZjQ0OCJ9fX0="));
+		
+			defaultchances.put("goat", 0.05); headdata.put("goat", new Pair<String, String>("1dd79779-8fdf-4b92-a83f-487ad06fa6a5", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjAzMzMwMzk4YTBkODMzZjUzYWU4YzlhMWNiMzkzYzc0ZTlkMzFlMTg4ODU4NzBlODZhMjEzM2Q0NGYwYzYzYyJ9fX0="));
+			defaultchances.put("glow_squid", 0.2); headdata.put("glow_squid", new Pair<String, String>("de0e5ce0-b979-4bd2-a963-e665e424b525", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTczMjdlZTExODEyYjc2NGM3YWRlNzBiMjgyY2NlNGM1OGU2MzViMjAxNTI0NDA4MWQxNDkwNTQzZGE3MjgwZSJ9fX0="));
 		}
 		
 		

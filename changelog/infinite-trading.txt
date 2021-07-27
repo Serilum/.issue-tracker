@@ -3,6 +3,9 @@ Infinite Trading
 https://www.curseforge.com/minecraft/mc-mods/infinite-trading
 
 =========
+v1.7: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
+
+=========
 v1.6: Fixed incorrect Mojang Mapping obfuscation.
 
 =========

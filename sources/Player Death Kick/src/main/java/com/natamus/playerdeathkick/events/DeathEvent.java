@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Death Kick.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.17.1, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Player Death Kick ever released, along with some other perks.
@@ -17,12 +17,12 @@ package com.natamus.playerdeathkick.events;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.playerdeathkick.config.ConfigHandler;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -32,16 +32,16 @@ public class DeathEvent {
 	@SubscribeEvent
 	public void onDeathEvent(LivingDeathEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		if (entity instanceof ServerPlayerEntity == false) {
+		if (entity instanceof ServerPlayer == false) {
 			return;
 		}
 		
-		ServerPlayerEntity serverplayer = (ServerPlayerEntity)entity;
+		ServerPlayer serverplayer = (ServerPlayer)entity;
 		
 		if (ConfigHandler.GENERAL.exemptAdminPlayers.get()) {
 			if (serverplayer.hasPermissions(2)) {
@@ -75,11 +75,11 @@ public class DeathEvent {
 			deathmessage = deathmessage.replace("%death%", imsourcename);
 		}
 		
-		serverplayer.connection.disconnect(new StringTextComponent(deathmessage));
+		serverplayer.connection.disconnect(new TextComponent(deathmessage));
 		
 		if (ConfigHandler.GENERAL.broadcastKickToServer.get()) {
 			String playername = serverplayer.getName().getString();
-			StringFunctions.broadcastMessage(world, "The player " + playername + " has died and been kicked from the server.", TextFormatting.DARK_GRAY);
+			StringFunctions.broadcastMessage(world, "The player " + playername + " has died and been kicked from the server.", ChatFormatting.DARK_GRAY);
 		}
 	}
 }

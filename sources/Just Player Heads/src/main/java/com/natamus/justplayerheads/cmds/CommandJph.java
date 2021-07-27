@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Player Heads.
- * Minecraft version: 1.16.5, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Player Heads ever released, along with some other perks.
@@ -26,16 +26,16 @@ import com.natamus.collective.functions.StringFunctions;
 import com.natamus.justplayerheads.config.ConfigHandler;
 import com.natamus.justplayerheads.util.Variables;
 
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.ChatFormatting;
 
 public class CommandJph {
-    public static void register(CommandDispatcher<CommandSource> dispatcher) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
     	dispatcher.register(Commands.literal("jph")
-    			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof PlayerEntity && iCommandSender.hasPermission(2))
+    			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof Player && iCommandSender.hasPermission(2))
     			.then(Commands.argument("name", StringArgumentType.word())
     			.then(Commands.argument("amount", IntegerArgumentType.integer(1, 64))
     			.executes((command) -> {
@@ -55,25 +55,25 @@ public class CommandJph {
     			}))
     			.then(Commands.literal("cache")
     			.executes((command) -> {
-    				CommandSource source = command.getSource();
+    				CommandSourceStack source = command.getSource();
     				
     				Variables.headcache = new HashMap<String, ItemStack>();
     				
-    				StringFunctions.sendMessage(source, "The player head texture cache has been emptied.", TextFormatting.DARK_GREEN);
+    				StringFunctions.sendMessage(source, "The player head texture cache has been emptied.", ChatFormatting.DARK_GREEN);
     				return 1;
     			}))
     			.executes((command) -> {
-    				CommandSource source = command.getSource();
+    				CommandSourceStack source = command.getSource();
 
-    				StringFunctions.sendMessage(source, "Allows you to get the head of a player.", TextFormatting.DARK_GREEN);
-    				StringFunctions.sendMessage(source, " Usage: /jph playerName (amount)", TextFormatting.DARK_GREEN);
+    				StringFunctions.sendMessage(source, "Allows you to get the head of a player.", ChatFormatting.DARK_GREEN);
+    				StringFunctions.sendMessage(source, " Usage: /jph playerName (amount)", ChatFormatting.DARK_GREEN);
     				return 1;
     			})
     		);
     }
     
-    public static void processJph(CommandContext<CommandSource> command, Integer amount) throws CommandSyntaxException {
-    	CommandSource source = command.getSource();
+    public static void processJph(CommandContext<CommandSourceStack> command, Integer amount) throws CommandSyntaxException {
+    	CommandSourceStack source = command.getSource();
 		
 		String target = StringArgumentType.getString(command, "name");
 		
@@ -99,13 +99,13 @@ public class CommandJph {
 		String message = "";
 		if (head == null) {
 			message = "Unable to generate the player head. Either the player '" + target + "' does not exist or the Mojang API server has had too many requests in a short period of time.";
-			StringFunctions.sendMessage(source, message, TextFormatting.DARK_RED);
+			StringFunctions.sendMessage(source, message, ChatFormatting.DARK_RED);
 		}
 		else {
 			message = "Succesfully generated the head of the player '" + target + "'.";
-			StringFunctions.sendMessage(source, message, TextFormatting.DARK_GREEN);
+			StringFunctions.sendMessage(source, message, ChatFormatting.DARK_GREEN);
 			
-			PlayerEntity player = source.getPlayerOrException();
+			Player player = source.getPlayerOrException();
 			player.spawnAtLocation(head, 1);
 		}
     }
