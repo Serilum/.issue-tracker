@@ -3,6 +3,9 @@ Grass Seeds
 https://www.curseforge.com/minecraft/mc-mods/grass-seeds
 
 =========
+v1.6: Fixed the seed stack being decreased when a player is in creative mode.
+
+=========
 v1.5: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========
