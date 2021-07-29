@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Full Brightness Toggle.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Full Brightness Toggle ever released, along with some other perks.
@@ -16,9 +16,9 @@ package com.natamus.fullbrightnesstoggle.events;
 
 import com.natamus.fullbrightnesstoggle.Main;
 
-import net.minecraft.client.GameSettings;
+import net.minecraft.client.Options;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.ChatScreen;
+import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
@@ -47,7 +47,7 @@ public class ToggleEvent {
 		}
 		
 		if (e.getKey() == Main.hotkey.getKey().getValue()) {
-			GameSettings settings = mc.options;
+			Options settings = mc.options;
 			if (initialgamma < 0) {
 				if (settings.gamma >= 1.0F) {
 					initialgamma = 1.0F;

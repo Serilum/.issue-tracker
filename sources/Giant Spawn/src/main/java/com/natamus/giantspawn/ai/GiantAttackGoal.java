@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Giant Spawn.
- * Minecraft version: 1.16.5, mod version: 2.6.
+ * Minecraft version: 1.17.1, mod version: 2.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Giant Spawn ever released, along with some other perks.
@@ -14,15 +14,15 @@
 
 package com.natamus.giantspawn.ai;
 
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.monster.GiantEntity;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.monster.Giant;
 
 public class GiantAttackGoal extends MeleeAttackGoal {
 	   private int ticksUntilNextAttack; // attackTick
-	   private final GiantEntity giant;
+	   private final Giant giant;
 	   private int raiseArmTicks;
 
-	   public GiantAttackGoal(GiantEntity giantIn, double speedIn, boolean longMemoryIn) {
+	   public GiantAttackGoal(Giant giantIn, double speedIn, boolean longMemoryIn) {
 	      super(giantIn, speedIn, longMemoryIn);
 	      this.giant = giantIn;
 	   }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Grindstone Sharper Tools.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Grindstone Sharper Tools ever released, along with some other perks.
@@ -17,8 +17,8 @@ package com.natamus.grindstonesharpertools.util;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.grindstonesharpertools.config.ConfigHandler;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.chat.TextComponent;
 
 public class Util {
 	public static void updateName(ItemStack itemstack, int uses) {
@@ -34,6 +34,6 @@ public class Util {
 		if (uses > 0) {
 			name = name + " " + ConfigHandler.GENERAL.nameUsesPrefix.get() + uses + ConfigHandler.GENERAL.nameUsesSuffix.get();
 		}
-		itemstack.setHoverName(new StringTextComponent(name));
+		itemstack.setHoverName(new TextComponent(name));
 	}
 }

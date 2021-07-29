@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.36.
+ * Minecraft version: 1.17.1, mod version: 2.38.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -87,7 +87,7 @@ public class EntityFunctions {
 	public static String getEntityString(Entity entity) {
 		String entitystring = "";
 		try {
-			entitystring = entity.toString();
+			entitystring = entity.getClass().getSimpleName();
 		}
 		catch (NoClassDefFoundError er) {}
 		return entitystring;

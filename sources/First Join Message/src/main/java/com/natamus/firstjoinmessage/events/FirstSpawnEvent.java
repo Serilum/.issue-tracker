@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of First Join Message.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of First Join Message ever released, along with some other perks.
@@ -19,10 +19,10 @@ import com.natamus.collective.functions.StringFunctions;
 import com.natamus.firstjoinmessage.config.ConfigHandler;
 import com.natamus.firstjoinmessage.util.Reference;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -31,20 +31,20 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class FirstSpawnEvent {
 	@SubscribeEvent
 	public void onSpawn(EntityJoinWorldEvent e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof PlayerEntity == false) {
+		if (entity instanceof Player == false) {
 			return;
 		}
 		
-		PlayerEntity player = (PlayerEntity)entity;
+		Player player = (Player)entity;
 		if (PlayerFunctions.isJoiningWorldForTheFirstTime(player, Reference.MOD_ID)) {
 			String joinmessage = ConfigHandler.GENERAL.firstJoinMessage.get();
-			TextFormatting colour = TextFormatting.getById(ConfigHandler.GENERAL.firstJoinMessageTextFormattingColourIndex.get());
+			ChatFormatting colour = ChatFormatting.getById(ConfigHandler.GENERAL.firstJoinMessageTextFormattingColourIndex.get());
 			if (colour == null) {
 				return;
 			}

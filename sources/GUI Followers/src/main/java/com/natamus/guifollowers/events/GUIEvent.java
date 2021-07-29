@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.17.1, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Followers ever released, along with some other perks.
@@ -55,12 +55,10 @@ public class GUIEvent extends Gui {
 
 		Font fontRender = mc.font;
 		Window scaled = mc.getWindow();
-		PoseStack stack = e.getMatrixStack();
-		stack.pushPose();
+		PoseStack posestack = e.getMatrixStack();
+		posestack.pushPose();
 		
 		if (Variables.activefollowers.size() > 0) {
-			PoseStack ms = new PoseStack();
-			
 			int width = scaled.getGuiScaledWidth();
 			
 			String displaystring = ConfigHandler.GENERAL.followerListHeaderFormat.get();
@@ -143,12 +141,12 @@ public class GUIEvent extends Gui {
 				}
 				
 				if (!drawnfirst) {
-					fontRender.draw(ms, displaystring, xcoord, heightoffset, colour.getRGB());
+					fontRender.draw(posestack, displaystring, xcoord, heightoffset, colour.getRGB());
 					drawnfirst = true;
 				}
 				
 				heightoffset += 10;
-				fontRender.draw(ms, follower_string, xcoord + xoffset, heightoffset, colour.getRGB());
+				fontRender.draw(posestack, follower_string, xcoord + xoffset, heightoffset, colour.getRGB());
 			}
 			
 			if (toremove.size() > 0) {
@@ -158,6 +156,6 @@ public class GUIEvent extends Gui {
 			}
 		}
 		
-		stack.popPose();
+		posestack.popPose();
 	}
 }

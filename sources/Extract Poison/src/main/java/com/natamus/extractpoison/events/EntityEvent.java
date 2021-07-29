@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Extract Poison.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Extract Poison ever released, along with some other perks.
@@ -25,18 +25,18 @@ import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.collective.functions.ItemFunctions;
 import com.natamus.extractpoison.config.ConfigHandler;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.CaveSpiderEntity;
-import net.minecraft.entity.passive.BeeEntity;
-import net.minecraft.entity.passive.fish.PufferfishEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.potion.Potions;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.animal.Pufferfish;
+import net.minecraft.world.entity.monster.CaveSpider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -47,7 +47,7 @@ public class EntityEvent {
 	
 	@SubscribeEvent
 	public void onEntityInteract(PlayerInteractEvent.EntityInteract e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -56,8 +56,8 @@ public class EntityEvent {
 		if (itemstack.getItem().equals(Items.GLASS_BOTTLE)) {
 			Entity target = e.getTarget();
 			String entityname = EntityFunctions.getEntityString(target);
-			if (entityname.contains("CaveSpiderEntity") || target instanceof CaveSpiderEntity || target instanceof PufferfishEntity || target instanceof BeeEntity) {
-				PlayerEntity player = e.getPlayer();
+			if (entityname.contains("CaveSpiderEntity") || target instanceof CaveSpider || target instanceof Pufferfish || target instanceof Bee) {
+				Player player = e.getPlayer();
 				e.setCanceled(true);
 				
 				LocalTime now = LocalTime.now();
@@ -82,18 +82,18 @@ public class EntityEvent {
 	
 	@SubscribeEvent
 	public void onWaterClick(PlayerInteractEvent.RightClickItem e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		ItemStack itemstack = e.getItemStack();
 		if (itemstack.getItem().equals(Items.GLASS_BOTTLE)) {
-			PlayerEntity player = e.getPlayer();
+			Player player = e.getPlayer();
 			BlockPos pos = e.getPos();
-			List<Entity> entitiesaround = world.getEntities(player, new AxisAlignedBB(pos.getX()-1, pos.getY()-1, pos.getZ()-1, pos.getX()+1, pos.getY()+1, pos.getZ()+1));
+			List<Entity> entitiesaround = world.getEntities(player, new AABB(pos.getX()-1, pos.getY()-1, pos.getZ()-1, pos.getX()+1, pos.getY()+1, pos.getZ()+1));
 			for (Entity ea : entitiesaround) {
-				if (ea instanceof PufferfishEntity) {
+				if (ea instanceof Pufferfish) {
 					e.setCanceled(true);
 					return;
 				}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Compass.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.17.1, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Compass ever released, along with some other perks.
@@ -19,25 +19,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
-
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.natamus.guicompass.config.ConfigHandler;
 
-import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.IngameGui;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.Items;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class GUIEvent extends IngameGui {
+public class GUIEvent extends Gui {
 	private static Minecraft mc;
 
 	public GUIEvent(Minecraft mc){
@@ -54,7 +52,7 @@ public class GUIEvent extends IngameGui {
 		
 		if (ConfigHandler.GENERAL.mustHaveCompassInInventory.get()) {
 			boolean found = false;
-			PlayerInventory inv = mc.player.inventory;
+			Inventory inv = mc.player.getInventory();
 			for (int n = 0; n <= 35; n++) {
 				if (inv.getItem(n).getItem().equals(Items.COMPASS)) {
 					found = true;
@@ -68,15 +66,16 @@ public class GUIEvent extends IngameGui {
 		
 		String coordinates = getCoordinates();
 
-		FontRenderer fontRender = mc.font;
-		MainWindow scaled = mc.getWindow();
+		Font fontRender = mc.font;
+		Window scaled = mc.getWindow();
 		int width = scaled.getGuiScaledWidth();
 		
 		int stringWidth = fontRender.width(coordinates);
 		
 		Color colour = new Color(ConfigHandler.GENERAL.RGB_R.get(), ConfigHandler.GENERAL.RGB_G.get(), ConfigHandler.GENERAL.RGB_B.get(), 255);
 			
-		GL11.glPushMatrix();
+		PoseStack posestack = e.getMatrixStack();
+		posestack.pushPose();
 		
 		int xcoord = 0;
 		if (ConfigHandler.GENERAL.compassPositionIsLeft.get()) {
@@ -89,14 +88,14 @@ public class GUIEvent extends IngameGui {
 			xcoord = width - stringWidth - 5;
 		}
 
-		fontRender.draw(new MatrixStack(), coordinates, xcoord, ConfigHandler.GENERAL.compassHeightOffset.get(), colour.getRGB());
+		fontRender.draw(posestack, coordinates, xcoord, ConfigHandler.GENERAL.compassHeightOffset.get(), colour.getRGB());
 		
-		GL11.glPopMatrix();
+		posestack.popPose();
 	}
 
 	private static List<String> direction = new ArrayList<String>(Arrays.asList("S", "SW", "W", "NW", "N", "NE", "E", "SE"));
 	private static String getCoordinates() {
-		ClientPlayerEntity player = mc.player;
+		LocalPlayer player = mc.player;
 		BlockPos ppos = player.blockPosition();
 		
 		int yaw = (int)player.getYHeadRot();

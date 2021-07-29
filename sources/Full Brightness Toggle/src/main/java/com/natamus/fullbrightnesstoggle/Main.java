@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Full Brightness Toggle.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Full Brightness Toggle ever released, along with some other perks.
@@ -18,11 +18,11 @@ import com.natamus.collective.check.RegisterMod;
 import com.natamus.fullbrightnesstoggle.events.ToggleEvent;
 import com.natamus.fullbrightnesstoggle.util.Reference;
 
-import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.KeyMapping;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fmlclient.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -32,7 +32,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 @Mod(Reference.MOD_ID)
 public class Main {
 	public static Main instance;
-	public static KeyBinding hotkey;
+	public static KeyMapping hotkey;
 	
     public Main() {
 		if (!FMLEnvironment.dist.equals(Dist.CLIENT)) {
@@ -49,7 +49,7 @@ public class Main {
     }
 
     private void initClient(final FMLClientSetupEvent event) {
-    	hotkey = new KeyBinding("Toggle Brightness", 71, "key.categories.misc");
+    	hotkey = new KeyMapping("Toggle Brightness", 71, "key.categories.misc");
     	ClientRegistry.registerKeyBinding(hotkey);    	
     }
     

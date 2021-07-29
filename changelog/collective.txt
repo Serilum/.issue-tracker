@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.37-2.38: Changed the way how collective determines entity names. This should fix issues with the EntityModel being called through a dedicated server.
+
+=========
 v2.36: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========
@@ -24,7 +27,7 @@ v2.26: Merged events. Updated code efficiency. ClassNotFoundException fix.
 v2.25: Improved backend code.
 
 =========
-v2.15 - v2.24: Skipped a few subversions during local development.
+v2.15-2.24: Skipped a few subversions during local development.
 Backported Spawn A Mob functions from 1.14+ to 1.12. Preparation for the Spawn Mob mods release for 1.12.2.
 Fixed mob spawn event not canceling correctly. Improved backend code.
 
