@@ -26,7 +26,6 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
 [Areas](https://curseforge.com/minecraft/mc-mods/areas)\
 [Automatic Doors](https://curseforge.com/minecraft/mc-mods/automatic-doors)\
-[Bamboo Spreads](https://curseforge.com/minecraft/mc-mods/bamboo-spreads)\
 [Better Beacon Placement](https://curseforge.com/minecraft/mc-mods/better-beacon-placement)\
 [Better Conduit Placement](https://curseforge.com/minecraft/mc-mods/better-conduit-placement)\
 [Better Spawner Control](https://curseforge.com/minecraft/mc-mods/better-spawner-control)\
