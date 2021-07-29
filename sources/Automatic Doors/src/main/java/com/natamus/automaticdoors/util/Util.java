@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Automatic Doors.
- * Minecraft version: 1.16.5, mod version: 1.9.
+ * Minecraft version: 1.17.1, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Automatic Doors ever released, along with some other perks.
@@ -20,9 +20,9 @@ import java.util.List;
 import com.natamus.automaticdoors.config.ConfigHandler;
 import com.natamus.automaticdoors.events.DoorEvent;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.DoorBlock;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.core.BlockPos;
 
 public class Util {
 	private static List<BlockPos> runnables = new ArrayList<BlockPos>();

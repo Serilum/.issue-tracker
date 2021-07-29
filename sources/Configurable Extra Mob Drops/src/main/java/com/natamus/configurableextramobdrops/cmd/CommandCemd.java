@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Extra Mob Drops.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Extra Mob Drops ever released, along with some other perks.
@@ -26,33 +26,33 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.configurableextramobdrops.util.Util;
 
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.ChatFormatting;
 
 public class CommandCemd {
-    public static void register(CommandDispatcher<CommandSource> dispatcher) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
     	dispatcher.register(Commands.literal("cemd").requires((iCommandSender) -> iCommandSender.hasPermission(2))
 			.executes((command) -> {
-				CommandSource source = command.getSource();
+				CommandSourceStack source = command.getSource();
 				
 				showUsage(source);
 				return 1;
 			})
 			.then(Commands.literal("usage")
 			.executes((command) -> {
-				CommandSource source = command.getSource();
+				CommandSourceStack source = command.getSource();
 				
 				showUsage(source);
 				return 1;
 			}))
 			.then(Commands.literal("list")
 			.executes((command) -> {
-				CommandSource source = command.getSource();
+				CommandSourceStack source = command.getSource();
 				
 				ArrayList<String> mobnames = new ArrayList<String>();
 				for (EntityType<?> et : Util.mobdrops.keySet()) {
@@ -83,26 +83,26 @@ public class CommandCemd {
 				
 				output += ".";
 				
-				StringFunctions.sendMessage(source, "Available entity names:", TextFormatting.DARK_GREEN, true);
-				StringFunctions.sendMessage(source, output, TextFormatting.YELLOW);
-				StringFunctions.sendMessage(source, "To add a drop: /cemd addhand <entity-name>", TextFormatting.DARK_GRAY);
-				StringFunctions.sendMessage(source, "Note: for modded entities use - not :", TextFormatting.RED);
-				StringFunctions.sendMessage(source, "", TextFormatting.RED);
+				StringFunctions.sendMessage(source, "Available entity names:", ChatFormatting.DARK_GREEN, true);
+				StringFunctions.sendMessage(source, output, ChatFormatting.YELLOW);
+				StringFunctions.sendMessage(source, "To add a drop: /cemd addhand <entity-name>", ChatFormatting.DARK_GRAY);
+				StringFunctions.sendMessage(source, "Note: for modded entities use - not :", ChatFormatting.RED);
+				StringFunctions.sendMessage(source, "", ChatFormatting.RED);
 				return 1;
 			}))
 			.then(Commands.literal("reload")
 			.executes((command) -> {
-				CommandSource source = command.getSource();
+				CommandSourceStack source = command.getSource();
 				
 		    	try {
 					Util.loadMobConfigFile();
 				} catch (Exception ex) {
-					StringFunctions.sendMessage(source, "Something went wrong while reloading the mob drop config file.", TextFormatting.RED);
+					StringFunctions.sendMessage(source, "Something went wrong while reloading the mob drop config file.", ChatFormatting.RED);
 					ex.printStackTrace();
 					return 0;
 				}
 		    	
-		    	StringFunctions.sendMessage(source, "Successfully loaded the mob drop config file.", TextFormatting.DARK_GREEN);
+		    	StringFunctions.sendMessage(source, "Successfully loaded the mob drop config file.", ChatFormatting.DARK_GREEN);
 				return 1;
 			}))
 			.then(Commands.literal("addhand")
@@ -114,11 +114,11 @@ public class CommandCemd {
 			.then(Commands.argument("entity-name", StringArgumentType.word())
 			.then(Commands.argument("drop-chance", DoubleArgumentType.doubleArg())
 			.executes((command) -> {
-				CommandSource source = command.getSource();
+				CommandSourceStack source = command.getSource();
 				
 				double chance = DoubleArgumentType.getDouble(command, "drop-chance");
 				if (chance < 0 || chance > 1.0) {
-					StringFunctions.sendMessage(source, "The chance has to be in between 0 and 1.0.", TextFormatting.RED);
+					StringFunctions.sendMessage(source, "The chance has to be in between 0 and 1.0.", ChatFormatting.RED);
 					return 0;
 				}
 				
@@ -127,7 +127,7 @@ public class CommandCemd {
 			.then(Commands.literal("cleardrops")
 			.then(Commands.argument("entity-name", StringArgumentType.word())
 			.executes((command) -> {
-				CommandSource source = command.getSource();
+				CommandSourceStack source = command.getSource();
 
 				String entityname = StringArgumentType.getString(command, "entity-name").toLowerCase().trim();
 				EntityType<?> entitytype = null;
@@ -151,13 +151,13 @@ public class CommandCemd {
 				}
 				
 				if (entitytype == null) {
-					StringFunctions.sendMessage(source, "Unable to find an entity with the name '" + entityname + "'.", TextFormatting.RED);
+					StringFunctions.sendMessage(source, "Unable to find an entity with the name '" + entityname + "'.", ChatFormatting.RED);
 					showList(source);
 					return 0;
 				}
 				
 				if (!Util.mobdrops.containsKey(entitytype)) {
-					StringFunctions.sendMessage(source, "Unable to find an entity with the name '" + entityname + "' in the drop hashmap.", TextFormatting.RED);
+					StringFunctions.sendMessage(source, "Unable to find an entity with the name '" + entityname + "' in the drop hashmap.", ChatFormatting.RED);
 					showList(source);
 					return 0;					
 				}
@@ -166,28 +166,28 @@ public class CommandCemd {
 				
 				try {
 					if (!Util.writeDropsMapToFile()) {
-						StringFunctions.sendMessage(source, "!Something went wrong while writing the new config.", TextFormatting.RED);
+						StringFunctions.sendMessage(source, "!Something went wrong while writing the new config.", ChatFormatting.RED);
 					}
 				} catch (Exception ex) {
-					StringFunctions.sendMessage(source, "Something went wrong while writing the new config.", TextFormatting.RED);
+					StringFunctions.sendMessage(source, "Something went wrong while writing the new config.", ChatFormatting.RED);
 					ex.printStackTrace();
 				}
 				
-				StringFunctions.sendMessage(source, "Successfully cleared all drops for the entity '" + entitytype.getDescription().getString() + "'.", TextFormatting.DARK_GREEN);
+				StringFunctions.sendMessage(source, "Successfully cleared all drops for the entity '" + entitytype.getDescription().getString() + "'.", ChatFormatting.DARK_GREEN);
 				return 1;
 			})))
 		);
     }
     
-    private static int processAddhand(CommandContext<CommandSource> command, double dropchance) {
-    	CommandSource source = command.getSource();
+    private static int processAddhand(CommandContext<CommandSourceStack> command, double dropchance) {
+    	CommandSourceStack source = command.getSource();
     	
-    	PlayerEntity player;
+    	Player player;
 		try {
 			player = source.getPlayerOrException();
 		}
 		catch (CommandSyntaxException ex) {
-			StringFunctions.sendMessage(source, "This command can only be executed as a player in-game.", TextFormatting.RED);
+			StringFunctions.sendMessage(source, "This command can only be executed as a player in-game.", ChatFormatting.RED);
 			return 1;
 		}
 		
@@ -213,25 +213,25 @@ public class CommandCemd {
 		}
 		
 		if (entitytype == null) {
-			StringFunctions.sendMessage(source, "Unable to find an entity with the name '" + entityname + "'.", TextFormatting.RED);
+			StringFunctions.sendMessage(source, "Unable to find an entity with the name '" + entityname + "'.", ChatFormatting.RED);
 			showList(source);
 			return 0;
 		}
 		
 		if (!Util.mobdrops.containsKey(entitytype)) {
-			StringFunctions.sendMessage(source, "Unable to find an entity with the name '" + entityname + "' in the drop hashmap.", TextFormatting.RED);
+			StringFunctions.sendMessage(source, "Unable to find an entity with the name '" + entityname + "' in the drop hashmap.", ChatFormatting.RED);
 			showList(source);
 			return 0;					
 		}
 		
 		ItemStack hand = player.getMainHandItem();
 		if (hand.isEmpty()) {
-			StringFunctions.sendMessage(source, "Your hand is empty! Unable to add drop.", TextFormatting.RED);
+			StringFunctions.sendMessage(source, "Your hand is empty! Unable to add drop.", ChatFormatting.RED);
 			return 0;
 		}
 		
 		ItemStack toadd = hand.copy();
-		CompoundNBT nbt = toadd.getOrCreateTag();
+		CompoundTag nbt = toadd.getOrCreateTag();
 		nbt.putDouble("dropchance", dropchance);
 		toadd.setTag(nbt);
 		
@@ -239,35 +239,35 @@ public class CommandCemd {
 		
 		try {
 			if (!Util.writeDropsMapToFile()) {
-				StringFunctions.sendMessage(source, "!Something went wrong while writing the new config.", TextFormatting.RED);
+				StringFunctions.sendMessage(source, "!Something went wrong while writing the new config.", ChatFormatting.RED);
 			}
 		} catch (Exception ex) {
-			StringFunctions.sendMessage(source, "Something went wrong while writing the new config.", TextFormatting.RED);
+			StringFunctions.sendMessage(source, "Something went wrong while writing the new config.", ChatFormatting.RED);
 			ex.printStackTrace();
 		}
 		
-		StringFunctions.sendMessage(source, "Successfully added '" + toadd.getCount() + " " + toadd.getHoverName().getString().toLowerCase() + "' as a drop for the entity '" + entitytype.getDescription().getString() + "' with a drop chance of '" + dropchance + "'.", TextFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(source, "Successfully added '" + toadd.getCount() + " " + toadd.getHoverName().getString().toLowerCase() + "' as a drop for the entity '" + entitytype.getDescription().getString() + "' with a drop chance of '" + dropchance + "'.", ChatFormatting.DARK_GREEN);
 		return 1;
     }
     
-    private static void showUsage(CommandSource source) {
-		StringFunctions.sendMessage(source, "Configurable Extra Mob Drops Usage:", TextFormatting.DARK_GREEN, true);
-		StringFunctions.sendMessage(source, " /cemd usage", TextFormatting.DARK_GREEN);
-		StringFunctions.sendMessage(source, "  Show this message.", TextFormatting.DARK_GRAY);
-		StringFunctions.sendMessage(source, " /cemd list", TextFormatting.DARK_GREEN);
-		StringFunctions.sendMessage(source, "  Lists available entities to add drops to.", TextFormatting.DARK_GRAY);
-		StringFunctions.sendMessage(source, " /cemd reload", TextFormatting.DARK_GREEN);
-		StringFunctions.sendMessage(source, "  Reloads the config file.", TextFormatting.DARK_GRAY);
-		StringFunctions.sendMessage(source, " /cemd addhand <entity-name>", TextFormatting.DARK_GREEN);
-		StringFunctions.sendMessage(source, "  Add your hand to the entity's drops with a 100% chance.", TextFormatting.DARK_GRAY);
-		StringFunctions.sendMessage(source, " /cemd addhand <entity-name> <drop-chance>", TextFormatting.DARK_GREEN);
-		StringFunctions.sendMessage(source, "  Add your hand to the entity's drops with drop-chance in between 0 and 1.0.", TextFormatting.DARK_GRAY);
-		StringFunctions.sendMessage(source, " /cemd cleardrops <entity-name>", TextFormatting.DARK_GREEN);
-		StringFunctions.sendMessage(source, "  Clears all drops of the specified entity.", TextFormatting.DARK_GRAY);
+    private static void showUsage(CommandSourceStack source) {
+		StringFunctions.sendMessage(source, "Configurable Extra Mob Drops Usage:", ChatFormatting.DARK_GREEN, true);
+		StringFunctions.sendMessage(source, " /cemd usage", ChatFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(source, "  Show this message.", ChatFormatting.DARK_GRAY);
+		StringFunctions.sendMessage(source, " /cemd list", ChatFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(source, "  Lists available entities to add drops to.", ChatFormatting.DARK_GRAY);
+		StringFunctions.sendMessage(source, " /cemd reload", ChatFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(source, "  Reloads the config file.", ChatFormatting.DARK_GRAY);
+		StringFunctions.sendMessage(source, " /cemd addhand <entity-name>", ChatFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(source, "  Add your hand to the entity's drops with a 100% chance.", ChatFormatting.DARK_GRAY);
+		StringFunctions.sendMessage(source, " /cemd addhand <entity-name> <drop-chance>", ChatFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(source, "  Add your hand to the entity's drops with drop-chance in between 0 and 1.0.", ChatFormatting.DARK_GRAY);
+		StringFunctions.sendMessage(source, " /cemd cleardrops <entity-name>", ChatFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(source, "  Clears all drops of the specified entity.", ChatFormatting.DARK_GRAY);
     }
     
-    private static void showList(CommandSource source) {
-		StringFunctions.sendMessage(source, " /cemd list", TextFormatting.DARK_GREEN);
-		StringFunctions.sendMessage(source, "  Lists available entities to add drops to.", TextFormatting.DARK_GRAY);
+    private static void showList(CommandSourceStack source) {
+		StringFunctions.sendMessage(source, " /cemd list", ChatFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(source, "  Lists available entities to add drops to.", ChatFormatting.DARK_GRAY);
     }
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Campfire Spawn and Tweaks.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Campfire Spawn and Tweaks ever released, along with some other perks.
@@ -28,25 +28,25 @@ import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 
-import net.minecraft.block.BedBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CampfireBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.FlintAndSteelItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.FlintAndSteelItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -58,28 +58,28 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class CampfireEvent {
-	public static HashMap<String, Pair<World, BlockPos>> playercampfires = new HashMap<String, Pair<World, BlockPos>>();
+	public static HashMap<String, Pair<Level, BlockPos>> playercampfires = new HashMap<String, Pair<Level, BlockPos>>();
 	
-	public static HashMap<World, List<Pair<PlayerEntity, BlockPos>>> playerstorespawn = new HashMap<World, List<Pair<PlayerEntity, BlockPos>>>();
-	private static HashMap<World, List<BlockPos>> firestoextinguish = new HashMap<World, List<BlockPos>>();
+	public static HashMap<Level, List<Pair<Player, BlockPos>>> playerstorespawn = new HashMap<Level, List<Pair<Player, BlockPos>>>();
+	private static HashMap<Level, List<BlockPos>> firestoextinguish = new HashMap<Level, List<BlockPos>>();
 	
 	private static List<Block> extinguishblocks = new ArrayList<Block>(Arrays.asList(Blocks.DIRT, Blocks.GRASS, Blocks.SAND, Blocks.RED_SAND, Blocks.SOUL_SAND));
 	
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
 		
 		firestoextinguish.put(world, new ArrayList<BlockPos>());
-		playerstorespawn.put(world, new ArrayList<Pair<PlayerEntity, BlockPos>>());
+		playerstorespawn.put(world, new ArrayList<Pair<Player, BlockPos>>());
 		Util.loadCampfireSpawnsFromWorld(world);
 	}
 	
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
-		World world = e.world;
+		Level world = e.world;
 		if (world.isClientSide) {
 			return;
 		}
@@ -94,25 +94,25 @@ public class CampfireEvent {
 			firestoextinguish.get(world).remove(0);
 		}
 		if (playerstorespawn.get(world).size() > 0) {
-			Pair<PlayerEntity, BlockPos> pair = playerstorespawn.get(world).get(0);
-			PlayerEntity player = pair.getFirst();
+			Pair<Player, BlockPos> pair = playerstorespawn.get(world).get(0);
+			Player player = pair.getFirst();
 			BlockPos respawnpos = pair.getSecond();
 			
-			if (player instanceof ServerPlayerEntity) {
+			if (player instanceof ServerPlayer) {
 				if (world.getBlockState(respawnpos).getBlock() instanceof CampfireBlock) {
-					ServerPlayerEntity serverplayer = ((ServerPlayerEntity)player);
-					ServerWorld serverworld = (ServerWorld)world;
+					ServerPlayer serverplayer = ((ServerPlayer)player);
+					ServerLevel serverworld = (ServerLevel)world;
 					
-					Vector3d ts;
+					Vec3 ts;
 					
 					int fireresistancems = ConfigHandler.GENERAL.fireResitanceDurationOnRespawnInMs.get();
 					if (fireresistancems > 0) {
-						ts = new Vector3d(respawnpos.getX()+0.5, respawnpos.getY()+0.5, respawnpos.getZ()+0.5);
-						EntityFunctions.addPotionEffect(player, Effects.FIRE_RESISTANCE, fireresistancems);
+						ts = new Vec3(respawnpos.getX()+0.5, respawnpos.getY()+0.5, respawnpos.getZ()+0.5);
+						EntityFunctions.addPotionEffect(player, MobEffects.FIRE_RESISTANCE, fireresistancems);
 						
 					}
 					else {
-						ts = new Vector3d(respawnpos.getX()+1.5, respawnpos.getY(), respawnpos.getZ()+0.5);
+						ts = new Vec3(respawnpos.getX()+1.5, respawnpos.getY(), respawnpos.getZ()+0.5);
 					}
 					
 					if (ConfigHandler.GENERAL.createAirPocketIfBlocksAboveCampfire.get()) {
@@ -130,13 +130,13 @@ public class CampfireEvent {
 						
 					}
 					
-					serverplayer.teleportTo(serverworld, ts.x, ts.y, ts.z, player.yRot, player.xRot);
+					serverplayer.teleportTo(serverworld, ts.x, ts.y, ts.z, player.getYRot(), player.getXRot());
 				}
 				else {
 					String playername = player.getName().toString();
 					playercampfires.remove(playername.toLowerCase());
 					if (ConfigHandler.GENERAL.sendMessageOnCampfireSpawnMissing.get()) {
-						StringFunctions.sendMessage(player, "Campfire spawn point missing.", TextFormatting.DARK_GRAY);
+						StringFunctions.sendMessage(player, "Campfire spawn point missing.", ChatFormatting.DARK_GRAY);
 					}
 				}
 			}
@@ -147,13 +147,13 @@ public class CampfireEvent {
 	
 	@SubscribeEvent
 	public void onEntityBlockPlace(EntityPlaceEvent e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof PlayerEntity == false) {
+		if (entity instanceof Player == false) {
 			return;
 		}
 		
@@ -161,7 +161,7 @@ public class CampfireEvent {
 		BlockState state = e.getPlacedBlock();
 		Block block = state.getBlock();
 		if (block instanceof CampfireBlock) {
-			PlayerEntity player = (PlayerEntity)entity;
+			Player player = (Player)entity;
 			if (player.getMainHandItem().getItem() instanceof FlintAndSteelItem || player.getOffhandItem().getItem() instanceof FlintAndSteelItem) {
 				return;
 			}
@@ -174,12 +174,12 @@ public class CampfireEvent {
 	
 	@SubscribeEvent
 	public void onRightClickCampfireBlock(PlayerInteractEvent.RightClickBlock e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		BlockPos pos = e.getPos();
 		BlockState state = world.getBlockState(pos);
 		Block block = state.getBlock();
@@ -190,7 +190,7 @@ public class CampfireEvent {
 				if (ConfigHandler.GENERAL.sneakRightClickCampfireToUnset.get()) {
 					if (Util.checkForCampfireSpawnRemoval(world, playername, pos)) {
 						if (ConfigHandler.GENERAL.sendMessageOnNewCampfireSpawnSet.get()) {
-							StringFunctions.sendMessage(player, "Campfire spawn point removed.", TextFormatting.DARK_GRAY);
+							StringFunctions.sendMessage(player, "Campfire spawn point removed.", ChatFormatting.DARK_GRAY);
 						}
 					}
 					return;
@@ -226,14 +226,14 @@ public class CampfireEvent {
 					
 					if (Util.checkForCampfireSpawnRemoval(world, playername, pos)) {
 						if (ConfigHandler.GENERAL.sendMessageOnNewCampfireSpawnSet.get()) {
-							StringFunctions.sendMessage(player, "Campfire spawn point removed.", TextFormatting.DARK_GRAY);
+							StringFunctions.sendMessage(player, "Campfire spawn point removed.", ChatFormatting.DARK_GRAY);
 						}
 					}
 					removed = true;
 				}
 				
 
-				if (!removed && e.getHand().equals(Hand.MAIN_HAND) && (holdinglighter || itemstack.isEmpty())) {
+				if (!removed && e.getHand().equals(InteractionHand.MAIN_HAND) && (holdinglighter || itemstack.isEmpty())) {
 					boolean replaced = playercampfires.containsKey(playername.toLowerCase());
 					BlockPos oldpos = null;
 					if (replaced) {
@@ -249,14 +249,14 @@ public class CampfireEvent {
 							
 							if (replaced) {
 								if (oldpos.equals(pos)) {
-									StringFunctions.sendMessage(player, "Campfire spawn point remains the same.", TextFormatting.DARK_GRAY);
+									StringFunctions.sendMessage(player, "Campfire spawn point remains the same.", ChatFormatting.DARK_GRAY);
 									return;
 								}
-								StringFunctions.sendMessage(player, "Campfire spawn point replaced.", TextFormatting.DARK_GRAY);
+								StringFunctions.sendMessage(player, "Campfire spawn point replaced.", ChatFormatting.DARK_GRAY);
 								return;
 							}
 							
-							StringFunctions.sendMessage(player, "Campfire spawn point set.", TextFormatting.DARK_GRAY);
+							StringFunctions.sendMessage(player, "Campfire spawn point set.", ChatFormatting.DARK_GRAY);
 						}
 					}
 				}
@@ -272,8 +272,8 @@ public class CampfireEvent {
 				if (playercampfires.containsKey(playername)) {
 					BlockPos newspawn = e.getPos();
 
-					Pair<World, BlockPos> pair = playercampfires.get(playername);
-					World oldworld = pair.getFirst();
+					Pair<Level, BlockPos> pair = playercampfires.get(playername);
+					Level oldworld = pair.getFirst();
 					BlockPos oldpos = pair.getSecond();
 					
 					if (WorldFunctions.getWorldDimensionName(world).equals(WorldFunctions.getWorldDimensionName(oldworld))) {
@@ -284,7 +284,7 @@ public class CampfireEvent {
 					
 					if (Util.checkForCampfireSpawnRemoval(world, playername, oldpos)) {
 						if (ConfigHandler.GENERAL.sendMessageOnCampfireSpawnOverride.get()) {
-							StringFunctions.sendMessage(player, "Campfire spawn point unset.", TextFormatting.DARK_GRAY);
+							StringFunctions.sendMessage(player, "Campfire spawn point unset.", ChatFormatting.DARK_GRAY);
 						}
 					}
 				}
@@ -294,19 +294,19 @@ public class CampfireEvent {
 	
 	@SubscribeEvent
 	public void onCampfireBreak(BlockEvent.BreakEvent e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
 		
 		BlockPos pos = e.getPos();
 		if (world.getBlockState(pos).getBlock() instanceof CampfireBlock) {
-			PlayerEntity player = e.getPlayer();
+			Player player = e.getPlayer();
 			String playername = player.getName().getString().toLowerCase();
 
 			if (Util.checkForCampfireSpawnRemoval(world, playername, pos)) {
 				if (ConfigHandler.GENERAL.sendMessageOnNewCampfireSpawnSet.get()) {
-					StringFunctions.sendMessage(player, "Campfire spawn point removed.", TextFormatting.DARK_GRAY);
+					StringFunctions.sendMessage(player, "Campfire spawn point removed.", ChatFormatting.DARK_GRAY);
 				}
 			}
 		}
@@ -315,8 +315,8 @@ public class CampfireEvent {
 	
 	@SubscribeEvent
 	public void onPlayerRespawn(PlayerRespawnEvent e) {
-		PlayerEntity player = e.getPlayer();
-		World world = player.getCommandSenderWorld();
+		Player player = e.getPlayer();
+		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -326,7 +326,7 @@ public class CampfireEvent {
 			return;
 		}
 		
-		Pair<World, BlockPos> pair = playercampfires.get(playername);
-		playerstorespawn.get(pair.getFirst()).add(new Pair<PlayerEntity, BlockPos>(player, pair.getSecond().immutable()));
+		Pair<Level, BlockPos> pair = playercampfires.get(playername);
+		playerstorespawn.get(pair.getFirst()).add(new Pair<Player, BlockPos>(player, pair.getSecond().immutable()));
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Difficulty Lock.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Difficulty Lock ever released, along with some other perks.
@@ -17,11 +17,11 @@ package com.natamus.difficultylock.events;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.difficultylock.config.ConfigHandler;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.IServerConfiguration;
-import net.minecraft.world.storage.IWorldInfo;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.LevelData;
+import net.minecraft.world.level.storage.WorldData;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -30,15 +30,15 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class DifficultyLockEvent {
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
 		
-		ServerWorld serverworld = (ServerWorld)world;
-		IServerConfiguration serverconfiguration = serverworld.getServer().getWorldData();
+		ServerLevel serverworld = (ServerLevel)world;
+		WorldData serverconfiguration = serverworld.getServer().getWorldData();
 		
-		IWorldInfo worldinfo = world.getLevelData();
+		LevelData worldinfo = world.getLevelData();
 		boolean islocked = worldinfo.isDifficultyLocked();
 		if (islocked && !ConfigHandler.GENERAL.shouldChangeDifficultyWhenAlreadyLocked.get()) {
 			return;

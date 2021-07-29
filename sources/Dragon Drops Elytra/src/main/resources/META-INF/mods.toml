@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[37,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Dragon%20Drops%20Elytra"
 
@@ -11,12 +11,12 @@ displayURL="https://curseforge.com/minecraft/mc-mods/dragon-drops-elytra"
 authors="Rick South"
 description="A minimalistic mod that makes the Ender Dragon drop an elytra on death."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.dragondropselytra]]
     modId="collective"
     mandatory=true
-    versionRange="[2.27,)"
+    versionRange="[2.38,)"
     ordering="NONE"
     side="BOTH"

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.16.5, mod version: 2.3.
+ * Minecraft version: 1.17.1, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Areas ever released, along with some other perks.
@@ -23,37 +23,37 @@ import com.natamus.areas.util.Util;
 import com.natamus.collective.functions.FABFunctions;
 import com.natamus.collective.functions.StringFunctions;
 
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.tileentity.SignTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.entity.SignBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
 
 public class CommandAreas {
-    public static void register(CommandDispatcher<CommandSource> dispatcher) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
     	dispatcher.register(Commands.literal("areas")
-			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof PlayerEntity)
+			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof Player)
 			.executes((command) -> {
-				CommandSource source = command.getSource();
+				CommandSourceStack source = command.getSource();
 				
-				PlayerEntity player = source.getPlayerOrException();
-				World world = player.getCommandSenderWorld();
+				Player player = source.getPlayerOrException();
+				Level world = player.getCommandSenderWorld();
 				
-				Vector3d pvec = player.position();
+				Vec3 pvec = player.position();
 				boolean sentfirst = false;
 				
-				List<BlockPos> signsaround = FABFunctions.getAllTileEntityPositionsNearbyEntity(TileEntityType.SIGN, 200, world, player);
+				List<BlockPos> signsaround = FABFunctions.getAllTileEntityPositionsNearbyEntity(BlockEntityType.SIGN, 200, world, player);
 				for (BlockPos signpos : signsaround) {
-					TileEntity te = world.getBlockEntity(signpos);
-					if (te instanceof SignTileEntity) {
-						if (Util.hasZonePrefix((SignTileEntity)te)) {
+					BlockEntity te = world.getBlockEntity(signpos);
+					if (te instanceof SignBlockEntity) {
+						if (Util.hasZonePrefix((SignBlockEntity)te)) {
 							if (!sentfirst) {
-								StringFunctions.sendMessage(player, "Area sign positions around you:", TextFormatting.DARK_GREEN);
+								StringFunctions.sendMessage(player, "Area sign positions around you:", ChatFormatting.DARK_GREEN);
 								sentfirst = true;
 							}
 							String prefix = "a";
@@ -65,13 +65,13 @@ public class CommandAreas {
 							double distance = Math.round(Math.sqrt(signpos.distSqr(pvec.x, pvec.y, pvec.z, true)) * 100.0) / 100.0;
 							String blocksaway = " (" + distance + " blocks)";
 							
-							StringFunctions.sendMessage(player, " " + prefix + "t x=" + signpos.getX() + ", y=" + signpos.getY() + ", z=" + signpos.getZ() + "." + blocksaway, TextFormatting.YELLOW);
+							StringFunctions.sendMessage(player, " " + prefix + "t x=" + signpos.getX() + ", y=" + signpos.getY() + ", z=" + signpos.getZ() + "." + blocksaway, ChatFormatting.YELLOW);
 						}
 					}
 				}
 				
 				if (!sentfirst) {
-					StringFunctions.sendMessage(player, "There are no area signs around you.", TextFormatting.DARK_GREEN);
+					StringFunctions.sendMessage(player, "There are no area signs around you.", ChatFormatting.DARK_GREEN);
 				}
 				
 				return 1;

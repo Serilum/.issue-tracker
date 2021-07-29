@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Mob Potion Effects.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Mob Potion Effects ever released, along with some other perks.
@@ -30,11 +30,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import com.natamus.collective.functions.NumberFunctions;
 import com.natamus.collective.functions.StringFunctions;
 
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntityType;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class Util {
@@ -43,12 +43,12 @@ public class Util {
 	private static File permanentfile = new File(dirpath + File.separator + "permanenteffects.txt");
 	private static File damagefile = new File(dirpath + File.separator + "ondamageeffects.txt");
 	
-	public static HashMap<EntityType<?>, CopyOnWriteArrayList<EffectInstance>> mobpermanent = new HashMap<EntityType<?>, CopyOnWriteArrayList<EffectInstance>>();
-	public static HashMap<EntityType<?>, CopyOnWriteArrayList<EffectInstance>> mobdamage = new HashMap<EntityType<?>, CopyOnWriteArrayList<EffectInstance>>();
+	public static HashMap<EntityType<?>, CopyOnWriteArrayList<MobEffectInstance>> mobpermanent = new HashMap<EntityType<?>, CopyOnWriteArrayList<MobEffectInstance>>();
+	public static HashMap<EntityType<?>, CopyOnWriteArrayList<MobEffectInstance>> mobdamage = new HashMap<EntityType<?>, CopyOnWriteArrayList<MobEffectInstance>>();
 	
 	public static void loadMobConfigFile() throws IOException, FileNotFoundException, UnsupportedEncodingException {
-		mobpermanent = new HashMap<EntityType<?>, CopyOnWriteArrayList<EffectInstance>>();
-		mobdamage = new HashMap<EntityType<?>, CopyOnWriteArrayList<EffectInstance>>();
+		mobpermanent = new HashMap<EntityType<?>, CopyOnWriteArrayList<MobEffectInstance>>();
+		mobdamage = new HashMap<EntityType<?>, CopyOnWriteArrayList<MobEffectInstance>>();
 		
 		PrintWriter permanentwriter = null;
 		PrintWriter damagewriter = null;
@@ -130,14 +130,14 @@ public class Util {
 		
 		List<String> sortedpotions = new ArrayList<String>();
 		List<String> sortedentities = new ArrayList<String>();
-		HashMap<String, Effect> phm = new HashMap<String, Effect>();
+		HashMap<String, MobEffect> phm = new HashMap<String, MobEffect>();
 		HashMap<String, EntityType<?>> ehm = new HashMap<String, EntityType<?>>();
 		
 		String emptypermanenteffects = "";
 		String emptydamageeffects = "";
 		
 		if (permanentwriter != null || damagewriter != null) {
-			for (Effect effect : ForgeRegistries.POTIONS) {
+			for (MobEffect effect : ForgeRegistries.POTIONS) {
 				String n = effect.getRegistryName().toString().toLowerCase();
 				if (n.contains(":")) {
 					n = n.split(":")[1];
@@ -160,7 +160,7 @@ public class Util {
 			Collections.sort(sortedentities);
 			
 			for (String effectstring : sortedpotions) {
-				Effect effect = phm.get(effectstring);
+				MobEffect effect = phm.get(effectstring);
 				
 				if (emptypermanenteffects != "") {
 					emptypermanenteffects += "|";
@@ -181,12 +181,12 @@ public class Util {
 			for (String entitytypestring : sortedentities) {
 				EntityType<?> entitytype = ehm.get(entitytypestring);
 				
-				EntityClassification classification = entitytype.getCategory();
-				if (!classification.equals(EntityClassification.MISC)) {
+				MobCategory classification = entitytype.getCategory();
+				if (!classification.equals(MobCategory.MISC)) {
 					ResourceLocation rl = entitytype.getRegistryName();
 					permanentwriter.println("'" + rl.toString() + "'" + " : '" + emptypermanenteffects + "'," + "\n");
 					
-					mobpermanent.put(entitytype, new CopyOnWriteArrayList<EffectInstance>());
+					mobpermanent.put(entitytype, new CopyOnWriteArrayList<MobEffectInstance>());
 				}
 			}
 			
@@ -198,12 +198,12 @@ public class Util {
 			for (String entitytypestring : sortedentities) {
 				EntityType<?> entitytype = ehm.get(entitytypestring);
 				
-				EntityClassification classification = entitytype.getCategory();
-				if (!classification.equals(EntityClassification.MISC)) {
+				MobCategory classification = entitytype.getCategory();
+				if (!classification.equals(MobCategory.MISC)) {
 					ResourceLocation rl = entitytype.getRegistryName();
 					damagewriter.println("'" + rl.toString() + "'" + " : '" + emptydamageeffects + "'," + "\n");
 					
-					mobdamage.put(entitytype, new CopyOnWriteArrayList<EffectInstance>());
+					mobdamage.put(entitytype, new CopyOnWriteArrayList<MobEffectInstance>());
 				}
 			}
 			
@@ -216,8 +216,8 @@ public class Util {
 		}
 	}
 	
-	private static CopyOnWriteArrayList<EffectInstance> parseEffectString(String effectstring) {
-		CopyOnWriteArrayList<EffectInstance> effectinstances = new CopyOnWriteArrayList<EffectInstance>();
+	private static CopyOnWriteArrayList<MobEffectInstance> parseEffectString(String effectstring) {
+		CopyOnWriteArrayList<MobEffectInstance> effectinstances = new CopyOnWriteArrayList<MobEffectInstance>();
 		
 		for (String effectpair : effectstring.split(StringFunctions.escapeSpecialRegexChars("|"))) {
 			String[] epspl = effectpair.split(",");
@@ -248,7 +248,7 @@ public class Util {
 				durationstring = "0";
 			}
 			
-			Effect effect = ForgeRegistries.POTIONS.getValue(new ResourceLocation(effectrlstring));
+			MobEffect effect = ForgeRegistries.POTIONS.getValue(new ResourceLocation(effectrlstring));
 			if (effect == null) {
 				continue;
 			}
@@ -275,7 +275,7 @@ public class Util {
 				duration = 100000000;
 			}
 			
-			EffectInstance instance = new EffectInstance(effect, duration*20, level-1, true, true);
+			MobEffectInstance instance = new MobEffectInstance(effect, duration*20, level-1, true, true);
 			effectinstances.add(instance);
 		}
 		

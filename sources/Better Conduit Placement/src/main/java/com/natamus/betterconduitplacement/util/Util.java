@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Conduit Placement.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Better Conduit Placement ever released, along with some other perks.
@@ -21,17 +21,17 @@ import java.util.List;
 
 import com.natamus.collective.functions.BlockFunctions;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 public class Util {
 	public final static List<Block> conduitblocks = new ArrayList<Block>(Arrays.asList(Blocks.PRISMARINE, Blocks.DARK_PRISMARINE, Blocks.PRISMARINE_BRICKS, Blocks.SEA_LANTERN));
 	
-	public static BlockPos getNextLocation(World world, BlockPos conduitpos) {
+	public static BlockPos getNextLocation(Level world, BlockPos conduitpos) {
 		int n;
 		for (n = 0; n < 42; n++) {
 			BlockPos npos = getNextConduitPosition(conduitpos, n);
@@ -58,7 +58,7 @@ public class Util {
 		return null;
 	}
 	
-	public static void destroyAllConduitBlocks(World world, BlockPos conduitpos) {
+	public static void destroyAllConduitBlocks(Level world, BlockPos conduitpos) {
 		for (int n = 0; n < 42; n++) {
 			BlockPos npos = getNextConduitPosition(conduitpos, n);
 			Block block = world.getBlockState(npos).getBlock();

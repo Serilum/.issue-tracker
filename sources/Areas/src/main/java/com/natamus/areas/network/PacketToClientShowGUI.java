@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.16.5, mod version: 2.3.
+ * Minecraft version: 1.17.1, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Areas ever released, along with some other perks.
@@ -18,8 +18,8 @@ import java.util.function.Supplier;
 
 import com.natamus.areas.events.GUIEvent;
 
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 public class PacketToClientShowGUI {
 	private String message;
@@ -32,12 +32,12 @@ public class PacketToClientShowGUI {
 		this.rgbvalue = rgb;
 	}
 
-	public PacketToClientShowGUI(PacketBuffer buf) {
+	public PacketToClientShowGUI(FriendlyByteBuf buf) {
 		message = buf.readUtf();
 		rgbvalue = buf.readUtf();
 	}
 
-	public void toBytes(PacketBuffer buf) {
+	public void toBytes(FriendlyByteBuf buf) {
 		buf.writeUtf(message);
 		buf.writeUtf(rgbvalue);
 	}

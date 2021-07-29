@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bigger Sponge Absorption Radius.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Bigger Sponge Absorption Radius ever released, along with some other perks.
@@ -22,22 +22,19 @@ import java.util.Queue;
 import com.google.common.collect.Lists;
 import com.natamus.collective.functions.BlockPosFunctions;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.block.IBucketPickupHandler;
-import net.minecraft.block.material.Material;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BucketPickup;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Material;
 
 @SuppressWarnings("deprecation")
 public class ExtendedSpongeBlock extends Block {
@@ -47,25 +44,25 @@ public class ExtendedSpongeBlock extends Block {
 		super(properties);
 	}
 	
-	public void onPlace(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
+	public void onPlace(BlockState state, Level worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
 		if (oldState.getBlock() != state.getBlock()) {
 			this.tryAbsorb(worldIn, pos);
 		}
 	}
 	
-	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+	public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
 		this.tryAbsorb(worldIn, pos);
 		super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
 	}
 	
-	protected void tryAbsorb(World worldIn, BlockPos pos) {
+	protected void tryAbsorb(Level worldIn, BlockPos pos) {
 		if (this.absorb(worldIn, pos)) {
 			worldIn.setBlock(pos, Blocks.WET_SPONGE.defaultBlockState(), 2);
 			worldIn.levelEvent(2001, pos, Block.getId(Blocks.WATER.defaultBlockState()));
 		}
 	}
 
-	private boolean absorb(World worldIn, BlockPos pos) {
+	private boolean absorb(Level worldIn, BlockPos pos) {
 		List<BlockPos> spongepositions = BlockPosFunctions.getBlocksNextToEachOtherMaterial(worldIn, pos, spongematerials);
 		int spongecount = spongepositions.size();
 		
@@ -88,13 +85,13 @@ public class ExtendedSpongeBlock extends Block {
 				FluidState ifluidstate = worldIn.getFluidState(blockpos1);
 				Material material = blockstate.getMaterial();
 				if (ifluidstate.is(FluidTags.WATER) || blockstate.getMaterial().equals(Material.SPONGE)) {
-					if (block instanceof IBucketPickupHandler && ((IBucketPickupHandler)block).takeLiquid(worldIn, blockpos1, blockstate) != Fluids.EMPTY) {
+					if (blockstate.getBlock() instanceof BucketPickup && !((BucketPickup)blockstate.getBlock()).pickupBlock(worldIn, blockpos1, blockstate).isEmpty()) {
 						++i;
 						if (j < absorpdistance) {
 							queue.add(new Tuple<>(blockpos1, j + 1));
 						}
 					} 
-					else if (block instanceof FlowingFluidBlock) {
+					else if (block instanceof LiquidBlock) {
 						worldIn.setBlock(blockpos1, Blocks.AIR.defaultBlockState(), 3);
 						++i;
 						if (j < absorpdistance) {
@@ -102,7 +99,7 @@ public class ExtendedSpongeBlock extends Block {
 						}
 					}
 					else if (material == Material.WATER_PLANT || material == Material.REPLACEABLE_WATER_PLANT) {
-						TileEntity tileentity = block.hasTileEntity(blockstate) ? worldIn.getBlockEntity(blockpos1) : null;
+						BlockEntity tileentity = blockstate.hasBlockEntity() ? worldIn.getBlockEntity(blockpos1) : null;
 						dropResources(blockstate, worldIn, blockpos1, tileentity);
 						worldIn.setBlock(blockpos1, Blocks.AIR.defaultBlockState(), 3);
 						++i;

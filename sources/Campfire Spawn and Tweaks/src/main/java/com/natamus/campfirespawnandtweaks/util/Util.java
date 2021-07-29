@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Campfire Spawn and Tweaks.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Campfire Spawn and Tweaks ever released, along with some other perks.
@@ -31,15 +31,15 @@ import com.natamus.collective.functions.PlayerFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 
 public class Util {
-	public static void loadCampfireSpawnsFromWorld(World world) {
-		String campfirespawnfolder = WorldFunctions.getWorldPath((ServerWorld)world) + File.separator + "data" + File.separator + "campfirespawn" + File.separator + DimensionFunctions.getSimpleDimensionString(world);
+	public static void loadCampfireSpawnsFromWorld(Level world) {
+		String campfirespawnfolder = WorldFunctions.getWorldPath((ServerLevel)world) + File.separator + "data" + File.separator + "campfirespawn" + File.separator + DimensionFunctions.getSimpleDimensionString(world);
 		File dir = new File(campfirespawnfolder);
 		dir.mkdirs();
 		
@@ -73,7 +73,7 @@ public class Util {
 						int z = Integer.parseInt(cs[2]);
 						
 						BlockPos spawnpos = new BlockPos(x, y, z);
-						CampfireEvent.playercampfires.put(playername, new Pair<World, BlockPos>(world, spawnpos.immutable()));
+						CampfireEvent.playercampfires.put(playername, new Pair<Level, BlockPos>(world, spawnpos.immutable()));
 					}
 						
 				}
@@ -81,8 +81,8 @@ public class Util {
 		}
 	}
 	
-	public static boolean setCampfireSpawn(World world, String playername, BlockPos campfirepos) {
-		String campfirespawnfolder = WorldFunctions.getWorldPath((ServerWorld)world) + File.separator + "data" + File.separator + "campfirespawn" + File.separator + DimensionFunctions.getSimpleDimensionString(world);
+	public static boolean setCampfireSpawn(Level world, String playername, BlockPos campfirepos) {
+		String campfirespawnfolder = WorldFunctions.getWorldPath((ServerLevel)world) + File.separator + "data" + File.separator + "campfirespawn" + File.separator + DimensionFunctions.getSimpleDimensionString(world);
 		File dir = new File(campfirespawnfolder);
 		dir.mkdirs();
 		
@@ -96,14 +96,14 @@ public class Util {
 			return false;
 		}
 		
-		CampfireEvent.playercampfires.put(playername.toLowerCase(), new Pair<World, BlockPos>(world, campfirepos.immutable()));
+		CampfireEvent.playercampfires.put(playername.toLowerCase(), new Pair<Level, BlockPos>(world, campfirepos.immutable()));
 		return true;
 	}
 	
-	public static boolean checkForCampfireSpawnRemoval(World world, String playername, BlockPos campfirepos) {
+	public static boolean checkForCampfireSpawnRemoval(Level world, String playername, BlockPos campfirepos) {
 		List<String> fromplayernames = new ArrayList<String>();
 		for (String pname : CampfireEvent.playercampfires.keySet()) {
-			Pair<World, BlockPos> pair = CampfireEvent.playercampfires.get(pname);
+			Pair<Level, BlockPos> pair = CampfireEvent.playercampfires.get(pname);
 			if (campfirepos.equals(pair.getSecond())) {
 				fromplayernames.add(pname);
 			}
@@ -112,8 +112,8 @@ public class Util {
 		boolean removed = false;
 		for (String fromplayername : fromplayernames) {
 			if (CampfireEvent.playercampfires.containsKey(fromplayername)) {
-				for (World loopworld : CampfireEvent.playerstorespawn.keySet()) {
-					String campfirespawnfolder = WorldFunctions.getWorldPath((ServerWorld)loopworld) + File.separator + "data" + File.separator + "campfirespawn" + File.separator + DimensionFunctions.getSimpleDimensionString(loopworld);
+				for (Level loopworld : CampfireEvent.playerstorespawn.keySet()) {
+					String campfirespawnfolder = WorldFunctions.getWorldPath((ServerLevel)loopworld) + File.separator + "data" + File.separator + "campfirespawn" + File.separator + DimensionFunctions.getSimpleDimensionString(loopworld);
 					File dir = new File(campfirespawnfolder);
 					dir.mkdirs();
 					
@@ -136,12 +136,12 @@ public class Util {
 						continue;
 					}
 					
-					PlayerEntity target = PlayerFunctions.matchPlayer(world, fromplayername);
+					Player target = PlayerFunctions.matchPlayer(world, fromplayername);
 					if (target == null) {
 						continue;
 					}
 					
-					StringFunctions.sendMessage(target, "Campfire spawn point removed.", TextFormatting.DARK_GRAY);
+					StringFunctions.sendMessage(target, "Campfire spawn point removed.", ChatFormatting.DARK_GRAY);
 				}
 			}
 		}

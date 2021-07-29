@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of End Portal Recipe.
- * Minecraft version: 1.16.5, mod version: 2.4.
+ * Minecraft version: 1.17.1, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of End Portal Recipe ever released, along with some other perks.
@@ -23,19 +23,19 @@ import com.natamus.collective.functions.BlockFunctions;
 import com.natamus.collective.functions.ItemFunctions;
 import com.natamus.endportalrecipe.config.ConfigHandler;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -47,28 +47,28 @@ public class EndPortalEvent {
 	@SubscribeEvent
 	public void mobItemDrop(LivingDropsEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		if (entity instanceof EnderDragonEntity == false) {
+		if (entity instanceof EnderDragon == false) {
 			return;
 		}
 		
 		Entity source = e.getSource().getEntity();
-		if (entity instanceof PlayerEntity == false) {
+		if (entity instanceof Player == false) {
 			return;
 		}
 
-		PlayerEntity player = (PlayerEntity)source;
+		Player player = (Player)source;
 		ItemStack egg = new ItemStack(Blocks.DRAGON_EGG, 1);
 		ItemFunctions.giveOrDropItemStack(player, egg);
 	}
 	
 	@SubscribeEvent
 	public void onRightClick(PlayerInteractEvent.RightClickBlock e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -143,7 +143,7 @@ public class EndPortalEvent {
 	
 	@SubscribeEvent
 	public void onLeftClick(PlayerInteractEvent.LeftClickBlock e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -159,7 +159,7 @@ public class EndPortalEvent {
 			BlockPos cpos = e.getPos().immutable();
 			BlockState cbs = world.getBlockState(cpos);
 			if (cbs.getBlock().equals(Blocks.END_PORTAL_FRAME)) {
-				PlayerEntity player = e.getPlayer();
+				Player player = e.getPlayer();
 				ItemStack portalframe = new ItemStack(Blocks.END_PORTAL_FRAME, 1);
 				ItemStack endereye = new ItemStack(Items.ENDER_EYE, 1);
 				

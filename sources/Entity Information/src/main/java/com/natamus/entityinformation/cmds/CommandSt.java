@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Entity Information.
- * Minecraft version: 1.16.5, mod version: 1.6.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Entity Information ever released, along with some other perks.
@@ -19,25 +19,25 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.natamus.collective.functions.StringFunctions;
 
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
 
 public class CommandSt {
-    public static void register(CommandDispatcher<CommandSource> dispatcher) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
     	dispatcher.register(Commands.literal("ist")
-			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof PlayerEntity && iCommandSender.hasPermission(2))
+			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof Player && iCommandSender.hasPermission(2))
 			.executes((command) -> {
 				processInformationstick(command);
 				return 1;
 			})
 		);
     	dispatcher.register(Commands.literal("informationstick")
-			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof PlayerEntity && iCommandSender.hasPermission(2))
+			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof Player && iCommandSender.hasPermission(2))
 			.executes((command) -> {
 				processInformationstick(command);
 				return 1;
@@ -45,14 +45,14 @@ public class CommandSt {
 		);
     }
     
-    public static void processInformationstick(CommandContext<CommandSource> command) throws CommandSyntaxException {
-    	CommandSource source = command.getSource();
-		PlayerEntity player = (PlayerEntity)source.getPlayerOrException();
+    public static void processInformationstick(CommandContext<CommandSourceStack> command) throws CommandSyntaxException {
+    	CommandSourceStack source = command.getSource();
+		Player player = (Player)source.getPlayerOrException();
 		
 		ItemStack informationstick = new ItemStack(Items.STICK, 1);
-		informationstick.setHoverName(new StringTextComponent(TextFormatting.BLUE + "The Information Stick"));
+		informationstick.setHoverName(new TextComponent(ChatFormatting.BLUE + "The Information Stick"));
 		player.addItem(informationstick);
-		StringFunctions.sendMessage(player, "You have been given The Information Stick!", TextFormatting.BLUE);
+		StringFunctions.sendMessage(player, "You have been given The Information Stick!", ChatFormatting.BLUE);
 		return;			
     }
 }

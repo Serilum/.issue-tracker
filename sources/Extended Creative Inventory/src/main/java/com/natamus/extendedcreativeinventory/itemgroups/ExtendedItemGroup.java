@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Extended Creative Inventory.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Extended Creative Inventory ever released, along with some other perks.
@@ -14,11 +14,11 @@
 
 package com.natamus.extendedcreativeinventory.itemgroups;
 
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
-public class ExtendedItemGroup extends ItemGroup {
+public class ExtendedItemGroup extends CreativeModeTab {
 
 	public ExtendedItemGroup(int index, String label) {
 		super(index, label);

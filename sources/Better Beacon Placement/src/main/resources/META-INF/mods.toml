@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[37,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Better%20Beacon%20Placement"
 
@@ -11,12 +11,12 @@ displayURL="https://curseforge.com/minecraft/mc-mods/better-beacon-placement"
 authors="Rick South"
 description="Easily place beacon bases by right-clicking the beacon with a mineral block plus other tweaks."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley   
+Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.betterbeaconplacement]]
     modId="collective"
     mandatory=true
-    versionRange="[2.27,)"
+    versionRange="[2.38,)"
     ordering="NONE"
     side="BOTH"

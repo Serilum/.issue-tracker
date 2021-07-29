@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Spawner Control.
- * Minecraft version: 1.16.5, mod version: 1.4.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Better Spawner Control ever released, along with some other perks.
@@ -21,13 +21,14 @@ import java.util.List;
 import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.TorchBlock;
-import net.minecraft.block.WallTorchBlock;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.spawner.AbstractSpawner;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.BaseSpawner;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.TorchBlock;
+import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -39,26 +40,30 @@ public class MobSpawnEvent {
 	
 	@SubscribeEvent
 	public void onMobSpawn(LivingSpawnEvent.CheckSpawn e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
 
-		AbstractSpawner msbl = e.getSpawner();
+		BaseSpawner msbl = e.getSpawner();
 		if (msbl != null) {
-			BlockPos spos = msbl.getPos();
+			Entity spawnerentity = msbl.getSpawnerEntity();
 			
-			Boolean alltorches = true;
-			for (BlockPos ap : BlockPosFunctions.getBlocksAround(spos, false)) {
-				Block block = world.getBlockState(ap).getBlock();
-				if (block instanceof TorchBlock == false && block instanceof WallTorchBlock == false) {
-					alltorches = false;
-					break;
+			if (spawnerentity != null) {
+				BlockPos spos = spawnerentity.blockPosition();
+				
+				Boolean alltorches = true;
+				for (BlockPos ap : BlockPosFunctions.getBlocksAround(spos, false)) {
+					Block block = world.getBlockState(ap).getBlock();
+					if (block instanceof TorchBlock == false && block instanceof WallTorchBlock == false) {
+						alltorches = false;
+						break;
+					}
 				}
-			}
-			
-			if (alltorches) {
-				e.setResult(Result.DENY);
+				
+				if (alltorches) {
+					e.setResult(Result.DENY);
+				}
 			}
 		}
 	}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.16.5, mod version: 2.3.
+ * Minecraft version: 1.17.1, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Areas ever released, along with some other perks.
@@ -17,21 +17,20 @@ package com.natamus.areas.events;
 import java.awt.Color;
 import java.util.UUID;
 
-import org.lwjgl.opengl.GL11;
-
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.natamus.areas.config.ConfigHandler;
 
-import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.IngameGui;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.Gui;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class GUIEvent extends IngameGui {
+public class GUIEvent extends Gui {
 	public static String hudmessage = "";
 	public static String rgb = "";
 	public static int gopacity = 0;
@@ -54,8 +53,8 @@ public class GUIEvent extends IngameGui {
 		}
 
 		if (hudmessage != "") {
-			FontRenderer fontRender = mc.font;
-			MainWindow scaled = mc.getWindow();
+			Font fontRender = mc.font;
+			Window scaled = mc.getWindow();
 			int width = scaled.getGuiScaledWidth();
 
 			double stringWidth = fontRender.width(hudmessage);
@@ -107,19 +106,21 @@ public class GUIEvent extends IngameGui {
 				}
 			}
 			
-			GL11.glPushMatrix();
-			GL11.glEnable(GL11.GL_BLEND); 
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			PoseStack posestack = e.getMatrixStack();
+			posestack.pushPose();
 			
-			double modifier = (ConfigHandler.HUD.HUD_FontSizeScaleModifier.get() + 0.5);
+			RenderSystem.enableBlend(); // GL11.glEnable(GL11.GL_BLEND);
+			RenderSystem.blendFunc(0x302, 0x303); //GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			
+			float modifier = (float)(ConfigHandler.HUD.HUD_FontSizeScaleModifier.get() + 0.5);
 			if (true) {
-				GL11.glScaled(modifier, modifier, modifier);
+				posestack.scale(modifier, modifier, modifier);
 			}
 			
-			MatrixStack ms = new MatrixStack();
+			PoseStack ms = new PoseStack();
 			fontRender.draw(ms, hudmessage, (int)(Math.round((width / 2) / modifier) - stringWidth/2), ConfigHandler.HUD.HUDMessageHeightOffset.get(), colour.getRGB());
 			
-			GL11.glPopMatrix();
+			posestack.popPose();
 			
 			if (currentmessage != hudmessage) {
 				currentmessage = hudmessage;

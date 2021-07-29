@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Creative Block Replacer.
- * Minecraft version: 1.16.5, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Creative Block Replacer ever released, along with some other perks.
@@ -19,14 +19,14 @@ import java.util.Map;
 
 import com.natamus.collective.functions.StringFunctions;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -42,8 +42,8 @@ public class ReplaceEvent {
 	
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
-		PlayerEntity player = e.player;
-		World world = player.getCommandSenderWorld();
+		Player player = e.player;
+		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
@@ -91,13 +91,13 @@ public class ReplaceEvent {
 				boolean isreplacing = replacingplayers.get(playername);
 				if (isreplacing) {
 					replacingplayers.put(playername, false);
-					StringFunctions.sendMessage(player, "Replacing block mode disabled.", TextFormatting.YELLOW);
+					StringFunctions.sendMessage(player, "Replacing block mode disabled.", ChatFormatting.YELLOW);
 					return;
 				}
 			}
 			
 			replacingplayers.put(playername, true);
-			StringFunctions.sendMessage(player, "Replacing block mode enabled", TextFormatting.YELLOW);
+			StringFunctions.sendMessage(player, "Replacing block mode enabled", ChatFormatting.YELLOW);
 			return;
 		}
 		sneakcurrent.remove(playername);
@@ -105,12 +105,12 @@ public class ReplaceEvent {
 	
 	@SubscribeEvent
 	public void onBlockClick(PlayerInteractEvent.RightClickBlock e) {
-		World world = e.getWorld();
-		if (world.isClientSide || !e.getHand().equals(Hand.MAIN_HAND)) {
+		Level world = e.getWorld();
+		if (world.isClientSide || !e.getHand().equals(InteractionHand.MAIN_HAND)) {
 			return;
 		}
 		
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		if (!player.isCreative()) {
 			return;
 		}

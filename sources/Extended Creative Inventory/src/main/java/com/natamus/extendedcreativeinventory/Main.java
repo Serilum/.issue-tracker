@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Extended Creative Inventory.
- * Minecraft version: 1.16.5, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Extended Creative Inventory ever released, along with some other perks.
@@ -24,10 +24,10 @@ import com.natamus.extendedcreativeinventory.itemgroups.ExtendedItemGroup;
 import com.natamus.extendedcreativeinventory.util.Reference;
 import com.natamus.extendedcreativeinventory.util.Variables;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Items;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -93,7 +93,7 @@ public class Main {
     			continue;
     		}
     		
-    		ItemGroup itemgroup = item.getItemCategory();
+    		CreativeModeTab itemgroup = item.getItemCategory();
     		if (itemgroup == null) {
     			try {
     				Variables.item_group.set(item, Variables.EXTENDED);

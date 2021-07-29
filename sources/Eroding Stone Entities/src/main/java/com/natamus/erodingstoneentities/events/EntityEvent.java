@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Eroding Stone Entities.
- * Minecraft version: 1.16.5, mod version: 2.3.
+ * Minecraft version: 1.17.1, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Eroding Stone Entities ever released, along with some other perks.
@@ -22,15 +22,15 @@ import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.erodingstoneentities.config.ConfigHandler;
 import com.natamus.erodingstoneentities.util.Util;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -39,13 +39,13 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class EntityEvent {
-	private static HashMap<World, Integer> worldtickcount = new HashMap<World, Integer>();
-	private static HashMap<World, CopyOnWriteArrayList<ItemEntity>> perworldentities = new HashMap<World, CopyOnWriteArrayList<ItemEntity>>();
+	private static HashMap<Level, Integer> worldtickcount = new HashMap<Level, Integer>();
+	private static HashMap<Level, CopyOnWriteArrayList<ItemEntity>> perworldentities = new HashMap<Level, CopyOnWriteArrayList<ItemEntity>>();
 	private static HashMap<ItemEntity, Integer> iecount = new HashMap<ItemEntity, Integer>();
 	
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
-		World world = e.world;
+		Level world = e.world;
 		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
@@ -78,7 +78,7 @@ public class EntityEvent {
 				BlockPos iepos = ie.blockPosition();
 				BlockState ieposstate = world.getBlockState(iepos);
 				if (ieposstate.getBlock().equals(Blocks.WATER)) {
-					int level = ieposstate.getValue(FlowingFluidBlock.LEVEL);
+					int level = ieposstate.getValue(LiquidBlock.LEVEL);
 					if (level > 0) { // flowing
 						if (ConfigHandler.GENERAL.preventErosionIfAboveIceBlock.get()) {
 							Block belowblock = world.getBlockState(iepos.below()).getBlock();
@@ -105,7 +105,7 @@ public class EntityEvent {
 	
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}

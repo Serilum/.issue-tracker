@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Automatic Doors.
- * Minecraft version: 1.16.5, mod version: 1.9.
+ * Minecraft version: 1.17.1, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Automatic Doors ever released, along with some other perks.
@@ -21,12 +21,12 @@ import java.util.List;
 import com.natamus.automaticdoors.config.ConfigHandler;
 import com.natamus.automaticdoors.util.Util;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.DoorBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -39,8 +39,8 @@ public class DoorEvent {
 	
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
-		PlayerEntity player = e.player;
-		World world = player.getCommandSenderWorld();
+		Player player = e.player;
+		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
@@ -77,7 +77,7 @@ public class DoorEvent {
 						BlockState aroundstate = world.getBlockState(aroundpos);
 						Block aroundblock = aroundstate.getBlock();
 						if (Util.isDoor(aroundblock)) {
-							((DoorBlock)block).setOpen(world, aroundstate, aroundpos, false); // toggleDoor
+							((DoorBlock)block).setOpen(player, world, aroundstate, aroundpos, false); // toggleDoor
 						}
 					}
 					
@@ -108,7 +108,7 @@ public class DoorEvent {
 					continue;
 				}
 				
-				((DoorBlock)block).setOpen(world, state, np, true); // toggleDoor
+				((DoorBlock)block).setOpen(player, world, state, np, true); // toggleDoor
 				Util.delayDoorClose(np.immutable());
 			}
 		}
