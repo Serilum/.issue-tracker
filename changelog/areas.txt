@@ -3,6 +3,9 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v2.4: Fixed incorrect obfuscated mojang field, fixes issues of areas not being rendered correctly.
+
+=========
 v2.3: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

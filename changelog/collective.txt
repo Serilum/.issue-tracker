@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.41-2.42: Added code to find BlockEntities around a certain position via chunks.
+
+=========
+v2.39-2.40: Updated code related to finding TileEntities/BlockEntities in the world.
+
+=========
 v2.37-2.38: Changed the way how collective determines entity names. This should fix issues with the EntityModel being called through a dedicated server.
 
 =========
