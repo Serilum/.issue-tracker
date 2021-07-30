@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.38.
+ * Minecraft version: 1.17.1, mod version: 2.43.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -47,6 +47,7 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -61,7 +62,7 @@ public class ItemFunctions {
 		GlobalVariables.entitydrops = new HashMap<EntityType<?>, List<Item>>();
 		
 		FakePlayer fakeplayer = FakePlayerFactory.getMinecraft((ServerLevel)world);
-		//Vector3d vec = new Vector3d(0, 0, 0);
+		Vec3 vec = new Vec3(0, 0, 0);
 		
 		ItemStack lootingsword = new ItemStack(Items.DIAMOND_SWORD, 1);
 		lootingsword.enchant(Enchantments.MOB_LOOTING, 10);
@@ -85,7 +86,7 @@ public class ItemFunctions {
 	                .withRandom(world.getRandom())
 	                .withLuck(1000000F)
 	                .withParameter(LootContextParams.THIS_ENTITY, entity)
-	                //.withParameter(LootContextParams.ORIGIN, vec)
+	                .withParameter(LootContextParams.ORIGIN, vec)
 	                .withParameter(LootContextParams.KILLER_ENTITY, fakeplayer)
 	                .withParameter(LootContextParams.DAMAGE_SOURCE, DamageSource.playerAttack(fakeplayer))
 	                .create(LootContextParamSets.ENTITY);

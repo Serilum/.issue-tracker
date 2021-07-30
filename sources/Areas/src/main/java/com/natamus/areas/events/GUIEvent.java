@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.17.1, mod version: 2.3.
+ * Minecraft version: 1.17.1, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Areas ever released, along with some other perks.
@@ -112,13 +112,10 @@ public class GUIEvent extends Gui {
 			RenderSystem.enableBlend(); // GL11.glEnable(GL11.GL_BLEND);
 			RenderSystem.blendFunc(0x302, 0x303); //GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			
-			float modifier = (float)(ConfigHandler.HUD.HUD_FontSizeScaleModifier.get() + 0.5);
-			if (true) {
-				posestack.scale(modifier, modifier, modifier);
-			}
+			float modifier = (ConfigHandler.HUD.HUD_FontSizeScaleModifier.get().floatValue() + 0.5F);
+			posestack.scale(modifier, modifier, modifier);
 			
-			PoseStack ms = new PoseStack();
-			fontRender.draw(ms, hudmessage, (int)(Math.round((width / 2) / modifier) - stringWidth/2), ConfigHandler.HUD.HUDMessageHeightOffset.get(), colour.getRGB());
+			fontRender.draw(posestack, hudmessage, (int)(Math.round((width / 2) / modifier) - stringWidth/2), ConfigHandler.HUD.HUDMessageHeightOffset.get(), colour.getRGB());
 			
 			posestack.popPose();
 			

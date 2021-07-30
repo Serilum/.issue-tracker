@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20No%2
 
 [[mods]]
 modId="nohostilesaroundcampfire"
-version="3.5"
+version="3.4"
 displayName="No Hostiles Around Campfire"
 displayURL="https://curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley
 [[dependencies.nohostilesaroundcampfire]]
     modId="collective"
     mandatory=true
-    versionRange="[2.35,)"
+    versionRange="[2.40,)"
     ordering="NONE"
     side="BOTH"

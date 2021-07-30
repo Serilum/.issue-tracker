@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.43: Added missing parameter generateEntityDropsFromLootTable function.
+
+=========
 v2.41-2.42: Added code to find BlockEntities around a certain position via chunks.
 
 =========

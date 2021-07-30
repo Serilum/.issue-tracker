@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.17.1, mod version: 2.3.
+ * Minecraft version: 1.17.1, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Areas ever released, along with some other perks.
@@ -29,19 +29,19 @@ import com.natamus.collective.functions.NumberFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.collective.functions.TileEntityFunctions;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.StandingSignBlock;
-import net.minecraft.world.level.block.WallSignBlock;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.entity.SignBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.ChatFormatting;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.StandingSignBlock;
+import net.minecraft.world.level.block.WallSignBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraftforge.fmllegacy.network.NetworkDirection;
 import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
 
@@ -340,7 +340,7 @@ public class Util {
 	private static boolean setSignField() {
 		if (signText == null) {
 			for (Field field : SignBlockEntity.class.getDeclaredFields()) {
-				if (field.toString().contains("signText") || field.toString().contains("messages")) {
+				if (field.toString().endsWith(".messages") || field.toString().endsWith(".f_59720_")) {
 					signText = field;
 					break;
 				}

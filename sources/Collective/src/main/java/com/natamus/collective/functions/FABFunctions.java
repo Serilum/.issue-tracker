@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.38.
+ * Minecraft version: 1.17.1, mod version: 2.43.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,10 +14,10 @@
 
 package com.natamus.collective.functions;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -33,40 +33,50 @@ import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.TickingBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-@SuppressWarnings("unchecked")
 public class FABFunctions {
-	public static Field level_blockEntityTickers = null;
-	
 	private static Map<Block, Map<Level, List<BlockPos>>> getMapFromBlock = new HashMap<Block, Map<Level, List<BlockPos>>>();
 	private static Map<Level, Map<Date, BlockPos>> timeoutpositions = new HashMap<Level, Map<Date, BlockPos>>();
 	
+	private static List<BlockEntity> getBlockEntitiesAroundPosition(Level world, BlockPos pos, Integer radius) {
+		List<BlockEntity> blockentities = new ArrayList<BlockEntity>();
+		
+		int chunkradius = (int)Math.ceil(radius/16.0);
+	    int chunkPosX = pos.getX() >> 4;
+	    int chunkPosZ = pos.getZ() >> 4;
+
+	    for (int x = chunkPosX - chunkradius; x < chunkPosX + chunkradius; x++) {
+	    	for (int z = chunkPosZ - chunkradius; z < chunkPosZ + chunkradius; z++) {
+	    		Iterator<BlockEntity> it = world.getChunk(x, z).getBlockEntities().values().iterator();
+	    		while (it.hasNext()) {
+	    			BlockEntity be = it.next();
+	    			if (!blockentities.contains(be)) {
+	    				blockentities.add(be);
+	    			}
+	    		}
+	    	}
+	    }
+		
+		return blockentities;
+	}
+	
 	public static List<BlockPos> getAllTileEntityPositionsNearbyEntity(BlockEntityType<?> tetype, Integer radius,  Level world, Entity entity) {
-		if (level_blockEntityTickers == null) {
-			setReflectionField();
-		}
+		BlockPos entitypos = entity.blockPosition();
 		
 		List<BlockPos> nearbypositions = new ArrayList<BlockPos>();
-		List<TickingBlockEntity> blockentities = null;
+		List<BlockEntity> blockentities = getBlockEntitiesAroundPosition(world, entitypos, radius);
 		
-		try {
-			blockentities = (List<TickingBlockEntity>) level_blockEntityTickers.get(world);
-		} catch (Exception ex) { }
-		
-		if (blockentities == null) {
-			return nearbypositions;
-		}
-		
-		for (TickingBlockEntity loadedtileentity : blockentities) {
-			String loadedtiletypestring = loadedtileentity.getType();
-			String tetypestring = tetype.getRegistryName().toString();
+		for (BlockEntity loadedtileentity : blockentities) {
+			BlockEntityType<?> loadedtiletype = loadedtileentity.getType();
+			if (loadedtiletype == null) {
+				continue;
+			}
 			
-			if (loadedtiletypestring.equals(tetypestring)) {
-				BlockPos ltepos = loadedtileentity.getPos();
+			if (loadedtiletype.equals(tetype)) {
+				BlockPos ltepos = loadedtileentity.getBlockPos();
 				if (ltepos.closerThan(entity.position(), radius)) {
-					nearbypositions.add(loadedtileentity.getPos());
+					nearbypositions.add(loadedtileentity.getBlockPos());
 				}
 			}
 		}
@@ -75,19 +85,6 @@ public class FABFunctions {
 	}
 	
 	public static BlockPos getRequestedBlockAroundEntitySpawn(Block rawqueryblock, Integer radius, Double radiusmodifier, Level world, Entity entity) {
-		if (level_blockEntityTickers == null) {
-			setReflectionField();
-		}
-		
-		List<TickingBlockEntity> blockentities = null;
-		try {
-			blockentities = (List<TickingBlockEntity>) level_blockEntityTickers.get(world);
-		} catch (Exception ex) { }
-		
-		if (blockentities == null) {
-			return null;
-		}
-		
 		Block requestedblock = processCommonBlock(rawqueryblock);
 		Map<Level, List<BlockPos>> worldblocks = getMap(requestedblock);
 
@@ -163,16 +160,17 @@ public class FABFunctions {
 		}
 		
 		if (GlobalVariables.blocksWithTileEntity.containsKey(requestedblock)) {
+			List<BlockEntity> blockentities = getBlockEntitiesAroundPosition(world, epos, radius);
 			BlockEntityType<?> tiletypetofind = GlobalVariables.blocksWithTileEntity.get(requestedblock);
 			
-			for (TickingBlockEntity loadedtileentity : blockentities) {
+			for (BlockEntity loadedtileentity : blockentities) {
 				BlockEntityType<?> loadedtiletype = ((BlockEntity)loadedtileentity).getType();
 				if (loadedtiletype == null) {
 					continue;
 				}
 				
 				if (loadedtiletype.equals(tiletypetofind)) {
-					BlockPos ltepos = loadedtileentity.getPos();
+					BlockPos ltepos = loadedtileentity.getBlockPos();
 				
 					if (ltepos.closerThan(epos, radius*radiusmodifier)) {
 						currentblocks.add(ltepos.immutable());
@@ -251,20 +249,5 @@ public class FABFunctions {
 		}
 		
 		return blocktoreturn;
-	}
-	
-	private static void setReflectionField() {
-		if (level_blockEntityTickers == null) {
-			for (Field field : Level.class.getDeclaredFields()) {
-				if (field.toString().contains("blockEntityTickers") || field.toString().contains("saturationLevel")) {
-					level_blockEntityTickers = field;
-					break;
-				}
-			}
-			if (level_blockEntityTickers == null) {
-				return;
-			}
-			level_blockEntityTickers.setAccessible(true);
-		}
 	}
 }

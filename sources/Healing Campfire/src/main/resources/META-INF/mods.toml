@@ -17,6 +17,6 @@ Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley
 [[dependencies.healingcampfire]]
     modId="collective"
     mandatory=true
-    versionRange="[2.35,)"
+    versionRange="[2.40,)"
     ordering="NONE"
     side="BOTH"
