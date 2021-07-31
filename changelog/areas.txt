@@ -3,6 +3,9 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v2.6: The mod now uses the correct SRG mapping name which fixes a crash on startup.
+
+=========
 v2.5: The mod now uses the ObfuscationReflectionHelper to find necessary fields. Which makes the mod more efficient and updating easier.
 
 =========

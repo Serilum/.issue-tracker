@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.17.1, mod version: 2.5.
+ * Minecraft version: 1.17.1, mod version: 2.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Areas ever released, along with some other perks.
@@ -50,7 +50,7 @@ public class Util {
 	public static SimpleChannel network;
 	
 	private static List<String> zoneprefixes = new ArrayList<String>(Arrays.asList("[na]", "[area]", "[region]", "[zone]"));
-	private static Field signText = ObfuscationReflectionHelper.findField(SignBlockEntity.class, "messages");
+	private static Field signText = ObfuscationReflectionHelper.findField(SignBlockEntity.class, "f_59720_"); // messages
 	
 	public static AreaObject getAreaSign(Level world, BlockPos signpos) {
 		if (world.isClientSide) {

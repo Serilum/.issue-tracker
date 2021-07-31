@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nutritious Milk.
- * Minecraft version: 1.17.1, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Nutritious Milk ever released, along with some other perks.
@@ -33,7 +33,7 @@ import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 @EventBusSubscriber
 public class MilkEvent {
-	private static Field foodStats_foodSaturationLevel = ObfuscationReflectionHelper.findField(FoodData.class, "saturationLevel");
+	private static Field foodStats_foodSaturationLevel = ObfuscationReflectionHelper.findField(FoodData.class, "f_38697_"); // saturationLevel
 	
 	@SubscribeEvent
 	public void onDrink(LivingEntityUseItemEvent.Finish e) {

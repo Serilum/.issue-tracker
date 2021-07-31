@@ -3,6 +3,9 @@ Easy Elytra Takeoff
 https://www.curseforge.com/minecraft/mc-mods/easy-elytra-takeoff
 
 =========
+v2.1: The mod now uses the correct SRG mapping name which fixes a crash on startup.
+
+=========
 v2.0: The mod now uses the ObfuscationReflectionHelper to find necessary methods. Which makes the mod more efficient and updating easier.
 
 =========

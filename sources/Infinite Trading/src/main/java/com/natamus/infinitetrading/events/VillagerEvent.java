@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Infinite Trading.
- * Minecraft version: 1.17.1, mod version: 1.8.
+ * Minecraft version: 1.17.1, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Infinite Trading ever released, along with some other perks.
@@ -31,8 +31,8 @@ import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 @EventBusSubscriber
 public class VillagerEvent {
-	private static Field usesField = ObfuscationReflectionHelper.findField(MerchantOffer.class, "uses");
-	private static Field maxUsesField = ObfuscationReflectionHelper.findField(MerchantOffer.class, "maxUses");
+	private static Field usesField = ObfuscationReflectionHelper.findField(MerchantOffer.class, "f_45313_"); // uses
+	private static Field maxUsesField = ObfuscationReflectionHelper.findField(MerchantOffer.class, "f_45314_"); // maxUses
 	
 	@SubscribeEvent
 	public void onVillagerClick(PlayerInteractEvent.EntityInteract e) {

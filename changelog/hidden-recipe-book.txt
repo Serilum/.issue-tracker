@@ -3,6 +3,9 @@ Hidden Recipe Book
 https://curseforge.com/minecraft/mc-mods/hidden-recipe-book
 
 =========
+v2.3: The mod now uses the correct SRG mapping name which fixes a crash on startup.
+
+=========
 v2.2: The mod now uses the ObfuscationReflectionHelper to find necessary fields. Which makes the mod more efficient and updating easier.
 
 =========

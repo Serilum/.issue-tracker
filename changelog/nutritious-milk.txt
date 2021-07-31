@@ -3,6 +3,9 @@ Nutritious Milk
 https://www.curseforge.com/minecraft/mc-mods/nutritious-milk
 
 =========
+v1.8: The mod now uses the correct SRG mapping name which fixes a crash on startup.
+
+=========
 v1.7: The mod now uses the ObfuscationReflectionHelper to find necessary fields. Which makes the mod more efficient and updating easier.
 
 =========

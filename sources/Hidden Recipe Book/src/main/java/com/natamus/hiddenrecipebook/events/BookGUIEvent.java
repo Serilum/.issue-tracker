@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hidden Recipe Book.
- * Minecraft version: 1.17.1, mod version: 2.2.
+ * Minecraft version: 1.17.1, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Hidden Recipe Book ever released, along with some other perks.
@@ -41,7 +41,7 @@ import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 public class BookGUIEvent {
     private static Minecraft mc = null;
     private static Date lastpress = null;
-    private static Field imageButton_resourceLocation = ObfuscationReflectionHelper.findField(ImageButton.class, "resourceLocation");
+    private static Field imageButton_resourceLocation = ObfuscationReflectionHelper.findField(ImageButton.class, "f_94223_"); // resourceLocation
     private static GuiScreenEvent.InitGuiEvent.Post lastguipost = null;
     
 	private static HashMap<String, ImageButton> recipe_buttons = new HashMap<String, ImageButton>();
