@@ -3,6 +3,9 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v2.5: The mod now uses the ObfuscationReflectionHelper to find necessary fields. Which makes the mod more efficient and updating easier.
+
+=========
 v2.4: Fixed incorrect obfuscated mojang field, fixes issues of areas not being rendered correctly.
 
 =========

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nutritious Milk.
- * Minecraft version: 1.17.1, mod version: 1.6.
+ * Minecraft version: 1.17.1, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Nutritious Milk ever released, along with some other perks.
@@ -18,21 +18,22 @@ import java.lang.reflect.Field;
 
 import com.natamus.nutritiousmilk.config.ConfigHandler;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.food.FoodData;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 @EventBusSubscriber
 public class MilkEvent {
-	public static Field foodStats_foodSaturationLevel = null;
+	private static Field foodStats_foodSaturationLevel = ObfuscationReflectionHelper.findField(FoodData.class, "saturationLevel");
 	
 	@SubscribeEvent
 	public void onDrink(LivingEntityUseItemEvent.Finish e) {
@@ -56,24 +57,12 @@ public class MilkEvent {
 			
 			float saturation = fs.getSaturationLevel() + ConfigHandler.GENERAL.saturationLevelIncrease.get().floatValue();
 			if (player instanceof ServerPlayer) {
-				if (foodStats_foodSaturationLevel == null) {
-					for (Field field : FoodData.class.getDeclaredFields()) {
-						if (field.toString().contains("foodSaturationLevel") || field.toString().contains("saturationLevel")) {
-							foodStats_foodSaturationLevel = field;
-							break;
-						}
-					}
-					if (foodStats_foodSaturationLevel == null) {
-						return;
-					}
-					foodStats_foodSaturationLevel.setAccessible(true);
-				}
-				
 				try {
 					foodStats_foodSaturationLevel.set(player, saturation);
 				} catch (Exception ex) { }
 				return;
 			}
+			
 			fs.setSaturation(saturation);
 		}
 	}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Extended Creative Inventory.
- * Minecraft version: 1.17.1, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Extended Creative Inventory ever released, along with some other perks.
@@ -14,7 +14,6 @@
 
 package com.natamus.extendedcreativeinventory;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
 import com.natamus.collective.check.RegisterMod;
@@ -71,19 +70,6 @@ public class Main {
 			}
 			
 			Variables.EXTENDED = new ExtendedItemGroup(index, "extended");
-		}
-		
-		if (Variables.item_group == null) {
-			for (Field field : Item.class.getDeclaredFields()) {
-				if (field.toString().contains("group") || field.toString().contains("category")) {
-					Variables.item_group = field;
-					break;
-				}
-			}
-			if (Variables.item_group == null) {
-				return;
-			}
-			Variables.item_group.setAccessible(true);
 		}
 		
 		IForgeRegistry<Item> registry = e.getRegistry();

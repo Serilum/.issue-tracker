@@ -3,6 +3,9 @@ Hidden Recipe Book
 https://curseforge.com/minecraft/mc-mods/hidden-recipe-book
 
 =========
+v2.2: The mod now uses the ObfuscationReflectionHelper to find necessary fields. Which makes the mod more efficient and updating easier.
+
+=========
 v2.1: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

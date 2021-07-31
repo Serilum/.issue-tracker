@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Hidd
 
 [[mods]]
 modId="hiddenrecipebook"
-version="2.1"
+version="2.2"
 displayName="Hidden Recipe Book"
 displayURL="https://curseforge.com/minecraft/mc-mods/hidden-recipe-book"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley
 [[dependencies.hiddenrecipebook]]
     modId="collective"
     mandatory=true
-    versionRange="[2.35,)"
+    versionRange="[2.43,)"
     ordering="NONE"
     side="BOTH"

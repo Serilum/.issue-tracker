@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.17.1, mod version: 2.4.
+ * Minecraft version: 1.17.1, mod version: 2.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Areas ever released, along with some other perks.
@@ -42,6 +42,7 @@ import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.fmllegacy.network.NetworkDirection;
 import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
 
@@ -49,19 +50,13 @@ public class Util {
 	public static SimpleChannel network;
 	
 	private static List<String> zoneprefixes = new ArrayList<String>(Arrays.asList("[na]", "[area]", "[region]", "[zone]"));
-	private static Field signText = null;
+	private static Field signText = ObfuscationReflectionHelper.findField(SignBlockEntity.class, "messages");
 	
 	public static AreaObject getAreaSign(Level world, BlockPos signpos) {
 		if (world.isClientSide) {
 			return null;
 		}
-		
-		if (signText == null) {
-			if (!setSignField()) {
-				return null;
-			}
-		}
-		
+
 		HashMap<BlockPos, AreaObject> hm = Variables.areasperworld.get(world);
 		if (hm != null) {
 			if (hm.containsKey(signpos)) {
@@ -222,12 +217,6 @@ public class Util {
 	}
 	
 	public static boolean hasZonePrefix(SignBlockEntity signentity) {
-		if (signText == null) {
-			if (!setSignField()) {
-				return false;
-			}
-		}
-		
 		TextComponent[] signcontent;
 		try {
 			signcontent = (TextComponent[]) signText.get(signentity);
@@ -335,22 +324,6 @@ public class Util {
 			return true;
 		}
 		return false;
-	}
-	
-	private static boolean setSignField() {
-		if (signText == null) {
-			for (Field field : SignBlockEntity.class.getDeclaredFields()) {
-				if (field.toString().endsWith(".messages") || field.toString().endsWith(".f_59720_")) {
-					signText = field;
-					break;
-				}
-			}
-			if (signText == null) {
-				return false;
-			}
-			signText.setAccessible(true);
-		}
-		return true;
 	}
 	
 	private static String getRandomAreaName() {

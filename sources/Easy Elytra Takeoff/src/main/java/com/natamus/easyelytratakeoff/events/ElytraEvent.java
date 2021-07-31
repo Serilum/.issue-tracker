@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Easy Elytra Takeoff.
- * Minecraft version: 1.17.1, mod version: 1.9.
+ * Minecraft version: 1.17.1, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Easy Elytra Takeoff ever released, along with some other perks.
@@ -30,10 +30,11 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 @EventBusSubscriber
 public class ElytraEvent {
-	private static Method setFlag = null;
+	private static Method setFlag = ObfuscationReflectionHelper.findMethod(Entity.class, "setSharedFlag", int.class, boolean.class);
 	
 	@SubscribeEvent
 	public void onFirework(PlayerInteractEvent.RightClickItem e) {
@@ -81,19 +82,6 @@ public class ElytraEvent {
 			if (!foundelytra) {
 				return;
 			}
-		}
-		
-		if (setFlag == null) {
-			for (Method method : Entity.class.getDeclaredMethods()) {
-				if (method.toString().contains("setSharedFlag(") || method.toString().contains("m_20115_")) {
-					setFlag = method;
-					break;
-				}
-			}
-			if (setFlag == null) {
-				return;
-			}
-			setFlag.setAccessible(true);
 		}
 		
 		try {

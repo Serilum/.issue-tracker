@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Infinite Trading.
- * Minecraft version: 1.17.1, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Infinite Trading ever released, along with some other perks.
@@ -27,11 +27,12 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 @EventBusSubscriber
 public class VillagerEvent {
-	private static Field usesField = null;
-	private static Field maxUsesField = null;
+	private static Field usesField = ObfuscationReflectionHelper.findField(MerchantOffer.class, "uses");
+	private static Field maxUsesField = ObfuscationReflectionHelper.findField(MerchantOffer.class, "maxUses");
 	
 	@SubscribeEvent
 	public void onVillagerClick(PlayerInteractEvent.EntityInteract e) {
@@ -58,22 +59,6 @@ public class VillagerEvent {
 		
 		if (offers == null) {
 			return;
-		}
-		
-		if (usesField == null || maxUsesField == null) {
-			for (Field field : MerchantOffer.class.getDeclaredFields()) {
-				if (field.toString().contains("uses") || field.toString().contains("f_45313_")) {
-					usesField = field;
-				}
-				if (field.toString().contains("maxUses") || field.toString().contains("f_45314_")) {
-					maxUsesField = field;
-				}
-			}
-			if (usesField == null || maxUsesField == null) {
-				return;
-			}
-			usesField.setAccessible(true);
-			maxUsesField.setAccessible(true);
 		}
 		
 		for (MerchantOffer offer : offers) {
