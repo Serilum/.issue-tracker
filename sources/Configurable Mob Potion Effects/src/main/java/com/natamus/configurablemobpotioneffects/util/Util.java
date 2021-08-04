@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Mob Potion Effects.
- * Minecraft version: 1.17.1, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Mob Potion Effects ever released, along with some other perks.
@@ -137,7 +137,7 @@ public class Util {
 		String emptydamageeffects = "";
 		
 		if (permanentwriter != null || damagewriter != null) {
-			for (MobEffect effect : ForgeRegistries.POTIONS) {
+			for (MobEffect effect : ForgeRegistries.MOB_EFFECTS) {
 				String n = effect.getRegistryName().toString().toLowerCase();
 				if (n.contains(":")) {
 					n = n.split(":")[1];
@@ -248,7 +248,7 @@ public class Util {
 				durationstring = "0";
 			}
 			
-			MobEffect effect = ForgeRegistries.POTIONS.getValue(new ResourceLocation(effectrlstring));
+			MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectrlstring));
 			if (effect == null) {
 				continue;
 			}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Mob Effects.
- * Minecraft version: 1.17.1, mod version: 1.4.
+ * Minecraft version: 1.17.1, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Random Mob Effects ever released, along with some other perks.
@@ -27,8 +27,8 @@ import java.util.List;
 
 import com.natamus.collective.data.GlobalVariables;
 
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class Util {
@@ -57,7 +57,7 @@ public class Util {
 			}
 		}
 		
-		for (MobEffect effect : ForgeRegistries.POTIONS) {
+		for (MobEffect effect : ForgeRegistries.MOB_EFFECTS) {
 			ResourceLocation rl = effect.getRegistryName();
 			if (rl == null) {
 				continue;

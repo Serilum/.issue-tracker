@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of End Portal Recipe.
- * Minecraft version: 1.17.1, mod version: 2.4.
+ * Minecraft version: 1.17.1, mod version: 2.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of End Portal Recipe ever released, along with some other perks.
@@ -21,6 +21,7 @@ import java.util.List;
 import com.google.common.primitives.Ints;
 import com.natamus.collective.functions.BlockFunctions;
 import com.natamus.collective.functions.ItemFunctions;
+import com.natamus.collective.functions.ToolFunctions;
 import com.natamus.endportalrecipe.config.ConfigHandler;
 
 import net.minecraft.core.BlockPos;
@@ -36,7 +37,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -149,7 +149,7 @@ public class EndPortalEvent {
 		}
 		
 		ItemStack hand = e.getItemStack();
-		if (hand.getToolTypes().contains(ToolType.PICKAXE)) {
+		if (ToolFunctions.isPickaxe(hand)) {
 			if (ConfigHandler.GENERAL.mustHaveSilkTouchToBreakPortal.get()) {
 				if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, hand) < 1) {
 					return;

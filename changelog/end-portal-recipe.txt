@@ -3,6 +3,9 @@ End Portal Recipe
 https://www.curseforge.com/minecraft/mc-mods/end-portal-recipe
 
 =========
+v2.5: Updated mod to work with the new Tool functions in Collective. Fixed issue of end portal block not being able to be picked up.
+
+=========
 v2.4: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

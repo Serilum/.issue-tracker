@@ -3,6 +3,9 @@ Configurable Mob Potion Effects
 https://curseforge.com/minecraft/mc-mods/configurable-mob-potion-effects
 
 =========
+v1.4: Synchronized versions. Updated mod to work with renamed ForgeRegistries field in 37.0.22.
+
+=========
 v1.3: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

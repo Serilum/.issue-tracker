@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.44: Added Tool related functions.
+
+=========
 v2.43: Added missing parameter generateEntityDropsFromLootTable function.
 
 =========

@@ -3,6 +3,9 @@ Random Mob Effects
 https://curseforge.com/minecraft/mc-mods/random-mob-effects
 
 =========
+v1.5: Synchronized versions. Updated mod to work with renamed ForgeRegistries field in 37.0.22.
+
+=========
 v1.4: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========

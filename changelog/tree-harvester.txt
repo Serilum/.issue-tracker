@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v2.7: Updated mod to work with the new Tool functions in Collective. Updated 1.17.1 version for changes in 37.0.24.
+
+=========
 v2.6: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.17.1, mod version: 2.6.
+ * Minecraft version: 1.17.1, mod version: 2.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -24,19 +24,19 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import com.mojang.datafixers.util.Pair;
 import com.natamus.collective.functions.BlockFunctions;
 import com.natamus.collective.functions.BlockPosFunctions;
+import com.natamus.collective.functions.ToolFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.treeharvester.config.ConfigHandler;
 import com.natamus.treeharvester.util.Util;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.ToolType;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -137,7 +137,7 @@ public class TreeEvent {
 		
 		ItemStack hand = player.getItemInHand(InteractionHand.MAIN_HAND);
 		if (ConfigHandler.GENERAL.mustHoldAxeForTreeHarvest.get()) {
-			if (!hand.getToolTypes().contains(ToolType.AXE)) {
+			if (!ToolFunctions.isAxe(hand)) {
 				return;
 			}
 		}

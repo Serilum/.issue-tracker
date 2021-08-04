@@ -3,6 +3,9 @@ Quick Paths
 https://www.curseforge.com/minecraft/mc-mods/quick-paths
 
 =========
+v1.8: Updated mod to work with the new Tool functions in Collective.
+
+=========
 v1.7: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========
