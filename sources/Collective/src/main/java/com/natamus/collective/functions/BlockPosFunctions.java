@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.44.
+ * Minecraft version: 1.17.1, mod version: 2.45.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -24,7 +24,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.material.Material;
@@ -204,19 +203,7 @@ public class BlockPosFunctions {
 	
 	// START: CHECK functions
 	public static Boolean isOnSurface(Level world, BlockPos pos) {
-		int x = pos.getX();
-		int y = pos.getY();
-		int z = pos.getZ();
-		int maxheight = world.getMaxBuildHeight();
-		
-		for (int y0 = y; y0 < maxheight; y0++) {
-			BlockState blockstate = world.getBlockState(new BlockPos(x, y0, z));
-			if (blockstate.getLightBlock(world, pos) >= 15 && !(blockstate.getBlock() instanceof LeavesBlock)) {
-				return false;
-			}
-		}
-		
-		return true;
+		return world.canSeeSky(pos);
 	}
 	public static Boolean isOnSurface(Level world, Vec3 vecpos) {
 		return isOnSurface(world, new BlockPos(vecpos.x, vecpos.y, vecpos.z));
