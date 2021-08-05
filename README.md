@@ -1,7 +1,7 @@
 ## A hub for source code, issues and content suggestions for Serilum's mods on CurseForge.
 You can create an [issue](https://github.com/ricksouth/serilum-mc-mods/issues/new/choose) if you have found a bug, got a feature idea, want to say something or just want to ask a question.<br>**Please specify the correct labels, thanks! :)**
 
-Current actively developed versions are 1.12.2, 1.16.5 and 1.17.1. Other versions might get an update in rare cases, but the main development is focused on these three.
+Current actively developed versions are 1.12.2, 1.16.5 and 1.17.1. Other versions might get an update in rare cases, but the main development is focused on these three. Some mods might not have an 1.12.2 version if the code is too different.
 
 I appreciate every submitted issue greatly, and will respond while working through them. This might take some time!
 
