@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Stack Refill.
- * Minecraft version: 1.17.1, mod version: 1.9.
+ * Minecraft version: 1.17.1, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Stack Refill ever released, along with some other perks.
@@ -21,9 +21,10 @@ import com.mojang.datafixers.util.Pair;
 import com.natamus.collective.functions.ItemFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.EggItem;
@@ -34,7 +35,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.MilkBucketItem;
 import net.minecraft.world.item.PotionItem;
 import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.WorldTickEvent;
@@ -358,6 +358,11 @@ public class RefillEvent {
 			return;
 		}
 		
+		Player player = e.getPlayer();
+		if (player.isCreative()) {
+			return;
+		}
+		
 		ItemStack stack = e.getItemStack();
 		Item item = stack.getItem();
 		if (item instanceof FishingRodItem) {
@@ -365,7 +370,6 @@ public class RefillEvent {
 			int maxdamage = stack.getMaxDamage();
 			
 			if (maxdamage - damage < 5) {
-				Player player = e.getPlayer();
 				InteractionHand hand = e.getHand();
 				
 				Pair<Player, InteractionHand> toadd = new Pair<Player, InteractionHand>(player, hand);
@@ -373,7 +377,6 @@ public class RefillEvent {
 			}
 		}
 		else if (item instanceof EggItem) {
-			Player player = e.getPlayer();
 			InteractionHand hand = e.getHand();
 			
 			Pair<Player, Item> insidepair = new Pair<Player, Item>(player, stack.getItem());
@@ -389,17 +392,16 @@ public class RefillEvent {
 			return;
 		}
 		
-		Entity entity = e.getEntity();
-		if (entity instanceof Player == false) {
-			return;
-		}
-		
-		Player player = (Player)entity;
+		Player player = e.getPlayer();
 		if (player.isCreative()) {
 			return;
 		}
 		
 		InteractionHand activehand = e.getHand();
+		if (!activehand.equals(InteractionHand.MAIN_HAND)) {
+			return;
+		}
+		
 		ItemStack active = player.getMainHandItem();
 		
 		int amount = active.getCount();
