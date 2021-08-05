@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Cycle Paintings.
- * Minecraft version: 1.17.1, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Cycle Paintings ever released, along with some other perks.
@@ -18,12 +18,13 @@ import java.util.List;
 
 import com.natamus.cyclepaintings.util.Util;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.decoration.Painting;
+import net.minecraft.world.entity.Entity.RemovalReason;
 import net.minecraft.world.entity.decoration.Motive;
+import net.minecraft.world.entity.decoration.Painting;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -80,7 +81,7 @@ public class PaintingEvent {
 		newpainting.motive = newart;
 		newpainting.setPos(ppos.getX(), ppos.getY(), ppos.getZ());
 		
-		painting.remove(false);
+		painting.remove(RemovalReason.DISCARDED);
 		world.addFreshEntity(newpainting);
 	}
 }

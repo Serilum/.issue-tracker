@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[37,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20The%20Vanilla%20Experience"
 
@@ -17,6 +17,6 @@ Adara Christine, Kreezcraft.com, Tyler Behl, Tyler Hadley
 [[dependencies.thevanillaexperience]]
     modId="collective"
     mandatory=true
-    versionRange="[2.27,)"
+    versionRange="[2.49,)"
     ordering="NONE"
     side="BOTH"

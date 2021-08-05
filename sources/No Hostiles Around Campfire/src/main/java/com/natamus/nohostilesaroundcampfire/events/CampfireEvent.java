@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of No Hostiles Around Campfire.
- * Minecraft version: 1.17.1, mod version: 3.4.
+ * Minecraft version: 1.17.1, mod version: 3.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of No Hostiles Around Campfire ever released, along with some other perks.
@@ -23,19 +23,20 @@ import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.nohostilesaroundcampfire.config.ConfigHandler;
 import com.natamus.nohostilesaroundcampfire.util.Reference;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Entity.RemovalReason;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FlintAndSteelItem;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.BaseSpawner;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -164,7 +165,7 @@ public class CampfireEvent {
 		List<Entity> passengers = entity.getPassengers();
 		if (passengers.size() > 0) {
 			for (Entity passenger : passengers) {
-				passenger.remove(false);
+				passenger.remove(RemovalReason.DISCARDED);
 			}
 		}
 		

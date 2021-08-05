@@ -3,6 +3,9 @@ No Hostiles Around Campfire
 https://www.curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire
 
 =========
+v3.5: (1.17.1 only) Updated mod to work with the changes made to entity removal in 37.0.24.
+
+=========
 v3.5: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========

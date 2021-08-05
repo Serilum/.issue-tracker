@@ -3,6 +3,9 @@ Eroding Stone Entities
 https://curseforge.com/minecraft/mc-mods/eroding-stone-entities
 
 =========
+v2.4: (1.17.1 only) Updated mod to work with the changes made to entity removal in 37.0.24.
+
+=========
 v2.3: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

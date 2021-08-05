@@ -3,6 +3,9 @@ Cycle Paintings
 https://www.curseforge.com/minecraft/mc-mods/cycle-paintings
 
 =========
+v1.8: (1.17.1 only) Updated mod to work with the changes made to entity removal in 37.0.24.
+
+=========
 v1.7: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

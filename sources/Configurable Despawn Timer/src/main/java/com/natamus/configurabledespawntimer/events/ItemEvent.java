@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Despawn Timer.
- * Minecraft version: 1.17.1, mod version: 2.2.
+ * Minecraft version: 1.17.1, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Despawn Timer ever released, along with some other perks.
@@ -19,9 +19,10 @@ import java.util.List;
 
 import com.natamus.configurabledespawntimer.config.ConfigHandler;
 
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Entity.RemovalReason;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.ServerTickEvent;
@@ -46,7 +47,7 @@ public class ItemEvent {
 					CompoundTag nbtc = ie.serializeNBT();
 					int age = nbtc.getShort("Age");
 					if (age >= 5990) {
-						ie.remove(false);
+						ie.remove(RemovalReason.DISCARDED);
 					}
 				}
 				
