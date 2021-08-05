@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Shulker Drops Two.
- * Minecraft version: 1.17.1, mod version: 1.6.
+ * Minecraft version: 1.17.1, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Shulker Drops Two ever released, along with some other perks.
@@ -14,16 +14,16 @@
 
 package com.natamus.shulkerdropstwo.events;
 
-import java.util.Collection;
+import java.util.Iterator;
 
 import com.natamus.shulkerdropstwo.config.ConfigHandler;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -38,20 +38,29 @@ public class EntityEvent {
 		if (world.isClientSide) {
 			return;
 		}
+		
 		if (entity instanceof Shulker == false) {
 			return;
 		}
 		
-		Collection<ItemEntity> drops = e.getDrops();
-		if (drops.size() < 1 && !ConfigHandler.GENERAL.alwaysDropShells.get()) {
-			return;
+		boolean foundshells = false;
+		
+		Iterator<ItemEntity> iterator = e.getDrops().iterator();
+		while (iterator.hasNext()) {
+			ItemEntity drop = iterator.next();
+			ItemStack item = drop.getItem();
+			if (item.getItem().equals(Items.SHULKER_SHELL)) {
+				item.setCount(ConfigHandler.GENERAL.shulkerDropAmount.get());
+				drop.setItem(item);
+				foundshells = true;
+				break;
+			}
 		}
 		
-		BlockPos pos = entity.blockPosition();
-		
-		ItemEntity shells = new ItemEntity(world, pos.getX(), pos.getY()+1, pos.getZ(), new ItemStack(Items.SHULKER_SHELL, ConfigHandler.GENERAL.shulkerDropAmount.get()));
-		
-		e.getDrops().clear();
-		e.getDrops().add(shells);
+		if (ConfigHandler.GENERAL.alwaysDropShells.get() && !foundshells) {
+			BlockPos pos = entity.blockPosition();
+			ItemEntity shells = new ItemEntity(world, pos.getX(), pos.getY()+1, pos.getZ(), new ItemStack(Items.SHULKER_SHELL, ConfigHandler.GENERAL.shulkerDropAmount.get()));
+			e.getDrops().add(shells);
+		}
 	}
 }

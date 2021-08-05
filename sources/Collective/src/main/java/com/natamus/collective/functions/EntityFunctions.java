@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.46.
+ * Minecraft version: 1.17.1, mod version: 2.49.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -19,6 +19,7 @@ import java.util.UUID;
 import com.natamus.collective.data.GlobalVariables;
 
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
@@ -86,10 +87,17 @@ public class EntityFunctions {
 	// START: GET functions
 	public static String getEntityString(Entity entity) {
 		String entitystring = "";
-		try {
-			entitystring = entity.getClass().getSimpleName();
+		
+		ResourceLocation rl = entity.getType().getRegistryName();
+		if (rl != null) {
+			entitystring = rl.toString(); // minecraft:villager, minecraft:wandering_trader
+			if (entitystring.contains(":")) {
+				entitystring = entitystring.split(":")[1];
+			}
+			
+			entitystring = StringFunctions.capitalizeEveryWord(entitystring.replace("_", " ")).replace(" ", "") + "Entity"; // VillagerEntity, WanderingTraderEntity
 		}
-		catch (NoClassDefFoundError er) {}
+		
 		return entitystring;
 	}
 	// END: GET functions
