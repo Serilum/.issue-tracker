@@ -3,6 +3,9 @@ Weaker Spiderwebs
 https://www.curseforge.com/minecraft/mc-mods/weaker-spiderwebs
 
 =========
+v2.0: Improved which spiderwebs are being destroyed. Fixes jumping into one with your head and it not breaking.
+
+=========
 v1.9: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========

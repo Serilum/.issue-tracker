@@ -3,6 +3,9 @@ Zombie Horse Spawn
 https://www.curseforge.com/minecraft/mc-mods/zombie-horse-spawn
 
 =========
+v3.0: Updated how to mod handles setting zombie horses on fire in daylight, improved multi-dimension support.
+
+=========
 v2.9: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========

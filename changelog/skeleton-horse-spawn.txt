@@ -3,6 +3,9 @@ Skeleton Horse Spawn
 https://www.curseforge.com/minecraft/mc-mods/skeleton-horse-spawn
 
 =========
+v1.9: Updated how to mod handles setting skeleton horses on fire in daylight, improved multi-dimension support.
+
+=========
 v1.8: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========

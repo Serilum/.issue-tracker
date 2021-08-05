@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.46: Updated backend code. Released an up-to-date 1.12.2 version again.
+
+=========
 v2.45: Changed how Collective determines if a position is at the surface. Used in various other mods. Improved performance and fixes some issues.
 
 =========

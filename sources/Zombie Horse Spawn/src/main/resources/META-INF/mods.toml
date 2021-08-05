@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Zomb
 
 [[mods]]
 modId="zombiehorsespawn"
-version="2.9"
+version="3.0"
 displayName="Zombie Horse Spawn"
 displayURL="https://curseforge.com/minecraft/mc-mods/zombie-horse-spawn"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley
 [[dependencies.zombiehorsespawn]]
     modId="collective"
     mandatory=true
-    versionRange="[2.35,)"
+    versionRange="[2.46,)"
     ordering="NONE"
     side="BOTH"

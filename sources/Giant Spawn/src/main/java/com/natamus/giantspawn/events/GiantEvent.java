@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Giant Spawn.
- * Minecraft version: 1.17.1, mod version: 2.6.
+ * Minecraft version: 1.17.1, mod version: 2.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Giant Spawn ever released, along with some other perks.
@@ -23,18 +23,18 @@ import com.natamus.giantspawn.ai.GiantAttackGoal;
 import com.natamus.giantspawn.ai.GiantAttackTurtleEggGoal;
 import com.natamus.giantspawn.config.ConfigHandler;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.npc.AbstractVillager;
-import net.minecraft.world.entity.monster.Giant;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.animal.Turtle;
+import net.minecraft.world.entity.monster.Giant;
+import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.WorldTickEvent;
@@ -45,7 +45,8 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class GiantEvent {
-	private static HashMap<Level, CopyOnWriteArrayList<Entity>> giants = new HashMap<Level, CopyOnWriteArrayList<Entity>>();
+	private static HashMap<Level, CopyOnWriteArrayList<Entity>> giants_per_world = new HashMap<Level, CopyOnWriteArrayList<Entity>>();
+	private static HashMap<Level, Integer> tickdelay_per_world = new HashMap<Level, Integer>();
 	
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e) {
@@ -59,8 +60,8 @@ public class GiantEvent {
 			return;
 		}
 		
-		if (!giants.get(world).contains(entity)) {
-			giants.get(world).add(entity);
+		if (!giants_per_world.get(world).contains(entity)) {
+			giants_per_world.get(world).add(entity);
 		}
 
 		Giant giant = (Giant)entity;
@@ -82,8 +83,6 @@ public class GiantEvent {
 		giant.getAttribute(Attributes.ARMOR).setBaseValue(2.0D); // ARMOR
 	}
 	
-	int currentticks = 1;
-	
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
 		Level world = e.world;
@@ -91,11 +90,12 @@ public class GiantEvent {
 			return;
 		}
 		
-		if (currentticks % 20 != 0) {
-			currentticks += 1;
+		int ticks = tickdelay_per_world.get(world);
+		if (ticks % 20 != 0) {
+			tickdelay_per_world.put(world, ticks + 1);
 			return;
 		}
-		currentticks = 1;
+		tickdelay_per_world.put(world, 1);
 		
 		if (!ConfigHandler.GENERAL.shouldBurnGiantsInDaylight.get()) {
 			return;
@@ -105,11 +105,7 @@ public class GiantEvent {
 			return;
 		}
 		
-		if (!giants.containsKey(world)) {
-			giants.put(world, new CopyOnWriteArrayList<Entity>());
-		}
-		
-		for (Entity giant : giants.get(world)) {
+		for (Entity giant : giants_per_world.get(world)) {
 			if (giant.isAlive()) {
 				if (!giant.isInWaterRainOrBubble()) {
 					BlockPos epos = giant.blockPosition();
@@ -119,7 +115,7 @@ public class GiantEvent {
 				}	
 			}
 			else {
-				giants.get(world).remove(giant);
+				giants_per_world.get(world).remove(giant);
 			}		
 		}
 	}
@@ -131,6 +127,7 @@ public class GiantEvent {
 			return;
 		}
 		
-		giants.put(world, new CopyOnWriteArrayList<Entity>());
+		giants_per_world.put(world, new CopyOnWriteArrayList<Entity>());
+		tickdelay_per_world.put(world, 1);
 	}
 }

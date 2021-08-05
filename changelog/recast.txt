@@ -3,6 +3,9 @@ Recast
 https://curseforge.com/minecraft/mc-mods/recast
 
 =========
+v1.5: Updated backend code to make the fishing bobber keep its position better.
+
+=========
 v1.4: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========

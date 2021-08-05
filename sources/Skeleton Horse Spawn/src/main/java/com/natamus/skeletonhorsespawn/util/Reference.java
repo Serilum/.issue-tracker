@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Skeleton Horse Spawn.
- * Minecraft version: 1.17.1, mod version: 1.8.
+ * Minecraft version: 1.17.1, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Skeleton Horse Spawn ever released, along with some other perks.
@@ -17,6 +17,6 @@ package com.natamus.skeletonhorsespawn.util;
 public class Reference {
 	public static final String MOD_ID = "skeletonhorsespawn";
 	public static final String NAME = "Skeleton Horse Spawn";
-	public static final String VERSION = "1.8";
+	public static final String VERSION = "1.9";
 	public static final String ACCEPTED_VERSIONS = "[1.17.1]";
 }
