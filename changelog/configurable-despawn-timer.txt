@@ -3,6 +3,9 @@ Configurable Despawn Timer
 https://www.curseforge.com/minecraft/mc-mods/configurable-despawn-timer
 
 =========
+v2.4: Changed the maximum value of the despawnTimeInTicks config to 2147483647, which is the highest possible integer in the Java programming language.
+
+=========
 v2.3: (1.17.1 only) Updated mod to work with the changes made to entity removal in 37.0.24.
 
 =========
