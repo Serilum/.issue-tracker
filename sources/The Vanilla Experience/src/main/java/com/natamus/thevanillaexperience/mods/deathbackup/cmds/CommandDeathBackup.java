@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -24,109 +24,109 @@ import com.natamus.collective.functions.PlayerFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.thevanillaexperience.mods.deathbackup.util.DeathBackupUtil;
 
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 public class CommandDeathBackup {
-    public static void register(CommandDispatcher<CommandSource> dispatcher) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
     	dispatcher.register(Commands.literal("deathbackup").requires((iCommandSender) -> iCommandSender.hasPermission(2))
 			.executes((command) -> {
-				CommandSource source = command.getSource();
-				StringFunctions.sendMessage(source, "Death Backup usage:", TextFormatting.DARK_GREEN);
-				StringFunctions.sendMessage(source, "/deathbackup list - Lists all available backups.", TextFormatting.DARK_GREEN);
-				StringFunctions.sendMessage(source, "/deathbackup load <index> - Loads the backup with <index> from '/deathbackup list'. Index 0 is the last death.", TextFormatting.DARK_GREEN);
+				CommandSourceStack source = command.getSource();
+				StringFunctions.sendMessage(source, "Death Backup usage:", ChatFormatting.DARK_GREEN);
+				StringFunctions.sendMessage(source, "/deathbackup list - Lists all available backups.", ChatFormatting.DARK_GREEN);
+				StringFunctions.sendMessage(source, "/deathbackup load <index> - Loads the backup with <index> from '/deathbackup list'. Index 0 is the last death.", ChatFormatting.DARK_GREEN);
 				return 1;
 			})
 			.then(Commands.literal("list")
 			.executes((command) -> {
-				CommandSource source = command.getSource();
-				PlayerEntity player;
+				CommandSourceStack source = command.getSource();
+				Player player;
 				try {
 					player = source.getPlayerOrException();
 				}
 				catch (CommandSyntaxException ex) {
-					StringFunctions.sendMessage(source, "This command can only be executed as a player in-game.", TextFormatting.RED);
+					StringFunctions.sendMessage(source, "This command can only be executed as a player in-game.", ChatFormatting.RED);
 					return 1;
 				}
 				
-				World world = player.getCommandSenderWorld();
+				Level world = player.getCommandSenderWorld();
 				if (world.isClientSide) {
-					StringFunctions.sendMessage(source, "[Error] The world is not remote, unable to load death backup.", TextFormatting.RED);
+					StringFunctions.sendMessage(source, "[Error] The world is not remote, unable to load death backup.", ChatFormatting.RED);
 					return 1;
 				}
 				
-				if (world instanceof ServerWorld == false) {
-					StringFunctions.sendMessage(source, "[Error] Cannot find the world's server, unable to load death backup.", TextFormatting.RED);
+				if (world instanceof ServerLevel == false) {
+					StringFunctions.sendMessage(source, "[Error] Cannot find the world's server, unable to load death backup.", ChatFormatting.RED);
 					return 1;
 				}
 				
 				String playername = player.getName().getString().toLowerCase();
-				ServerWorld serverworld = (ServerWorld)world;
+				ServerLevel serverworld = (ServerLevel)world;
 				
 				List<String> backups = DeathBackupUtil.getListOfBackups(serverworld, playername);
 
-				StringFunctions.sendMessage(source, "Last Death Backups: (<index>: <date>)", TextFormatting.DARK_GREEN, true);
+				StringFunctions.sendMessage(source, "Last Death Backups: (<index>: <date>)", ChatFormatting.DARK_GREEN, true);
 				
 				int index = 0;
 				for (String ymdhis : backups) {
-					StringFunctions.sendMessage(source, " " + index + ": " + DateFunctions.ymdhisToReadable(ymdhis), TextFormatting.DARK_GREEN);
+					StringFunctions.sendMessage(source, " " + index + ": " + DateFunctions.ymdhisToReadable(ymdhis), ChatFormatting.DARK_GREEN);
 					index += 1;
 					if (index == 10) {
 						break;
 					}
 				}
 				
-				StringFunctions.sendMessage(source, "Load the backup with '/deathbackup load <index>'.", TextFormatting.YELLOW);
+				StringFunctions.sendMessage(source, "Load the backup with '/deathbackup load <index>'.", ChatFormatting.YELLOW);
 				return 1;
 			}))
 			.then(Commands.literal("load")
 			.then(Commands.argument("backup_index", IntegerArgumentType.integer())
 			.executes((command) -> {
-				CommandSource source = command.getSource();
-				PlayerEntity player;
+				CommandSourceStack source = command.getSource();
+				Player player;
 				try {
 					player = source.getPlayerOrException();
 				}
 				catch (CommandSyntaxException ex) {
-					StringFunctions.sendMessage(source, "This command can only be executed as a player in-game.", TextFormatting.RED);
+					StringFunctions.sendMessage(source, "This command can only be executed as a player in-game.", ChatFormatting.RED);
 					return 1;
 				}
 				
-				World world = player.getCommandSenderWorld();
+				Level world = player.getCommandSenderWorld();
 				if (world.isClientSide) {
-					StringFunctions.sendMessage(source, "[Error] The world is not remote, unable to load death backup.", TextFormatting.RED);
+					StringFunctions.sendMessage(source, "[Error] The world is not remote, unable to load death backup.", ChatFormatting.RED);
 					return 1;
 				}
 				
-				if (world instanceof ServerWorld == false) {
-					StringFunctions.sendMessage(source, "[Error] Cannot find the world's server, unable to load death backup.", TextFormatting.RED);
+				if (world instanceof ServerLevel == false) {
+					StringFunctions.sendMessage(source, "[Error] Cannot find the world's server, unable to load death backup.", ChatFormatting.RED);
 					return 1;
 				}
 				
 				String playername = player.getName().getString().toLowerCase();
-				ServerWorld serverworld = (ServerWorld)world;
+				ServerLevel serverworld = (ServerLevel)world;
 				
 				List<String> backups = DeathBackupUtil.getListOfBackups(serverworld, playername);
 				
 				Integer amount = IntegerArgumentType.getInteger(command, "backup_index");
 				if (amount < 0 || amount >= backups.size()) {
-					StringFunctions.sendMessage(source, "The index " + amount + " is invalid.", TextFormatting.RED);
+					StringFunctions.sendMessage(source, "The index " + amount + " is invalid.", ChatFormatting.RED);
 					return 0;
 				}
 				
 				String backupfilename = backups.get(amount);
 				String gearstring = DeathBackupUtil.getGearStringFromFile(serverworld, playername, backupfilename);
 				if (gearstring == "") {
-					StringFunctions.sendMessage(source, "[Error] Unable to read the backup file.", TextFormatting.RED);
+					StringFunctions.sendMessage(source, "[Error] Unable to read the backup file.", ChatFormatting.RED);
 					return 0;
 				}
 
 				PlayerFunctions.setPlayerGearFromString(player, gearstring);
-				StringFunctions.sendMessage(source, "Successfully loaded the death backup from " + DateFunctions.ymdhisToReadable(backupfilename) + " into your inventory.", TextFormatting.DARK_GREEN);
+				StringFunctions.sendMessage(source, "Successfully loaded the death backup from " + DateFunctions.ymdhisToReadable(backupfilename) + " into your inventory.", ChatFormatting.DARK_GREEN);
 				return 1;
 			})))
 		);

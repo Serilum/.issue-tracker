@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -19,8 +19,8 @@ import com.natamus.collective.functions.StringFunctions;
 import com.natamus.thevanillaexperience.mods.petnames.config.PetNamesConfigHandler;
 import com.natamus.thevanillaexperience.mods.petnames.util.PetNamesUtil;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -30,7 +30,7 @@ public class PetNamesEntityEvent {
 	@SubscribeEvent
 	public void onBaby(BabyEntitySpawnEvent e) {
 		Entity entity = e.getChild();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}

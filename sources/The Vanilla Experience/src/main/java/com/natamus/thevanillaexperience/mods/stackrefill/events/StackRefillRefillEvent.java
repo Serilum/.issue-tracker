@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -21,21 +21,21 @@ import com.mojang.datafixers.util.Pair;
 import com.natamus.collective.functions.ItemFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.EggItem;
-import net.minecraft.item.FishingRodItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.MilkBucketItem;
-import net.minecraft.item.PotionItem;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.EggItem;
+import net.minecraft.world.item.FishingRodItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.MilkBucketItem;
+import net.minecraft.world.item.PotionItem;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
@@ -48,53 +48,53 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class StackRefillRefillEvent {	
-	private static List<Pair<PlayerEntity, ItemStack>> addstack = new ArrayList<Pair<PlayerEntity, ItemStack>>();
-	private static List<Pair<Hand, Pair<PlayerEntity, ItemStack>>> addsingle = new ArrayList<Pair<Hand, Pair<PlayerEntity, ItemStack>>>();
+	private static List<Pair<Player, ItemStack>> addstack = new ArrayList<Pair<Player, ItemStack>>();
+	private static List<Pair<InteractionHand, Pair<Player, ItemStack>>> addsingle = new ArrayList<Pair<InteractionHand, Pair<Player, ItemStack>>>();
 	
-	private static List<Pair<PlayerEntity, Hand>> checkfishingrod = new ArrayList<Pair<PlayerEntity, Hand>>();
-	private static List<Pair<Hand, Pair<PlayerEntity, Item>>> checkitemused = new ArrayList<Pair<Hand, Pair<PlayerEntity, Item>>>();
+	private static List<Pair<Player, InteractionHand>> checkfishingrod = new ArrayList<Pair<Player, InteractionHand>>();
+	private static List<Pair<InteractionHand, Pair<Player, Item>>> checkitemused = new ArrayList<Pair<InteractionHand, Pair<Player, Item>>>();
 	
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
-		World world = e.world;
+		Level world = e.world;
 		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
 		
 		if (addstack.size() > 0) {
-			Pair<PlayerEntity, ItemStack> addstackcheck = addstack.get(0);
-			PlayerEntity player = addstackcheck.getFirst();
+			Pair<Player, ItemStack> addstackcheck = addstack.get(0);
+			Player player = addstackcheck.getFirst();
 			ItemStack togive = addstackcheck.getSecond();
 			
 			ItemStack heldmainhand = player.getMainHandItem();
 			if (heldmainhand.isEmpty()) {
-				player.setItemInHand(Hand.MAIN_HAND, togive);
+				player.setItemInHand(InteractionHand.MAIN_HAND, togive);
 			}
 			else {
 				ItemFunctions.giveOrDropItemStack(player, togive);
 			}
 			
-			player.inventoryMenu.broadcastChanges();
+			player.getInventory().setChanged();
 			addstack.remove(0);
 		}
 		if (addsingle.size() > 0) {
-			Pair<Hand, Pair<PlayerEntity, ItemStack>> pair = addsingle.get(0);
-			Pair<PlayerEntity, ItemStack> insidepair = pair.getSecond();
+			Pair<InteractionHand, Pair<Player, ItemStack>> pair = addsingle.get(0);
+			Pair<Player, ItemStack> insidepair = pair.getSecond();
 			
-			Hand hand = pair.getFirst();
-			PlayerEntity player = insidepair.getFirst();
+			InteractionHand hand = pair.getFirst();
+			Player player = insidepair.getFirst();
 			player.setItemInHand(hand, insidepair.getSecond());
 			
-			player.inventoryMenu.broadcastChanges();
+			player.getInventory().setChanged();
 			addsingle.remove(0);
 		}
 		if (checkfishingrod.size() > 0) {
-			Pair<PlayerEntity, Hand> pair = checkfishingrod.get(0);
+			Pair<Player, InteractionHand> pair = checkfishingrod.get(0);
 			
-			PlayerEntity player = pair.getFirst();
-			Hand hand = pair.getSecond();
+			Player player = pair.getFirst();
+			InteractionHand hand = pair.getSecond();
 			if (player.getItemInHand(hand).isEmpty()) {
-				PlayerInventory inv = player.inventory;
+				Inventory inv = player.getInventory();
 				
 				for (int i=35; i > 8; i--) {
 					ItemStack slot = inv.getItem(i);
@@ -106,18 +106,18 @@ public class StackRefillRefillEvent {
 				}
 			}
 			
-			player.inventoryMenu.broadcastChanges();
+			player.getInventory().setChanged();
 			checkfishingrod.remove(0);
 		}
 		if (checkitemused.size() > 0) { 
-			Pair<Hand, Pair<PlayerEntity, Item>> pair = checkitemused.get(0);
-			Pair<PlayerEntity, Item> insidepair = pair.getSecond();
+			Pair<InteractionHand, Pair<Player, Item>> pair = checkitemused.get(0);
+			Pair<Player, Item> insidepair = pair.getSecond();
 			
-			Hand hand = pair.getFirst();
-			PlayerEntity player = insidepair.getFirst();
+			InteractionHand hand = pair.getFirst();
+			Player player = insidepair.getFirst();
 			if (player.getItemInHand(hand).isEmpty()) {
 				Item useditem = insidepair.getSecond();
-				PlayerInventory inv = player.inventory;
+				Inventory inv = player.getInventory();
 				
 				for (int i=35; i > 8; i--) {
 					ItemStack slot = inv.getItem(i);
@@ -128,7 +128,7 @@ public class StackRefillRefillEvent {
 					}
 				}
 				
-				player.inventoryMenu.broadcastChanges();
+				player.getInventory().setChanged();
 			}
 			
 			checkitemused.remove(0);
@@ -137,22 +137,22 @@ public class StackRefillRefillEvent {
 	
 	@SubscribeEvent
 	public void onBlockPlace(BlockEvent.EntityPlaceEvent e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof PlayerEntity == false) {
+		if (entity instanceof Player == false) {
 			return;
 		}
 		
-		PlayerEntity player = (PlayerEntity)entity;
+		Player player = (Player)entity;
 		if (player.isCreative()) {
 			return;
 		}
 		
-		Hand activehand = Hand.MAIN_HAND;
+		InteractionHand activehand = InteractionHand.MAIN_HAND;
 		ItemStack active = player.getMainHandItem();
 		if (active.getItem() instanceof BlockItem == false) {
 			active = player.getOffhandItem();
@@ -160,7 +160,7 @@ public class StackRefillRefillEvent {
 				return;
 			}
 			
-			activehand = Hand.OFF_HAND;
+			activehand = InteractionHand.OFF_HAND;
 		}
 		
 		int amount = active.getCount();
@@ -169,14 +169,14 @@ public class StackRefillRefillEvent {
 		}
 		
 		Item activeitem = active.getItem();
-		PlayerInventory inv = player.inventory;
+		Inventory inv = player.getInventory();
 		
 		for (int i=35; i > 8; i--) {
 			ItemStack slot = inv.getItem(i);
 			if (activeitem.equals(slot.getItem())) {
 				int slotcount = slot.getCount();
 				if (slotcount < 2) {
-					Pair<PlayerEntity, ItemStack> toadd = new Pair<PlayerEntity, ItemStack>(player, slot.copy());
+					Pair<Player, ItemStack> toadd = new Pair<Player, ItemStack>(player, slot.copy());
 					addstack.add(toadd);
 				}
 				else {
@@ -188,22 +188,22 @@ public class StackRefillRefillEvent {
 			}
 		}
 		
-		player.inventoryMenu.broadcastChanges();
+		player.getInventory().setChanged();
 	}
 	
 	@SubscribeEvent
 	public void onItemUse(LivingEntityUseItemEvent.Finish e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		if (entity instanceof PlayerEntity == false) {
+		if (entity instanceof Player == false) {
 			return;
 		}
 		
-		PlayerEntity player = (PlayerEntity)entity;
+		Player player = (Player)entity;
 		if (player.isCreative()) {
 			return;
 		}
@@ -217,7 +217,7 @@ public class StackRefillRefillEvent {
 		
 		Item useditem = used.getItem();
 
-		PlayerInventory inv = player.inventory;
+		Inventory inv = player.getInventory();
 		for (int i=35; i > 8; i--) {
 			ItemStack slot = inv.getItem(i);
 			Item slotitem = slot.getItem();
@@ -238,13 +238,13 @@ public class StackRefillRefillEvent {
 			}
 		}
 		
-		player.inventoryMenu.broadcastChanges();
+		player.getInventory().setChanged();
 	}
 	
 	@SubscribeEvent
 	public void onItemBreak(PlayerDestroyItemEvent e) {
-		PlayerEntity player = e.getPlayer();
-		World world = player.getCommandSenderWorld();
+		Player player = e.getPlayer();
+		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -272,31 +272,31 @@ public class StackRefillRefillEvent {
 			return;
 		}
 		
-		Hand hand = e.getHand();
+		InteractionHand hand = e.getHand();
 		if (hand == null) {
 			return;
 		}
 
-		PlayerInventory inv = player.inventory;
+		Inventory inv = player.getInventory();
 		for (int i=35; i > 8; i--) {
 			ItemStack slot = inv.getItem(i);
 			Item slotitem = slot.getItem();
 			if (useditem.equals(slotitem)) {
-				Pair<PlayerEntity, ItemStack> insidepair = new Pair<PlayerEntity, ItemStack>(player, slot.copy());
-				Pair<Hand, Pair<PlayerEntity, ItemStack>> pair = new Pair<Hand, Pair<PlayerEntity, ItemStack>>(hand, insidepair);
+				Pair<Player, ItemStack> insidepair = new Pair<Player, ItemStack>(player, slot.copy());
+				Pair<InteractionHand, Pair<Player, ItemStack>> pair = new Pair<InteractionHand, Pair<Player, ItemStack>>(hand, insidepair);
 				addsingle.add(pair);
 				slot.setCount(0);
 				break;
 			}
 		}
 		
-		player.inventoryMenu.broadcastChanges();
+		player.getInventory().setChanged();
 	}
 	
 	@SubscribeEvent
 	public void onItemToss(ItemTossEvent e) {
-		PlayerEntity player = e.getPlayer();
-		World world = player.getCommandSenderWorld();
+		Player player = e.getPlayer();
+		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -308,7 +308,7 @@ public class StackRefillRefillEvent {
 		ItemStack tossed = e.getEntityItem().getItem();
 		Item tosseditem = tossed.getItem();
 		
-		Hand activehand = Hand.MAIN_HAND;
+		InteractionHand activehand = InteractionHand.MAIN_HAND;
 		ItemStack active = player.getMainHandItem();
 		if (!active.isEmpty()) {
 			if (active.getItem().equals(tosseditem)) {
@@ -323,20 +323,20 @@ public class StackRefillRefillEvent {
 				return;
 			}
 			
-			activehand = Hand.OFF_HAND;
+			activehand = InteractionHand.OFF_HAND;
 		}
 		
 		if (active.getCount() > 1) {
 			return;
 		}
 		
-		PlayerInventory inv = player.inventory;
+		Inventory inv = player.getInventory();
 		for (int i=35; i > 8; i--) {
 			ItemStack slot = inv.getItem(i);
 			if (tosseditem.equals(slot.getItem())) {
 				int slotcount = slot.getCount();
 				if (slotcount < 2) {
-					Pair<PlayerEntity, ItemStack> toadd = new Pair<PlayerEntity, ItemStack>(player, slot.copy());
+					Pair<Player, ItemStack> toadd = new Pair<Player, ItemStack>(player, slot.copy());
 					addstack.add(toadd);
 				}
 				else {
@@ -348,13 +348,18 @@ public class StackRefillRefillEvent {
 			}
 		}
 		
-		player.inventoryMenu.broadcastChanges();
+		player.getInventory().setChanged();
 	}
 	
 	@SubscribeEvent
 	public void onItemBreak(PlayerInteractEvent.RightClickItem e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
+			return;
+		}
+		
+		Player player = e.getPlayer();
+		if (player.isCreative()) {
 			return;
 		}
 		
@@ -365,41 +370,38 @@ public class StackRefillRefillEvent {
 			int maxdamage = stack.getMaxDamage();
 			
 			if (maxdamage - damage < 5) {
-				PlayerEntity player = e.getPlayer();
-				Hand hand = e.getHand();
+				InteractionHand hand = e.getHand();
 				
-				Pair<PlayerEntity, Hand> toadd = new Pair<PlayerEntity, Hand>(player, hand);
+				Pair<Player, InteractionHand> toadd = new Pair<Player, InteractionHand>(player, hand);
 				checkfishingrod.add(toadd);
 			}
 		}
 		else if (item instanceof EggItem) {
-			PlayerEntity player = e.getPlayer();
-			Hand hand = e.getHand();
+			InteractionHand hand = e.getHand();
 			
-			Pair<PlayerEntity, Item> insidepair = new Pair<PlayerEntity, Item>(player, stack.getItem());
-			Pair<Hand, Pair<PlayerEntity, Item>> pair = new Pair<Hand, Pair<PlayerEntity, Item>>(hand, insidepair);
+			Pair<Player, Item> insidepair = new Pair<Player, Item>(player, stack.getItem());
+			Pair<InteractionHand, Pair<Player, Item>> pair = new Pair<InteractionHand, Pair<Player, Item>>(hand, insidepair);
 			checkitemused.add(pair);		
 		}
 	}
 	
 	@SubscribeEvent
 	public void onBlockRightClick(PlayerInteractEvent.RightClickBlock e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		Entity entity = e.getEntity();
-		if (entity instanceof PlayerEntity == false) {
-			return;
-		}
-		
-		PlayerEntity player = (PlayerEntity)entity;
+		Player player = e.getPlayer();
 		if (player.isCreative()) {
 			return;
 		}
 		
-		Hand activehand = e.getHand();
+		InteractionHand activehand = e.getHand();
+		if (!activehand.equals(InteractionHand.MAIN_HAND)) {
+			return;
+		}
+		
 		ItemStack active = player.getMainHandItem();
 		
 		int amount = active.getCount();
@@ -407,8 +409,8 @@ public class StackRefillRefillEvent {
 			return;
 		}
 		
-		Pair<PlayerEntity, Item> insidepair = new Pair<PlayerEntity, Item>(player, active.getItem());
-		Pair<Hand, Pair<PlayerEntity, Item>> pair = new Pair<Hand, Pair<PlayerEntity, Item>>(activehand, insidepair);
+		Pair<Player, Item> insidepair = new Pair<Player, Item>(player, active.getItem());
+		Pair<InteractionHand, Pair<Player, Item>> pair = new Pair<InteractionHand, Pair<Player, Item>>(activehand, insidepair);
 		checkitemused.add(pair);
 	}
 }

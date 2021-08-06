@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -23,19 +23,20 @@ import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.thevanillaexperience.mods.nohostilesaroundcampfire.config.NoHostilesAroundCampfireConfigHandler;
 import com.natamus.thevanillaexperience.mods.nohostilesaroundcampfire.util.Reference;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CampfireBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.FlintAndSteelItem;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.spawner.AbstractSpawner;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Entity.RemovalReason;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.FlintAndSteelItem;
+import net.minecraft.world.level.BaseSpawner;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -49,11 +50,11 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class NoHostilesAroundCampfireCampfireEvent {
-	private static HashMap<World, List<BlockPos>> checkCampfireBurn = new HashMap<World, List<BlockPos>>();
+	private static HashMap<Level, List<BlockPos>> checkCampfireBurn = new HashMap<Level, List<BlockPos>>();
 	
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
@@ -63,7 +64,7 @@ public class NoHostilesAroundCampfireCampfireEvent {
 	
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
-		World world = e.world;
+		Level world = e.world;
 		if (world.isClientSide || !e.phase.equals(Phase.END)) {
 			return;
 		}
@@ -79,9 +80,9 @@ public class NoHostilesAroundCampfireCampfireEvent {
 				
 				if (islit) {
 					int r = (int)(NoHostilesAroundCampfireConfigHandler.GENERAL.preventHostilesRadius.get() * NoHostilesAroundCampfireConfigHandler.GENERAL.burnHostilesRadiusModifier.get());
-					List<Entity> entities = world.getEntities(null, new AxisAlignedBB(campfirepos.getX()-r, campfirepos.getY()-r, campfirepos.getZ()-r, campfirepos.getX()+r, campfirepos.getY()+r, campfirepos.getZ()+r));
+					List<Entity> entities = world.getEntities(null, new AABB(campfirepos.getX()-r, campfirepos.getY()-r, campfirepos.getZ()-r, campfirepos.getX()+r, campfirepos.getY()+r, campfirepos.getZ()+r));
 					for (Entity entity : entities) {
-						if (entity.getType().getCategory().equals(EntityClassification.MONSTER)) {
+						if (entity.getType().getCategory().equals(MobCategory.MONSTER)) {
 							entity.setSecondsOnFire(30);
 						}
 					}
@@ -94,7 +95,7 @@ public class NoHostilesAroundCampfireCampfireEvent {
 	
 	@SubscribeEvent
 	public void onEntityJoin(LivingSpawnEvent.CheckSpawn e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
@@ -107,17 +108,17 @@ public class NoHostilesAroundCampfireCampfireEvent {
 		entity.addTag(Reference.MOD_ID + ".checked");
 		
 		if (!NoHostilesAroundCampfireConfigHandler.GENERAL.preventMobSpawnerSpawns.get()) {
-			AbstractSpawner msbl = e.getSpawner();
+			BaseSpawner msbl = e.getSpawner();
 			if (msbl != null) {
 				return;
 			}
 		}
 		
-		if (!entity.getType().getCategory().equals(EntityClassification.MONSTER)) {
+		if (!entity.getType().getCategory().equals(MobCategory.MONSTER)) {
 			return;
 		}
 		
-		List<BlockPos> nearbycampfires = FABFunctions.getAllTileEntityPositionsNearbyEntity(TileEntityType.CAMPFIRE, NoHostilesAroundCampfireConfigHandler.GENERAL.preventHostilesRadius.get(), world, entity);
+		List<BlockPos> nearbycampfires = FABFunctions.getAllTileEntityPositionsNearbyEntity(BlockEntityType.CAMPFIRE, NoHostilesAroundCampfireConfigHandler.GENERAL.preventHostilesRadius.get(), world, entity);
 		if (nearbycampfires.size() == 0) {
 			return;
 		}
@@ -164,7 +165,7 @@ public class NoHostilesAroundCampfireCampfireEvent {
 		List<Entity> passengers = entity.getPassengers();
 		if (passengers.size() > 0) {
 			for (Entity passenger : passengers) {
-				passenger.remove();
+				passenger.remove(RemovalReason.DISCARDED);
 			}
 		}
 		
@@ -173,7 +174,7 @@ public class NoHostilesAroundCampfireCampfireEvent {
 	
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void onCampfirePlace(BlockEvent.EntityPlaceEvent e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
@@ -209,12 +210,12 @@ public class NoHostilesAroundCampfireCampfireEvent {
 	
 	@SubscribeEvent
 	public void onRightClickCampfireBlock(PlayerInteractEvent.RightClickBlock e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		BlockPos pos = e.getPos();
 		BlockState state = world.getBlockState(pos);
 		Block block = state.getBlock();
@@ -232,7 +233,7 @@ public class NoHostilesAroundCampfireCampfireEvent {
 	
 	@SubscribeEvent
 	public void onCampfireBreak(BlockEvent.BreakEvent e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
@@ -259,9 +260,9 @@ public class NoHostilesAroundCampfireCampfireEvent {
 
 		int r = (int)(NoHostilesAroundCampfireConfigHandler.GENERAL.preventHostilesRadius.get() * NoHostilesAroundCampfireConfigHandler.GENERAL.burnHostilesRadiusModifier.get());
 		BlockPos ppos = e.getPos();
-		List<Entity> entities = world.getEntities(null, new AxisAlignedBB(ppos.getX()-r, ppos.getY()-r, ppos.getZ()-r, ppos.getX()+r, ppos.getY()+r, ppos.getZ()+r));
+		List<Entity> entities = world.getEntities(null, new AABB(ppos.getX()-r, ppos.getY()-r, ppos.getZ()-r, ppos.getX()+r, ppos.getY()+r, ppos.getZ()+r));
 		for (Entity entity : entities) {
-			if (entity.getType().getCategory().equals(EntityClassification.MONSTER)) {
+			if (entity.getType().getCategory().equals(MobCategory.MONSTER)) {
 				if (entity.isOnFire()) {
 					entity.clearFire();
 					entity.setSecondsOnFire(2);

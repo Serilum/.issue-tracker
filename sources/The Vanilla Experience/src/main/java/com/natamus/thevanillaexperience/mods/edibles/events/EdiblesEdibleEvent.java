@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -22,18 +22,18 @@ import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.thevanillaexperience.mods.edibles.config.EdiblesConfigHandler;
 import com.natamus.thevanillaexperience.mods.edibles.util.EdiblesUtil;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -45,12 +45,12 @@ public class EdiblesEdibleEvent {
 	
 	@SubscribeEvent
 	public void onClickEmpty(PlayerInteractEvent.RightClickItem e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		String playername = player.getName().getString();
 		
 		ItemStack itemstack = e.getItemStack();
@@ -62,7 +62,7 @@ public class EdiblesEdibleEvent {
 				return;
 			}
 			
-			EffectInstance effect = new EffectInstance(Effects.DAMAGE_BOOST, EdiblesConfigHandler.OTHER.blazePowderStrengthDurationSeconds.get()*20);
+			MobEffectInstance effect = new MobEffectInstance(MobEffects.DAMAGE_BOOST, EdiblesConfigHandler.OTHER.blazePowderStrengthDurationSeconds.get()*20);
 			player.addEffect(effect);
 		}
 		else if (itemstack.getItem().equals(Items.MAGMA_CREAM)) {
@@ -73,7 +73,7 @@ public class EdiblesEdibleEvent {
 				return;
 			}
 			
-			EffectInstance effect = new EffectInstance(Effects.FIRE_RESISTANCE, EdiblesConfigHandler.OTHER.magmaCreamFireResistanceDurationSeconds.get()*20);
+			MobEffectInstance effect = new MobEffectInstance(MobEffects.FIRE_RESISTANCE, EdiblesConfigHandler.OTHER.magmaCreamFireResistanceDurationSeconds.get()*20);
 			player.addEffect(effect);
 		}
 		else if (itemstack.getItem().equals(Items.SUGAR)) {
@@ -84,7 +84,7 @@ public class EdiblesEdibleEvent {
 				return;
 			}
 			
-			EffectInstance effect = new EffectInstance(Effects.MOVEMENT_SPEED, EdiblesConfigHandler.OTHER.sugarSpeedDurationSeconds.get()*20);
+			MobEffectInstance effect = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, EdiblesConfigHandler.OTHER.sugarSpeedDurationSeconds.get()*20);
 			player.addEffect(effect);
 		}
 		else if (itemstack.getItem().equals(Items.GHAST_TEAR)) {
@@ -95,7 +95,7 @@ public class EdiblesEdibleEvent {
 				return;
 			}
 			
-			EffectInstance effect = new EffectInstance(Effects.REGENERATION, EdiblesConfigHandler.OTHER.ghastTearDurationSeconds.get()*20);
+			MobEffectInstance effect = new MobEffectInstance(MobEffects.REGENERATION, EdiblesConfigHandler.OTHER.ghastTearDurationSeconds.get()*20);
 			player.addEffect(effect);
 		}
 		else if (itemstack.getItem().equals(Items.PHANTOM_MEMBRANE)) {
@@ -106,7 +106,7 @@ public class EdiblesEdibleEvent {
 				return;
 			}
 			
-			EffectInstance effect = new EffectInstance(Effects.SLOW_FALLING, EdiblesConfigHandler.OTHER.phantomMembraneDurationSeconds.get()*20);
+			MobEffectInstance effect = new MobEffectInstance(MobEffects.SLOW_FALLING, EdiblesConfigHandler.OTHER.phantomMembraneDurationSeconds.get()*20);
 			player.addEffect(effect);
 		}
 		else if (itemstack.getItem().equals(Items.RABBIT_FOOT)) {
@@ -117,7 +117,7 @@ public class EdiblesEdibleEvent {
 				return;
 			}
 			
-			EffectInstance effect = new EffectInstance(Effects.JUMP, EdiblesConfigHandler.OTHER.rabbitsFootDurationSeconds.get()*20);
+			MobEffectInstance effect = new MobEffectInstance(MobEffects.JUMP, EdiblesConfigHandler.OTHER.rabbitsFootDurationSeconds.get()*20);
 			player.addEffect(effect);
 		}
 		else if (itemstack.getItem().equals(Items.GLOWSTONE_DUST)) {
@@ -130,12 +130,12 @@ public class EdiblesEdibleEvent {
 			
 			BlockPos pos = player.blockPosition();
 			int r = EdiblesConfigHandler.GLOW.glowEntitiesAroundAffectedRadiusBlocks.get();
-			EffectInstance effect = new EffectInstance(Effects.GLOWING, EdiblesConfigHandler.GLOW.glowEntityDurationSeconds.get()*200);
+			MobEffectInstance effect = new MobEffectInstance(MobEffects.GLOWING, EdiblesConfigHandler.GLOW.glowEntityDurationSeconds.get()*200);
 			
-			Iterator<Entity> it = world.getEntities(player, new AxisAlignedBB(pos.getX()-r, pos.getY()-r, pos.getZ()-r, pos.getX()+r, pos.getY()+r, pos.getZ()+r)).iterator();
+			Iterator<Entity> it = world.getEntities(player, new AABB(pos.getX()-r, pos.getY()-r, pos.getZ()-r, pos.getX()+r, pos.getY()+r, pos.getZ()+r)).iterator();
 			while (it.hasNext()) {
 				Entity ne = it.next();
-				if (ne instanceof LivingEntity && (ne instanceof PlayerEntity == false)) {
+				if (ne instanceof LivingEntity && (ne instanceof Player == false)) {
 					((LivingEntity)ne).addEffect(effect);
 				}
 			}		
@@ -150,7 +150,7 @@ public class EdiblesEdibleEvent {
 		}
 
 		if (EdiblesConfigHandler.WEAKNESS.maxItemUsesPerDaySingleItem.get() != -1 || EdiblesConfigHandler.WEAKNESS.maxItemUsesPerDayTotal.get() != -1) {
-			int days = WorldFunctions.getTotalDaysPassed((ServerWorld)world);
+			int days = WorldFunctions.getTotalDaysPassed((ServerLevel)world);
 			if (currentday != days) {
 				playeruses = new HashMap<String, Map<Item, Integer>>();
 				currentday = days;
@@ -170,7 +170,7 @@ public class EdiblesEdibleEvent {
 			currentuses.put(itemused, dayuses);
 			
 			if (dayuses > EdiblesConfigHandler.WEAKNESS.maxItemUsesPerDaySingleItem.get() && EdiblesConfigHandler.WEAKNESS.maxItemUsesPerDaySingleItem.get() != -1) {
-				EffectInstance weakness = new EffectInstance(Effects.WEAKNESS, EdiblesConfigHandler.WEAKNESS.weaknessDurationSeconds.get()*20);
+				MobEffectInstance weakness = new MobEffectInstance(MobEffects.WEAKNESS, EdiblesConfigHandler.WEAKNESS.weaknessDurationSeconds.get()*20);
 				player.addEffect(weakness);
 			}
 			else if (currentuses.size() > 1 && EdiblesConfigHandler.WEAKNESS.maxItemUsesPerDayTotal.get() != -1) {
@@ -180,7 +180,7 @@ public class EdiblesEdibleEvent {
 				}
 				
 				if (totaluses > EdiblesConfigHandler.WEAKNESS.maxItemUsesPerDayTotal.get()) {
-					EffectInstance weakness = new EffectInstance(Effects.WEAKNESS, EdiblesConfigHandler.WEAKNESS.weaknessDurationSeconds.get()*20);
+					MobEffectInstance weakness = new MobEffectInstance(MobEffects.WEAKNESS, EdiblesConfigHandler.WEAKNESS.weaknessDurationSeconds.get()*20);
 					player.addEffect(weakness);	
 				}
 			}

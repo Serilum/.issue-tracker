@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -19,28 +19,26 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
-
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.thevanillaexperience.mods.guifollowers.config.GUIFollowersConfigHandler;
 import com.natamus.thevanillaexperience.mods.guifollowers.util.GUIFollowersVariables;
 
-import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.IngameGui;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class GUIFollowersGUIEvent extends IngameGui {
+public class GUIFollowersGUIEvent extends Gui {
 	private static Minecraft mc;
 
 	public GUIFollowersGUIEvent(Minecraft mc){
@@ -55,13 +53,12 @@ public class GUIFollowersGUIEvent extends IngameGui {
 			return;
 		}
 
-		FontRenderer fontRender = mc.font;
-		MainWindow scaled = mc.getWindow();
-		GL11.glPushMatrix();
+		Font fontRender = mc.font;
+		Window scaled = mc.getWindow();
+		PoseStack posestack = e.getMatrixStack();
+		posestack.pushPose();
 		
 		if (GUIFollowersVariables.activefollowers.size() > 0) {
-			MatrixStack ms = new MatrixStack();
-			
 			int width = scaled.getGuiScaledWidth();
 			
 			String displaystring = GUIFollowersConfigHandler.GENERAL.followerListHeaderFormat.get();
@@ -85,7 +82,7 @@ public class GUIFollowersGUIEvent extends IngameGui {
 			boolean drawnfirst = false;
 			int heightoffset = GUIFollowersConfigHandler.GENERAL.followerListHeightOffset.get();
 			
-			ClientPlayerEntity player = mc.player;
+			LocalPlayer player = mc.player;
 			String playerdimension = WorldFunctions.getWorldDimensionName(player.getCommandSenderWorld());
 			
 			List<Entity> toremove = new ArrayList<Entity>();
@@ -98,12 +95,12 @@ public class GUIFollowersGUIEvent extends IngameGui {
 					continue;
 				}
 				
-				if (!follower.isAlive() || follower instanceof TameableEntity == false) {
+				if (!follower.isAlive() || follower instanceof TamableAnimal == false) {
 					toremove.add(follower);
 					continue;
 				}
 				
-				TameableEntity te = (TameableEntity)follower;
+				TamableAnimal te = (TamableAnimal)follower;
 				if (te.isOrderedToSit()) {
 					toremove.add(follower);
 					continue;
@@ -126,8 +123,8 @@ public class GUIFollowersGUIEvent extends IngameGui {
 				}
 				
 				if (GUIFollowersConfigHandler.GENERAL.showFollowerDistance.get()) {
-					Vector3d pvec = player.position();
-					Vector3d fvec = follower.position();
+					Vec3 pvec = player.position();
+					Vec3 fvec = follower.position();
 					
 					double distance = pvec.distanceTo(fvec);
 					String distanceformat = GUIFollowersConfigHandler.GENERAL.followerDistanceFormat.get();
@@ -144,12 +141,12 @@ public class GUIFollowersGUIEvent extends IngameGui {
 				}
 				
 				if (!drawnfirst) {
-					fontRender.draw(ms, displaystring, xcoord, heightoffset, colour.getRGB());
+					fontRender.draw(posestack, displaystring, xcoord, heightoffset, colour.getRGB());
 					drawnfirst = true;
 				}
 				
 				heightoffset += 10;
-				fontRender.draw(ms, follower_string, xcoord + xoffset, heightoffset, colour.getRGB());
+				fontRender.draw(posestack, follower_string, xcoord + xoffset, heightoffset, colour.getRGB());
 			}
 			
 			if (toremove.size() > 0) {
@@ -159,6 +156,6 @@ public class GUIFollowersGUIEvent extends IngameGui {
 			}
 		}
 		
-		GL11.glPopMatrix();
+		posestack.popPose();
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -18,12 +18,12 @@ import com.natamus.collective.functions.ItemFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.thevanillaexperience.mods.handoveryouritems.config.HandOverYourItemsConfigHandler;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -33,17 +33,17 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class HandOverYourItemsHandOverEvent {
 	@SubscribeEvent
 	public void onPlayerClick(PlayerInteractEvent.EntityInteract e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		if (!e.getHand().equals(Hand.MAIN_HAND)) {
+		if (!e.getHand().equals(InteractionHand.MAIN_HAND)) {
 			return;
 		}
 		
 		Entity target = e.getTarget();
-		if (target instanceof PlayerEntity == false) {
+		if (target instanceof Player == false) {
 			return;
 		}
 		
@@ -52,7 +52,7 @@ public class HandOverYourItemsHandOverEvent {
 			return;
 		}
 		
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		if (HandOverYourItemsConfigHandler.GENERAL.mustCrouchToGiveItem.get()) {
 			if (!player.isCrouching()) {
 				return;
@@ -65,18 +65,18 @@ public class HandOverYourItemsHandOverEvent {
 		int stacksize = stacktogive.getCount();
 		String itemstring = ItemFunctions.itemToReadableString(stacktogive.getItem());
 		
-		PlayerEntity playertarget = (PlayerEntity)target;
+		Player playertarget = (Player)target;
 		ItemFunctions.giveOrDropItemStack(playertarget, stacktogive.copy());
 		if (HandOverYourItemsConfigHandler.GENERAL.sendItemReceivedMessage.get()) {
-			StringFunctions.sendMessage(playertarget, "You have been given " + stacksize + " " + itemstring + " by " + player.getName().getString() + ".", TextFormatting.DARK_GREEN);
+			StringFunctions.sendMessage(playertarget, "You have been given " + stacksize + " " + itemstring + " by " + player.getName().getString() + ".", ChatFormatting.DARK_GREEN);
 		}
 		
 		stacktogive.setCount(0);
 		if (HandOverYourItemsConfigHandler.GENERAL.sendItemGivenMessage.get()) {
-			StringFunctions.sendMessage(player, "You have given " + stacksize + " " + itemstring + " to " + target.getName().getString() + ".", TextFormatting.BLUE);
+			StringFunctions.sendMessage(player, "You have given " + stacksize + " " + itemstring + " to " + target.getName().getString() + ".", ChatFormatting.BLUE);
 		}
 		
-		player.inventoryMenu.broadcastChanges();
-		playertarget.inventoryMenu.broadcastChanges();
+		player.getInventory().setChanged();
+		playertarget.getInventory().setChanged();
 	}
 }

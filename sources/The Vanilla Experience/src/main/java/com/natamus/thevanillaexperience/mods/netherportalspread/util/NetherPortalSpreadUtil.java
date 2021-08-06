@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -35,20 +35,20 @@ import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.collective.objects.RandomCollection;
 import com.natamus.thevanillaexperience.mods.netherportalspread.config.NetherPortalSpreadConfigHandler;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.NetherPortalBlock;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.NetherPortalBlock;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class NetherPortalSpreadUtil {
-	public static HashMap<World, CopyOnWriteArrayList<BlockPos>> portals = new HashMap<World, CopyOnWriteArrayList<BlockPos>>();
-	public static HashMap<World, HashMap<BlockPos, Boolean>> preventedportals = new HashMap<World, HashMap<BlockPos, Boolean>>();
+	public static HashMap<Level, CopyOnWriteArrayList<BlockPos>> portals = new HashMap<Level, CopyOnWriteArrayList<BlockPos>>();
+	public static HashMap<Level, HashMap<BlockPos, Boolean>> preventedportals = new HashMap<Level, HashMap<BlockPos, Boolean>>();
 	
 	private static HashMap<Block, HashMap<Block, Double>> convertinto = new HashMap<Block, HashMap<Block, Double>>();
 	private static List<Block> convertblocks = new ArrayList<Block>();
@@ -164,8 +164,8 @@ public class NetherPortalSpreadUtil {
 		}
 	}
 	
-	public static void loadPortalsFromWorld(World world) {
-		String portalfolder = WorldFunctions.getWorldPath((ServerWorld)world) + File.separator + "data" + File.separator + "netherportalspread" + File.separator + "portals";
+	public static void loadPortalsFromWorld(Level world) {
+		String portalfolder = WorldFunctions.getWorldPath((ServerLevel)world) + File.separator + "data" + File.separator + "netherportalspread" + File.separator + "portals";
 		String specificportalfolder = portalfolder + File.separator + DimensionFunctions.getSimpleDimensionString(world);
 		
 		if (specificportalfolder.endsWith("overworld")) {
@@ -242,8 +242,8 @@ public class NetherPortalSpreadUtil {
 		}
 	}
 	
-	public static void savePortalToWorld(World world, BlockPos portal) {
-		String portalfolder = WorldFunctions.getWorldPath((ServerWorld)world) + File.separator + "data" + File.separator + "netherportalspread" + File.separator + "portals" + File.separator + DimensionFunctions.getSimpleDimensionString(world);
+	public static void savePortalToWorld(Level world, BlockPos portal) {
+		String portalfolder = WorldFunctions.getWorldPath((ServerLevel)world) + File.separator + "data" + File.separator + "netherportalspread" + File.separator + "portals" + File.separator + DimensionFunctions.getSimpleDimensionString(world);
 		File dir = new File(portalfolder);
 		dir.mkdirs();
 		
@@ -256,7 +256,7 @@ public class NetherPortalSpreadUtil {
 		}
 	}
 	
-	private static Boolean portalExists(World world, BlockPos pos) {
+	private static Boolean portalExists(Level world, BlockPos pos) {
 		for (BlockPos portalpos : portals.get(world)) {
 			Double distance = pos.distSqr(portalpos.getX(), portalpos.getY(), portalpos.getZ(), true);
 			if (distance < 10) {
@@ -266,7 +266,7 @@ public class NetherPortalSpreadUtil {
 		return false;
 	}
 	
-	public static void validatePortalAndAdd(World world, BlockPos p) {
+	public static void validatePortalAndAdd(Level world, BlockPos p) {
 		BlockPos rawportal = null;
 		
 		int r = 3;
@@ -319,8 +319,8 @@ public class NetherPortalSpreadUtil {
 		}
 	}
 	
-	public static void removePortal(World world, BlockPos portal) {
-		String portalfolder = WorldFunctions.getWorldPath((ServerWorld)world) + File.separator + "data" + File.separator + "netherportalspread" + File.separator + "portals";
+	public static void removePortal(Level world, BlockPos portal) {
+		String portalfolder = WorldFunctions.getWorldPath((ServerLevel)world) + File.separator + "data" + File.separator + "netherportalspread" + File.separator + "portals";
 		String filename = portal.getX() + "_" + portal.getY() + "_" + portal.getZ() + ".portal";
 		File filepath = new File(portalfolder + File.separator + filename);
 		try {
@@ -334,7 +334,7 @@ public class NetherPortalSpreadUtil {
 		sendBrokenPortalMessage(world, portal);
 	}
 	
-	public static Boolean spreadNextBlock(World world, BlockPos portal) {
+	public static Boolean spreadNextBlock(Level world, BlockPos portal) {
 		if (!world.hasChunk(portal.getX() >> 4, portal.getZ() >> 4)) {
 			return true;
 		}
@@ -414,7 +414,7 @@ public class NetherPortalSpreadUtil {
 		return false;
 	}
 
-	public static int countNetherBlocks(World world, BlockPos p) {
+	public static int countNetherBlocks(Level world, BlockPos p) {
 		int nethercount = 0;
 		int r = NetherPortalSpreadConfigHandler.GENERAL.portalSpreadRadius.get();
 		
@@ -428,7 +428,7 @@ public class NetherPortalSpreadUtil {
 		return nethercount;
 	}
 	
-	public static Boolean isNetherTarget(World world, BlockPos pos, Boolean count) {
+	public static Boolean isNetherTarget(Level world, BlockPos pos, Boolean count) {
 		if (world == null) {
 			return false;
 		}
@@ -449,7 +449,7 @@ public class NetherPortalSpreadUtil {
 		return false;
 	}
 	
-	public static void spreadNetherToBlock(World world, BlockPos pos) {
+	public static void spreadNetherToBlock(Level world, BlockPos pos) {
 		if (world == null) {
 			return;
 		}
@@ -484,31 +484,31 @@ public class NetherPortalSpreadUtil {
 		return false;
 	}
 	
-	private static void sendSpreadingMessage(World world, BlockPos p) {
+	private static void sendSpreadingMessage(Level world, BlockPos p) {
 		if (!NetherPortalSpreadConfigHandler.GENERAL.sendMessageOnPortalCreation.get()) {
 			return;
 		}
 		
 		String message = NetherPortalSpreadConfigHandler.GENERAL.messageOnPortalCreation.get();
-		StringFunctions.sendMessageToPlayersAround(world, p, NetherPortalSpreadConfigHandler.GENERAL.portalSpreadRadius.get(), formatAroundString(message, NetherPortalSpreadConfigHandler.GENERAL.preventSpreadBlockAmountNeeded.get(), p), TextFormatting.RED);
+		StringFunctions.sendMessageToPlayersAround(world, p, NetherPortalSpreadConfigHandler.GENERAL.portalSpreadRadius.get(), formatAroundString(message, NetherPortalSpreadConfigHandler.GENERAL.preventSpreadBlockAmountNeeded.get(), p), ChatFormatting.RED);
 	}
 	
-	private static void sendPreventedMessage(World world, BlockPos p) {
+	private static void sendPreventedMessage(Level world, BlockPos p) {
 		if (!NetherPortalSpreadConfigHandler.GENERAL.sendMessageOnPreventSpreadBlocksFound.get()) {
 			return;
 		}
 		
 		String message = NetherPortalSpreadConfigHandler.GENERAL.messageOnPreventSpreadBlocksFound.get();
-		StringFunctions.sendMessageToPlayersAround(world, p, NetherPortalSpreadConfigHandler.GENERAL.portalSpreadRadius.get(), formatAroundString(message, NetherPortalSpreadConfigHandler.GENERAL.preventSpreadBlockAmountNeeded.get(), p), TextFormatting.DARK_GREEN);	
+		StringFunctions.sendMessageToPlayersAround(world, p, NetherPortalSpreadConfigHandler.GENERAL.portalSpreadRadius.get(), formatAroundString(message, NetherPortalSpreadConfigHandler.GENERAL.preventSpreadBlockAmountNeeded.get(), p), ChatFormatting.DARK_GREEN);	
 	}
 	
-	private static void sendBrokenPortalMessage(World world, BlockPos p) {
+	private static void sendBrokenPortalMessage(Level world, BlockPos p) {
 		if (!NetherPortalSpreadConfigHandler.GENERAL.sendMessageOnPortalBroken.get()) {
 			return;
 		}
 		
 		String message = NetherPortalSpreadConfigHandler.GENERAL.messageOnPortalBroken.get();
-		StringFunctions.sendMessageToPlayersAround(world, p, NetherPortalSpreadConfigHandler.GENERAL.portalSpreadRadius.get(), formatAroundString(message, NetherPortalSpreadConfigHandler.GENERAL.preventSpreadBlockAmountNeeded.get(), p), TextFormatting.DARK_GREEN);	
+		StringFunctions.sendMessageToPlayersAround(world, p, NetherPortalSpreadConfigHandler.GENERAL.portalSpreadRadius.get(), formatAroundString(message, NetherPortalSpreadConfigHandler.GENERAL.preventSpreadBlockAmountNeeded.get(), p), ChatFormatting.DARK_GREEN);	
 	}
 	
 	private static String formatAroundString(String message, int amountneeded, BlockPos portal) {

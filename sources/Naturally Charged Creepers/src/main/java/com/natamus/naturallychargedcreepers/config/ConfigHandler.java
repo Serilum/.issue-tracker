@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Naturally Charged Creepers.
- * Minecraft version: 1.17.1, mod version: 1.6.
+ * Minecraft version: 1.17.1, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Naturally Charged Creepers ever released, along with some other perks.
@@ -22,22 +22,10 @@ public class ConfigHandler {
 	public static final ForgeConfigSpec spec = BUILDER.build();
 
 	public static class General {		
-		public final ForgeConfigSpec.ConfigValue<Boolean> onWorldSpawn;
-		public final ForgeConfigSpec.ConfigValue<Boolean> onEggSpawn;
-		public final ForgeConfigSpec.ConfigValue<Boolean> preventFireDamage;
 		public final ForgeConfigSpec.ConfigValue<Double> isChargedChance;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
-			onWorldSpawn = builder
-					.comment("If enabled, allows naturally spawned creepers in the world to have a chance to be charged.")
-					.define("onWorldSpawn", true);
-			onEggSpawn = builder
-					.comment("If enabled, allows creepers which were spawned by an egg to have a chance to be charged.")
-					.define("onEggSpawn", true);
-			preventFireDamage = builder
-					.comment("If enabled, prevents fire damage to the naturally charged creepers (on first charge).")
-					.define("preventFireDamage", true);
 			isChargedChance = builder
 					.comment("The chance of a creeper being naturally charged.")
 					.defineInRange("isChargedChance", 0.1, 0, 1.0);

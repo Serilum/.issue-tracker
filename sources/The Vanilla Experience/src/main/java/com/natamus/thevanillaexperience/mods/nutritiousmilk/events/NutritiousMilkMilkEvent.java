@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -18,30 +18,31 @@ import java.lang.reflect.Field;
 
 import com.natamus.thevanillaexperience.mods.nutritiousmilk.config.NutritiousMilkConfigHandler;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.FoodStats;
-import net.minecraft.world.World;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodData;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 @EventBusSubscriber
 public class NutritiousMilkMilkEvent {
-	public static Field foodStats_foodSaturationLevel = null;
+	private static Field foodStats_foodSaturationLevel = ObfuscationReflectionHelper.findField(FoodData.class, "f_38697_"); // saturationLevel
 	
 	@SubscribeEvent
 	public void onDrink(LivingEntityUseItemEvent.Finish e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
-		if (entity instanceof PlayerEntity == false) {
+		if (entity instanceof Player == false) {
 			return;
 		}
 		
@@ -49,31 +50,19 @@ public class NutritiousMilkMilkEvent {
 		Item item = itemused.getItem();
 		String registryname = item.getRegistryName().toString();
 		if (item.equals(Items.MILK_BUCKET) || registryname.contains("milk_bucket")) {
-			PlayerEntity player = (PlayerEntity)entity;
-			FoodStats fs = player.getFoodData();
+			Player player = (Player)entity;
+			FoodData fs = player.getFoodData();
 			
 			fs.setFoodLevel(fs.getFoodLevel() + NutritiousMilkConfigHandler.GENERAL.hungerLevelIncrease.get());
 			
 			float saturation = fs.getSaturationLevel() + NutritiousMilkConfigHandler.GENERAL.saturationLevelIncrease.get().floatValue();
-			if (player instanceof ServerPlayerEntity) {
-				if (foodStats_foodSaturationLevel == null) {
-					for (Field field : FoodStats.class.getDeclaredFields()) {
-						if (field.toString().contains("foodSaturationLevel") || field.toString().contains("saturationLevel")) {
-							foodStats_foodSaturationLevel = field;
-							break;
-						}
-					}
-					if (foodStats_foodSaturationLevel == null) {
-						return;
-					}
-					foodStats_foodSaturationLevel.setAccessible(true);
-				}
-				
+			if (player instanceof ServerPlayer) {
 				try {
 					foodStats_foodSaturationLevel.set(player, saturation);
 				} catch (Exception ex) { }
 				return;
 			}
+			
 			fs.setSaturation(saturation);
 		}
 	}

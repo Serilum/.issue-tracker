@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -18,26 +18,27 @@ import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Iterator;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.FireworkRocketEntity;
-import net.minecraft.item.ElytraItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.FireworkRocketEntity;
+import net.minecraft.world.item.ElytraItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 @EventBusSubscriber
 public class EasyElytraTakeoffElytraEvent {
-	private static Method setFlag = null;
+	private static Method setFlag = ObfuscationReflectionHelper.findMethod(Entity.class, "m_20115_", int.class, boolean.class); // setSharedFlag
 	
 	@SubscribeEvent
 	public void onFirework(PlayerInteractEvent.RightClickItem e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -47,7 +48,7 @@ public class EasyElytraTakeoffElytraEvent {
 			return;
 		}
 		
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		if (player.isFallFlying()) {
 			return;
 		}
@@ -63,8 +64,8 @@ public class EasyElytraTakeoffElytraEvent {
 		}
 		
 		if (!foundelytra) {
-			Collection<ModifiableAttributeInstance> atrb = player.getAttributes().getSyncableAttributes();
-			for (ModifiableAttributeInstance ai : atrb) {
+			Collection<AttributeInstance> atrb = player.getAttributes().getSyncableAttributes();
+			for (AttributeInstance ai : atrb) {
 				for (AttributeModifier m : ai.getModifiers()) {
 					String name = m.getName().toLowerCase();
 					if (name.equals("flight modifier") || name.equals("elytra curio modifier")) {
@@ -81,19 +82,6 @@ public class EasyElytraTakeoffElytraEvent {
 			if (!foundelytra) {
 				return;
 			}
-		}
-		
-		if (setFlag == null) {
-			for (Method method : Entity.class.getDeclaredMethods()) {
-				if (method.toString().contains("setFlag") || method.toString().contains("setSharedFlag")) {
-					setFlag = method;
-					break;
-				}
-			}
-			if (setFlag == null) {
-				return;
-			}
-			setFlag.setAccessible(true);
 		}
 		
 		try {

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -20,12 +20,12 @@ import java.util.List;
 import com.natamus.thevanillaexperience.mods.guifollowers.config.GUIFollowersConfigHandler;
 import com.natamus.thevanillaexperience.mods.guifollowers.util.GUIFollowersVariables;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
@@ -41,7 +41,7 @@ public class GUIFollowersFollowerEvent {
 			return;
 		}
 		
-		PlayerEntity player = e.player;
+		Player player = e.player;
 		if (player == null) {
 			return;
 		}
@@ -50,7 +50,7 @@ public class GUIFollowersFollowerEvent {
 			return;
 		}
 		
-		World world = player.getCommandSenderWorld();
+		Level world = player.getCommandSenderWorld();
 		if (world == null) {
 			return;
 		}
@@ -60,14 +60,14 @@ public class GUIFollowersFollowerEvent {
 			return;
 		}
 		
-		Vector3d pvec = player.position();
-		List<Entity> entitiesaround = world.getEntities(player, new AxisAlignedBB(pvec.x-dc, pvec.y-dc, pvec.z-dc, pvec.x+dc, pvec.y+dc, pvec.z+dc));
+		Vec3 pvec = player.position();
+		List<Entity> entitiesaround = world.getEntities(player, new AABB(pvec.x-dc, pvec.y-dc, pvec.z-dc, pvec.x+dc, pvec.y+dc, pvec.z+dc));
 		for (Entity ea : entitiesaround) {
-			if (ea instanceof TameableEntity == false) {
+			if (ea instanceof TamableAnimal == false) {
 				continue;
 			}
 			
-			TameableEntity te = (TameableEntity)ea;
+			TamableAnimal te = (TamableAnimal)ea;
 			if (!te.isTame()) {
 				continue;
 			}

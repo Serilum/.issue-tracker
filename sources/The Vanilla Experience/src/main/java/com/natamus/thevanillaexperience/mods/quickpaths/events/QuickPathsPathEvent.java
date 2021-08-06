@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -23,15 +23,15 @@ import java.util.List;
 import com.mojang.datafixers.util.Pair;
 import com.natamus.collective.functions.NumberFunctions;
 import com.natamus.collective.functions.StringFunctions;
+import com.natamus.collective.functions.ToolFunctions;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.ServerTickEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -75,22 +75,22 @@ public class QuickPathsPathEvent {
 	
 	@SubscribeEvent
 	public void onRightClickGrass(PlayerInteractEvent.RightClickBlock e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		ItemStack hand = e.getItemStack();
-		if (!hand.getToolTypes().contains(ToolType.SHOVEL)) {
+		if (!ToolFunctions.isShovel(hand)) {
 			return;
 		}
 		
 		Date now = new Date();
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		BlockPos targetpos = e.getPos();
 		Block block = world.getBlockState(targetpos).getBlock();
 		
-		if (block.equals(Blocks.GRASS_PATH)) {
+		if (block.equals(Blocks.DIRT_PATH)) {
 			if (lastpath.containsKey(targetpos)) {
 				e.setCanceled(true);
 				
@@ -100,7 +100,7 @@ public class QuickPathsPathEvent {
 				long ms = (now.getTime()-pair.getFirst().getTime());
 				if (ms < 300000) {
 					for (BlockPos pathpos : pair.getSecond()) {
-						if (world.getBlockState(pathpos).getBlock().equals(Blocks.GRASS_PATH) && world.getBlockState(pathpos.immutable().above()).getBlock().equals(Blocks.AIR)) {
+						if (world.getBlockState(pathpos).getBlock().equals(Blocks.DIRT_PATH) && world.getBlockState(pathpos.immutable().above()).getBlock().equals(Blocks.AIR)) {
 							world.setBlockAndUpdate(pathpos, Blocks.GRASS_BLOCK.defaultBlockState());
 							count+=1;
 						}
@@ -108,7 +108,7 @@ public class QuickPathsPathEvent {
 				}
 				
 				lastpath.remove(targetpos);
-				StringFunctions.sendMessage(player, "[Quick Paths] " + count + " grass blocks restored.", TextFormatting.DARK_GREEN);
+				StringFunctions.sendMessage(player, "[Quick Paths] " + count + " grass blocks restored.", ChatFormatting.DARK_GREEN);
 				return;
 			}
 		}
@@ -118,7 +118,7 @@ public class QuickPathsPathEvent {
 		
 		if (hand.getDamageValue() >= hand.getMaxDamage()-1 && player.isCrouching()) {
 			e.setCanceled(true);
-			StringFunctions.sendMessage(player, "[Quick Paths] Your shovel is too damaged to create paths.", TextFormatting.RED);
+			StringFunctions.sendMessage(player, "[Quick Paths] Your shovel is too damaged to create paths.", ChatFormatting.RED);
 			return;
 		}
 		
@@ -161,7 +161,7 @@ public class QuickPathsPathEvent {
 					if (!xzset.contains(xz)) {
 						BlockPos betweenpos = new BlockPos(targetpos.getX() + difx, lyd, targetpos.getZ() + difz);
 						if (world.getBlockState(betweenpos).getBlock().equals(Blocks.GRASS_BLOCK) && world.getBlockState(betweenpos.immutable().above()).getBlock().equals(Blocks.AIR)) {
-							world.setBlockAndUpdate(betweenpos, Blocks.GRASS_PATH.defaultBlockState());
+							world.setBlockAndUpdate(betweenpos, Blocks.DIRT_PATH.defaultBlockState());
 							
 							pathpositions.add(betweenpos.immutable());
 							xzset.add(xz);
@@ -180,7 +180,7 @@ public class QuickPathsPathEvent {
 			
 			lastpath.put(targetpos, new Pair<>(now, pathpositions));
 			playernamelastpos.remove(playername);
-			StringFunctions.sendMessage(player, "[Quick Paths] Path of " + pathpositions.size() + " blocks created. To undo, right click last clicked block again.", TextFormatting.DARK_GREEN);
+			StringFunctions.sendMessage(player, "[Quick Paths] Path of " + pathpositions.size() + " blocks created. To undo, right click last clicked block again.", ChatFormatting.DARK_GREEN);
 		}
 		else {
 			if (!player.isCrouching()) {
@@ -188,19 +188,19 @@ public class QuickPathsPathEvent {
 			}
 			
 			e.setCanceled(true);
-			world.setBlockAndUpdate(targetpos, Blocks.GRASS_PATH.defaultBlockState());
+			world.setBlockAndUpdate(targetpos, Blocks.DIRT_PATH.defaultBlockState());
 			
 			if (playernamelastpos.containsKey(playername)) {
 				BlockPos lastpos = playernamelastpos.get(playername);
 				
 				if (lastpos != targetpos) {
-					if (world.getBlockState(lastpos).getBlock().equals(Blocks.GRASS_PATH)) {
+					if (world.getBlockState(lastpos).getBlock().equals(Blocks.DIRT_PATH)) {
 						world.setBlockAndUpdate(lastpos, Blocks.GRASS_BLOCK.defaultBlockState());
 					}
 				}
 			}
 			playernamelastpos.put(playername, targetpos);
-			StringFunctions.sendMessage(player, "[Quick Paths] Starting point set to " + targetpos.getX() + ", " + targetpos.getY() + ", " + targetpos.getZ() + ".", TextFormatting.DARK_GREEN);
+			StringFunctions.sendMessage(player, "[Quick Paths] Starting point set to " + targetpos.getX() + ", " + targetpos.getY() + ", " + targetpos.getZ() + ".", ChatFormatting.DARK_GREEN);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -18,19 +18,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.PortalSize;
-import net.minecraft.util.Direction.Axis;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.portal.PortalShape;
+import net.minecraft.core.Direction.Axis;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BlockEvent;
 
 public class SmallerNetherPortalsUtil {
-	public static void processSmallerPortal(World world, BlockPos pos) {
+	public static void processSmallerPortal(Level world, BlockPos pos) {
 		BlockPos bottomleft;
 		String airdirection = "none";
 		Rotation rotation = null;
@@ -185,7 +185,7 @@ public class SmallerNetherPortalsUtil {
 				axis = Axis.Z;
 			}
 			
-			PortalSize size = new PortalSize(world, portalpos, axis);
+			PortalShape size = new PortalShape(world, portalpos, axis);
 	        MinecraftForge.EVENT_BUS.post(
                 new BlockEvent.PortalSpawnEvent(
                     world,
@@ -216,7 +216,7 @@ public class SmallerNetherPortalsUtil {
 		return around;
 	}
 	
-	public static List<BlockPos> getFrontBlocks(World world, BlockPos portalblock) {
+	public static List<BlockPos> getFrontBlocks(Level world, BlockPos portalblock) {
 		List<BlockPos> returnblocks = new ArrayList<BlockPos>();
 		
 		Boolean smallest = false;
@@ -251,7 +251,7 @@ public class SmallerNetherPortalsUtil {
 		return returnblocks;
 	}
 	
-	public static BlockPos findPortalAround(World world, BlockPos pos) {
+	public static BlockPos findPortalAround(Level world, BlockPos pos) {
 		BlockPos portalpos = null;
 		
 		for (int i = 0; i < 10; i++) {
@@ -271,7 +271,7 @@ public class SmallerNetherPortalsUtil {
 		return portalpos;
 	}
 	
-	public static void setObsidian(World world, List<BlockPos> toblocks) {
+	public static void setObsidian(Level world, List<BlockPos> toblocks) {
 		for (BlockPos tbs : toblocks) {
 			if (shouldMakeFront(world.getBlockState(tbs))) {
 				world.setBlockAndUpdate(tbs, Blocks.OBSIDIAN.defaultBlockState());

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Mooshroom Tweaks.
- * Minecraft version: 1.17.1, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Mooshroom Tweaks ever released, along with some other perks.
@@ -22,18 +22,10 @@ public class ConfigHandler {
 	public static final ForgeConfigSpec spec = BUILDER.build();
 
 	public static class General {
-		public final ForgeConfigSpec.ConfigValue<Boolean> onWorldSpawn;
-		public final ForgeConfigSpec.ConfigValue<Boolean> onEggSpawn;
 		public final ForgeConfigSpec.ConfigValue<Double> becomeBrownChance;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
-			onWorldSpawn = builder
-					.comment("Transform some of the Red Mooshrooms to Brown Mooshrooms whenever they naturally spawn in the world.")
-					.define("onWorldSpawn", true);
-			onEggSpawn = builder
-					.comment("Transform some of the Red Mooshrooms to Brown Mooshrooms whenever someone spawns them with a Spawn Egg.")
-					.define("onEggSpawn", true);
 			becomeBrownChance = builder
 					.comment("The chance of a Red Mooshroom becoming a Brown Mooshroom.")
 					.defineInRange("becomeBrownChance", 0.5, 0, 1.0);

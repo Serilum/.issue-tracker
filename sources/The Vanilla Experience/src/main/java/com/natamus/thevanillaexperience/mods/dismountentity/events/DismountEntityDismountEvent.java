@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -16,10 +16,10 @@ package com.natamus.thevanillaexperience.mods.dismountentity.events;
 
 import java.util.List;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -28,12 +28,12 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class DismountEntityDismountEvent {
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent.EntityInteract e) {
-		World world = e.getWorld();
-		if (world.isClientSide || !e.getHand().equals(Hand.MAIN_HAND)) {
+		Level world = e.getWorld();
+		if (world.isClientSide || !e.getHand().equals(InteractionHand.MAIN_HAND)) {
 			return;
 		}
 
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		if (!player.isShiftKeyDown()) {
 			return;
 		}

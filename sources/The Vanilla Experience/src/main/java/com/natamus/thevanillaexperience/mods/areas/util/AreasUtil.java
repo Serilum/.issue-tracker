@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -29,39 +29,34 @@ import com.natamus.collective.functions.NumberFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.collective.functions.TileEntityFunctions;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.StandingSignBlock;
-import net.minecraft.block.WallSignBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.tileentity.SignTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkDirection;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.StandingSignBlock;
+import net.minecraft.world.level.block.WallSignBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.SignBlockEntity;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+import net.minecraftforge.fmllegacy.network.NetworkDirection;
+import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
 
 public class AreasUtil {
 	public static SimpleChannel network;
 	
 	private static List<String> zoneprefixes = new ArrayList<String>(Arrays.asList("[na]", "[area]", "[region]", "[zone]"));
-	private static Field signText = null;
+	private static Field signText = ObfuscationReflectionHelper.findField(SignBlockEntity.class, "f_59720_"); // messages
 	
-	public static AreaObject getAreaSign(World world, BlockPos signpos) {
+	public static AreaObject getAreaSign(Level world, BlockPos signpos) {
 		if (world.isClientSide) {
 			return null;
 		}
-		
-		if (signText == null) {
-			if (!setSignField()) {
-				return null;
-			}
-		}
-		
+
 		HashMap<BlockPos, AreaObject> hm = AreasVariables.areasperworld.get(world);
 		if (hm != null) {
 			if (hm.containsKey(signpos)) {
@@ -69,14 +64,14 @@ public class AreasUtil {
 			}
 		}
 		
-		TileEntity te = world.getBlockEntity(signpos);
+		BlockEntity te = world.getBlockEntity(signpos);
 		if (te == null) {
 			return null;
 		}
 		
-		SignTileEntity signentity;
+		SignBlockEntity signentity;
 		try {
-			signentity = (SignTileEntity)te;
+			signentity = (SignBlockEntity)te;
 		}
 		catch (ClassCastException ex) {
 			return null;
@@ -89,15 +84,15 @@ public class AreasUtil {
 		int radius = 0;
 		boolean customrgb = false;
 		
-		ITextComponent[] signcontent;
+		Component[] signcontent;
 		try {
-			signcontent = (ITextComponent[]) signText.get(signentity);
+			signcontent = (Component[]) signText.get(signentity);
 		} catch (Exception ex) {
 			return null;
 		}
 		
 		int i = -1;
-		for (ITextComponent linecomponent : signcontent) {
+		for (Component linecomponent : signcontent) {
 			i += 1;
 			String line = linecomponent.getString();
 			
@@ -174,7 +169,7 @@ public class AreasUtil {
 				
 				i = 0;
 				for (String line : newsigncontentlist) {
-					signentity.setMessage(i, new StringTextComponent(line));
+					signentity.setMessage(i, new TextComponent(line));
 					i+=1;
 				}
 				
@@ -188,13 +183,13 @@ public class AreasUtil {
 		if (!updatesign) {
 			if (radius == 0 || setradius) {
 				i = 0;
-				for (ITextComponent linecomponent : signcontent) {
+				for (Component linecomponent : signcontent) {
 					String line = linecomponent.getString();
 					if (i == 0) {
 						line = "[" + zoneprefix + "] " + radius;
 					}
 					
-					signentity.setMessage(i, new StringTextComponent(line));
+					signentity.setMessage(i, new TextComponent(line));
 					i+=1;
 				}
 				
@@ -221,22 +216,16 @@ public class AreasUtil {
 		return false;
 	}
 	
-	public static boolean hasZonePrefix(SignTileEntity signentity) {
-		if (signText == null) {
-			if (!setSignField()) {
-				return false;
-			}
-		}
-		
-		ITextComponent[] signcontent;
+	public static boolean hasZonePrefix(SignBlockEntity signentity) {
+		TextComponent[] signcontent;
 		try {
-			signcontent = (ITextComponent[]) signText.get(signentity);
+			signcontent = (TextComponent[]) signText.get(signentity);
 		} catch (Exception ex) {
 			return false;
 		}
 		
 		int i = -1;
-		for (ITextComponent linecomponent : signcontent) {
+		for (Component linecomponent : signcontent) {
 			i += 1;
 			String line = linecomponent.getString();
 			
@@ -291,10 +280,10 @@ public class AreasUtil {
 		return "";
 	}
 	
-	public static void enterArea(AreaObject ao, PlayerEntity player) {
+	public static void enterArea(AreaObject ao, Player player) {
 		enterArea(ao, player, true);
 	}
-	public static void enterArea(AreaObject ao, PlayerEntity player, boolean shouldmessage) {
+	public static void enterArea(AreaObject ao, Player player, boolean shouldmessage) {
 		if (!ao.containsplayers.contains(player)) {
 			ao.containsplayers.add(player);
 		}
@@ -304,10 +293,10 @@ public class AreasUtil {
 			areaChangeMessage(player, message, ao.customrgb);
 		}
 	}
-	public static void exitArea(AreaObject ao, PlayerEntity player) {
+	public static void exitArea(AreaObject ao, Player player) {
 		exitArea(ao, player, true);
 	}
-	public static void exitArea(AreaObject ao, PlayerEntity player, boolean shouldmessage) {
+	public static void exitArea(AreaObject ao, Player player, boolean shouldmessage) {
 		ao.containsplayers.remove(player);
 		
 		if (shouldmessage) {
@@ -315,12 +304,12 @@ public class AreasUtil {
 			areaChangeMessage(player, message, ao.customrgb);
 		}
 	}
-	public static void areaChangeMessage(PlayerEntity player, String message, String rgb) {
+	public static void areaChangeMessage(Player player, String message, String rgb) {
 		if (AreasConfigHandler.GENERAL.sendChatMessages.get()) {
-			StringFunctions.sendMessage(player, message, TextFormatting.DARK_GREEN);
+			StringFunctions.sendMessage(player, message, ChatFormatting.DARK_GREEN);
 		}
 		if (AreasConfigHandler.GENERAL.showHUDMessages.get()) {
-			network.sendTo(new PacketToClientShowGUI(message, rgb), ((ServerPlayerEntity)player).connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);	
+			network.sendTo(new PacketToClientShowGUI(message, rgb), ((ServerPlayer)player).connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);	
 		}		
 	}
 	
@@ -335,22 +324,6 @@ public class AreasUtil {
 			return true;
 		}
 		return false;
-	}
-	
-	private static boolean setSignField() {
-		if (signText == null) {
-			for (Field field : SignTileEntity.class.getDeclaredFields()) {
-				if (field.toString().contains("signText") || field.toString().contains("messages")) {
-					signText = field;
-					break;
-				}
-			}
-			if (signText == null) {
-				return false;
-			}
-			signText.setAccessible(true);
-		}
-		return true;
 	}
 	
 	private static String getRandomAreaName() {

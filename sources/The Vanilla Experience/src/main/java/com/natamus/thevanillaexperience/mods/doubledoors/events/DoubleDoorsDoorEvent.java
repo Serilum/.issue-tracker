@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -23,22 +23,22 @@ import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.thevanillaexperience.mods.doubledoors.config.DoubleDoorsConfigHandler;
 import com.natamus.thevanillaexperience.mods.doubledoors.util.DoubleDoorsUtil;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.DoorBlock;
-import net.minecraft.block.FenceGateBlock;
-import net.minecraft.block.PressurePlateBlock;
-import net.minecraft.block.StoneButtonBlock;
-import net.minecraft.block.TrapDoorBlock;
-import net.minecraft.block.WoodButtonBlock;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.PressurePlateBlock;
+import net.minecraft.world.level.block.StoneButtonBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.WoodButtonBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
@@ -52,7 +52,7 @@ public class DoubleDoorsDoorEvent {
 	
 	@SubscribeEvent
 	public void onNeighbourNotice(BlockEvent.NeighborNotifyEvent e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
@@ -107,7 +107,7 @@ public class DoubleDoorsDoorEvent {
 		}
 		
 		if (doorpos != null) {
-			if (processDoor(world, doorpos, world.getBlockState(doorpos), stateprop, playsound)) {
+			if (processDoor(null, world, doorpos, world.getBlockState(doorpos), stateprop, playsound)) {
 				if (stateprop) {
 					prevpoweredpos.add(pos);
 				}
@@ -117,12 +117,12 @@ public class DoubleDoorsDoorEvent {
 	
 	@SubscribeEvent
 	public void onDoorClick(PlayerInteractEvent.RightClickBlock e) {
-		World world = e.getWorld();
-		if (world.isClientSide && e.getHand().equals(Hand.MAIN_HAND)) {
+		Level world = e.getWorld();
+		if (world.isClientSide && e.getHand().equals(InteractionHand.MAIN_HAND)) {
 			return;
 		}
 		
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		if (player.isShiftKeyDown()) {
 			return;
 		}
@@ -137,13 +137,13 @@ public class DoubleDoorsDoorEvent {
 			return;
 		}
 		
-		if (processDoor(world, cpos, clickstate, null, true)) {
+		if (processDoor(player, world, cpos, clickstate, null, true)) {
 			e.setUseBlock(Result.DENY);
 			e.setCanceled(true);		
 		}
 	}
 	
-	private boolean processDoor(World world, BlockPos pos, BlockState state, Boolean isopen, Boolean playsound) {
+	private boolean processDoor(Player player, Level world, BlockPos pos, BlockState state, Boolean isopen, Boolean playsound) {
 		Block block = state.getBlock();
 		if (block instanceof DoorBlock) {
 			if (state.getValue(DoorBlock.HALF).equals(DoubleBlockHalf.UPPER)) {
@@ -182,7 +182,7 @@ public class DoubleDoorsDoorEvent {
 						}
 						
 						if (playsound) {
-							door.setOpen(world, state, pos, isopen); // toggleDoor
+							door.setOpen(player, world, state, pos, isopen); // toggleDoor
 						}
 						else {
 							world.setBlock(pos, state.setValue(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);

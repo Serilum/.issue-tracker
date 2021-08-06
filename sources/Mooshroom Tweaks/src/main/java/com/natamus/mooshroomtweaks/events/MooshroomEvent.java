@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Mooshroom Tweaks.
- * Minecraft version: 1.17.1, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Mooshroom Tweaks ever released, along with some other perks.
@@ -14,102 +14,42 @@
 
 package com.natamus.mooshroomtweaks.events;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
+import java.util.Set;
 
 import com.natamus.collective.functions.EntityFunctions;
+import com.natamus.collective.util.Reference;
 import com.natamus.mooshroomtweaks.config.ConfigHandler;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.MushroomCow;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SpawnEggItem;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class MooshroomEvent {
-	public static Boolean checkNext = false;
-	
-	@SubscribeEvent
-	public void onClick(RightClickBlock e) {
-		if (!ConfigHandler.GENERAL.onEggSpawn.get()) {
-			return;
-		}
-		
-		ItemStack mainhand = e.getPlayer().getItemInHand(InteractionHand.MAIN_HAND);
-		if (mainhand.getItem() instanceof SpawnEggItem == false) {
-			return;
-		}
-		checkNext = true;
-	}
-	
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e) {
-		if (!ConfigHandler.GENERAL.onEggSpawn.get()) {
-			return;
-		}		
-		
-		Entity entity = e.getEntity();
-		Level world = entity.getCommandSenderWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide()) {
 			return;
 		}
+		
+		Entity entity = e.getEntity();
 		if (entity instanceof MushroomCow == false) {
 			return;
 		}
-		if (!checkNext) {
+		
+		Set<String> tags = entity.getTags();
+		if (tags.contains(Reference.MOD_ID + ".checked")) {
 			return;
 		}
-		checkNext = false;
+		entity.addTag(Reference.MOD_ID + ".checked");
 		
 		double num = Math.random();
-		if (num >= ConfigHandler.GENERAL.becomeBrownChance.get()) {
-			return;
+		if (num < ConfigHandler.GENERAL.becomeBrownChance.get()) {
+			EntityFunctions.chargeEntity(entity);
 		}	
-		
-		MushroomCow mooshroom = (MushroomCow)entity;
-		processMooshroom(mooshroom);
-	}
-	
-	@SubscribeEvent
-	public void mooshroomSpawn(LivingSpawnEvent.CheckSpawn e) {
-		if (!ConfigHandler.GENERAL.onWorldSpawn.get()) {
-			return;
-		}
-		
-		Entity entity = e.getEntity();
-		Level world = entity.getCommandSenderWorld();
-		if (world.isClientSide()) {
-			return;
-		}
-		if (entity instanceof MushroomCow == false) {
-			return;
-		}
-		double num = Math.random();
-		if (num >= ConfigHandler.GENERAL.becomeBrownChance.get()) {
-			return;
-		}
-		
-		MushroomCow mooshroom = (MushroomCow)entity;
-		processMooshroom(mooshroom);
-	}
-	
-	public void processMooshroom(MushroomCow mooshroom) {
-		Timer timer = new Timer(50, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				EntityFunctions.chargeEntity(mooshroom);
-			}
-		});
-		timer.setRepeats(false);
-		timer.start();
 	}
 }

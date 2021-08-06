@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -20,13 +20,13 @@ import java.util.Map;
 import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.thevanillaexperience.mods.snowballsfreezemobs.config.SnowballsFreezeMobsConfigHandler;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.SnowballEntity;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Snowball;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,33 +34,33 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class SnowballsFreezeMobsSnowEvent {
-	private static Map<LivingEntity, Vector3d> hitentities = new HashMap<LivingEntity, Vector3d>();
+	private static Map<LivingEntity, Vec3> hitentities = new HashMap<LivingEntity, Vec3>();
 	
 	@SubscribeEvent
 	public void onEntityHurt(LivingHurtEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		if (e.getSource().getDirectEntity() instanceof SnowballEntity == false) {
+		if (e.getSource().getDirectEntity() instanceof Snowball == false) {
 			return;
 		}
 		
-		if (entity instanceof PlayerEntity) {
+		if (entity instanceof Player) {
 			return;
 		}
 		
 		e.setCanceled(true);
-		EntityFunctions.addPotionEffect(entity, Effects.BLINDNESS, SnowballsFreezeMobsConfigHandler.GENERAL.freezeTimeMs.get());
+		EntityFunctions.addPotionEffect(entity, MobEffects.BLINDNESS, SnowballsFreezeMobsConfigHandler.GENERAL.freezeTimeMs.get());
 		hitentities.put((LivingEntity)entity, entity.position());
 	}
 	
 	@SubscribeEvent
 	public void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -70,9 +70,9 @@ public class SnowballsFreezeMobsSnowEvent {
 		}
 		LivingEntity le = (LivingEntity)entity;
 		
-		if (le.getEffect(Effects.BLINDNESS) != null) {
+		if (le.getEffect(MobEffects.BLINDNESS) != null) {
 			if (hitentities.containsKey(le)) {
-				Vector3d lastvec = hitentities.get(le);
+				Vec3 lastvec = hitentities.get(le);
 				le.teleportTo(lastvec.x, le.getY(), lastvec.z);
 			}
 		}

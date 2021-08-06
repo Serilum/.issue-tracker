@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -19,13 +19,13 @@ import com.natamus.thevanillaexperience.mods.betterbeaconplacement.util.BetterBe
 import com.natamus.collective.functions.BlockFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -35,7 +35,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class BetterBeaconPlacementBeaconEvent {
 	@SubscribeEvent
 	public void onBeaconClick(PlayerInteractEvent.RightClickBlock e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -51,7 +51,7 @@ public class BetterBeaconPlacementBeaconEvent {
 		}
 		
 		boolean set = false;
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		while (hand.getCount() > 0) {
 			BlockPos nextpos = BetterBeaconPlacementUtil.getNextLocation(world, cpos);
 			if (nextpos == null) {
@@ -86,7 +86,7 @@ public class BetterBeaconPlacementBeaconEvent {
 	
 	@SubscribeEvent
 	public void onBlockBreak(BlockEvent.BreakEvent e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
@@ -100,7 +100,7 @@ public class BetterBeaconPlacementBeaconEvent {
 			return;
 		}
 		
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		BetterBeaconPlacementUtil.processAllBaseBlocks(world, bpos, player.isCreative());
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -16,8 +16,8 @@ package com.natamus.thevanillaexperience.mods.hidehands.events;
 
 import com.natamus.thevanillaexperience.mods.hidehands.config.HideHandsConfigHandler;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -27,17 +27,17 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class HideHandsHandEvent {
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onHandRender(RenderHandEvent e) {
-		Hand hand = e.getHand();
+		InteractionHand hand = e.getHand();
 		ItemStack itemstack = e.getItemStack();
 		
-		if (hand.equals(Hand.MAIN_HAND)) {
+		if (hand.equals(InteractionHand.MAIN_HAND)) {
 			if (!HideHandsConfigHandler.GENERAL.alwaysHideMainHand.get()) {
 				if(!isHoldingItem(HideHandsConfigHandler.GENERAL.hideMainHandWithItems.get(), itemstack)) {
 					return;
 				}
 			}
 		}
-		else if (hand.equals(Hand.OFF_HAND)) {
+		else if (hand.equals(InteractionHand.OFF_HAND)) {
 			if (!HideHandsConfigHandler.GENERAL.alwaysHideOffhand.get()) {
 				if(!isHoldingItem(HideHandsConfigHandler.GENERAL.hideOffhandWithItems.get(), itemstack)) {
 					return;

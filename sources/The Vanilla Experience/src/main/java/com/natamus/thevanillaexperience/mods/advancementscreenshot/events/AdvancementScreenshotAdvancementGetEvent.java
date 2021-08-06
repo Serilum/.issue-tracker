@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -17,7 +17,7 @@ package com.natamus.thevanillaexperience.mods.advancementscreenshot.events;
 import com.natamus.thevanillaexperience.mods.advancementscreenshot.config.AdvancementScreenshotConfigHandler;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.ScreenShotHelper;
+import net.minecraft.client.Screenshot;
 import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
@@ -47,7 +47,7 @@ public class AdvancementScreenshotAdvancementGetEvent {
 			}
 			
 			Minecraft mc = Minecraft.getInstance();
-			ScreenShotHelper.grab(mc.gameDirectory, mc.getWindow().getWidth(), mc.getWindow().getHeight(), mc.getMainRenderTarget(), (context) -> {
+			Screenshot.grab(mc.gameDirectory, mc.getMainRenderTarget(), (context) -> {
 				mc.execute(() -> {
 					if (AdvancementScreenshotConfigHandler.GENERAL.showScreenshotTakenMessage.get()) {
 						mc.gui.getChat().addMessage(context);

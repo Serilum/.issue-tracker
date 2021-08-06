@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -17,9 +17,9 @@ package com.natamus.thevanillaexperience.mods.villagespawnpoint.events;
 import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -28,16 +28,16 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class VillageSpawnPointVillageSpawnEvent {
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.CreateSpawnPosition e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
 		
-		if (world instanceof ServerWorld == false) {
+		if (world instanceof ServerLevel == false) {
 			return;
 		}
 		
-		ServerWorld serverworld = (ServerWorld)world;
+		ServerLevel serverworld = (ServerLevel)world;
 
 		if (!serverworld.getServer().getWorldData().worldGenSettings().generateFeatures()) { // features enabled?
 			return;

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -21,14 +21,14 @@ import java.util.Map;
 
 import com.natamus.thevanillaexperience.mods.smallernetherportals.util.SmallerNetherPortalsUtil;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.NetherPortalBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.NetherPortalBlock;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerChangedDimensionEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -41,7 +41,7 @@ public class SmallerNetherPortalsPortalEvent {
 	
 	@SubscribeEvent
 	public void onClick(PlayerInteractEvent.RightClickBlock e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -101,8 +101,8 @@ public class SmallerNetherPortalsPortalEvent {
 	
 	@SubscribeEvent
 	public void onDimensionChange(PlayerChangedDimensionEvent e) {
-		PlayerEntity player = e.getPlayer();
-		World world = player.level;
+		Player player = e.getPlayer();
+		Level world = player.level;
 		if (world.isClientSide) {
 			return;
 		}
@@ -129,8 +129,8 @@ public class SmallerNetherPortalsPortalEvent {
 	
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
-		PlayerEntity player = e.player;
-		World world = player.getCommandSenderWorld();
+		Player player = e.player;
+		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}

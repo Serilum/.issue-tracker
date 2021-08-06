@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -25,10 +25,10 @@ import java.util.List;
 
 import com.natamus.collective.functions.WorldFunctions;
 
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 
 public class DeathBackupUtil {
-	public static boolean writeGearStringToFile(ServerWorld serverworld, String playername, String filename, String gearstring) {
+	public static boolean writeGearStringToFile(ServerLevel serverworld, String playername, String filename, String gearstring) {
 		String deathbackuppath = WorldFunctions.getWorldPath(serverworld) + File.separator + "data" + File.separator + "deathbackup" + File.separator + playername;
 		File dir = new File(deathbackuppath);
 		dir.mkdirs();
@@ -43,7 +43,7 @@ public class DeathBackupUtil {
 		return true;
 	}
 	
-	public static String getGearStringFromFile(ServerWorld serverworld, String playername, String filename) {
+	public static String getGearStringFromFile(ServerLevel serverworld, String playername, String filename) {
 		String deathbackuppath = WorldFunctions.getWorldPath(serverworld) + File.separator + "data" + File.separator + "deathbackup" + File.separator + playername;
 		File dir = new File(deathbackuppath);
 		File file = new File(deathbackuppath + File.separator + filename + ".txt");
@@ -58,7 +58,7 @@ public class DeathBackupUtil {
 		return gearstring;
 	}
 	
-	public static List<String> getListOfBackups(ServerWorld serverworld, String playername) {
+	public static List<String> getListOfBackups(ServerLevel serverworld, String playername) {
 		List<String> backups = new ArrayList<String>();
 		
 		String deathbackuppath = WorldFunctions.getWorldPath(serverworld) + File.separator + "data" + File.separator + "deathbackup" + File.separator + playername;

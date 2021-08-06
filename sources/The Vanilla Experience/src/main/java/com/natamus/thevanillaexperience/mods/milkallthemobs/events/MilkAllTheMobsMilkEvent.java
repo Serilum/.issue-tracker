@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -16,13 +16,13 @@ package com.natamus.thevanillaexperience.mods.milkallthemobs.events;
 
 import com.natamus.collective.functions.EntityFunctions;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -31,7 +31,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MilkAllTheMobsMilkEvent {
 	@SubscribeEvent
 	public void onEntityInteract(PlayerInteractEvent.EntityInteract e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -40,7 +40,7 @@ public class MilkAllTheMobsMilkEvent {
 		if (itemstack.getItem().equals(Items.BUCKET)) {
 			Entity target = e.getTarget();
 			if (EntityFunctions.isMilkable(target)) {
-				PlayerEntity player = e.getPlayer();
+				Player player = e.getPlayer();
 				
 				player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
 				itemstack.shrink(1);
@@ -48,10 +48,10 @@ public class MilkAllTheMobsMilkEvent {
 				if (itemstack.isEmpty()) {
 					player.setItemInHand(e.getHand(), new ItemStack(Items.MILK_BUCKET));
 				}
-				else if (!player.inventory.add(new ItemStack(Items.MILK_BUCKET))) {
+				else if (!player.getInventory().add(new ItemStack(Items.MILK_BUCKET))) {
 					player.drop(new ItemStack(Items.MILK_BUCKET), false);
 				}
-				e.setCancellationResult(ActionResultType.SUCCESS);
+				e.setCancellationResult(InteractionResult.SUCCESS);
 			}
 		}
 	}

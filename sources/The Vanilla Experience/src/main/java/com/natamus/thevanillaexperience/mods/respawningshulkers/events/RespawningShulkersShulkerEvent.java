@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -22,10 +22,10 @@ import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.thevanillaexperience.mods.respawningshulkers.config.RespawningShulkersConfigHandler;
 import com.natamus.thevanillaexperience.mods.respawningshulkers.util.Reference;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.monster.ShulkerEntity;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.Shulker;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -34,16 +34,16 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
+import net.minecraftforge.fmlserverevents.FMLServerStoppingEvent;
 
 @EventBusSubscriber
 public class RespawningShulkersShulkerEvent {
 	private static HashMap<Entity, Integer> shulkersTicksLeft = new HashMap<Entity, Integer>();
-	private static HashMap<World, CopyOnWriteArrayList<Entity>> respawnShulkers = new HashMap<World, CopyOnWriteArrayList<Entity>>();
+	private static HashMap<Level, CopyOnWriteArrayList<Entity>> respawnShulkers = new HashMap<Level, CopyOnWriteArrayList<Entity>>();
 	
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
@@ -53,7 +53,7 @@ public class RespawningShulkersShulkerEvent {
 	
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
-		World world = e.world;
+		Level world = e.world;
 		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
@@ -77,11 +77,11 @@ public class RespawningShulkersShulkerEvent {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void onShulkerDeath(LivingDeathEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
-		if (entity instanceof ShulkerEntity == false) {
+		if (entity instanceof Shulker == false) {
 			return;
 		}
 		
@@ -96,7 +96,7 @@ public class RespawningShulkersShulkerEvent {
 			}
 		}
 		
-		ShulkerEntity newshulker = EntityType.SHULKER.create(world);
+		Shulker newshulker = EntityType.SHULKER.create(world);
 		newshulker.restoreFrom(entity);
 		newshulker.setHealth(30F);
 		
@@ -106,13 +106,13 @@ public class RespawningShulkersShulkerEvent {
 	
 	@SubscribeEvent
 	public void onMobCheckSpawn(LivingSpawnEvent.CheckSpawn e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof ShulkerEntity == false) {
+		if (entity instanceof Shulker == false) {
 			return;
 		}
 		
@@ -123,8 +123,8 @@ public class RespawningShulkersShulkerEvent {
 	
 	@SubscribeEvent
 	public void onServerShutdown(FMLServerStoppingEvent e) {
-		Set<World> worlds = respawnShulkers.keySet();
-		for (World world : worlds) {
+		Set<Level> worlds = respawnShulkers.keySet();
+		for (Level world : worlds) {
 			for (Entity shulker : respawnShulkers.get(world)) {
 				world.addFreshEntity(shulker);
 			}

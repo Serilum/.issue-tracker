@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -28,11 +28,11 @@ import com.natamus.collective.functions.FABFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -44,7 +44,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class AreasAreaEvent {
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
@@ -57,8 +57,8 @@ public class AreasAreaEvent {
 	
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
-		PlayerEntity player = e.player;
-		World world = player.getCommandSenderWorld();
+		Player player = e.player;
+		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
@@ -73,7 +73,7 @@ public class AreasAreaEvent {
 		List<String> enteredareas = new ArrayList<String>();
 		List<BlockPos> ignoresigns = AreasVariables.ignoresignsperworld.get(world);
 		
-		List<BlockPos> nearbysigns = FABFunctions.getAllTileEntityPositionsNearbyEntity(TileEntityType.SIGN, AreasConfigHandler.GENERAL.radiusAroundPlayerToCheckForSigns.get(), world, player);
+		List<BlockPos> nearbysigns = FABFunctions.getAllTileEntityPositionsNearbyEntity(BlockEntityType.SIGN, AreasConfigHandler.GENERAL.radiusAroundPlayerToCheckForSigns.get(), world, player);
 		for (BlockPos nspos : nearbysigns) {
 			if (ignoresigns.contains(nspos)) {
 				continue;
@@ -122,7 +122,7 @@ public class AreasAreaEvent {
 	
 	@SubscribeEvent
 	public void onSignBreak(BlockEvent.BreakEvent e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
@@ -132,8 +132,8 @@ public class AreasAreaEvent {
 			BlockPos signpos = e.getPos();
 			if (AreasVariables.areasperworld.get(world).containsKey(signpos)) {
 				AreaObject ao = AreasVariables.areasperworld.get(world).get(signpos);
-				List<PlayerEntity> playersinside = ao.containsplayers;
-				for (PlayerEntity player : playersinside) {
+				List<Player> playersinside = ao.containsplayers;
+				for (Player player : playersinside) {
 					AreasUtil.areaChangeMessage(player, StringFunctions.capitalizeFirst(ao.areaname) + " no longer exists.", ao.customrgb);
 				}
 				

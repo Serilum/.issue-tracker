@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -19,18 +19,18 @@ import java.util.Iterator;
 import com.natamus.collective.data.GlobalVariables;
 import com.natamus.thevanillaexperience.mods.despawningeggshatch.config.DespawningEggsHatchConfigHandler;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.HayBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.passive.ChickenEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HayBlock;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -40,7 +40,7 @@ public class DespawningEggsHatchEggEvent {
 	@SubscribeEvent
 	public void onItemExpire(ItemExpireEvent e) {
 		ItemEntity entityitem = e.getEntityItem();
-		World world = entityitem.getCommandSenderWorld();
+		Level world = entityitem.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
@@ -63,14 +63,14 @@ public class DespawningEggsHatchEggEvent {
 			int itemamount = itemstack.getCount();
 			
 			int moblimit = DespawningEggsHatchConfigHandler.GENERAL.onlyHatchIfLessChickensAroundThan.get();
-			Vector3d iposvec = entityitem.position();
+			Vec3 iposvec = entityitem.position();
 			
 			int r = DespawningEggsHatchConfigHandler.GENERAL.radiusEntityLimiterCheck.get();
 			int chickencount = 0;
-			Iterator<Entity> it = world.getEntities(entityitem, new AxisAlignedBB(iposvec.x()-r, iposvec.y()-r, iposvec.z()-r, iposvec.x()+r, iposvec.y()+r, iposvec.z()+r)).iterator();
+			Iterator<Entity> it = world.getEntities(entityitem, new AABB(iposvec.x()-r, iposvec.y()-r, iposvec.z()-r, iposvec.x()+r, iposvec.y()+r, iposvec.z()+r)).iterator();
 			while (it.hasNext()) {
 				Entity ne = it.next();
-				if (ne instanceof ChickenEntity) {
+				if (ne instanceof Chicken) {
 					chickencount++;
 				}
 			}
@@ -80,7 +80,7 @@ public class DespawningEggsHatchEggEvent {
 					return;
 				}
 				
-				ChickenEntity chicken = new ChickenEntity(EntityType.CHICKEN, world);
+				Chicken chicken = new Chicken(EntityType.CHICKEN, world);
 				chicken.setPos(iposvec.x, iposvec.y+1, iposvec.z);
 				if (DespawningEggsHatchConfigHandler.GENERAL.newHatchlingIsBaby.get()) {
 					chicken.setAge(-24000);

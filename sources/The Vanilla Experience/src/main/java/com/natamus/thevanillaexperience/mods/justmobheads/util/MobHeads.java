@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -21,25 +21,26 @@ import com.mojang.datafixers.util.Pair;
 import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.collective.functions.HeadFunctions;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.merchant.villager.VillagerData;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.merchant.villager.VillagerProfession;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.ZombieVillagerEntity;
-import net.minecraft.entity.passive.CatEntity;
-import net.minecraft.entity.passive.MooshroomEntity;
-import net.minecraft.entity.passive.ParrotEntity;
-import net.minecraft.entity.passive.RabbitEntity;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.entity.passive.horse.HorseEntity;
-import net.minecraft.entity.passive.horse.LlamaEntity;
-import net.minecraft.entity.passive.horse.TraderLlamaEntity;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.Cat;
+import net.minecraft.world.entity.animal.MushroomCow;
+import net.minecraft.world.entity.animal.Parrot;
+import net.minecraft.world.entity.animal.Rabbit;
+import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.animal.axolotl.Axolotl;
+import net.minecraft.world.entity.animal.horse.Horse;
+import net.minecraft.world.entity.animal.horse.Llama;
+import net.minecraft.world.entity.animal.horse.TraderLlama;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.ZombieVillager;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.VillagerData;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 public class MobHeads {
 	static List<String> horsetypes = Arrays.asList("white", "creamy", "chestnut", "brown", "black", "gray", "dark_brown");
@@ -47,6 +48,7 @@ public class MobHeads {
 	static List<String> parrottypes = Arrays.asList("red", "blue", "green", "cyan", "gray");
 	static List<String> rabbittypes = Arrays.asList("brown", "white", "black", "black_and_white", "gold", "salt_and_pepper");
 	static List<String> cattypes = Arrays.asList("tabby", "tuxedo", "red", "siamese", "british_shorthair", "calico", "persian", "ragdoll", "white", "jellie", "black");
+	static List<String> axolotltypes = Arrays.asList("lucy", "wild", "gold", "cyan", "blue");
 	
 	public static ItemStack getMobHead(String mobname, Integer amount) {
 		Pair<String, String> mobdata = HeadData.headdata.get(mobname);
@@ -76,7 +78,7 @@ public class MobHeads {
 			mobhead = new ItemStack(Items.SKELETON_SKULL, 1);
 		}
 		
-		mobhead.setHoverName(new StringTextComponent(headname));
+		mobhead.setHoverName(new TextComponent(headname));
 		return mobhead;
 	}
 	
@@ -85,23 +87,23 @@ public class MobHeads {
 		String mobname = entitystring.split("\\[")[0].replace("Entity", "");
 		mobname = String.join("_", mobname.split("(?<=.)(?=\\p{Lu})")).toLowerCase();
 		
-		if (entity instanceof CreeperEntity) {
-			CreeperEntity creeper = (CreeperEntity)entity;
+		if (entity instanceof Creeper) {
+			Creeper creeper = (Creeper)entity;
 			if (creeper.isPowered()) {
 				mobname = "charged_creeper";
 			}
 		}
-		else if (entity instanceof CatEntity) {
-			CatEntity cat = (CatEntity)entity;
+		else if (entity instanceof Cat) {
+			Cat cat = (Cat)entity;
 			
 			Integer type = cat.getCatType();
 			if (type <= cattypes.size()) {
 				mobname = cattypes.get(type) + "_cat";
 			}
 		}
-		else if (entity instanceof HorseEntity) {
-			HorseEntity horse = (HorseEntity)entity;
-			CompoundNBT nbt = horse.serializeNBT();
+		else if (entity instanceof Horse) {
+			Horse horse = (Horse)entity;
+			CompoundTag nbt = horse.serializeNBT();
 			Integer type = nbt.getInt("Variant"); // horse.getHorseVariant();
 			
 			if (type >= 1024) {
@@ -118,23 +120,23 @@ public class MobHeads {
 			}
 			mobname = horsetypes.get(type) + "_horse";
 		}
-		else if (entity instanceof LlamaEntity) {
-			LlamaEntity llama = (LlamaEntity)entity;
+		else if (entity instanceof Llama) {
+			Llama llama = (Llama)entity;
 			Integer type = llama.getVariant();
 			mobname = llamatypes.get(type) + "_" + mobname;
 		}
-		else if (entity instanceof TraderLlamaEntity) {
-			TraderLlamaEntity traderllama = (TraderLlamaEntity)entity;
+		else if (entity instanceof TraderLlama) {
+			TraderLlama traderllama = (TraderLlama)entity;
 			Integer type = traderllama.getVariant();
 			mobname = llamatypes.get(type) + "_trader_" + mobname;		
 		}
-		else if (entity instanceof ParrotEntity) {
-			ParrotEntity parrot = (ParrotEntity)entity;
+		else if (entity instanceof Parrot) {
+			Parrot parrot = (Parrot)entity;
 			Integer type = parrot.getVariant();
 			mobname = parrottypes.get(type) + "_parrot";
 		}
-		else if (entity instanceof RabbitEntity) {
-			RabbitEntity rabbit = (RabbitEntity)entity;
+		else if (entity instanceof Rabbit) {
+			Rabbit rabbit = (Rabbit)entity;
 			Integer type = rabbit.getRabbitType();
 			if (type < rabbittypes.size()) {
 				mobname = rabbittypes.get(type) + "_rabbit";
@@ -143,8 +145,8 @@ public class MobHeads {
 				mobname = "killer_rabbit";
 			}
 		}
-		else if (entity instanceof SheepEntity) {
-			SheepEntity sheep = (SheepEntity)entity;
+		else if (entity instanceof Sheep) {
+			Sheep sheep = (Sheep)entity;
 			boolean checktype = true;
 			if (sheep.hasCustomName()) {
 				String name = sheep.getName().getString();
@@ -159,14 +161,19 @@ public class MobHeads {
 				mobname = type.toString().toLowerCase() + "_sheep";
 			}
 		}
-		else if (entity instanceof MooshroomEntity) {
-			MooshroomEntity mooshroom = (MooshroomEntity)entity;
-			if (mooshroom.getMushroomType() == MooshroomEntity.Type.BROWN) {
+		else if (entity instanceof MushroomCow) {
+			MushroomCow mooshroom = (MushroomCow)entity;
+			if (mooshroom.getMushroomType() == MushroomCow.MushroomType.BROWN) {
 				mobname = "brown_mooshroom";
 			}	
 		}
-		else if (entity instanceof VillagerEntity) {
-			VillagerEntity villager = (VillagerEntity)entity;
+		else if (entity instanceof Axolotl) {
+			Axolotl axolotl = (Axolotl)entity;
+			Integer type = axolotl.getVariant().getId();
+			mobname = axolotltypes.get(type) + "_axolotl";
+		}
+		else if (entity instanceof Villager) {
+			Villager villager = (Villager)entity;
 			
 			VillagerData d = villager.getVillagerData();
 			VillagerProfession prof = d.getProfession();
@@ -174,8 +181,8 @@ public class MobHeads {
 				mobname = prof.toString();
 			}
 		}
-		else if (entity instanceof ZombieVillagerEntity) {
-			ZombieVillagerEntity zombievillager = (ZombieVillagerEntity)entity;
+		else if (entity instanceof ZombieVillager) {
+			ZombieVillager zombievillager = (ZombieVillager)entity;
 
 			VillagerData d = zombievillager.getVillagerData();
 			VillagerProfession prof = d.getProfession();

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -19,7 +19,7 @@ import java.util.List;
 
 import com.natamus.thevanillaexperience.mods.randomshulkercolours.config.RandomShulkerColoursConfigHandler;
 
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.item.DyeColor;
 
 public class RandomShulkerColoursUtil {
 	public static List<DyeColor> possibleColours = null;

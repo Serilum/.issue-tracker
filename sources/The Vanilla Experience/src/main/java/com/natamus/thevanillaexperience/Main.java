@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -210,26 +210,25 @@ import com.natamus.thevanillaexperience.util.Reference;
 import com.natamus.thevanillaexperience.util.TveUtil;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.List;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.SoundType;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Items;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -238,11 +237,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fmlclient.registry.ClientRegistry;
+import net.minecraftforge.fmllegacy.network.NetworkRegistry;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
-
-import net.minecraft.block.AbstractBlock;
 
 @Mod(Reference.MOD_ID)
 public class Main {
@@ -350,11 +348,11 @@ public class Main {
 	
 	private void initClient(final FMLClientSetupEvent e) {
 			if ((ConfigHandler.GENERAL.enableGUIFollowers.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("GUI Followers") && FMLEnvironment.dist.equals(Dist.CLIENT)) {
-			GUIFollowersVariables.clearlist_hotkey = new KeyBinding("Clear Follower List", 92, "key.categories.misc");
+			GUIFollowersVariables.clearlist_hotkey = new KeyMapping("Clear Follower List", 92, "key.categories.misc");
 			ClientRegistry.registerKeyBinding(GUIFollowersVariables.clearlist_hotkey);			
 		}
 			if ((ConfigHandler.GENERAL.enableOmegaMute.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Omega Mute") && FMLEnvironment.dist.equals(Dist.CLIENT)) {
-			OmegaMuteVariables.hotkey = new KeyBinding("Reload Omega Mute config", 46, "key.categories.misc");
+			OmegaMuteVariables.hotkey = new KeyMapping("Reload Omega Mute config", 46, "key.categories.misc");
 			ClientRegistry.registerKeyBinding(OmegaMuteVariables.hotkey);			
 		}
 	}
@@ -704,7 +702,7 @@ public class Main {
 	public void registerBlocks(RegistryEvent.Register<Block> e) {
 			if ((ConfigHandler.GENERAL.enableBiggerSpongeAbsorptionRadius.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Bigger Sponge Absorption Radius")) {
 			e.getRegistry().registerAll(
-				BiggerSpongeAbsorptionRadiusVariables.spongeblock = new ExtendedSpongeBlock(AbstractBlock.Properties.of(Material.SPONGE).strength(0.6F).sound(SoundType.GRASS)).setRegistryName(Blocks.SPONGE.getRegistryName())
+				BiggerSpongeAbsorptionRadiusVariables.spongeblock = new ExtendedSpongeBlock(BlockBehaviour.Properties.of(Material.SPONGE).strength(0.6F).sound(SoundType.GRASS)).setRegistryName(Blocks.SPONGE.getRegistryName())
 			);
 		}
 	}
@@ -713,7 +711,7 @@ public class Main {
 	public void registerItems(RegistryEvent.Register<Item> e) {
 			if ((ConfigHandler.GENERAL.enableBiggerSpongeAbsorptionRadius.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Bigger Sponge Absorption Radius")) {
 			e.getRegistry().registerAll(
-				new BlockItem(BiggerSpongeAbsorptionRadiusVariables.spongeblock, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)).setRegistryName(Items.SPONGE.getRegistryName())
+				new BlockItem(BiggerSpongeAbsorptionRadiusVariables.spongeblock, new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)).setRegistryName(Items.SPONGE.getRegistryName())
 			);
 		}
 			if ((ConfigHandler.GENERAL.enableExtendedCreativeInventory.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Extended Creative Inventory")) {
@@ -729,24 +727,13 @@ public class Main {
 			}
 			ExtendedCreativeInventoryVariables.EXTENDED = new ExtendedItemGroup(index, "extended");
 		}
-			if (ExtendedCreativeInventoryVariables.item_group == null) {
-			for (Field field : Item.class.getDeclaredFields()) {
-				if (field.toString().contains("group") || field.toString().contains("category")) {
-						ExtendedCreativeInventoryVariables.item_group = field;
-						break;
-					}
-			}
-			if (ExtendedCreativeInventoryVariables.item_group == null) {
-			}
-			ExtendedCreativeInventoryVariables.item_group.setAccessible(true);
-		}
 			IForgeRegistry<Item> registry = e.getRegistry();
 			for (ResourceLocation rl : ForgeRegistries.ITEMS.getKeys()) {
 			Item item = ForgeRegistries.ITEMS.getValue(rl);
 			if (item.equals(Items.AIR)) {
 				continue;
 			}
-			ItemGroup itemgroup = item.getItemCategory();
+			CreativeModeTab itemgroup = item.getItemCategory();
 			if (itemgroup == null) {
 				try {
 						ExtendedCreativeInventoryVariables.item_group.set(item, ExtendedCreativeInventoryVariables.EXTENDED);
@@ -757,7 +744,7 @@ public class Main {
 		}
 			if ((ConfigHandler.GENERAL.enableTranscendingTrident.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Transcending Trident")) {
 			e.getRegistry().registerAll(
-				(new ExtendedTridentItem((new Item.Properties()).durability(250).tab(ItemGroup.TAB_COMBAT)).setRegistryName(Items.TRIDENT.getRegistryName()))
+				(new ExtendedTridentItem((new Item.Properties()).durability(250).tab(CreativeModeTab.TAB_COMBAT)).setRegistryName(Items.TRIDENT.getRegistryName()))
 			);
 		}
 	}

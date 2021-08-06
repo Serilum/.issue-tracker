@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -14,122 +14,42 @@
 
 package com.natamus.thevanillaexperience.mods.naturallychargedcreepers.events;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.UUID;
-
-import javax.swing.Timer;
+import java.util.Set;
 
 import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.thevanillaexperience.mods.naturallychargedcreepers.config.NaturallyChargedCreepersConfigHandler;
+import com.natamus.thevanillaexperience.mods.naturallychargedcreepers.util.Reference;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class NaturallyChargedCreepersEntityEvent {
-	public static Boolean checkNext = false;
-	
-	@SubscribeEvent
-	public void onClick(RightClickBlock e) {
-		World world = e.getWorld();
-		if (world.isClientSide) {
-			return;
-		}
-		
-		if (!NaturallyChargedCreepersConfigHandler.GENERAL.onEggSpawn.get()) {
-			return;
-		}
-		
-		PlayerEntity player = e.getPlayer();
-		ItemStack mainhand = player.getItemInHand(Hand.MAIN_HAND);
-		if (mainhand.getItem() instanceof SpawnEggItem == false) {
-			return;
-		}
-		checkNext = true;
-	}
-	
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent e) {
+		Level world = e.getWorld();
+		if (world.isClientSide()) {
+			return;
+		}
+		
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
-		if (world.isClientSide) {
+		if (entity instanceof Creeper == false) {
 			return;
 		}
 		
-		if (!NaturallyChargedCreepersConfigHandler.GENERAL.onEggSpawn.get()) {
-			return;
-		}		
-		
-		if (entity instanceof CreeperEntity == false) {
+		Set<String> tags = entity.getTags();
+		if (tags.contains(Reference.MOD_ID + ".checked")) {
 			return;
 		}
-		if (!checkNext) {
-			return;
-		}
-		checkNext = false;
+		entity.addTag(Reference.MOD_ID + ".checked");
 		
 		double num = Math.random();
-		if (num >= NaturallyChargedCreepersConfigHandler.GENERAL.isChargedChance.get()) {
-			return;
+		if (num < NaturallyChargedCreepersConfigHandler.GENERAL.isChargedChance.get()) {
+			EntityFunctions.chargeEntity(entity);
 		}	
-		
-		CreeperEntity creeper = (CreeperEntity)entity;
-		processCreeper(creeper);
-	}
-	
-	@SubscribeEvent
-	public void CreeperSpawn(LivingSpawnEvent.CheckSpawn e) {
-		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
-		if (world.isClientSide) {
-			return;
-		}
-		
-		if (!NaturallyChargedCreepersConfigHandler.GENERAL.onWorldSpawn.get()) {
-			return;
-		}
-		
-		if (entity instanceof CreeperEntity == false) {
-			return;
-		}
-		double num = Math.random();
-		if (num >= NaturallyChargedCreepersConfigHandler.GENERAL.isChargedChance.get()) {
-			return;
-		}
-		
-		CreeperEntity creeper = (CreeperEntity)entity;
-		processCreeper(creeper);
-	}
-	
-	private static ArrayList<UUID> processeduuids = new ArrayList<UUID>();
-	public void processCreeper(CreeperEntity creeper) {
-		UUID uuid = creeper.getUUID();
-		if (!processeduuids.contains(uuid)) {
-			processeduuids.add(uuid);
-		}
-		else {
-			return;
-		}
-		
-		Timer timer = new Timer(50, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				EntityFunctions.chargeEntity(creeper);
-			}
-		});
-		timer.setRepeats(false);
-		timer.start();
 	}
 }

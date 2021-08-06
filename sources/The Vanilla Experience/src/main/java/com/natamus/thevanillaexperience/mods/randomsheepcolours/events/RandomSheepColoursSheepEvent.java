@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -20,12 +20,12 @@ import com.natamus.collective.data.GlobalVariables;
 import com.natamus.collective.util.Reference;
 import com.natamus.thevanillaexperience.mods.randomsheepcolours.util.RandomSheepColoursUtil;
 
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.item.DyeColor;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -34,13 +34,13 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class RandomSheepColoursSheepEvent {
 	@SubscribeEvent
 	public void onSheepSpawn(EntityJoinWorldEvent e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof SheepEntity == false) {
+		if (entity instanceof Sheep == false) {
 			return;
 		}
 		
@@ -57,9 +57,9 @@ public class RandomSheepColoursSheepEvent {
 			return;
 		}
 		
-		SheepEntity sheep = (SheepEntity)entity;
+		Sheep sheep = (Sheep)entity;
 		
-		if (!((AgeableEntity)entity).isBaby()) {
+		if (!((AgeableMob)entity).isBaby()) {
 			int randomindex = GlobalVariables.random.nextInt(RandomSheepColoursUtil.possibleColours.size());
 			final DyeColor randomcolour = RandomSheepColoursUtil.possibleColours.get(randomindex);
 			
@@ -68,7 +68,7 @@ public class RandomSheepColoursSheepEvent {
 			}
 			
 			if (randomcolour == null) {
-				sheep.setCustomName(new StringTextComponent("jeb_"));
+				sheep.setCustomName(new TextComponent("jeb_"));
 				sheep.setCustomNameVisible(false);
 			}
 			else {

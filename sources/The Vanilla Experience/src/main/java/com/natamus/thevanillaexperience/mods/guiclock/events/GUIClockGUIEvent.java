@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -16,26 +16,24 @@ package com.natamus.thevanillaexperience.mods.guiclock.events;
 
 import java.awt.Color;
 
-import org.lwjgl.opengl.GL11;
-
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.thevanillaexperience.mods.guiclock.config.GUIClockConfigHandler;
 
-import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.IngameGui;
-import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class GUIClockGUIEvent extends IngameGui {
+public class GUIClockGUIEvent extends Gui {
 	private static Minecraft mc;
 	private static String daystring = "";
 
@@ -56,7 +54,7 @@ public class GUIClockGUIEvent extends IngameGui {
 		boolean found = false;
 		
 		if (gametimeb || realtimeb) {
-			PlayerInventory inv = mc.player.inventory;
+			Inventory inv = mc.player.getInventory();
 			for (int n = 0; n <= 35; n++) {
 				if (inv.getItem(n).getItem().equals(Items.CLOCK)) {
 					found = true;
@@ -65,8 +63,11 @@ public class GUIClockGUIEvent extends IngameGui {
 			}
 		}
 		
-		FontRenderer fontRender = mc.font;
-		MainWindow scaled = mc.getWindow();
+		PoseStack posestack = e.getMatrixStack();
+		posestack.pushPose();
+		
+		Font fontRender = mc.font;
+		Window scaled = mc.getWindow();
 		int width = scaled.getGuiScaledWidth();
 		
 		int heightoffset = GUIClockConfigHandler.GENERAL.clockHeightOffset.get();
@@ -153,16 +154,13 @@ public class GUIClockGUIEvent extends IngameGui {
 				daycoord = width - daystringWidth - 5;
 			}
 			
-			MatrixStack ms = new MatrixStack();
-			
-			fontRender.draw(ms, time, xcoord, heightoffset, colour.getRGB());
+			fontRender.draw(posestack, time, xcoord, heightoffset, colour.getRGB());
 			if (daystring != "") {
-				fontRender.draw(ms, daystring, daycoord, heightoffset+10, colour.getRGB());
+				fontRender.draw(posestack, daystring, daycoord, heightoffset+10, colour.getRGB());
 			}
 		}
 		
-		GL11.glPushMatrix();
-		GL11.glPopMatrix();
+		posestack.popPose();
 	}
 	
 	private static String getGameTime() {

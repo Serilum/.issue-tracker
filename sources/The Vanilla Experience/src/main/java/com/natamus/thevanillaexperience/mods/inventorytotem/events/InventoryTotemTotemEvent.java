@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -15,16 +15,16 @@
 package com.natamus.thevanillaexperience.mods.inventorytotem.events;
 
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.stats.Stats;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -34,21 +34,21 @@ public class InventoryTotemTotemEvent {
 	@SubscribeEvent
 	public void onPlayerDeath(LivingDeathEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		if (entity instanceof PlayerEntity == false) {
+		if (entity instanceof Player == false) {
 			return;
 		}
 		
-		PlayerEntity player = (PlayerEntity)entity;
+		Player player = (Player)entity;
 		if (player.getMainHandItem().getItem().equals(Items.TOTEM_OF_UNDYING) || player.getOffhandItem().getItem().equals(Items.TOTEM_OF_UNDYING)) {
 			return;
 		}
 		
-		PlayerInventory inv = player.inventory;
+		Inventory inv = player.getInventory();
 		if (inv == null) {
 			return;
 		}
@@ -67,16 +67,16 @@ public class InventoryTotemTotemEvent {
 		}
 		
 		e.setCanceled(true);
-		if (player instanceof ServerPlayerEntity) {
-			ServerPlayerEntity entityplayermp = (ServerPlayerEntity)player;
+		if (player instanceof ServerPlayer) {
+			ServerPlayer entityplayermp = (ServerPlayer)player;
             entityplayermp.awardStat(Stats.ITEM_USED.get(Items.TOTEM_OF_UNDYING));
             CriteriaTriggers.USED_TOTEM.trigger(entityplayermp, totemstack);
         }
 
         player.setHealth(1.0F);
         player.removeAllEffects();
-        player.addEffect(new EffectInstance(Effects.REGENERATION, 900, 1));
-        player.addEffect(new EffectInstance(Effects.ABSORPTION, 100, 1));
+        player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));
+        player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
         world.broadcastEntityEvent(player, (byte)35);
         totemstack.shrink(1);
 	}

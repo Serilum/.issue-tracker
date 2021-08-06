@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -18,14 +18,14 @@ import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.thevanillaexperience.mods.villagerdeathmessages.config.VillagerDeathMessagesConfigHandler;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.merchant.villager.VillagerData;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.merchant.villager.VillagerProfession;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.npc.VillagerData;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -35,13 +35,13 @@ public class VillagerDeathMessagesVillagerEvent {
 	@SubscribeEvent
 	public void villagerDeath(LivingDeathEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		boolean goname = false;
-		if (entity instanceof VillagerEntity == false) {
+		if (entity instanceof Villager == false) {
 			if (VillagerDeathMessagesConfigHandler.GENERAL.mentionModdedVillagers.get()) {
 				if (EntityFunctions.isModdedVillager(entity)) {
 					goname = true;
@@ -64,7 +64,7 @@ public class VillagerDeathMessagesVillagerEvent {
 			}
 		}
 		else {
-			VillagerEntity villager = (VillagerEntity)entity;
+			Villager villager = (Villager)entity;
 			VillagerData d = villager.getVillagerData();
 			VillagerProfession prof = d.getProfession();
 			
@@ -106,12 +106,12 @@ public class VillagerDeathMessagesVillagerEvent {
 		// Position	
 		String locstring = "";
 		if (VillagerDeathMessagesConfigHandler.GENERAL.showLocation.get()) {
-			Vector3d loc = entity.position();
+			Vec3 loc = entity.position();
 			String location = "x=" + (int)loc.x + ", y=" + (int)loc.y + ", z=" + (int)loc.z;
 			
 			locstring = " at " + location;
 		}
 		
-		StringFunctions.broadcastMessage(world, prefix + " has died" + locstring + " by " + imsourcename + ".", TextFormatting.DARK_GREEN);
+		StringFunctions.broadcastMessage(world, prefix + " has died" + locstring + " by " + imsourcename + ".", ChatFormatting.DARK_GREEN);
 	}
 }

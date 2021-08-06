@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -19,13 +19,13 @@ import java.util.Collection;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.thevanillaexperience.mods.conduitspreventdrowned.config.ConduitsPreventDrownedConfigHandler;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.DrownedEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.monster.Drowned;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -35,27 +35,27 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class ConduitsPreventDrownedDrownedEvent {
 	@SubscribeEvent
 	public void onDrownedSpawn(LivingSpawnEvent.CheckSpawn e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof DrownedEntity == false) {
+		if (entity instanceof Drowned == false) {
 			return;
 		}
 		
 		BlockPos epos = entity.blockPosition();
 		int r = ConduitsPreventDrownedConfigHandler.GENERAL.preventDrownedInRange.get();
 		
-		for (PlayerEntity player : world.players()) {
+		for (Player player : world.players()) {
 			BlockPos playerpos = new BlockPos(player.getX(), 1, player.getZ());
 			if (playerpos.closerThan(new BlockPos(epos.getX(), 1, epos.getZ()), r)) {
-				Collection<EffectInstance> activeeffects = player.getActiveEffects();
+				Collection<MobEffectInstance> activeeffects = player.getActiveEffects();
 				if (activeeffects.size() > 0) {
 					boolean foundconduit = false;
-					for (EffectInstance pe : activeeffects) {
-						if (pe.getEffect().equals(Effects.CONDUIT_POWER)) {
+					for (MobEffectInstance pe : activeeffects) {
+						if (pe.getEffect().equals(MobEffects.CONDUIT_POWER)) {
 							foundconduit = true;
 							break;
 						}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -22,10 +22,11 @@ import java.util.Map;
 
 import com.natamus.thevanillaexperience.mods.weakerspiderwebs.config.WeakerSpiderwebsConfigHandler;
 
-import net.minecraft.block.WebBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.WebBlock;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -37,8 +38,8 @@ public class WeakerSpiderwebsWebEvent {
 	
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
-		PlayerEntity player = e.player;
-		World world = player.getCommandSenderWorld();
+		Player player = e.player;
+		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide || !e.phase.equals(Phase.END)) {
 			return;
 		}
@@ -65,8 +66,11 @@ public class WeakerSpiderwebsWebEvent {
 			return;
 		}
 		
-		BlockPos pos = player.blockPosition().immutable();
-		if (world.getBlockState(pos).getBlock() instanceof WebBlock || world.getBlockState(pos.above()).getBlock() instanceof WebBlock) {
+		Vec3 pvec = player.position();
+		int ypos = (int)Math.ceil(pvec.y);
+		BlockPos pos = new BlockPos(pvec.x, ypos, pvec.z);
+		
+		if (world.getBlockState(pos.below()).getBlock() instanceof WebBlock || world.getBlockState(pos).getBlock() instanceof WebBlock || world.getBlockState(pos.above()).getBlock() instanceof WebBlock) {
 			new Thread( new Runnable() {
 		    	public void run()  {
 		        	try  { Thread.sleep( WeakerSpiderwebsConfigHandler.GENERAL.breakSpiderwebDelay.get() ); }
@@ -75,6 +79,9 @@ public class WeakerSpiderwebsWebEvent {
 		        	BlockPos nowpos = player.blockPosition().immutable();
 		        	if (pos.getX() != nowpos.getX() || pos.getZ() != nowpos.getZ()) {
 		        		return;
+		        	}
+		        	if (world.getBlockState(pos.below()).getBlock() instanceof WebBlock) {
+		        		todestroy.get(playername).add(pos.below().immutable());
 		        	}
 		        	if (world.getBlockState(pos).getBlock() instanceof WebBlock) {
 		        		todestroy.get(playername).add(pos.immutable());

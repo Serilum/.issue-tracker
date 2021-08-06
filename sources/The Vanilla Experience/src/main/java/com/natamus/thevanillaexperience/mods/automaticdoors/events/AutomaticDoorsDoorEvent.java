@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -21,12 +21,12 @@ import java.util.List;
 import com.natamus.thevanillaexperience.mods.automaticdoors.config.AutomaticDoorsConfigHandler;
 import com.natamus.thevanillaexperience.mods.automaticdoors.util.AutomaticDoorsUtil;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.DoorBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -39,8 +39,8 @@ public class AutomaticDoorsDoorEvent {
 	
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
-		PlayerEntity player = e.player;
-		World world = player.getCommandSenderWorld();
+		Player player = e.player;
+		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
@@ -77,7 +77,7 @@ public class AutomaticDoorsDoorEvent {
 						BlockState aroundstate = world.getBlockState(aroundpos);
 						Block aroundblock = aroundstate.getBlock();
 						if (AutomaticDoorsUtil.isDoor(aroundblock)) {
-							((DoorBlock)block).setOpen(world, aroundstate, aroundpos, false); // toggleDoor
+							((DoorBlock)block).setOpen(player, world, aroundstate, aroundpos, false); // toggleDoor
 						}
 					}
 					
@@ -108,7 +108,7 @@ public class AutomaticDoorsDoorEvent {
 					continue;
 				}
 				
-				((DoorBlock)block).setOpen(world, state, np, true); // toggleDoor
+				((DoorBlock)block).setOpen(player, world, state, np, true); // toggleDoor
 				AutomaticDoorsUtil.delayDoorClose(np.immutable());
 			}
 		}

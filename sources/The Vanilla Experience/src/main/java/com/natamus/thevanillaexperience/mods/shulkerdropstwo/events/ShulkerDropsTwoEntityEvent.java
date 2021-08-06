@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -14,17 +14,17 @@
 
 package com.natamus.thevanillaexperience.mods.shulkerdropstwo.events;
 
-import java.util.Collection;
+import java.util.Iterator;
 
 import com.natamus.thevanillaexperience.mods.shulkerdropstwo.config.ShulkerDropsTwoConfigHandler;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.ShulkerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Shulker;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -34,24 +34,33 @@ public class ShulkerDropsTwoEntityEvent {
 	@SubscribeEvent
 	public void mobItemDrop(LivingDropsEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
-		if (entity instanceof ShulkerEntity == false) {
+		
+		if (entity instanceof Shulker == false) {
 			return;
 		}
 		
-		Collection<ItemEntity> drops = e.getDrops();
-		if (drops.size() < 1 && !ShulkerDropsTwoConfigHandler.GENERAL.alwaysDropShells.get()) {
-			return;
+		boolean foundshells = false;
+		
+		Iterator<ItemEntity> iterator = e.getDrops().iterator();
+		while (iterator.hasNext()) {
+			ItemEntity drop = iterator.next();
+			ItemStack item = drop.getItem();
+			if (item.getItem().equals(Items.SHULKER_SHELL)) {
+				item.setCount(ShulkerDropsTwoConfigHandler.GENERAL.shulkerDropAmount.get());
+				drop.setItem(item);
+				foundshells = true;
+				break;
+			}
 		}
 		
-		BlockPos pos = entity.blockPosition();
-		
-		ItemEntity shells = new ItemEntity(world, pos.getX(), pos.getY()+1, pos.getZ(), new ItemStack(Items.SHULKER_SHELL, ShulkerDropsTwoConfigHandler.GENERAL.shulkerDropAmount.get()));
-		
-		e.getDrops().clear();
-		e.getDrops().add(shells);
+		if (ShulkerDropsTwoConfigHandler.GENERAL.alwaysDropShells.get() && !foundshells) {
+			BlockPos pos = entity.blockPosition();
+			ItemEntity shells = new ItemEntity(world, pos.getX(), pos.getY()+1, pos.getZ(), new ItemStack(Items.SHULKER_SHELL, ShulkerDropsTwoConfigHandler.GENERAL.shulkerDropAmount.get()));
+			e.getDrops().add(shells);
+		}
 	}
 }

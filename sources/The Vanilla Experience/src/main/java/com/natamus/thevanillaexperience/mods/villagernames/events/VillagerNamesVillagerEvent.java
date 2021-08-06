@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -18,12 +18,12 @@ import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.thevanillaexperience.mods.villagernames.config.VillagerNamesConfigHandler;
 import com.natamus.thevanillaexperience.mods.villagernames.util.Names;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.merchant.villager.VillagerData;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.npc.VillagerData;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -33,12 +33,12 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class VillagerNamesVillagerEvent {
 	@SubscribeEvent
 	public void onSpawn(EntityJoinWorldEvent e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		Entity entity = e.getEntity();
-		if (entity instanceof VillagerEntity == false) {
+		if (entity instanceof Villager == false) {
 			boolean goname = false;
 			if (VillagerNamesConfigHandler.GENERAL.nameModdedVillagers.get()) {
 				if (EntityFunctions.isModdedVillager(entity)) {
@@ -58,13 +58,13 @@ public class VillagerNamesVillagerEvent {
 	
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent.EntityInteract e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		Entity entity = e.getTarget();
-		if (!entity.getClass().equals(VillagerEntity.class)) {
+		if (!entity.getClass().equals(Villager.class)) {
 			return;
 		}
 		
@@ -72,12 +72,12 @@ public class VillagerNamesVillagerEvent {
 			return;
 		}
 		
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		if (player.isCrouching()) {
 			return;
 		}
 		
-		VillagerEntity villager = (VillagerEntity)entity;
+		Villager villager = (Villager)entity;
 		VillagerData d = villager.getVillagerData();
 		
 		String profession = d.getProfession().toString();
@@ -92,13 +92,13 @@ public class VillagerNamesVillagerEvent {
 		String prevname = villager.getName().getString();
 		String upperprofession = profession.substring(0, 1).toUpperCase() + profession.substring(1);
 		
-		villager.setCustomName(new StringTextComponent(prevname + " the " + upperprofession));
+		villager.setCustomName(new TextComponent(prevname + " the " + upperprofession));
 		new Thread( new Runnable() {
 	    	public void run()  {
 	        	try  { Thread.sleep( 10 ); }
 	            catch (InterruptedException ie)  {}
 	        	
-	        	villager.setCustomName(new StringTextComponent(prevname.replace(" the ", "").replace(upperprofession, "")));
+	        	villager.setCustomName(new TextComponent(prevname.replace(" the ", "").replace(upperprofession, "")));
 	    	}
 	    } ).start();
 	}

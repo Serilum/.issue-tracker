@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -14,8 +14,8 @@
 
 package com.natamus.thevanillaexperience.mods.kelpfertilizer.dispenser;
 
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.item.Items;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.item.Items;
 
 public class RecipeManager {
 	public static void initDispenserBehavior() {

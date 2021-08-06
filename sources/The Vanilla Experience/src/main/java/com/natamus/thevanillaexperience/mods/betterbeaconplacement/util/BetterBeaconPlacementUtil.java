@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -21,17 +21,17 @@ import java.util.List;
 
 import com.natamus.collective.functions.BlockFunctions;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 public class BetterBeaconPlacementUtil {
 	public final static List<Block> mineralblocks = new ArrayList<Block>(Arrays.asList(Blocks.IRON_BLOCK, Blocks.GOLD_BLOCK, Blocks.EMERALD_BLOCK, Blocks.DIAMOND_BLOCK));
 	
-	public static BlockPos getNextLocation(World world, BlockPos beaconpos) {
+	public static BlockPos getNextLocation(Level world, BlockPos beaconpos) {
 		int x = beaconpos.getX();
 		int y = beaconpos.getY();
 		int z = beaconpos.getZ();
@@ -50,7 +50,7 @@ public class BetterBeaconPlacementUtil {
 		return null;
 	}
 	
-	public static void processAllBaseBlocks(World world, BlockPos beaconpos, boolean iscreative) {
+	public static void processAllBaseBlocks(Level world, BlockPos beaconpos, boolean iscreative) {
 		int x = beaconpos.getX();
 		int y = beaconpos.getY();
 		int z = beaconpos.getZ();
@@ -60,7 +60,7 @@ public class BetterBeaconPlacementUtil {
 		}
 	}
 	
-	public static void breakBase(World world, BlockPos beaconpos, Iterator<BlockPos> it, boolean iscreative) {
+	public static void breakBase(Level world, BlockPos beaconpos, Iterator<BlockPos> it, boolean iscreative) {
 		while (it.hasNext()) {
 			BlockPos np = it.next();
 			Block block = world.getBlockState(np).getBlock();
@@ -74,7 +74,7 @@ public class BetterBeaconPlacementUtil {
 		}
 	}
 	
-	private static BlockPos checkIterator(World world, Iterator<BlockPos> it) {
+	private static BlockPos checkIterator(Level world, Iterator<BlockPos> it) {
 		while (it.hasNext()) {
 			BlockPos np = it.next();
 			Block block = world.getBlockState(np).getBlock();

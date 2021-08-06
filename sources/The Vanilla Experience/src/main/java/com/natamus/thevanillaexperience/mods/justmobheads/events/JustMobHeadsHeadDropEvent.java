@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -18,12 +18,12 @@ import com.natamus.thevanillaexperience.mods.justmobheads.config.JustMobHeadsCon
 import com.natamus.thevanillaexperience.mods.justmobheads.util.HeadData;
 import com.natamus.thevanillaexperience.mods.justmobheads.util.MobHeads;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -33,14 +33,14 @@ public class JustMobHeadsHeadDropEvent {
 	@SubscribeEvent
 	public void mobItemDrop(LivingDropsEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		if (JustMobHeadsConfigHandler.GENERAL.onlyAdultMobsDropTheirHead.get()) {
-			if (entity instanceof TameableEntity) {
-				TameableEntity te = (TameableEntity)entity;
+			if (entity instanceof TamableAnimal) {
+				TamableAnimal te = (TamableAnimal)entity;
 				if (te.isBaby()) {
 					return;
 				}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -21,9 +21,9 @@ import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.thevanillaexperience.mods.netherportalspread.config.NetherPortalSpreadConfigHandler;
 import com.natamus.thevanillaexperience.mods.netherportalspread.util.NetherPortalSpreadUtil;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerChangedDimensionEvent;
@@ -34,12 +34,12 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class NetherPortalSpreadSpreadEvent {
-	private static HashMap<World, CopyOnWriteArrayList<BlockPos>> portals_to_process = new HashMap<World, CopyOnWriteArrayList<BlockPos>>();
-	private static HashMap<World, Integer> worldticks = new HashMap<World, Integer>();
+	private static HashMap<Level, CopyOnWriteArrayList<BlockPos>> portals_to_process = new HashMap<Level, CopyOnWriteArrayList<BlockPos>>();
+	private static HashMap<Level, Integer> worldticks = new HashMap<Level, Integer>();
 	
 	@SubscribeEvent
 	public void onWorldTick(WorldTickEvent e) {
-		World world = e.world;
+		Level world = e.world;
 		if (world.isClientSide || !e.phase.equals(Phase.END)) {
 			return;
 		}
@@ -72,7 +72,7 @@ public class NetherPortalSpreadSpreadEvent {
 	
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
@@ -91,7 +91,7 @@ public class NetherPortalSpreadSpreadEvent {
 
 	@SubscribeEvent
 	public void onPortalSpawn(PortalSpawnEvent e) {
-		World world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
 		if (world == null) {
 			return;
 		}
@@ -106,9 +106,9 @@ public class NetherPortalSpreadSpreadEvent {
 	
 	@SubscribeEvent
 	public void onDimensionChange(PlayerChangedDimensionEvent e) {
-		final PlayerEntity player = e.getPlayer();
+		final Player player = e.getPlayer();
 
-    	World world = player.getCommandSenderWorld();
+    	Level world = player.getCommandSenderWorld();
     	if (world.isClientSide) {
     		return;
     	}

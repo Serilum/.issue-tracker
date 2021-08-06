@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.2.
+ * Minecraft version: 1.17.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -18,15 +18,15 @@ import com.natamus.thevanillaexperience.mods.breedablekillerrabbit.config.Breeda
 import com.natamus.collective.data.GlobalVariables;
 import com.natamus.collective.functions.StringFunctions;
 
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.RabbitEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.Hand;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.Rabbit;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -39,16 +39,16 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class BreedableKillerRabbitEntityEvent {
 	@SubscribeEvent
 	public void onBaby(BabyEntitySpawnEvent e) {
-		AgeableEntity child = e.getChild();
-		World world = child.getCommandSenderWorld();
+		AgeableMob child = e.getChild();
+		Level world = child.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		if (child instanceof RabbitEntity == false) {
+		if (child instanceof Rabbit == false) {
 			return;
 		}
-		RabbitEntity rabbit = (RabbitEntity)child;
+		Rabbit rabbit = (Rabbit)child;
 		
 		double num = GlobalVariables.random.nextDouble();
 		if (num <= BreedableKillerRabbitConfigHandler.GENERAL.chanceBabyRabbitIsKiller.get()) {
@@ -57,45 +57,45 @@ public class BreedableKillerRabbitEntityEvent {
 				rabbit.setCustomName(null);
 			}
 			
-			PlayerEntity player = e.getCausedByPlayer();
+			Player player = e.getCausedByPlayer();
 			if (player == null) {
 				return;
 			}
-			StringFunctions.sendMessage(player, "A killer rabbit has been born! Are you far enough away or do you have a golden carrot to share?", TextFormatting.DARK_GREEN);
+			StringFunctions.sendMessage(player, "A killer rabbit has been born! Are you far enough away or do you have a golden carrot to share?", ChatFormatting.DARK_GREEN);
 		}
 	}
 	
 	@SubscribeEvent
 	public void onEntityInteract(PlayerInteractEvent.EntityInteract e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		Entity entity = e.getTarget();
-		if (entity instanceof RabbitEntity == false) {
+		if (entity instanceof Rabbit == false) {
 			return;
 		}
 		
-		PlayerEntity player = e.getPlayer();
+		Player player = e.getPlayer();
 		ItemStack itemstack = e.getItemStack();
 		
 		if (!itemstack.getItem().equals(Items.GOLDEN_CARROT)) {
 			return;
 		}
 		
-		RabbitEntity rabbit = (RabbitEntity)entity;
+		Rabbit rabbit = (Rabbit)entity;
 		if (rabbit.getRabbitType() != 99) {
 			return;
 		}
-		if (rabbit.getItemInHand(Hand.MAIN_HAND).getItem().equals(Items.GOLDEN_CARROT)) {
-			StringFunctions.sendMessage(player, "The killer rabbit has already been tamed.", TextFormatting.DARK_GREEN);
+		if (rabbit.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(Items.GOLDEN_CARROT)) {
+			StringFunctions.sendMessage(player, "The killer rabbit has already been tamed.", ChatFormatting.DARK_GREEN);
 			return;
 		}
 		
-		rabbit.setItemInHand(Hand.MAIN_HAND, new ItemStack(Items.GOLDEN_CARROT, 1));
+		rabbit.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.GOLDEN_CARROT, 1));
 		itemstack.shrink(1);
-		StringFunctions.sendMessage(player, "The killer rabbit has been tamed!", TextFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(player, "The killer rabbit has been tamed!", ChatFormatting.DARK_GREEN);
 	}
 	
 	@SubscribeEvent
@@ -105,35 +105,35 @@ public class BreedableKillerRabbitEntityEvent {
 			return;
 		}
 		
-		World world = source.getCommandSenderWorld();
+		Level world = source.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		if (source instanceof RabbitEntity == false) {
+		if (source instanceof Rabbit == false) {
 			return;
 		}
 		
-		if (((RabbitEntity)source).getItemInHand(Hand.MAIN_HAND).getItem().equals(Items.GOLDEN_CARROT)) {
+		if (((Rabbit)source).getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(Items.GOLDEN_CARROT)) {
 			e.setCanceled(true);
 		}
 	}
 	
 	@SubscribeEvent
 	public void mobSpawn(EntityJoinWorldEvent e) {
-		World world = e.getWorld();
+		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof RabbitEntity == false) {
+		if (entity instanceof Rabbit == false) {
 			return;
 		}
 		if (!BreedableKillerRabbitConfigHandler.GENERAL.removeKillerRabbitNameTag.get()) {
 			return;
 		}
-		if (((RabbitEntity)entity).getRabbitType() != 99) {
+		if (((Rabbit)entity).getRabbitType() != 99) {
 			return;
 		}
 		if (!entity.hasCustomName()) {
@@ -148,12 +148,12 @@ public class BreedableKillerRabbitEntityEvent {
 	@SubscribeEvent
 	public void onPlayerDamage(LivingHurtEvent e) {
 		Entity entity = e.getEntity();
-		World world = entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		if (entity instanceof PlayerEntity == false) {
+		if (entity instanceof Player == false) {
 			return;
 		}
 		
@@ -161,12 +161,12 @@ public class BreedableKillerRabbitEntityEvent {
 		if (source == null) {
 			return;
 		}
-		if (source instanceof RabbitEntity == false) {
+		if (source instanceof Rabbit == false) {
 			return;
 		}
 		
-		if (((RabbitEntity)source).getRabbitType() == 99) {
-			StringFunctions.sendMessage((PlayerEntity)e.getEntity(), "The killer rabbit wants a golden carrot!", TextFormatting.RED);
+		if (((Rabbit)source).getRabbitType() == 99) {
+			StringFunctions.sendMessage((Player)e.getEntity(), "The killer rabbit wants a golden carrot!", ChatFormatting.RED);
 		}
 	}
 }
