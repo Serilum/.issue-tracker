@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.49.
+ * Minecraft version: 1.17.1, mod version: 2.50.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -103,11 +103,12 @@ public class BlockPosFunctions {
 	// END RECURSIVE GET BLOCKS
 	
 	public static BlockPos getSurfaceBlockPos(ServerLevel serverworld, int x, int z) {
-		BlockPos returnpos = new BlockPos(x, 255, z);
+		int height = serverworld.getHeight();
+		
+		BlockPos returnpos = new BlockPos(x, height-1, z);
 		if (!WorldFunctions.isNether(serverworld)) {
-			int maxheight = 256;
-			BlockPos pos = new BlockPos(x, maxheight, z);
-			for (int y = maxheight; y > 0; y--) {
+			BlockPos pos = new BlockPos(x, height, z);
+			for (int y = height; y > 0; y--) {
 				BlockState blockstate = serverworld.getBlockState(pos);
 				Material material = blockstate.getMaterial();
 				if (blockstate.getLightBlock(serverworld, pos) >= 15 || material.equals(Material.ICE) || material.equals(Material.ICE_SOLID)) {
@@ -158,7 +159,7 @@ public class BlockPosFunctions {
 		}
 		
 		BlockPos spawnpos = null;
-		for (int y = 255; y > 0; y--) {
+		for (int y = serverworld.getHeight()-1; y > 0; y--) {
 			BlockPos checkpos = new BlockPos(villagepos.getX(), y, villagepos.getZ());
 			if (serverworld.getBlockState(checkpos).getBlock().equals(Blocks.AIR)) {
 				continue;
@@ -178,7 +179,7 @@ public class BlockPosFunctions {
 		}
 		
 		BlockPos spawnpos = null;
-		for (int y = 255; y > 0; y--) {
+		for (int y = serverworld.getHeight()-1; y > 0; y--) {
 			BlockPos checkpos = new BlockPos(biomepos.getX(), y, biomepos.getZ());
 			if (serverworld.getBlockState(checkpos).getBlock().equals(Blocks.AIR)) {
 				continue;

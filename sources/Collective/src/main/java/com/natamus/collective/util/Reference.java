@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.49.
+ * Minecraft version: 1.17.1, mod version: 2.50.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -17,6 +17,6 @@ package com.natamus.collective.util;
 public class Reference {
 	public static final String MOD_ID = "collective";
 	public static final String NAME = "Collective";
-	public static final String VERSION = "2.49";
+	public static final String VERSION = "2.50";
 	public static final String ACCEPTED_VERSIONS = "[1.17.1]";
 }

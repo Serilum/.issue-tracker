@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.49.
+ * Minecraft version: 1.17.1, mod version: 2.50.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -93,7 +93,8 @@ public class CropFunctions {
 	}
 	
 	public static boolean growCactus(Level world, BlockPos pos) {
-		for (int y = pos.getY(); y <= 256; y++) {
+		int height = world.getHeight();
+		for (int y = pos.getY(); y <= height; y++) {
 			BlockPos uppos = new BlockPos(pos.getX(), y, pos.getZ());
 			Block block = world.getBlockState(uppos).getBlock();
 			if (block != Blocks.CACTUS) {
@@ -110,7 +111,8 @@ public class CropFunctions {
 	}
 	
 	public static boolean growSugarcane(Level world, BlockPos pos) {
-		for (int y = pos.getY(); y <= 256; y++) {
+		int height = world.getHeight();
+		for (int y = pos.getY(); y <= height; y++) {
 			BlockPos uppos = new BlockPos(pos.getX(), y, pos.getZ());
 			Block block = world.getBlockState(uppos).getBlock();
 			if (block != Blocks.SUGAR_CANE) {
