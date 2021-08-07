@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Quick Paths.
- * Minecraft version: 1.17.1, mod version: 1.8.
+ * Minecraft version: 1.17.1, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Quick Paths ever released, along with some other perks.
@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.mojang.datafixers.util.Pair;
+import com.natamus.collective.functions.BlockFunctions;
 import com.natamus.collective.functions.NumberFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.collective.functions.ToolFunctions;
@@ -32,6 +33,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.DeadBushBlock;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.FlowerBlock;
+import net.minecraft.world.level.block.TallGrassBlock;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.ServerTickEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -160,7 +167,18 @@ public class PathEvent {
 					Pair<Integer, Integer> xz = new Pair<>(targetpos.getX()+difx, targetpos.getZ()+difz);
 					if (!xzset.contains(xz)) {
 						BlockPos betweenpos = new BlockPos(targetpos.getX() + difx, lyd, targetpos.getZ() + difz);
-						if (world.getBlockState(betweenpos).getBlock().equals(Blocks.GRASS_BLOCK) && world.getBlockState(betweenpos.immutable().above()).getBlock().equals(Blocks.AIR)) {
+						if (world.getBlockState(betweenpos).getBlock().equals(Blocks.GRASS_BLOCK)) {
+							BlockPos abovepos = betweenpos.immutable().above();
+							Block aboveblock = world.getBlockState(abovepos).getBlock();
+							if (!aboveblock.equals(Blocks.AIR)) {
+								if (aboveblock instanceof TallGrassBlock || aboveblock instanceof FlowerBlock || aboveblock instanceof DoublePlantBlock || aboveblock instanceof DeadBushBlock || aboveblock instanceof BushBlock || aboveblock instanceof CropBlock) {
+									BlockFunctions.dropBlock(world, abovepos);
+								}
+								else {
+									return;
+								}
+							}
+							
 							world.setBlockAndUpdate(betweenpos, Blocks.DIRT_PATH.defaultBlockState());
 							
 							pathpositions.add(betweenpos.immutable());

@@ -3,6 +3,9 @@ Realistic Bees
 https://www.curseforge.com/minecraft/mc-mods/realistic-bees
 
 =========
+v1.5: Fixed bees spawning during world gen causing a deadlock in combination with other mods.
+
+=========
 v1.4: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========
