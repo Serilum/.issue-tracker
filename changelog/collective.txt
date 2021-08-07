@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.50: Changed the way Collective determines world heights to increase compatibility with modded dimensions.
+
+=========
 v2.47-2.49: Changed the way Collective determines an Entity's name string, which fixes an incompatibility issue with mods referencing toString() methods in client-only code causing a crash.
 
 =========
