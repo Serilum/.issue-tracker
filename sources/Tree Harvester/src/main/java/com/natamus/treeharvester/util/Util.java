@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.17.1, mod version: 2.7.
+ * Minecraft version: 1.17.1, mod version: 2.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -30,12 +30,20 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AttachedStemBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.DeadBushBlock;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.StemBlock;
+import net.minecraft.world.level.block.SweetBerryBushBlock;
+import net.minecraft.world.level.block.TallGrassBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
@@ -84,8 +92,13 @@ public class Util {
 	}
 	
 	public static boolean isTreeLeaf(Block block) {
-		if (block instanceof LeavesBlock || block instanceof BushBlock) {
+		if (block instanceof LeavesBlock) {
 			return true;
+		}
+		if (block instanceof BushBlock) {
+			if (block instanceof CropBlock == false && block instanceof DeadBushBlock == false && block instanceof DoublePlantBlock == false && block instanceof FlowerBlock == false && block instanceof SaplingBlock == false && block instanceof StemBlock == false && block instanceof AttachedStemBlock == false && block instanceof SweetBerryBushBlock == false && block instanceof TallGrassBlock == false) {
+				return true;
+			}
 		}
 		return false;
 	}

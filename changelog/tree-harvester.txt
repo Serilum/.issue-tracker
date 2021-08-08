@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v2.8: Fixed the mod thinking flowers and grass around the tree were leaves. Now only actual leaves are broken (fast leaf decay) when chopping down a tree.
+
+=========
 v2.7: Updated mod to work with the new Tool functions in Collective. Updated 1.17.1 version for changes in 37.0.24.
 
 =========
