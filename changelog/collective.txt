@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.51: Changed the way Collective replaces entities to prevent deadlocks when other mods add entities during worldgen.
+
+=========
 v2.50: Changed the way Collective determines world heights to increase compatibility with modded dimensions.
 
 =========

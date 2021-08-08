@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.50.
+ * Minecraft version: 1.17.1, mod version: 2.51.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -28,6 +28,7 @@ import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.collective.objects.SAMObject;
 import com.natamus.collective.util.Reference;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -60,8 +61,8 @@ public class EntityEvents {
 	
 	@SubscribeEvent
 	public void onEntityJoinLevel(EntityJoinWorldEvent e) {
-		Level Level = e.getWorld();
-		if (Level.isClientSide) {
+		Level world = e.getWorld();
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -72,7 +73,7 @@ public class EntityEvents {
 		
 		if (RegisterMod.shouldDoCheck) {
 			if (entity instanceof Player) {
-				RegisterMod.joinWorldProcess(Level, (Player)entity);
+				RegisterMod.joinWorldProcess(world, (Player)entity);
 			}
 		}
 		
@@ -129,12 +130,12 @@ public class EntityEvents {
 			
 			Vec3 evec = entity.position();
 			if (sam.surface) {
-				if (!BlockPosFunctions.isOnSurface(Level, evec)) {
+				if (!BlockPosFunctions.isOnSurface(world, evec)) {
 					continue;
 				}
 			}
 			
-			Entity to = sam.totype.create(Level);
+			Entity to = sam.totype.create(world);
 			//to.setWorld(Level);
 			to.setPos(evec.x, evec.y, evec.z);
 			
@@ -163,8 +164,14 @@ public class EntityEvents {
 				}
 			}
 			
+			if (world instanceof ServerLevel == false) {
+				return;
+			}
+			
+			ServerLevel serverworld = (ServerLevel)world;
+			
 			to.addTag(Reference.MOD_ID + ".checked");
-			Level.addFreshEntity(to);
+			serverworld.addFreshEntityWithPassengers(to);
 			
 			if (ride) {
 				entity.startRiding(to);
