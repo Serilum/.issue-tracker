@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.53: Tweaked the get entity string function. Added some modded villager names to the global array.
+
+=========
+v2.52: Added bonemeal grow function with an extra check if the player is in creative mode.
+
+=========
 v2.51: Changed the way Collective replaces entities to prevent deadlocks when other mods add entities during worldgen.
 
 =========

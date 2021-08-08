@@ -3,6 +3,9 @@ Kelp Fertilizer
 https://www.curseforge.com/minecraft/mc-mods/kelp-fertilizer
 
 =========
+v1.7: Added swing animation on kelp use.
+
+=========
 v1.6: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========

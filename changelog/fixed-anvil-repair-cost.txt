@@ -3,6 +3,9 @@ Fixed Anvil Repair Cost
 https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost
 
 =========
+v1.6: When the material cost is set higher than 1, the output stack is now only shown when enough of the repair material is put in.
+
+=========
 v1.5: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

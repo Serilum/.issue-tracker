@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.51.
+ * Minecraft version: 1.17.1, mod version: 2.53.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -29,8 +29,34 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraftforge.event.ForgeEventFactory;
 
 public class CropFunctions {
+	public static boolean applyBonemeal(ItemStack itemstack, Level world, BlockPos pos, Player player) {
+		BlockState blockstate = world.getBlockState(pos);
+		int hook = ForgeEventFactory.onApplyBonemeal(player, world, pos, blockstate, itemstack);
+		if (hook != 0) return hook > 0;
+		
+		if (blockstate.getBlock() instanceof BonemealableBlock) {
+			BonemealableBlock bonemealableblock = (BonemealableBlock)blockstate.getBlock();
+			if (bonemealableblock.isValidBonemealTarget(world, pos, blockstate, world.isClientSide)) {
+				if (world instanceof ServerLevel) {
+					if (bonemealableblock.isBonemealSuccess(world, world.random, pos, blockstate)) {
+						bonemealableblock.performBonemeal((ServerLevel)world, world.random, pos, blockstate);
+					}
+					
+					if (!player.isCreative()) {
+						itemstack.shrink(1);
+					}
+				}
+				
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	public static boolean growCrop(Level world, Player player, BlockState state, BlockPos pos) {
 		if (world instanceof ServerLevel == false) {
 			return false;
