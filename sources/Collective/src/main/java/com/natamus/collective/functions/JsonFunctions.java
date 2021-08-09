@@ -12,11 +12,19 @@
  * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
-package com.natamus.collective.util;
+package com.natamus.collective.functions;
 
-public class Reference {
-	public static final String MOD_ID = "collective";
-	public static final String NAME = "Collective";
-	public static final String VERSION = "2.54";
-	public static final String ACCEPTED_VERSIONS = "[1.17.1]";
+import java.util.HashMap;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+public class JsonFunctions {
+	public static HashMap<String, String> JsonStringToHashMap(String jsonstring) {
+		return new Gson().fromJson(jsonstring, new TypeToken<HashMap<String, String>>(){}.getType());
+	}
+	
+	public static String HashMapToJsonString(HashMap<String, String> map) {
+		return new Gson().toJson(map); 
+	}
 }
