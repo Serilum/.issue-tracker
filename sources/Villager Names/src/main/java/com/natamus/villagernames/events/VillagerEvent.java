@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Villager Names.
- * Minecraft version: 1.17.1, mod version: 3.2.
+ * Minecraft version: 1.17.1, mod version: 3.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Villager Names ever released, along with some other perks.
@@ -90,6 +90,9 @@ public class VillagerEvent {
 		
 		if (profession.contains(":")) {
 			profession = profession.split(":")[1];
+		}
+		if (profession.contains("-")) {
+			profession = profession.split("-")[0].trim();
 		}
 		
 		Component namecomponent = villager.getName();

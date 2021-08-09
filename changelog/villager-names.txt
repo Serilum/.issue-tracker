@@ -3,6 +3,9 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v3.3: Improved compatibility for villagers with modded professions.
+
+=========
 v3.2: Villagers with a nametag with custom style will now keep that style when interacting with them.
 
 =========

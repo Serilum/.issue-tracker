@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Vill
 
 [[mods]]
 modId="villagernames"
-version="3.2"
+version="3.3"
 displayName="Villager Names"
 displayURL="https://curseforge.com/minecraft/mc-mods/villager-names"
 authors="Rick South"
