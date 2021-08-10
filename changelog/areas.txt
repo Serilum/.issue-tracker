@@ -3,6 +3,9 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v2.7: Fixed area signs not being registered correctly when first placed in a multiplayer environment. Updated backend code.
+
+=========
 v2.6: The mod now uses the correct SRG mapping name which fixes a crash on startup.
 
 =========

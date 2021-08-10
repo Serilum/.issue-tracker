@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Tree
 
 [[mods]]
 modId="treeharvester"
-version="2.8"
+version="2.9"
 displayName="Tree Harvester"
 displayURL="https://curseforge.com/minecraft/mc-mods/tree-harvester"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley
 [[dependencies.treeharvester]]
     modId="collective"
     mandatory=true
-    versionRange="[2.51,)"
+    versionRange="[2.54,)"
     ordering="NONE"
     side="BOTH"

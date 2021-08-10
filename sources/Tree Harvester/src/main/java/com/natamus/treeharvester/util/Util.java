@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.17.1, mod version: 2.8.
+ * Minecraft version: 1.17.1, mod version: 2.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -24,6 +24,7 @@ import com.mojang.datafixers.util.Pair;
 import com.natamus.treeharvester.config.ConfigHandler;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Entity.RemovalReason;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -92,7 +93,7 @@ public class Util {
 	}
 	
 	public static boolean isTreeLeaf(Block block) {
-		if (block instanceof LeavesBlock) {
+		if (BlockTags.LEAVES.contains(block) || block instanceof LeavesBlock) {
 			return true;
 		}
 		if (block instanceof BushBlock) {
@@ -104,7 +105,7 @@ public class Util {
 	}
 	
 	public static boolean isTreeLog(Block block) {
-		if (block instanceof RotatedPillarBlock) {
+		if (BlockTags.LOGS.contains(block) || block instanceof RotatedPillarBlock) {
 			return true;
 		}
 		return false;

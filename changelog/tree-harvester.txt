@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v2.9: Fixed the 1.12.2 version not working on servers. Extended compatibility for modded trees by using BlockTags.
+
+=========
 v2.8: Fixed the mod thinking flowers and grass around the tree were leaves. Now only actual leaves are broken (fast leaf decay) when chopping down a tree.
 
 =========
