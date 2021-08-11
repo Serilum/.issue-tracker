@@ -3,6 +3,9 @@ GUI Clock
 https://www.curseforge.com/minecraft/mc-mods/gui-clock
 
 =========
+v2.5: Fixed showOnlyMinecraftClockIcon not working correctly in combination with mustHaveClockInInventoryForGameTime set to false.
+
+=========
 v2.4: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

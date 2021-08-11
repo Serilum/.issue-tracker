@@ -3,6 +3,9 @@ Villager Death Messages
 https://www.curseforge.com/minecraft/mc-mods/villager-death-messages
 
 =========
+v2.1: Fixed a modded villager without profession crashing the game. Improved compatibility with other mods.
+
+=========
 v2.0: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========

@@ -3,6 +3,9 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v2.8: Improved backend code to make the server environment work more reliable.
+
+=========
 v2.7: Fixed area signs not being registered correctly when first placed in a multiplayer environment. Updated backend code.
 
 =========

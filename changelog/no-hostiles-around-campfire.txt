@@ -3,6 +3,9 @@ No Hostiles Around Campfire
 https://www.curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire
 
 =========
+v3.6: Added a list to the mod which contains specific entities which are not classified as a Monster, but can still be hostile. Improved compatibility with other mods.
+
+=========
 v3.5: (1.17.1 only) Updated mod to work with the changes made to entity removal in 37.0.24.
 
 =========

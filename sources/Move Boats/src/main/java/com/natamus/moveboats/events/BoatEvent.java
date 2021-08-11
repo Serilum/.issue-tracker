@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Move Boats.
- * Minecraft version: 1.17.1, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Move Boats ever released, along with some other perks.
@@ -17,10 +17,10 @@ package com.natamus.moveboats.events;
 import com.natamus.moveboats.config.ConfigHandler;
 
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.InputEvent.MouseInputEvent;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
@@ -58,6 +58,7 @@ public class BoatEvent {
 		double dy = player.getY() + player.getEyeHeight();
 		double dz = player.getZ() + (look.z * distance);
 		pickedupboat.setPos(dx, dy, dz);
+		pickedupboat.fallDistance = 0.0F;
 	}
 	
 	@SubscribeEvent

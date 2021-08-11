@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Clock.
- * Minecraft version: 1.17.1, mod version: 2.4.
+ * Minecraft version: 1.17.1, mod version: 2.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Clock ever released, along with some other perks.
@@ -51,9 +51,10 @@ public class GUIEvent extends Gui {
 		
 		boolean gametimeb = ConfigHandler.GENERAL.mustHaveClockInInventoryForGameTime.get();
 		boolean realtimeb = ConfigHandler.GENERAL.mustHaveClockInInventoryForRealTime.get();
-		boolean found = false;
+		boolean found = true;
 		
 		if (gametimeb || realtimeb) {
+			found = false;
 			Inventory inv = mc.player.getInventory();
 			for (int n = 0; n <= 35; n++) {
 				if (inv.getItem(n).getItem().equals(Items.CLOCK)) {
@@ -78,8 +79,10 @@ public class GUIEvent extends Gui {
 		int xcoord = 0;
 		int daycoord = 0;
 		if (ConfigHandler.GENERAL.showOnlyMinecraftClockIcon.get()) {
-			if (!found) {
-				return;
+			if (gametimeb) {
+				if (!found) {
+					return;
+				}
 			}
 			
 			if (ConfigHandler.GENERAL.clockPositionIsLeft.get()) {

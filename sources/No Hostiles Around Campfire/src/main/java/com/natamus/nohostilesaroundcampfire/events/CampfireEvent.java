@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of No Hostiles Around Campfire.
- * Minecraft version: 1.17.1, mod version: 3.5.
+ * Minecraft version: 1.17.1, mod version: 3.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of No Hostiles Around Campfire ever released, along with some other perks.
@@ -22,11 +22,11 @@ import com.natamus.collective.functions.FABFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.nohostilesaroundcampfire.config.ConfigHandler;
 import com.natamus.nohostilesaroundcampfire.util.Reference;
+import com.natamus.nohostilesaroundcampfire.util.Util;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Entity.RemovalReason;
-import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FlintAndSteelItem;
 import net.minecraft.world.level.BaseSpawner;
@@ -82,7 +82,7 @@ public class CampfireEvent {
 					int r = (int)(ConfigHandler.GENERAL.preventHostilesRadius.get() * ConfigHandler.GENERAL.burnHostilesRadiusModifier.get());
 					List<Entity> entities = world.getEntities(null, new AABB(campfirepos.getX()-r, campfirepos.getY()-r, campfirepos.getZ()-r, campfirepos.getX()+r, campfirepos.getY()+r, campfirepos.getZ()+r));
 					for (Entity entity : entities) {
-						if (entity.getType().getCategory().equals(MobCategory.MONSTER)) {
+						if (Util.entityIsHostile(entity)) {
 							entity.setSecondsOnFire(30);
 						}
 					}
@@ -114,7 +114,7 @@ public class CampfireEvent {
 			}
 		}
 		
-		if (!entity.getType().getCategory().equals(MobCategory.MONSTER)) {
+		if (!Util.entityIsHostile(entity)) {
 			return;
 		}
 		
@@ -262,7 +262,7 @@ public class CampfireEvent {
 		BlockPos ppos = e.getPos();
 		List<Entity> entities = world.getEntities(null, new AABB(ppos.getX()-r, ppos.getY()-r, ppos.getZ()-r, ppos.getX()+r, ppos.getY()+r, ppos.getZ()+r));
 		for (Entity entity : entities) {
-			if (entity.getType().getCategory().equals(MobCategory.MONSTER)) {
+			if (Util.entityIsHostile(entity)) {
 				if (entity.isOnFire()) {
 					entity.clearFire();
 					entity.setSecondsOnFire(2);

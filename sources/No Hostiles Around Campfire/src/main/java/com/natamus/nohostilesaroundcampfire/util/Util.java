@@ -14,9 +14,28 @@
 
 package com.natamus.nohostilesaroundcampfire.util;
 
-public class Reference {
-	public static final String MOD_ID = "nohostilesaroundcampfire";
-	public static final String NAME = "No Hostiles Around Campfire";
-	public static final String VERSION = "3.6";
-	public static final String ACCEPTED_VERSIONS = "[1.17.1]";
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.natamus.collective.functions.EntityFunctions;
+
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.MobCategory;
+
+public class Util {
+	private static List<String> hostileSpecialEntities = new ArrayList<String>(Arrays.asList("FoxHound"));
+	
+	public static boolean entityIsHostile(Entity entity) {
+		if (entity.getType().getCategory().equals(MobCategory.MONSTER)) {
+			return true;
+		}
+		
+		String entitystring = EntityFunctions.getEntityString(entity);
+		if (hostileSpecialEntities.contains(entitystring)) {
+			return true;
+		}
+		
+		return false;
+	}
 }
