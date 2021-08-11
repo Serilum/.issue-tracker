@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Clock.
- * Minecraft version: 1.17.1, mod version: 2.5.
+ * Minecraft version: 1.17.1, mod version: 2.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Clock ever released, along with some other perks.
@@ -38,6 +38,7 @@ public class ConfigHandler {
 		public final ForgeConfigSpec.ConfigValue<Boolean> clockPositionIsRight;
 		
 		public final ForgeConfigSpec.ConfigValue<Integer> clockHeightOffset;
+		public final ForgeConfigSpec.ConfigValue<Integer> clockWidthOffset;
 		
 		public final ForgeConfigSpec.ConfigValue<Integer> RGB_R;
 		public final ForgeConfigSpec.ConfigValue<Integer> RGB_G;
@@ -85,6 +86,9 @@ public class ConfigHandler {
 			clockHeightOffset = builder
 					.comment("The vertical offset (y coord) for the Clock. This determines how far down the time should be on the screen. Can be changed to prevent GUIs from overlapping.")
 					.defineInRange("clockHeightOffset", 5, 0, 3000);
+			clockWidthOffset = builder
+					.comment("The horizontal offset (x coord) for the Clock.")
+					.defineInRange("clockWidthOffset", 0, -3000, 3000);
 			
 			RGB_R = builder
 					.comment("The red RGB value for the clock text.")

@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.56-2.57: Added FeatureFunctions class, which for now allows the spawning of bonus chests at specific locations.
+
+=========
 v2.55: Added InteractionHand function in preparation for new mod release.
 
 =========

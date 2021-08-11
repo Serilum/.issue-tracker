@@ -3,6 +3,9 @@ GUI Clock
 https://www.curseforge.com/minecraft/mc-mods/gui-clock
 
 =========
+v2.6: Added clockWidthOffset config option to allow users to change the x coordinate of the clock. Fixed the clock icon not actually being centered with clockPositionIsCenter and showOnlyMinecraftClockIcon enabled.
+
+=========
 v2.5: Fixed showOnlyMinecraftClockIcon not working correctly in combination with mustHaveClockInInventoryForGameTime set to false.
 
 =========

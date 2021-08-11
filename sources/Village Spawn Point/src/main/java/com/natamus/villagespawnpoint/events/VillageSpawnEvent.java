@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Village Spawn Point.
- * Minecraft version: 1.17.1, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Village Spawn Point ever released, along with some other perks.
@@ -15,11 +15,13 @@
 package com.natamus.villagespawnpoint.events;
 
 import com.natamus.collective.functions.BlockPosFunctions;
+import com.natamus.collective.functions.FeatureFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.WorldGenSettings;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -38,8 +40,9 @@ public class VillageSpawnEvent {
 		}
 		
 		ServerLevel serverworld = (ServerLevel)world;
-
-		if (!serverworld.getServer().getWorldData().worldGenSettings().generateFeatures()) { // features enabled?
+		WorldGenSettings generatorsettings = serverworld.getServer().getWorldData().worldGenSettings();
+		
+		if (!generatorsettings.generateFeatures()) {
 			return;
 		}
 		
@@ -49,6 +52,10 @@ public class VillageSpawnEvent {
 		}
 		
 		e.setCanceled(true);
-		serverworld.setDefaultSpawnPos(spawnpos, 1.0f); // set spawn point
+		serverworld.setDefaultSpawnPos(spawnpos, 1.0f);
+		
+		if (generatorsettings.generateBonusChest()) {
+			FeatureFunctions.placeBonusChest(serverworld, spawnpos);
+		}
 	}
 }

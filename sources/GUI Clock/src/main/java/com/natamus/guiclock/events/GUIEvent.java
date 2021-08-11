@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Clock.
- * Minecraft version: 1.17.1, mod version: 2.5.
+ * Minecraft version: 1.17.1, mod version: 2.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Clock ever released, along with some other perks.
@@ -89,11 +89,13 @@ public class GUIEvent extends Gui {
 				xcoord = 20;
 			}
 			else if (ConfigHandler.GENERAL.clockPositionIsCenter.get()) {
-				xcoord = (width/2);
+				xcoord = (width/2) - 8;
 			}
 			else {
 				xcoord = width - 20;
 			}
+			
+			xcoord += ConfigHandler.GENERAL.clockWidthOffset.get();
 			
 			ItemRenderer itemrenderer = mc.getItemRenderer();
 			itemrenderer.renderAndDecorateItem(new ItemStack(Items.CLOCK), xcoord, heightoffset);
@@ -156,6 +158,9 @@ public class GUIEvent extends Gui {
 				xcoord = width - stringWidth - 5;
 				daycoord = width - daystringWidth - 5;
 			}
+			
+			xcoord += ConfigHandler.GENERAL.clockWidthOffset.get();
+			daycoord += ConfigHandler.GENERAL.clockWidthOffset.get();
 			
 			fontRender.draw(posestack, time, xcoord, heightoffset, colour.getRGB());
 			if (daystring != "") {
