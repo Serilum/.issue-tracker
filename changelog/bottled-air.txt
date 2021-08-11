@@ -1,0 +1,6 @@
+Changelog:
+Bottled Air
+https://curseforge.com/minecraft/mc-mods/bottled-air
+
+=========
+v1.0: Initial release of mod.

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.54.
+ * Minecraft version: 1.17.1, mod version: 2.55.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -158,6 +158,12 @@ public class PlayerFunctions {
 		return respawnvec;
 	}
 	
+	public static InteractionHand getOtherHand(InteractionHand hand) {
+		if (hand.equals(InteractionHand.MAIN_HAND)) {
+			return InteractionHand.OFF_HAND;
+		}
+		return InteractionHand.MAIN_HAND;
+	}
 	
 	// Player Gear Functions
 	public static String getPlayerGearString(Player player) {

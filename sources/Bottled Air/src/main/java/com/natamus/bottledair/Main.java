@@ -1,9 +1,9 @@
 /*
- * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.55.
+ * This is the latest source code of Bottled Air.
+ * Minecraft version: 1.17.1, mod version: 1.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
- * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
+ * You'll be added to a private repository which contains all versions' source of Bottled Air ever released, along with some other perks.
  *
  * Github Sponsor link: https://github.com/sponsors/ricksouth
  * Patreon link: https://patreon.com/ricksouth
@@ -12,13 +12,12 @@
  * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
-package com.natamus.collective;
+package com.natamus.bottledair;
 
+import com.natamus.bottledair.config.ConfigHandler;
+import com.natamus.bottledair.events.AirEvent;
+import com.natamus.bottledair.util.Reference;
 import com.natamus.collective.check.RegisterMod;
-import com.natamus.collective.config.ConfigHandler;
-import com.natamus.collective.data.GlobalVariables;
-import com.natamus.collective.events.EntityEvents;
-import com.natamus.collective.util.Reference;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -29,7 +28,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(Reference.MOD_ID)
-public class Main { 
+public class Main {
 	public static Main instance;
 	
     public Main() {
@@ -40,13 +39,11 @@ public class Main {
     	
         modEventBus.addListener(this::loadComplete);
         modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHandler.spec);
-        
+
         RegisterMod.register(Reference.NAME, Reference.MOD_ID, Reference.VERSION, Reference.ACCEPTED_VERSIONS);
     }
 	
     private void loadComplete(final FMLLoadCompleteEvent event) {
-    	GlobalVariables.generateHashMaps();
-    	
-    	MinecraftForge.EVENT_BUS.register(new EntityEvents());
+    	MinecraftForge.EVENT_BUS.register(new AirEvent());
 	}
 }
