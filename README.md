@@ -8,12 +8,7 @@ I appreciate every submitted issue greatly, and will respond while working throu
 
 If you're a(n aspiring) mod developer, this list of all Forge events might be useful: [https://eventlistforge.com/](https://eventlistforge.com/)
 
-[![line](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/line.jpg)](#)
-[![promo0](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/BisectHosting/promo0.jpg)](https://bisecthosting.com/serilum)
-[![promo1](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/BisectHosting/promo1.jpg)](https://github.com/ricksouth/serilum-mc-mods/wiki/Dedicated-Minecraft-Server)
-[![line](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/line.jpg)](#)
-[![line](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Patreon/patrons.jpg)](#)
-
+‎
 
 ## Waiting For Approval Mods:
 > <em>Mods here link to my [Patreon Page](https://patreon.com/ricksouth), where you can get access to new mods before they are approved on CurseForge.</em>\
@@ -21,6 +16,15 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Beautified Chat Client](https://www.patreon.com/posts/beautified-chat-54835141)\
 [Beautified Chat Server](https://www.patreon.com/posts/beautified-chat-54835141)\
 [Bouncier Beds](https://www.patreon.com/posts/bouncier-beds-54824272)
+
+ 
+‎\
+[![line](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/line.jpg)](#)
+[![promo0](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/BisectHosting/promo0.jpg)](https://bisecthosting.com/serilum)
+[![promo1](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/BisectHosting/promo1.jpg)](https://github.com/ricksouth/serilum-mc-mods/wiki/Dedicated-Minecraft-Server)
+[![line](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/line.jpg)](#)
+[![line](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Patreon/patrons.jpg)](#)
+
 
 
 ## Modpacks:
