@@ -32,6 +32,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Better Spawner Control](https://curseforge.com/minecraft/mc-mods/better-spawner-control)\
 [Bigger Sponge Absorption Radius](https://curseforge.com/minecraft/mc-mods/bigger-sponge-absorption-radius)\
 [Bottle Your Xp](https://curseforge.com/minecraft/mc-mods/bottle-your-xp)\
+[Bottled Air](https://curseforge.com/minecraft/mc-mods/bottled-air)\
 [Breedable Killer Rabbit](https://curseforge.com/minecraft/mc-mods/breedable-killer-rabbit)\
 [Campfire Spawn and Tweaks](https://curseforge.com/minecraft/mc-mods/campfire-spawn-and-tweaks)\
 [Conduits Prevent Drowned](https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned)\
@@ -175,4 +176,3 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 
 
 ## Waiting For Approval Mods:
-[Bottled Air](https://curseforge.com/minecraft/mc-mods/bottled-air)
