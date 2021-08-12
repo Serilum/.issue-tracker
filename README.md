@@ -18,6 +18,8 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 ## Waiting For Approval Mods:
 > <em>Mods here link to my [Patreon Page](https://patreon.com/ricksouth), where you can get access to new mods before they are approved on CurseForge.</em>\
 \
+[Beautified Chat Client](https://www.patreon.com/posts/beautified-chat-54835141)\
+[Beautified Chat Server](https://www.patreon.com/posts/beautified-chat-54835141)\
 [Bouncier Beds](https://www.patreon.com/posts/bouncier-beds-54824272)
 
 
