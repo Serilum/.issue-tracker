@@ -1,0 +1,6 @@
+Changelog:
+Beautified Chat Server
+https://curseforge.com/minecraft/mc-mods/beautified-chat-server
+
+=========
+v1.0: Initial release of mod.
