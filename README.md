@@ -16,7 +16,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 
 
 ## Waiting For Approval Mods:
-Mods here link to my [Patreon Page](https://patreon.com/ricksouth), where you can get access to new mods before the are approved on CurseForge.
+Mods here link to my [Patreon Page](https://patreon.com/ricksouth), where you can get access to new mods before the are approved on CurseForge.\
 [Bouncier Beds](https://www.patreon.com/posts/bouncier-beds-54824272)
 
 ## Modpacks:
