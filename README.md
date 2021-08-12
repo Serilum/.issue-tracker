@@ -14,6 +14,11 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [![line](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/line.jpg)](#)
 [![line](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Patreon/patrons.jpg)](#)
 
+
+## Waiting For Approval Mods:
+Mods here link to my [Patreon Page](https://patreon.com/ricksouth), where you can get access to new mods before the are approved on CurseForge.
+[Bouncier Beds](https://www.patreon.com/posts/bouncier-beds-54824272)
+
 ## Modpacks:
 [The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)
 
@@ -173,6 +178,3 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 - Mods superseded by [Collective](https://curseforge.com/minecraft/mc-mods/collective):
   - [Find A Block (FAB) Library](https://curseforge.com/minecraft/mc-mods/fab-library)
   - [Spawn A Mob (SAM) Library](https://curseforge.com/minecraft/mc-mods/sam-library)
-
-
-## Waiting For Approval Mods:
