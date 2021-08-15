@@ -38,8 +38,8 @@ N/A
 [Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
 [Areas](https://curseforge.com/minecraft/mc-mods/areas)\
 [Automatic Doors](https://curseforge.com/minecraft/mc-mods/automatic-doors)\
-[Beautified Chat [Client]](https://curseforge.com/minecraft/mc-mods/beautified-chat-client)\
-[Beautified Chat [Server]](https://curseforge.com/minecraft/mc-mods/beautified-chat-server)\
+[Beautified Chat Client](https://curseforge.com/minecraft/mc-mods/beautified-chat-client)\
+[Beautified Chat Server](https://curseforge.com/minecraft/mc-mods/beautified-chat-server)\
 [Better Beacon Placement](https://curseforge.com/minecraft/mc-mods/better-beacon-placement)\
 [Better Conduit Placement](https://curseforge.com/minecraft/mc-mods/better-conduit-placement)\
 [Better Spawner Control](https://curseforge.com/minecraft/mc-mods/better-spawner-control)\
