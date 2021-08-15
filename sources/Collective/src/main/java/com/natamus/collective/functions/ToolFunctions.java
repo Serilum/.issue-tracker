@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.57.
+ * Minecraft version: 1.17.1, mod version: 2.58.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -21,7 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
-import net.minecraftforge.common.ToolType;
+import net.minecraftforge.common.ToolActions;
 
 public class ToolFunctions {
 	public static Boolean isTool(ItemStack itemstack) {
@@ -49,28 +49,28 @@ public class ToolFunctions {
 	}
 	
 	public static Boolean isPickaxe(ItemStack itemstack) {
-		if (itemstack.getItem() instanceof PickaxeItem || itemstack.getToolTypes().contains(ToolType.PICKAXE)) {
+		if (itemstack.getItem() instanceof PickaxeItem || itemstack.canPerformAction(ToolActions.PICKAXE_DIG)) {
 			return true;
 		}
 		return false;
 	}
 	
 	public static Boolean isAxe(ItemStack itemstack) {
-		if (itemstack.getItem() instanceof AxeItem || itemstack.getToolTypes().contains(ToolType.AXE)) {
+		if (itemstack.getItem() instanceof AxeItem || itemstack.canPerformAction(ToolActions.AXE_DIG)) {
 			return true;
 		}
 		return false;
 	}
 	
 	public static Boolean isShovel(ItemStack itemstack) {
-		if (itemstack.getItem() instanceof ShovelItem || itemstack.getToolTypes().contains(ToolType.SHOVEL)) {
+		if (itemstack.getItem() instanceof ShovelItem || itemstack.canPerformAction(ToolActions.SHOVEL_DIG)) {
 			return true;
 		}
 		return false;
 	}
 	
 	public static Boolean isHoe(ItemStack itemstack) {
-		if (itemstack.getItem() instanceof HoeItem || itemstack.getToolTypes().contains(ToolType.HOE)) {
+		if (itemstack.getItem() instanceof HoeItem || itemstack.canPerformAction(ToolActions.HOE_DIG)) {
 			return true;
 		}
 		return false;
