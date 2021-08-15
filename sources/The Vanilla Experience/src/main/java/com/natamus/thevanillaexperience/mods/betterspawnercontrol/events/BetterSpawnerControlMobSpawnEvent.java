@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -17,6 +17,7 @@ package com.natamus.thevanillaexperience.mods.betterspawnercontrol.events;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.collective.functions.WorldFunctions;
@@ -29,6 +30,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.WallTorchBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -47,23 +50,37 @@ public class BetterSpawnerControlMobSpawnEvent {
 
 		BaseSpawner msbl = e.getSpawner();
 		if (msbl != null) {
-			Entity spawnerentity = msbl.getSpawnerEntity();
+			Entity tospawn = e.getEntity();
+			BlockPos entitypos = tospawn.blockPosition();
 			
-			if (spawnerentity != null) {
-				BlockPos spos = spawnerentity.blockPosition();
-				
-				Boolean alltorches = true;
-				for (BlockPos ap : BlockPosFunctions.getBlocksAround(spos, false)) {
-					Block block = world.getBlockState(ap).getBlock();
-					if (block instanceof TorchBlock == false && block instanceof WallTorchBlock == false) {
-						alltorches = false;
+			BlockPos spawnerpos = null;
+			
+			Map<BlockPos, BlockEntity> entities = world.getChunk(entitypos.getX() >> 4, entitypos.getZ() >> 4).getBlockEntities();
+			for (BlockPos epos : entities.keySet()) {
+				BlockEntity blockentity = entities.get(epos);
+				if (blockentity.getType().equals(BlockEntityType.MOB_SPAWNER)) {
+					if (epos.distSqr(entitypos, true) <= 50) {
+						spawnerpos = epos.immutable();
 						break;
 					}
 				}
-				
-				if (alltorches) {
-					e.setResult(Result.DENY);
+			}
+			
+			if (spawnerpos == null) {
+				return;
+			}
+			
+			Boolean alltorches = true;
+			for (BlockPos ap : BlockPosFunctions.getBlocksAround(spawnerpos, false)) {
+				Block block = world.getBlockState(ap).getBlock();
+				if (block instanceof TorchBlock == false && block instanceof WallTorchBlock == false) {
+					alltorches = false;
+					break;
 				}
+			}
+			
+			if (alltorches) {
+				e.setResult(Result.DENY);
 			}
 		}
 	}

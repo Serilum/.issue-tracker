@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -14,15 +14,18 @@
 
 package com.natamus.thevanillaexperience.mods.villagernames.events;
 
+import java.util.HashMap;
+
 import com.natamus.collective.functions.EntityFunctions;
+import com.natamus.collective.functions.JsonFunctions;
 import com.natamus.thevanillaexperience.mods.villagernames.config.VillagerNamesConfigHandler;
 import com.natamus.thevanillaexperience.mods.villagernames.util.Names;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.npc.VillagerData;
 import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.VillagerData;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -88,17 +91,27 @@ public class VillagerNamesVillagerEvent {
 		if (profession.contains(":")) {
 			profession = profession.split(":")[1];
 		}
+		if (profession.contains("-")) {
+			profession = profession.split("-")[0].trim();
+		}
 		
-		String prevname = villager.getName().getString();
+		Component namecomponent = villager.getName();
+		String json = Component.Serializer.toJson(namecomponent); // {"bold":true,"color":"blue","text":"Hero Villager"}
+		HashMap<String, String> map = JsonFunctions.JsonStringToHashMap(json);
+		
+		String prevname = map.get("text");
 		String upperprofession = profession.substring(0, 1).toUpperCase() + profession.substring(1);
 		
-		villager.setCustomName(new TextComponent(prevname + " the " + upperprofession));
+		map.put("text", prevname + " the " + upperprofession);
+		villager.setCustomName(Component.Serializer.fromJson(JsonFunctions.HashMapToJsonString(map)));
+		
 		new Thread( new Runnable() {
 	    	public void run()  {
 	        	try  { Thread.sleep( 10 ); }
 	            catch (InterruptedException ie)  {}
 	        	
-	        	villager.setCustomName(new TextComponent(prevname.replace(" the ", "").replace(upperprofession, "")));
+	        	map.put("text", prevname.replace(" the ", "").replace(upperprofession, ""));
+	    		villager.setCustomName(Component.Serializer.fromJson(JsonFunctions.HashMapToJsonString(map)));
 	    	}
 	    } ).start();
 	}

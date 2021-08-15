@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -22,11 +22,11 @@ import com.natamus.collective.functions.FABFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.thevanillaexperience.mods.nohostilesaroundcampfire.config.NoHostilesAroundCampfireConfigHandler;
 import com.natamus.thevanillaexperience.mods.nohostilesaroundcampfire.util.Reference;
+import com.natamus.thevanillaexperience.mods.nohostilesaroundcampfire.util.NoHostilesAroundCampfireUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Entity.RemovalReason;
-import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FlintAndSteelItem;
 import net.minecraft.world.level.BaseSpawner;
@@ -82,7 +82,7 @@ public class NoHostilesAroundCampfireCampfireEvent {
 					int r = (int)(NoHostilesAroundCampfireConfigHandler.GENERAL.preventHostilesRadius.get() * NoHostilesAroundCampfireConfigHandler.GENERAL.burnHostilesRadiusModifier.get());
 					List<Entity> entities = world.getEntities(null, new AABB(campfirepos.getX()-r, campfirepos.getY()-r, campfirepos.getZ()-r, campfirepos.getX()+r, campfirepos.getY()+r, campfirepos.getZ()+r));
 					for (Entity entity : entities) {
-						if (entity.getType().getCategory().equals(MobCategory.MONSTER)) {
+						if (NoHostilesAroundCampfireUtil.entityIsHostile(entity)) {
 							entity.setSecondsOnFire(30);
 						}
 					}
@@ -114,7 +114,7 @@ public class NoHostilesAroundCampfireCampfireEvent {
 			}
 		}
 		
-		if (!entity.getType().getCategory().equals(MobCategory.MONSTER)) {
+		if (!NoHostilesAroundCampfireUtil.entityIsHostile(entity)) {
 			return;
 		}
 		
@@ -262,7 +262,7 @@ public class NoHostilesAroundCampfireCampfireEvent {
 		BlockPos ppos = e.getPos();
 		List<Entity> entities = world.getEntities(null, new AABB(ppos.getX()-r, ppos.getY()-r, ppos.getZ()-r, ppos.getX()+r, ppos.getY()+r, ppos.getZ()+r));
 		for (Entity entity : entities) {
-			if (entity.getType().getCategory().equals(MobCategory.MONSTER)) {
+			if (NoHostilesAroundCampfireUtil.entityIsHostile(entity)) {
 				if (entity.isOnFire()) {
 					entity.clearFire();
 					entity.setSecondsOnFire(2);

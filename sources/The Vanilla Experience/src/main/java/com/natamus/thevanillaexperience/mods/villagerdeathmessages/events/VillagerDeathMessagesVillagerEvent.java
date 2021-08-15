@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -18,14 +18,14 @@ import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.thevanillaexperience.mods.villagerdeathmessages.config.VillagerDeathMessagesConfigHandler;
 
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.npc.VillagerData;
-import net.minecraft.world.entity.npc.Villager;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.ChatFormatting;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.VillagerData;
+import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -53,37 +53,45 @@ public class VillagerDeathMessagesVillagerEvent {
 			}
 		}
 		
+		boolean modded = false;
 		String prefix = "";
 		
-		// Villager profession
 		if (goname) {
-			// MODDED
-			prefix = "A special villager";
-			if (entity.hasCustomName()) {
-				prefix = entity.getName().getString();
-			}
+			modded = true;
 		}
 		else {
 			Villager villager = (Villager)entity;
 			VillagerData d = villager.getVillagerData();
 			VillagerProfession prof = d.getProfession();
 			
-			String profession = "";
-			if (prof.toString() != "none") {
-				profession = prof.toString();
-			}
-			
-			if (profession != "") {
-				prefix = "A " + profession + " villager";
-				if (villager.hasCustomName()) {
-					prefix = villager.getName().getString() + " the " + profession;
+			if (prof != null) {
+				String profession = "";
+				if (prof.toString() != "none") {
+					profession = prof.toString();
+				}
+				
+				if (profession != "") {
+					prefix = "A " + profession + " villager";
+					if (villager.hasCustomName()) {
+						prefix = villager.getName().getString() + " the " + profession;
+					}
+				}
+				else {
+					prefix = "A villager";
+					if (villager.hasCustomName()) {
+						prefix = villager.getName().getString();
+					}
 				}
 			}
 			else {
-				prefix = "A villager";
-				if (villager.hasCustomName()) {
-					prefix = villager.getName().getString();
-				}
+				modded = true;
+			}
+		}
+		
+		if (modded) {
+			prefix = "A special villager";
+			if (entity.hasCustomName()) {
+				prefix = entity.getName().getString();
 			}
 		}
 		

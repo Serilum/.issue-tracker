@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -30,16 +30,20 @@ public class ConfigHandler {
 
 
 
+
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableAdvancementScreenshot;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableAllLootDrops;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableAlwaysaWitherSkull;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableAreas;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableAutomaticDoors;
+		public final ForgeConfigSpec.ConfigValue<Boolean> enableBeautifiedChatServer;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableBetterBeaconPlacement;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableBetterConduitPlacement;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableBetterSpawnerControl;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableBiggerSpongeAbsorptionRadius;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableBottleYourXp;
+		public final ForgeConfigSpec.ConfigValue<Boolean> enableBottledAir;
+		public final ForgeConfigSpec.ConfigValue<Boolean> enableBouncierBeds;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableBreedableKillerRabbit;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableCampfireSpawnandTweaks;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableConduitsPreventDrowned;
@@ -148,6 +152,7 @@ public class ConfigHandler {
 
 
 
+
 			enableAdvancementScreenshot = builder
 					.comment("If Advancement Screenshot should be enabled. A client-side mod which takes a screenshot every time a player achieves an advancement.")
 					.define("enableAdvancementScreenshot", false);
@@ -163,6 +168,9 @@ public class ConfigHandler {
 			enableAutomaticDoors = builder
 					.comment("If Automatic Doors should be enabled. Automatically opens doors in front of the player and closes them with a configurable delay.")
 					.define("enableAutomaticDoors", false);
+			enableBeautifiedChatServer = builder
+					.comment("If Beautified Chat Server should be enabled. A highly configurable mod to change the style and colour of incoming chat messages server-wide.")
+					.define("enableBeautifiedChatServer", false);
 			enableBetterBeaconPlacement = builder
 					.comment("If Better Beacon Placement should be enabled. Easily place beacon bases by right-clicking the beacon with a mineral block plus other tweaks.")
 					.define("enableBetterBeaconPlacement", false);
@@ -178,6 +186,12 @@ public class ConfigHandler {
 			enableBottleYourXp = builder
 					.comment("If Bottle Your Xp should be enabled. A minimalistic configurable mod that allows the creation of experience bottles from your own gathered xp.")
 					.define("enableBottleYourXp", false);
+			enableBottledAir = builder
+					.comment("If Bottled Air should be enabled. Allows players to breathe in empty glass bottles underwater to get more air, configurable.")
+					.define("enableBottledAir", false);
+			enableBouncierBeds = builder
+					.comment("If Bouncier Beds should be enabled. Makes players bounce configurably higher on beds and prevents fall damage on them.")
+					.define("enableBouncierBeds", false);
 			enableBreedableKillerRabbit = builder
 					.comment("If Breedable Killer Rabbit should be enabled. A minimalistic configurable mod which makes the killer rabbit tamable and available by breeding.")
 					.define("enableBreedableKillerRabbit", false);

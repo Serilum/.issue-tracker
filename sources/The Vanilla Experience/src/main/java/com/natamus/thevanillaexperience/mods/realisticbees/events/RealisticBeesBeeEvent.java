@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -24,6 +24,13 @@ import com.natamus.collective.functions.StringFunctions;
 import com.natamus.thevanillaexperience.mods.realisticbees.config.RealisticBeesConfigHandler;
 import com.natamus.thevanillaexperience.mods.realisticbees.util.Reference;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -31,14 +38,8 @@ import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.core.BlockPos;
-import net.minecraft.util.Mth;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -79,13 +80,19 @@ public class RealisticBeesBeeEvent {
 			return;
 		}
 		
+		if (world instanceof ServerLevel == false) {
+			return;
+		}
+		
+		ServerLevel serverworld = (ServerLevel)world;
+		
 		Vec3 beevec = entity.position();
 		for (int i = 0; i < extrabees; i++) {
 			Bee newbee = EntityType.BEE.create(world);
 			newbee.level = world;
 			newbee.setPos(beevec.x, beevec.y, beevec.z);
 			newbee.addTag(Reference.MOD_ID + ".ignorebee");
-			world.addFreshEntity(newbee);
+			serverworld.addFreshEntityWithPassengers(newbee);
 		}
 		
 		entity.addTag(Reference.MOD_ID + ".ignorebee");

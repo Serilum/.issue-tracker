@@ -3,6 +3,9 @@ The Vanilla Experience
 https://curseforge.com/minecraft/mc-mods/the-vanilla-experience
 
 =========
+v1.4: Synced all changes in The Vanilla Experience modpack 3.2.
+
+=========
 v1.3: Contains all new mod updates.
 
 =========

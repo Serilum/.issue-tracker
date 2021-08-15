@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -51,9 +51,10 @@ public class GUIClockGUIEvent extends Gui {
 		
 		boolean gametimeb = GUIClockConfigHandler.GENERAL.mustHaveClockInInventoryForGameTime.get();
 		boolean realtimeb = GUIClockConfigHandler.GENERAL.mustHaveClockInInventoryForRealTime.get();
-		boolean found = false;
+		boolean found = true;
 		
 		if (gametimeb || realtimeb) {
+			found = false;
 			Inventory inv = mc.player.getInventory();
 			for (int n = 0; n <= 35; n++) {
 				if (inv.getItem(n).getItem().equals(Items.CLOCK)) {
@@ -78,19 +79,23 @@ public class GUIClockGUIEvent extends Gui {
 		int xcoord = 0;
 		int daycoord = 0;
 		if (GUIClockConfigHandler.GENERAL.showOnlyMinecraftClockIcon.get()) {
-			if (!found) {
-				return;
+			if (gametimeb) {
+				if (!found) {
+					return;
+				}
 			}
 			
 			if (GUIClockConfigHandler.GENERAL.clockPositionIsLeft.get()) {
 				xcoord = 20;
 			}
 			else if (GUIClockConfigHandler.GENERAL.clockPositionIsCenter.get()) {
-				xcoord = (width/2);
+				xcoord = (width/2) - 8;
 			}
 			else {
 				xcoord = width - 20;
 			}
+			
+			xcoord += GUIClockConfigHandler.GENERAL.clockWidthOffset.get();
 			
 			ItemRenderer itemrenderer = mc.getItemRenderer();
 			itemrenderer.renderAndDecorateItem(new ItemStack(Items.CLOCK), xcoord, heightoffset);
@@ -153,6 +158,9 @@ public class GUIClockGUIEvent extends Gui {
 				xcoord = width - stringWidth - 5;
 				daycoord = width - daystringWidth - 5;
 			}
+			
+			xcoord += GUIClockConfigHandler.GENERAL.clockWidthOffset.get();
+			daycoord += GUIClockConfigHandler.GENERAL.clockWidthOffset.get();
 			
 			fontRender.draw(posestack, time, xcoord, heightoffset, colour.getRGB());
 			if (daystring != "") {

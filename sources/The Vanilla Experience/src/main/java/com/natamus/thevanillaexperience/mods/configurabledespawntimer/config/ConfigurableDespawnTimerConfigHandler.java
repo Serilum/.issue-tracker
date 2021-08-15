@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -28,7 +28,7 @@ public class ConfigurableDespawnTimerConfigHandler {
 			builder.push("General");
 			despawnTimeInTicks = builder
 					.comment("The delay in ticks when an item should despawn, called the lifespan. Minecraft's default time is 6000 ticks. 1 second is 20 ticks.")
-					.defineInRange("despawnTimeInTicks", 12000, 0, 72000);
+					.defineInRange("despawnTimeInTicks", 12000, 1, 2147483647);
 			
 			builder.pop();
 		}

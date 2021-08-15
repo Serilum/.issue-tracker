@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -31,6 +31,8 @@ import com.natamus.thevanillaexperience.mods.areas.network.PacketToClientShowGUI
 import com.natamus.thevanillaexperience.mods.areas.util.AreasUtil;
 import com.natamus.thevanillaexperience.mods.automaticdoors.config.AutomaticDoorsConfigHandler;
 import com.natamus.thevanillaexperience.mods.automaticdoors.events.AutomaticDoorsDoorEvent;
+import com.natamus.thevanillaexperience.mods.beautifiedchatserver.config.BeautifiedChatServerConfigHandler;
+import com.natamus.thevanillaexperience.mods.beautifiedchatserver.events.BeautifiedChatServerBeautifulChatEvent;
 import com.natamus.thevanillaexperience.mods.betterbeaconplacement.config.BetterBeaconPlacementConfigHandler;
 import com.natamus.thevanillaexperience.mods.betterbeaconplacement.events.BetterBeaconPlacementBeaconEvent;
 import com.natamus.thevanillaexperience.mods.betterconduitplacement.config.BetterConduitPlacementConfigHandler;
@@ -38,8 +40,12 @@ import com.natamus.thevanillaexperience.mods.betterconduitplacement.events.Bette
 import com.natamus.thevanillaexperience.mods.betterspawnercontrol.events.BetterSpawnerControlMobSpawnEvent;
 import com.natamus.thevanillaexperience.mods.biggerspongeabsorptionradius.blocks.ExtendedSpongeBlock;
 import com.natamus.thevanillaexperience.mods.biggerspongeabsorptionradius.util.BiggerSpongeAbsorptionRadiusVariables;
+import com.natamus.thevanillaexperience.mods.bottledair.config.BottledAirConfigHandler;
+import com.natamus.thevanillaexperience.mods.bottledair.events.BottledAirAirEvent;
 import com.natamus.thevanillaexperience.mods.bottleyourxp.config.BottleYourXpConfigHandler;
 import com.natamus.thevanillaexperience.mods.bottleyourxp.events.BottleYourXpClickEvent;
+import com.natamus.thevanillaexperience.mods.bouncierbeds.config.BouncierBedsConfigHandler;
+import com.natamus.thevanillaexperience.mods.bouncierbeds.events.BouncierBedsEntityEvent;
 import com.natamus.thevanillaexperience.mods.breedablekillerrabbit.config.BreedableKillerRabbitConfigHandler;
 import com.natamus.thevanillaexperience.mods.breedablekillerrabbit.events.BreedableKillerRabbitEntityEvent;
 import com.natamus.thevanillaexperience.mods.campfirespawnandtweaks.config.CampfireSpawnandTweaksConfigHandler;
@@ -270,9 +276,12 @@ public class Main {
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, AllLootDropsConfigHandler.spec, "TVE" + File.separator + "alllootdrops-common.toml");
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, AreasConfigHandler.spec, "TVE" + File.separator + "areas-common.toml");
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, AutomaticDoorsConfigHandler.spec, "TVE" + File.separator + "automaticdoors-common.toml");
+		modLoadingContext.registerConfig(ModConfig.Type.COMMON, BeautifiedChatServerConfigHandler.spec, "TVE" + File.separator + "beautifiedchatserver-common.toml");
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, BetterBeaconPlacementConfigHandler.spec, "TVE" + File.separator + "betterbeaconplacement-common.toml");
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, BetterConduitPlacementConfigHandler.spec, "TVE" + File.separator + "betterconduitplacement-common.toml");
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, BottleYourXpConfigHandler.spec, "TVE" + File.separator + "bottleyourxp-common.toml");
+		modLoadingContext.registerConfig(ModConfig.Type.COMMON, BottledAirConfigHandler.spec, "TVE" + File.separator + "bottledair-common.toml");
+		modLoadingContext.registerConfig(ModConfig.Type.COMMON, BouncierBedsConfigHandler.spec, "TVE" + File.separator + "bouncierbeds-common.toml");
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, BreedableKillerRabbitConfigHandler.spec, "TVE" + File.separator + "breedablekillerrabbit-common.toml");
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, CampfireSpawnandTweaksConfigHandler.spec, "TVE" + File.separator + "campfirespawnandtweaks-common.toml");
 		modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConduitsPreventDrownedConfigHandler.spec, "TVE" + File.separator + "conduitspreventdrowned-common.toml");
@@ -378,6 +387,9 @@ public class Main {
 			if ((ConfigHandler.GENERAL.enableAutomaticDoors.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Automatic Doors")) {
 			MinecraftForge.EVENT_BUS.register(new AutomaticDoorsDoorEvent());
 		}
+			if ((ConfigHandler.GENERAL.enableBeautifiedChatServer.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Beautified Chat Server")) {
+			MinecraftForge.EVENT_BUS.register(new BeautifiedChatServerBeautifulChatEvent());
+		}
 			if ((ConfigHandler.GENERAL.enableBetterBeaconPlacement.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Better Beacon Placement")) {
 			MinecraftForge.EVENT_BUS.register(new BetterBeaconPlacementBeaconEvent());
 		}
@@ -389,6 +401,12 @@ public class Main {
 		}
 			if ((ConfigHandler.GENERAL.enableBottleYourXp.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Bottle Your Xp")) {
 			MinecraftForge.EVENT_BUS.register(new BottleYourXpClickEvent());
+		}
+			if ((ConfigHandler.GENERAL.enableBottledAir.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Bottled Air")) {
+			MinecraftForge.EVENT_BUS.register(new BottledAirAirEvent());
+		}
+			if ((ConfigHandler.GENERAL.enableBouncierBeds.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Bouncier Beds")) {
+			MinecraftForge.EVENT_BUS.register(new BouncierBedsEntityEvent());
 		}
 			if ((ConfigHandler.GENERAL.enableBreedableKillerRabbit.get() || ConfigHandler.GENERAL._enableALL.get()) && TveUtil.shouldLoadMod("Breedable Killer Rabbit")) {
 			MinecraftForge.EVENT_BUS.register(new BreedableKillerRabbitEntityEvent());

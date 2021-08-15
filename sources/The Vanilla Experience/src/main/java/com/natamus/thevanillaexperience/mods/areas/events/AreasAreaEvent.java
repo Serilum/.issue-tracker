@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -28,13 +28,14 @@ import com.natamus.collective.functions.FABFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
+import net.minecraftforge.event.TickEvent.ServerTickEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -42,6 +43,8 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class AreasAreaEvent {
+	int tickdelay = 20;
+	
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load e) {
 		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
@@ -52,6 +55,43 @@ public class AreasAreaEvent {
 		if (!AreasVariables.areasperworld.containsKey(world)) {
 			AreasVariables.areasperworld.put(world, new HashMap<BlockPos, AreaObject>());
 			AreasVariables.ignoresignsperworld.put(world, new CopyOnWriteArrayList<BlockPos>());
+			
+			AreasVariables.checkifshouldignoreperworld.put(world, new CopyOnWriteArrayList<BlockPos>());
+			AreasVariables.ignoremap.put(world, new HashMap<BlockPos, Integer>());
+		}
+	}
+	
+	@SubscribeEvent
+	public void onServerTick(ServerTickEvent e) {
+		if (!e.phase.equals(Phase.START)) {
+			return;
+		}
+		
+		if (tickdelay > 0) {
+			tickdelay -= 1;
+			return;
+		}
+		tickdelay = 20;
+		
+		for (Level world : AreasVariables.checkifshouldignoreperworld.keySet()) {
+			for (BlockPos pos : AreasVariables.checkifshouldignoreperworld.get(world)) {
+				if (AreasVariables.areasperworld.get(world).containsKey(pos)) {
+					AreasVariables.checkifshouldignoreperworld.get(world).remove(pos);
+					AreasVariables.ignoremap.get(world).remove(pos);
+					continue;
+				}
+				
+				int checkleft = AreasVariables.ignoremap.get(world).get(pos);
+				if (checkleft <= 0) {
+					AreasVariables.checkifshouldignoreperworld.get(world).remove(pos);
+					AreasVariables.ignoremap.get(world).remove(pos);
+					
+					AreasVariables.ignoresignsperworld.get(world).add(pos);
+					continue;
+				}
+				
+				AreasVariables.ignoremap.get(world).put(pos, checkleft-1);
+			}
 		}
 	}
 	
@@ -59,7 +99,7 @@ public class AreasAreaEvent {
 	public void onPlayerTick(PlayerTickEvent e) {
 		Player player = e.player;
 		Level world = player.getCommandSenderWorld();
-		if (world.isClientSide || !e.phase.equals(Phase.START)) {
+		if (world.isClientSide || !e.phase.equals(Phase.END)) {
 			return;
 		}
 		
@@ -81,7 +121,10 @@ public class AreasAreaEvent {
 			
 			AreaObject ao = AreasUtil.getAreaSign(world, nspos);
 			if (ao == null) {
-				AreasVariables.ignoresignsperworld.get(world).add(nspos);
+				if (!AreasVariables.checkifshouldignoreperworld.get(world).contains(nspos)) {
+					AreasVariables.checkifshouldignoreperworld.get(world).add(nspos);
+					AreasVariables.ignoremap.get(world).put(nspos, 10);
+				}
 				continue;
 			}
 			
@@ -141,6 +184,13 @@ public class AreasAreaEvent {
 			}
 			if (AreasVariables.ignoresignsperworld.get(world).contains(signpos)) {
 				AreasVariables.ignoresignsperworld.get(world).remove(signpos);
+			}
+			
+			if (AreasVariables.checkifshouldignoreperworld.get(world).contains(signpos)) {
+				AreasVariables.checkifshouldignoreperworld.get(world).remove(signpos);
+			}
+			if (AreasVariables.ignoremap.get(world).containsKey(signpos)) {
+				AreasVariables.ignoremap.get(world).remove(signpos);
 			}
 		}
 	}

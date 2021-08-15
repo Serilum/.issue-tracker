@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20The%
 
 [[mods]]
 modId="thevanillaexperience"
-version="1.3"
+version="1.4"
 displayName="The Vanilla Experience"
 displayURL="https://curseforge.com/minecraft/mc-mods/the-vanilla-experience"
 authors="Rick South"
 description="A mod mirror of the modpack The Vanilla Experience. Includes all the code from all mods and combines it into a single mod. See https://curseforge.com/minecraft/modpacks/the-vanilla-experience for more information."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley   
+Adara Christine, dtorgy, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley   
 '''
 
 [[dependencies.thevanillaexperience]]
     modId="collective"
     mandatory=true
-    versionRange="[2.49,)"
+    versionRange="[2.58,)"
     ordering="NONE"
     side="BOTH"

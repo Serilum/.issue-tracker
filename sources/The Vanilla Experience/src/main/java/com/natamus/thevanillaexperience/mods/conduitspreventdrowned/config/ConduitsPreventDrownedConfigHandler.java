@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of The Vanilla Experience.
- * Minecraft version: 1.17.1, mod version: 1.3.
+ * Minecraft version: 1.17.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of The Vanilla Experience ever released, along with some other perks.
@@ -27,8 +27,8 @@ public class ConduitsPreventDrownedConfigHandler {
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
 			preventDrownedInRange = builder
-					.comment("The euclidian distance range around the drowned where a check for a player with the conduit effect is done. A value of 200 prevents the spawning of all drowned around.")
-					.defineInRange("preventDrownedInRange", 200, 0, 200);
+					.comment("The euclidian distance range around the drowned where a check for a player with the conduit effect is done. A value of 400 prevents the spawning of all drowned around.")
+					.defineInRange("preventDrownedInRange", 400, 0, 400);
 			
 			builder.pop();
 		}
