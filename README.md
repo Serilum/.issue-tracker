@@ -13,9 +13,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 ## Waiting For Approval Mods:
 > <em>CurseForge can take 1-3 days to approve new mods. The following links take you to posts on my [Patreon Page](https://patreon.com/ricksouth), where you can get access to the downloads before they're available on CurseForge.</em>\
 \
-[Beautified Chat Client](https://www.patreon.com/posts/beautified-chat-54835141)\
-[Beautified Chat Server](https://www.patreon.com/posts/beautified-chat-54835141)\
-[Bouncier Beds](https://www.patreon.com/posts/bouncier-beds-54824272)
+N/A
 
  
 ‎\
@@ -40,12 +38,15 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
 [Areas](https://curseforge.com/minecraft/mc-mods/areas)\
 [Automatic Doors](https://curseforge.com/minecraft/mc-mods/automatic-doors)\
+[Beautified Chat Client](https://curseforge.com/minecraft/mc-mods/beautified-chat-client)\
+[Beautified Chat Server](https://curseforge.com/minecraft/mc-mods/beautified-chat-server)\
 [Better Beacon Placement](https://curseforge.com/minecraft/mc-mods/better-beacon-placement)\
 [Better Conduit Placement](https://curseforge.com/minecraft/mc-mods/better-conduit-placement)\
 [Better Spawner Control](https://curseforge.com/minecraft/mc-mods/better-spawner-control)\
 [Bigger Sponge Absorption Radius](https://curseforge.com/minecraft/mc-mods/bigger-sponge-absorption-radius)\
 [Bottle Your Xp](https://curseforge.com/minecraft/mc-mods/bottle-your-xp)\
 [Bottled Air](https://curseforge.com/minecraft/mc-mods/bottled-air)\
+[Bouncier Beds](https://curseforge.com/minecraft/mc-mods/bouncier-beds)\
 [Breedable Killer Rabbit](https://curseforge.com/minecraft/mc-mods/breedable-killer-rabbit)\
 [Campfire Spawn and Tweaks](https://curseforge.com/minecraft/mc-mods/campfire-spawn-and-tweaks)\
 [Conduits Prevent Drowned](https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned)\
