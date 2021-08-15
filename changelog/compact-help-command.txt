@@ -1,0 +1,6 @@
+Changelog:
+Compact Help Command
+https://curseforge.com/minecraft/mc-mods/compact-help-command
+
+=========
+v1.0: Initial release of mod.
