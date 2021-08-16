@@ -1,0 +1,6 @@
+Changelog:
+Configurable Furnace Burn Time
+https://curseforge.com/minecraft/mc-mods/configurable-furnace-burn-time
+
+=========
+v1.0: Initial release of mod.

@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[37,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Configurable%20Furnace%20Burn%20Time"
+
+[[mods]]
+modId="configurablefurnaceburntime"
+version="1.0"
+displayName="Configurable Furnace Burn Time"
+displayURL="https://curseforge.com/minecraft/mc-mods/configurable-furnace-burn-time"
+authors="Rick South"
+description="Allows users to change the fuel burn time in a furnace globally via a config."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, dtorgy, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley   
+'''
+
+[[dependencies.configurablefurnaceburntime]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.58,)"
+    ordering="NONE"
+    side="BOTH"
