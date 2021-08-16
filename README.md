@@ -49,8 +49,8 @@ N/A
 [Bouncier Beds](https://curseforge.com/minecraft/mc-mods/bouncier-beds)\
 [Breedable Killer Rabbit](https://curseforge.com/minecraft/mc-mods/breedable-killer-rabbit)\
 [Campfire Spawn and Tweaks](https://curseforge.com/minecraft/mc-mods/campfire-spawn-and-tweaks)\
-[Conduits Prevent Drowned](https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned)\
 [Compact Help Command](https://curseforge.com/minecraft/mc-mods/compact-help-command)\
+[Conduits Prevent Drowned](https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned)\
 [Configurable Despawn Timer](https://curseforge.com/minecraft/mc-mods/configurable-despawn-timer)\
 [Configurable Extra Mob Drops](https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops)\
 [Configurable Mob Potion Effects](https://curseforge.com/minecraft/mc-mods/configurable-mob-potion-effects)\
