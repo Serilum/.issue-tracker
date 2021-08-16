@@ -13,7 +13,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 ## Waiting For Approval Mods:
 > <em>CurseForge can take 1-3 days to approve new mods. The following links take you to posts on my [Patreon Page](https://patreon.com/ricksouth), where you can get access to the downloads before they're available on CurseForge.</em>\
 \
-[Compact Help Command](https://www.patreon.com/posts/compact-help-pre-54946923)
+N/A
 
  
 ‎\
@@ -50,6 +50,7 @@ If you're a(n aspiring) mod developer, this list of all Forge events might be us
 [Breedable Killer Rabbit](https://curseforge.com/minecraft/mc-mods/breedable-killer-rabbit)\
 [Campfire Spawn and Tweaks](https://curseforge.com/minecraft/mc-mods/campfire-spawn-and-tweaks)\
 [Conduits Prevent Drowned](https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned)\
+[Compact Help Command](https://curseforge.com/minecraft/mc-mods/compact-help-command)\
 [Configurable Despawn Timer](https://curseforge.com/minecraft/mc-mods/configurable-despawn-timer)\
 [Configurable Extra Mob Drops](https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops)\
 [Configurable Mob Potion Effects](https://curseforge.com/minecraft/mc-mods/configurable-mob-potion-effects)\
