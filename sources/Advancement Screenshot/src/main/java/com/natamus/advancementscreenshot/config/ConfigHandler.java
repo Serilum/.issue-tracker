@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Advancement Screenshot.
- * Minecraft version: 1.17.1, mod version: 1.4.
+ * Minecraft version: 1.17.1, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Advancement Screenshot ever released, along with some other perks.
@@ -23,16 +23,12 @@ public class ConfigHandler {
 
 	public static class General {
 		public final ForgeConfigSpec.ConfigValue<Boolean> showScreenshotTakenMessage;
-		public final ForgeConfigSpec.ConfigValue<Boolean> countNewRecipeAdvancements;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
 			showScreenshotTakenMessage = builder
 					.comment("If enabled, shows the normal screenshot taken (same as F2) message when a screenshot is taken after an advancement.")
 					.define("showScreenshotTakenMessage", false);
-			countNewRecipeAdvancements = builder
-					.comment("If enabled, also takes screenshots when new recipes are unlocked.")
-					.define("countNewRecipeAdvancements", true);
 			
 			builder.pop();
 		}

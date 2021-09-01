@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.59: Added CompareBlock/Item Functions. Moving block determinations to collective for easier updating and better compatibility with other mods.
+
+=========
 v2.58: Updated Collective's ToolFunctions class to work with the changes made in Forge 37.0.31.
 
 =========

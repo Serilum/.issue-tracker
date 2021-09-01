@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.17.1, mod version: 2.9.
+ * Minecraft version: 1.17.1, mod version: 3.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -21,30 +21,17 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.mojang.datafixers.util.Pair;
+import com.natamus.collective.functions.CompareBlockFunctions;
+import com.natamus.collective.functions.CompareItemFunctions;
 import com.natamus.treeharvester.config.ConfigHandler;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Entity.RemovalReason;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.AttachedStemBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BushBlock;
-import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.DeadBushBlock;
-import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.world.level.block.FlowerBlock;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.StemBlock;
-import net.minecraft.world.level.block.SweetBerryBushBlock;
-import net.minecraft.world.level.block.TallGrassBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
@@ -72,13 +59,13 @@ public class Util {
 			while (it.hasNext()) {
 				BlockPos npos = it.next();
 				Block nblock = world.getBlockState(npos).getBlock();
-				if (isTreeLeaf(nblock)) {
+				if (CompareBlockFunctions.isTreeLeaf(nblock)) {
 					leafcount-=1;
 					if (npos.getY() > highesty) {
 						highesty = npos.getY();
 					}
 				}
-				else if (isTreeLog(nblock)) {
+				else if (CompareBlockFunctions.isTreeLog(nblock)) {
 					logcount+=1;
 				}
 			}
@@ -92,42 +79,16 @@ public class Util {
 		return -1;
 	}
 	
-	public static boolean isTreeLeaf(Block block) {
-		if (BlockTags.LEAVES.contains(block) || block instanceof LeavesBlock) {
-			return true;
-		}
-		if (block instanceof BushBlock) {
-			if (block instanceof CropBlock == false && block instanceof DeadBushBlock == false && block instanceof DoublePlantBlock == false && block instanceof FlowerBlock == false && block instanceof SaplingBlock == false && block instanceof StemBlock == false && block instanceof AttachedStemBlock == false && block instanceof SweetBerryBushBlock == false && block instanceof TallGrassBlock == false) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public static boolean isTreeLog(Block block) {
-		if (BlockTags.LOGS.contains(block) || block instanceof RotatedPillarBlock) {
-			return true;
-		}
-		return false;
-	}
-	
-	public static boolean isSapling(ItemStack itemstack) {
-		Item item = itemstack.getItem();
-		if (Block.byItem(item) instanceof SaplingBlock) {
-			return true;
-		}
-		return false;
-	}
-	
 	public static List<BlockPos> getAllLogsToBreak(Level world, BlockPos pos, int logcount) {
 		CopyOnWriteArrayList<BlockPos> bottomlogs = new CopyOnWriteArrayList<BlockPos>();
 		if (ConfigHandler.GENERAL.replaceSaplingIfBottomLogIsBroken.get()) {
-			if (world.getBlockState(pos.below()).getBlock().equals(Blocks.DIRT)) {
+			Block blockbelow = world.getBlockState(pos.below()).getBlock();
+			if (CompareBlockFunctions.isDirtBlock(blockbelow)) {
 				Iterator<BlockPos> it = BlockPos.betweenClosedStream(pos.getX()-1, pos.getY(), pos.getZ()-1, pos.getX()+1, pos.getY(), pos.getZ()+1).iterator();
 				while (it.hasNext()) {
 					BlockPos npos = it.next();
 					Block block = world.getBlockState(npos).getBlock();
-					if (isTreeLog(block)) {
+					if (CompareBlockFunctions.isTreeLog(block)) {
 						bottomlogs.add(npos.immutable());
 					}
 				}
@@ -157,7 +118,7 @@ public class Util {
 			if (ea instanceof ItemEntity) {
 				ItemEntity eia = (ItemEntity)ea;
 				ItemStack eisa = eia.getItem();
-				if (isSapling(eisa)) {
+				if (CompareItemFunctions.isSapling(eisa)) {
 					if (sapling == null) {
 						sapling = eisa.copy();
 					}
@@ -216,7 +177,7 @@ public class Util {
 			}
 			BlockState logstate = world.getBlockState(nalogpos);
 			Block logblock = logstate.getBlock();
-			if (isTreeLog(logblock)) {
+			if (CompareBlockFunctions.isTreeLog(logblock)) {
 				checkaround.add(nalogpos);
 				logstobreak.add(nalogpos);
 				
@@ -228,7 +189,7 @@ public class Util {
 				while (aroundleaves.hasNext()) {
 					BlockPos naleafpos = aroundleaves.next();
 					Block leafblock = world.getBlockState(naleafpos).getBlock();
-					if (isTreeLeaf(leafblock)) {
+					if (CompareBlockFunctions.isTreeLeaf(leafblock)) {
 						if (ConfigHandler.GENERAL.instantBreakLeavesAround.get()) {
 							world.destroyBlock(naleafpos, true);
 						}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.17.1, mod version: 2.9.
+ * Minecraft version: 1.17.1, mod version: 3.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -24,6 +24,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import com.mojang.datafixers.util.Pair;
 import com.natamus.collective.functions.BlockFunctions;
 import com.natamus.collective.functions.BlockPosFunctions;
+import com.natamus.collective.functions.CompareBlockFunctions;
 import com.natamus.collective.functions.ToolFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.treeharvester.config.ConfigHandler;
@@ -119,7 +120,7 @@ public class TreeEvent {
 		
 		BlockPos bpos = e.getPos();
 		Block block = world.getBlockState(bpos).getBlock();
-		if (!Util.isTreeLog(block)) {
+		if (!CompareBlockFunctions.isTreeLog(block)) {
 			return;
 		}
 		
@@ -185,7 +186,7 @@ public class TreeEvent {
 			Iterator<BlockPos> possiblelogs = BlockPos.betweenClosed(bpos.getX()-8, bpos.getY(), bpos.getZ()-8, bpos.getX()+8, Util.highestleaf.get(bpos), bpos.getZ()+8).iterator();
 			while(possiblelogs.hasNext()) {
 				BlockPos next = possiblelogs.next();
-				if (Util.isTreeLog(world.getBlockState(next).getBlock())) {
+				if (CompareBlockFunctions.isTreeLog(world.getBlockState(next).getBlock())) {
 					logs.add(next.immutable());
 				}
 			}
@@ -196,7 +197,7 @@ public class TreeEvent {
 			Iterator<BlockPos> possibleleaves = BlockPos.betweenClosed(bpos.getX()-h, bpos.getY(), bpos.getZ()-h, bpos.getX()+h, Util.highestleaf.get(bpos), bpos.getZ()+h).iterator();
 			while (possibleleaves.hasNext()) {
 				BlockPos next = possibleleaves.next();
-				if (Util.isTreeLeaf(world.getBlockState(next).getBlock())) {
+				if (CompareBlockFunctions.isTreeLeaf(world.getBlockState(next).getBlock())) {
 					boolean logclose = false;
 					for (BlockPos log : logs) {
 						double distance = log.distSqr(next);

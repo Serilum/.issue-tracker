@@ -3,6 +3,9 @@ Advancement Screenshot
 https://curseforge.com/minecraft/mc-mods/advancement-screenshot
 
 =========
+v2.0: Fixed the mod not working correctly when installed on the client and playing in a multiplayer environment. It is now completely client based.
+
+=========
 v1.5: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========

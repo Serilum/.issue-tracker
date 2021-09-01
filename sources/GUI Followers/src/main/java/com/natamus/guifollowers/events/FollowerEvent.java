@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.17.1, mod version: 1.6.
+ * Minecraft version: 1.17.1, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Followers ever released, along with some other perks.
@@ -20,28 +20,34 @@ import java.util.List;
 import com.natamus.guifollowers.config.ConfigHandler;
 import com.natamus.guifollowers.util.Variables;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerLoggedOutEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class FollowerEvent {
+	private final Minecraft mc = Minecraft.getInstance();
+	
+	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
-	public void onPlayerTick(PlayerTickEvent e) {
+	public void onPlayerTick(ClientTickEvent e) {
 		if (!e.phase.equals(Phase.START)) {
 			return;
 		}
 		
-		Player player = e.player;
+		Player player = mc.player;
 		if (player == null) {
 			return;
 		}
@@ -86,11 +92,13 @@ public class FollowerEvent {
 		}
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
 	public void onPlayerLogout(PlayerLoggedOutEvent e) {
 		Variables.activefollowers = new ArrayList<Entity>();
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
 	public void onKey(InputEvent.KeyInputEvent e) {
 		if (e.getAction() != 1) {

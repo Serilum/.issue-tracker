@@ -3,6 +3,12 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v3.1: Saplings placed on custom dirt (e.g. modded, podzol, coarse) are now placed correctly after tree harvest. The mod now relies on Collective's Block Compare functions.
+
+=========
+v3.0: Added support for the warped trees in the nether. This can be disabled in the config. Improved support for modded saplings.
+
+=========
 v2.9: Fixed the 1.12.2 version not working on servers. Extended compatibility for modded trees by using BlockTags.
 
 =========

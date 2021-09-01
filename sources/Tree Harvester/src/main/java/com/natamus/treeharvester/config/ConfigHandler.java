@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.17.1, mod version: 2.9.
+ * Minecraft version: 1.17.1, mod version: 3.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -29,6 +29,7 @@ public class ConfigHandler {
 		public final ForgeConfigSpec.ConfigValue<Boolean> increaseExhaustionPerHarvestedLog;
 		public final ForgeConfigSpec.ConfigValue<Boolean> instantBreakLeavesAround;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableFastLeafDecay;
+		public final ForgeConfigSpec.ConfigValue<Boolean> enableNetherTrees;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
@@ -53,6 +54,9 @@ public class ConfigHandler {
 			enableFastLeafDecay = builder
 					.comment("If enabled, the leaves around a broken tree will quickly disappear. Only works with 'instantBreakLeavesAround' disabled.")
 					.define("enableFastLeafDecay", true);
+			enableNetherTrees = builder
+					.comment("If enabled, the warped stem/crimson trees in the nether will also be chopped down quickly.")
+					.define("enableNetherTrees", true);
 			
 			builder.pop();
 		}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Advancement Screenshot.
- * Minecraft version: 1.17.1, mod version: 1.4.
+ * Minecraft version: 1.17.1, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Advancement Screenshot ever released, along with some other perks.
@@ -18,17 +18,22 @@ import com.natamus.advancementscreenshot.config.ConfigHandler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Screenshot;
+import net.minecraft.network.chat.ChatType;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class AdvancementGetEvent {
+	private final Minecraft mc = Minecraft.getInstance();
 	private boolean takescreenshot = false;
 	private int cooldown = -1;
 	
+	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
 	public void onClientTick(ClientTickEvent e) {
 		if (!e.phase.equals(Phase.END)) {
@@ -46,7 +51,6 @@ public class AdvancementGetEvent {
 				return;
 			}
 			
-			Minecraft mc = Minecraft.getInstance();
 			Screenshot.grab(mc.gameDirectory, mc.getMainRenderTarget(), (context) -> {
 				mc.execute(() -> {
 					if (ConfigHandler.GENERAL.showScreenshotTakenMessage.get()) {
@@ -60,30 +64,16 @@ public class AdvancementGetEvent {
 		}
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
-	public void onAdvancement(AdvancementEvent e) {
-		if (!ConfigHandler.GENERAL.countNewRecipeAdvancements.get()) {
-			boolean recipe = false;
-			String[][] requirements = e.getAdvancement().getRequirements();
-			for (String[] requirement : requirements) {
-				for (String req : requirement) {
-					if (req.contains("has_the_recipe")) {
-						recipe = true;
-						break;
-					}
-				}
-				
-				if (recipe) {
-					break;
-				}
-			}
-		
-			if (recipe) {
-				return;
+	public void onClientChat(ClientChatReceivedEvent e) {
+		if (e.getType().equals(ChatType.SYSTEM)) {
+			String message = e.getMessage().getString();
+			String playername = mc.player.getName().getString();
+			if (message.contains(playername + " has reached the goal [") || message.contains(playername + " has made the advancement [")) {
+				takescreenshot = true;
+				cooldown = 20;
 			}
 		}
-
-		takescreenshot = true;
-		cooldown = 20;
 	}
 }
