@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.59.
+ * Minecraft version: 1.17.1, mod version: 2.60.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.DeadBushBlock;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.NetherPortalBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.StemBlock;
@@ -31,6 +32,20 @@ import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.TallGrassBlock;
 
 public class CompareBlockFunctions {
+	public static boolean isStoneBlock(Block block) {
+		if (BlockTags.BASE_STONE_OVERWORLD.contains(block)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean isNetherStoneBlock(Block block) {
+		if (BlockTags.BASE_STONE_NETHER.contains(block)) {
+			return true;
+		}
+		return false;
+	}
+	
 	public static boolean isTreeLeaf(Block block, boolean withNetherVariants) {
 		if (BlockTags.LEAVES.contains(block) || block instanceof LeavesBlock) {
 			return true;
@@ -66,9 +81,17 @@ public class CompareBlockFunctions {
 	}
 	
 	public static boolean isDirtBlock(Block block) {
-		if (block.equals(Blocks.GRASS_BLOCK) || block.equals(Blocks.DIRT) || block.equals(Blocks.COARSE_DIRT) || block.equals(Blocks.PODZOL)) {
+		if (BlockTags.DIRT.contains(block)) {
 			return true;
 		}
+		return false;
+	}
+	
+	public static boolean isPortalBlock(Block block) {
+		if (block instanceof NetherPortalBlock || BlockFunctions.blockToReadableString(block).equals("portal placeholder")) {
+			return true;
+		}
+
 		return false;
 	}
 }

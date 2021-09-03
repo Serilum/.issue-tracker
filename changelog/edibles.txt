@@ -3,6 +3,9 @@ Edibles
 https://www.curseforge.com/minecraft/mc-mods/edibles
 
 =========
+v2.4: Added a swing hand effect when eating an edible. The mod now prevents the placement of blocks in the offhand when eating an edible in the main hand.
+
+=========
 v2.3: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

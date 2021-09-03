@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.60: Fixed block determination not using BlockTags. Extended CompareBlockFunctions.
+
+=========
 v2.59: Added CompareBlock/Item Functions. Moving block determinations to collective for easier updating and better compatibility with other mods.
 
 =========

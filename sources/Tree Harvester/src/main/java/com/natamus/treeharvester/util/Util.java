@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.17.1, mod version: 3.1.
+ * Minecraft version: 1.17.1, mod version: 3.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -59,7 +59,7 @@ public class Util {
 			while (it.hasNext()) {
 				BlockPos npos = it.next();
 				Block nblock = world.getBlockState(npos).getBlock();
-				if (CompareBlockFunctions.isTreeLeaf(nblock)) {
+				if (CompareBlockFunctions.isTreeLeaf(nblock, ConfigHandler.GENERAL.enableNetherTrees.get())) {
 					leafcount-=1;
 					if (npos.getY() > highesty) {
 						highesty = npos.getY();
@@ -189,7 +189,7 @@ public class Util {
 				while (aroundleaves.hasNext()) {
 					BlockPos naleafpos = aroundleaves.next();
 					Block leafblock = world.getBlockState(naleafpos).getBlock();
-					if (CompareBlockFunctions.isTreeLeaf(leafblock)) {
+					if (CompareBlockFunctions.isTreeLeaf(leafblock, ConfigHandler.GENERAL.enableNetherTrees.get())) {
 						if (ConfigHandler.GENERAL.instantBreakLeavesAround.get()) {
 							world.destroyBlock(naleafpos, true);
 						}

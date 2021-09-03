@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Mineral Chance.
- * Minecraft version: 1.17.1, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Mineral Chance ever released, along with some other perks.
@@ -22,7 +22,8 @@ public class ConfigHandler {
 	public static final ForgeConfigSpec spec = BUILDER.build();
 
 	public static class General {
-		public final ForgeConfigSpec.ConfigValue<Double> extraMineralChanceOnStoneBreak;
+		public final ForgeConfigSpec.ConfigValue<Double> extraMineralChanceOnOverworldStoneBreak;
+		public final ForgeConfigSpec.ConfigValue<Double> extraMineralChanceOnNetherStoneBreak;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableOverworldMinerals;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableNetherMinerals;
 		
@@ -33,9 +34,12 @@ public class ConfigHandler {
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
-			extraMineralChanceOnStoneBreak = builder
-					.comment("The chance a mineral is dropped when a stone block is broken. By default 1/50. Overworld stone blocks are stone, andesite, granite and diorite. Nether stone blocks are netherrack.")
-					.defineInRange("extraMineralChanceOnStoneBreak", 0.02, 0, 1.0);
+			extraMineralChanceOnOverworldStoneBreak = builder
+					.comment("The chance a mineral is dropped when an overworld stone block is broken. By default 1/50.")
+					.defineInRange("extraMineralChanceOnOverworldStoneBreak", 0.02, 0, 1.0);
+			extraMineralChanceOnNetherStoneBreak = builder
+					.comment("The chance a mineral is dropped when a nether stone block is broken. By default 1/100.")
+					.defineInRange("extraMineralChanceOnNetherStoneBreak", 0.01, 0, 1.0);
 			enableOverworldMinerals = builder
 					.comment("If enabled, mining overworld stone blocks in the overworld has a chance to drop an overworld mineral. These consist of diamonds, gold nuggets, iron nuggets, lapis lazuli, redstone and emeralds.")
 					.define("enableOverworldMinerals", true);

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nether Portal Spread.
- * Minecraft version: 1.17.1, mod version: 5.3.
+ * Minecraft version: 1.17.1, mod version: 5.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Nether Portal Spread ever released, along with some other perks.
@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.natamus.collective.functions.BlockFunctions;
+import com.natamus.collective.functions.CompareBlockFunctions;
 import com.natamus.collective.functions.DimensionFunctions;
 import com.natamus.collective.functions.NumberFunctions;
 import com.natamus.collective.functions.StringFunctions;
@@ -35,15 +36,14 @@ import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.collective.objects.RandomCollection;
 import com.natamus.netherportalspread.config.ConfigHandler;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.NetherPortalBlock;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.BlockPos;
 import net.minecraft.ChatFormatting;
-import net.minecraft.world.level.Level;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class Util {
@@ -274,7 +274,7 @@ public class Util {
 		while (it.hasNext()) {		
 			BlockPos nextpos = it.next();
 			Block block = world.getBlockState(nextpos).getBlock();
-			if (isPortalBlock(block)) {
+			if (CompareBlockFunctions.isPortalBlock(block)) {
 				rawportal = nextpos.immutable();
 				break;
 			}
@@ -284,13 +284,13 @@ public class Util {
 			return;
 		}
 		
-		while (isPortalBlock(world.getBlockState(rawportal.below()).getBlock())) {
+		while (CompareBlockFunctions.isPortalBlock(world.getBlockState(rawportal.below()).getBlock())) {
 			rawportal = rawportal.below().immutable();
 		}
-		while (isPortalBlock(world.getBlockState(rawportal.west()).getBlock())) {
+		while (CompareBlockFunctions.isPortalBlock(world.getBlockState(rawportal.west()).getBlock())) {
 			rawportal = rawportal.west().immutable();
 		}
-		while (isPortalBlock(world.getBlockState(rawportal.north()).getBlock())) {
+		while (CompareBlockFunctions.isPortalBlock(world.getBlockState(rawportal.north()).getBlock())) {
 			rawportal = rawportal.north().immutable();
 		}
 		
@@ -344,7 +344,7 @@ public class Util {
 			return false;
 		}
 		
-		if (!isPortalBlock(pbs.getBlock())) {
+		if (!CompareBlockFunctions.isPortalBlock(pbs.getBlock())) {
 			removePortal(world, portal);
 			return false;
 		}
@@ -474,14 +474,6 @@ public class Util {
 		if (newblockstate != null) {
 			world.setBlockAndUpdate(pos, newblockstate);
 		}
-	}
-	
-	private static boolean isPortalBlock(Block block) {
-		if (block instanceof NetherPortalBlock || BlockFunctions.blockToReadableString(block).equals("portal placeholder")) {
-			return true;
-		}
-
-		return false;
 	}
 	
 	private static void sendSpreadingMessage(Level world, BlockPos p) {

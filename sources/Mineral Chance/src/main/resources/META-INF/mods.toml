@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Mine
 
 [[mods]]
 modId="mineralchance"
-version="1.5"
+version="1.6"
 displayName="Mineral Chance"
 displayURL="https://curseforge.com/minecraft/mc-mods/mineral-chance"
 authors="Rick South"
 description="Adds a chance to find a random mineral inside a stone block when mining."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley   
+Adara Christine, dtorgy, Kreezcraft.com, Morgan Schetzle, Tyler Behl   
 '''
 
 [[dependencies.mineralchance]]
     modId="collective"
     mandatory=true
-    versionRange="[2.35,)"
+    versionRange="[2.60,)"
     ordering="NONE"
     side="BOTH"

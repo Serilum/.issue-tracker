@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Mineral Chance.
- * Minecraft version: 1.17.1, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Mineral Chance ever released, along with some other perks.
@@ -20,30 +20,12 @@ import java.util.List;
 
 import com.natamus.collective.data.GlobalVariables;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
 public class Util {
-	private static List<Block> stoneblocks = new ArrayList<Block>(Arrays.asList(Blocks.STONE, Blocks.ANDESITE, Blocks.GRANITE, Blocks.DIORITE, Blocks.NETHERRACK));
-	private static List<Block> netherstoneblocks = new ArrayList<Block>(Arrays.asList(Blocks.NETHERRACK));
 	private static List<Item> overworldminerals = new ArrayList<Item>(Arrays.asList(Items.DIAMOND, Items.GOLD_NUGGET, Items.IRON_NUGGET, Items.LAPIS_LAZULI, Items.REDSTONE, Items.EMERALD));
 	private static List<Item> netherminerals = new ArrayList<Item>(Arrays.asList(Items.QUARTZ, Items.GOLD_NUGGET, Items.NETHERITE_SCRAP));
-	
-	public static boolean isStoneBlock(Block block) {
-		if (stoneblocks.contains(block)) {
-			return true;
-		}
-		return false;
-	}
-	
-	public static boolean isNetherStoneBlock(Block block) {
-		if (netherstoneblocks.contains(block)) {
-			return true;
-		}
-		return false;
-	}
 	
 	public static Item getRandomOverworldMineral() {
 		return overworldminerals.get(GlobalVariables.random.nextInt(overworldminerals.size()));

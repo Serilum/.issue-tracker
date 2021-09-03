@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Edibles.
- * Minecraft version: 1.17.1, mod version: 2.3.
+ * Minecraft version: 1.17.1, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Edibles ever released, along with some other perks.
@@ -14,34 +14,57 @@
 
 package com.natamus.edibles.events;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.edibles.config.ConfigHandler;
 import com.natamus.edibles.util.Util;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class EdibleEvent {
+	private static final List<Item> edibles = new ArrayList<Item>(Arrays.asList(Items.BLAZE_POWDER, Items.MAGMA_CREAM, Items.SUGAR, Items.GHAST_TEAR, Items.PHANTOM_MEMBRANE, Items.RABBIT_FOOT, Items.GLOWSTONE_DUST));
 	private static Map<String, Map<Item, Integer>> playeruses = new HashMap<String, Map<Item,Integer>>();
 	private static int currentday = -1;
+	
+	@SubscribeEvent
+	public void onBlockClick(PlayerInteractEvent.RightClickBlock e) {
+		Level world = e.getWorld();
+		if (world.isClientSide) {
+			return;
+		}
+		
+		if (e.getHand().equals(InteractionHand.OFF_HAND)) {
+			Player player = e.getPlayer();
+			Item mainhanditem = player.getMainHandItem().getItem();
+			if (edibles.contains(mainhanditem)) {
+				e.setCanceled(true);
+				player.getInventory().setChanged();
+				return;
+			}
+		}
+	}
 	
 	@SubscribeEvent
 	public void onClickEmpty(PlayerInteractEvent.RightClickItem e) {
@@ -54,7 +77,8 @@ public class EdibleEvent {
 		String playername = player.getName().getString();
 		
 		ItemStack itemstack = e.getItemStack();
-		if (itemstack.getItem().equals(Items.BLAZE_POWDER)) {
+		Item item = itemstack.getItem();
+		if (item.equals(Items.BLAZE_POWDER)) {
 			if (ConfigHandler.OTHER.blazePowderStrengthDurationSeconds.get() == 0) {
 				return;
 			}
@@ -65,7 +89,7 @@ public class EdibleEvent {
 			MobEffectInstance effect = new MobEffectInstance(MobEffects.DAMAGE_BOOST, ConfigHandler.OTHER.blazePowderStrengthDurationSeconds.get()*20);
 			player.addEffect(effect);
 		}
-		else if (itemstack.getItem().equals(Items.MAGMA_CREAM)) {
+		else if (item.equals(Items.MAGMA_CREAM)) {
 			if (ConfigHandler.OTHER.magmaCreamFireResistanceDurationSeconds.get() == 0) {
 				return;
 			}
@@ -76,7 +100,7 @@ public class EdibleEvent {
 			MobEffectInstance effect = new MobEffectInstance(MobEffects.FIRE_RESISTANCE, ConfigHandler.OTHER.magmaCreamFireResistanceDurationSeconds.get()*20);
 			player.addEffect(effect);
 		}
-		else if (itemstack.getItem().equals(Items.SUGAR)) {
+		else if (item.equals(Items.SUGAR)) {
 			if (ConfigHandler.OTHER.sugarSpeedDurationSeconds.get() == 0) {
 				return;
 			}
@@ -87,7 +111,7 @@ public class EdibleEvent {
 			MobEffectInstance effect = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, ConfigHandler.OTHER.sugarSpeedDurationSeconds.get()*20);
 			player.addEffect(effect);
 		}
-		else if (itemstack.getItem().equals(Items.GHAST_TEAR)) {
+		else if (item.equals(Items.GHAST_TEAR)) {
 			if (ConfigHandler.OTHER.ghastTearDurationSeconds.get() == 0) {
 				return;
 			}
@@ -98,7 +122,7 @@ public class EdibleEvent {
 			MobEffectInstance effect = new MobEffectInstance(MobEffects.REGENERATION, ConfigHandler.OTHER.ghastTearDurationSeconds.get()*20);
 			player.addEffect(effect);
 		}
-		else if (itemstack.getItem().equals(Items.PHANTOM_MEMBRANE)) {
+		else if (item.equals(Items.PHANTOM_MEMBRANE)) {
 			if (ConfigHandler.OTHER.phantomMembraneDurationSeconds.get() == 0) {
 				return;
 			}
@@ -109,7 +133,7 @@ public class EdibleEvent {
 			MobEffectInstance effect = new MobEffectInstance(MobEffects.SLOW_FALLING, ConfigHandler.OTHER.phantomMembraneDurationSeconds.get()*20);
 			player.addEffect(effect);
 		}
-		else if (itemstack.getItem().equals(Items.RABBIT_FOOT)) {
+		else if (item.equals(Items.RABBIT_FOOT)) {
 			if (ConfigHandler.OTHER.rabbitsFootDurationSeconds.get() == 0) {
 				return;
 			}
@@ -120,7 +144,7 @@ public class EdibleEvent {
 			MobEffectInstance effect = new MobEffectInstance(MobEffects.JUMP, ConfigHandler.OTHER.rabbitsFootDurationSeconds.get()*20);
 			player.addEffect(effect);
 		}
-		else if (itemstack.getItem().equals(Items.GLOWSTONE_DUST)) {
+		else if (item.equals(Items.GLOWSTONE_DUST)) {
 			if (ConfigHandler.GLOW.glowEntityDurationSeconds.get() == 0) {
 				return;
 			}
@@ -144,6 +168,8 @@ public class EdibleEvent {
 			return;
 		}
 		
+		player.swing(e.getHand());
+		
 		Util.setPlayerUse(playername);
 		if (!player.isCreative()) {
 			itemstack.shrink(1);
@@ -156,18 +182,16 @@ public class EdibleEvent {
 				currentday = days;
 			}
 			
-			Item itemused = itemstack.getItem();
-			
 			Map<Item, Integer> currentuses = new HashMap<Item, Integer>();
 			if (playeruses.containsKey(playername)) {
 				currentuses = playeruses.get(playername);
 			}
 			
 			int dayuses = 1;
-			if (currentuses.containsKey(itemused)) {
-				dayuses = currentuses.get(itemused) + 1;
+			if (currentuses.containsKey(item)) {
+				dayuses = currentuses.get(item) + 1;
 			}
-			currentuses.put(itemused, dayuses);
+			currentuses.put(item, dayuses);
 			
 			if (dayuses > ConfigHandler.WEAKNESS.maxItemUsesPerDaySingleItem.get() && ConfigHandler.WEAKNESS.maxItemUsesPerDaySingleItem.get() != -1) {
 				MobEffectInstance weakness = new MobEffectInstance(MobEffects.WEAKNESS, ConfigHandler.WEAKNESS.weaknessDurationSeconds.get()*20);

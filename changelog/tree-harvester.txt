@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v3.2: Fixed the config value enableNetherTrees not being parsed correctly.
+
+=========
 v3.1: Saplings placed on custom dirt (e.g. modded, podzol, coarse) are now placed correctly after tree harvest. The mod now relies on Collective's Block Compare functions.
 
 =========
