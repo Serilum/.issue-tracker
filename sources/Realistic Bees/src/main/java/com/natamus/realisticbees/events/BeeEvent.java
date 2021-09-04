@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Realistic Bees.
- * Minecraft version: 1.17.1, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Realistic Bees ever released, along with some other perks.
@@ -16,6 +16,7 @@ package com.natamus.realisticbees.events;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import com.natamus.collective.data.GlobalVariables;
@@ -39,6 +40,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -54,7 +56,7 @@ public class BeeEvent {
 	private static HashMap<LivingEntity, Vec3> stingerless_bees = new HashMap<LivingEntity, Vec3>();
 	
 	@SubscribeEvent
-	public void onBeeSpawn(EntityJoinWorldEvent e) {
+	public static void onBeeSpawn(EntityJoinWorldEvent e) {
 		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;
@@ -69,6 +71,7 @@ public class BeeEvent {
 		if (tags.contains(Reference.MOD_ID + ".ignorebee")) {
 			return;
 		}
+		entity.addTag(Reference.MOD_ID + ".ignorebee");
 		
 		BlockPos entitypos = entity.blockPosition();
 		if (!world.hasChunk(Mth.floor(entitypos.getX()) >> 4, Mth.floor(entitypos.getZ()) >> 4)) {
@@ -84,9 +87,14 @@ public class BeeEvent {
 			return;
 		}
 		
-		ServerLevel serverworld = (ServerLevel)world;
-		
 		Vec3 beevec = entity.position();
+		
+		List<Player> playersaround = world.getEntitiesOfClass(Player.class, new AABB(beevec.x-5, beevec.y-5, beevec.z-5, beevec.x+5, beevec.y+5, beevec.z+5));
+		if (playersaround.size() > 0) {
+			return;
+		}
+		
+		ServerLevel serverworld = (ServerLevel)world;
 		for (int i = 0; i < extrabees; i++) {
 			Bee newbee = EntityType.BEE.create(world);
 			newbee.level = world;
@@ -94,12 +102,10 @@ public class BeeEvent {
 			newbee.addTag(Reference.MOD_ID + ".ignorebee");
 			serverworld.addFreshEntityWithPassengers(newbee);
 		}
-		
-		entity.addTag(Reference.MOD_ID + ".ignorebee");
 	}
 
 	@SubscribeEvent
-	public void onEntityDamageTaken(LivingHurtEvent e) {
+	public static void onEntityDamageTaken(LivingHurtEvent e) {
 		Entity target = e.getEntity();
 		Level world = target.getCommandSenderWorld();
 		if (world.isClientSide) {
@@ -159,7 +165,7 @@ public class BeeEvent {
 	}
 	
 	@SubscribeEvent
-	public void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {
+	public static void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {
 		Entity entity = e.getEntity();
 		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
@@ -219,7 +225,7 @@ public class BeeEvent {
 	}
 	
 	@SubscribeEvent
-	public void onStingerPull(PlayerInteractEvent.RightClickItem e) {
+	public static void onStingerPull(PlayerInteractEvent.RightClickItem e) {
 		Level world = e.getWorld();
 		if (world.isClientSide) {
 			return;

@@ -3,6 +3,9 @@ Realistic Bees
 https://www.curseforge.com/minecraft/mc-mods/realistic-bees
 
 =========
+v2.0: Bees are now tiny! By default 1/4th of the vanilla size. This can be changed in the config though, they can even be bigger! Fixed multiple bees spawning from breeding and other mods using bee bottles. Updated backend code, improved efficiency.
+
+=========
 v1.5: Fixed bees spawning during world gen causing a deadlock in combination with other mods.
 
 =========

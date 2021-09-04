@@ -12,26 +12,24 @@
  * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
-package com.natamus.realisticbees;
+package com.natamus.realisticbees.renderer;
 
-import com.natamus.collective.check.RegisterMod;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.natamus.realisticbees.config.ConfigHandler;
-import com.natamus.realisticbees.util.Reference;
 
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
+import net.minecraft.client.renderer.entity.BeeRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.world.entity.animal.Bee;
 
-@Mod(Reference.MOD_ID)
-public class Main {
-	public static Main instance;
-	
-    public Main() {
-        instance = this;
-
-        ModLoadingContext modLoadingContext = ModLoadingContext.get();
-        modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHandler.spec);
-
-        RegisterMod.register(Reference.NAME, Reference.MOD_ID, Reference.VERSION, Reference.ACCEPTED_VERSIONS);
-    }
+public class CustomBeeRenderer extends BeeRenderer {
+	public CustomBeeRenderer(EntityRendererProvider.Context p_i226033_1_) {
+		super(p_i226033_1_);
+		shadowRadius *= ConfigHandler.GENERAL.beeSizeModifier.get().floatValue();
+	}
+	   
+	@Override
+	protected void scale(Bee p_225620_1_, PoseStack p_225620_2_, float p_225620_3_) {
+		float scale = ConfigHandler.GENERAL.beeSizeModifier.get().floatValue();
+		p_225620_2_.scale(scale, scale, scale);
+	}
 }

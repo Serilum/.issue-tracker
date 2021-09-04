@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Realistic Bees.
- * Minecraft version: 1.17.1, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Realistic Bees ever released, along with some other perks.
@@ -21,7 +21,9 @@ public class ConfigHandler {
 	public static final General GENERAL = new General(BUILDER);
 	public static final ForgeConfigSpec spec = BUILDER.build();
 
-	public static class General {		
+	public static class General {
+		public final ForgeConfigSpec.ConfigValue<Double> beeSizeModifier;
+		
 		public final ForgeConfigSpec.ConfigValue<Boolean> beesDieFromStingingPlayer;
 		public final ForgeConfigSpec.ConfigValue<Boolean> beesDieFromStingingMob;
 		public final ForgeConfigSpec.ConfigValue<Boolean> beesLeaveTheirStinger;
@@ -37,6 +39,10 @@ public class ConfigHandler {
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
+			beeSizeModifier = builder
+					.comment("This value determines the size of a bee. By default 0.25, which means they are 1/4th of their vanilla size. Set to 1.0 to disable the different bee size feature.")
+					.defineInRange("beeSizeModifier", 0.25, 0.01, 5.0);		
+			
 			beesDieFromStingingPlayer = builder
 					.comment("When enabled, bees die after stinging a player. This takes roughly a few minutes.")
 					.define("beesDieFromStingingPlayer", true);
@@ -66,7 +72,7 @@ public class ConfigHandler {
 			
 			extraBeeSpawnsPerBee = builder
 					.comment("In order to make bees a little more common. Whenever a bee naturally spawns, the mod spawns an additional 'extraBeeSpawnsPerBee' bees.")
-					.defineInRange("extraBeeSpawnsPerBee", 4, 0, 50);
+					.defineInRange("extraBeeSpawnsPerBee", 9, 0, 50);
 			
 			builder.pop();
 		}
