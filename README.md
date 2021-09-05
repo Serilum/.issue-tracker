@@ -36,6 +36,7 @@ N/A
 [All Loot Drops](https://curseforge.com/minecraft/mc-mods/all-loot-drops)\
 [Altered Damage](https://curseforge.com/minecraft/mc-mods/altered-damage)\
 [Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
+[Anvil Restoration](https://curseforge.com/minecraft/mc-mods/anvil-restoration)\
 [Areas](https://curseforge.com/minecraft/mc-mods/areas)\
 [Automatic Doors](https://curseforge.com/minecraft/mc-mods/automatic-doors)\
 [Beautified Chat Client](https://curseforge.com/minecraft/mc-mods/beautified-chat-client)\
@@ -53,7 +54,7 @@ N/A
 [Conduits Prevent Drowned](https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned)\
 [Configurable Despawn Timer](https://curseforge.com/minecraft/mc-mods/configurable-despawn-timer)\
 [Configurable Extra Mob Drops](https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops)\
-[Configurable Furnace Burn Time](https://www.curseforge.com/minecraft/mc-mods/configurable-furnace-burn-time)\
+[Configurable Furnace Burn Time](https://curseforge.com/minecraft/mc-mods/configurable-furnace-burn-time)\
 [Configurable Mob Potion Effects](https://curseforge.com/minecraft/mc-mods/configurable-mob-potion-effects)\
 [Creative Block Replacer](https://curseforge.com/minecraft/mc-mods/creative-block-replacer)\
 [Crying Ghasts](https://curseforge.com/minecraft/mc-mods/crying-ghasts)\
