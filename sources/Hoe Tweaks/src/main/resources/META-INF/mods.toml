@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[37,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Hoe%20Tweaks"
+
+[[mods]]
+modId="hoetweaks"
+version="1.0"
+displayName="Hoe Tweaks"
+displayURL="https://curseforge.com/minecraft/mc-mods/hoe-tweaks"
+authors="Rick South"
+description="Makes various changes to hoe mechanics. Faster crop block breaking, increased hoe radius and be able to un-till soil."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, dtorgy, Kreezcraft.com, Morgan Schetzle, Tyler Behl   
+'''
+
+[[dependencies.hoetweaks]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.60,)"
+    ordering="NONE"
+    side="BOTH"
