@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Realistic Bees.
- * Minecraft version: 1.17.1, mod version: 2.0.
+ * Minecraft version: 1.17.1, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Realistic Bees ever released, along with some other perks.
@@ -17,6 +17,6 @@ package com.natamus.realisticbees.util;
 public class Reference {
 	public static final String MOD_ID = "realisticbees";
 	public static final String NAME = "Realistic Bees";
-	public static final String VERSION = "2.0";
+	public static final String VERSION = "2.1";
 	public static final String ACCEPTED_VERSIONS = "[1.17.1]";
 }

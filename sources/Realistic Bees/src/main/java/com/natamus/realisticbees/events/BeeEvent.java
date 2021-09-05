@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Realistic Bees.
- * Minecraft version: 1.17.1, mod version: 2.0.
+ * Minecraft version: 1.17.1, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Realistic Bees ever released, along with some other perks.
@@ -43,6 +43,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -101,6 +102,24 @@ public class BeeEvent {
 			newbee.setPos(beevec.x, beevec.y, beevec.z);
 			newbee.addTag(Reference.MOD_ID + ".ignorebee");
 			serverworld.addFreshEntityWithPassengers(newbee);
+		}
+	}
+	
+	@SubscribeEvent
+	public static void onPlayerDeath(LivingDeathEvent e) {
+		Entity entity = e.getEntity();
+		Level world = entity.level;
+		if (world.isClientSide) {
+			return;
+		}
+		
+		if (entity instanceof Player == false) {
+			return;
+		}
+		
+		Player player = (Player)entity;
+		if (stung_players.containsKey(player)) {
+			stung_players.remove(player);
 		}
 	}
 

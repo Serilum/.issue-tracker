@@ -3,6 +3,9 @@ Realistic Bees
 https://www.curseforge.com/minecraft/mc-mods/realistic-bees
 
 =========
+v2.1: The bee's stinger is now removed when a player dies.
+
+=========
 v2.0: Bees are now tiny! By default 1/4th of the vanilla size. This can be changed in the config though, they can even be bigger! Fixed multiple bees spawning from breeding and other mods using bee bottles. Updated backend code, improved efficiency.
 
 =========
