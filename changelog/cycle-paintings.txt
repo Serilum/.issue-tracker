@@ -3,6 +3,9 @@ Cycle Paintings
 https://www.curseforge.com/minecraft/mc-mods/cycle-paintings
 
 =========
+v2.0: You can now cycle the painting in reverse by crouching while clicking a painting with another in hand.
+
+=========
 v1.8: (1.17.1 only) Updated mod to work with the changes made to entity removal in 37.0.24.
 
 =========

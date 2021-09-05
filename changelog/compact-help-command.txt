@@ -3,4 +3,7 @@ Compact Help Command
 https://curseforge.com/minecraft/mc-mods/compact-help-command
 
 =========
+v1.1: Adds spacing around the vertical bars in chat. Can be turned off in the config.
+
+=========
 v1.0: Initial release of mod.

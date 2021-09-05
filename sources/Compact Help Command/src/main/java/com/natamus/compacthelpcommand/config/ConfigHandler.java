@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Compact Help Command.
- * Minecraft version: 1.17.1, mod version: 1.0.
+ * Minecraft version: 1.17.1, mod version: 1.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Compact Help Command ever released, along with some other perks.
@@ -22,6 +22,7 @@ public class ConfigHandler {
 	public static final ForgeConfigSpec spec = BUILDER.build();
 
 	public static class General {
+		public final ForgeConfigSpec.ConfigValue<Boolean> addVerticalBarSpacing;
 		public final ForgeConfigSpec.ConfigValue<Integer> amountCommandsPerPage;
 		
 		public final ForgeConfigSpec.ConfigValue<Integer> commandColour;
@@ -29,6 +30,9 @@ public class ConfigHandler {
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
+			addVerticalBarSpacing = builder
+					.comment("When enabled, adds a space in front and behind a vertical bar in the subcommands.")
+					.define("addVerticalBarSpacing", true);
 			amountCommandsPerPage = builder
 					.comment("The message which will be sent to players when they use the /vote command.")
 					.defineInRange("amountCommandsPerPage", 8, 1, 50);

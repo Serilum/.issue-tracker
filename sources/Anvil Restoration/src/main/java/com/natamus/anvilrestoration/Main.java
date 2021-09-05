@@ -1,9 +1,9 @@
 /*
- * This is the latest source code of Cycle Paintings.
- * Minecraft version: 1.17.1, mod version: 2.0.
+ * This is the latest source code of Anvil Restoration.
+ * Minecraft version: 1.17.1, mod version: 1.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
- * You'll be added to a private repository which contains all versions' source of Cycle Paintings ever released, along with some other perks.
+ * You'll be added to a private repository which contains all versions' source of Anvil Restoration ever released, along with some other perks.
  *
  * Github Sponsor link: https://github.com/sponsors/ricksouth
  * Patreon link: https://patreon.com/ricksouth
@@ -12,12 +12,11 @@
  * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
-package com.natamus.cyclepaintings;
+package com.natamus.anvilrestoration;
 
 import com.natamus.collective.check.RegisterMod;
-import com.natamus.cyclepaintings.events.PaintingEvent;
-import com.natamus.cyclepaintings.util.Reference;
-import com.natamus.cyclepaintings.util.Util;
+import com.natamus.anvilrestoration.events.AnvilInteractEvent;
+import com.natamus.anvilrestoration.util.Reference;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -39,8 +38,6 @@ public class Main {
     }
 	
     private void loadComplete(final FMLLoadCompleteEvent event) {
-    	Util.setPaintings();
-    	
-    	MinecraftForge.EVENT_BUS.register(new PaintingEvent());
+    	MinecraftForge.EVENT_BUS.register(new AnvilInteractEvent());
 	}
 }

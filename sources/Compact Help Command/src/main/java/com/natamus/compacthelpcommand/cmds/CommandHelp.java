@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Compact Help Command.
- * Minecraft version: 1.17.1, mod version: 1.0.
+ * Minecraft version: 1.17.1, mod version: 1.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Compact Help Command ever released, along with some other perks.
@@ -96,7 +96,11 @@ public class CommandHelp {
 				String commandline = scmds.get(n);
 				String[] cmdlspl = commandline.split(" ");
 				String acmd = cmdlspl[0];
-				String csuffix = commandline.replace(acmd, "");
+				String csuffix = commandline.replaceAll(acmd, "");
+				
+				if (ConfigHandler.GENERAL.addVerticalBarSpacing.get()) {
+					csuffix = csuffix.replace("|", " | ");
+				}
 				
 				TextComponent tc = new TextComponent("");
 				

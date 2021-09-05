@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Cycle Paintings.
- * Minecraft version: 1.17.1, mod version: 1.8.
+ * Minecraft version: 1.17.1, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Cycle Paintings ever released, along with some other perks.
@@ -14,6 +14,7 @@
 
 package com.natamus.cyclepaintings.events;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.natamus.cyclepaintings.util.Util;
@@ -23,6 +24,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Entity.RemovalReason;
 import net.minecraft.world.entity.decoration.Motive;
 import net.minecraft.world.entity.decoration.Painting;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -49,12 +51,17 @@ public class PaintingEvent {
 			return;
 		}
 		
+		Player player = e.getPlayer();
 		Painting painting = (Painting)target;
 		Motive art = painting.motive;
 		
 		Motive newart = null;
 		
 		List<Motive> similarart = Util.getSimilarArt(art);
+		if (player.isCrouching()) {
+			Collections.reverse(similarart);
+		}
+		
 		if (similarart.get(similarart.size()-1).equals(art)) {
 			newart = similarart.get(0);
 		}
