@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.60.
+ * Minecraft version: 1.17.1, mod version: 2.62.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -15,6 +15,7 @@
 package com.natamus.collective.events;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -24,6 +25,7 @@ import com.natamus.collective.config.ConfigHandler;
 import com.natamus.collective.data.GlobalVariables;
 import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.collective.functions.EntityFunctions;
+import com.natamus.collective.functions.SpawnEntityFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.collective.objects.SAMObject;
 import com.natamus.collective.util.Reference;
@@ -38,13 +40,56 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.TickEvent.Phase;
+import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
-public class EntityEvents {
+public class CollectiveEvents {
+	public static HashMap<ServerLevel, List<Entity>> entitiesToSpawn = new HashMap<ServerLevel, List<Entity>>();
+	public static HashMap<ServerLevel, HashMap<Entity, Entity>> entitiesToRide = new HashMap<ServerLevel, HashMap<Entity, Entity>>();
+	
+	@SubscribeEvent
+	public void onWorldLoad(WorldEvent.Load e) {
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		if (world == null) {
+			return;
+		}
+		
+		ServerLevel serverworld = (ServerLevel)world;
+		entitiesToSpawn.put(serverworld, new ArrayList<Entity>());
+		entitiesToRide.put(serverworld, new HashMap<Entity, Entity>());
+	}
+	
+	@SubscribeEvent
+	public void onWorldTick(WorldTickEvent e) {
+		Level world = e.world;
+		if (world.isClientSide || !e.phase.equals(Phase.END)) {
+			return;
+		}
+			
+		ServerLevel serverworld = (ServerLevel)world;
+		if (entitiesToSpawn.get(serverworld).size() > 0) {
+			Entity tospawn = entitiesToSpawn.get(serverworld).get(0);
+			
+			serverworld.addFreshEntityWithPassengers(tospawn);
+			
+			if (entitiesToRide.get(world).containsKey(tospawn)) {
+				Entity rider = entitiesToRide.get(world).get(tospawn);
+				
+				rider.startRiding(tospawn);
+				
+				entitiesToRide.get(world).remove(tospawn);
+			}
+			
+			entitiesToSpawn.get(world).remove(0);
+		}
+	}
+	
 	@SubscribeEvent
 	public void onMobSpawnerSpawn(LivingSpawnEvent.SpecialSpawn e) {
 		Level Level = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
@@ -170,15 +215,15 @@ public class EntityEvents {
 			
 			ServerLevel serverworld = (ServerLevel)world;
 			
-			to.addTag(Reference.MOD_ID + ".checked");
-			serverworld.addFreshEntityWithPassengers(to);
-			
 			if (ride) {
-				entity.startRiding(to);
+				SpawnEntityFunctions.startRidingEntityOnNextTick(serverworld, to, entity); //entity.startRiding(to);
 			}
 			else {
 				e.setCanceled(true);
 			}
+			
+			to.addTag(Reference.MOD_ID + ".checked");
+			SpawnEntityFunctions.spawnEntityOnNextTick(serverworld, to); //serverworld.addFreshEntityWithPassengers(to);
 
 			break;
 		}

@@ -3,6 +3,9 @@ Realistic Bees
 https://www.curseforge.com/minecraft/mc-mods/realistic-bees
 
 =========
+v2.2: Extra bees are now spawned on the next world tick, instead of immediately when the first bee spawns. Using the new Collective code. This should fix some backend issues.
+
+=========
 v2.1: The bee's stinger is now removed when a player dies.
 
 =========

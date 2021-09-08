@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.61-2.62: Moved the code that spawns mobs to the next world tick, instead of immediately when another entity spawns. This should fix some deadlocks when pre-generating chunks in the world.
+Collective for Minecraft 1.12 can now be loaded server-side only.
+
+=========
 v2.60: Fixed block determination not using BlockTags. Extended CompareBlockFunctions.
 
 =========

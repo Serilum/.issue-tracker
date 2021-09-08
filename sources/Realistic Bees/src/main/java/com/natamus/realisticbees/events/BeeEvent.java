@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Realistic Bees.
- * Minecraft version: 1.17.1, mod version: 2.1.
+ * Minecraft version: 1.17.1, mod version: 2.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Realistic Bees ever released, along with some other perks.
@@ -21,6 +21,7 @@ import java.util.Set;
 
 import com.natamus.collective.data.GlobalVariables;
 import com.natamus.collective.functions.EntityFunctions;
+import com.natamus.collective.functions.SpawnEntityFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.realisticbees.config.ConfigHandler;
 import com.natamus.realisticbees.util.Reference;
@@ -101,7 +102,7 @@ public class BeeEvent {
 			newbee.level = world;
 			newbee.setPos(beevec.x, beevec.y, beevec.z);
 			newbee.addTag(Reference.MOD_ID + ".ignorebee");
-			serverworld.addFreshEntityWithPassengers(newbee);
+			SpawnEntityFunctions.spawnEntityOnNextTick(serverworld, newbee);
 		}
 	}
 	
