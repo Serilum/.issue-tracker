@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.1, mod version: 2.62.
+ * Minecraft version: 1.17.1, mod version: 2.64.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.NetherPortalBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.SnowLayerBlock;
 import net.minecraft.world.level.block.StemBlock;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.TallGrassBlock;
@@ -93,5 +94,12 @@ public class CompareBlockFunctions {
 		}
 
 		return false;
+	}
+	
+	public static boolean isAirOrOverwritableBlock(Block block) {
+		if (!block.equals(Blocks.AIR) && (block instanceof BushBlock == false) && (block instanceof SnowLayerBlock == false)) {
+			return false;
+		}
+		return true;
 	}
 }

@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Library%3A%
 
 [[mods]]
 modId="collective"
-version="2.62"
+version="2.64"
 displayName="Collective"
 displayURL="https://curseforge.com/minecraft/mc-mods/collective"
 authors="Rick South"
