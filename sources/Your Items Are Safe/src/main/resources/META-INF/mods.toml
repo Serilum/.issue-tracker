@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[37,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Your%20Items%20Are%20Safe"
+
+[[mods]]
+modId="youritemsaresafe"
+version="1.0"
+displayName="Your Items Are Safe"
+displayURL="https://curseforge.com/minecraft/mc-mods/your-items-are-safe"
+authors="Rick South"
+description="Generates a chest and armor stand at a player's death location to keep items from despawning. Highly configurable."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, dtorgy, Kreezcraft.com, Morgan Schetzle, Tyler Behl   
+'''
+
+[[dependencies.youritemsaresafe]]
+    modId="collective"
+    mandatory=true
+    versionRange="[2.64,)"
+    ordering="NONE"
+    side="BOTH"
