@@ -91,6 +91,7 @@ N/A
 [Healing Soup](https://curseforge.com/minecraft/mc-mods/healing-soup)\
 [Hidden Recipe Book](https://curseforge.com/minecraft/mc-mods/hidden-recipe-book)\
 [Hide Hands](https://curseforge.com/minecraft/mc-mods/hide-hands)\
+[Hoe Tweaks](https://curseforge.com/minecraft/mc-mods/hoe-tweaks)\
 [Humbling Bundle](https://curseforge.com/minecraft/mc-mods/humbling-bundle)\
 [Husk Spawn](https://curseforge.com/minecraft/mc-mods/husk-spawn)\
 [Ice Prevents Crop Growth](https://curseforge.com/minecraft/mc-mods/ice-prevents-crop-growth)\
@@ -162,6 +163,7 @@ N/A
 [Weaker Spiderwebs](https://curseforge.com/minecraft/mc-mods/weaker-spiderwebs)\
 [Wool Tweaks](https://curseforge.com/minecraft/mc-mods/wool-tweaks)\
 [World Border](https://curseforge.com/minecraft/mc-mods/world-border)\
+[Your Items Are Safe](https://curseforge.com/minecraft/mc-mods/your-items-are-safe)\
 [Zombie Horse Spawn](https://curseforge.com/minecraft/mc-mods/zombie-horse-spawn)\
 [Zombie Proof Doors](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors)\
 [Zombie Villagers From Spawner](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner)
