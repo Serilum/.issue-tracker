@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Anvil Restoration.
- * Minecraft version: 1.17.1, mod version: 1.0.
+ * Minecraft version: 1.17.1, mod version: 1.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Anvil Restoration ever released, along with some other perks.
@@ -51,7 +51,6 @@ public class AnvilInteractEvent {
 		Block block = state.getBlock();
 		
 		BlockState newstate;
-		Direction rotation = state.getValue(AnvilBlock.FACING);
 		if (block.equals(Blocks.ANVIL) && item.equals(Items.OBSIDIAN)) {
 			newstate = Blocks.CHIPPED_ANVIL.defaultBlockState();
 		}
@@ -70,6 +69,7 @@ public class AnvilInteractEvent {
 			return;
 		}
 		
+		Direction rotation = state.getValue(AnvilBlock.FACING);
 		world.setBlock(cpos, newstate.setValue(AnvilBlock.FACING, rotation), 3);
 		world.playSound(null, cpos.getX(), cpos.getY(), cpos.getZ(), SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 0.5F, 1.0F);
 		
