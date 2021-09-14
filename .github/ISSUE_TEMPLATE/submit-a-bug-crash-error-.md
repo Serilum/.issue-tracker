@@ -9,7 +9,8 @@ assignees: ricksouth
 
 ## **Information**
 Minecraft version: xx.xx.xx
-Forge version: xx.xx.xx
+Modloader: Forge / Fabric
+Forge version: xx.xx.xx  OR  Fabric loader version: x.xx.x
 Environment: Singleplayer / Multiplayer
 
 Mod name: Mod
