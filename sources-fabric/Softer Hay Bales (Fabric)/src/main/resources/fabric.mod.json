@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "softerhaybales-fabric",
+  "version": "1.5",
+
+  "name": "Softer Hay Bales (Fabric)",
+  "description": "Makes hay bales negate fall damage entirely, Assassin's Creed style.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/softer-hay-bales-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Softer%20Hay%20Bales%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Softer%20Hay%20Bales"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.softerhaybales.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.22"
+  }
+}

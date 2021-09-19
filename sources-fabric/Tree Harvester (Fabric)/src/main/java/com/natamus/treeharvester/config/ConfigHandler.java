@@ -1,0 +1,99 @@
+/*
+ * This is the latest source code of Tree Harvester.
+ * Minecraft version: 1.17.x, mod version: 3.2.
+ *
+ * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
+ * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
+ *
+ * Github Sponsor link: https://github.com/sponsors/ricksouth
+ * Patreon link: https://patreon.com/ricksouth
+ *
+ * Becoming a Sponsor or Patron allows me to dedicate more time to the development of mods.
+ * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
+ */
+
+package com.natamus.treeharvester.config;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+
+import com.natamus.treeharvester.util.Reference;
+
+import io.github.fablabsmc.fablabs.api.fiber.v1.exception.ValueDeserializationException;
+import io.github.fablabsmc.fablabs.api.fiber.v1.schema.type.derived.ConfigTypes;
+import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.FiberSerialization;
+import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.JanksonValueSerializer;
+import io.github.fablabsmc.fablabs.api.fiber.v1.tree.ConfigTree;
+import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
+
+public class ConfigHandler { 
+	public static PropertyMirror<Boolean> replaceSaplingIfBottomLogIsBroken = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> mustHoldAxeForTreeHarvest = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> treeHarvestWithoutSneak = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> loseDurabilityPerHarvestedLog = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> increaseExhaustionPerHarvestedLog = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> instantBreakLeavesAround = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> enableFastLeafDecay = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> enableNetherTrees = PropertyMirror.create(ConfigTypes.BOOLEAN);
+
+	private static final ConfigTree CONFIG = ConfigTree.builder() 
+			.beginValue("replaceSaplingIfBottomLogIsBroken", ConfigTypes.BOOLEAN, true)
+			.withComment("If enabled, automatically replaces the sapling from the drops when the bottom log is broken and the player is not holding the sneak button.")
+			.finishValue(replaceSaplingIfBottomLogIsBroken::mirror)
+
+			.beginValue("mustHoldAxeForTreeHarvest", ConfigTypes.BOOLEAN, true)
+			.withComment("If enabled, tree harvesting only works when a player is holding an axe in the main hand.")
+			.finishValue(mustHoldAxeForTreeHarvest::mirror)
+
+			.beginValue("treeHarvestWithoutSneak", ConfigTypes.BOOLEAN, false)
+			.withComment("If enabled, tree harvesting works when not holding the sneak button. If disabled it's reversed, and only works when sneaking.")
+			.finishValue(treeHarvestWithoutSneak::mirror)
+
+			.beginValue("loseDurabilityPerHarvestedLog", ConfigTypes.BOOLEAN, true)
+			.withComment("If enabled, for every log harvested, the axe held loses durability.")
+			.finishValue(loseDurabilityPerHarvestedLog::mirror)
+
+			.beginValue("increaseExhaustionPerHarvestedLog", ConfigTypes.BOOLEAN, true)
+			.withComment("If enabled, players' exhaustion level increases 0.005 per harvested log (Minecraft's default per broken block).")
+			.finishValue(increaseExhaustionPerHarvestedLog::mirror)
+
+			.beginValue("instantBreakLeavesAround", ConfigTypes.BOOLEAN, false)
+			.withComment("If enabled, players instantly break the leaves as well as all logs of the tree when a bottom log is broken.")
+			.finishValue(instantBreakLeavesAround::mirror)
+
+			.beginValue("enableFastLeafDecay", ConfigTypes.BOOLEAN, true)
+			.withComment("If enabled, the leaves around a broken tree will quickly disappear. Only works with 'instantBreakLeavesAround' disabled.")
+			.finishValue(enableFastLeafDecay::mirror)
+
+			.beginValue("enableNetherTrees", ConfigTypes.BOOLEAN, true)
+			.withComment("If enabled, the warped stem/crimson trees in the nether will also be chopped down quickly.")
+			.finishValue(enableNetherTrees::mirror)
+
+			.build();
+
+	private static void writeDefaultConfig(Path path, JanksonValueSerializer serializer) {
+		try (OutputStream s = new BufferedOutputStream(Files.newOutputStream(path, StandardOpenOption.WRITE, StandardOpenOption.CREATE_NEW))) {
+			FiberSerialization.serialize(CONFIG, s, serializer);
+		} catch (IOException ignored) {}
+
+	}
+
+	public static void setup() {
+		JanksonValueSerializer serializer = new JanksonValueSerializer(false);
+		Path p = Paths.get("config", Reference.MOD_ID + ".json");
+		writeDefaultConfig(p, serializer);
+
+		try (InputStream s = new BufferedInputStream(Files.newInputStream(p, StandardOpenOption.READ, StandardOpenOption.CREATE))) {
+			FiberSerialization.deserialize(CONFIG, s, serializer);
+		} catch (IOException | ValueDeserializationException e) {
+			System.out.println("Error loading config");
+		}
+	}
+}

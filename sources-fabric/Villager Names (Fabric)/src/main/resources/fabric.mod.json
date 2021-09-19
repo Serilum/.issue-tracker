@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "villagernames-fabric",
+  "version": "3.3",
+
+  "name": "Villager Names (Fabric)",
+  "description": "A minimalistic mod which gives all unnamed villagers a (pre-)defined name.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/villager-names-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Villager%20Names%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Villager%20Names"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.villagernames.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.11"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.natamus.collective_fabric.fabric.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  	"ExplosionMixin",
+    "LivingEntityMixin",
+    "MinecraftServerMixin",
+	"PlayerMixin",
+    "PortalShapeMixin",
+    "ServerLevelMixin",
+    "ServerPlayerMixin"
+  ],
+  "client": [
+  
+  ],
+  "server": [
+   	"BaseSpawnerMixin" 
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

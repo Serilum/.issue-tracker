@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "weakerspiderwebs-fabric",
+  "version": "2.0",
+
+  "name": "Weaker Spiderwebs (Fabric)",
+  "description": "Breaks spider webs/cobwebs with a configurable delay when walking through.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/weaker-spiderwebs-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Weaker%20Spiderwebs%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Weaker%20Spiderwebs"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.weakerspiderwebs.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.11"
+  }
+}

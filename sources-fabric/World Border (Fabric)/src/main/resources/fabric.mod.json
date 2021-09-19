@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "worldborder-fabric",
+  "version": "2.5",
+
+  "name": "World Border (Fabric)",
+  "description": "Allows the creation of a configurable world border for each dimension, limiting the world size.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/world-border-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/World%20Border%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20World%20Border"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.worldborder.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.11"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "skeletonhorsespawn-fabric",
+  "version": "1.9",
+
+  "name": "Skeleton Horse Spawn (Fabric)",
+  "description": "Allows the skeleton horse to spawn naturally with a skeleton riding it and other tweaks.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/skeleton-horse-spawn-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Skeleton%20Horse%20Spawn%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Skeleton%20Horse%20Spawn"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.skeletonhorsespawn.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.29"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "silencemobs-fabric",
+  "version": "2.0",
+
+  "name": "Silence Mobs (Fabric)",
+  "description": "Adds the functionality to silence a mob with The Silence Stick, which can be collected by transforming a stick via the /silencestick command.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/silence-mobs-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Silence%20Mobs%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Silence%20Mobs"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.silencemobs.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.30"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "randomsheepcolours-fabric",
+  "version": "1.6",
+
+  "name": "Random Sheep Colours (Fabric)",
+  "description": "Gives new sheep spawns a random wool colour based on a configurable list.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/random-sheep-colours-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Random%20Sheep%20Colours%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Random%20Sheep%20Colours"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.randomsheepcolours.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.32"
+  }
+}

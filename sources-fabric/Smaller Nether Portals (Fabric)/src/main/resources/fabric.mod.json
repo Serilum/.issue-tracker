@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "smallernetherportals-fabric",
+  "version": "1.8",
+
+  "name": "Smaller Nether Portals (Fabric)",
+  "description": "Allows the creation of smaller nether portals, specifically 1x2, 1x3 and 2x2.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/smaller-nether-portals-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Smaller%20Nether%20Portals%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Smaller%20Nether%20Portals"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.smallernetherportals.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.28"
+  }
+}

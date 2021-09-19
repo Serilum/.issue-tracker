@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "zombieproofdoors-fabric",
+  "version": "1.4",
+
+  "name": "Zombie Proof Doors (Fabric)",
+  "description": "Prevents zombies from targeting and breaking down doors.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/zombie-proof-doors-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Zombie%20Proof%20Doors%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Zombie%20Proof%20Doors"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.zombieproofdoors.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.6"
+  }
+}

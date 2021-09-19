@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "setworldspawnpoint-fabric",
+  "version": "1.8",
+
+  "name": "Set World Spawn Point (Fabric)",
+  "description": "Allows setting an exact custom spawn point for newly created worlds.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/set-world-spawn-point-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Set%20World%20Spawn%20Point%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Set%20World%20Spawn%20Point"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.setworldspawnpoint.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.30"
+  }
+}

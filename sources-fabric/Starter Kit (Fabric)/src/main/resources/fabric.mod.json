@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "starterkit-fabric",
+  "version": "2.6",
+
+  "name": "Starter Kit (Fabric)",
+  "description": "Gives players who join the world for the first time configurable starter gear.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/starter-kit-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Starter%20Kit%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Starter%20Kit"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.starterkit.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.19"
+  }
+}

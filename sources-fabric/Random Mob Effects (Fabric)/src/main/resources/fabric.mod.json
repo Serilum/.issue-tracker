@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "randommobeffects-fabric",
+  "version": "1.5",
+
+  "name": "Random Mob Effects (Fabric)",
+  "description": "Randomly assigns a potion effect to all hostile mobs in the world. With blacklist and modded effects supported.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/random-mob-effects-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Random%20Mob%20Effects%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Random%20Mob%20Effects"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.randommobeffects.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.32"
+  }
+}

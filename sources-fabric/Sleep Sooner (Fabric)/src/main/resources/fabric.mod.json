@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "sleepsooner-fabric",
+  "version": "2.6",
+
+  "name": "Sleep Sooner (Fabric)",
+  "description": "A minimalistic mod that adds a configurable functionality to be able to sleep a little sooner.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/sleep-sooner-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Sleep%20Sooner%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Sleep%20Sooner"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.sleepsooner.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.29"
+  }
+}
