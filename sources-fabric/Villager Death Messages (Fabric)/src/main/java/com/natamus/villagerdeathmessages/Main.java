@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Villager Death Messages.
- * Minecraft version: 1.17.x, mod version: 2.1.
+ * Minecraft version: 1.17.x, mod version: 2.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Villager Death Messages ever released, along with some other perks.
@@ -15,7 +15,7 @@
 package com.natamus.villagerdeathmessages;
 
 import com.natamus.collective_fabric.check.RegisterMod;
-import com.natamus.collective_fabric.fabric.callbacks.CollectiveLivingEntityEvents;
+import com.natamus.collective_fabric.fabric.callbacks.CollectiveEntityEvents;
 import com.natamus.villagerdeathmessages.config.ConfigHandler;
 import com.natamus.villagerdeathmessages.events.VillagerEvent;
 import com.natamus.villagerdeathmessages.util.Reference;
@@ -36,7 +36,7 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-		CollectiveLivingEntityEvents.LIVING_ENTITY_DEATH.register((Level world, Entity entity, DamageSource source) -> {
+		CollectiveEntityEvents.LIVING_ENTITY_DEATH.register((Level world, Entity entity, DamageSource source) -> {
 			VillagerEvent.villagerDeath(world, entity, source);
 		});
 	}

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "villagerdeathmessages-fabric",
-  "version": "2.1",
+  "version": "2.2",
 
   "name": "Villager Death Messages (Fabric)",
   "description": "Broadcasts an informational death message whenever a villager passes away.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.17.x",
     "java": ">=16",
-    "collective-fabric": ">=1.13"
+    "collective-fabric": ">=1.38"
   }
 }

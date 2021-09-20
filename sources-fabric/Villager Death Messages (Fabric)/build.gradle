@@ -32,7 +32,7 @@ dependencies {
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
-	modImplementation "com.natamus.collective:collective-fabric:1.17.x-1.38"
+	modImplementation "com.natamus.collective:collective-fabric:1.17.x-1.39"
 }
 
 processResources {

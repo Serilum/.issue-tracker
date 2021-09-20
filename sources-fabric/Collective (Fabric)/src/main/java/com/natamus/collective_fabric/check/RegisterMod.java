@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.38.
+ * Minecraft version: 1.17.x, mod version: 1.39.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -37,9 +37,9 @@ public class RegisterMod {
 	private static HashMap<String, String> jartoname = new HashMap<String, String>();
 	public static boolean shouldDoCheck = true;
 	
-	public static void register(String modname, String modid, String modversion, String forgeversion) {
-		String jarname = modid + "_" + forgeversion.replaceAll("\\[", "").replaceAll("\\]","") + "-" + modversion + ".jar";
-		if (modid.equalsIgnoreCase("collective")) {
+	public static void register(String modname, String modid, String modversion, String fabricversion) {
+		String jarname = modid + "_" + fabricversion.replaceAll("\\[", "").replaceAll("\\]","") + "-" + modversion + ".jar";
+		if (modid.equalsIgnoreCase("collective-fabric")) {
 			jarname = jarname.replaceAll("_", "-");
 		}
 		

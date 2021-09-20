@@ -3,6 +3,9 @@ Villager Death Messages
 https://www.curseforge.com/minecraft/mc-mods/villager-death-messages
 
 =========
+v2.2: (Fabric only) Fixed reference to wrong event callback causing crash on start.
+
+=========
 v2.1: Fixed a modded villager without profession crashing the game. Improved compatibility with other mods.
 
 =========
