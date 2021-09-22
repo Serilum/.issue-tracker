@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "morezombievillagers-fabric",
+  "version": "1.5",
+
+  "name": "More Zombie Villagers (Fabric)",
+  "description": "Allows modifying the default chance a zombie spawn is of the villager variant.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/more-zombie-villagers-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/More%20Zombie%20Villagers%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20More%20Zombie%20Villagers"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.morezombievillagers.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.39"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "naturallychargedcreepers-fabric",
+  "version": "1.7",
+
+  "name": "Naturally Charged Creepers (Fabric)",
+  "description": "A minimalistic mod that allows creepers to spawn charged, both naturally and from a spawn egg.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/naturally-charged-creepers-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Naturally%20Charged%20Creepers%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Naturally%20Charged%20Creepers"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.naturallychargedcreepers.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.39"
+  }
+}

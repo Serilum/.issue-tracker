@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "mineralchance-fabric",
+  "version": "1.6",
+
+  "name": "Mineral Chance (Fabric)",
+  "description": "Adds a chance to find a random mineral inside a stone block when mining.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/mineral-chance-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Mineral%20Chance%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Mineral%20Chance"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.mineralchance.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.39"
+  }
+}

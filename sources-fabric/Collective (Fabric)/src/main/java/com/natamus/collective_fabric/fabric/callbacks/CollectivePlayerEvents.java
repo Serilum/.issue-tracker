@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.39.
+ * Minecraft version: 1.17.x, mod version: 1.41.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -18,6 +18,9 @@ import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 public final class CollectivePlayerEvents {
 	private CollectivePlayerEvents() { }
@@ -40,6 +43,17 @@ public final class CollectivePlayerEvents {
         }
     });
     
+    public static final Event<CollectivePlayerEvents.Player_Dig_Speed_Calc> ON_PLAYER_DIG_SPEED_CALC = EventFactory.createArrayBacked(CollectivePlayerEvents.Player_Dig_Speed_Calc.class, callbacks -> (world, player, digSpeed, state) -> {
+        for (CollectivePlayerEvents.Player_Dig_Speed_Calc callback : callbacks) {
+        	float newSpeed = callback.onDigSpeedCalc(world, player, digSpeed, state);
+        	if (newSpeed != digSpeed) {
+        		return newSpeed;
+        	}
+        }
+        
+        return -1;
+    });
+    
 	@FunctionalInterface
 	public interface Player_Tick {
 		 void onTick(ServerLevel world, ServerPlayer player);
@@ -53,5 +67,10 @@ public final class CollectivePlayerEvents {
 	@FunctionalInterface
 	public interface Player_Change_Dimension {
 		 void onChangeDimension(ServerLevel world, ServerPlayer player);
+	}
+	
+	@FunctionalInterface
+	public interface Player_Dig_Speed_Calc {
+		 float onDigSpeedCalc(Level world, Player player, float digSpeed, BlockState state);
 	}
 }

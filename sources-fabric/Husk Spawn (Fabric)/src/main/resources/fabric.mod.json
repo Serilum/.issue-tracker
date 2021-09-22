@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "huskspawn-fabric",
+  "version": "1.4",
+
+  "name": "Husk Spawn (Fabric)",
+  "description": "Adds a chance for husks to spawn naturally everywhere instead of a zombie.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/husk-spawn-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Husk%20Spawn%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Husk%20Spawn"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.huskspawn.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.40"
+  }
+}

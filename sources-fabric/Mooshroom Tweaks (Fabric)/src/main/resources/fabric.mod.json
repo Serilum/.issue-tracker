@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "mooshroomtweaks-fabric",
+  "version": "1.6",
+
+  "name": "Mooshroom Tweaks (Fabric)",
+  "description": "A minimalistic mod that tweaks the spawning behaviour of mooshrooms, allowing both red and brown to spawn naturally.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/mooshroom-tweaks-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Mooshroom%20Tweaks%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Mooshroom%20Tweaks"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.mooshroomtweaks.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.39"
+  }
+}

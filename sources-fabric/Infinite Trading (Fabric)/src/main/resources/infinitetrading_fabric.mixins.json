@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.natamus.infinitetrading.fabric.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  	"MerchantOfferMixin"
+  ],
+  "client": [
+  
+  ],
+  "server": [
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

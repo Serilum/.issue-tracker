@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.39.
+ * Minecraft version: 1.17.x, mod version: 1.41.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -87,5 +87,13 @@ public class LivingEntityMixin {
 		}
 
 		return true;
+	}
+	
+	@Inject(method = "dropAllDeathLoot(Lnet/minecraft/world/damagesource/DamageSource;)V", at = @At(value = "TAIL"))
+	protected void dropAllDeathLoot(DamageSource damageSource, CallbackInfo ci) {
+		LivingEntity livingEntity = (LivingEntity)(Object)this;
+		Level world = livingEntity.getCommandSenderWorld();
+		
+		CollectiveEntityEvents.ON_ENTITY_IS_DROPPING_LOOT.invoker().onDroppingLoot(world, livingEntity, damageSource);
 	}
 }

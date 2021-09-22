@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "justplayerheads-fabric",
+  "version": "1.8",
+
+  "name": "Just Player Heads (Fabric)",
+  "description": "A minimalistic mod that adds a configurable chance for players to drop their respective heads on death and via a command. All heads are generated with texture-data.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/just-player-heads-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Just%20Player%20Heads%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Just%20Player%20Heads"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.justplayerheads.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.39"
+  }
+}

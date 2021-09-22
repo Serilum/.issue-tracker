@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.39.
+ * Minecraft version: 1.17.x, mod version: 1.41.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -74,6 +74,12 @@ public final class CollectiveEntityEvents {
 		return true;
     });
     
+    public static final Event<CollectiveEntityEvents.Entity_Is_Dropping_Loot> ON_ENTITY_IS_DROPPING_LOOT = EventFactory.createArrayBacked(CollectiveEntityEvents.Entity_Is_Dropping_Loot.class, callbacks -> (world, entity, damageSource) -> {
+        for (CollectiveEntityEvents.Entity_Is_Dropping_Loot callback : callbacks) {
+        	callback.onDroppingLoot(world, entity, damageSource);
+        }
+    });
+    
 	@FunctionalInterface
 	public interface Living_Tick {
 		 void onTick(Level world, Entity entity);
@@ -102,5 +108,10 @@ public final class CollectiveEntityEvents {
 	@FunctionalInterface
 	public interface Entity_Living_Attack {
 		 boolean onLivingAttack(Level world, Entity entity, DamageSource damageSource, float damageAmount);
+	}
+	
+	@FunctionalInterface
+	public interface Entity_Is_Dropping_Loot {
+		 void onDroppingLoot(Level world, Entity entity, DamageSource damageSource);
 	}
 }

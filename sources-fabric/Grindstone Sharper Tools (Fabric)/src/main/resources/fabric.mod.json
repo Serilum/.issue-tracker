@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "grindstonesharpertools-fabric",
+  "version": "1.6",
+
+  "name": "Grindstone Sharper Tools (Fabric)",
+  "description": "The grindstone can temporarily increase the damage of tools used on it.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/grindstone-sharper-tools-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Grindstone%20Sharper%20Tools%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Grindstone%20Sharper%20Tools"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.grindstonesharpertools.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.41"
+  }
+}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.39.
+ * Minecraft version: 1.17.x, mod version: 1.41.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -19,11 +19,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 import com.natamus.collective_fabric.fabric.callbacks.CollectiveEntityEvents;
+import com.natamus.collective_fabric.fabric.callbacks.CollectivePlayerEvents;
 
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 @Mixin(Player.class)
 public class PlayerMixin {
@@ -35,6 +37,19 @@ public class PlayerMixin {
 		float newDamage = CollectiveEntityEvents.ON_LIVING_DAMAGE_CALC.invoker().onLivingDamageCalc(world, livingEntity, damageSource, f);
 		if (newDamage != -1 && newDamage != f) {
 			return newDamage;
+		}
+		
+		return f;
+	}
+	
+	@ModifyVariable(method = "getDestroySpeed", at = @At(value= "RETURN"))
+	private float Player_getDestroySpeed(float f, BlockState state) {
+		Player player = (Player)(Object)this;
+		Level world = player.getCommandSenderWorld();
+
+		float newSpeed = CollectivePlayerEvents.ON_PLAYER_DIG_SPEED_CALC.invoker().onDigSpeedCalc(world, player, f, state);
+		if (newSpeed != -1 && newSpeed != f) {
+			return newSpeed;
 		}
 		
 		return f;

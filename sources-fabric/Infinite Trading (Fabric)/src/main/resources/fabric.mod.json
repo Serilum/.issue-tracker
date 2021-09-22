@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "infinitetrading-fabric",
+  "version": "1.9",
+
+  "name": "Infinite Trading (Fabric)",
+  "description": "Prevents villager trades from locking up, making them be always available.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/infinite-trading-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Infinite%20Trading%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Infinite%20Trading"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.infinitetrading.Main" ] },
+  "mixins": [
+    "infinitetrading_fabric.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.40"
+  }
+}
