@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "easyelytratakeoff-fabric",
+  "version": "2.1",
+
+  "name": "Easy Elytra Takeoff (Fabric)",
+  "description": "Allows easy taking off by elytra with a firework from the ground without that awkward jump.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/easy-elytra-takeoff-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Easy%20Elytra%20Takeoff%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Easy%20Elytra%20Takeoff"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.easyelytratakeoff.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.41"
+  }
+}

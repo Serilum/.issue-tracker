@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "edibles-fabric",
+  "version": "2.4",
+
+  "name": "Edibles (Fabric)",
+  "description": "Makes lots of ingredients edible, after which the player receives a short status effect.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/edibles-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Edibles%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Edibles"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.edibles.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.41"
+  }
+}
