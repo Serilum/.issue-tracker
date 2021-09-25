@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "deathbackup-fabric",
+  "version": "1.5",
+
+  "name": "Death Backup (Fabric)",
+  "description": "Creates a backup of an inventory right before a player death, which can be loaded via a command.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/death-backup-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Death%20Backup%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Death%20Backup"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.deathbackup.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.41"
+  }
+}

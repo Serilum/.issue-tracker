@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "configurablemobpotioneffects-fabric",
+  "version": "1.4",
+
+  "name": "Configurable Mob Potion Effects (Fabric)",
+  "description": "Configurably set potion effects for all living entities, permanent for self and on damage for others.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/configurable-mob-potion-effects-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Configurable%20Mob%20Potion%20Effects%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Configurable%20Mob%20Potion%20Effects"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.configurablemobpotioneffects.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.41"
+  }
+}

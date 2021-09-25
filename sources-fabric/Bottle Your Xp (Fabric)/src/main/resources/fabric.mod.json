@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "bottleyourxp-fabric",
+  "version": "1.6",
+
+  "name": "Bottle Your Xp (Fabric)",
+  "description": "A minimalistic configurable mod that allows the creation of experience bottles from your own gathered xp.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/bottle-your-xp-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Bottle%20Your%20Xp%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Bottle%20Your%20Xp"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.bottleyourxp.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.41"
+  }
+}

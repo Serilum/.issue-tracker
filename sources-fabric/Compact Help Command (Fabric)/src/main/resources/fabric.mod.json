@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "compacthelpcommand-fabric",
+  "version": "1.1",
+
+  "name": "Compact Help Command (Fabric)",
+  "description": "Modifies the standard /help command to be colourful and have multiple pages.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/compact-help-command-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Compact%20Help%20Command%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Compact%20Help%20Command"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.compacthelpcommand.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.41"
+  }
+}
