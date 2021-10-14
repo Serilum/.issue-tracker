@@ -4,6 +4,7 @@
   "package": "com.natamus.collective_fabric.fabric.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+  	"AnvilMenuMixin",
   	"ExplosionMixin",
     "LivingEntityMixin",
     "MinecraftServerMixin",

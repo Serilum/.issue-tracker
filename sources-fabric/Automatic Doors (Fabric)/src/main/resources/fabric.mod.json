@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "automaticdoors-fabric",
+  "version": "1.9",
+
+  "name": "Automatic Doors (Fabric)",
+  "description": "Automatically opens doors in front of the player and closes them with a configurable delay.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/automatic-doors-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Automatic%20Doors%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Automatic%20Doors"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.automaticdoors.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.41"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "alwaysawitherskull-fabric",
+  "version": "1.4",
+
+  "name": "Always a Wither Skull (Fabric)",
+  "description": "A drag-and-drop mod that makes wither skeletons always drop their skull on death.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/always-a-wither-skull-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Always%20a%20Wither%20Skull%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Always%20a%20Wither%20Skull"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.alwaysawitherskull.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.41"
+  }
+}
