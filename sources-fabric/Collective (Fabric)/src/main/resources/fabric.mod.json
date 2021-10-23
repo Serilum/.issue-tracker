@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "collective-fabric",
-  "version": "1.44",
+  "version": "1.48",
 
   "name": "Collective (Fabric)",
   "description": "Collective Fabric is a shared library with common code for all of Serilum's mods.",
@@ -21,7 +21,8 @@
     ]
   },
   "mixins": [
-    "collective_fabric.mixins.json"
+    "collective_fabric.mixins.json",
+    "collective_fabric.crop.mixins.json"
   ],
 
   "depends": {

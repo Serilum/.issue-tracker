@@ -4,20 +4,34 @@
   "package": "com.natamus.collective_fabric.fabric.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+  	"AbstractFurnaceBlockEntityMixin",
+ 	"AbstractHorseMixin",
+  	"AnimalMixin",
   	"AnvilMenuMixin",
+    "BlockMixin",
+	"BoneMealItemMixin",
   	"ExplosionMixin",
+    "FishingHookMixin",
+    "ItemEntityMixin",
+    "LevelMixin",
     "LivingEntityMixin",
+	"MagmaCubeMixin",
     "MinecraftServerMixin",
+    "NaturalSpawnerMixin",
+	"PlayerListMixin",
 	"PlayerMixin",
     "PortalShapeMixin",
+	"ServerGamePacketListenerImplMixin",
     "ServerLevelMixin",
     "ServerPlayerMixin"
   ],
   "client": [
-  
+  	"ClientPacketListenerMixin",
+  	"ItemInHandRendererMixin",
+  	"SoundEngineMixin"
   ],
   "server": [
-   	"BaseSpawnerMixin" 
+   	"BaseSpawnerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

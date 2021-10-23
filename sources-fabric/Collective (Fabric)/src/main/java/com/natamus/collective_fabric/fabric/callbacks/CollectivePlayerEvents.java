@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.44.
+ * Minecraft version: 1.17.x, mod version: 1.48.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -54,6 +54,18 @@ public final class CollectivePlayerEvents {
         return -1;
     });
     
+    public static final Event<CollectivePlayerEvents.Player_Logged_In> PLAYER_LOGGED_IN = EventFactory.createArrayBacked(CollectivePlayerEvents.Player_Logged_In.class, callbacks -> (world, player) -> {
+        for (CollectivePlayerEvents.Player_Logged_In callback : callbacks) {
+        	callback.onPlayerLoggedIn(world, player);
+        }
+    });
+    
+    public static final Event<CollectivePlayerEvents.Player_Logged_Out> PLAYER_LOGGED_OUT = EventFactory.createArrayBacked(CollectivePlayerEvents.Player_Logged_Out.class, callbacks -> (world, player) -> {
+        for (CollectivePlayerEvents.Player_Logged_Out callback : callbacks) {
+        	callback.onPlayerLoggedOut(world, player);
+        }
+    });
+    
 	@FunctionalInterface
 	public interface Player_Tick {
 		 void onTick(ServerLevel world, ServerPlayer player);
@@ -72,5 +84,15 @@ public final class CollectivePlayerEvents {
 	@FunctionalInterface
 	public interface Player_Dig_Speed_Calc {
 		 float onDigSpeedCalc(Level world, Player player, float digSpeed, BlockState state);
+	}
+	
+	@FunctionalInterface
+	public interface Player_Logged_In {
+		 void onPlayerLoggedIn(Level world, Player player);
+	}
+	
+	@FunctionalInterface
+	public interface Player_Logged_Out {
+		 void onPlayerLoggedOut(Level world, Player player);
 	}
 }

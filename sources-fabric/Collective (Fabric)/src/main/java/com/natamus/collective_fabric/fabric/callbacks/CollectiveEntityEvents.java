@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.44.
+ * Minecraft version: 1.17.x, mod version: 1.48.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -33,7 +33,7 @@ public final class CollectiveEntityEvents {
         for (CollectiveEntityEvents.Living_Entity_Death callback : callbacks) {
         	callback.onDeath(world, entity, source);
         }
-    });
+    }); 
     
     public static final Event<CollectiveEntityEvents.Pre_Entity_Join_World> PRE_ENTITY_JOIN_WORLD = EventFactory.createArrayBacked(CollectiveEntityEvents.Pre_Entity_Join_World.class, callbacks -> (world, entity) -> {
         for (CollectiveEntityEvents.Pre_Entity_Join_World callback : callbacks) {
@@ -80,6 +80,12 @@ public final class CollectiveEntityEvents {
         }
     });
     
+    public static final Event<CollectiveEntityEvents.Entity_Is_Jumping> ON_ENTITY_IS_JUMPING = EventFactory.createArrayBacked(CollectiveEntityEvents.Entity_Is_Jumping.class, callbacks -> (world, entity) -> {
+        for (CollectiveEntityEvents.Entity_Is_Jumping callback : callbacks) {
+        	callback.onLivingJump(world, entity);
+        }
+    });
+    
 	@FunctionalInterface
 	public interface Living_Tick {
 		 void onTick(Level world, Entity entity);
@@ -113,5 +119,10 @@ public final class CollectiveEntityEvents {
 	@FunctionalInterface
 	public interface Entity_Is_Dropping_Loot {
 		 void onDroppingLoot(Level world, Entity entity, DamageSource damageSource);
+	}
+	
+	@FunctionalInterface
+	public interface Entity_Is_Jumping {
+		 void onLivingJump(Level world, Entity entity);
 	}
 }

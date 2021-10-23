@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.44.
+ * Minecraft version: 1.17.x, mod version: 1.48.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -37,7 +37,7 @@ public class LivingEntityMixin {
 	public void LivingEntity_tick(CallbackInfo ci) {
 		Entity entity = (Entity)(Object)this;
 		Level world = (Level)entity.getCommandSenderWorld();
-		 
+		
 		CollectiveEntityEvents.LIVING_TICK.invoker().onTick(world, entity);
 	}
 	
@@ -62,7 +62,6 @@ public class LivingEntityMixin {
 		float h = mobEffectInstance == null ? 0.0F : (float)(mobEffectInstance.getAmplifier() + 1);
 		return Mth.ceil((f - 3.0F - h) * g);
 	}
-	
 	
 	@ModifyVariable(method = "actuallyHurt(Lnet/minecraft/world/damagesource/DamageSource;F)V", at = @At(value= "INVOKE_ASSIGN", target = "Ljava/lang/Math;max(FF)F", ordinal = 0), ordinal = 0)
 	private float LivingEntity_actuallyHurt(float f, DamageSource damageSource, float damage) {
@@ -95,5 +94,13 @@ public class LivingEntityMixin {
 		Level world = livingEntity.getCommandSenderWorld();
 		
 		CollectiveEntityEvents.ON_ENTITY_IS_DROPPING_LOOT.invoker().onDroppingLoot(world, livingEntity, damageSource);
+	}
+	
+	@Inject(method = "jumpFromGround", at = @At(value = "TAIL"))
+	protected void LivingEntity_jumpFromGround(CallbackInfo ci) {
+		LivingEntity livingEntity = (LivingEntity)(Object)this;
+		Level world = livingEntity.getCommandSenderWorld();
+		
+		CollectiveEntityEvents.ON_ENTITY_IS_JUMPING.invoker().onLivingJump(world, livingEntity);
 	}
 }

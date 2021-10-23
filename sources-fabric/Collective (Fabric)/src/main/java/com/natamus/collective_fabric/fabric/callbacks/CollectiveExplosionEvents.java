@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.44.
+ * Minecraft version: 1.17.x, mod version: 1.48.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -25,7 +25,7 @@ public class CollectiveExplosionEvents {
 	 
     public static final Event<CollectiveExplosionEvents.Explosion_Detonate> EXPLOSION_DETONATE = EventFactory.createArrayBacked(CollectiveExplosionEvents.Explosion_Detonate.class, callbacks -> (world, sourceEntity, explosion) -> {
         for (CollectiveExplosionEvents.Explosion_Detonate callback : callbacks) {
-        	callback.onDetonate(world, sourceEntity, explosion); 
+        	callback.onDetonate(world, sourceEntity, explosion);
         }
     });
     

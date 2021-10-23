@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "respawndelay-fabric",
+  "version": "2.5",
+
+  "name": "Respawn Delay (Fabric)",
+  "description": "",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/respawn-delay-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Respawn%20Delay%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Respawn%20Delay"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.respawndelay.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.47"
+  }
+}

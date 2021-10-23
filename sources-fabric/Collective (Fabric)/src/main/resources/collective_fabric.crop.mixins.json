@@ -1,0 +1,27 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.natamus.collective_fabric.fabric.mixin.crop",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+ 	"BambooBlockMixin",
+   	"CactusBlockMixin",
+  	"CropBlockMixin",
+ 	"ChorusFlowerBlockMixin",
+ 	"CocoaBlockMixin",
+ 	"GrowingPlantHeadBlockMixin",
+	"NetherWartBlockMixin",
+	"StemBlockMixin",
+	"SugarCaneBlockMixin",
+	"SweetBerryBushBlockMixin"
+  ],
+  "client": [
+
+  ],
+  "server": [
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
