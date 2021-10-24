@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.48.
+ * Minecraft version: 1.17.x, mod version: 1.49.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -28,7 +28,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.BambooBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-@Mixin(BambooBlock.class)
+@Mixin(value = BambooBlock.class, priority = 1001)
 public class BambooBlockMixin {
 	@Inject(method = "randomTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/BambooBlock;growBamboo(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Ljava/util/Random;I)V"), cancellable = true)
 	public void BambooBlock_randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random, CallbackInfo ci) {

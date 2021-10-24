@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.48.
+ * Minecraft version: 1.17.x, mod version: 1.49.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -23,7 +23,7 @@ import com.natamus.collective_fabric.util.Reference;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BaseSpawner;
 
-@Mixin(BaseSpawner.class)
+@Mixin(value = BaseSpawner.class, priority = 1001)
 public class BaseSpawnerMixin {
 	@ModifyVariable(method = "serverTick(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V", at = @At(value= "INVOKE", target = "Lnet/minecraft/server/level/ServerLevel;tryAddFreshEntityWithPassengers(Lnet/minecraft/world/entity/Entity;)Z"))
 	private Entity BaseSpawner_tick(Entity entity) {

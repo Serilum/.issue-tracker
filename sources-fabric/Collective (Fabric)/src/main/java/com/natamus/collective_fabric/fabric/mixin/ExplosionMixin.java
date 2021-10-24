@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.48.
+ * Minecraft version: 1.17.x, mod version: 1.49.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -26,7 +26,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 
-@Mixin(Explosion.class)
+@Mixin(value = Explosion.class, priority = 1001)
 public class ExplosionMixin {
 	@Shadow private Level level;
 	@Shadow private Entity source;

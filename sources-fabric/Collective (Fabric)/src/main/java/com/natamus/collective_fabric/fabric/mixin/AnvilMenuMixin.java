@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.48.
+ * Minecraft version: 1.17.x, mod version: 1.49.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -32,7 +32,7 @@ import net.minecraft.world.inventory.ItemCombinerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 
-@Mixin(AnvilMenu.class)
+@Mixin(value = AnvilMenu.class, priority = 1001)
 public abstract class AnvilMenuMixin extends ItemCombinerMenu {
 	public AnvilMenuMixin(MenuType<?> menuType, int i, Inventory inventory, ContainerLevelAccess containerLevelAccess) {
 		super(menuType, i, inventory, containerLevelAccess);
