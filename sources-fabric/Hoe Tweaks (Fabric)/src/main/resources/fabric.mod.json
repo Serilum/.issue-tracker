@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "hoetweaks-fabric",
+  "version": "1.0",
+
+  "name": "Hoe Tweaks (Fabric)",
+  "description": "Makes various changes to hoe mechanics. Faster crop block breaking, increased hoe radius and be able to un-till soil.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/hoe-tweaks-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Hoe%20Tweaks%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Hoe%20Tweaks"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.hoetweaks.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.48"
+  }
+}
