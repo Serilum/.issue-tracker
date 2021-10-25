@@ -23,11 +23,13 @@
     "PortalShapeMixin",
 	"ServerGamePacketListenerImplMixin",
     "ServerLevelMixin",
+	"ServerPlayerGameModeMixin",
     "ServerPlayerMixin"
   ],
   "client": [
   	"ClientPacketListenerMixin",
   	"ItemInHandRendererMixin",
+    "MultiPlayerGameModeMixin",
   	"SoundEngineMixin"
   ],
   "server": [

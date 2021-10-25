@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "extendedbonemeal-fabric",
+  "version": "1.4",
+
+  "name": "Extended Bone Meal (Fabric)",
+  "description": "Extends bone meal behaviour. Instant grow with sneak, grow netherwart and other tweaks.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/extended-bone-meal-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Extended%20Bone%20Meal%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Extended%20Bone%20Meal"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.extendedbonemeal.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.50"
+  }
+}

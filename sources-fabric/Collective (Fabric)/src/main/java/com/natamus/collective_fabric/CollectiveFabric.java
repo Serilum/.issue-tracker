@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.49.
+ * Minecraft version: 1.17.x, mod version: 1.51.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -30,7 +30,7 @@ import net.minecraft.world.entity.Entity;
 public class CollectiveFabric implements ModInitializer {
 	@Override
 	public void onInitialize() {
-		System.out.println("Loading Collective (Fabric).");
+		System.out.println("Loading Collective (Fabric) version " + Reference.VERSION + ".");
 		
 		CollectiveConfigHandler.setup();
 		
