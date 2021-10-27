@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.51.
+ * Minecraft version: 1.17.x, mod version: 1.61.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -36,7 +36,7 @@ public class NaturalSpawnerMixin {
 			mob.setPos(blockPos.getX(), blockPos.getY(), blockPos.getZ());
 		}
 		
-		if (!CollectiveSpawnEvents.MOB_CHECK_SPAWN.invoker().onMobCheckSpawn(mob, serverLevel, blockPos.getX(), blockPos.getY(), blockPos.getZ(), null, MobSpawnType.NATURAL)) {
+		if (!CollectiveSpawnEvents.MOB_CHECK_SPAWN.invoker().onMobCheckSpawn(mob, serverLevel, null, MobSpawnType.NATURAL)) {
 			mob = null;
 		}
 		

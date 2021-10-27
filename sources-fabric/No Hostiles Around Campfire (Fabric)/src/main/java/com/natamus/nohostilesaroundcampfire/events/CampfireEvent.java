@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of No Hostiles Around Campfire.
- * Minecraft version: 1.17.x, mod version: 3.6.
+ * Minecraft version: 1.17.x, mod version: 3.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of No Hostiles Around Campfire ever released, along with some other perks.
@@ -37,7 +37,6 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FlintAndSteelItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -80,7 +79,7 @@ public class CampfireEvent {
 		}
 	}
 	
-	public static boolean onEntityJoin(Mob entity, ServerLevel world, double x, double y, double z, BaseSpawner spawner, MobSpawnType spawnReason) {
+	public static boolean onEntityJoin(Mob entity, ServerLevel world, BlockPos spawnerPos, MobSpawnType spawnReason) {
 		if (entity.getTags().contains(Reference.MOD_ID + ".checked" )) {
 			return true;	
 		}

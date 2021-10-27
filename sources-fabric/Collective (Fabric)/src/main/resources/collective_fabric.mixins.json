@@ -8,6 +8,7 @@
  	"AbstractHorseMixin",
   	"AnimalMixin",
   	"AnvilMenuMixin",
+    "BaseSpawnerMixin",
     "BlockMixin",
 	"BoneMealItemMixin",
   	"ExplosionMixin",
@@ -33,7 +34,6 @@
   	"SoundEngineMixin"
   ],
   "server": [
-   	"BaseSpawnerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

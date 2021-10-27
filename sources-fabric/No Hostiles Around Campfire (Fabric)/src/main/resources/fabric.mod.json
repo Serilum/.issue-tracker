@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "nohostilesaroundcampfire-fabric",
-  "version": "3.6",
+  "version": "3.7",
 
   "name": "No Hostiles Around Campfire (Fabric)",
   "description": "Prevents hostile mob spawns around the campfire in a configurable radius.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.17.x",
     "java": ">=16",
-    "collective-fabric": ">=1.48"
+    "collective-fabric": ">=1.58"
   }
 }

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "bouncierbeds-fabric",
+  "version": "1.0",
+
+  "name": "Bouncier Beds (Fabric)",
+  "description": "Makes players bounce configurably higher on beds and prevents fall damage on them.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/bouncier-beds-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Bouncier%20Beds%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Bouncier%20Beds"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.bouncierbeds.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.51"
+  }
+}

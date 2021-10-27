@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "beautifiedchatserver-fabric",
+  "version": "1.0",
+
+  "name": "Beautified Chat Server (Fabric)",
+  "description": "A highly configurable mod to change the style and colour of incoming chat messages server-wide.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/beautified-chat-server-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Beautified%20Chat%20Server%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Beautified%20Chat%20Server"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.beautifiedchatserver.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.61"
+  }
+}
