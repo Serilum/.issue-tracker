@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Mob Effects.
- * Minecraft version: 1.17.1, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Random Mob Effects ever released, along with some other perks.
@@ -25,6 +25,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -43,8 +44,15 @@ public class AddEffectEvent {
 		if (entity instanceof LivingEntity == false) {
 			return;
 		}
+		
 		if (!entity.getType().getCategory().equals(MobCategory.MONSTER)) {
 			return;
+		}
+		
+		if (ConfigHandler.GENERAL.disableCreepers.get()) {
+			if (entity instanceof Creeper) {
+				return;
+			}
 		}
 		
 		String effecttag = Reference.MOD_ID + ".effectadded";

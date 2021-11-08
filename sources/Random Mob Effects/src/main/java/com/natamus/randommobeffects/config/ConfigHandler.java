@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Mob Effects.
- * Minecraft version: 1.17.1, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Random Mob Effects ever released, along with some other perks.
@@ -24,6 +24,7 @@ public class ConfigHandler {
 	public static class General {
 		public final ForgeConfigSpec.ConfigValue<Integer> potionEffectLevel;
 		public final ForgeConfigSpec.ConfigValue<Boolean> hideEffectParticles;
+		public final ForgeConfigSpec.ConfigValue<Boolean> disableCreepers;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
@@ -33,6 +34,9 @@ public class ConfigHandler {
 			hideEffectParticles = builder
 					.comment("When enabled, hides the particles from the mobs with an effect.")
 					.define("hideEffectParticles", false);
+			disableCreepers = builder
+					.comment("Creepers can create infinite lingering potion effects which is probably not what you want. When enabled, the mod doesn't give creepers a random effect.")
+					.define("disableCreepers", true);
 			
 			builder.pop();
 		}

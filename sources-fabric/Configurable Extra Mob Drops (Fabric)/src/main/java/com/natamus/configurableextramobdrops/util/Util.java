@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Extra Mob Drops.
- * Minecraft version: 1.17.x, mod version: 1.6.
+ * Minecraft version: 1.17.x, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Extra Mob Drops ever released, along with some other perks.
@@ -21,7 +21,10 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -41,6 +44,7 @@ public class Util {
 	private static File file = new File(dirpath + File.separator + "mobdropconfig.txt");
 	
 	public static HashMap<EntityType<?>, CopyOnWriteArrayList<ItemStack>> mobdrops = new HashMap<EntityType<?>, CopyOnWriteArrayList<ItemStack>>();
+	private static List<EntityType<?>> specialmiscmobs = new ArrayList<EntityType<?>>(Arrays.asList(EntityType.IRON_GOLEM, EntityType.SNOW_GOLEM, EntityType.VILLAGER));
 	
 	public static void loadMobConfigFile() throws IOException, FileNotFoundException, UnsupportedEncodingException {
 		mobdrops = new HashMap<EntityType<?>, CopyOnWriteArrayList<ItemStack>>();
@@ -51,7 +55,7 @@ public class Util {
 			writer = new PrintWriter(dirpath + File.separator + "mobdropconfig.txt", "UTF-8");
 		}
 		else {
-			String configcontent = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + "mobdropconfig.txt", new String[0])));
+			String configcontent = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + "mobdropconfig.txt", new String[0])), "UTF-8");
 			for (String line : configcontent.split("\n")) {
 				if (line.trim().endsWith(",")) {
 					line = line.trim();
@@ -103,7 +107,7 @@ public class Util {
 			for (ResourceLocation rl : Registry.ENTITY_TYPE.keySet()) {
 				EntityType<?> entitytype = Registry.ENTITY_TYPE.get(rl);
 				MobCategory classification = entitytype.getCategory();
-				if (!classification.equals(MobCategory.MISC)) {
+				if (!classification.equals(MobCategory.MISC) || specialmiscmobs.contains(entitytype)) {
 					writer.println("'" + rl.toString() + "'" + " : '',");
 					
 					mobdrops.put(entitytype, new CopyOnWriteArrayList<ItemStack>());
@@ -124,7 +128,7 @@ public class Util {
 		for (ResourceLocation rl : Registry.ENTITY_TYPE.keySet()) {
 			EntityType<?> entitytype = Registry.ENTITY_TYPE.get(rl);
 			MobCategory classification = entitytype.getCategory();
-			if (!classification.equals(MobCategory.MISC)) {
+			if (!classification.equals(MobCategory.MISC) || specialmiscmobs.contains(entitytype)) {
 				String itemdata = "";
 				if (mobdrops.containsKey(entitytype)) {
 					CopyOnWriteArrayList<ItemStack> drops = mobdrops.get(entitytype);

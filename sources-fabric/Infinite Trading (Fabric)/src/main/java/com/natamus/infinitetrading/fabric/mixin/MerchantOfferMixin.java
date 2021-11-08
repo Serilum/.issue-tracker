@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Infinite Trading.
- * Minecraft version: 1.17.x, mod version: 1.9.
+ * Minecraft version: 1.17.x, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Infinite Trading ever released, along with some other perks.
@@ -30,16 +30,19 @@ import net.minecraft.world.item.trading.MerchantOffer;
 public class MerchantOfferMixin {
 	@Shadow private int uses;
 	@Shadow private @Final @Mutable int maxUses;
+	@Shadow private int demand;
 	
 	@Inject(method = " <init>(Lnet/minecraft/nbt/CompoundTag;)V", at = @At("TAIL"))
 	public void MerchantOffer(CompoundTag compoundTag, CallbackInfo ci) {
 		uses = 0;
 		maxUses = Integer.MAX_VALUE;
+		demand = 0;
 	}
 	
 	@Inject(method = " <init>(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;IIIFI)V", at = @At("TAIL"))
 	public void MerchantOffer(ItemStack itemStack, ItemStack itemStack2, ItemStack itemStack3, int i, int j, int k, float f, int l, CallbackInfo ci) {
 		uses = 0;
 		maxUses = Integer.MAX_VALUE;
+		demand = 0;
 	}	
 }

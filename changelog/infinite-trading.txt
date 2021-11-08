@@ -3,6 +3,9 @@ Infinite Trading
 https://www.curseforge.com/minecraft/mc-mods/infinite-trading
 
 =========
+v2.0: (Fabric only) Fixed a bug where trades would get more expensive on trading a lot.
+
+=========
 v1.9: The mod now uses the correct SRG mapping name which fixes a crash on startup.
 
 =========

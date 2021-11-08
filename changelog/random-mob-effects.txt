@@ -3,6 +3,9 @@ Random Mob Effects
 https://curseforge.com/minecraft/mc-mods/random-mob-effects
 
 =========
+v1.6: Added config option, enabled by default, which disables giving creepers a random mob effect. This due to them creating an area of a lingering effect which is probably not what you want. Feel free to enable them again though!
+
+=========
 v1.5: Synchronized versions. Updated mod to work with renamed ForgeRegistries field in 37.0.22.
 
 =========

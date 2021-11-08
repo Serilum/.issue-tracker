@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Mob Effects.
- * Minecraft version: 1.17.x, mod version: 1.5.
+ * Minecraft version: 1.17.x, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Random Mob Effects ever released, along with some other perks.
@@ -36,6 +36,7 @@ import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
 public class ConfigHandler { 
 	public static PropertyMirror<Integer> potionEffectLevel = PropertyMirror.create(ConfigTypes.INTEGER);
 	public static PropertyMirror<Boolean> hideEffectParticles = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> disableCreepers = PropertyMirror.create(ConfigTypes.BOOLEAN);
 
 	private static final ConfigTree CONFIG = ConfigTree.builder() 
 			.beginValue("potionEffectLevel", ConfigTypes.INTEGER, 1)
@@ -45,6 +46,10 @@ public class ConfigHandler {
 			.beginValue("hideEffectParticles", ConfigTypes.BOOLEAN, false)
 			.withComment("When enabled, hides the particles from the mobs with an effect.")
 			.finishValue(hideEffectParticles::mirror)
+			
+			.beginValue("disableCreepers", ConfigTypes.BOOLEAN, true)
+			.withComment("Creepers can create infinite lingering potion effects which is probably not what you want. When enabled, the mod doesn't give creepers a random effect.")
+			.finishValue(disableCreepers::mirror)
 
 			.build();
 

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "configurableextramobdrops-fabric",
-  "version": "1.6",
+  "version": "1.8",
 
   "name": "Configurable Extra Mob Drops (Fabric)",
   "description": "Add extra drops to any (modded) mob entity via commands and a config file.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.17.x",
     "java": ">=16",
-    "collective-fabric": ">=1.41"
+    "collective-fabric": ">=1.61"
   }
 }
