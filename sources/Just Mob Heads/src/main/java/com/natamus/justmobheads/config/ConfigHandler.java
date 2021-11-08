@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.17.1, mod version: 4.2.
+ * Minecraft version: 1.17.1, mod version: 5.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Mob Heads ever released, along with some other perks.
@@ -29,6 +29,9 @@ public class ConfigHandler {
 		
 		public final ForgeConfigSpec.ConfigValue<Double> overallDropChance;
 		public final ForgeConfigSpec.ConfigValue<Double> creeperSkeletonZombieDropChance;
+		
+		public final ForgeConfigSpec.ConfigValue<Boolean> onlyDropHeadsByChargedCreeper;
+		public final ForgeConfigSpec.ConfigValue<Boolean> onlyDropHeadsByPlayerKill;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
@@ -51,6 +54,13 @@ public class ConfigHandler {
 			creeperSkeletonZombieDropChance = builder
 					.comment("Sets head drop chance for Zombies, Skeletons and Creepers if 'enableStandardHeads' is enabled.")
 					.defineInRange("creeperSkeletonZombieDropChance", 0.1, 0.0001, 1.0 );
+			
+			onlyDropHeadsByChargedCreeper = builder
+					.comment("When enabled, only drops mob heads if the source on death is a charged creeper. This overwrites the onlyDropHeadsByPlayerKill value.")
+					.define("onlyDropHeadsByChargedCreeper", false);
+			onlyDropHeadsByPlayerKill = builder
+					.comment("When enabled, only drops mob heads if the source on death is from a player.")
+					.define("onlyDropHeadsByPlayerKill", false);
 			
 			builder.pop();
 		}

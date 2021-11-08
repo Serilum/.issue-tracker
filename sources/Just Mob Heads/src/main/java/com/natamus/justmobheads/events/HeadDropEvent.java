@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.17.1, mod version: 4.2.
+ * Minecraft version: 1.17.1, mod version: 5.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Mob Heads ever released, along with some other perks.
@@ -14,17 +14,28 @@
 
 package com.natamus.justmobheads.events;
 
+import com.mojang.authlib.GameProfile;
+import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.justmobheads.config.ConfigHandler;
 import com.natamus.justmobheads.util.HeadData;
 import com.natamus.justmobheads.util.MobHeads;
 
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.TamableAnimal;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SkullBlock;
+import net.minecraft.world.level.block.WallSkullBlock;
+import net.minecraft.world.level.block.entity.SkullBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -36,6 +47,27 @@ public class HeadDropEvent {
 		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
+		}
+		
+		if (ConfigHandler.GENERAL.onlyDropHeadsByChargedCreeper.get() || ConfigHandler.GENERAL.onlyDropHeadsByPlayerKill.get()) {
+			DamageSource source = e.getSource();
+			Entity sourceentity = source.getDirectEntity();
+			if (ConfigHandler.GENERAL.onlyDropHeadsByChargedCreeper.get()) {
+				if (sourceentity instanceof Creeper) {
+					Creeper creeper = (Creeper)sourceentity;
+					if (!creeper.isPowered()) {
+						return;
+					}
+				}
+				else {
+					return;
+				}
+			}
+			else if (ConfigHandler.GENERAL.onlyDropHeadsByPlayerKill.get()) {
+				if (sourceentity instanceof Player == false) {
+					return;
+				}
+			}
 		}
 		
 		if (ConfigHandler.GENERAL.onlyAdultMobsDropTheirHead.get()) {
@@ -111,5 +143,47 @@ public class HeadDropEvent {
 		}
 		
 		world.addFreshEntity(mobhead);
+	}
+	
+	@SubscribeEvent
+	public void onPlayerHeadBreak(BlockEvent.BreakEvent e) {
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		if (world == null) {
+			return;
+		}
+		
+		BlockState state = e.getState();
+		Block block = state.getBlock();
+		if (block instanceof SkullBlock || block instanceof WallSkullBlock) {
+			if (e.getPlayer().isCreative()) {
+				return;
+			}
+			
+			BlockPos pos = e.getPos();
+			SkullBlockEntity sbe = (SkullBlockEntity)world.getBlockEntity(pos);
+			if (sbe == null) {
+				return;
+			}
+			
+			GameProfile profile = sbe.getOwnerProfile();
+			String headid = profile.getId().toString();
+			
+			String correctheadname = "";
+			for (String headname : HeadData.headdata.keySet()) {
+				String headnameid = HeadData.headdata.get(headname).getFirst();
+				if (headid.equals(headnameid)) {
+					correctheadname = headname;
+					break;
+				}
+			}
+			
+			ItemStack named_headstack = MobHeads.getMobHead(correctheadname, 1);
+			if (named_headstack != null ) {
+				e.setCanceled(true);
+				world.destroyBlock(pos, false);
+				
+				world.addFreshEntity(new ItemEntity(world, pos.getX(), pos.getY()+0.5, pos.getZ(), named_headstack));
+			}
+		}
 	}
 }

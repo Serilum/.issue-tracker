@@ -3,6 +3,15 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v5.0: When breaking placed down mob heads, they now correctly keep their mob head name on pickup.
+Fixed grammatical mistake in log.
+Fixed a crash due to incompatibility with the More Axolotl Variants mod and improved future compatibility with others.
+Added config option to restrict head drops after player kills only.
+Added config option to restrict head drops to charged creepers only.
+Updated backend code.
+(Fabric only) fixed /jmh command not being registered correctly.
+
+=========
 v4.2: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========

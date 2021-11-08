@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.17.x, mod version: 4.2.
+ * Minecraft version: 1.17.x, mod version: 5.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Mob Heads ever released, along with some other perks.
@@ -96,7 +96,7 @@ public class MobHeads {
 			Cat cat = (Cat)entity;
 			
 			Integer type = cat.getCatType();
-			if (type <= cattypes.size()) {
+			if (type < cattypes.size()) {
 				mobname = cattypes.get(type) + "_cat";
 			}
 		}
@@ -121,17 +121,23 @@ public class MobHeads {
 		else if (entity instanceof Llama) {
 			Llama llama = (Llama)entity;
 			Integer type = llama.getVariant();
-			mobname = llamatypes.get(type) + "_" + mobname;
+			if (type < llamatypes.size()) {
+				mobname = llamatypes.get(type) + "_" + mobname;
+			}
 		}
 		else if (entity instanceof TraderLlama) {
 			TraderLlama traderllama = (TraderLlama)entity;
 			Integer type = traderllama.getVariant();
-			mobname = llamatypes.get(type) + "_trader_" + mobname;		
+			if (type < llamatypes.size()) {
+				mobname = llamatypes.get(type) + "_trader_" + mobname;
+			}
 		}
 		else if (entity instanceof Parrot) {
 			Parrot parrot = (Parrot)entity;
 			Integer type = parrot.getVariant();
-			mobname = parrottypes.get(type) + "_parrot";
+			if (type < parrottypes.size()) {
+				mobname = parrottypes.get(type) + "_parrot";
+			}
 		}
 		else if (entity instanceof Rabbit) {
 			Rabbit rabbit = (Rabbit)entity;
@@ -168,7 +174,9 @@ public class MobHeads {
 		else if (entity instanceof Axolotl) {
 			Axolotl axolotl = (Axolotl)entity;
 			Integer type = axolotl.getVariant().getId();
-			mobname = axolotltypes.get(type) + "_axolotl";
+			if (type < axolotltypes.size()) {
+				mobname = axolotltypes.get(type) + "_axolotl";
+			}
 		}
 		else if (entity instanceof Villager) {
 			Villager villager = (Villager)entity;

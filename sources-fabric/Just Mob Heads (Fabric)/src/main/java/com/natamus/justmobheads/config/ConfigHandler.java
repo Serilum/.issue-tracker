@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.17.x, mod version: 4.2.
+ * Minecraft version: 1.17.x, mod version: 5.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Mob Heads ever released, along with some other perks.
@@ -40,6 +40,8 @@ public class ConfigHandler {
 	public static PropertyMirror<Boolean> onlyAdultMobsDropTheirHead = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Double> overallDropChance = PropertyMirror.create(ConfigTypes.DOUBLE);
 	public static PropertyMirror<Double> creeperSkeletonZombieDropChance = PropertyMirror.create(ConfigTypes.DOUBLE);
+	public static PropertyMirror<Boolean> onlyDropHeadsByChargedCreeper = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> onlyDropHeadsByPlayerKill = PropertyMirror.create(ConfigTypes.BOOLEAN);
 
 	private static final ConfigTree CONFIG = ConfigTree.builder() 
 			.beginValue("mobSpecificDropChances", ConfigTypes.BOOLEAN, true)
@@ -65,6 +67,14 @@ public class ConfigHandler {
 			.beginValue("creeperSkeletonZombieDropChance", ConfigTypes.DOUBLE, 0.1)
 			.withComment("Sets head drop chance for Zombies, Skeletons and Creepers if 'enableStandardHeads' is enabled.")
 			.finishValue(creeperSkeletonZombieDropChance::mirror)
+			
+			.beginValue("onlyDropHeadsByChargedCreeper", ConfigTypes.BOOLEAN, false)
+			.withComment("When enabled, only drops mob heads if the source on death is a charged creeper. This overwrites the onlyDropHeadsByPlayerKill value.")
+			.finishValue(onlyDropHeadsByChargedCreeper::mirror)
+			
+			.beginValue("onlyDropHeadsByPlayerKill", ConfigTypes.BOOLEAN, false)
+			.withComment("When enabled, only drops mob heads if the source on death is from a player.")
+			.finishValue(onlyDropHeadsByPlayerKill::mirror)
 
 			.build();
 

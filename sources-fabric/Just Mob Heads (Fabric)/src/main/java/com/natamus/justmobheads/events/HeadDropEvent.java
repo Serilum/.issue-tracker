@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.17.x, mod version: 4.2.
+ * Minecraft version: 1.17.x, mod version: 5.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Mob Heads ever released, along with some other perks.
@@ -14,6 +14,7 @@
 
 package com.natamus.justmobheads.events;
 
+import com.mojang.authlib.GameProfile;
 import com.natamus.justmobheads.config.ConfigHandler;
 import com.natamus.justmobheads.util.HeadData;
 import com.natamus.justmobheads.util.MobHeads;
@@ -24,15 +25,42 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SkullBlock;
+import net.minecraft.world.level.block.WallSkullBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.SkullBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class HeadDropEvent {	
 	public static void mobItemDrop(Level world, Entity entity, DamageSource damageSource) {
 		if (world.isClientSide) {
 			return;
+		}
+		
+		if (ConfigHandler.onlyDropHeadsByChargedCreeper.getValue() || ConfigHandler.onlyDropHeadsByPlayerKill.getValue()) {
+			Entity sourceentity = damageSource.getDirectEntity();
+			if (ConfigHandler.onlyDropHeadsByChargedCreeper.getValue()) {
+				if (sourceentity instanceof Creeper) {
+					Creeper creeper = (Creeper)sourceentity;
+					if (!creeper.isPowered()) {
+						return;
+					}
+				}
+				else {
+					return;
+				}
+			}
+			else if (ConfigHandler.onlyDropHeadsByPlayerKill.getValue()) {
+				if (sourceentity instanceof Player == false) {
+					return;
+				}
+			}
 		}
 		
 		if (ConfigHandler.onlyAdultMobsDropTheirHead.getValue()) {
@@ -109,5 +137,41 @@ public class HeadDropEvent {
 		}
 		
 		world.addFreshEntity(mobhead);
+	}
+	
+	public static boolean onPlayerHeadBreak(Level world, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity) {
+		Block block = state.getBlock();
+		if (block instanceof SkullBlock || block instanceof WallSkullBlock) {
+			if (player.isCreative()) {
+				return true;
+			}
+			
+			SkullBlockEntity sbe = (SkullBlockEntity)world.getBlockEntity(pos);
+			if (sbe == null) {
+				return true;
+			}
+			
+			GameProfile profile = sbe.getOwnerProfile();
+			String headid = profile.getId().toString();
+			
+			String correctheadname = "";
+			for (String headname : HeadData.headdata.keySet()) {
+				String headnameid = HeadData.headdata.get(headname).getFirst();
+				if (headid.equals(headnameid)) {
+					correctheadname = headname;
+					break;
+				}
+			}
+			
+			ItemStack named_headstack = MobHeads.getMobHead(correctheadname, 1);
+			if (named_headstack != null ) {
+				world.destroyBlock(pos, false);
+				
+				world.addFreshEntity(new ItemEntity(world, pos.getX(), pos.getY()+0.5, pos.getZ(), named_headstack));
+				return false;
+			}
+		}
+		
+		return true;
 	}
 }
