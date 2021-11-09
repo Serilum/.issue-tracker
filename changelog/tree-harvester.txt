@@ -3,6 +3,13 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v4.0: Updated backend code.
+Added better compatibility for smaller and modded trees.
+Added config option 'automaticallyFindBottomBlock' which allows chopping down an entire tree via a middle block, enabled by default.
+Added the config options 'loseDurabilityModifier' and 'increaseExhaustionModifier' to change the amount of durability and exhaustion on chopping down a tree.
+(Forge only) Fixed the 1.12.2 version replacing an incorrect sapling type.
+
+=========
 v3.2: Fixed the config value enableNetherTrees not being parsed correctly.
 
 =========

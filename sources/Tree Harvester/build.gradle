@@ -184,6 +184,6 @@ repositories {
 }
 
 dependencies {
-    runtimeOnly fg.deobf("com.natamus.collective:collective:1.17.1-2.60")
-    compileOnly fg.deobf("com.natamus.collective:collective:1.17.1-2.60")
+    runtimeOnly fg.deobf("com.natamus.collective:collective:1.17.1-2.64")
+    compileOnly fg.deobf("com.natamus.collective:collective:1.17.1-2.64")
 }

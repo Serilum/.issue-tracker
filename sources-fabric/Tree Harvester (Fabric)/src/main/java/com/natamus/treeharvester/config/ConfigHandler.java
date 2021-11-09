@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.17.x, mod version: 3.2.
+ * Minecraft version: 1.17.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -37,11 +37,16 @@ public class ConfigHandler {
 	public static PropertyMirror<Boolean> replaceSaplingIfBottomLogIsBroken = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> mustHoldAxeForTreeHarvest = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> treeHarvestWithoutSneak = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> loseDurabilityPerHarvestedLog = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> increaseExhaustionPerHarvestedLog = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> instantBreakLeavesAround = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> enableFastLeafDecay = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> enableNetherTrees = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> automaticallyFindBottomBlock = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	
+	public static PropertyMirror<Boolean> loseDurabilityPerHarvestedLog = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Double> loseDurabilityModifier = PropertyMirror.create(ConfigTypes.DOUBLE);
+	
+	public static PropertyMirror<Boolean> increaseExhaustionPerHarvestedLog = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Double> increaseExhaustionModifier = PropertyMirror.create(ConfigTypes.DOUBLE);
 
 	private static final ConfigTree CONFIG = ConfigTree.builder() 
 			.beginValue("replaceSaplingIfBottomLogIsBroken", ConfigTypes.BOOLEAN, true)
@@ -56,14 +61,6 @@ public class ConfigHandler {
 			.withComment("If enabled, tree harvesting works when not holding the sneak button. If disabled it's reversed, and only works when sneaking.")
 			.finishValue(treeHarvestWithoutSneak::mirror)
 
-			.beginValue("loseDurabilityPerHarvestedLog", ConfigTypes.BOOLEAN, true)
-			.withComment("If enabled, for every log harvested, the axe held loses durability.")
-			.finishValue(loseDurabilityPerHarvestedLog::mirror)
-
-			.beginValue("increaseExhaustionPerHarvestedLog", ConfigTypes.BOOLEAN, true)
-			.withComment("If enabled, players' exhaustion level increases 0.005 per harvested log (Minecraft's default per broken block).")
-			.finishValue(increaseExhaustionPerHarvestedLog::mirror)
-
 			.beginValue("instantBreakLeavesAround", ConfigTypes.BOOLEAN, false)
 			.withComment("If enabled, players instantly break the leaves as well as all logs of the tree when a bottom log is broken.")
 			.finishValue(instantBreakLeavesAround::mirror)
@@ -75,6 +72,26 @@ public class ConfigHandler {
 			.beginValue("enableNetherTrees", ConfigTypes.BOOLEAN, true)
 			.withComment("If enabled, the warped stem/crimson trees in the nether will also be chopped down quickly.")
 			.finishValue(enableNetherTrees::mirror)
+			
+			.beginValue("automaticallyFindBottomBlock", ConfigTypes.BOOLEAN, true)
+			.withComment("Whether the mod should attempt to find the actual bottom log of the tree and start there. This means you can break a tree in the middle and it will still completely be felled.")
+			.finishValue(automaticallyFindBottomBlock::mirror)
+			
+			.beginValue("loseDurabilityPerHarvestedLog", ConfigTypes.BOOLEAN, true)
+			.withComment("If enabled, for every log harvested, the axe held loses durability.")
+			.finishValue(loseDurabilityPerHarvestedLog::mirror)
+			
+			.beginValue("loseDurabilityModifier", ConfigTypes.DOUBLE, 1.0)
+			.withComment("Here you can set how much durability chopping down a tree should take from the axe. For example if set to 0.1, this means that every 10 logs take 1 durability.")
+			.finishValue(loseDurabilityModifier::mirror)
+			
+			.beginValue("increaseExhaustionPerHarvestedLog", ConfigTypes.BOOLEAN, true)
+			.withComment("If enabled, players' exhaustion level increases 0.005 per harvested log (Minecraft's default per broken block) * increaseExhaustionModifier.")
+			.finishValue(increaseExhaustionPerHarvestedLog::mirror)
+			
+			.beginValue("increaseExhaustionModifier", ConfigTypes.DOUBLE, 1.0)
+			.withComment("This determines how much exhaustion should be added to the player per harvested log. By default 0.005 * 1.0.")
+			.finishValue(increaseExhaustionModifier::mirror)
 
 			.build();
 

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.17.1, mod version: 3.2.
+ * Minecraft version: 1.17.1, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -25,11 +25,16 @@ public class ConfigHandler {
 		public final ForgeConfigSpec.ConfigValue<Boolean> replaceSaplingIfBottomLogIsBroken;
 		public final ForgeConfigSpec.ConfigValue<Boolean> mustHoldAxeForTreeHarvest;
 		public final ForgeConfigSpec.ConfigValue<Boolean> treeHarvestWithoutSneak;
-		public final ForgeConfigSpec.ConfigValue<Boolean> loseDurabilityPerHarvestedLog;
-		public final ForgeConfigSpec.ConfigValue<Boolean> increaseExhaustionPerHarvestedLog;
 		public final ForgeConfigSpec.ConfigValue<Boolean> instantBreakLeavesAround;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableFastLeafDecay;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableNetherTrees;
+		public final ForgeConfigSpec.ConfigValue<Boolean> automaticallyFindBottomBlock;
+		
+		public final ForgeConfigSpec.ConfigValue<Boolean> loseDurabilityPerHarvestedLog;
+		public final ForgeConfigSpec.ConfigValue<Double> loseDurabilityModifier;
+		
+		public final ForgeConfigSpec.ConfigValue<Boolean> increaseExhaustionPerHarvestedLog;
+		public final ForgeConfigSpec.ConfigValue<Double> increaseExhaustionModifier;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
@@ -42,12 +47,6 @@ public class ConfigHandler {
 			treeHarvestWithoutSneak = builder
 					.comment("If enabled, tree harvesting works when not holding the sneak button. If disabled it's reversed, and only works when sneaking.")
 					.define("treeHarvestWithoutSneak", false);
-			loseDurabilityPerHarvestedLog = builder
-					.comment("If enabled, for every log harvested, the axe held loses durability.")
-					.define("loseDurabilityPerHarvestedLog", true);
-			increaseExhaustionPerHarvestedLog = builder
-					.comment("If enabled, players' exhaustion level increases 0.005 per harvested log (Minecraft's default per broken block).")
-					.define("increaseExhaustionPerHarvestedLog", true);
 			instantBreakLeavesAround = builder
 					.comment("If enabled, players instantly break the leaves as well as all logs of the tree when a bottom log is broken.")
 					.define("instantBreakLeavesAround", false);
@@ -57,6 +56,23 @@ public class ConfigHandler {
 			enableNetherTrees = builder
 					.comment("If enabled, the warped stem/crimson trees in the nether will also be chopped down quickly.")
 					.define("enableNetherTrees", true);
+			automaticallyFindBottomBlock = builder
+					.comment("Whether the mod should attempt to find the actual bottom log of the tree and start there. This means you can break a tree in the middle and it will still completely be felled.")
+					.define("automaticallyFindBottomBlock", true);
+			
+			loseDurabilityPerHarvestedLog = builder
+					.comment("If enabled, for every log harvested, the axe held loses durability.")
+					.define("loseDurabilityPerHarvestedLog", true);
+			loseDurabilityModifier = builder
+					.comment("Here you can set how much durability chopping down a tree should take from the axe. For example if set to 0.1, this means that every 10 logs take 1 durability.")
+					.defineInRange("loseDurabilityModifier", 1.0, 0.001, 1.0);
+			
+			increaseExhaustionPerHarvestedLog = builder
+					.comment("If enabled, players' exhaustion level increases 0.005 per harvested log (Minecraft's default per broken block) * increaseExhaustionModifier.")
+					.define("increaseExhaustionPerHarvestedLog", true);
+			increaseExhaustionModifier = builder
+					.comment("This determines how much exhaustion should be added to the player per harvested log. By default 0.005 * 1.0.")
+					.defineInRange("increaseExhaustionModifier", 1.0, 0.001, 1.0);
 			
 			builder.pop();
 		}

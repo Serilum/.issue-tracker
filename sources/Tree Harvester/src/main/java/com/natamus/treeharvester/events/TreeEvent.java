@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.17.1, mod version: 3.2.
+ * Minecraft version: 1.17.1, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -147,12 +147,24 @@ public class TreeEvent {
 			return;
 		}
 		
+		if (ConfigHandler.GENERAL.automaticallyFindBottomBlock.get()) {
+			BlockPos temppos = bpos.immutable();
+			while (CompareBlockFunctions.isTreeLog(world.getBlockState(temppos.below()).getBlock())) {
+				temppos = temppos.below().immutable();
+			}
+			
+			bpos = temppos.immutable();
+		}
+		
 		int logcount = Util.isTreeAndReturnLogAmount(world, bpos);
 		if (logcount < 0) {
 			return;
 		}
 		
 		Item handitem = hand.getItem();
+		
+		int durabilitylosecount = (int)Math.ceil(1.0 / ConfigHandler.GENERAL.loseDurabilityModifier.get());
+		int durabilitystartcount = -1;
 		
 		List<BlockPos> logstobreak = Util.getAllLogsToBreak(world, bpos, logcount);
 		for (BlockPos logpos : logstobreak) {
@@ -164,10 +176,21 @@ public class TreeEvent {
 				log.playerDestroy(world, player, logpos, logstate, null, hand);
 				if (!player.isCreative()) {
 					if (ConfigHandler.GENERAL.loseDurabilityPerHarvestedLog.get()) {
-						handitem.mineBlock(hand, world, logstate, logpos, player);
+						if (durabilitystartcount == -1) {
+							durabilitystartcount = durabilitylosecount;
+							handitem.mineBlock(hand, world, logstate, logpos, player);
+						}
+						else {
+							durabilitylosecount -= 1;
+							
+							if (durabilitylosecount == 0) {
+								handitem.mineBlock(hand, world, logstate, logpos, player);
+								durabilitylosecount = durabilitystartcount;
+							}	
+						}
 					}
 					if (ConfigHandler.GENERAL.increaseExhaustionPerHarvestedLog.get()) {
-						player.causeFoodExhaustion(0.025F);
+						player.causeFoodExhaustion(0.025F * ConfigHandler.GENERAL.increaseExhaustionModifier.get().floatValue());
 					}
 				}
 			}
