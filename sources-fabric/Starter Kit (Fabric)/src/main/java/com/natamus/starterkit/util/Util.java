@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Starter Kit.
- * Minecraft version: 1.17.x, mod version: 2.6.
+ * Minecraft version: 1.17.x, mod version: 2.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Starter Kit ever released, along with some other perks.
@@ -75,10 +75,10 @@ public class Util {
 					Item item = null;
 					ResourceLocation itemloc = new ResourceLocation(itemstring);
 
-					if (Registry.ITEM.containsKey(itemloc)) {
+					if (Registry.ITEM.keySet().contains(itemloc)) {
 						item = Registry.ITEM.get(itemloc);
 					}
-					else if (Registry.BLOCK.containsKey(itemloc)) {
+					else if (Registry.BLOCK.keySet().contains(itemloc)) {
 						Block block = Registry.BLOCK.get(itemloc);
 						item = block.asItem();
 					}

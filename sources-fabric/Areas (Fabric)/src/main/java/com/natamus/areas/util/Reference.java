@@ -1,9 +1,9 @@
 /*
- * This is the latest source code of Starter Kit.
- * Minecraft version: 1.17.x, mod version: 2.7.
+ * This is the latest source code of Areas.
+ * Minecraft version: 1.17.x, mod version: 2.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
- * You'll be added to a private repository which contains all versions' source of Starter Kit ever released, along with some other perks.
+ * You'll be added to a private repository which contains all versions' source of Areas ever released, along with some other perks.
  *
  * Github Sponsor link: https://github.com/sponsors/ricksouth
  * Patreon link: https://patreon.com/ricksouth
@@ -12,11 +12,11 @@
  * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
-package com.natamus.starterkit.util;
+package com.natamus.areas.util;
 
 public class Reference {
-	public static final String MOD_ID = "starterkit-fabric";
-	public static final String NAME = "Starter Kit (Fabric)";
-	public static final String VERSION = "2.7";
+	public static final String MOD_ID = "areas-fabric";
+	public static final String NAME = "Areas (Fabric)";
+	public static final String VERSION = "2.8";
 	public static final String ACCEPTED_VERSIONS = "[1.17.x]";
 }

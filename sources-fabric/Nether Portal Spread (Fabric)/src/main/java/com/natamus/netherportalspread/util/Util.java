@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nether Portal Spread.
- * Minecraft version: 1.17.x, mod version: 5.4.
+ * Minecraft version: 1.17.x, mod version: 5.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Nether Portal Spread ever released, along with some other perks.
@@ -81,7 +81,7 @@ public class Util {
 					fromblockstr = "minecraft:" + fromblockstr;
 				}
 				ResourceLocation frl = new ResourceLocation(fromblockstr);
-				if (!Registry.BLOCK.containsKey(frl)) {
+				if (!Registry.BLOCK.keySet().contains(frl)) {
 					System.out.println("[Nether Portal Spread] Unable to find from-block '" + fromblockstr + "' in the Forge block registry. Ignoring it.");
 					continue;
 				}
@@ -110,7 +110,7 @@ public class Util {
 					totalweight += weight;
 					
 					ResourceLocation trl = new ResourceLocation(toblockstr);
-					if (Registry.BLOCK.containsKey(trl)) {
+					if (Registry.BLOCK.keySet().contains(trl)) {
 						tempmap.put(Registry.BLOCK.get(trl), weight);
 					}
 					else {
@@ -154,7 +154,7 @@ public class Util {
 		if (preventSpreadBlock == null) {
 			String psbstr = ConfigHandler.preventSpreadBlockString.getValue();
 			ResourceLocation psbrl = new ResourceLocation(psbstr);
-			if (Registry.BLOCK.containsKey(psbrl)) {
+			if (Registry.BLOCK.keySet().contains(psbrl)) {
 				preventSpreadBlock = Registry.BLOCK.get(psbrl);
 			}
 			else {

@@ -3,6 +3,9 @@ Starter Kit
 https://www.curseforge.com/minecraft/mc-mods/starter-kit
 
 =========
+v2.7: (Fabric only) Improved how the mod loads items from the config in a server environment.
+
+=========
 v2.6: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========

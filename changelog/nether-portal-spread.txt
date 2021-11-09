@@ -3,6 +3,9 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v5.5: (Fabric only) Fixed mod not loading correctly in a server environment with a custom spread block set.
+
+=========
 v5.4: The mod now uses Collective's block determination functions to increase compatibility for modded blocks and to make updating easier.
 
 =========
