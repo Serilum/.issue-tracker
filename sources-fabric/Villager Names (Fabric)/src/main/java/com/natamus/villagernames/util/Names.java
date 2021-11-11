@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Villager Names.
- * Minecraft version: 1.17.x, mod version: 3.3.
+ * Minecraft version: 1.17.x, mod version: 3.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Villager Names ever released, along with some other perks.
@@ -39,7 +39,7 @@ public class Names {
 		File file = new File(dirpath + File.separator + "customnames.txt");
 		
 		if (dir.isDirectory() && file.isFile()) {
-			String cn = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + "customnames.txt", new String[0])));
+			String cn = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + "customnames.txt", new String[0])), "UTF-8");
 			cn = cn.replace("\n", "").replace("\r", "");
 			
 			String[] cns = cn.split(",");

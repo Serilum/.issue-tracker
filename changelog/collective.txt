@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v2.65: Updated backend code.
+Increased support for modded villagers.
+
+=========
 v2.64: Extended CompareBlockFunctions and DataFunctions.
 
 =========

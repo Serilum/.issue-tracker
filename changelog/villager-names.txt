@@ -3,6 +3,9 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v3.4: Added support for all alphabets within the custom names file. E.g. cyrillic and georgian.
+
+=========
 v3.3: Improved compatibility for villagers with modded professions.
 
 =========
