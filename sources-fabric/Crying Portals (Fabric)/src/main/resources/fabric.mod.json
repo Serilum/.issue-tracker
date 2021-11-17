@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "cryingportals-fabric",
+  "version": "1.0",
+
+  "name": "Crying Portals (Fabric)",
+  "description": "Allows the creation of nether portals with crying obsidian blocks.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/crying-portals-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Crying%20Portals%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Crying%20Portals"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.cryingportals.Main" ] },
+  "mixins": [
+    "cryingportals_fabric.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.62"
+  }
+}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.17.1, mod version: 5.0.
+ * Minecraft version: 1.17.1, mod version: 5.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Mob Heads ever released, along with some other perks.
@@ -13,6 +13,8 @@
  */
 
 package com.natamus.justmobheads.events;
+
+import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
 import com.natamus.collective.functions.WorldFunctions;
@@ -166,7 +168,16 @@ public class HeadDropEvent {
 			}
 			
 			GameProfile profile = sbe.getOwnerProfile();
-			String headid = profile.getId().toString();
+			if (profile == null) {
+				return;
+			}
+			
+			UUID uuid = profile.getId();
+			if (uuid == null) {
+				return;
+			}
+			
+			String headid = uuid.toString();
 			
 			String correctheadname = "";
 			for (String headname : HeadData.headdata.keySet()) {

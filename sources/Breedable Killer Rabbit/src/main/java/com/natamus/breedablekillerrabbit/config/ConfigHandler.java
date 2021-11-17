@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Breedable Killer Rabbit.
- * Minecraft version: 1.17.1, mod version: 1.5.
+ * Minecraft version: 1.17.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Breedable Killer Rabbit ever released, along with some other perks.
@@ -29,7 +29,7 @@ public class ConfigHandler {
 			builder.push("General");
 			chanceBabyRabbitIsKiller = builder
 					.comment("The chance that a baby rabbit is of the killer variant.")
-					.defineInRange("chanceBabyRabbitIsKiller", 0.5, 0, 1.0);
+					.defineInRange("chanceBabyRabbitIsKiller", 0.05, 0, 1.0);
 			removeKillerRabbitNameTag = builder
 					.comment("Remove the name 'The Killer Bunny' from the baby killer rabbit.")
 					.define("removeKillerRabbitNameTag", true);

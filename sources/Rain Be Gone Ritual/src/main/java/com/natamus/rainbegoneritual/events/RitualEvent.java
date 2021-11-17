@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Rain Be Gone Ritual.
- * Minecraft version: 1.17.1, mod version: 1.6.
+ * Minecraft version: 1.17.1, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Rain Be Gone Ritual ever released, along with some other perks.
@@ -30,6 +30,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
@@ -76,7 +77,7 @@ public class RitualEvent {
         		Iterator<BlockPos> it = BlockPos.betweenClosed(cp.getX()-1, cp.getY(), cp.getZ()-1, cp.getX()+1, cp.getY(), cp.getZ()+1).iterator();
         		while (it.hasNext()) {
         			BlockPos np = it.next();
-        			if (world.getBlockState(np).getBlock().equals(Blocks.CAULDRON)) {
+        			if (world.getBlockState(np).getBlock() instanceof AbstractCauldronBlock) {
         				cauldronposses.add(np.immutable());
         			}
         		}

@@ -1,0 +1,6 @@
+Changelog:
+Crying Portals
+https://curseforge.com/minecraft/mc-mods/crying-portals
+
+=========
+v1.0: Initial release of mod.

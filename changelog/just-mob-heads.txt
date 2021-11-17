@@ -3,6 +3,9 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v5.1: Fixed non-jmh default heads (creeper/zombie/skeleton) not dropping when harvested.
+
+=========
 v5.0: When breaking placed down mob heads, they now correctly keep their mob head name on pickup.
 Fixed grammatical mistake in log.
 Fixed a crash due to incompatibility with the More Axolotl Variants mod and improved future compatibility with others.

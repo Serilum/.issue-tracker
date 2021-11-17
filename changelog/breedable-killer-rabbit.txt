@@ -3,6 +3,9 @@ Breedable Killer Rabbit
 https://www.curseforge.com/minecraft/mc-mods/breedable-killer-rabbit
 
 =========
+v1.6: (Forge only) Fixed incorrect default 'chanceBabyRabbitIsKiller' config value.
+
+=========
 v1.5: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

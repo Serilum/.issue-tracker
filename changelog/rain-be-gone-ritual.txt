@@ -3,6 +3,9 @@ Rain Be Gone Ritual
 https://curseforge.com/minecraft/mc-mods/rain-be-gone-ritual
 
 =========
+v1.7: Improved compatibility with modded cauldrons. You can now do the ritual with water-filled cauldrons in Minecraft 1.17.
+
+=========
 v1.6: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========
