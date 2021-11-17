@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v1.63: Correctly specified java compatibility version for mixins.
+
+=========
 v2.65: Updated backend code.
 Increased support for modded villagers.
 

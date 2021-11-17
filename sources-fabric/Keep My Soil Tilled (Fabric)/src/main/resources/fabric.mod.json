@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "keepmysoiltilled-fabric",
+  "version": "1.0",
+
+  "name": "Keep My Soil Tilled (Fabric)",
+  "description": "Keeps soil tilled below a stem block (melon/pumpkin) after harvesting.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/keep-my-soil-tilled-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Keep%20My%20Soil%20Tilled%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Keep%20My%20Soil%20Tilled"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.keepmysoiltilled.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=1.63"
+  }
+}
