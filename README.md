@@ -2,7 +2,7 @@
 You can create an [issue](https://github.com/ricksouth/serilum-mc-mods/issues/new/choose) if you have found a bug, got a feature idea, want to say something or just want to ask a question.<br>**Please specify the correct category, thanks! :)**
 
 **_The current actively developed Minecraft versions are 1.16.5, 1.17.1 for Forge and 1.16, 1.17 for Fabric._**\
-Other versions might get an update in rare cases, but the main development is focused on these three. Some mods might not have a 1.12.2 version if the code is too different.
+Other versions might get an update in rare cases, but the main development is focused on these three. Not all older versions can be maintained to allow me to spend more of my time on bugs and features.
 
 I appreciate every submitted issue greatly, and will respond while working through them. This might take some time!
 
