@@ -32,7 +32,7 @@ N/A
 [Collective](https://curseforge.com/minecraft/mc-mods/collective)
 
 ## Active Mods:
-[Advancement Screenshot](https://curseforge.com/minecraft/mc-mods/advancement-screenshot)\
+[Advancement Screenshot (Forge](https://curseforge.com/minecraft/mc-mods/advancement-screenshot)\
 [All Loot Drops](https://curseforge.com/minecraft/mc-mods/all-loot-drops)\
 [Altered Damage](https://curseforge.com/minecraft/mc-mods/altered-damage)\
 [Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
