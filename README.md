@@ -32,13 +32,13 @@ N/A
 [Collective](https://curseforge.com/minecraft/mc-mods/collective)
 
 ## Active Mods:
-[Advancement Screenshot (Forge](https://curseforge.com/minecraft/mc-mods/advancement-screenshot)\
+[Advancement Screenshot (Forge](https://curseforge.com/minecraft/mc-mods/advancement-screenshot))\
 [All Loot Drops](https://curseforge.com/minecraft/mc-mods/all-loot-drops)\
 [Altered Damage](https://curseforge.com/minecraft/mc-mods/altered-damage)\
 [Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
 [Anvil Restoration](https://curseforge.com/minecraft/mc-mods/anvil-restoration)\
 [Areas](https://curseforge.com/minecraft/mc-mods/areas)\
-[Automatic Doors](https://curseforge.com/minecraft/mc-mods/automatic-doors)\
+[Automatic Doors (Forge ](https://curseforge.com/minecraft/mc-mods/automatic-doors)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/automatic-doors-fabric)\
 [Beautified Chat Client](https://curseforge.com/minecraft/mc-mods/beautified-chat-client)\
 [Beautified Chat Server](https://curseforge.com/minecraft/mc-mods/beautified-chat-server)\
 [Better Beacon Placement](https://curseforge.com/minecraft/mc-mods/better-beacon-placement)\
