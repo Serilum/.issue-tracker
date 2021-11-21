@@ -33,140 +33,140 @@ N/A
 
 ## Active Mods:
 [Advancement Screenshot (Forge](https://curseforge.com/minecraft/mc-mods/advancement-screenshot))\
-[All Loot Drops](https://curseforge.com/minecraft/mc-mods/all-loot-drops)\
-[Altered Damage](https://curseforge.com/minecraft/mc-mods/altered-damage)\
-[Always a Wither Skull](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)\
-[Anvil Restoration](https://curseforge.com/minecraft/mc-mods/anvil-restoration)\
-[Areas](https://curseforge.com/minecraft/mc-mods/areas)\
-[Automatic Doors (Forge ](https://curseforge.com/minecraft/mc-mods/automatic-doors)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/automatic-doors-fabric)\
-[Beautified Chat Client](https://curseforge.com/minecraft/mc-mods/beautified-chat-client)\
-[Beautified Chat Server](https://curseforge.com/minecraft/mc-mods/beautified-chat-server)\
-[Better Beacon Placement](https://curseforge.com/minecraft/mc-mods/better-beacon-placement)\
-[Better Conduit Placement](https://curseforge.com/minecraft/mc-mods/better-conduit-placement)\
-[Better Spawner Control](https://curseforge.com/minecraft/mc-mods/better-spawner-control)\
-[Bigger Sponge Absorption Radius](https://curseforge.com/minecraft/mc-mods/bigger-sponge-absorption-radius)\
-[Bottle Your Xp](https://curseforge.com/minecraft/mc-mods/bottle-your-xp)\
-[Bottled Air](https://curseforge.com/minecraft/mc-mods/bottled-air)\
-[Bouncier Beds](https://curseforge.com/minecraft/mc-mods/bouncier-beds)\
-[Breedable Killer Rabbit](https://curseforge.com/minecraft/mc-mods/breedable-killer-rabbit)\
-[Campfire Spawn and Tweaks](https://curseforge.com/minecraft/mc-mods/campfire-spawn-and-tweaks)\
-[Compact Help Command](https://curseforge.com/minecraft/mc-mods/compact-help-command)\
-[Conduits Prevent Drowned](https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned)\
-[Configurable Despawn Timer](https://curseforge.com/minecraft/mc-mods/configurable-despawn-timer)\
-[Configurable Extra Mob Drops](https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops)\
-[Configurable Furnace Burn Time](https://curseforge.com/minecraft/mc-mods/configurable-furnace-burn-time)\
-[Configurable Mob Potion Effects](https://curseforge.com/minecraft/mc-mods/configurable-mob-potion-effects)\
-[Creative Block Replacer](https://curseforge.com/minecraft/mc-mods/creative-block-replacer)\
-[Crying Ghasts](https://curseforge.com/minecraft/mc-mods/crying-ghasts)\
-[Cycle Paintings](https://curseforge.com/minecraft/mc-mods/cycle-paintings)\
-[Death Backup](https://curseforge.com/minecraft/mc-mods/death-backup)\
-[Despawning Eggs Hatch](https://curseforge.com/minecraft/mc-mods/despawning-eggs-hatch)\
-[Difficulty Lock](https://curseforge.com/minecraft/mc-mods/difficulty-lock)\
-[Dismount Entity](https://curseforge.com/minecraft/mc-mods/dismount-entity)\
-[Double Doors](https://curseforge.com/minecraft/mc-mods/double-doors)\
-[Dragon Drops Elytra](https://curseforge.com/minecraft/mc-mods/dragon-drops-elytra)\
-[Easy Elytra Takeoff](https://curseforge.com/minecraft/mc-mods/easy-elytra-takeoff)\
-[Edibles](https://curseforge.com/minecraft/mc-mods/edibles)\
-[Enchanting Commands](https://curseforge.com/minecraft/mc-mods/enchanting-commands)\
-[End Portal Recipe](https://curseforge.com/minecraft/mc-mods/end-portal-recipe)\
-[Entity Information](https://curseforge.com/minecraft/mc-mods/entity-information)\
-[Eroding Stone Entities](https://curseforge.com/minecraft/mc-mods/eroding-stone-entities)\
-[Extended Bone Meal](https://curseforge.com/minecraft/mc-mods/extended-bone-meal)\
-[Extended Creative Inventory](https://curseforge.com/minecraft/mc-mods/extended-creative-inventory)\
-[Extract Poison](https://curseforge.com/minecraft/mc-mods/extract-poison)\
-[Fall Through Slime](https://curseforge.com/minecraft/mc-mods/fall-through-slime)\
-[Fish On The Line](https://curseforge.com/minecraft/mc-mods/fish-on-the-line)\
-[Fire Spread Tweaks](https://curseforge.com/minecraft/mc-mods/fire-spread-tweaks)\
-[First Join Message](https://curseforge.com/minecraft/mc-mods/first-join-message)\
-[Fixed Anvil Repair Cost](https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost)\
-[Full Brightness Toggle](https://curseforge.com/minecraft/mc-mods/full-brightness-toggle)\
-[Giant Spawn](https://curseforge.com/minecraft/mc-mods/giant-spawn)\
-[Grass Seeds](https://curseforge.com/minecraft/mc-mods/grass-seeds)\
-[Grindstone Sharper Tools](https://curseforge.com/minecraft/mc-mods/grindstone-sharper-tools)\
-[GUI Clock](https://curseforge.com/minecraft/mc-mods/gui-clock)\
-[GUI Compass](https://curseforge.com/minecraft/mc-mods/gui-compass)\
-[GUI Followers](https://curseforge.com/minecraft/mc-mods/gui-followers)\
-[Hand Over Your Items](https://curseforge.com/minecraft/mc-mods/hand-over-your-items)\
-[Healing Campfire](https://curseforge.com/minecraft/mc-mods/healing-campfire)\
-[Healing Soup](https://curseforge.com/minecraft/mc-mods/healing-soup)\
-[Hidden Recipe Book](https://curseforge.com/minecraft/mc-mods/hidden-recipe-book)\
-[Hide Hands](https://curseforge.com/minecraft/mc-mods/hide-hands)\
-[Hoe Tweaks](https://curseforge.com/minecraft/mc-mods/hoe-tweaks)\
-[Humbling Bundle](https://curseforge.com/minecraft/mc-mods/humbling-bundle)\
-[Husk Spawn](https://curseforge.com/minecraft/mc-mods/husk-spawn)\
-[Ice Prevents Crop Growth](https://curseforge.com/minecraft/mc-mods/ice-prevents-crop-growth)\
-[Infinite Trading](https://curseforge.com/minecraft/mc-mods/infinite-trading)\
-[Inventory Totem](https://curseforge.com/minecraft/mc-mods/inventory-totem)\
-[Just Mob Heads](https://curseforge.com/minecraft/mc-mods/just-mob-heads)\
-[Just Player Heads](https://curseforge.com/minecraft/mc-mods/just-player-heads)\
-[Kelp Fertilizer](https://curseforge.com/minecraft/mc-mods/kelp-fertilizer)\
-[Milk All The Mobs](https://curseforge.com/minecraft/mc-mods/milk-all-the-mobs)\
-[Mineral Chance](https://curseforge.com/minecraft/mc-mods/mineral-chance)\
-[Mooshroom Spawn](https://curseforge.com/minecraft/mc-mods/mooshroom-spawn)\
-[Mooshroom Tweaks](https://curseforge.com/minecraft/mc-mods/mooshroom-tweaks)\
-[More Zombie Villagers](https://curseforge.com/minecraft/mc-mods/more-zombie-villagers)\
-[Move Boats](https://curseforge.com/minecraft/mc-mods/move-boats)\
-[Move Minecarts](https://curseforge.com/minecraft/mc-mods/move-minecarts)\
-[Name Tag Tweaks](https://curseforge.com/minecraft/mc-mods/name-tag-tweaks)\
-[Naturally Charged Creepers](https://curseforge.com/minecraft/mc-mods/naturally-charged-creepers)\
-[Nether Portal Spread](https://curseforge.com/minecraft/mc-mods/nether-portal-spread)\
-[No Hostiles Around Campfire](https://curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire)\
-[Nutritious Milk](https://curseforge.com/minecraft/mc-mods/nutritious-milk)\
-[Omega Mute](https://curseforge.com/minecraft/mc-mods/omega-mute)\
-[Paper Books](https://curseforge.com/minecraft/mc-mods/paper-books)\
-[Passive Endermen](https://curseforge.com/minecraft/mc-mods/passive-endermen)\
-[Passive Shield](https://curseforge.com/minecraft/mc-mods/passive-shield)\
-[Pet Names](https://curseforge.com/minecraft/mc-mods/pet-names)\
-[Placeable Blaze Rods](https://curseforge.com/minecraft/mc-mods/placeable-blaze-rods)\
-[Player Death Kick](https://curseforge.com/minecraft/mc-mods/player-death-kick)\
-[Player Tracking](https://curseforge.com/minecraft/mc-mods/player-tracking)\
-[Player Tracking Compass](https://curseforge.com/minecraft/mc-mods/player-tracking-compass)\
-[Quick Paths](https://curseforge.com/minecraft/mc-mods/quick-paths)\
-[Rain Be Gone Ritual](https://curseforge.com/minecraft/mc-mods/rain-be-gone-ritual)\
-[Random Bone Meal Flowers](https://curseforge.com/minecraft/mc-mods/random-bone-meal-flowers)\
-[Random Mob Effects](https://curseforge.com/minecraft/mc-mods/random-mob-effects)\
-[Random Sheep Colours](https://curseforge.com/minecraft/mc-mods/random-sheep-colours)\
-[Random Shulker Colours](https://curseforge.com/minecraft/mc-mods/random-shulker-colours)\
-[Random Village Names](https://curseforge.com/minecraft/mc-mods/random-village-names)\
-[Realistic Bees](https://curseforge.com/minecraft/mc-mods/realistic-bees)\
-[Recast](https://curseforge.com/minecraft/mc-mods/recast)\
-[Recipe Commands](https://curseforge.com/minecraft/mc-mods/recipe-commands)\
-[Replanting Crops](https://curseforge.com/minecraft/mc-mods/replanting-crops)\
-[Respawn Delay](https://curseforge.com/minecraft/mc-mods/respawn-delay)\
-[Respawning Shulkers](https://curseforge.com/minecraft/mc-mods/respawning-shulkers)\
-[Save and Load Inventories](https://curseforge.com/minecraft/mc-mods/save-and-load-inventories)\
-[Scaffolding Drops Nearby](https://curseforge.com/minecraft/mc-mods/scaffolding-drops-nearby)\
-[Set World Spawn Point](https://curseforge.com/minecraft/mc-mods/set-world-spawn-point)\
-[Shulker Drops Two](https://curseforge.com/minecraft/mc-mods/shulker-drops-two)\
-[Silence Mobs](https://curseforge.com/minecraft/mc-mods/silence-mobs)\
-[Skeleton Horse Spawn](https://curseforge.com/minecraft/mc-mods/skeleton-horse-spawn)\
-[Sleep Sooner](https://curseforge.com/minecraft/mc-mods/sleep-sooner)\
-[Smaller Nether Portals](https://curseforge.com/minecraft/mc-mods/smaller-nether-portals)\
-[Snowballs Freeze Mobs](https://curseforge.com/minecraft/mc-mods/snowballs-freeze-mobs)\
-[Softer Hay Bales](https://curseforge.com/minecraft/mc-mods/softer-hay-bales)\
-[Spiders Produce Webs](https://curseforge.com/minecraft/mc-mods/spiders-produce-webs)\
-[Stack Refill](https://curseforge.com/minecraft/mc-mods/stack-refill)\
-[Starter Kit](https://curseforge.com/minecraft/mc-mods/starter-kit)\
-[Stray Spawn](https://curseforge.com/minecraft/mc-mods/stray-spawn)\
-[Superflat World No Slimes](https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes)\
-[The Vanilla Experience](https://curseforge.com/minecraft/mc-mods/the-vanilla-experience)\
-[TNT Breaks Bedrock](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock)\
-[Trample Everything](https://curseforge.com/minecraft/mc-mods/trample-everything)\
-[Transcending Trident](https://curseforge.com/minecraft/mc-mods/transcending-trident)\
-[Tree Harvester](https://curseforge.com/minecraft/mc-mods/tree-harvester)\
-[Underwater Enchanting](https://curseforge.com/minecraft/mc-mods/underwater-enchanting)\
-[Village Spawn Point](https://curseforge.com/minecraft/mc-mods/village-spawn-point)\
-[Village Bell Recipe](https://curseforge.com/minecraft/mc-mods/village-bell-recipe)\
-[Villager Death Messages](https://curseforge.com/minecraft/mc-mods/villager-death-messages)\
-[Villager Names](https://curseforge.com/minecraft/mc-mods/villager-names)\
-[Vote Command](https://curseforge.com/minecraft/mc-mods/vote-command)\
-[Weaker Spiderwebs](https://curseforge.com/minecraft/mc-mods/weaker-spiderwebs)\
-[Wool Tweaks](https://curseforge.com/minecraft/mc-mods/wool-tweaks)\
-[World Border](https://curseforge.com/minecraft/mc-mods/world-border)\
-[Your Items Are Safe](https://curseforge.com/minecraft/mc-mods/your-items-are-safe)\
-[Zombie Horse Spawn](https://curseforge.com/minecraft/mc-mods/zombie-horse-spawn)\
-[Zombie Proof Doors](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors)\
-[Zombie Villagers From Spawner](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner)
+[All Loot Drops (Forge ](https://curseforge.com/minecraft/mc-mods/all-loot-drops)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/all-loot-drops-fabric)\
+[Altered Damage (Forge ](https://curseforge.com/minecraft/mc-mods/altered-damage)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/altered-damage-fabric)\
+[Always a Wither Skull (Forge ](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull-fabric)\
+[Anvil Restoration (Forge ](https://curseforge.com/minecraft/mc-mods/anvil-restoration)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/anvil-restoration-fabric)\
+[Areas (Forge ](https://curseforge.com/minecraft/mc-mods/areas))\
+[Automatic Doors (Forge  (Forge ](https://curseforge.com/minecraft/mc-mods/automatic-doors)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/automatic-doors-fabric)\
+[Beautified Chat Client (Forge ](https://curseforge.com/minecraft/mc-mods/beautified-chat-client)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/beautified-chat-client-fabric)\
+[Beautified Chat Server (Forge ](https://curseforge.com/minecraft/mc-mods/beautified-chat-server)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/beautified-chat-server-fabric)\
+[Better Beacon Placement (Forge ](https://curseforge.com/minecraft/mc-mods/better-beacon-placement)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/better-beacon-placement-fabric)\
+[Better Conduit Placement (Forge ](https://curseforge.com/minecraft/mc-mods/better-conduit-placement)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/better-conduit-placement-fabric)\
+[Better Spawner Control (Forge ](https://curseforge.com/minecraft/mc-mods/better-spawner-control)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/better-spawner-control-fabric)\
+[Bigger Sponge Absorption Radius (Forge ](https://curseforge.com/minecraft/mc-mods/bigger-sponge-absorption-radius)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/bigger-sponge-absorption-radius-fabric)\
+[Bottle Your Xp (Forge ](https://curseforge.com/minecraft/mc-mods/bottle-your-xp)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/bottle-your-xp-fabric)\
+[Bottled Air (Forge ](https://curseforge.com/minecraft/mc-mods/bottled-air)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/bottled-air-fabric)\
+[Bouncier Beds (Forge ](https://curseforge.com/minecraft/mc-mods/bouncier-beds)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/bouncier-beds-fabric)\
+[Breedable Killer Rabbit (Forge ](https://curseforge.com/minecraft/mc-mods/breedable-killer-rabbit)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/breedable-killer-rabbit-fabric)\
+[Campfire Spawn and Tweaks (Forge ](https://curseforge.com/minecraft/mc-mods/campfire-spawn-and-tweaks)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/campfire-spawn-and-tweaks-fabric)\
+[Compact Help Command (Forge ](https://curseforge.com/minecraft/mc-mods/compact-help-command)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/compact-help-command-fabric)\
+[Conduits Prevent Drowned (Forge ](https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned)-fabric)\
+[Configurable Despawn Timer (Forge ](https://curseforge.com/minecraft/mc-mods/configurable-despawn-timer))\
+[Configurable Extra Mob Drops (Forge ](https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops-fabric)\
+[Configurable Furnace Burn Time (Forge ](https://curseforge.com/minecraft/mc-mods/configurable-furnace-burn-time)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/configurable-furnace-burn-time-fabric)\
+[Configurable Mob Potion Effects (Forge ](https://curseforge.com/minecraft/mc-mods/configurable-mob-potion-effects)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/configurable-mob-potion-effects-fabric)\
+[Creative Block Replacer (Forge ](https://curseforge.com/minecraft/mc-mods/creative-block-replacer)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/creative-block-replacer-fabric)\
+[Crying Ghasts (Forge ](https://curseforge.com/minecraft/mc-mods/crying-ghasts)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/crying-ghasts-fabric)\
+[Cycle Paintings (Forge ](https://curseforge.com/minecraft/mc-mods/cycle-paintings)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/cycle-paintings-fabric)\
+[Death Backup (Forge ](https://curseforge.com/minecraft/mc-mods/death-backup)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/death-backup-fabric)\
+[Despawning Eggs Hatch (Forge ](https://curseforge.com/minecraft/mc-mods/despawning-eggs-hatch)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/despawning-eggs-hatch-fabric)\
+[Difficulty Lock (Forge ](https://curseforge.com/minecraft/mc-mods/difficulty-lock)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/difficulty-lock-fabric)\
+[Dismount Entity (Forge ](https://curseforge.com/minecraft/mc-mods/dismount-entity)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/dismount-entity-fabric)\
+[Double Doors (Forge ](https://curseforge.com/minecraft/mc-mods/double-doors)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/double-doors-fabric)\
+[Dragon Drops Elytra (Forge ](https://curseforge.com/minecraft/mc-mods/dragon-drops-elytra)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/dragon-drops-elytra-fabric)\
+[Easy Elytra Takeoff (Forge ](https://curseforge.com/minecraft/mc-mods/easy-elytra-takeoff)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/easy-elytra-takeoff-fabric)\
+[Edibles (Forge ](https://curseforge.com/minecraft/mc-mods/edibles)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/edibles-fabric)\
+[Enchanting Commands (Forge ](https://curseforge.com/minecraft/mc-mods/enchanting-commands)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/enchanting-commands-fabric)\
+[End Portal Recipe (Forge ](https://curseforge.com/minecraft/mc-mods/end-portal-recipe)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/end-portal-recipe-fabric)\
+[Entity Information (Forge ](https://curseforge.com/minecraft/mc-mods/entity-information)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/entity-information-fabric)\
+[Eroding Stone Entities (Forge ](https://curseforge.com/minecraft/mc-mods/eroding-stone-entities)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/eroding-stone-entities-fabric)\
+[Extended Bone Meal (Forge ](https://curseforge.com/minecraft/mc-mods/extended-bone-meal)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/extended-bone-meal-fabric)\
+[Extended Creative Inventory (Forge ](https://curseforge.com/minecraft/mc-mods/extended-creative-inventory)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/extended-creative-inventory-fabric)\
+[Extract Poison (Forge ](https://curseforge.com/minecraft/mc-mods/extract-poison)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/extract-poison-fabric)\
+[Fall Through Slime (Forge ](https://curseforge.com/minecraft/mc-mods/fall-through-slime)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/fall-through-slime-fabric)\
+[Fish On The Line (Forge ](https://curseforge.com/minecraft/mc-mods/fish-on-the-line)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/fish-on-the-line-fabric)\
+[Fire Spread Tweaks (Forge ](https://curseforge.com/minecraft/mc-mods/fire-spread-tweaks)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/fire-spread-tweaks-fabric)\
+[First Join Message (Forge ](https://curseforge.com/minecraft/mc-mods/first-join-message)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/first-join-message-fabric)\
+[Fixed Anvil Repair Cost (Forge ](https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost-fabric)\
+[Full Brightness Toggle (Forge ](https://curseforge.com/minecraft/mc-mods/full-brightness-toggle)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/full-brightness-toggle-fabric)\
+[Giant Spawn (Forge ](https://curseforge.com/minecraft/mc-mods/giant-spawn)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/giant-spawn-fabric)\
+[Grass Seeds (Forge ](https://curseforge.com/minecraft/mc-mods/grass-seeds)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/grass-seeds-fabric)\
+[Grindstone Sharper Tools (Forge ](https://curseforge.com/minecraft/mc-mods/grindstone-sharper-tools)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/grindstone-sharper-tools-fabric)\
+[GUI Clock (Forge ](https://curseforge.com/minecraft/mc-mods/gui-clock)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/gui-clock-fabric-version)\
+[GUI Compass (Forge ](https://curseforge.com/minecraft/mc-mods/gui-compass)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/gui-compass-fabric-version)\
+[GUI Followers (Forge ](https://curseforge.com/minecraft/mc-mods/gui-followers)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/gui-followers-fabric)\
+[Hand Over Your Items (Forge ](https://curseforge.com/minecraft/mc-mods/hand-over-your-items)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/hand-over-your-items-fabric)\
+[Healing Campfire (Forge ](https://curseforge.com/minecraft/mc-mods/healing-campfire)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/healing-campfire-fabric)\
+[Healing Soup (Forge ](https://curseforge.com/minecraft/mc-mods/healing-soup)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/healing-soup-fabric)\
+[Hidden Recipe Book (Forge ](https://curseforge.com/minecraft/mc-mods/hidden-recipe-book)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/hidden-recipe-book-fabric)\
+[Hide Hands (Forge ](https://curseforge.com/minecraft/mc-mods/hide-hands)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/hide-hands-fabric)\
+[Hoe Tweaks (Forge ](https://curseforge.com/minecraft/mc-mods/hoe-tweaks)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/hoe-tweaks-fabric)\
+[Humbling Bundle (Forge ](https://curseforge.com/minecraft/mc-mods/humbling-bundle)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/humbling-bundle-fabric)\
+[Husk Spawn (Forge ](https://curseforge.com/minecraft/mc-mods/husk-spawn)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/husk-spawn-fabric)\
+[Ice Prevents Crop Growth (Forge ](https://curseforge.com/minecraft/mc-mods/ice-prevents-crop-growth)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/ice-prevents-crop-growth-fabric)\
+[Infinite Trading (Forge ](https://curseforge.com/minecraft/mc-mods/infinite-trading)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/infinite-trading-fabric)\
+[Inventory Totem (Forge ](https://curseforge.com/minecraft/mc-mods/inventory-totem)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/inventory-totem-fabric)\
+[Just Mob Heads (Forge ](https://curseforge.com/minecraft/mc-mods/just-mob-heads)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/just-mob-heads-fabric)\
+[Just Player Heads (Forge ](https://curseforge.com/minecraft/mc-mods/just-player-heads)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/just-player-heads-fabric)\
+[Kelp Fertilizer (Forge ](https://curseforge.com/minecraft/mc-mods/kelp-fertilizer)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/kelp-fertilizer-fabric)\
+[Milk All The Mobs (Forge ](https://curseforge.com/minecraft/mc-mods/milk-all-the-mobs)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/milk-all-the-mobs-fabric)\
+[Mineral Chance (Forge ](https://curseforge.com/minecraft/mc-mods/mineral-chance)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/mineral-chance-fabric)\
+[Mooshroom Spawn (Forge ](https://curseforge.com/minecraft/mc-mods/mooshroom-spawn)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/mooshroom-spawn-fabric)\
+[Mooshroom Tweaks (Forge ](https://curseforge.com/minecraft/mc-mods/mooshroom-tweaks)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/mooshroom-tweaks-fabric)\
+[More Zombie Villagers (Forge ](https://curseforge.com/minecraft/mc-mods/more-zombie-villagers)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/more-zombie-villagers-fabric)\
+[Move Boats (Forge ](https://curseforge.com/minecraft/mc-mods/move-boats)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/move-boats-fabric)\
+[Move Minecarts (Forge ](https://curseforge.com/minecraft/mc-mods/move-minecarts)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/move-minecarts-fabric)\
+[Name Tag Tweaks (Forge ](https://curseforge.com/minecraft/mc-mods/name-tag-tweaks)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/name-tag-tweaks-fabric)\
+[Naturally Charged Creepers (Forge ](https://curseforge.com/minecraft/mc-mods/naturally-charged-creepers)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/naturally-charged-creepers-fabric)\
+[Nether Portal Spread (Forge ](https://curseforge.com/minecraft/mc-mods/nether-portal-spread)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/nether-portal-spread-fabric)\
+[No Hostiles Around Campfire (Forge ](https://curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire-fabric)\
+[Nutritious Milk (Forge ](https://curseforge.com/minecraft/mc-mods/nutritious-milk)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/nutritious-milk-fabric)\
+[Omega Mute (Forge ](https://curseforge.com/minecraft/mc-mods/omega-mute)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/omega-mute-fabric)\
+[Paper Books (Forge ](https://curseforge.com/minecraft/mc-mods/paper-books)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/paper-books-fabric)\
+[Passive Endermen (Forge ](https://curseforge.com/minecraft/mc-mods/passive-endermen)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/passive-endermen-fabric)\
+[Passive Shield (Forge ](https://curseforge.com/minecraft/mc-mods/passive-shield)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/passive-shield-fabric)\
+[Pet Names (Forge ](https://curseforge.com/minecraft/mc-mods/pet-names)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/pet-names-fabric)\
+[Placeable Blaze Rods (Forge ](https://curseforge.com/minecraft/mc-mods/placeable-blaze-rods)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/placeable-blaze-rods-fabric)\
+[Player Death Kick (Forge ](https://curseforge.com/minecraft/mc-mods/player-death-kick)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/player-death-kick-fabric)\
+[Player Tracking (Forge ](https://curseforge.com/minecraft/mc-mods/player-tracking)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/player-tracking-fabric)\
+[Player Tracking Compass (Forge ](https://curseforge.com/minecraft/mc-mods/player-tracking-compass)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/player-tracking-compass-fabric)\
+[Quick Paths (Forge ](https://curseforge.com/minecraft/mc-mods/quick-paths)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/quick-paths-fabric)\
+[Rain Be Gone Ritual (Forge ](https://curseforge.com/minecraft/mc-mods/rain-be-gone-ritual)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/rain-be-gone-ritual-fabric)\
+[Random Bone Meal Flowers (Forge ](https://curseforge.com/minecraft/mc-mods/random-bone-meal-flowers)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/random-bone-meal-flowers-fabric)\
+[Random Mob Effects (Forge ](https://curseforge.com/minecraft/mc-mods/random-mob-effects)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/random-mob-effects-fabric)\
+[Random Sheep Colours (Forge ](https://curseforge.com/minecraft/mc-mods/random-sheep-colours)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/random-sheep-colours-fabric)\
+[Random Shulker Colours (Forge ](https://curseforge.com/minecraft/mc-mods/random-shulker-colours)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/random-shulker-colours-fabric)\
+[Random Village Names (Forge ](https://curseforge.com/minecraft/mc-mods/random-village-names))\
+[Realistic Bees (Forge ](https://curseforge.com/minecraft/mc-mods/realistic-bees)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/realistic-bees-fabric)\
+[Recast (Forge ](https://curseforge.com/minecraft/mc-mods/recast)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/recast-fabric)\
+[Recipe Commands (Forge ](https://curseforge.com/minecraft/mc-mods/recipe-commands)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/recipe-commands-fabric)\
+[Replanting Crops (Forge ](https://curseforge.com/minecraft/mc-mods/replanting-crops)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/replanting-crops-fabric)\
+[Respawn Delay (Forge ](https://curseforge.com/minecraft/mc-mods/respawn-delay)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/respawn-delay-fabric)\
+[Respawning Shulkers (Forge ](https://curseforge.com/minecraft/mc-mods/respawning-shulkers)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/respawning-shulkers-fabric)\
+[Save and Load Inventories (Forge ](https://curseforge.com/minecraft/mc-mods/save-and-load-inventories)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/save-and-load-inventories-fabric)\
+[Scaffolding Drops Nearby (Forge ](https://curseforge.com/minecraft/mc-mods/scaffolding-drops-nearby)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/scaffolding-drops-nearby-fabric)\
+[Set World Spawn Point (Forge ](https://curseforge.com/minecraft/mc-mods/set-world-spawn-point)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/set-world-spawn-point-fabric)\
+[Shulker Drops Two (Forge ](https://curseforge.com/minecraft/mc-mods/shulker-drops-two)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/shulker-drops-two-fabric)\
+[Silence Mobs (Forge ](https://curseforge.com/minecraft/mc-mods/silence-mobs)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/silence-mobs-fabric)\
+[Skeleton Horse Spawn (Forge ](https://curseforge.com/minecraft/mc-mods/skeleton-horse-spawn)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/skeleton-horse-spawn-fabric)\
+[Sleep Sooner (Forge ](https://curseforge.com/minecraft/mc-mods/sleep-sooner)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/sleep-sooner-fabric)\
+[Smaller Nether Portals (Forge ](https://curseforge.com/minecraft/mc-mods/smaller-nether-portals)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/smaller-nether-portals-fabric)\
+[Snowballs Freeze Mobs (Forge ](https://curseforge.com/minecraft/mc-mods/snowballs-freeze-mobs)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/snowballs-freeze-mobs-fabric)\
+[Softer Hay Bales (Forge ](https://curseforge.com/minecraft/mc-mods/softer-hay-bales)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/softer-hay-bales-fabric)\
+[Spiders Produce Webs (Forge ](https://curseforge.com/minecraft/mc-mods/spiders-produce-webs)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/spiders-produce-webs-fabric)\
+[Stack Refill (Forge ](https://curseforge.com/minecraft/mc-mods/stack-refill)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/stack-refill-fabric)\
+[Starter Kit (Forge ](https://curseforge.com/minecraft/mc-mods/starter-kit)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/starter-kit-fabric)\
+[Stray Spawn (Forge ](https://curseforge.com/minecraft/mc-mods/stray-spawn)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/stray-spawn-fabric)\
+[Superflat World No Slimes (Forge ](https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes-fabric)\
+[The Vanilla Experience (Forge ](https://curseforge.com/minecraft/mc-mods/the-vanilla-experience)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/-fabric)\
+[TNT Breaks Bedrock (Forge ](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock-fabric)\
+[Trample Everything (Forge ](https://curseforge.com/minecraft/mc-mods/trample-everything)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/trample-everything-fabric)\
+[Transcending Trident (Forge ](https://curseforge.com/minecraft/mc-mods/transcending-trident)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/transcending-trident-fabric)\
+[Tree Harvester (Forge ](https://curseforge.com/minecraft/mc-mods/tree-harvester)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/tree-harvester-fabric)\
+[Underwater Enchanting (Forge ](https://curseforge.com/minecraft/mc-mods/underwater-enchanting)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/underwater-enchanting-fabric)\
+[Village Spawn Point (Forge ](https://curseforge.com/minecraft/mc-mods/village-spawn-point)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/village-spawn-point-fabric)\
+[Village Bell Recipe (Forge ](https://curseforge.com/minecraft/mc-mods/village-bell-recipe)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/village-bell-recipe-fabric)\
+[Villager Death Messages (Forge ](https://curseforge.com/minecraft/mc-mods/villager-death-messages)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/villager-death-messages-fabric)\
+[Villager Names (Forge ](https://curseforge.com/minecraft/mc-mods/villager-names)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/villager-names-fabric-version)\
+[Vote Command (Forge ](https://curseforge.com/minecraft/mc-mods/vote-command)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/vote-command-fabric)\
+[Weaker Spiderwebs (Forge ](https://curseforge.com/minecraft/mc-mods/weaker-spiderwebs)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/weaker-spiderwebs-fabric)\
+[Wool Tweaks (Forge ](https://curseforge.com/minecraft/mc-mods/wool-tweaks)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/wool-tweaks-fabric)\
+[World Border (Forge ](https://curseforge.com/minecraft/mc-mods/world-border)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/world-border-fabric)\
+[Your Items Are Safe (Forge ](https://curseforge.com/minecraft/mc-mods/your-items-are-safe)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/your-items-are-safe-fabric)\
+[Zombie Horse Spawn (Forge ](https://curseforge.com/minecraft/mc-mods/zombie-horse-spawn)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/zombie-horse-spawn-fabric-fabric)\
+[Zombie Proof Doors (Forge ](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors-fabric-fabric)\
+[Zombie Villagers From Spawner (Forge ](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner/)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner-fabric)
 
 ## Discontinued Mods:
 - Mods superseded by [Edibles](https://curseforge.com/minecraft/mc-mods/edibles):
