@@ -3,4 +3,7 @@ Hoe Tweaks
 https://curseforge.com/minecraft/mc-mods/hoe-tweaks
 
 =========
+v1.1: Added compatibility with Simply Steel's modded hoes.
+
+=========
 v1.0: Initial release of mod.
