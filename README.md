@@ -58,6 +58,7 @@ N/A
 [Configurable Mob Potion Effects (Forge ](https://curseforge.com/minecraft/mc-mods/configurable-mob-potion-effects)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/configurable-mob-potion-effects-fabric)\
 [Creative Block Replacer (Forge](https://curseforge.com/minecraft/mc-mods/creative-block-replacer))\
 [Crying Ghasts (Forge ](https://curseforge.com/minecraft/mc-mods/crying-ghasts)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/crying-ghasts-fabric)\
+[Crying Portals (Forge ](https://curseforge.com/minecraft/mc-mods/crying-portals)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/crying-portals-fabric)\
 [Cycle Paintings (Forge ](https://curseforge.com/minecraft/mc-mods/cycle-paintings)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/cycle-paintings-fabric)\
 [Death Backup (Forge ](https://curseforge.com/minecraft/mc-mods/death-backup)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/death-backup-fabric)\
 [Despawning Eggs Hatch (Forge ](https://curseforge.com/minecraft/mc-mods/despawning-eggs-hatch)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/despawning-eggs-hatch-fabric)\
@@ -99,6 +100,7 @@ N/A
 [Inventory Totem (Forge ](https://curseforge.com/minecraft/mc-mods/inventory-totem)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/inventory-totem-fabric)\
 [Just Mob Heads (Forge ](https://curseforge.com/minecraft/mc-mods/just-mob-heads)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/just-mob-heads-fabric)\
 [Just Player Heads (Forge ](https://curseforge.com/minecraft/mc-mods/just-player-heads)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/just-player-heads-fabric)\
+[Keep My Soil Tilled (Forge ](https://curseforge.com/minecraft/mc-mods/keep-my-soil-tilled)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/keep-my-soil-tilled-fabric)\
 [Kelp Fertilizer (Forge ](https://curseforge.com/minecraft/mc-mods/kelp-fertilizer)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/kelp-fertilizer-fabric)\
 [Milk All The Mobs (Forge ](https://curseforge.com/minecraft/mc-mods/milk-all-the-mobs)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/milk-all-the-mobs-fabric)\
 [Mineral Chance (Forge ](https://curseforge.com/minecraft/mc-mods/mineral-chance)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/mineral-chance-fabric)\
