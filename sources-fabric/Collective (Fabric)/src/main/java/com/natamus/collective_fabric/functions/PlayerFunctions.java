@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 1.63.
+ * Minecraft version: 1.17.x, mod version: 3.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -273,41 +273,61 @@ public class PlayerFunctions {
 	}
 	
 	public static void setPlayerGearFromString(Player player, String gearconfig) {
-		String[] gearspl = gearconfig.split("\n");
+		String[] gearspl = gearconfig.split("',[\\r\\n]+");
 		int newlinecount = gearspl.length;
+		
 		if (newlinecount < 40) {
-			System.out.println("[Error] setPlayerGearFromString: The gear config does not contain 40 lines and is invalid.");
+			System.out.println("[Error] (Collective) setPlayerGearFromString: The gear config does not contain 40 lines and is invalid.");
 			return;
 		}
 		
 		boolean cleared = false;
 		for (String line : gearspl) {
-			line = line.trim().replaceAll("\n", "");
+			line = line.trim();
 			if (line.endsWith(",")) {
 				line = line.substring(0, line.length() - 1);
+			}
+			if (!line.endsWith("'")) {
+				line = line + "'";
 			}
 			
 			String[] lspl = line.split(" : ");
 			if (lspl.length != 2) {
-				System.out.println("[Error] setPlayerGearFromString: The line '" + line + "' is invalid.");
+				System.out.println("[Error] (Collective) setPlayerGearFromString: The line " + line + " is invalid.");
 				return;
 			}
 			
 			String slotstring = lspl[0].replace("'", "");
 			String data = lspl[1];
-			data = data.substring(1, data.length() - 1);
+			if (data.startsWith("'")) {
+				data = data.substring(1);
+			}
+			if (data.endsWith("'")) {
+				data = data.substring(0, data.length() - 1);
+			}
+			
 			if (data.length() < 2) {
 				continue;
 			}
+			
+			data = data.replaceAll("\r", "");
 			
 			ItemStack itemstack = null;
 			try {
 				CompoundTag newnbt = TagParser.parseTag(data);
 				itemstack = ItemStack.of(newnbt);
-			} catch (CommandSyntaxException e) {}
+			} catch (CommandSyntaxException e0) {
+				try {
+					data = data.replace("\",\"", "|||,|||").replace(" \"", " '").replace("\" ", "' ").replace("|||,|||", "\",\"");
+					CompoundTag newnbt = TagParser.parseTag(data);
+					itemstack = ItemStack.of(newnbt);
+				} catch (CommandSyntaxException e1) {
+					System.out.println(e1);
+				}
+			}
 			
 			if (itemstack == null) {
-				System.out.println("[Error] setPlayerGearFromString: Unable to get the correct itemstack data from '" + line + "'.");
+				System.out.println("[Error] (Collective) setPlayerGearFromString: Unable to get the correct itemstack data from data " + data);
 				return;				
 			}
 			

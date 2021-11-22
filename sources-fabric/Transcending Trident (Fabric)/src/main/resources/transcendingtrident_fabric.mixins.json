@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.natamus.transcendingtrident.fabric.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+  	"EntityMixin",
+  	"TridentItemMixin"
+  ],
+  "client": [
+  
+  ],
+  "server": [
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

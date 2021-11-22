@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Transcending Trident.
- * Minecraft version: 1.17.1, mod version: 1.7.
+ * Minecraft version: 1.17.1, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Transcending Trident ever released, along with some other perks.
@@ -17,16 +17,10 @@ package com.natamus.transcendingtrident;
 import com.natamus.collective.check.RegisterMod;
 import com.natamus.transcendingtrident.config.ConfigHandler;
 import com.natamus.transcendingtrident.events.TridentEvent;
-import com.natamus.transcendingtrident.items.ExtendedTridentItem;
 import com.natamus.transcendingtrident.util.Reference;
 
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -45,21 +39,11 @@ public class Main {
     	
         modEventBus.addListener(this::loadComplete);
         modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHandler.spec);
-        
-        modEventBus.register(this); // !
-        MinecraftForge.EVENT_BUS.register(this);
 
         RegisterMod.register(Reference.NAME, Reference.MOD_ID, Reference.VERSION, Reference.ACCEPTED_VERSIONS);
     }
 	
     private void loadComplete(final FMLLoadCompleteEvent event) {
     	MinecraftForge.EVENT_BUS.register(new TridentEvent());
-	}
-    
-	@SubscribeEvent
-	public void registerItems(RegistryEvent.Register<Item> e) {
-		e.getRegistry().registerAll(
-				(new ExtendedTridentItem((new Item.Properties()).durability(250).tab(CreativeModeTab.TAB_COMBAT)).setRegistryName(Items.TRIDENT.getRegistryName()))
-		);
 	}
 }

@@ -3,6 +3,15 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v3.0: Synchronized Collective's Fabric and Forge versions to 3.0.
+Fixed a problem with certain characters from written books in the function that writes them to a string.
+Updated backend code.
+
+=========
+v2.66: Improved modded villager support.
+(Forge 1.12) Fixed an issue with a mod compatibility.
+
+=========
 v1.63: Correctly specified java compatibility version for mixins.
 
 =========

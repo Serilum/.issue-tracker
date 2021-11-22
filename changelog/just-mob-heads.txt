@@ -3,6 +3,9 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v5.2: (Forge only) Fixed reference to incorrect method in 1.16. Updated backend code.
+
+=========
 v5.1: Fixed non-jmh default heads (creeper/zombie/skeleton) not dropping when harvested.
 
 =========

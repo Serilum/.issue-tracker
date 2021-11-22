@@ -88,6 +88,10 @@ mixin { // mixin
     debug.export = true // mixin
 } // mixin
 
+rootProject.tasks.named("jar") {
+    duplicatesStrategy = 'include'
+}
+
 jar {
     manifest {
         attributes([
@@ -128,6 +132,6 @@ repositories {
 }
 
 dependencies {
-    runtimeOnly fg.deobf("com.natamus.collective:collective:1.17.1-2.65")
-    compileOnly fg.deobf("com.natamus.collective:collective:1.17.1-2.65")
+    runtimeOnly fg.deobf("com.natamus.collective:collective:1.17.1-3.0")
+    compileOnly fg.deobf("com.natamus.collective:collective:1.17.1-3.0")
 }
