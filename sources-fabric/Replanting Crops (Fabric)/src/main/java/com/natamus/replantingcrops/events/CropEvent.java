@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Replanting Crops.
- * Minecraft version: 1.17.x, mod version: 2.4.
+ * Minecraft version: 1.17.x, mod version: 2.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Replanting Crops ever released, along with some other perks.
@@ -16,9 +16,12 @@ package com.natamus.replantingcrops.events;
 
 import java.util.HashMap;
 
+import com.natamus.collective_fabric.data.GlobalVariables;
 import com.natamus.replantingcrops.config.ConfigHandler;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Entity.RemovalReason;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -47,8 +50,11 @@ public class CropEvent {
 			return true;
 		}
 		
+		InteractionHand hand = null;
 		if (ConfigHandler.mustHoldHoeForReplanting.getValue()) {
+			hand = InteractionHand.MAIN_HAND;
 			if (player.getMainHandItem().getItem() instanceof HoeItem == false) {
+				hand = InteractionHand.OFF_HAND;
 				if (player.getOffhandItem().getItem() instanceof HoeItem == false) {
 					return true;
 				}
@@ -79,6 +85,13 @@ public class CropEvent {
 		else if (block.equals(Blocks.COCOA)) {
 			cocoaStates.put(hpos, state);
 			checkreplant.put(hpos, Items.COCOA_BEANS);
+		}
+		else {
+			return true;
+		}
+		
+		if (!player.isCreative()) {
+			player.getItemInHand(hand).hurt(1, GlobalVariables.random, (ServerPlayer)player);
 		}
 		
 		return true;

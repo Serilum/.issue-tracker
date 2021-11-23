@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Replanting Crops.
- * Minecraft version: 1.17.1, mod version: 2.4.
+ * Minecraft version: 1.17.1, mod version: 2.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Replanting Crops ever released, along with some other perks.
@@ -16,13 +16,13 @@ package com.natamus.replantingcrops.events;
 
 import java.util.HashMap;
 
+import com.natamus.collective.data.GlobalVariables;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.replantingcrops.config.ConfigHandler;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CocoaBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -30,8 +30,11 @@ import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CocoaBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -54,8 +57,11 @@ public class CropEvent {
 			return;
 		}
 		
+		InteractionHand hand = null;
 		if (ConfigHandler.GENERAL.mustHoldHoeForReplanting.get()) {
+			hand = InteractionHand.MAIN_HAND;
 			if (player.getMainHandItem().getItem() instanceof HoeItem == false) {
+				hand = InteractionHand.OFF_HAND;
 				if (player.getOffhandItem().getItem() instanceof HoeItem == false) {
 					return;
 				}
@@ -88,6 +94,13 @@ public class CropEvent {
 		else if (block.equals(Blocks.COCOA)) {
 			cocoaStates.put(hpos, state);
 			checkreplant.put(hpos, Items.COCOA_BEANS);
+		}
+		else {
+			return;
+		}
+		
+		if (!player.isCreative()) {
+			player.getItemInHand(hand).hurt(1, GlobalVariables.random, (ServerPlayer)player);
 		}
 	}
 	

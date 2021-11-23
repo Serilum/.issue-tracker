@@ -3,6 +3,9 @@ Replanting Crops
 https://www.curseforge.com/minecraft/mc-mods/replanting-crops
 
 =========
+v2.5: Replanting crops now does durability damage on the hoe used.
+
+=========
 v2.4: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========

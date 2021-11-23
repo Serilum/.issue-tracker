@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Extract Poison.
- * Minecraft version: 1.17.x, mod version: 1.5.
+ * Minecraft version: 1.17.x, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Extract Poison ever released, along with some other perks.
@@ -48,8 +48,8 @@ public class EntityEvent {
 		
 		ItemStack itemstack = player.getItemInHand(hand);
 		if (itemstack.getItem().equals(Items.GLASS_BOTTLE)) {
-			String entityname = EntityFunctions.getEntityString(target);
-			if (entityname.contains("CaveSpider") || target instanceof CaveSpider || target instanceof Pufferfish || target instanceof Bee) {
+			String entityname = EntityFunctions.getEntityString(target).toLowerCase();
+			if (entityname.contains("cavespider") || target instanceof CaveSpider || target instanceof Pufferfish || target instanceof Bee) {
 				LocalTime now = LocalTime.now();
 				UUID targetuuid = target.getUUID();
 				if (lastuse.containsKey(targetuuid)) {

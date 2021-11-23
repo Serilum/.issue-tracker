@@ -3,6 +3,9 @@ Extract Poison
 https://www.curseforge.com/minecraft/mc-mods/extract-poison
 
 =========
+v1.6: Improved compatibility with modded poison spiders.
+
+=========
 v1.5: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

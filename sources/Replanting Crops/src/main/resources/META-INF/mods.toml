@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Repl
 
 [[mods]]
 modId="replantingcrops"
-version="2.4"
+version="2.5"
 displayName="Replanting Crops"
 displayURL="https://curseforge.com/minecraft/mc-mods/replanting-crops"
 authors="Rick South"
 description="Automatically replants/replaces/reseeds crops harvested with seeds from drops, negated by holding the sneak button."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley   
+Adara Christine, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gilbert, Tyler Behl   
 '''
 
 [[dependencies.replantingcrops]]
     modId="collective"
     mandatory=true
-    versionRange="[2.35,)"
+    versionRange="[3.0,)"
     ordering="NONE"
     side="BOTH"

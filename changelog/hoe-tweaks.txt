@@ -3,6 +3,9 @@ Hoe Tweaks
 https://curseforge.com/minecraft/mc-mods/hoe-tweaks
 
 =========
+v1.2: Fixed falling through a farmland block when un-tilling it while standing on top of it.
+
+=========
 v1.1: Added compatibility with Simply Steel's modded hoes.
 
 =========

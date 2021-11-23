@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hoe Tweaks.
- * Minecraft version: 1.17.x, mod version: 1.1.
+ * Minecraft version: 1.17.x, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Hoe Tweaks ever released, along with some other perks.
@@ -36,6 +36,7 @@ import net.minecraft.world.level.block.MelonBlock;
 import net.minecraft.world.level.block.PumpkinBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class HoeEvent {
 	public static InteractionResult onHoeRightClickBlock(Player player, Level world, InteractionHand hand, HitResult hitResult) {
@@ -64,6 +65,11 @@ public class HoeEvent {
 			else {
 				int range = Util.getHoeRange(stack);
 				damage = Util.processSoilGetDamage(world, cpos, range, Blocks.DIRT, true);
+			}
+			
+			Vec3 pvec = player.position();
+			if (pvec.y % 1 != 0) {
+				player.setPos(pvec.x, Math.ceil(pvec.y), pvec.z);
 			}
 		}
 		else if (CompareBlockFunctions.isDirtBlock(block)) {
