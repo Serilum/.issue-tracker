@@ -154,7 +154,7 @@ N/A
 [The Vanilla Experience (Forge](https://curseforge.com/minecraft/mc-mods/the-vanilla-experience))\
 [TNT Breaks Bedrock (Forge ](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock-fabric)\
 [Trample Everything (Forge ](https://curseforge.com/minecraft/mc-mods/trample-everything)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/trample-everything-fabric)\
-[Transcending Trident (Forge](https://curseforge.com/minecraft/mc-mods/transcending-trident))\
+[Transcending Trident (Forge ](https://curseforge.com/minecraft/mc-mods/transcending-trident)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/transcending-trident-fabric)\
 [Tree Harvester (Forge ](https://curseforge.com/minecraft/mc-mods/tree-harvester)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/tree-harvester-fabric)\
 [Underwater Enchanting (Forge](https://curseforge.com/minecraft/mc-mods/underwater-enchanting))\
 [Village Spawn Point (Forge ](https://curseforge.com/minecraft/mc-mods/village-spawn-point)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/village-spawn-point-fabric)\
