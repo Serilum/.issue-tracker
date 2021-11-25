@@ -18,7 +18,7 @@ repositories {
 	// for more information about repositories.
 	
     maven { url "https://github.com/ricksouth/serilum-forge-maven/raw/maven/" }
-    //maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 dependencies {
@@ -36,8 +36,8 @@ dependencies {
 	modImplementation "com.natamus.collective:collective-fabric:1.17.x-3.0"
 	
 	// Permissions
-	//modImplementation 'me.lucko:fabric-permissions-api:0.1-SNAPSHOT'
-	//include "me.lucko:fabric-permissions-api:0.1-SNAPSHOT"
+	modImplementation 'me.lucko:fabric-permissions-api:0.1-SNAPSHOT'
+	include "me.lucko:fabric-permissions-api:0.1-SNAPSHOT"
 }
 
 processResources {
