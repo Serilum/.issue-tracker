@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Clock.
- * Minecraft version: 1.17.x, mod version: 2.6.
+ * Minecraft version: 1.17.x, mod version: 3.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Clock ever released, along with some other perks.
@@ -15,6 +15,7 @@
 package com.natamus.guiclock.events;
 
 import java.awt.Color;
+import java.util.Collection;
 
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -24,6 +25,7 @@ import com.natamus.guiclock.config.ConfigHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -57,6 +59,23 @@ public class GUIEvent {
 		int heightoffset = ConfigHandler.clockHeightOffset.getValue();
 		if (heightoffset < 5) {
 			heightoffset = 5;
+		}
+		
+		if (ConfigHandler.lowerClockWhenPlayerHasEffects.getValue()) {
+			Collection<MobEffectInstance> activeeffects = mc.player.getActiveEffects();
+			if (activeeffects.size() > 0) {
+				boolean isvisible = false;
+				for (MobEffectInstance effect : activeeffects) {
+					if (effect.isVisible()) {
+						isvisible = true;
+						break;
+					}
+				}
+				
+				if (isvisible) {
+					heightoffset += 24;
+				}
+			}
 		}
 		
 		int xcoord = 0;

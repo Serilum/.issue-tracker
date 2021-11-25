@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Clock.
- * Minecraft version: 1.17.x, mod version: 2.6.
+ * Minecraft version: 1.17.x, mod version: 3.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Clock ever released, along with some other perks.
@@ -36,6 +36,7 @@ import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
 public class ConfigHandler { 
 	public static PropertyMirror<Boolean> mustHaveClockInInventoryForGameTime = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> mustHaveClockInInventoryForRealTime = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> lowerClockWhenPlayerHasEffects = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> _24hourformat = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> showOnlyMinecraftClockIcon = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> showBothTimes = PropertyMirror.create(ConfigTypes.BOOLEAN);
@@ -59,6 +60,10 @@ public class ConfigHandler {
 			.beginValue("mustHaveClockInInventoryForRealTime", ConfigTypes.BOOLEAN, true)
 			.withComment("When enabled, will only show the real time when a clock is present in the inventory.")
 			.finishValue(mustHaveClockInInventoryForRealTime::mirror)
+			
+			.beginValue("lowerClockWhenPlayerHasEffects", ConfigTypes.BOOLEAN, true)
+			.withComment("Whether the clock in the GUI should be lowered when the player has potion effects to prevent overlap.")
+			.finishValue(lowerClockWhenPlayerHasEffects::mirror)
 
 			.beginValue("_24hourformat", ConfigTypes.BOOLEAN, true)
 			.withComment("Sets the format of the clock to the 24-hour format.")

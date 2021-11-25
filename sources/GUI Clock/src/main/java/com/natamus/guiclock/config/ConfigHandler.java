@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Clock.
- * Minecraft version: 1.17.1, mod version: 2.6.
+ * Minecraft version: 1.17.1, mod version: 3.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Clock ever released, along with some other perks.
@@ -24,6 +24,7 @@ public class ConfigHandler {
 	public static class General {	
 		public final ForgeConfigSpec.ConfigValue<Boolean> mustHaveClockInInventoryForGameTime;
 		public final ForgeConfigSpec.ConfigValue<Boolean> mustHaveClockInInventoryForRealTime;
+		public final ForgeConfigSpec.ConfigValue<Boolean> lowerClockWhenPlayerHasEffects;
 		public final ForgeConfigSpec.ConfigValue<Boolean> _24hourformat;
 		
 		public final ForgeConfigSpec.ConfigValue<Boolean> showOnlyMinecraftClockIcon;
@@ -52,6 +53,9 @@ public class ConfigHandler {
 			mustHaveClockInInventoryForRealTime = builder
 					.comment("When enabled, will only show the real time when a clock is present in the inventory.")
 					.define("mustHaveClockInInventoryForRealTime", true);
+			lowerClockWhenPlayerHasEffects = builder
+					.comment("Whether the clock in the GUI should be lowered when the player has potion effects to prevent overlap.")
+					.define("lowerClockWhenPlayerHasEffects", true);
 			_24hourformat = builder
 					.comment("Sets the format of the clock to the 24-hour format.")
 					.define("_24hourformat", true);

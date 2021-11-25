@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Double Doors.
- * Minecraft version: 1.17.1, mod version: 2.5.
+ * Minecraft version: 1.17.1, mod version: 3.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Double Doors ever released, along with some other perks.
@@ -22,12 +22,22 @@ public class ConfigHandler {
 	public static final ForgeConfigSpec spec = BUILDER.build();
 
 	public static class General {
+		public final ForgeConfigSpec.ConfigValue<Boolean> enableRecursiveOpening;
+		public final ForgeConfigSpec.ConfigValue<Integer> recursiveOpeningMaxBlocksDistance;
+		
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableDoors;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableFenceGates;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enableTrapdoors;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
+			enableRecursiveOpening = builder
+					.comment("Whether the recursive opening feature should be enabled. This allows you to for example build a giant door with trapdoors which will all open at the same time, as long as they are connected. The 'recursiveOpeningMaxBlocksDistance' config option determines how far the function should search.")
+					.define("enableRecursiveOpening", true);
+			recursiveOpeningMaxBlocksDistance = builder
+					.comment("How many blocks the recursive function should search when 'enableRecursiveOpening' is enabled.")
+					.defineInRange("recursiveOpeningMaxBlocksDistance", 10, 1, 64);
+			
 			enableDoors = builder
 					.comment("When enables, the mod works with double doors.")
 					.define("enableDoors", true);

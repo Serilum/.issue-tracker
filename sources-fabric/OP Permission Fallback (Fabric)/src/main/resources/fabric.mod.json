@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "oppermissionfallback-fabric",
+  "version": "1.0",
+
+  "name": "OP Permission Fallback (Fabric)",
+  "description": "Players with the minecraft.op permission will be seen as /op(erators) in-game.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/op-permission-fallback-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/OP%20Permission%20Fallback%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20OP%20Permission%20Fallback"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.oppermissionfallback.Main" ] },
+  "mixins": [
+    "oppermissionfallback_fabric.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=3.0"
+  }
+}

@@ -1,0 +1,6 @@
+Changelog:
+OP Permission Fallback (Fabric)
+https://curseforge.com/minecraft/mc-mods/op-permission-fallback
+
+=========
+v1.0: Initial release of mod.

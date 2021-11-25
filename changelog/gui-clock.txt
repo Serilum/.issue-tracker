@@ -3,6 +3,9 @@ GUI Clock
 https://www.curseforge.com/minecraft/mc-mods/gui-clock
 
 =========
+v3.0: Added feature to lower the clock when a potion effect is active, to prevent overlap. Can be toggled with the 'lowerClockWhenPlayerHasEffects' config option, enabled by default.
+
+=========
 v2.6: Added clockWidthOffset config option to allow users to change the x coordinate of the clock. Fixed the clock icon not actually being centered with clockPositionIsCenter and showOnlyMinecraftClockIcon enabled.
 
 =========

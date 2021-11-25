@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Double Doors.
- * Minecraft version: 1.17.1, mod version: 2.5.
+ * Minecraft version: 1.17.1, mod version: 3.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Double Doors ever released, along with some other perks.
@@ -20,7 +20,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.natamus.collective.functions.WorldFunctions;
-import com.natamus.doubledoors.config.ConfigHandler;
 import com.natamus.doubledoors.util.Util;
 
 import net.minecraft.core.BlockPos;
@@ -28,16 +27,12 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.StoneButtonBlock;
-import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WoodButtonBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -107,7 +102,7 @@ public class DoorEvent {
 		}
 		
 		if (doorpos != null) {
-			if (processDoor(null, world, doorpos, world.getBlockState(doorpos), stateprop, playsound)) {
+			if (Util.processDoor(null, world, doorpos, world.getBlockState(doorpos), stateprop, playsound)) {
 				if (stateprop) {
 					prevpoweredpos.add(pos);
 				}
@@ -137,91 +132,9 @@ public class DoorEvent {
 			return;
 		}
 		
-		if (processDoor(player, world, cpos, clickstate, null, true)) {
+		if (Util.processDoor(player, world, cpos, clickstate, null, true)) {
 			e.setUseBlock(Result.DENY);
 			e.setCanceled(true);		
 		}
-	}
-	
-	private boolean processDoor(Player player, Level world, BlockPos pos, BlockState state, Boolean isopen, Boolean playsound) {
-		Block block = state.getBlock();
-		if (block instanceof DoorBlock) {
-			if (state.getValue(DoorBlock.HALF).equals(DoubleBlockHalf.UPPER)) {
-				pos = pos.below().immutable();
-				state = world.getBlockState(pos);
-			}
-		}
-		
-		if (isopen == null) {
-			isopen = !state.getValue(BlockStateProperties.OPEN);
-		}
-		
-		int yoffset = 0;
-		if (block instanceof DoorBlock == false) {
-			yoffset = 1;
-		}
-		
-		Iterator<BlockPos> blocksaround = BlockPos.betweenClosedStream(pos.getX()-1, pos.getY()-1, pos.getZ()-1, pos.getX()+1, pos.getY()+yoffset, pos.getZ()+1).iterator();
-		while (blocksaround.hasNext()) {
-			BlockPos bpa = blocksaround.next();
-			if (bpa.equals(pos)) {
-				continue;
-			}
-			BlockState ostate = world.getBlockState(bpa);
-			Block oblock = ostate.getBlock();
-			if (Util.isDoorBlock(ostate)) {
-				if (oblock.getRegistryName().equals(block.getRegistryName())) {
-					if (oblock instanceof DoorBlock) {
-						if (!ConfigHandler.GENERAL.enableDoors.get()) {
-							continue;
-						}
-						
-						DoorBlock door = (DoorBlock)oblock;
-						if (state.getValue(DoorBlock.HINGE).equals(ostate.getValue(DoorBlock.HINGE))) {
-							continue;
-						}
-						
-						if (playsound) {
-							door.setOpen(player, world, state, pos, isopen); // toggleDoor
-						}
-						else {
-							world.setBlock(pos, state.setValue(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);
-						}
-						world.setBlock(bpa, ostate.setValue(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);
-						return true;
-					}
-					else if (oblock instanceof TrapDoorBlock) {
-						if (!ConfigHandler.GENERAL.enableTrapdoors.get()) {
-							continue;
-						}
-						
-						if (playsound) {
-							if (isopen) {
-								int i = ostate.getMaterial() == Material.METAL ? 1037 : 1007;
-								world.levelEvent(null, i, pos, 0);
-							} else {
-								int j = ostate.getMaterial() == Material.METAL ? 1036 : 1013;
-								world.levelEvent(null, j, pos, 0);
-							}
-						}
-
-						world.setBlock(pos, state.setValue(BlockStateProperties.OPEN, Boolean.valueOf(isopen)), 10);
-						world.setBlock(bpa, ostate.setValue(BlockStateProperties.OPEN, Boolean.valueOf(isopen)), 10);
-						return true;
-					}
-					else if (oblock instanceof FenceGateBlock) {
-						if (!ConfigHandler.GENERAL.enableFenceGates.get()) {
-							continue;
-						}
-						
-						world.setBlock(pos, state.setValue(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);
-						world.setBlock(bpa, ostate.setValue(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);
-						return true;
-					}
-				}
-			}
-		}
-		
-		return false;
 	}
 }

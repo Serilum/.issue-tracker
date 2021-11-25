@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "id": "guiclock-fabric",
-  "version": "2.6",
+  "version": "3.0",
 
   "name": "GUI Clock (Fabric)",
   "description": "Shows the time and days played in the GUI on the screen with a clock in the inventory.",
   "authors": [ "Rick South" ],
   "contact": {
-    "homepage": "https://curseforge.com/minecraft/mc-mods/gui-clock-fabric",
+    "homepage": "https://curseforge.com/minecraft/mc-mods/gui-clock-fabric-version",
     "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/GUI%20Clock%20(Fabric)",
     "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20GUI%20Clock"
   },
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.17.x",
     "java": ">=16",
-    "collective-fabric": ">=1.50"
+    "collective-fabric": ">=3.0"
   }
 }

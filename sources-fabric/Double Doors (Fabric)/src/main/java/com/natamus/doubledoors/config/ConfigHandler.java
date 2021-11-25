@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Double Doors.
- * Minecraft version: 1.17.x, mod version: 2.4.
+ * Minecraft version: 1.17.x, mod version: 3.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Double Doors ever released, along with some other perks.
@@ -33,12 +33,23 @@ import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.JanksonValueSerial
 import io.github.fablabsmc.fablabs.api.fiber.v1.tree.ConfigTree;
 import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
 
-public class ConfigHandler { 
+public class ConfigHandler {
+	public static PropertyMirror<Boolean> enableRecursiveOpening = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Integer> recursiveOpeningMaxBlocksDistance = PropertyMirror.create(ConfigTypes.INTEGER);
+	
 	public static PropertyMirror<Boolean> enableDoors = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> enableFenceGates = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> enableTrapdoors = PropertyMirror.create(ConfigTypes.BOOLEAN);
 
-	private static final ConfigTree CONFIG = ConfigTree.builder() 
+	private static final ConfigTree CONFIG = ConfigTree.builder()
+			.beginValue("enableRecursiveOpening", ConfigTypes.BOOLEAN, true)
+			.withComment("Whether the recursive opening feature should be enabled. This allows you to for example build a giant door with trapdoors which will all open at the same time, as long as they are connected. The 'recursiveOpeningMaxBlocksDistance' config option determines how far the function should search.")
+			.finishValue(enableRecursiveOpening::mirror)
+			
+			.beginValue("recursiveOpeningMaxBlocksDistance", ConfigTypes.INTEGER, 10)
+			.withComment("How many blocks the recursive function should search when 'enableRecursiveOpening' is enabled.")
+			.finishValue(recursiveOpeningMaxBlocksDistance::mirror)
+			
 			.beginValue("enableDoors", ConfigTypes.BOOLEAN, true)
 			.withComment("When enables, the mod works with double doors.")
 			.finishValue(enableDoors::mirror)

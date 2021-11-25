@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.17.1, mod version: 4.0.
+ * Minecraft version: 1.17.1, mod version: 4.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -79,7 +79,7 @@ public class Util {
 		return -1;
 	}
 	
-	public static List<BlockPos> getAllLogsToBreak(Level world, BlockPos pos, int logcount) {
+	public static List<BlockPos> getAllLogsToBreak(Level world, BlockPos pos, int logcount, Block logtype) {
 		CopyOnWriteArrayList<BlockPos> bottomlogs = new CopyOnWriteArrayList<BlockPos>();
 		if (ConfigHandler.GENERAL.replaceSaplingIfBottomLogIsBroken.get()) {
 			Block blockbelow = world.getBlockState(pos.below()).getBlock();
@@ -88,7 +88,7 @@ public class Util {
 				while (it.hasNext()) {
 					BlockPos npos = it.next();
 					Block block = world.getBlockState(npos).getBlock();
-					if (CompareBlockFunctions.isTreeLog(block)) {
+					if (block.equals(logtype)) {
 						bottomlogs.add(npos.immutable());
 					}
 				}
@@ -104,7 +104,7 @@ public class Util {
 			}
 		}
 		
-		return getLogsToBreak(world, pos, new ArrayList<BlockPos>(), logcount);
+		return getLogsToBreak(world, pos, new ArrayList<BlockPos>(), logcount, logtype);
 	}
 	
 	public static void replaceSapling(Level world, BlockPos pos, CopyOnWriteArrayList<BlockPos> bottomlogs, int radius) {
@@ -166,7 +166,7 @@ public class Util {
 		}
 	}
 	
-	private static List<BlockPos> getLogsToBreak(Level world, BlockPos pos, List<BlockPos> logstobreak, int logcount) {
+	private static List<BlockPos> getLogsToBreak(Level world, BlockPos pos, List<BlockPos> logstobreak, int logcount, Block logtype) {
 		List<BlockPos> checkaround = new ArrayList<BlockPos>();
 		
 		Iterator<BlockPos> aroundlogs = BlockPos.betweenClosedStream(pos.getX()-1, pos.getY(), pos.getZ()-1, pos.getX()+1, pos.getY()+1, pos.getZ()+1).iterator();
@@ -177,7 +177,7 @@ public class Util {
 			}
 			BlockState logstate = world.getBlockState(nalogpos);
 			Block logblock = logstate.getBlock();
-			if (CompareBlockFunctions.isTreeLog(logblock)) {
+			if (logblock.equals(logtype)) {
 				checkaround.add(nalogpos);
 				logstobreak.add(nalogpos);
 				
@@ -203,7 +203,7 @@ public class Util {
 		}
 		
 		for (BlockPos capos : checkaround) {
-			for (BlockPos logpos : getLogsToBreak(world, capos, logstobreak, logcount)) {
+			for (BlockPos logpos : getLogsToBreak(world, capos, logstobreak, logcount, logtype)) {
 				if (!logstobreak.contains(logpos)) {
 					logstobreak.add(logpos.immutable());
 				}
@@ -211,7 +211,7 @@ public class Util {
 		}
 		
 		BlockPos up = pos.above(2);
-		return getLogsToBreak(world, up.immutable(), logstobreak, logcount);
+		return getLogsToBreak(world, up.immutable(), logstobreak, logcount, logtype);
 	}
 	
 	public static Pair<Integer, Integer> getHorizontalAndVerticalValue(int logcount) {

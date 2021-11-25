@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.17.x, mod version: 4.0.
+ * Minecraft version: 1.17.x, mod version: 4.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -127,7 +127,7 @@ public class TreeEvent {
 		
 		if (ConfigHandler.automaticallyFindBottomBlock.getValue()) {
 			BlockPos temppos = bpos.immutable();
-			while (CompareBlockFunctions.isTreeLog(world.getBlockState(temppos.below()).getBlock())) {
+			while (world.getBlockState(temppos.below()).getBlock().equals(block)) {
 				temppos = temppos.below().immutable();
 			}
 			
@@ -144,7 +144,7 @@ public class TreeEvent {
 		int durabilitylosecount = (int)Math.ceil(1.0 / ConfigHandler.loseDurabilityModifier.getValue());
 		int durabilitystartcount = -1;
 		
-		List<BlockPos> logstobreak = Util.getAllLogsToBreak(world, bpos, logcount);
+		List<BlockPos> logstobreak = Util.getAllLogsToBreak(world, bpos, logcount, block);
 		for (BlockPos logpos : logstobreak) {
 			BlockState logstate = world.getBlockState(logpos);
 			Block log = logstate.getBlock();
