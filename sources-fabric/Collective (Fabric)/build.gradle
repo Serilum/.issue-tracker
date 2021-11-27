@@ -18,6 +18,7 @@ repositories {
 	// for more information about repositories.
 	
     maven { url "https://github.com/ricksouth/serilum-forge-maven/raw/maven/" }
+    //maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 dependencies {
@@ -32,7 +33,11 @@ dependencies {
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
-	modImplementation "com.natamus.collective:collective-fabric:1.17.x-3.0"
+	modImplementation "com.natamus.collective:collective-fabric:1.17.x-3.7"
+	
+	// Permissions
+	//modImplementation 'me.lucko:fabric-permissions-api:0.1-SNAPSHOT'
+	//include "me.lucko:fabric-permissions-api:0.1-SNAPSHOT"
 }
 
 processResources {

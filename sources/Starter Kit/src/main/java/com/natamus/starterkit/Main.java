@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Starter Kit.
- * Minecraft version: 1.17.1, mod version: 2.6.
+ * Minecraft version: 1.17.1, mod version: 3.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Starter Kit ever released, along with some other perks.
@@ -16,6 +16,7 @@ package com.natamus.starterkit;
 
 import com.natamus.collective.check.RegisterMod;
 import com.natamus.starterkit.cmds.CommandStarterkit;
+import com.natamus.starterkit.config.ConfigHandler;
 import com.natamus.starterkit.events.FirstSpawnEvent;
 import com.natamus.starterkit.util.Reference;
 import com.natamus.starterkit.util.Util;
@@ -24,7 +25,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -36,8 +39,11 @@ public class Main {
         instance = this;
 
         MinecraftForge.EVENT_BUS.register(this);
+        ModLoadingContext modLoadingContext = ModLoadingContext.get();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    	
         modEventBus.addListener(this::loadComplete);
+        modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHandler.spec);
 
         RegisterMod.register(Reference.NAME, Reference.MOD_ID, Reference.VERSION, Reference.ACCEPTED_VERSIONS);
     }

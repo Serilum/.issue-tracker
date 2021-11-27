@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "cyclepaintings-fabric",
-  "version": "2.0",
+  "version": "2.1",
 
   "name": "Cycle Paintings (Fabric)",
   "description": "Easily cycle through placed paintings by right-clicking them with another painting.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.17.x",
     "java": ">=16",
-    "collective-fabric": ">=1.41"
+    "collective-fabric": ">=3.0"
   }
 }

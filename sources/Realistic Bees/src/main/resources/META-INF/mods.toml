@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Real
 
 [[mods]]
 modId="realisticbees"
-version="2.2"
+version="2.3"
 displayName="Realistic Bees"
 displayURL="https://curseforge.com/minecraft/mc-mods/realistic-bees"
 authors="Rick South"
 description="Makes bees more realistic without adding new objects. Bees are tiny! They have a chance to lose their stinger when stinging a player or entity, and will die after doing so. Stingers can be stuck in players and will need shears to be taken out to prevent further poisoning."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, dtorgy, Kreezcraft.com, Morgan Schetzle, Tyler Behl   
+Adara Christine, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gilbert, Tyler Behl   
 '''
 
 [[dependencies.realisticbees]]
     modId="collective"
     mandatory=true
-    versionRange="[2.62,)"
+    versionRange="[3.7,)"
     ordering="NONE"
     side="BOTH"

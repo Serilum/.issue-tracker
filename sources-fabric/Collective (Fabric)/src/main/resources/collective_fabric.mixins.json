@@ -11,6 +11,7 @@
     "BaseSpawnerMixin",
     "BlockMixin",
 	"BoneMealItemMixin",
+	"CommandsMixin",
   	"ExplosionMixin",
     "FishingHookMixin",
     "ItemEntityMixin",

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Cycle Paintings.
- * Minecraft version: 1.17.x, mod version: 2.0.
+ * Minecraft version: 1.17.x, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Cycle Paintings ever released, along with some other perks.
@@ -15,6 +15,7 @@
 package com.natamus.cyclepaintings;
 
 import com.natamus.collective_fabric.check.RegisterMod;
+import com.natamus.cyclepaintings.config.ConfigHandler;
 import com.natamus.cyclepaintings.events.PaintingEvent;
 import com.natamus.cyclepaintings.util.Reference;
 import com.natamus.cyclepaintings.util.Util;
@@ -25,6 +26,8 @@ import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() {
+		ConfigHandler.setup();
+		
 		registerEvents();
 		
 		RegisterMod.register(Reference.NAME, Reference.MOD_ID, Reference.VERSION, Reference.ACCEPTED_VERSIONS);

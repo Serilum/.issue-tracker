@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Realistic Bees.
- * Minecraft version: 1.17.1, mod version: 2.2.
+ * Minecraft version: 1.17.1, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Realistic Bees ever released, along with some other perks.
@@ -36,6 +36,7 @@ public class ConfigHandler {
 		public final ForgeConfigSpec.ConfigValue<Integer> timeInSecondsBeeWithoutStingerDies;
 		
 		public final ForgeConfigSpec.ConfigValue<Integer> extraBeeSpawnsPerBee;
+		public final ForgeConfigSpec.ConfigValue<Boolean> preventBeeSuffocationDamage;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
@@ -73,6 +74,9 @@ public class ConfigHandler {
 			extraBeeSpawnsPerBee = builder
 					.comment("In order to make bees a little more common. Whenever a bee naturally spawns, the mod spawns an additional 'extraBeeSpawnsPerBee' bees.")
 					.defineInRange("extraBeeSpawnsPerBee", 9, 0, 50);
+			preventBeeSuffocationDamage = builder
+					.comment("The smaller (baby) bees can sometimes do something unexpected with their AI and get suffocation damage. Preventing this damage fixes them disappearing.")
+					.define("preventBeeSuffocationDamage", true);
 			
 			builder.pop();
 		}

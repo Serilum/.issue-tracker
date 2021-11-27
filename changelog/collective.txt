@@ -3,6 +3,15 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v3.7: Added TaskFunctions related to enqueuing tasks to the next tick.
+
+=========
+v3.3-3.4: (Fabric only) Added Command event callback.
+
+=========
+v3.1-3.2: (Fabric only) Added generic event callback for bone meal, adding compatibility for dispensers.
+
+=========
 v3.0: Synchronized Collective's Fabric and Forge versions to 3.0.
 Fixed a problem with certain characters from written books in the function that writes them to a string.
 Updated backend code.

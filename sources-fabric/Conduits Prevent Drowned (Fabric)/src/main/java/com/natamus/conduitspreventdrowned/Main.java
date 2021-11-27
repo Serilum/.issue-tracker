@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Conduits Prevent Drowned.
- * Minecraft version: 1.17.x, mod version: 1.4.
+ * Minecraft version: 1.17.x, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Conduits Prevent Drowned ever released, along with some other perks.
@@ -21,10 +21,10 @@ import com.natamus.conduitspreventdrowned.events.DrownedEvent;
 import com.natamus.conduitspreventdrowned.util.Reference;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.level.BaseSpawner;
 
 public class Main implements ModInitializer {
 	@Override
@@ -37,8 +37,8 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-		CollectiveSpawnEvents.MOB_CHECK_SPAWN.register((Mob entity, ServerLevel world, double x, double y, double z, BaseSpawner spawner, MobSpawnType spawnReason) -> {
-			return DrownedEvent.onDrownedSpawn(entity, world, x, y, z, spawner, spawnReason);
+		CollectiveSpawnEvents.MOB_CHECK_SPAWN.register((Mob entity, ServerLevel world, BlockPos spawnerPos, MobSpawnType spawnReason) -> {
+			return DrownedEvent.onDrownedSpawn(entity, world, spawnerPos, spawnReason);
 		});
 	}
 }

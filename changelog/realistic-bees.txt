@@ -3,6 +3,12 @@ Realistic Bees
 https://www.curseforge.com/minecraft/mc-mods/realistic-bees
 
 =========
+v2.3: Updated backend code.
+Fixed a crash due to a mod incompatibility causing a ServerHangWatchdog error.
+Fixed multiple bees spawning during breeding.
+Fixed baby bees suffocating. All suffocation damage has been disabled for bees, can be toggled in the config.
+
+=========
 v2.2: Extra bees are now spawned on the next world tick, instead of immediately when the first bee spawns. Using the new Collective code. This should fix some backend issues.
 
 =========

@@ -3,6 +3,9 @@ Conduits Prevent Drowned
 https://www.curseforge.com/minecraft/mc-mods/conduits-prevent-drowned
 
 =========
+v1.5: (Fabric only) Fixed an issue of the mod referencing an incorrect callback, causing it not to boot.
+
+=========
 v1.4: Increased the maximum (default) value of preventDrownedInRange to prevent some drowned from spawning just outside the max possible range.
 
 =========

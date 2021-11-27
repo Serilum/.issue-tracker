@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Cycle Paintings.
- * Minecraft version: 1.17.1, mod version: 2.0.
+ * Minecraft version: 1.17.1, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Cycle Paintings ever released, along with some other perks.
@@ -15,13 +15,16 @@
 package com.natamus.cyclepaintings;
 
 import com.natamus.collective.check.RegisterMod;
+import com.natamus.cyclepaintings.config.ConfigHandler;
 import com.natamus.cyclepaintings.events.PaintingEvent;
 import com.natamus.cyclepaintings.util.Reference;
 import com.natamus.cyclepaintings.util.Util;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -32,8 +35,11 @@ public class Main {
     public Main() {
         instance = this;
         
+        ModLoadingContext modLoadingContext = ModLoadingContext.get();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    	
         modEventBus.addListener(this::loadComplete);
+        modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHandler.spec);
 
         RegisterMod.register(Reference.NAME, Reference.MOD_ID, Reference.VERSION, Reference.ACCEPTED_VERSIONS);
     }

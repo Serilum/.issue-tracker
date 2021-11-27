@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Realistic Bees.
- * Minecraft version: 1.17.1, mod version: 2.2.
+ * Minecraft version: 1.17.1, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Realistic Bees ever released, along with some other perks.
@@ -23,6 +23,7 @@ import com.natamus.collective.data.GlobalVariables;
 import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.collective.functions.SpawnEntityFunctions;
 import com.natamus.collective.functions.StringFunctions;
+import com.natamus.collective.functions.TaskFunctions;
 import com.natamus.realisticbees.config.ConfigHandler;
 import com.natamus.realisticbees.util.Reference;
 
@@ -89,21 +90,28 @@ public class BeeEvent {
 			return;
 		}
 		
-		Vec3 beevec = entity.position();
-		
-		List<Player> playersaround = world.getEntitiesOfClass(Player.class, new AABB(beevec.x-5, beevec.y-5, beevec.z-5, beevec.x+5, beevec.y+5, beevec.z+5));
-		if (playersaround.size() > 0) {
+		Bee bee = (Bee)entity;
+		if (bee.isBaby()) {
 			return;
 		}
 		
-		ServerLevel serverworld = (ServerLevel)world;
-		for (int i = 0; i < extrabees; i++) {
-			Bee newbee = EntityType.BEE.create(world);
-			newbee.level = world;
-			newbee.setPos(beevec.x, beevec.y, beevec.z);
-			newbee.addTag(Reference.MOD_ID + ".ignorebee");
-			SpawnEntityFunctions.spawnEntityOnNextTick(serverworld, newbee);
-		}
+		TaskFunctions.enqueueImmediateTask(world, () -> {
+        	Vec3 beevec = entity.position();
+    		
+    		List<Player> playersaround = world.getEntitiesOfClass(Player.class, new AABB(beevec.x-16, beevec.y-16, beevec.z-16, beevec.x+16, beevec.y+16, beevec.z+16));
+    		if (playersaround.size() > 0) {
+    			return;
+    		}
+    		
+    		ServerLevel serverworld = (ServerLevel)world;
+    		for (int i = 0; i < extrabees; i++) {
+    			Bee newbee = EntityType.BEE.create(world);
+    			newbee.level = world;
+    			newbee.setPos(beevec.x, beevec.y, beevec.z);
+    			newbee.addTag(Reference.MOD_ID + ".ignorebee");
+    			SpawnEntityFunctions.spawnEntityOnNextTick(serverworld, newbee);
+    		}
+        }, false);
 	}
 	
 	@SubscribeEvent

@@ -3,6 +3,13 @@ Cycle Paintings
 https://www.curseforge.com/minecraft/mc-mods/cycle-paintings
 
 =========
+v2.1: Added two config options.
+ignorePaintingsInCycleResourceLocation and showRegisteredPaintingsDebug.
+The first allows you to exclude certain paintings from showing up in the cycle, the other to find paintings to exclude via the console and debug lines.
+By default the paintings from 
+Infernal Expansion are excluded because they should only show up with their separate painting item.
+
+=========
 v2.0: You can now cycle the painting in reverse by crouching while clicking a painting with another in hand.
 
 =========

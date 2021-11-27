@@ -3,6 +3,10 @@ Starter Kit
 https://www.curseforge.com/minecraft/mc-mods/starter-kit
 
 =========
+v3.0: Added support for FTB Team Islands, can be toggled in the config. The starter kit will also be set after the '/ftbteamislands create' command.
+Of course a fully optional dependency.
+
+=========
 v2.7: (Fabric only) Improved how the mod loads items from the config in a server environment.
 
 =========

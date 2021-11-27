@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Kelp Fertilizer.
- * Minecraft version: 1.17.x, mod version: 1.7.
+ * Minecraft version: 1.17.x, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Kelp Fertilizer ever released, along with some other perks.
@@ -14,36 +14,33 @@
 
 package com.natamus.kelpfertilizer.events;
 
-import com.natamus.collective_fabric.functions.BlockPosFunctions;
 import com.natamus.collective_fabric.functions.CropFunctions;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.BlockHitResult;
 
 public class KelpEvent {
-	public static InteractionResult onKelpUse(Player player, Level world, InteractionHand hand, HitResult hitResult) {
+	public static boolean onKelpUse(Level world, Player player, InteractionHand hand, BlockPos pos, BlockHitResult hitVec) {
 		if (world.isClientSide) {
-			return InteractionResult.PASS;
+			return true;
 		}
 		
 		ItemStack itemstack = player.getItemInHand(hand);
 		if (!itemstack.getItem().equals(Items.KELP)) {
-			return InteractionResult.PASS;
+			return true;
 		}
 		
-		BlockPos cpos = BlockPosFunctions.getBlockPosFromHitResult(hitResult).below();
-		if (CropFunctions.applyBonemeal(itemstack, world, cpos, player)) {
-			world.levelEvent(2005, cpos, 0);
+		if (CropFunctions.applyBonemeal(itemstack, world, pos, player)) {
+			world.levelEvent(2005, pos, 0);
 			player.swing(hand);
-			return InteractionResult.SUCCESS;
+			return true;
 		}
 		
-		return InteractionResult.PASS;
+		return true;
 	}
 }
