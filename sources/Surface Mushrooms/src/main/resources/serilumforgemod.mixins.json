@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.natamus.surfacemushrooms.forge.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "refmap": "serilumforgemod.refmap.json",
+  "mixins": [
+  	"MushroomBlockMixin"
+  ],
+  "client": [
+  
+  ],
+  "server": [
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

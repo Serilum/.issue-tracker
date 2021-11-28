@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Starter Kit.
- * Minecraft version: 1.17.1, mod version: 3.0.
+ * Minecraft version: 1.17.1, mod version: 3.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Starter Kit ever released, along with some other perks.
@@ -61,6 +61,9 @@ public class FirstSpawnEvent {
 		ParseResults<CommandSourceStack> results = e.getParseResults();
 		CommandContextBuilder<CommandSourceStack> context = results.getContext();
 		Command<CommandSourceStack> command = context.getCommand();
+		if (command == null) {
+			return;
+		}
 		
 		String cmdstr = command.toString().toLowerCase();
 		if (cmdstr.contains("ftbteamislands.commands.createislandcommand")) {

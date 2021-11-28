@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "starterkit-fabric",
-  "version": "3.0",
+  "version": "3.1",
 
   "name": "Starter Kit (Fabric)",
   "description": "Gives players who join the world for the first time configurable starter gear.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.17.x",
     "java": ">=16",
-    "collective-fabric": ">=3.4"
+    "collective-fabric": ">=3.7"
   }
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of No Hostiles Around Campfire.
- * Minecraft version: 1.17.1, mod version: 3.6.
+ * Minecraft version: 1.17.1, mod version: 3.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of No Hostiles Around Campfire ever released, along with some other perks.
@@ -20,11 +20,14 @@ import java.util.List;
 
 import com.natamus.collective.functions.EntityFunctions;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class Util {
 	private static List<String> hostileSpecialEntities = new ArrayList<String>(Arrays.asList("FoxHound"));
+	private static List<String> hostileSpecialResourceLocations = new ArrayList<String>(Arrays.asList("lycanitesmobs"));
 	
 	public static boolean entityIsHostile(Entity entity) {
 		if (entity.getType().getCategory().equals(MobCategory.MONSTER)) {
@@ -34,6 +37,13 @@ public class Util {
 		String entitystring = EntityFunctions.getEntityString(entity);
 		if (hostileSpecialEntities.contains(entitystring)) {
 			return true;
+		}
+		
+		ResourceLocation rl = ForgeRegistries.ENTITIES.getKey(entity.getType());
+		if (rl != null) {
+			if (hostileSpecialResourceLocations.contains(rl.toString().split(":")[0])) {
+				return true;
+			}
 		}
 		
 		return false;

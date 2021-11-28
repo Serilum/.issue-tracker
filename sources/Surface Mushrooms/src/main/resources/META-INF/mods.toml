@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[37,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Surface%20Mushrooms"
+
+[[mods]]
+modId="surfacemushrooms"
+version="1.0"
+displayName="Surface Mushrooms"
+displayURL="https://curseforge.com/minecraft/mc-mods/surface-mushrooms"
+authors="Rick South"
+description="Mushrooms can be placed on the surface in daylight and in any brightness."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gilbert, Tyler Behl   
+'''
+
+[[dependencies.surfacemushrooms]]
+    modId="collective"
+    mandatory=true
+    versionRange="[3.7,)"
+    ordering="NONE"
+    side="BOTH"

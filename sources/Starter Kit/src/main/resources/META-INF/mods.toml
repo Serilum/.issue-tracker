@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Star
 
 [[mods]]
 modId="starterkit"
-version="3.0"
+version="3.1"
 displayName="Starter Kit"
 displayURL="https://curseforge.com/minecraft/mc-mods/starter-kit"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adara Christine, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gil
 [[dependencies.starterkit]]
     modId="collective"
     mandatory=true
-    versionRange="[3.0,)"
+    versionRange="[3.7,)"
     ordering="NONE"
     side="BOTH"

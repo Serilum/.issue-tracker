@@ -1,0 +1,6 @@
+Changelog:
+Surface Mushrooms
+https://curseforge.com/minecraft/mc-mods/surface-mushrooms
+
+=========
+v1.0: Initial release of mod.

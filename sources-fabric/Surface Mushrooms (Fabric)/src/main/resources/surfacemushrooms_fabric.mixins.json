@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.natamus.surfacemushrooms.fabric.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  	"MushroomBlockMixin"
+  ],
+  "client": [
+  
+  ],
+  "server": [
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

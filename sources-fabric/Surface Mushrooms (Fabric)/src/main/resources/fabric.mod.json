@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "surfacemushrooms-fabric",
+  "version": "1.0",
+
+  "name": "Surface Mushrooms (Fabric)",
+  "description": "Mushrooms can be placed on the surface in daylight and in any brightness.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/surface-mushrooms-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Surface%20Mushrooms%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Surface%20Mushrooms"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.surfacemushrooms.Main" ] },
+  "mixins": [
+    "surfacemushrooms_fabric.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=3.7"
+  }
+}

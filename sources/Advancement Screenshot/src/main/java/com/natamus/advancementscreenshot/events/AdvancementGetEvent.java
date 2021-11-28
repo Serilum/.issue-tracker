@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Advancement Screenshot.
- * Minecraft version: 1.17.1, mod version: 2.0.
+ * Minecraft version: 1.17.1, mod version: 3.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Advancement Screenshot ever released, along with some other perks.
@@ -15,13 +15,12 @@
 package com.natamus.advancementscreenshot.events;
 
 import com.natamus.advancementscreenshot.config.ConfigHandler;
+import com.natamus.advancementscreenshot.util.Util;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Screenshot;
-import net.minecraft.network.chat.ChatType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -30,8 +29,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 @EventBusSubscriber
 public class AdvancementGetEvent {
 	private final Minecraft mc = Minecraft.getInstance();
-	private boolean takescreenshot = false;
-	private int cooldown = -1;
 	
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
@@ -40,14 +37,14 @@ public class AdvancementGetEvent {
 			return;
 		}
 		
-		if (cooldown > 0) {
-			cooldown -= 1;
+		if (Util.cooldown > 0) {
+			Util.cooldown -= 1;
 			return;
 		}
 		
-		if (takescreenshot) {
-			if (cooldown < 0) {
-				cooldown = 20;
+		if (Util.takescreenshot) {
+			if (Util.cooldown < 0) {
+				Util.cooldown = 20;
 				return;
 			}
 			
@@ -59,21 +56,8 @@ public class AdvancementGetEvent {
 				});
 			});
 			
-			takescreenshot = false;
-			cooldown = -1;
-		}
-	}
-	
-	@OnlyIn(Dist.CLIENT)
-	@SubscribeEvent
-	public void onClientChat(ClientChatReceivedEvent e) {
-		if (e.getType().equals(ChatType.SYSTEM)) {
-			String message = e.getMessage().getString();
-			String playername = mc.player.getName().getString();
-			if (message.contains(playername + " has reached the goal [") || message.contains(playername + " has made the advancement [")) {
-				takescreenshot = true;
-				cooldown = 20;
-			}
+			Util.takescreenshot = false;
+			Util.cooldown = -1;
 		}
 	}
 }

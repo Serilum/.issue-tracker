@@ -3,6 +3,9 @@ Starter Kit
 https://www.curseforge.com/minecraft/mc-mods/starter-kit
 
 =========
+v3.1: Fixed nullpointer when a command was run by a non-player.
+
+=========
 v3.0: Added support for FTB Team Islands, can be toggled in the config. The starter kit will also be set after the '/ftbteamislands create' command.
 Of course a fully optional dependency.
 

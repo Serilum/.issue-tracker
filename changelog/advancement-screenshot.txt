@@ -3,6 +3,9 @@ Advancement Screenshot
 https://curseforge.com/minecraft/mc-mods/advancement-screenshot
 
 =========
+v3.0: The mod now works separate from the in-game chat, adding support for other languages than English.
+
+=========
 v2.0: Fixed the mod not working correctly when installed on the client and playing in a multiplayer environment. It is now completely client based.
 
 =========
