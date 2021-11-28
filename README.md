@@ -115,6 +115,7 @@ N/A
 [No Hostiles Around Campfire (Forge ](https://curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire-fabric)\
 [Nutritious Milk (Forge](https://curseforge.com/minecraft/mc-mods/nutritious-milk))\
 [Omega Mute (Forge ](https://curseforge.com/minecraft/mc-mods/omega-mute)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/omega-mute-fabric)\
+[OP Permission Fallback (Fabric](https://curseforge.com/minecraft/mc-mods/op-permission-fallback-fabric))\
 [Paper Books (Forge ](https://curseforge.com/minecraft/mc-mods/paper-books)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/paper-books-fabric)\
 [Passive Endermen (Forge](https://curseforge.com/minecraft/mc-mods/passive-endermen))\
 [Passive Shield (Forge](https://curseforge.com/minecraft/mc-mods/passive-shield))\
