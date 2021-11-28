@@ -33,7 +33,7 @@ N/A
 
 ## Active Mods:
 [Advancement Screenshot (Forge](https://curseforge.com/minecraft/mc-mods/advancement-screenshot))\
-[All Loot Drops (Forge ](https://curseforge.com/minecraft/mc-mods/all-loot-drops))\
+[All Loot Drops (Forge](https://curseforge.com/minecraft/mc-mods/all-loot-drops))\
 [Altered Damage (Forge ](https://curseforge.com/minecraft/mc-mods/altered-damage)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/altered-damage-fabric)\
 [Always a Wither Skull (Forge ](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull-fabric)\
 [Anvil Restoration (Forge ](https://curseforge.com/minecraft/mc-mods/anvil-restoration)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/anvil-restoration-fabric)\
