@@ -1,0 +1,6 @@
+Changelog:
+Furnace Recycle
+https://curseforge.com/minecraft/mc-mods/furnace-recycle
+
+=========
+v1.0: Initial release of mod.

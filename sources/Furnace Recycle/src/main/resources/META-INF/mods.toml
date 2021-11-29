@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[37,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Furnace%20Recycle"
+
+[[mods]]
+modId="furnacerecycle"
+version="1.0"
+displayName="Furnace Recycle"
+displayURL="https://curseforge.com/minecraft/mc-mods/furnace-recycle"
+authors="Rick South"
+description="Makes all metal-containing items in the game recyclable in a furnace."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Adara Christine, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gilbert, Tyler Behl   
+'''
+
+[[dependencies.furnacerecycle]]
+    modId="collective"
+    mandatory=true
+    versionRange="[3.7,)"
+    ordering="NONE"
+    side="BOTH"
