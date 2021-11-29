@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v3.8: Changed empty string check in StringFunctions to use isEmpty() which prevents unwanted message behaviour.
+
+=========
 v3.7: Added TaskFunctions related to enqueuing tasks to the next tick.
 
 =========

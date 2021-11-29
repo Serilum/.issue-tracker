@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "welcomemessage-fabric",
+  "version": "1.0",
+
+  "name": "Welcome Message (Fabric)",
+  "description": "An easy to configure welcome message mod for players after login with URL support.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/welcome-message-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Welcome%20Message%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Welcome%20Message"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.welcomemessage.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "collective-fabric": ">=3.8"
+  }
+}

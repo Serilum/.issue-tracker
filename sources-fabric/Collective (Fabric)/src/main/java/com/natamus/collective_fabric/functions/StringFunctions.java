@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 3.7.
+ * Minecraft version: 1.17.x, mod version: 3.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -60,7 +60,7 @@ public class StringFunctions {
 	}
 	
 	public static void sendMessage(CommandSourceStack source, String m, ChatFormatting colour, boolean emptyline, String url) {
-		if (m == "") {
+		if (m.isEmpty()) {
 			return;
 		}
 		
@@ -70,8 +70,8 @@ public class StringFunctions {
 		
 		TextComponent message = new TextComponent(m);
 		message.withStyle(colour);
-		if (m.contains("http") || url != "") {
-			if (url == "") {
+		if (m.contains("http") || !url.isEmpty()) {
+			if (url.isEmpty()) {
 				for (String word : m.split(" ")) {
 					if (word.contains("http")) {
 						url = word;
@@ -80,7 +80,7 @@ public class StringFunctions {
 				}
 			}
 			
-			if (url != "") {
+			if (!url.isEmpty()) {
 				Style clickstyle = message.getStyle().withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
 				message.withStyle(clickstyle);
 			}
@@ -89,7 +89,7 @@ public class StringFunctions {
 	}
 
 	public static void sendMessage(Player player, String m, ChatFormatting colour, boolean emptyline, String url) {
-		if (m == "") {
+		if (m.isEmpty()) {
 			return;
 		}
 		
@@ -99,8 +99,8 @@ public class StringFunctions {
 		
 		TextComponent message = new TextComponent(m);
 		message.withStyle(colour);
-		if (m.contains("http") || url != "") {
-			if (url == "") {
+		if (m.contains("http") || !url.isEmpty()) {
+			if (url.isEmpty()) {
 				for (String word : m.split(" ")) {
 					if (word.contains("http")) {
 						url = word;
@@ -109,7 +109,7 @@ public class StringFunctions {
 				}
 			}
 			
-			if (url != "") {
+			if (!url.isEmpty()) {
 				Style clickstyle = message.getStyle().withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
 				message.withStyle(clickstyle);
 			}
@@ -118,7 +118,7 @@ public class StringFunctions {
 	}
 	
 	public static void broadcastMessage(Level world, String m, ChatFormatting colour) {
-		if (m == "") {
+		if (m.isEmpty()) {
 			return;
 		}
 		
@@ -135,7 +135,7 @@ public class StringFunctions {
 	}
 	
 	public static void sendMessageToPlayersAround(Level world, BlockPos p, int radius, String message, ChatFormatting colour) {
-		if (message == "") {
+		if (message.isEmpty()) {
 			return;
 		}
 		
