@@ -32,7 +32,7 @@ N/A
 [Collective](https://curseforge.com/minecraft/mc-mods/collective)
 
 ## Active Mods:
-[Advancement Screenshot (Forge](https://curseforge.com/minecraft/mc-mods/advancement-screenshot))\
+[Advancement Screenshot (Forge ](https://curseforge.com/minecraft/mc-mods/advancement-screenshot)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/advancement-screenshot-fabric)\
 [All Loot Drops (Forge](https://curseforge.com/minecraft/mc-mods/all-loot-drops))\
 [Altered Damage (Forge ](https://curseforge.com/minecraft/mc-mods/altered-damage)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/altered-damage-fabric)\
 [Always a Wither Skull (Forge ](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull-fabric)\
@@ -152,6 +152,7 @@ N/A
 [Starter Kit (Forge ](https://curseforge.com/minecraft/mc-mods/starter-kit)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/starter-kit-fabric)\
 [Stray Spawn (Forge ](https://curseforge.com/minecraft/mc-mods/stray-spawn)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/stray-spawn-fabric)\
 [Superflat World No Slimes (Forge ](https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/superflat-world-no-slimes-fabric)\
+[Surface Mushrooms (Forge ](https://curseforge.com/minecraft/mc-mods/surface-mushrooms)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/surface-mushrooms-fabric)\
 [The Vanilla Experience (Forge](https://curseforge.com/minecraft/mc-mods/the-vanilla-experience))\
 [TNT Breaks Bedrock (Forge ](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/tnt-breaks-bedrock-fabric)\
 [Trample Everything (Forge ](https://curseforge.com/minecraft/mc-mods/trample-everything)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/trample-everything-fabric)\
