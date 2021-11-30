@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Advancement Screenshot.
- * Minecraft version: 1.17.x, mod version: 3.0.
+ * Minecraft version: 1.18.x, mod version: 3.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Advancement Screenshot ever released, along with some other perks.
@@ -18,5 +18,5 @@ public class Reference {
 	public static final String MOD_ID = "advancementscreenshot-fabric";
 	public static final String NAME = "Advancement Screenshot (Fabric)";
 	public static final String VERSION = "3.0";
-	public static final String ACCEPTED_VERSIONS = "[1.17.x]";
+	public static final String ACCEPTED_VERSIONS = "[1.18.x]";
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.17.1, mod version: 5.2.
+ * Minecraft version: 1.18.0, mod version: 5.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Mob Heads ever released, along with some other perks.
@@ -18,5 +18,5 @@ public class Reference {
 	public static final String MOD_ID = "justmobheads";
 	public static final String NAME = "Just Mob Heads";
 	public static final String VERSION = "5.2";
-	public static final String ACCEPTED_VERSIONS = "[1.17.1]";
+	public static final String ACCEPTED_VERSIONS = "[1.18.0]";
 }

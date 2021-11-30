@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hidden Recipe Book.
- * Minecraft version: 1.17.1, mod version: 2.3.
+ * Minecraft version: 1.18.0, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Hidden Recipe Book ever released, along with some other perks.
@@ -32,7 +32,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
@@ -42,18 +42,18 @@ public class BookGUIEvent {
     private static Minecraft mc = null;
     private static Date lastpress = null;
     private static Field imageButton_resourceLocation = ObfuscationReflectionHelper.findField(ImageButton.class, "f_94223_"); // resourceLocation
-    private static GuiScreenEvent.InitGuiEvent.Post lastguipost = null;
+    private static ScreenEvent.InitScreenEvent.Post lastguipost = null;
     
 	private static HashMap<String, ImageButton> recipe_buttons = new HashMap<String, ImageButton>();
 	private static boolean showbook = !ConfigHandler.GENERAL.shouldHideRecipeBook.get();
 	
     @SubscribeEvent
-    public static void onGUIScreen(GuiScreenEvent.InitGuiEvent.Post e) {
-    	String guiname = e.getGui().getTitle().getString();
+    public static void onGUIScreen(ScreenEvent.InitScreenEvent.Post e) {
+    	String guiname = e.getScreen().getTitle().getString();
     	if (guiname.equalsIgnoreCase("crafting")) {
     		lastguipost = e;
 			
-    		List<GuiEventListener> widgets = e.getWidgetList();
+    		List<GuiEventListener> widgets = e.getListenersList();
     		
     		ImageButton imagebutton = null;
     		for (GuiEventListener widget : widgets) {
@@ -74,7 +74,7 @@ public class BookGUIEvent {
 					if (recipe_buttons.containsKey(guiname)) {
 						ImageButton recipe_button = recipe_buttons.get(guiname);
 						if (!widgets.contains(recipe_button)) {
-							e.addWidget(recipe_button);
+							e.addListener(recipe_button);
 						}
 						
 						recipe_button.visible = showbook;
@@ -94,7 +94,7 @@ public class BookGUIEvent {
     
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
-	public void onKey(GuiScreenEvent.KeyboardKeyPressedEvent e) {
+	public void onKey(ScreenEvent.KeyboardKeyPressedEvent e) {
 		if (!ConfigHandler.GENERAL.allowRecipeBookToggleHotkey.get()) {
 			return;
 		}
@@ -130,7 +130,7 @@ public class BookGUIEvent {
 				}
 				
 				if (lastguipost != null) {
-					Screen guiscreen = e.getGui();
+					Screen guiscreen = e.getScreen();
 					String guiname = guiscreen.getTitle().getString();
 					if (recipe_buttons.containsKey(guiname)) {
 						ImageButton button = recipe_buttons.get(guiname);

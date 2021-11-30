@@ -3,6 +3,9 @@ GUI Compass
 https://www.curseforge.com/minecraft/mc-mods/gui-compass
 
 =========
+v1.8: (Fabric only) Fixed incorrect project URL.
+
+=========
 v1.7: (1.17.1 only) Fixed the wrong posestack being used to render the GUI text.
 
 =========

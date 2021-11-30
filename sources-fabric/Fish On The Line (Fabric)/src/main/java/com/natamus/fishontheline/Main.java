@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Fish On The Line.
- * Minecraft version: 1.17.x, mod version: 1.2.
+ * Minecraft version: 1.18.x, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Fish On The Line ever released, along with some other perks.

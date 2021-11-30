@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Omega Mute.
- * Minecraft version: 1.17.1, mod version: 1.9.
+ * Minecraft version: 1.18.0, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Omega Mute ever released, along with some other perks.
@@ -47,7 +47,7 @@ public class MuteEvent {
 			int mutedvalue = ismutedsoundmap.get(name);
 			if (mutedvalue >= 0) {
 				if (mutedvalue == 0) {
-					e.setResultSound(null);
+					e.setSound(null);
 					name = "(muted) " + name;
 				}
 				else {
@@ -59,7 +59,7 @@ public class MuteEvent {
 						long ms = (now.getTime()-then.getTime());
 						if (ms < mutedvalue*1000) {
 							replace = false;
-							e.setResultSound(null);
+							e.setSound(null);
 							name = "(" + mutedvalue + "-culled-muted) " + name;
 						}
 					}

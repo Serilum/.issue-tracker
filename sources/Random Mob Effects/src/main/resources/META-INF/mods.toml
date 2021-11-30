@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[37,)"
+loaderVersion="[38,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Random%20Mob%20Effects"
 
@@ -17,6 +17,6 @@ Adara Christine, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gil
 [[dependencies.randommobeffects]]
     modId="collective"
     mandatory=true
-    versionRange="[2.64,)"
+    versionRange="[3.8,)"
     ordering="NONE"
     side="BOTH"

@@ -3,6 +3,9 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v3.5: (Fabric only) Fixed incorrect mod URL.
+
+=========
 v3.4: Added support for all alphabets within the custom names file. E.g. cyrillic and georgian.
 
 =========

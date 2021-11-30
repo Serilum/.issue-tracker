@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.beautifiedchatclient.Main" ], "client": [ "com.natamus.beautifiedchatclient.ClientMain" ] },
 
   "depends": {
-    "fabricloader": ">=0.11.3",
+    "fabricloader": ">=0.12.5",
     "fabric": "*",
-    "minecraft": "1.17.x",
-    "java": ">=16",
-    "collective-fabric": ">=1.61"
+    "minecraft": "1.18.x",
+    "java": ">=17",
+    "collective-fabric": ">=3.9"
   }
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 3.8.
+ * Minecraft version: 1.18.x, mod version: 3.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -40,7 +40,7 @@ public abstract class ServerGamePacketListenerImplMixin {
 	@Shadow public void disconnect(Component component) { }
 	
 	@Inject(method = "handleChat(Lnet/minecraft/server/network/TextFilter$FilteredText;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;getPlayerList()Lnet/minecraft/server/players/PlayerList;", ordinal = 0), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
-	private void ServerGamePacketListenerImpl_handleChat(TextFilter.FilteredText filteredText, CallbackInfo ci, String string, Component component, Component component2) {
+	private void ServerGamePacketListenerImpl_handleChat(TextFilter.FilteredText filteredText, CallbackInfo ci, String string, String string2, Component component, Component component2) {
 		Component newMessage = CollectiveChatEvents.SERVER_CHAT_RECEIVED.invoker().onServerChat(player, component2, player.getUUID());
 		if (component != newMessage) {
 			server.getPlayerList().broadcastMessage(newMessage, (player) -> {

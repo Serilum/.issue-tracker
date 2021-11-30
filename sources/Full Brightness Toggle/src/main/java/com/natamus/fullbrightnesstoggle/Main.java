@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Full Brightness Toggle.
- * Minecraft version: 1.17.1, mod version: 1.3.
+ * Minecraft version: 1.18.0, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Full Brightness Toggle ever released, along with some other perks.
@@ -20,9 +20,9 @@ import com.natamus.fullbrightnesstoggle.util.Reference;
 
 import net.minecraft.client.KeyMapping;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fmlclient.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;

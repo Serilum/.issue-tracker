@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[37,)"
+loaderVersion="[38,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Compact%20Help%20Command"
 
@@ -11,12 +11,12 @@ displayURL="https://curseforge.com/minecraft/mc-mods/compact-help-command"
 authors="Rick South"
 description="Modifies the standard /help command to be colourful and have multiple pages."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, dtorgy, Kreezcraft.com, Morgan Schetzle, Tyler Behl   
+Adara Christine, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gilbert, Tyler Behl   
 '''
 
 [[dependencies.compacthelpcommand]]
     modId="collective"
     mandatory=true
-    versionRange="[2.60,)"
+    versionRange="[3.8,)"
     ordering="NONE"
     side="BOTH"

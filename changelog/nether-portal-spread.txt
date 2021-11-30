@@ -3,6 +3,9 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v5.6: Changed the default spread config file.
+
+=========
 v5.5: (Fabric only) Fixed mod not loading correctly in a server environment with a custom spread block set.
 
 =========

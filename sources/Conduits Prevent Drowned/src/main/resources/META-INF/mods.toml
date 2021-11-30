@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[37,)"
+loaderVersion="[38,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Conduits%20Prevent%20Drowned"
 
@@ -11,12 +11,12 @@ displayURL="https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned"
 authors="Rick South"
 description="Disables drowned zombie spawns around the player when the conduit effect is active."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley   
+Adara Christine, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gilbert, Tyler Behl   
 '''
 
 [[dependencies.conduitspreventdrowned]]
     modId="collective"
     mandatory=true
-    versionRange="[2.50,)"
+    versionRange="[3.8,)"
     ordering="NONE"
     side="BOTH"

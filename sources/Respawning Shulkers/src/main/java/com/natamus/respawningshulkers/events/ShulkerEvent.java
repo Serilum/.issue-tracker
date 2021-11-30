@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Respawning Shulkers.
- * Minecraft version: 1.17.1, mod version: 1.6.
+ * Minecraft version: 1.18.0, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Respawning Shulkers ever released, along with some other perks.
@@ -30,11 +30,11 @@ import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fmlserverevents.FMLServerStoppingEvent;
 
 @EventBusSubscriber
 public class ShulkerEvent {
@@ -122,7 +122,7 @@ public class ShulkerEvent {
 	}
 	
 	@SubscribeEvent
-	public void onServerShutdown(FMLServerStoppingEvent e) {
+	public void onServerShutdown(ServerStoppingEvent e) {
 		Set<Level> worlds = respawnShulkers.keySet();
 		for (Level world : worlds) {
 			for (Entity shulker : respawnShulkers.get(world)) {

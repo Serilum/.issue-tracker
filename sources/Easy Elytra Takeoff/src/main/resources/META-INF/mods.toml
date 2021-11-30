@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[37,)"
+loaderVersion="[38,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Easy%20Elytra%20Takeoff"
 
@@ -11,12 +11,12 @@ displayURL="https://curseforge.com/minecraft/mc-mods/easy-elytra-takeoff"
 authors="Rick South"
 description="Allows easy taking off by elytra with a firework from the ground without that awkward jump."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, Kreezcraft.com, Morgan Schetzle, Tyler Behl, Tyler Hadley   
+Adara Christine, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gilbert, Tyler Behl   
 '''
 
 [[dependencies.easyelytratakeoff]]
     modId="collective"
     mandatory=true
-    versionRange="[2.43,)"
+    versionRange="[3.8,)"
     ordering="NONE"
     side="BOTH"

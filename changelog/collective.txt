@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v3.9: (Fabric only) Corrected wrong version variable.
+
+=========
 v3.8: Changed empty string check in StringFunctions to use isEmpty() which prevents unwanted message behaviour.
 
 =========

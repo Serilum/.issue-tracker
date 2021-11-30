@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.17.x, mod version: 3.8.
+ * Minecraft version: 1.18.x, mod version: 3.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -41,12 +41,12 @@ public abstract class BaseSpawnerMixin {
 	@Shadow protected abstract void delay(Level level, BlockPos blockPos);
 	
 	@Inject(method = "serverTick(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V", at = @At(value= "INVOKE", target = "Lnet/minecraft/world/entity/Mob;checkSpawnObstruction(Lnet/minecraft/world/level/LevelReader;)Z"), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
-	private void BaseSpawner_serverTick(ServerLevel serverLevel, BlockPos spawnerPos, CallbackInfo ci, boolean bl, int i, CompoundTag compoundTag, Optional<?> optional, ListTag listTag, int j, double d, double e, double f, Entity entity, Mob mob) {
+	private void BaseSpawner_serverTick(ServerLevel serverLevel, BlockPos blockPos, CallbackInfo ci, boolean bl, int i, CompoundTag compoundTag, Optional<?> optional, ListTag listTag, int j, double d, double e, double f, BlockPos blockPos2, Entity customSpawnRules, int k, Mob mob) {
 		mob.addTag(Reference.MOD_ID + ".fromspawner");
 		
-		if (!CollectiveSpawnEvents.MOB_CHECK_SPAWN.invoker().onMobCheckSpawn(mob, serverLevel, spawnerPos, MobSpawnType.SPAWNER)) {
+		if (!CollectiveSpawnEvents.MOB_CHECK_SPAWN.invoker().onMobCheckSpawn(mob, serverLevel, blockPos, MobSpawnType.SPAWNER)) {
 			ci.cancel();
-			delay(serverLevel, spawnerPos);
+			delay(serverLevel, blockPos);
 		}
 	}
 }
