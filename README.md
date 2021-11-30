@@ -81,6 +81,7 @@ N/A
 [First Join Message (Forge ](https://curseforge.com/minecraft/mc-mods/first-join-message)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/first-join-message-fabric)\
 [Fixed Anvil Repair Cost (Forge ](https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost-fabric)\
 [Full Brightness Toggle (Forge ](https://curseforge.com/minecraft/mc-mods/full-brightness-toggle)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/full-brightness-toggle-fabric)\
+[Furnace Recycle (Forge ](https://curseforge.com/minecraft/mc-mods/furnace-recycle)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/furnace-recycle-fabric)\
 [Giant Spawn (Forge ](https://curseforge.com/minecraft/mc-mods/giant-spawn)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/giant-spawn-fabric)\
 [Grass Seeds (Forge ](https://curseforge.com/minecraft/mc-mods/grass-seeds)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/grass-seeds-fabric)\
 [Grindstone Sharper Tools (Forge ](https://curseforge.com/minecraft/mc-mods/grindstone-sharper-tools)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/grindstone-sharper-tools-fabric)\
@@ -165,6 +166,7 @@ N/A
 [Villager Names (Forge ](https://curseforge.com/minecraft/mc-mods/villager-names)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/villager-names-fabric-version)\
 [Vote Command (Forge ](https://curseforge.com/minecraft/mc-mods/vote-command)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/vote-command-fabric)\
 [Weaker Spiderwebs (Forge ](https://curseforge.com/minecraft/mc-mods/weaker-spiderwebs)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/weaker-spiderwebs-fabric)\
+[Welcome Message (Forge ](https://curseforge.com/minecraft/mc-mods/welcome-message)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/welcome-message-fabric)\
 [Wool Tweaks (Forge ](https://curseforge.com/minecraft/mc-mods/wool-tweaks)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/wool-tweaks-fabric)\
 [World Border (Forge ](https://curseforge.com/minecraft/mc-mods/world-border)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/world-border-fabric)\
 [Your Items Are Safe (Forge](https://curseforge.com/minecraft/mc-mods/your-items-are-safe))\
