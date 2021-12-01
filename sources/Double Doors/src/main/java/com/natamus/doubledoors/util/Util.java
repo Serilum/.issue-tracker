@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Double Doors.
- * Minecraft version: 1.18.0, mod version: 3.0.
+ * Minecraft version: 1.18.0, mod version: 3.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Double Doors ever released, along with some other perks.
@@ -75,7 +75,10 @@ public class Util {
 		}
 		
 		List<BlockPos> postoopen = recursivelyOpenDoors(new ArrayList<BlockPos>(Arrays.asList(pos.immutable())), new ArrayList<BlockPos>(), world, pos, pos, block, yoffset);
-
+		if (postoopen.size() <= 1) {
+			return false;
+		}
+		
 		for (BlockPos toopen : postoopen) {
 			BlockState ostate = world.getBlockState(toopen);
 			Block oblock = ostate.getBlock();

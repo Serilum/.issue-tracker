@@ -3,6 +3,9 @@ Fish On The Line
 https://curseforge.com/minecraft/mc-mods/fish-on-the-line
 
 =========
+v1.3: (Forge only) Updated backend code.
+
+=========
 v1.2: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

@@ -3,6 +3,9 @@ Double Doors
 https://www.curseforge.com/minecraft/mc-mods/double-doors
 
 =========
+v3.1: Fixed incorrect behaviour when opening a single door.
+
+=========
 v3.0: The Recursive Update!
 With the config option 'enableRecursiveOpening' you can now open multiple door-type blocks when they are connected. By default those which are connected and a maximum of 10 blocks away.
 
