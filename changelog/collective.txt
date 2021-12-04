@@ -3,6 +3,18 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v3.13: (Fabric only) Fixes an InvalidInjectionException on world load causing a crash.
+
+=========
+v3.12: (Fabric only) Another fix to ConfigFunctions. Fixed CommandsMixin warning.
+
+=========
+v3.11: (Fabric only) Updated ConfigFunctions to correctly read the fabric-style config files.
+
+=========
+v3.10: (Fabric only) Bump required Fabric Loader version to at least 0.12.6 on 1.18 to prevent "JAVA_17 could not be set".
+
+=========
 v3.9: (Fabric only) Corrected wrong version variable.
 
 =========

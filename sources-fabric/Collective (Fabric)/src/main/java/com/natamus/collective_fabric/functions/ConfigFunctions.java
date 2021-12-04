@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.9.
+ * Minecraft version: 1.18.x, mod version: 3.13.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -33,16 +33,20 @@ public class ConfigFunctions {
 		}
 		
 		File dir = new File(dirpath);
-		File file = new File(dirpath + File.separator + modid + "-common.toml");
+		File file = new File(dirpath + File.separator + modid + ".json");
 		
 		List<String> values = new ArrayList<String>();
 		if (dir.isDirectory() && file.isFile()) {
 			try {
-				String content = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + modid + "-common.toml", new String[0])));
+				String content = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + modid + ".json", new String[0])));
 				for (String line : content.split("\n")) {
 					String trimmedline = line.trim();
-					if (trimmedline.startsWith("[") || trimmedline.startsWith("#")) {
+					if (!trimmedline.startsWith("\"")) {
 						continue;
+					}
+					
+					if (trimmedline.endsWith(",")) {
+						trimmedline = trimmedline.substring(0, trimmedline.length()-1);
 					}
 					
 					values.add(trimmedline);
