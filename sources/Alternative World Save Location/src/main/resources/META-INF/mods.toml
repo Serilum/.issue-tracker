@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[38,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Alternative%20World%20Save%20Location"
+
+[[mods]]
+modId="alternativeworldsavelocation"
+version="1.0"
+displayName="Alternative World Save Location"
+displayURL="https://curseforge.com/minecraft/mc-mods/alternative-world-save-location"
+authors="Rick South"
+description="Allows changing the default save location of Minecraft worlds to outside the instance scope."
+credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
+Cherriesaurus, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gilbert, Tyler Behl   
+'''
+
+[[dependencies.alternativeworldsavelocation]]
+    modId="collective"
+    mandatory=true
+    versionRange="[3.8,)"
+    ordering="NONE"
+    side="BOTH"

@@ -1,0 +1,6 @@
+Changelog:
+Alternative World Save Location (Fabric)
+https://curseforge.com/minecraft/mc-mods/alternative-world-save-location
+
+=========
+v1.0: Initial release of mod.
