@@ -35,6 +35,7 @@ N/A
 [Advancement Screenshot (Forge ](https://curseforge.com/minecraft/mc-mods/advancement-screenshot)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/advancement-screenshot-fabric)\
 [All Loot Drops (Forge](https://curseforge.com/minecraft/mc-mods/all-loot-drops))\
 [Altered Damage (Forge ](https://curseforge.com/minecraft/mc-mods/altered-damage)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/altered-damage-fabric)\
+[Alternative World Save Location (Forge ](https://curseforge.com/minecraft/mc-mods/alternative-world-save-location)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/alternative-world-save-location-fabric)\
 [Always a Wither Skull (Forge ](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull-fabric)\
 [Anvil Restoration (Forge ](https://curseforge.com/minecraft/mc-mods/anvil-restoration)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/anvil-restoration-fabric)\
 [Areas (Forge](https://curseforge.com/minecraft/mc-mods/areas))\
