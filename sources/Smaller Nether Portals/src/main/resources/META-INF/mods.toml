@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[38,)"
+loaderVersion="[39,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Smaller%20Nether%20Portals"
 
@@ -11,7 +11,7 @@ displayURL="https://curseforge.com/minecraft/mc-mods/smaller-nether-portals"
 authors="Rick South"
 description="Allows the creation of smaller nether portals, specifically 1x2, 1x3 and 2x2."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gilbert, Tyler Behl   
+Cherriesaurus, joj, Kreezcraft.com, limpjellyfish, Michael W. S., Morgan Schetzle, Robert Gilbert, Tyler Behl   
 '''
 
 [[dependencies.smallernetherportals]]

@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[38,)"
+loaderVersion="[39,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Library%3A%20Collective"
 
@@ -21,6 +21,6 @@ description="Collective is a shared library with common code for all of Serilum'
 [[dependencies.collective]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18]"
+    versionRange="[1.18.1]"
     ordering="NONE"
     side="BOTH"

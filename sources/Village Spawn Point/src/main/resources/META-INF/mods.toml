@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[38,)"
+loaderVersion="[39,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Village%20Spawn%20Point"
 
@@ -11,7 +11,7 @@ displayURL="https://curseforge.com/minecraft/mc-mods/village-spawn-point"
 authors="Rick South"
 description="Sets the spawn point of a new world to always be in the center of a village."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gilbert, Tyler Behl   
+Cherriesaurus, joj, Kreezcraft.com, limpjellyfish, Michael W. S., Morgan Schetzle, Robert Gilbert, Tyler Behl   
 '''
 
 [[dependencies.villagespawnpoint]]

@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[38,)"
+loaderVersion="[39,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Dismount%20Entity"
 
@@ -11,7 +11,7 @@ displayURL="https://curseforge.com/minecraft/mc-mods/dismount-entity"
 authors="Rick South"
 description="Allows players to dismount/remove/exit entities/mobs from mounted entities."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gilbert, Tyler Behl   
+Cherriesaurus, joj, Kreezcraft.com, limpjellyfish, Michael W. S., Morgan Schetzle, Robert Gilbert, Tyler Behl   
 '''
 
 [[dependencies.dismountentity]]

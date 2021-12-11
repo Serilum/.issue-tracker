@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[38,)"
+loaderVersion="[39,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Zombie%20Villagers%20From%20Spawner"
 
@@ -11,7 +11,7 @@ displayURL="https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawn
 authors="Rick South"
 description="Puts back the ability for zombie spawners to spawn the villager variant, removed in 1.11."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gilbert, Tyler Behl   
+Cherriesaurus, joj, Kreezcraft.com, limpjellyfish, Michael W. S., Morgan Schetzle, Robert Gilbert, Tyler Behl   
 '''
 
 [[dependencies.zombievillagersfromspawner]]

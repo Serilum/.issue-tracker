@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Beacon Placement.
- * Minecraft version: 1.18.0, mod version: 1.4.
+ * Minecraft version: 1.18.1, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Better Beacon Placement ever released, along with some other perks.
@@ -18,5 +18,5 @@ public class Reference {
 	public static final String MOD_ID = "betterbeaconplacement";
 	public static final String NAME = "Better Beacon Placement";
 	public static final String VERSION = "1.4";
-	public static final String ACCEPTED_VERSIONS = "[1.18.0]";
+	public static final String ACCEPTED_VERSIONS = "[1.18.1]";
 }
