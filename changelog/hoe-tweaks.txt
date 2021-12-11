@@ -3,6 +3,9 @@ Hoe Tweaks
 https://curseforge.com/minecraft/mc-mods/hoe-tweaks
 
 =========
+v1.3: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.2: Fixed falling through a farmland block when un-tilling it while standing on top of it.
 
 =========

@@ -3,6 +3,9 @@ Move Boats
 https://www.curseforge.com/minecraft/mc-mods/move-boats
 
 =========
+v1.9: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.8: The fall distance of the held boat is now set to 0 while moving to prevent the boat being broken in transport.
 
 =========

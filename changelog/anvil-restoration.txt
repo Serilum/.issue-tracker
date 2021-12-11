@@ -3,6 +3,9 @@ Anvil Restoration
 https://curseforge.com/minecraft/mc-mods/anvil-restoration
 
 =========
+v1.2: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.1: Fixed an IllegalArgumentException when interacting with obsidian.
 
 =========

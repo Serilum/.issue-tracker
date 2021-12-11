@@ -3,6 +3,9 @@ Configurable Extra Mob Drops
 https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops
 
 =========
+v1.9: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.8: Fixed mobs with the Misc category not being shown in the mob drop list. Specifically Iron/Snow Golems and Villagers.
 
 =========

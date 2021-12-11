@@ -3,6 +3,9 @@ GUI Followers
 https://curseforge.com/minecraft/mc-mods/gui-followers
 
 =========
+v1.8: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.7: Updated various parts of the mod to improve how it handles followers. This also fixes an issue of the wrong follower being displayed.
 
 =========

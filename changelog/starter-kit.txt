@@ -3,6 +3,9 @@ Starter Kit
 https://www.curseforge.com/minecraft/mc-mods/starter-kit
 
 =========
+v3.2: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v3.1: Fixed nullpointer when a command was run by a non-player.
 
 =========

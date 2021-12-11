@@ -3,6 +3,9 @@ Configurable Despawn Timer
 https://www.curseforge.com/minecraft/mc-mods/configurable-despawn-timer
 
 =========
+v2.5: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.4: Changed the maximum value of the despawnTimeInTicks config to 2147483647, which is the highest possible integer in the Java programming language.
 
 =========

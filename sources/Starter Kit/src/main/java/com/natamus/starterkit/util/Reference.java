@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Starter Kit.
- * Minecraft version: 1.18.1, mod version: 3.1.
+ * Minecraft version: 1.18.1, mod version: 3.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Starter Kit ever released, along with some other perks.
@@ -17,6 +17,6 @@ package com.natamus.starterkit.util;
 public class Reference {
 	public static final String MOD_ID = "starterkit";
 	public static final String NAME = "Starter Kit";
-	public static final String VERSION = "3.1";
+	public static final String VERSION = "3.2";
 	public static final String ACCEPTED_VERSIONS = "[1.18.1]";
 }

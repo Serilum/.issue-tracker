@@ -3,6 +3,9 @@ Stack Refill
 https://curseforge.com/minecraft/mc-mods/stack-refill
 
 =========
+v2.1: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.0: Updated backend code. Fixed a bug where right-clicking a block with a shovel would put another shovel from the inventory in the offhand.
 
 =========

@@ -3,6 +3,9 @@ Extract Poison
 https://www.curseforge.com/minecraft/mc-mods/extract-poison
 
 =========
+v1.7: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.6: Improved compatibility with modded poison spiders.
 
 =========

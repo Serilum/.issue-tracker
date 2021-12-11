@@ -3,6 +3,9 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v5.7: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v5.6: Changed the default spread config file.
 
 =========

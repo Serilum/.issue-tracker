@@ -3,6 +3,9 @@ Replanting Crops
 https://www.curseforge.com/minecraft/mc-mods/replanting-crops
 
 =========
+v2.6: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.5: Replanting crops now does durability damage on the hoe used.
 
 =========

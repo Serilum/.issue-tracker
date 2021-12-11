@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Bett
 
 [[mods]]
 modId="betterspawnercontrol"
-version="1.5"
+version="1.6"
 displayName="Better Spawner Control"
 displayURL="https://curseforge.com/minecraft/mc-mods/better-spawner-control"
 authors="Rick South"

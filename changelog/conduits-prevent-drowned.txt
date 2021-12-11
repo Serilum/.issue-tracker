@@ -3,6 +3,9 @@ Conduits Prevent Drowned
 https://www.curseforge.com/minecraft/mc-mods/conduits-prevent-drowned
 
 =========
+v1.5: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.5: (Fabric only) Fixed an issue of the mod referencing an incorrect callback, causing it not to boot.
 
 =========

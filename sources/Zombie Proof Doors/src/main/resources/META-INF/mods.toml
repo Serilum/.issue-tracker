@@ -5,13 +5,13 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Zomb
 
 [[mods]]
 modId="zombieproofdoors"
-version="1.4"
+version="1.5"
 displayName="Zombie Proof Doors"
 displayURL="https://curseforge.com/minecraft/mc-mods/zombie-proof-doors"
 authors="Rick South"
 description="Prevents zombies from targeting and breaking down doors."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Adara Christine, joj, Kreezcraft.com, limpjellyfish, Morgan Schetzle, Robert Gilbert, Tyler Behl   
+Cherriesaurus, joj, Kreezcraft.com, limpjellyfish, Michael W. S., Morgan Schetzle, Robert Gilbert, Tyler Behl   
 '''
 
 [[dependencies.zombieproofdoors]]

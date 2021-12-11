@@ -3,6 +3,9 @@ All Loot Drops
 https://www.curseforge.com/minecraft/mc-mods/all-loot-drops
 
 =========
+v2.4: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.3: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

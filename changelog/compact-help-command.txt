@@ -3,6 +3,9 @@ Compact Help Command
 https://curseforge.com/minecraft/mc-mods/compact-help-command
 
 =========
+v1.2: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.1: Adds spacing around the vertical bars in chat. Can be turned off in the config.
 
 =========

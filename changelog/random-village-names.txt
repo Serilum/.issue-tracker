@@ -3,6 +3,12 @@ Random Village Names
 https://curseforge.com/minecraft/mc-mods/random-village-names
 
 =========
+v1.5: (Forge 1.18.1 only) Fixed incorrect areas version referenced.
+
+=========
+v1.4: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.3: ConcurrentModificationException fix.
 
 =========

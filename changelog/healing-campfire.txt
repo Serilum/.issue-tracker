@@ -3,6 +3,9 @@ Healing Campfire
 https://www.curseforge.com/minecraft/mc-mods/healing-campfire
 
 =========
+v3.4: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v3.3: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

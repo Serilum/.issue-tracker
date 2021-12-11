@@ -3,6 +3,9 @@ Crying Ghasts
 https://www.curseforge.com/minecraft/mc-mods/crying-ghasts
 
 =========
+v1.5: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.4: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

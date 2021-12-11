@@ -3,6 +3,9 @@ End Portal Recipe
 https://www.curseforge.com/minecraft/mc-mods/end-portal-recipe
 
 =========
+v2.6: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.5: Updated mod to work with the new Tool functions in Collective. Fixed issue of end portal block not being able to be picked up.
 
 =========

@@ -3,6 +3,9 @@ GUI Compass
 https://www.curseforge.com/minecraft/mc-mods/gui-compass
 
 =========
+v1.8: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.8: (Fabric only) Fixed incorrect project URL.
 
 =========

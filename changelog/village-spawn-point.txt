@@ -3,6 +3,9 @@ Village Spawn Point
 https://www.curseforge.com/minecraft/mc-mods/village-spawn-point
 
 =========
+v1.9: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.8: A bonus chest is now placed around the village spawn position if the generate bonus chest world generation option is enabled.
 
 =========

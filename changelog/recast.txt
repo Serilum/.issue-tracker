@@ -3,6 +3,9 @@ Recast
 https://curseforge.com/minecraft/mc-mods/recast
 
 =========
+v1.6: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.5: Updated backend code to make the fishing bobber keep its position better.
 
 =========

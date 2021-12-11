@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Healing Soup.
- * Minecraft version: 1.18.1, mod version: 2.3.
+ * Minecraft version: 1.18.1, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Healing Soup ever released, along with some other perks.
@@ -17,6 +17,6 @@ package com.natamus.healingsoup.util;
 public class Reference {
 	public static final String MOD_ID = "healingsoup";
 	public static final String NAME = "Healing Soup";
-	public static final String VERSION = "2.3";
+	public static final String VERSION = "2.4";
 	public static final String ACCEPTED_VERSIONS = "[1.18.1]";
 }

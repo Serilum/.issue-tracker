@@ -3,6 +3,9 @@ Shulker Drops Two
 https://www.curseforge.com/minecraft/mc-mods/shulker-drops-two
 
 =========
+v1.8: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.7: The mod now only changes the shulker shell drop instead of overriding all drops. Which makes it compatible with other mods who might add drops to the Shulker entity.
 
 =========

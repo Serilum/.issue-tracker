@@ -3,6 +3,9 @@ Mineral Chance
 https://curseforge.com/minecraft/mc-mods/mineral-chance
 
 =========
+v1.7: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.6: Now using BlockTags to determine overwold and nether ores. Added separate config to have different mineral chances for overworld and nether ores. Overworld by default 1/50, nether 1/100.
 
 =========

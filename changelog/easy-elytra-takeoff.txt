@@ -3,6 +3,9 @@ Easy Elytra Takeoff
 https://www.curseforge.com/minecraft/mc-mods/easy-elytra-takeoff
 
 =========
+v2.2: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.2: (Fabric only) Fixed mod not working correctly due to an incorrect mapping.
 
 =========

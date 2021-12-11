@@ -3,6 +3,9 @@ Cycle Paintings
 https://www.curseforge.com/minecraft/mc-mods/cycle-paintings
 
 =========
+v2.2: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.1: Added two config options.
 ignorePaintingsInCycleResourceLocation and showRegisteredPaintingsDebug.
 The first allows you to exclude certain paintings from showing up in the cycle, the other to find paintings to exclude via the console and debug lines.

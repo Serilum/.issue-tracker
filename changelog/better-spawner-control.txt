@@ -3,6 +3,9 @@ Better Spawner Control
 https://www.curseforge.com/minecraft/mc-mods/better-spawner-control
 
 =========
+v1.6: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.5: Updated backend code. Fixed mobs still spawning in 1.17.1. Synchronized versions.
 
 =========

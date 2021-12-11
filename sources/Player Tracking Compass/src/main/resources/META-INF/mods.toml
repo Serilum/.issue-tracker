@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Play
 
 [[mods]]
 modId="playertrackingcompass"
-version="1.8"
+version="1.9"
 displayName="Player Tracking Compass"
 displayURL="https://curseforge.com/minecraft/mc-mods/player-tracking-compass"
 authors="Rick South"

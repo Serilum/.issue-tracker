@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Welc
 
 [[mods]]
 modId="welcomemessage"
-version="1.0"
+version="1.1"
 displayName="Welcome Message"
 displayURL="https://curseforge.com/minecraft/mc-mods/welcome-message"
 authors="Rick South"

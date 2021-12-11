@@ -3,6 +3,9 @@ Configurable Mob Potion Effects
 https://curseforge.com/minecraft/mc-mods/configurable-mob-potion-effects
 
 =========
+v1.5: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.4: Synchronized versions. Updated mod to work with renamed ForgeRegistries field in 37.0.22.
 
 =========

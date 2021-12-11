@@ -3,6 +3,9 @@ Bigger Sponge Absorption Radius
 https://www.curseforge.com/minecraft/mc-mods/bigger-sponge-absorption-radius
 
 =========
+v1.6: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.5: Updated and cleaned up backend code.
 
 =========

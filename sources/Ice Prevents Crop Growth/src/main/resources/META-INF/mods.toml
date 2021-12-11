@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Ice%
 
 [[mods]]
 modId="icepreventscropgrowth"
-version="1.4"
+version="1.5"
 displayName="Ice Prevents Crop Growth"
 displayURL="https://curseforge.com/minecraft/mc-mods/ice-prevents-crop-growth"
 authors="Rick South"

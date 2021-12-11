@@ -3,6 +3,9 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v2.9: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.8: Improved backend code to make the server environment work more reliable.
 
 =========

@@ -3,6 +3,9 @@ Eroding Stone Entities
 https://curseforge.com/minecraft/mc-mods/eroding-stone-entities
 
 =========
+v2.5: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.5: (Fabric only) Fixed mod not loading custom blocks correctly in a server environment.
 
 =========

@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Enti
 
 [[mods]]
 modId="entityinformation"
-version="1.6"
+version="1.7"
 displayName="Entity Information"
 displayURL="https://curseforge.com/minecraft/mc-mods/entity-information"
 authors="Rick South"

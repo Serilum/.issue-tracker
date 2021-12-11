@@ -3,6 +3,9 @@ Naturally Charged Creepers
 https://www.curseforge.com/minecraft/mc-mods/naturally-charged-creepers
 
 =========
+v1.8: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.7: Updated backend code. The mod is now more efficient and uses less registered events.
 
 =========

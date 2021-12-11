@@ -3,6 +3,9 @@ GUI Clock
 https://www.curseforge.com/minecraft/mc-mods/gui-clock
 
 =========
+v3.1: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v3.0: Added feature to lower the clock when a potion effect is active, to prevent overlap. Can be toggled with the 'lowerClockWhenPlayerHasEffects' config option, enabled by default.
 
 =========

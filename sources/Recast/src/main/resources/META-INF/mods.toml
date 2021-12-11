@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Reca
 
 [[mods]]
 modId="recast"
-version="1.5"
+version="1.6"
 displayName="Recast"
 displayURL="https://curseforge.com/minecraft/mc-mods/recast"
 authors="Rick South"

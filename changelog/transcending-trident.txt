@@ -3,6 +3,9 @@ Transcending Trident
 https://www.curseforge.com/minecraft/mc-mods/transcending-trident
 
 =========
+v2.1: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.0: The mod has been completely rewritten. It's now much more compatible with other mods and more efficient. Fixes an incompatibility with Quark specifically.
 
 =========

@@ -3,6 +3,9 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v5.3: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v5.2: Fixed reference to incorrect method in 1.16. Updated backend code.
 
 =========

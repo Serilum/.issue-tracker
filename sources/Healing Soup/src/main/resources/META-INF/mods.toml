@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Heal
 
 [[mods]]
 modId="healingsoup"
-version="2.3"
+version="2.4"
 displayName="Healing Soup"
 displayURL="https://curseforge.com/minecraft/mc-mods/healing-soup"
 authors="Rick South"

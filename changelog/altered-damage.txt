@@ -3,6 +3,9 @@ Altered Damage
 https://www.curseforge.com/minecraft/mc-mods/altered-damage
 
 =========
+v1.6: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.5: Updated source code to work with the official Mojang mappings, in preparation for 1.17 and future mod updates. Does not contain any in-game changes.
 
 =========

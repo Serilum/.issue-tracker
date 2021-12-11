@@ -3,4 +3,7 @@ Welcome Message
 https://curseforge.com/minecraft/mc-mods/welcome-message
 
 =========
+v1.1: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.0: Initial release of mod.

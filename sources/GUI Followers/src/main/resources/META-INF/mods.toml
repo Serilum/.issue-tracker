@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20GUI%
 
 [[mods]]
 modId="guifollowers"
-version="1.7"
+version="1.8"
 displayName="GUI Followers"
 displayURL="https://curseforge.com/minecraft/mc-mods/gui-followers"
 authors="Rick South"

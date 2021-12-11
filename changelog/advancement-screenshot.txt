@@ -3,6 +3,9 @@ Advancement Screenshot
 https://curseforge.com/minecraft/mc-mods/advancement-screenshot
 
 =========
+v3.1: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v3.0: The mod now works separate from the in-game chat, adding support for other languages than English.
 
 =========

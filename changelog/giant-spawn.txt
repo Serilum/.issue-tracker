@@ -3,6 +3,9 @@ Giant Spawn
 https://www.curseforge.com/minecraft/mc-mods/giant-spawn
 
 =========
+v2.8: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.7: Updated how to mod handles setting giants on fire in daylight, improved multi-dimension support.
 
 =========

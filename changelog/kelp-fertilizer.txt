@@ -3,6 +3,9 @@ Kelp Fertilizer
 https://www.curseforge.com/minecraft/mc-mods/kelp-fertilizer
 
 =========
+v1.8: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.8: (Fabric only) Fixed kelp not working correctly on crops.
 
 =========

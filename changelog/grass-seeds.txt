@@ -3,6 +3,9 @@ Grass Seeds
 https://www.curseforge.com/minecraft/mc-mods/grass-seeds
 
 =========
+v1.7: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.6: Fixed the seed stack being decreased when a player is in creative mode.
 
 =========

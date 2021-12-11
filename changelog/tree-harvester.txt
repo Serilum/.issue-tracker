@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v4.2: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v4.1: Tree Harvester will now only work with logs of the same type, which is determined on the first log broken. This is to prevent unwanted behaviour with other trees or structures nearby.
 
 =========

@@ -3,6 +3,9 @@ Silence Mobs
 https://www.curseforge.com/minecraft/mc-mods/silence-mobs
 
 =========
+v2.1: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.0: (1.17.1 only) Fixed pack_format integer. It now correctly states 7 instead of 6, which allows the use of datapacks.
 
 =========

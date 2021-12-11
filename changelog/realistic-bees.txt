@@ -3,6 +3,9 @@ Realistic Bees
 https://www.curseforge.com/minecraft/mc-mods/realistic-bees
 
 =========
+v2.4: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.3: Updated backend code.
 Fixed a crash due to a mod incompatibility causing a ServerHangWatchdog error.
 Fixed multiple bees spawning during breeding.

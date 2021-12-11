@@ -3,6 +3,9 @@ Nutritious Milk
 https://www.curseforge.com/minecraft/mc-mods/nutritious-milk
 
 =========
+v1.9: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.8: The mod now uses the correct SRG mapping name which fixes a crash on startup.
 
 =========

@@ -3,6 +3,9 @@ Hidden Recipe Book
 https://curseforge.com/minecraft/mc-mods/hidden-recipe-book
 
 =========
+v2.4: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.3: The mod now uses the correct SRG mapping name which fixes a crash on startup.
 
 =========

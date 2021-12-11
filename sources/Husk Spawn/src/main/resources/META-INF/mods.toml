@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Husk
 
 [[mods]]
 modId="huskspawn"
-version="1.4"
+version="1.5"
 displayName="Husk Spawn"
 displayURL="https://curseforge.com/minecraft/mc-mods/husk-spawn"
 authors="Rick South"

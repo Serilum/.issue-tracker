@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Vote
 
 [[mods]]
 modId="votecommand"
-version="1.6"
+version="1.7"
 displayName="Vote Command"
 displayURL="https://curseforge.com/minecraft/mc-mods/vote-command"
 authors="Rick South"

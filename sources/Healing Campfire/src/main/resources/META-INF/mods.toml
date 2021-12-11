@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Heal
 
 [[mods]]
 modId="healingcampfire"
-version="3.3"
+version="3.4"
 displayName="Healing Campfire"
 displayURL="https://curseforge.com/minecraft/mc-mods/healing-campfire"
 authors="Rick South"

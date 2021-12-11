@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Resp
 
 [[mods]]
 modId="respawndelay"
-version="2.5"
+version="2.6"
 displayName="Respawn Delay"
 displayURL="https://curseforge.com/minecraft/mc-mods/respawn-delay"
 authors="Rick South"

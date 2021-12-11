@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Husk Spawn.
- * Minecraft version: 1.18.1, mod version: 1.4.
+ * Minecraft version: 1.18.1, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Husk Spawn ever released, along with some other perks.
@@ -17,6 +17,6 @@ package com.natamus.huskspawn.util;
 public class Reference {
 	public static final String MOD_ID = "huskspawn";
 	public static final String NAME = "Husk Spawn";
-	public static final String VERSION = "1.4";
+	public static final String VERSION = "1.5";
 	public static final String ACCEPTED_VERSIONS = "[1.18.1]";
 }

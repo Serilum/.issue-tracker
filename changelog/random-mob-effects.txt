@@ -3,6 +3,9 @@ Random Mob Effects
 https://curseforge.com/minecraft/mc-mods/random-mob-effects
 
 =========
+v1.7: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.6: Added config option, enabled by default, which disables giving creepers a random mob effect. This due to them creating an area of a lingering effect which is probably not what you want. Feel free to enable them again though!
 
 =========

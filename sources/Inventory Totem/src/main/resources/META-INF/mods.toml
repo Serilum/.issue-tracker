@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Inve
 
 [[mods]]
 modId="inventorytotem"
-version="1.5"
+version="1.6"
 displayName="Inventory Totem"
 displayURL="https://curseforge.com/minecraft/mc-mods/inventory-totem"
 authors="Rick South"

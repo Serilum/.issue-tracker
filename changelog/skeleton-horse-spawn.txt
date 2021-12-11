@@ -3,6 +3,9 @@ Skeleton Horse Spawn
 https://www.curseforge.com/minecraft/mc-mods/skeleton-horse-spawn
 
 =========
+v2.0: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.9: Updated how to mod handles setting skeleton horses on fire in daylight, improved multi-dimension support.
 
 =========

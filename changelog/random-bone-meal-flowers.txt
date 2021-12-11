@@ -3,6 +3,9 @@ Random Bone Meal Flowers
 https://www.curseforge.com/minecraft/mc-mods/random-bone-meal-flowers
 
 =========
+v1.6: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.7: (Fabric only) Bone meal from dispensers now generates random flowers.
 
 =========

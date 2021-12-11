@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Play
 
 [[mods]]
 modId="playerdeathkick"
-version="1.5"
+version="1.6"
 displayName="Player Death Kick"
 displayURL="https://curseforge.com/minecraft/mc-mods/player-death-kick"
 authors="Rick South"

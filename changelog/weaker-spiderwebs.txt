@@ -3,6 +3,9 @@ Weaker Spiderwebs
 https://www.curseforge.com/minecraft/mc-mods/weaker-spiderwebs
 
 =========
+v2.1: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v2.0: Improved which spiderwebs are being destroyed. Fixes jumping into one with your head and it not breaking.
 
 =========

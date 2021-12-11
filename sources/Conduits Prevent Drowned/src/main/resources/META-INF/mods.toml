@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Cond
 
 [[mods]]
 modId="conduitspreventdrowned"
-version="1.4"
+version="1.5"
 displayName="Conduits Prevent Drowned"
 displayURL="https://curseforge.com/minecraft/mc-mods/conduits-prevent-drowned"
 authors="Rick South"

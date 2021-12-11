@@ -3,6 +3,9 @@ Fish On The Line
 https://curseforge.com/minecraft/mc-mods/fish-on-the-line
 
 =========
+v1.4: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.3: (Forge only) Updated backend code.
 
 =========

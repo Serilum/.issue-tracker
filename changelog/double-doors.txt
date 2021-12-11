@@ -3,6 +3,9 @@ Double Doors
 https://www.curseforge.com/minecraft/mc-mods/double-doors
 
 =========
+v3.2: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v3.1: Fixed incorrect behaviour when opening a single door.
 
 =========

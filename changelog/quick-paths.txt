@@ -3,6 +3,9 @@ Quick Paths
 https://www.curseforge.com/minecraft/mc-mods/quick-paths
 
 =========
+v2.0: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
+
+=========
 v1.9: Fixed a path not being created when grass/flowers/etc were on top of the grass block.
 
 =========
