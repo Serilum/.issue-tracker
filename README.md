@@ -39,7 +39,7 @@ N/A
 [Always a Wither Skull (Forge ](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/always-a-wither-skull-fabric)\
 [Anvil Restoration (Forge ](https://curseforge.com/minecraft/mc-mods/anvil-restoration)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/anvil-restoration-fabric)\
 [Areas (Forge](https://curseforge.com/minecraft/mc-mods/areas))\
-[Automatic Doors (Forge  (Forge ](https://curseforge.com/minecraft/mc-mods/automatic-doors)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/automatic-doors-fabric)\
+[Automatic Doors (Forge ](https://curseforge.com/minecraft/mc-mods/automatic-doors)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/automatic-doors-fabric)\
 [Beautified Chat Client (Forge ](https://curseforge.com/minecraft/mc-mods/beautified-chat-client)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/beautified-chat-client-fabric)\
 [Beautified Chat Server (Forge ](https://curseforge.com/minecraft/mc-mods/beautified-chat-server)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/beautified-chat-server-fabric)\
 [Better Beacon Placement (Forge ](https://curseforge.com/minecraft/mc-mods/better-beacon-placement)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/better-beacon-placement-fabric)\
