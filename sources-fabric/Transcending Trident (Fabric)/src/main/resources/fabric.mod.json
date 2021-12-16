@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "transcendingtrident-fabric",
-  "version": "2.0",
+  "version": "2.2",
 
   "name": "Transcending Trident (Fabric)",
   "description": "Improves the vanilla trident. Hold a water bucket to use riptide, which is more powerful.",
@@ -25,6 +25,6 @@
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=17",
-    "collective-fabric": ">=3.9"
+    "collective-fabric": ">=3.14"
   }
 }

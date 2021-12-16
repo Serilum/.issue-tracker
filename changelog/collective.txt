@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v3.14: Increased mod compatibility by disabling mixins when another mod changes the target method, which before this would cause a hard crash.
+
+=========
 v3.13: (Fabric only) Fixes an InvalidInjectionException on world load causing a crash.
 
 =========

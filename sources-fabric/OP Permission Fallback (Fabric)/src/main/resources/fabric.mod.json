@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "oppermissionfallback-fabric",
-  "version": "1.0",
+  "version": "1.1",
 
   "name": "OP Permission Fallback (Fabric)",
   "description": "Players with the minecraft.op permission will be seen as /op(erators) in-game.",
@@ -25,6 +25,6 @@
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=17",
-    "collective-fabric": ">=3.9"
+    "collective-fabric": ">=3.14"
   }
 }

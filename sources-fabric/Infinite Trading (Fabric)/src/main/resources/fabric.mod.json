@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "infinitetrading-fabric",
-  "version": "2.0",
+  "version": "2.1",
 
   "name": "Infinite Trading (Fabric)",
   "description": "Prevents villager trades from locking up, making them be always available.",
@@ -25,6 +25,6 @@
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=17",
-    "collective-fabric": ">=3.9"
+    "collective-fabric": ">=3.14"
   }
 }

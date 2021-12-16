@@ -3,4 +3,7 @@ OP Permission Fallback (Fabric)
 https://curseforge.com/minecraft/mc-mods/op-permission-fallback
 
 =========
+v1.1: Increased mod compatibility by disabling mixins when another mod changes the target method, which before this would cause a hard crash.
+
+=========
 v1.0: Initial release of mod.

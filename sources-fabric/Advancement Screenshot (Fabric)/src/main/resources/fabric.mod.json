@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "advancementscreenshot-fabric",
-  "version": "3.0",
+  "version": "3.2",
 
   "name": "Advancement Screenshot (Fabric)",
   "description": "A client-side mod which takes a screenshot every time a player achieves an advancement.",
@@ -25,6 +25,6 @@
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=17",
-    "collective-fabric": ">=3.9"
+    "collective-fabric": ">=3.14"
   }
 }

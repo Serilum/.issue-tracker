@@ -3,6 +3,9 @@ Infinite Trading
 https://www.curseforge.com/minecraft/mc-mods/infinite-trading
 
 =========
+v2.1: (Fabric only) Increased mod compatibility by disabling mixins when another mod changes the target method, which before this would cause a hard crash.
+
+=========
 v2.0: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

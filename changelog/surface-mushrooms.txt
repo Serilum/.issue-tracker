@@ -3,6 +3,9 @@ Surface Mushrooms
 https://curseforge.com/minecraft/mc-mods/surface-mushrooms
 
 =========
+v1.2: Increased mod compatibility by disabling mixins when another mod changes the target method, which before this would cause a hard crash.
+
+=========
 v1.1: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========
