@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.14.
+ * Minecraft version: 1.18.x, mod version: 3.19.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -22,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import com.mojang.datafixers.util.Pair;
 import com.natamus.collective_fabric.fabric.callbacks.CollectiveChatEvents;
 
 import net.minecraft.network.chat.ChatType;
@@ -41,8 +42,10 @@ public abstract class ServerGamePacketListenerImplMixin {
 	
 	@Inject(method = "handleChat(Lnet/minecraft/server/network/TextFilter$FilteredText;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;getPlayerList()Lnet/minecraft/server/players/PlayerList;", ordinal = 0), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
 	private void ServerGamePacketListenerImpl_handleChat(TextFilter.FilteredText filteredText, CallbackInfo ci, String string, String string2, Component component, Component component2) {
-		Component newMessage = CollectiveChatEvents.SERVER_CHAT_RECEIVED.invoker().onServerChat(player, component2, player.getUUID());
-		if (component != newMessage) {
+		Pair<Boolean, Component> pair = CollectiveChatEvents.SERVER_CHAT_RECEIVED.invoker().onServerChat(player, component, player.getUUID());
+		if (pair != null) {
+			Component newMessage = pair.getSecond();
+			
 			server.getPlayerList().broadcastMessage(newMessage, (player) -> {
 				return this.player.shouldFilterMessageTo(player) ? component : newMessage;
 			}, ChatType.CHAT, player.getUUID());

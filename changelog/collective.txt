@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v3.19: (Fabric only) Updated backend code.
+
+=========
+v3.15: (Fabric only) Fixed the ServerGamePacketListenerImplMixin causing other mods to have unexpected behaviour when they rely on chat for input.
+
+=========
 v3.14: Increased mod compatibility by disabling mixins when another mod changes the target method, which before this would cause a hard crash.
 
 =========

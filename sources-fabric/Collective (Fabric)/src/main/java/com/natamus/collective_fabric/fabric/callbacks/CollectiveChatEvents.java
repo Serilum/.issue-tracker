@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.14.
+ * Minecraft version: 1.18.x, mod version: 3.19.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -15,6 +15,8 @@
 package com.natamus.collective_fabric.fabric.callbacks;
 
 import java.util.UUID;
+
+import com.mojang.datafixers.util.Pair;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
@@ -38,13 +40,15 @@ public class CollectiveChatEvents {
     
     public static final Event<CollectiveChatEvents.On_Server_Chat> SERVER_CHAT_RECEIVED = EventFactory.createArrayBacked(CollectiveChatEvents.On_Server_Chat.class, callbacks -> (serverPlayer, message, senderUUID) -> {
         for (CollectiveChatEvents.On_Server_Chat callback : callbacks) {
-        	Component newMessage = callback.onServerChat(serverPlayer, message, senderUUID);
-        	if (newMessage != message) {
-        		return newMessage;
+        	Pair<Boolean, Component> pair = callback.onServerChat(serverPlayer, message, senderUUID);
+        	if (pair != null) {
+	        	if (pair.getFirst()) {
+	        		return pair;
+	        	}
         	}
         }
         
-        return message;
+        return null;
     });
     
 	@FunctionalInterface
@@ -54,6 +58,6 @@ public class CollectiveChatEvents {
 	
 	@FunctionalInterface
 	public interface On_Server_Chat {
-		 Component onServerChat(ServerPlayer serverPlayer, Component message, UUID senderUUID);
+		 Pair<Boolean, Component> onServerChat(ServerPlayer serverPlayer, Component message, UUID senderUUID);
 	}
 }

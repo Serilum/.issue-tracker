@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "shulkerdropstwo-fabric",
+  "version": "1.8",
+
+  "name": "Shulker Drops Two (Fabric)",
+  "description": "A minimalistic configurable mod that allows shulkers to drop two or more shells and ignore their default drop chance.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/shulker-drops-two-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Shulker%20Drops%20Two%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Shulker%20Drops%20Two"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.shulkerdropstwo.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.12.6",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17",
+    "collective-fabric": ">=3.14"
+  }
+}

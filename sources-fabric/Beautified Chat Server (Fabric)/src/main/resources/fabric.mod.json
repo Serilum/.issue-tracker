@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "beautifiedchatserver-fabric",
-  "version": "1.0",
+  "version": "1.2",
 
   "name": "Beautified Chat Server (Fabric)",
   "description": "A highly configurable mod to change the style and colour of incoming chat messages server-wide.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=17",
-    "collective-fabric": ">=3.9"
+    "collective-fabric": ">=3.15"
   }
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Beautified Chat Server.
- * Minecraft version: 1.18.x, mod version: 1.0.
+ * Minecraft version: 1.18.x, mod version: 1.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Beautified Chat Server ever released, along with some other perks.
@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import com.mojang.datafixers.util.Pair;
 import com.natamus.beautifiedchatserver.config.ConfigHandler;
 import com.natamus.beautifiedchatserver.util.Util;
 
@@ -27,11 +28,15 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 
 public class BeautifulChatEvent {
-	public static Component onServerChat(ServerPlayer serverPlayer, Component messageComponent, UUID uuid) {
+	public static Pair<Boolean, Component> onServerChat(ServerPlayer serverPlayer, Component messageComponent, UUID uuid) {
 		String timestamp = new SimpleDateFormat(ConfigHandler.timestampFormat.getValue()).format(new Date());
 		
 		String user = serverPlayer.getName().getString();
 		String message = messageComponent.getString();
+		if (!message.contains(user)) {
+			return null;
+		}
+		
 		if (message.contains("> ")) {
 			message = message.substring(message.split("> ")[0].length() + 2);
 		}
@@ -57,6 +62,6 @@ public class BeautifulChatEvent {
 			output.append(wordcomponent);
 		}
 
-		return output;
+		return new Pair<Boolean, Component>(true, output);
 	}
 }

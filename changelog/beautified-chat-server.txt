@@ -3,6 +3,9 @@ Beautified Chat Server
 https://curseforge.com/minecraft/mc-mods/beautified-chat-server
 
 =========
+v1.2: (Fabric only) Updated mod to work with changes made in Collective (Fabric) v3.15.
+
+=========
 v1.1: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========
