@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "youritemsaresafe-fabric",
+  "version": "1.1",
+
+  "name": "Your Items Are Safe (Fabric)",
+  "description": "Generates a chest and armor stand at a player's death location to keep items from despawning. Highly configurable.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/your-items-are-safe-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Your%20Items%20Are%20Safe%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Your%20Items%20Are%20Safe"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.youritemsaresafe.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.12.6",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17",
+    "collective-fabric": ">=3.14"
+  }
+}
