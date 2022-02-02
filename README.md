@@ -172,7 +172,7 @@ N/A
 [World Border (Forge ](https://curseforge.com/minecraft/mc-mods/world-border)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/world-border-fabric)\
 [Your Items Are Safe (Forge](https://curseforge.com/minecraft/mc-mods/your-items-are-safe))\
 [Zombie Horse Spawn (Forge ](https://curseforge.com/minecraft/mc-mods/zombie-horse-spawn)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/zombie-horse-spawn-fabric)\
-[Zombie Proof Doors (Forge](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors))\
+[Zombie Proof Doors (Forge ](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors-fabric)\
 [Zombie Villagers From Spawner (Forge ](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner/)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner-fabric)
 
 ## Discontinued Mods:
