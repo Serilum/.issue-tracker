@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v3.20: (Fabric 1.18.x only) Removed a debug line which changed all server chat messages to "lol". Apologies for that one.
+
+=========
 v3.19: (Fabric only) Updated backend code.
 
 =========
