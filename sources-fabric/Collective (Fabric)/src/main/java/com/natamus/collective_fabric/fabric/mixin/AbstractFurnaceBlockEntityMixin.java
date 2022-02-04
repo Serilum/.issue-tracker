@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -31,7 +31,7 @@ public class AbstractFurnaceBlockEntityMixin {
 	public void AbstractFurnaceBlockEntity_getBurnDuration(ItemStack itemStack, CallbackInfoReturnable<Integer> ci) {
 		if (!itemStack.isEmpty()) {
 			Item item = itemStack.getItem();
-			int burntime = (Integer)AbstractFurnaceBlockEntity.getFuel().getOrDefault(item, 0);
+			int burntime = AbstractFurnaceBlockEntity.getFuel().getOrDefault(item, 0);
 			int newburntime = CollectiveFurnaceEvents.CALCULATE_FURNACE_BURN_TIME.invoker().getFurnaceBurnTime(itemStack, burntime);
 			if (burntime != newburntime) {
 				ci.setReturnValue(newburntime);

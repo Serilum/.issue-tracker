@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -47,11 +47,7 @@ import net.minecraft.world.phys.Vec3;
 public class EntityFunctions {
 	// START: CHECK functions
 	public static Boolean isHorse(Entity entity) {
-		if (entity instanceof AbstractHorse) {
-			return true;
-		}
-		
-		return false;
+		return entity instanceof AbstractHorse;
 	}
 	
 	public static boolean isModdedVillager(String entitystring) {
@@ -70,15 +66,12 @@ public class EntityFunctions {
 	
 	public static boolean isMilkable(Entity entity) {
 		if (entity instanceof Sheep || entity instanceof Llama || entity instanceof Pig || entity instanceof Donkey || entity instanceof Horse || entity instanceof Mule) {
-			if (entity instanceof Animal == false) {
+			if (!(entity instanceof Animal)) {
 				return false;
 			}
 			
 			Animal animal = (Animal)entity;
-			if (animal.isBaby()) {
-				return false;
-			}
-			return true;
+			return !animal.isBaby();
 		}
 		return false;	
 	}
@@ -106,7 +99,7 @@ public class EntityFunctions {
 	
 	// Do functions
 	public static void nameEntity(Entity entity, String name) {
-		if (name != "") {
+		if (!name.equals("")) {
 			entity.setCustomName(new TextComponent(name));
 		}
 	}
@@ -127,14 +120,14 @@ public class EntityFunctions {
 		
 		LightningBolt lightning = new LightningBolt(EntityType.LIGHTNING_BOLT, world);
 		lightning.setPos(evec.x(), evec.y(), evec.z());
-		lightning.setUUID(new UUID(0, (int)(GlobalVariables.random.nextInt()*1000000)));
+		lightning.setUUID(new UUID(0, GlobalVariables.random.nextInt()*1000000));
 		entity.thunderHit((ServerLevel)world, lightning);
 		
 		entity.clearFire();
 	}
 
 	public static void transferItemsBetweenEntities(Entity from, Entity to, boolean ignoremainhand) {
-		if (from instanceof Mob == false) {
+		if (!(from instanceof Mob)) {
 			return;
 		}
 		Mob mobfrom = (Mob)from;

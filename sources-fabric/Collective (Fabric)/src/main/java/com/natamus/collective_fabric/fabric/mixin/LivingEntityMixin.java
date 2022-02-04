@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -36,7 +36,7 @@ public class LivingEntityMixin {
 	@Inject(method = "tick()V", at = @At(value = "HEAD")) 
 	public void LivingEntity_tick(CallbackInfo ci) {
 		Entity entity = (Entity)(Object)this;
-		Level world = (Level)entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		
 		CollectiveEntityEvents.LIVING_TICK.invoker().onTick(world, entity);
 	}
@@ -44,26 +44,27 @@ public class LivingEntityMixin {
 	@Inject(method = "die(Lnet/minecraft/world/damagesource/DamageSource;)V", at = @At(value = "HEAD")) 
 	public void LivingEntity_die(DamageSource damageSource, CallbackInfo ci) {
 		Entity entity = (Entity)(Object)this;
-		Level world = (Level)entity.getCommandSenderWorld();
+		Level world = entity.getCommandSenderWorld();
 		
 		CollectiveEntityEvents.LIVING_ENTITY_DEATH.invoker().onDeath(world, entity, damageSource);
 	}
 	
-	@Inject(method = "calculateFallDamage(FF)I", at = @At(value = "RETURN"))
-	protected int LivingEntity_calculateFallDamage(float f, float g, CallbackInfoReturnable<Boolean> ci) {
+	@Inject(method = "calculateFallDamage(FF)I", at = @At(value = "RETURN"), cancellable = true)
+	protected void LivingEntity_calculateFallDamage(float f, float g, CallbackInfoReturnable<Integer> ci) {
 		LivingEntity livingEntity = (LivingEntity)(Object)this;
 		Level world = livingEntity.getCommandSenderWorld();
 		
 		if (CollectiveEntityEvents.ON_FALL_DAMAGE_CALC.invoker().onFallDamageCalc(world, livingEntity, f, g) == 0) {
-			return 0;
+			ci.setReturnValue(0);
+			return;
 		}
 		
 		MobEffectInstance mobEffectInstance = livingEntity.getEffect(MobEffects.JUMP);
 		float h = mobEffectInstance == null ? 0.0F : (float)(mobEffectInstance.getAmplifier() + 1);
-		return Mth.ceil((f - 3.0F - h) * g);
+		ci.setReturnValue(Mth.ceil((f - 3.0F - h) * g));
 	}
 	
-	@ModifyVariable(method = "actuallyHurt(Lnet/minecraft/world/damagesource/DamageSource;F)V", at = @At(value= "INVOKE_ASSIGN", target = "Ljava/lang/Math;max(FF)F", ordinal = 0), ordinal = 0)
+	@ModifyVariable(method = "actuallyHurt(Lnet/minecraft/world/damagesource/DamageSource;F)V", at = @At(value= "INVOKE_ASSIGN", target = "Ljava/lang/Math;max(FF)F", ordinal = 0), ordinal = 0, argsOnly = true)
 	private float LivingEntity_actuallyHurt(float f, DamageSource damageSource, float damage) {
 		LivingEntity livingEntity = (LivingEntity)(Object)this;
 		Level world = livingEntity.getCommandSenderWorld();
@@ -77,15 +78,13 @@ public class LivingEntityMixin {
 	}
 	
 	@Inject(method = "hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z", at = @At(value = "HEAD"), cancellable = true)
-	public boolean LivingEntity_hurt(DamageSource damageSource, float f, CallbackInfoReturnable<Boolean> ci) {
+	public void LivingEntity_hurt(DamageSource damageSource, float f, CallbackInfoReturnable<Boolean> ci) {
 		LivingEntity livingEntity = (LivingEntity)(Object)this;
 		Level world = livingEntity.getCommandSenderWorld();
 
 		if (!CollectiveEntityEvents.ON_LIVING_ATTACK.invoker().onLivingAttack(world, livingEntity, damageSource, f)) {
-			ci.cancel();
+			ci.setReturnValue(false);
 		}
-
-		return true;
 	}
 	
 	@Inject(method = "dropAllDeathLoot(Lnet/minecraft/world/damagesource/DamageSource;)V", at = @At(value = "TAIL"))

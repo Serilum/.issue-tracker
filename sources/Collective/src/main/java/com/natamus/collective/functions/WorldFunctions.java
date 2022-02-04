@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.1, mod version: 3.8.
+ * Minecraft version: 1.18.1, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -25,7 +25,7 @@ public class WorldFunctions {
 			return;
 		}
 
-		Integer days = getTotalDaysPassed(ServerLevel);
+		int days = getTotalDaysPassed(ServerLevel);
 		ServerLevel.setDayTime(time + (days*24000)); // setDayTime
 	}
 	
@@ -33,9 +33,8 @@ public class WorldFunctions {
 		return (int)ServerLevel.getDayTime();
 	}
 	public static int getTotalDaysPassed(ServerLevel ServerLevel) {
-		Integer currenttime = getTotalTimePassed(ServerLevel);
-		Integer days = (int)Math.floor((double)currenttime/24000);
-		return days;
+		int currenttime = getTotalTimePassed(ServerLevel);
+		return (int)Math.floor((double)currenttime/24000);
 	}
 	public static int getWorldTime(ServerLevel ServerLevel) {
 		return getTotalTimePassed(ServerLevel) - (getTotalDaysPassed(ServerLevel)*24000);

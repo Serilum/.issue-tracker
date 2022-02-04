@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.1, mod version: 3.8.
+ * Minecraft version: 1.18.1, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,27 +14,27 @@
 
 package com.natamus.collective.check;
 
+import com.natamus.collective.config.ConfigHandler;
+import com.natamus.collective.functions.DataFunctions;
+import com.natamus.collective.functions.StringFunctions;
+import com.natamus.collective.functions.WorldFunctions;
+import net.minecraft.ChatFormatting;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+
 import java.io.File;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.natamus.collective.config.ConfigHandler;
-import com.natamus.collective.functions.DataFunctions;
-import com.natamus.collective.functions.StringFunctions;
-import com.natamus.collective.functions.WorldFunctions;
-
-import net.minecraft.ChatFormatting;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
-
 public class RegisterMod {
-	private static CopyOnWriteArrayList<String> jarlist = new CopyOnWriteArrayList<String>();
-	private static HashMap<String, String> jartoname = new HashMap<String, String>();
+	private static final CopyOnWriteArrayList<String> jarlist = new CopyOnWriteArrayList<String>();
+	private static final HashMap<String, String> jartoname = new HashMap<String, String>();
 	public static boolean shouldDoCheck = true;
 	
 	public static void register(String modname, String modid, String modversion, String forgeversion) {
@@ -57,7 +57,7 @@ public class RegisterMod {
 	}
 	
 	public static void joinWorldProcess(Level world, Player player) {
-		if (world instanceof ServerLevel == false) {
+		if (!(world instanceof ServerLevel)) {
 			return;
 		}
 		
@@ -106,25 +106,29 @@ public class RegisterMod {
 
 		String worlddatapath = WorldFunctions.getWorldPath((ServerLevel)world) + File.separator + "data" + File.separator + "collective";
 		File dir = new File(worlddatapath);
-		dir.mkdirs();
+		if (!dir.mkdirs()) {
+			return;
+		}
 		
 		try {
-			PrintWriter writer = new PrintWriter(worlddatapath + File.separator + "checked.txt", "UTF-8");
+			PrintWriter writer = new PrintWriter(worlddatapath + File.separator + "checked.txt", StandardCharsets.UTF_8);
 			writer.println("# Please check out https://stopmodreposts.org/ for more information on why this feature exists.");
 			writer.println("checked=true");
 			writer.close();
-		} catch (Exception e) { }
+		} catch (Exception ignored) { }
 		
 		String alternativecheckpath = System.getProperty("user.dir") + File.separator + "data" + File.separator + "collective";
 		File alternativedir = new File(alternativecheckpath);
-		alternativedir.mkdirs();
+		if (!alternativedir.mkdirs()) {
+			return;
+		}
 		
 		try {
-			PrintWriter writer = new PrintWriter(alternativecheckpath + File.separator + "checked.txt", "UTF-8");
+			PrintWriter writer = new PrintWriter(alternativecheckpath + File.separator + "checked.txt", StandardCharsets.UTF_8);
 			writer.println("# Please check out https://stopmodreposts.org/ for more information on why this feature exists.");
 			writer.println("checked=true");
 			writer.close();
-		} catch (Exception e) { }
+		} catch (Exception ignored) { }
 	}
 	
 	private static List<String> checkIfAllJarsExist() {
@@ -146,9 +150,6 @@ public class RegisterMod {
 	private static boolean checkAlternative() {
 		String alternativecheckfilepath = System.getProperty("user.dir") + File.separator + "data" + File.separator + "collective" + File.separator + "checked.txt";
 		File alternativecheckfile = new File(alternativecheckfilepath);
-		if (alternativecheckfile.exists()) {
-			return false;
-		}
-		return true;
+		return !alternativecheckfile.exists();
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.1, mod version: 3.8.
+ * Minecraft version: 1.18.1, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -212,16 +212,10 @@ public class BlockPosFunctions {
 	
 	
 	public static Boolean withinDistance(BlockPos start, BlockPos end, int distance) {
-		if (withinDistance(start, end, (double)distance)) {
-			return true;
-		}
-		return false;
+		return withinDistance(start, end, (double) distance);
 	}
 	public static Boolean withinDistance(BlockPos start, BlockPos end, double distance) {
-		if (start.closerThan(end, distance)) {
-			return true;
-		}
-		return false;
+		return start.closerThan(end, distance);
 	}
 	// END: CHECK functions
 }

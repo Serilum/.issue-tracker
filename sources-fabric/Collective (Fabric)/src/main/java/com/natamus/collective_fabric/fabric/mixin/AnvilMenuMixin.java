@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,6 +14,7 @@
 
 package com.natamus.collective_fabric.fabric.mixin;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -40,7 +41,7 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
 	
 	@Shadow private String itemName;
 	@Shadow private int repairItemCountCost;
-	@Shadow private DataSlot cost;
+	@Final @Shadow private DataSlot cost;
 	
 	@Inject(method = "createResult()V", at = @At(value= "TAIL"))
 	public void onCreateAnvilResult(CallbackInfo info) {

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -45,9 +45,9 @@ import net.minecraft.server.level.ServerLevel;
 //To be expanded for generic Mod fake players?
 public class FakePlayerFactory
 {
-	private static GameProfile MINECRAFT = new GameProfile(UUID.fromString("41C82C87-7AfB-4024-BA57-13D2C99CAE77"), "[Minecraft]");
+	private static final GameProfile MINECRAFT = new GameProfile(UUID.fromString("41C82C87-7AfB-4024-BA57-13D2C99CAE77"), "[Minecraft]");
 	// Map of all active fake player usernames to their entities
-	private static Map<GameProfile, FakePlayer> fakePlayers = Maps.newHashMap();
+	private static final Map<GameProfile, FakePlayer> fakePlayers = Maps.newHashMap();
 	private static WeakReference<FakePlayer> MINECRAFT_PLAYER = null;
 
 	public static FakePlayer getMinecraft(ServerLevel world)

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.1, mod version: 3.8.
+ * Minecraft version: 1.18.1, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,18 +14,7 @@
 
 package com.natamus.collective.functions;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import com.natamus.collective.data.GlobalVariables;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
@@ -37,6 +26,15 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StringFunctions {
 	// START: DO functions
@@ -138,18 +136,16 @@ public class StringFunctions {
 		if (message.isEmpty()) {
 			return;
 		}
-		
-		Iterator<Entity> entitiesaround = world.getEntities(null, new AABB(p.getX()-radius, p.getY()-radius, p.getZ()-radius, p.getX()+radius, p.getY()+radius, p.getZ()+radius)).iterator();
-		while (entitiesaround.hasNext()) {
-			Entity around = entitiesaround.next();
+
+		for (Entity around : world.getEntities(null, new AABB(p.getX() - radius, p.getY() - radius, p.getZ() - radius, p.getX() + radius, p.getY() + radius, p.getZ() + radius))) {
 			if (around instanceof Player) {
-				sendMessage((Player)around, message, colour);
+				sendMessage((Player) around, message, colour);
 			}
 		}
 	}
 
 	public static String capitalizeFirst(String string) {
-		StringBuffer sb = new StringBuffer(string);
+		StringBuilder sb = new StringBuilder(string);
 		for(int i=0; i < sb.length(); i++) {
 			if(i == 0 || sb.charAt(i-1) == ' ') {
 				sb.setCharAt(i, Character.toUpperCase(sb.charAt(i)));
@@ -204,7 +200,7 @@ public class StringFunctions {
 	}
 	
 	public static String getPCLocalTime(boolean twentyfour, boolean showseconds) {
-		String time = "";
+		String time;
 		LocalDateTime now = LocalDateTime.now();
 		if (showseconds) {
 			if (twentyfour) {

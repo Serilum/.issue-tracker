@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,12 +14,6 @@
 
 package com.natamus.collective_fabric.events;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.collective_fabric.config.CollectiveConfigHandler;
 import com.natamus.collective_fabric.data.GlobalVariables;
@@ -28,7 +22,6 @@ import com.natamus.collective_fabric.functions.EntityFunctions;
 import com.natamus.collective_fabric.functions.SpawnEntityFunctions;
 import com.natamus.collective_fabric.objects.SAMObject;
 import com.natamus.collective_fabric.util.Reference;
-
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
@@ -41,6 +34,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+
 public class CollectiveEvents {
 	public static HashMap<ServerLevel, List<Entity>> entitiesToSpawn = new HashMap<ServerLevel, List<Entity>>();
 	public static HashMap<ServerLevel, HashMap<Entity, Entity>> entitiesToRide = new HashMap<ServerLevel, HashMap<Entity, Entity>>();
@@ -50,12 +48,11 @@ public class CollectiveEvents {
 		entitiesToRide.put(serverworld, new HashMap<Entity, Entity>());
 	}
 	
-	public static void onWorldTick(ServerLevel world) {	
-		ServerLevel serverworld = (ServerLevel)world;
-		if (entitiesToSpawn.get(serverworld).size() > 0) {
-			Entity tospawn = entitiesToSpawn.get(serverworld).get(0);
+	public static void onWorldTick(ServerLevel world) {
+		if (entitiesToSpawn.get(world).size() > 0) {
+			Entity tospawn = entitiesToSpawn.get(world).get(0);
 			
-			serverworld.addFreshEntityWithPassengers(tospawn);
+			world.addFreshEntityWithPassengers(tospawn);
 			
 			if (entitiesToRide.get(world).containsKey(tospawn)) {
 				Entity rider = entitiesToRide.get(world).get(tospawn);
@@ -70,7 +67,7 @@ public class CollectiveEvents {
 	}
 	
 	public static void onEntityJoinLevel(Level world, Entity entity) {
-		if (entity instanceof LivingEntity == false) {
+		if (!(entity instanceof LivingEntity)) {
 			return;
 		}
 		
@@ -102,13 +99,11 @@ public class CollectiveEvents {
 		boolean isspawner = tags.contains(Reference.MOD_ID + ".fromspawner");
 		
 		List<SAMObject> possibles = new ArrayList<SAMObject>();
-		Iterator<SAMObject> iterator = GlobalVariables.samobjects.iterator();
-		while (iterator.hasNext()) {
-			SAMObject samobject = iterator.next();
+		for (SAMObject samobject : GlobalVariables.samobjects) {
 			if (samobject == null) {
 				continue;
 			}
-			
+
 			if (samobject.fromtype == null) {
 				continue;
 			}
@@ -139,9 +134,13 @@ public class CollectiveEvents {
 			}
 			
 			Entity to = sam.totype.create(world);
+			if (to == null) {
+				return;
+			}
+
 			//to.setWorld(Level);
 			to.setPos(evec.x, evec.y, evec.z);
-			
+
 			boolean ignoremainhand = false;
 			if (sam.helditem != null) {
 				if (to instanceof LivingEntity) {
@@ -157,8 +156,7 @@ public class CollectiveEvents {
 			if (EntityFunctions.isHorse(to) && sam.rideable) {
 				AbstractHorse ah = (AbstractHorse)to;
 				ah.setTamed(true);
-				to = ah;
-				
+
 				ride = true;
 			}
 			else {
@@ -167,7 +165,7 @@ public class CollectiveEvents {
 				}
 			}
 			
-			if (world instanceof ServerLevel == false) {
+			if (!(world instanceof ServerLevel)) {
 				return;
 			}
 			
@@ -179,7 +177,7 @@ public class CollectiveEvents {
 			else {
 				entity.remove(RemovalReason.DISCARDED);
 			}
-			
+
 			to.addTag(Reference.MOD_ID + ".checked");
 			SpawnEntityFunctions.spawnEntityOnNextTick(serverworld, to); //serverworld.addFreshEntityWithPassengers(to);
 

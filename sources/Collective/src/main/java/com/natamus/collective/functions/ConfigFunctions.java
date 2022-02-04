@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.1, mod version: 3.8.
+ * Minecraft version: 1.18.1, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -38,7 +38,7 @@ public class ConfigFunctions {
 		List<String> values = new ArrayList<String>();
 		if (dir.isDirectory() && file.isFile()) {
 			try {
-				String content = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + modid + "-common.toml", new String[0])));
+				String content = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + modid + "-common.toml")));
 				for (String line : content.split("\n")) {
 					String trimmedline = line.trim();
 					if (trimmedline.startsWith("[") || trimmedline.startsWith("#")) {
@@ -48,7 +48,7 @@ public class ConfigFunctions {
 					values.add(trimmedline);
 				}
 				
-			} catch (IOException e) { }
+			} catch (IOException ignored) { }
 		}
 		
 		return values;

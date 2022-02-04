@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.1, mod version: 3.8.
+ * Minecraft version: 1.18.1, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,16 +14,8 @@
 
 package com.natamus.collective.functions;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 import com.natamus.collective.config.ConfigHandler;
 import com.natamus.collective.data.GlobalVariables;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
@@ -35,9 +27,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.*;
+
 public class FABFunctions {
-	private static Map<Block, Map<Level, List<BlockPos>>> getMapFromBlock = new HashMap<Block, Map<Level, List<BlockPos>>>();
-	private static Map<Level, Map<Date, BlockPos>> timeoutpositions = new HashMap<Level, Map<Date, BlockPos>>();
+	private static final Map<Block, Map<Level, List<BlockPos>>> getMapFromBlock = new HashMap<Block, Map<Level, List<BlockPos>>>();
+	private static final Map<Level, Map<Date, BlockPos>> timeoutpositions = new HashMap<Level, Map<Date, BlockPos>>();
 	
 	private static List<BlockEntity> getBlockEntitiesAroundPosition(Level world, BlockPos pos, Integer radius) {
 		List<BlockEntity> blockentities = new ArrayList<BlockEntity>();
@@ -48,13 +42,11 @@ public class FABFunctions {
 
 	    for (int x = chunkPosX - chunkradius; x < chunkPosX + chunkradius; x++) {
 	    	for (int z = chunkPosZ - chunkradius; z < chunkPosZ + chunkradius; z++) {
-	    		Iterator<BlockEntity> it = world.getChunk(x, z).getBlockEntities().values().iterator();
-	    		while (it.hasNext()) {
-	    			BlockEntity be = it.next();
-	    			if (!blockentities.contains(be)) {
-	    				blockentities.add(be);
-	    			}
-	    		}
+				for (BlockEntity be : world.getChunk(x, z).getBlockEntities().values()) {
+					if (!blockentities.contains(be)) {
+						blockentities.add(be);
+					}
+				}
 	    	}
 	    }
 		
@@ -108,7 +100,6 @@ public class FABFunctions {
 				}
 				
 				if (cblock.closerThan(epos, radius*radiusmodifier)) {
-					removeblockpos = cblock.immutable();
 					return cblock.immutable();
 				}
 			}
@@ -164,7 +155,7 @@ public class FABFunctions {
 			BlockEntityType<?> tiletypetofind = GlobalVariables.blocksWithTileEntity.get(requestedblock);
 			
 			for (BlockEntity loadedtileentity : blockentities) {
-				BlockEntityType<?> loadedtiletype = ((BlockEntity)loadedtileentity).getType();
+				BlockEntityType<?> loadedtiletype = loadedtileentity.getType();
 				if (loadedtiletype == null) {
 					continue;
 				}

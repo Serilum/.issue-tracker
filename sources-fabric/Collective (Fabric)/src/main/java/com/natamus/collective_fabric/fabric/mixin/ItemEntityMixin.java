@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -26,7 +26,7 @@ import net.minecraft.world.item.ItemStack;
 
 @Mixin(value = ItemEntity.class, priority = 1001)
 public abstract class ItemEntityMixin {
-	@Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;discard()V", ordinal = 1), cancellable = true) 
+	@Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;discard()V", ordinal = 1))
 	public void ItemEntity_tick(CallbackInfo ci) {
 		ItemEntity itemEntity = (ItemEntity)(Object)this;
 		ItemStack itemStack = itemEntity.getItem();

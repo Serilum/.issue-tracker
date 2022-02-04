@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,9 +14,6 @@
 
 package com.natamus.collective_fabric.functions;
 
-import java.util.Collections;
-import java.util.Iterator;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
@@ -29,6 +26,8 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
+
+import java.util.Collections;
 
 public class CropFunctions {
 	public static boolean applyBonemeal(ItemStack itemstack, Level world, BlockPos pos, Player player) {
@@ -55,7 +54,7 @@ public class CropFunctions {
 	}
 	
 	public static boolean growCrop(Level world, Player player, BlockState state, BlockPos pos) {
-		if (world instanceof ServerLevel == false) {
+		if (!(world instanceof ServerLevel)) {
 			return false;
 		}
 		
@@ -77,12 +76,10 @@ public class CropFunctions {
 			}
 		}
 		else {
-			Iterator<Property<?>> itp = Collections.unmodifiableCollection(state.getValues().keySet()).iterator();
-			
-			while(itp.hasNext()) {
-				Property<?> property = itp.next();
+
+			for (Property<?> property : Collections.unmodifiableCollection(state.getValues().keySet())) {
 				if (property instanceof IntegerProperty) {
-					IntegerProperty prop = (IntegerProperty)property;
+					IntegerProperty prop = (IntegerProperty) property;
 					String name = prop.getName();
 					if (name.equals("age")) {
 						Comparable<?> cv = state.getValues().get(property);
@@ -91,7 +88,7 @@ public class CropFunctions {
 						if (value == max) {
 							return false;
 						}
-	
+
 						while (value < max) {
 							world.setBlockAndUpdate(pos, world.getBlockState(pos).cycle(property));
 							if (!player.isCreative()) {
@@ -100,8 +97,8 @@ public class CropFunctions {
 									break;
 								}
 							}
-							value+=1;
-							
+							value += 1;
+
 							if (!player.isShiftKeyDown()) {
 								break;
 							}

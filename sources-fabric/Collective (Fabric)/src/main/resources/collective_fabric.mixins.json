@@ -31,6 +31,7 @@
   "client": [
   	"ClientPacketListenerMixin",
   	"ItemInHandRendererMixin",
+    "MinecraftMixin",
     "MultiPlayerGameModeMixin",
   	"SoundEngineMixin"
   ],

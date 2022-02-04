@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.1, mod version: 3.8.
+ * Minecraft version: 1.18.1, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,12 +14,6 @@
 
 package com.natamus.collective.events;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
 import com.natamus.collective.check.RegisterMod;
 import com.natamus.collective.config.ConfigHandler;
 import com.natamus.collective.data.GlobalVariables;
@@ -29,7 +23,6 @@ import com.natamus.collective.functions.SpawnEntityFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.collective.objects.SAMObject;
 import com.natamus.collective.util.Reference;
-
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
@@ -47,6 +40,11 @@ import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 @EventBusSubscriber
 public class CollectiveEvents {
@@ -112,7 +110,7 @@ public class CollectiveEvents {
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof LivingEntity == false) {
+		if (!(entity instanceof LivingEntity)) {
 			return;
 		}
 		
@@ -144,13 +142,11 @@ public class CollectiveEvents {
 		boolean isspawner = tags.contains(Reference.MOD_ID + ".spawner");
 		
 		List<SAMObject> possibles = new ArrayList<SAMObject>();
-		Iterator<SAMObject> iterator = GlobalVariables.samobjects.iterator();
-		while (iterator.hasNext()) {
-			SAMObject samobject = iterator.next();
+		for (SAMObject samobject : GlobalVariables.samobjects) {
 			if (samobject == null) {
 				continue;
 			}
-			
+
 			if (samobject.fromtype == null) {
 				continue;
 			}
@@ -209,7 +205,7 @@ public class CollectiveEvents {
 				}
 			}
 			
-			if (world instanceof ServerLevel == false) {
+			if (!(world instanceof ServerLevel)) {
 				return;
 			}
 			

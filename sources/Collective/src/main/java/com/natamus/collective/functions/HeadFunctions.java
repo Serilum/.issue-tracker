@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.1, mod version: 3.8.
+ * Minecraft version: 1.18.1, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -30,7 +30,7 @@ public class HeadFunctions {
 	public static ItemStack getPlayerHead(String playername, Integer amount) {
 		// Head Data
 		String data1 = DataFunctions.readStringFromURL(GlobalVariables.playerdataurl + playername.toLowerCase());
-		if (data1 == "") {
+		if (data1.equals("")) {
 			return null;
 		}
 
@@ -39,7 +39,7 @@ public class HeadFunctions {
 		String pid = sdata1[2].split("\"")[0];
 		
 		String data2 = DataFunctions.readStringFromURL(GlobalVariables.skindataurl + pid);
-		if (data2 == "") {
+		if (data2.equals("")) {
 			return null;
 		}
 		
@@ -48,11 +48,10 @@ public class HeadFunctions {
 		String tvalue = sdata2[1].split("\"")[0];
 		String d = new String(Base64.getDecoder().decode((tvalue.getBytes())));
 		
-		String texture = new String(Base64.getEncoder().encodeToString((("{\"textures\"" + d.split("\"textures\"")[1]).getBytes())));
+		String texture = Base64.getEncoder().encodeToString((("{\"textures\"" + d.split("\"textures\"")[1]).getBytes()));
 		String oldid = new UUID(texture.hashCode(), texture.hashCode()).toString();
-		
-		ItemStack playerhead = getTexturedHead(pname + "'s Head", texture, oldid, 1);
-		return playerhead;
+
+		return getTexturedHead(pname + "'s Head", texture, oldid, 1);
 	}
 	
 	public static ItemStack getTexturedHead(String headname, String texture, String oldid, Integer amount) {
@@ -79,9 +78,6 @@ public class HeadFunctions {
 	}
 	
 	public static boolean hasStandardHead(String mobname) {
-		if (mobname.equals("creeper") || mobname.equals("zombie") || mobname.equals("skeleton")) {
-			return true;
-		}
-		return false;
-	}
+        return mobname.equals("creeper") || mobname.equals("zombie") || mobname.equals("skeleton");
+    }
 }

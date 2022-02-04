@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -27,14 +27,11 @@ import net.minecraft.world.level.Level;
 
 @Mixin(value = ServerLevel.class, priority = 1001)
 public class ServerLevelMixin {
-	@Inject(method = "addEntity(Lnet/minecraft/world/entity/Entity;)Z", at = @At(value = "HEAD"), cancellable = true) 
-	private boolean serverLevel_addEntity(Entity entity, CallbackInfoReturnable<Boolean> ci) {
+	@Inject(method = "addEntity(Lnet/minecraft/world/entity/Entity;)Z", at = @At(value = "HEAD"), cancellable = true)
+	private void serverLevel_addEntity(Entity entity, CallbackInfoReturnable<Boolean> ci) {
 		Level world = entity.getCommandSenderWorld();
 		if (!CollectiveEntityEvents.PRE_ENTITY_JOIN_WORLD.invoker().onPreSpawn(world, entity)) {
-			ci.cancel();
-			return false;
+			ci.setReturnValue(false);
 		}
-		
-		return true;
 	}
 }

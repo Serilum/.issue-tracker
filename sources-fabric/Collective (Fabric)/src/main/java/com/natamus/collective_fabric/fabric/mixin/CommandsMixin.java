@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -30,7 +30,7 @@ import com.natamus.collective_fabric.fabric.callbacks.CollectiveCommandEvents;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 
-@Mixin(value = Commands.class, priority = 1001)
+@Mixin(value = Commands.class, priority = 1001, remap = false)
 public class CommandsMixin {
 	@Shadow private @Final CommandDispatcher<CommandSourceStack> dispatcher;
 	

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -108,7 +108,6 @@ public class FakePlayer extends ServerPlayer {
 	    public FakePlayer(MinecraftServer minecraftServer, ServerLevel serverLevel, GameProfile gameProfile,
 			ServerPlayerGameMode serverPlayerGameMode) {
 		super(minecraftServer, serverLevel, gameProfile);
-		// TODO Auto-generated constructor stub
 	}
 		@Override public Vec3 position(){ return new Vec3(0, 0, 0); }
 	    @Override public BlockPos blockPosition(){ return BlockPos.ZERO; }
@@ -118,9 +117,9 @@ public class FakePlayer extends ServerPlayer {
 	    //@Override public void openGui(Object mod, int modGuiId, World world, int x, int y, int z){}
 	    @Override public boolean isInvulnerableTo(DamageSource source){ return true; }
 	    @Override public boolean canHarmPlayer(Player player){ return false; }
-	    @Override public void die(DamageSource source){ return; }
-	    @Override public void tick(){ return; }
-	    @Override public void updateOptions(ServerboundClientInformationPacket pkt){ return; }
+	    @Override public void die(DamageSource source){ }
+	    @Override public void tick(){ }
+	    @Override public void updateOptions(ServerboundClientInformationPacket pkt){ }
 
 	    @SuppressWarnings("unused")
 		private static class FakePlayerNetHandler extends ServerGamePacketListenerImpl {

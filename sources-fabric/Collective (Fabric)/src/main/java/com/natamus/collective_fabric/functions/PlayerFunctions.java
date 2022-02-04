@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,17 +14,8 @@
 
 package com.natamus.collective_fabric.functions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.natamus.collective_fabric.util.Reference;
-
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -45,9 +36,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.*;
+
 public class PlayerFunctions {
 	public static boolean respawnPlayer(Level world, Player player) {
-		if (player instanceof ServerPlayer == false) {
+		if (!(player instanceof ServerPlayer)) {
 			return false;
 		}
 		
@@ -60,7 +53,7 @@ public class PlayerFunctions {
 			CriteriaTriggers.CHANGED_DIMENSION.trigger(serverplayer, Level.END, Level.OVERWORLD);
 		}
 		else if (serverplayer.getHealth() <= 0.0F) {
-			serverplayer = server.getPlayerList().respawn(serverplayer, false);
+			server.getPlayerList().respawn(serverplayer, false);
 		}
 		
 		return true;
@@ -81,10 +74,7 @@ public class PlayerFunctions {
 	}
 	
 	public static boolean isHoldingWater(Player player) {
-		if (player.getItemInHand(InteractionHand.OFF_HAND).getItem().equals(Items.WATER_BUCKET) || player.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(Items.WATER_BUCKET)) {
-			return true;
-		}
-		return false;
+		return player.getItemInHand(InteractionHand.OFF_HAND).getItem().equals(Items.WATER_BUCKET) || player.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(Items.WATER_BUCKET);
 	}
 	
 	public static boolean isJoiningWorldForTheFirstTime(Player player, String modid) {
@@ -116,11 +106,8 @@ public class PlayerFunctions {
 		BlockPos wspos = ServerLevel.getSharedSpawnPos();
 		BlockPos ppos = player.blockPosition();
 		BlockPos cpos = new BlockPos(ppos.getX(), wspos.getY(), ppos.getZ());
-		
-		if (cpos.closerThan(wspos, 50)) {
-			return true;
-		}
-		return false;
+
+		return cpos.closerThan(wspos, 50);
 	}
 	
 	public static BlockPos getSpawnPoint(Level world, Player player) {
@@ -137,19 +124,17 @@ public class PlayerFunctions {
 		BlockPos bedpos = serverplayer.getRespawnPosition();
 		if (bedpos != null) {
 			Optional<Vec3> optionalbed = Player.findRespawnPositionAndUseSpawnBlock(ServerLevel, bedpos, 1.0f, false, false);
-			if (optionalbed != null) {
-				if (optionalbed.isPresent()) {
-					Vec3 bedvec = optionalbed.get();
-					BlockPos bp = new BlockPos(bedvec);
-					Iterator<BlockPos> it = BlockPos.betweenClosedStream(bp.getX()-1, bp.getY()-1, bp.getZ()-1, bp.getX()+1, bp.getY()+1, bp.getZ()+1).iterator();
-					while (it.hasNext()) {
-						BlockPos np = it.next();
-						BlockState state = world.getBlockState(np);
-						Block block = state.getBlock();
-						if (block instanceof BedBlock) { // Found bed
-							respawnvec = bedvec;
-							break;
-						}
+			if (optionalbed.isPresent()) {
+				Vec3 bedvec = optionalbed.get();
+				BlockPos bp = new BlockPos(bedvec);
+				Iterator<BlockPos> it = BlockPos.betweenClosedStream(bp.getX()-1, bp.getY()-1, bp.getZ()-1, bp.getX()+1, bp.getY()+1, bp.getZ()+1).iterator();
+				while (it.hasNext()) {
+					BlockPos np = it.next();
+					BlockState state = world.getBlockState(np);
+					Block block = state.getBlock();
+					if (block instanceof BedBlock) { // Found bed
+						respawnvec = bedvec;
+						break;
 					}
 				}
 			}
@@ -167,17 +152,17 @@ public class PlayerFunctions {
 	
 	// Player Gear Functions
 	public static String getPlayerGearString(Player player) {
-		String skconfig = "";
+		StringBuilder skconfig = new StringBuilder();
 		
 		ItemStack offhand = player.getItemBySlot(EquipmentSlot.OFFHAND);
 		if (!offhand.isEmpty()) {
 			CompoundTag nbt = new CompoundTag();
 			nbt = offhand.save(nbt);
 			String nbtstring = nbt.toString();
-			skconfig += "'offhand'" + " : " + "'" + nbtstring + "',";
+			skconfig.append("'offhand'" + " : " + "'").append(nbtstring).append("',");
 		}
 		else {
-			skconfig += "'offhand'" + " : " + "'',";
+			skconfig.append("'offhand'" + " : " + "'',");
 		}
 		
 		ItemStack head = player.getItemBySlot(EquipmentSlot.HEAD);
@@ -185,10 +170,10 @@ public class PlayerFunctions {
 			CompoundTag nbt = new CompoundTag();
 			nbt = head.save(nbt);
 			String nbtstring = nbt.toString();
-			skconfig += "\n" + "'head'" + " : " + "'" + nbtstring + "',";
+			skconfig.append("\n" + "'head'" + " : " + "'").append(nbtstring).append("',");
 		}
 		else {
-			skconfig += "\n" + "'head'" + " : " + "'',";
+			skconfig.append("\n" + "'head'" + " : " + "'',");
 		}
 		
 		ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
@@ -196,10 +181,10 @@ public class PlayerFunctions {
 			CompoundTag nbt = new CompoundTag();
 			nbt = chest.save(nbt);
 			String nbtstring = nbt.toString();
-			skconfig += "\n" + "'chest'" + " : " + "'" + nbtstring + "',";
+			skconfig.append("\n" + "'chest'" + " : " + "'").append(nbtstring).append("',");
 		}
 		else {
-			skconfig += "\n" + "'chest'" + " : " + "'',";
+			skconfig.append("\n" + "'chest'" + " : " + "'',");
 		}
 		
 		ItemStack legs = player.getItemBySlot(EquipmentSlot.LEGS);
@@ -207,10 +192,10 @@ public class PlayerFunctions {
 			CompoundTag nbt = new CompoundTag();
 			nbt = legs.save(nbt);
 			String nbtstring = nbt.toString();
-			skconfig += "\n" + "'legs'" + " : " + "'" + nbtstring + "',";
+			skconfig.append("\n" + "'legs'" + " : " + "'").append(nbtstring).append("',");
 		}
 		else {
-			skconfig += "\n" + "'legs'" + " : " + "'',";
+			skconfig.append("\n" + "'legs'" + " : " + "'',");
 		}
 		
 		ItemStack feet = player.getItemBySlot(EquipmentSlot.FEET);
@@ -218,10 +203,10 @@ public class PlayerFunctions {
 			CompoundTag nbt = new CompoundTag();
 			nbt = feet.save(nbt);
 			String nbtstring = nbt.toString();
-			skconfig += "\n" + "'feet'" + " : " + "'" + nbtstring + "',";
+			skconfig.append("\n" + "'feet'" + " : " + "'").append(nbtstring).append("',");
 		}
 		else {
-			skconfig += "\n" + "'feet'" + " : " + "'',";
+			skconfig.append("\n" + "'feet'" + " : " + "'',");
 		}
 		
 		Inventory inv = player.getInventory();
@@ -231,18 +216,18 @@ public class PlayerFunctions {
 				CompoundTag nbt = new CompoundTag();
 				nbt = slot.save(nbt);
 				String nbtstring = nbt.toString();
-				skconfig += "\n" + i + " : " + "'" + nbtstring + "',";
+				skconfig.append("\n").append(i).append(" : ").append("'").append(nbtstring).append("',");
 			}
 			else {
-				skconfig += "\n" + i + " : '',";
+				skconfig.append("\n").append(i).append(" : '',");
 			}
 		}
 		
-		return skconfig;
+		return skconfig.toString();
 	}
 	
 	public static String getPlayerGearStringFromHashMap(HashMap<String, ItemStack> gear) {
-		String gearstring = "";
+		StringBuilder gearstring = new StringBuilder();
 		
 		List<String> specialslots = new ArrayList<String>(Arrays.asList("offhand", "head", "chest", "legs", "feet"));
 		for (String specialslot : specialslots) {
@@ -252,10 +237,10 @@ public class PlayerFunctions {
 				nbt = gear.get(specialslot).save(nbt);
 				specialslotstring = nbt.toString();
 			}
-			if (gearstring != "") {
-				gearstring += "\n";
+			if (!gearstring.toString().equals("")) {
+				gearstring.append("\n");
 			}
-			gearstring += "'" + specialslot + "'" + " : " + "'" + specialslotstring + "',";
+			gearstring.append("'").append(specialslot).append("'").append(" : ").append("'").append(specialslotstring).append("',");
 		}
 		
 		List<ItemStack> emptyinventory = NonNullList.withSize(36, ItemStack.EMPTY);
@@ -266,10 +251,10 @@ public class PlayerFunctions {
 				nbt = gear.get("" + i).save(nbt);
 				itemstring = nbt.toString();
 			}
-			gearstring += "\n" + i + " : '" + itemstring + "',";
+			gearstring.append("\n").append(i).append(" : '").append(itemstring).append("',");
 		}
 		
-		return gearstring;
+		return gearstring.toString();
 	}
 	
 	public static void setPlayerGearFromString(Player player, String gearconfig) {
@@ -342,24 +327,25 @@ public class PlayerFunctions {
 				continue;
 			}
 			
-			EquipmentSlot type = null;
-			if (slotstring.equals("offhand")) {
-				type = EquipmentSlot.OFFHAND;
-			}
-			else if (slotstring.equals("head")) {
-				type = EquipmentSlot.HEAD;
-			}
-			else if (slotstring.equals("chest")) {
-				type = EquipmentSlot.CHEST;
-			}
-			else if (slotstring.equals("legs")) {
-				type = EquipmentSlot.LEGS;
-			}
-			else if (slotstring.equals("feet")) {
-				type = EquipmentSlot.FEET;
-			}
-			else {
-				continue;
+			EquipmentSlot type;
+			switch (slotstring) {
+				case "offhand":
+					type = EquipmentSlot.OFFHAND;
+					break;
+				case "head":
+					type = EquipmentSlot.HEAD;
+					break;
+				case "chest":
+					type = EquipmentSlot.CHEST;
+					break;
+				case "legs":
+					type = EquipmentSlot.LEGS;
+					break;
+				case "feet":
+					type = EquipmentSlot.FEET;
+					break;
+				default:
+					continue;
 			}
 
 			if (type == null) {

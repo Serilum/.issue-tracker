@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.1, mod version: 3.8.
+ * Minecraft version: 1.18.1, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -69,7 +69,7 @@ public class ItemFunctions {
 				continue;
 			}
 			Entity entity = type.create(world);
-			if (entity == null || entity instanceof LivingEntity == false) {
+			if (!(entity instanceof LivingEntity)) {
 				continue;
 			}
 			
@@ -114,12 +114,11 @@ public class ItemFunctions {
 			List<ItemStack> inventory = player.getInventory().items;
 			
 			boolean increased = false;
-			for (int n = 0; n < inventory.size(); n++) {
-				ItemStack slot = inventory.get(n);
+			for (ItemStack slot : inventory) {
 				if (slot.getItem().equals(giveitem)) {
 					int slotcount = slot.getCount();
 					if (slotcount < maxstacksize) {
-						slot.setCount(slotcount+1);
+						slot.setCount(slotcount + 1);
 						increased = true;
 						break;
 					}
@@ -142,14 +141,11 @@ public class ItemFunctions {
 	}
 	
 	public static boolean isStoneTypeItem(Item item) {
-		if (GlobalVariables.stoneblockitems.contains(item)) {
-			return true;
-		}
-		return false;
+		return GlobalVariables.stoneblockitems.contains(item);
 	}
 	
 	public static String itemToReadableString(Item item, int amount) {
-		String itemstring = "";
+		String itemstring;
 		String translationkey = item.getDescriptionId();
 		if (translationkey.contains("block.")) {
 			return BlockFunctions.blockToReadableString(Block.byItem(item), amount);

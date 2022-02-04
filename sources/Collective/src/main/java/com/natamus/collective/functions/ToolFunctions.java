@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.1, mod version: 3.8.
+ * Minecraft version: 1.18.1, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -35,44 +35,26 @@ public class ToolFunctions {
 		}
 		
 		String itemname = item.toString().toLowerCase();
-		if (itemname.contains("_sword") || itemname.contains("_pickaxe") || itemname.contains("_axe") || itemname.contains("_shovel") || itemname.contains("_hoe")) {
-			return true;
-		}
-		return false;
-	}
+        return itemname.contains("_sword") || itemname.contains("_pickaxe") || itemname.contains("_axe") || itemname.contains("_shovel") || itemname.contains("_hoe");
+    }
 	
 	public static Boolean isSword(ItemStack itemstack) {
-		if (itemstack.getItem() instanceof SwordItem) {
-			return true;
-		}
-		return false;
-	}
+        return itemstack.getItem() instanceof SwordItem;
+    }
 	
 	public static Boolean isPickaxe(ItemStack itemstack) {
-		if (itemstack.getItem() instanceof PickaxeItem || itemstack.canPerformAction(ToolActions.PICKAXE_DIG)) {
-			return true;
-		}
-		return false;
-	}
+        return itemstack.getItem() instanceof PickaxeItem || itemstack.canPerformAction(ToolActions.PICKAXE_DIG);
+    }
 	
 	public static Boolean isAxe(ItemStack itemstack) {
-		if (itemstack.getItem() instanceof AxeItem || itemstack.canPerformAction(ToolActions.AXE_DIG)) {
-			return true;
-		}
-		return false;
-	}
+        return itemstack.getItem() instanceof AxeItem || itemstack.canPerformAction(ToolActions.AXE_DIG);
+    }
 	
 	public static Boolean isShovel(ItemStack itemstack) {
-		if (itemstack.getItem() instanceof ShovelItem || itemstack.canPerformAction(ToolActions.SHOVEL_DIG)) {
-			return true;
-		}
-		return false;
-	}
+        return itemstack.getItem() instanceof ShovelItem || itemstack.canPerformAction(ToolActions.SHOVEL_DIG);
+    }
 	
 	public static Boolean isHoe(ItemStack itemstack) {
-		if (itemstack.getItem() instanceof HoeItem || itemstack.canPerformAction(ToolActions.HOE_DIG)) {
-			return true;
-		}
-		return false;
-	}
+        return itemstack.getItem() instanceof HoeItem || itemstack.canPerformAction(ToolActions.HOE_DIG);
+    }
 }

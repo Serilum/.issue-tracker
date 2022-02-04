@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,24 +14,16 @@
 
 package com.natamus.collective_fabric;
 
-import java.util.UUID;
-
-import com.mojang.datafixers.util.Pair;
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.collective_fabric.config.CollectiveConfigHandler;
 import com.natamus.collective_fabric.events.CollectiveEvents;
-import com.natamus.collective_fabric.fabric.callbacks.CollectiveChatEvents;
 import com.natamus.collective_fabric.util.Reference;
-
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 
 public class CollectiveFabric implements ModInitializer { 

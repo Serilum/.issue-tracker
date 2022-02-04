@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -34,17 +34,11 @@ import net.minecraft.world.level.block.TallGrassBlock;
 
 public class CompareBlockFunctions {
 	public static boolean isStoneBlock(Block block) {
-		if (BlockTags.BASE_STONE_OVERWORLD.contains(block)) {
-			return true;
-		}
-		return false;
+		return BlockTags.BASE_STONE_OVERWORLD.contains(block);
 	}
 	
 	public static boolean isNetherStoneBlock(Block block) {
-		if (BlockTags.BASE_STONE_NETHER.contains(block)) {
-			return true;
-		}
-		return false;
+		return BlockTags.BASE_STONE_NETHER.contains(block);
 	}
 	
 	public static boolean isTreeLeaf(Block block, boolean withNetherVariants) {
@@ -57,9 +51,7 @@ public class CompareBlockFunctions {
 			}
 		}
 		if (block instanceof BushBlock) {
-			if (block instanceof CropBlock == false && block instanceof DeadBushBlock == false && block instanceof DoublePlantBlock == false && block instanceof FlowerBlock == false && block instanceof SaplingBlock == false && block instanceof StemBlock == false && block instanceof AttachedStemBlock == false && block instanceof SweetBerryBushBlock == false && block instanceof TallGrassBlock == false) {
-				return true;
-			}
+			return !(block instanceof CropBlock) && !(block instanceof DeadBushBlock) && !(block instanceof DoublePlantBlock) && !(block instanceof FlowerBlock) && !(block instanceof SaplingBlock) && !(block instanceof StemBlock) && !(block instanceof AttachedStemBlock) && !(block instanceof SweetBerryBushBlock) && !(block instanceof TallGrassBlock);
 		}
 		return false;
 	}
@@ -68,38 +60,22 @@ public class CompareBlockFunctions {
 	}
 	
 	public static boolean isTreeLog(Block block) {
-		if (BlockTags.LOGS.contains(block) || block instanceof RotatedPillarBlock) {
-			return true;
-		}
-		return false;
+		return BlockTags.LOGS.contains(block) || block instanceof RotatedPillarBlock;
 	}
 	
 	public static boolean isSapling(Block block) {
-		if (BlockTags.SAPLINGS.contains(block) || block instanceof SaplingBlock) {
-			return true;
-		}
-		return false;
+		return BlockTags.SAPLINGS.contains(block) || block instanceof SaplingBlock;
 	}
 	
 	public static boolean isDirtBlock(Block block) {
-		if (block.equals(Blocks.GRASS_BLOCK) || block.equals(Blocks.DIRT) || block.equals(Blocks.COARSE_DIRT) || block.equals(Blocks.PODZOL)) {
-			return true;
-		}
-		return false;
+		return block.equals(Blocks.GRASS_BLOCK) || block.equals(Blocks.DIRT) || block.equals(Blocks.COARSE_DIRT) || block.equals(Blocks.PODZOL);
 	}
 	
 	public static boolean isPortalBlock(Block block) {
-		if (block instanceof NetherPortalBlock || BlockFunctions.blockToReadableString(block).equals("portal placeholder")) {
-			return true;
-		}
-
-		return false;
+		return block instanceof NetherPortalBlock || BlockFunctions.blockToReadableString(block).equals("portal placeholder");
 	}
 	
 	public static boolean isAirOrOverwritableBlock(Block block) {
-		if (!block.equals(Blocks.AIR) && (block instanceof BushBlock == false) && (block instanceof SnowLayerBlock == false)) {
-			return false;
-		}
-		return true;
+		return block.equals(Blocks.AIR) || (block instanceof BushBlock) || (block instanceof SnowLayerBlock);
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 3.20.
+ * Minecraft version: 1.18.x, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -20,9 +20,8 @@ import java.util.List;
 public class UUIDFunctions {
 	public static List<Integer> oldIdToIntArray(String oldid) {
 		String oldidfull = oldid.replace("-", "");
-		
-		List<Integer> parts = getIntegerParts(oldidfull, 8);
-		return parts;
+
+		return getIntegerParts(oldidfull, 8);
 		//return getConvertedUUID(parts.toArray(new Integer[parts.size()]));
 	}
 	
@@ -50,7 +49,6 @@ public class UUIDFunctions {
     }
     
 	private static int partToDecimalValue(String hex) {
-		int decimal = Long.valueOf(hex, 16).intValue();
-		return decimal;
+		return Long.valueOf(hex, 16).intValue();
 	}
 }

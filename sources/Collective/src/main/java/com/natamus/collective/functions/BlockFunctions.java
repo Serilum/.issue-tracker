@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.1, mod version: 3.8.
+ * Minecraft version: 1.18.1, mod version: 4.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -34,11 +34,8 @@ public class BlockFunctions {
 		if (specificblock == null || tocheckblock == null) {
 			return false;
 		}
-		if (specificblock.equals(tocheckblock)) {
-			return true;
-		}
-		return false;
-	}
+        return specificblock.equals(tocheckblock);
+    }
 	public static Boolean isSpecificBlock(Block specificblock, ItemStack tocheckitemstack) {
 		if (tocheckitemstack == null) {
 			return false;
@@ -98,22 +95,12 @@ public class BlockFunctions {
 	
 	// For bamboo
 	public static boolean isGrowBlock(Block block) {
-		//BlockState state = block.defaultBlockState();
-		//if (state.getBlock().is(BlockTags.BAMBOO_PLANTABLE_ON)) {
-		//	return true;
-		//}
-		if (GlobalVariables.growblocks.contains(block)) {
-			return true;
-		}
-		return false;
-	}
+        return GlobalVariables.growblocks.contains(block);
+    }
 	
 	public static boolean isStoneTypeBlock(Block block) {
-		if (GlobalVariables.stoneblocks.contains(block)) {
-			return true;
-		}
-		return false;
-	}
+        return GlobalVariables.stoneblocks.contains(block);
+    }
 	
 	public static Boolean isFilledPortalFrame(BlockState blockstate) {
 		Block block = blockstate.getBlock();
@@ -125,7 +112,7 @@ public class BlockFunctions {
 	}
 	
 	public static String blockToReadableString(Block block, int amount) {
-		String blockstring = "";
+		String blockstring;
 		String[] blockspl = block.getDescriptionId().replace("block.", "").split("\\.");
 		if (blockspl.length > 1) {
 			blockstring = blockspl[1];
