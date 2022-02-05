@@ -141,7 +141,7 @@ N/A
 [Save and Load Inventories (Forge ](https://curseforge.com/minecraft/mc-mods/save-and-load-inventories)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/save-and-load-inventories-fabric)\
 [Scaffolding Drops Nearby (Forge ](https://curseforge.com/minecraft/mc-mods/scaffolding-drops-nearby)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/scaffolding-drops-nearby-fabric)\
 [Set World Spawn Point (Forge ](https://curseforge.com/minecraft/mc-mods/set-world-spawn-point)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/set-world-spawn-point-fabric)\
-[Shulker Drops Two (Forge](https://curseforge.com/minecraft/mc-mods/shulker-drops-two))\
+[Shulker Drops Two (Forge ](https://curseforge.com/minecraft/mc-mods/shulker-drops-two)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/shulker-drops-two-fabric)\
 [Silence Mobs (Forge ](https://curseforge.com/minecraft/mc-mods/silence-mobs)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/silence-mobs-fabric)\
 [Skeleton Horse Spawn (Forge ](https://curseforge.com/minecraft/mc-mods/skeleton-horse-spawn)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/skeleton-horse-spawn-fabric)\
 [Sleep Sooner (Forge ](https://curseforge.com/minecraft/mc-mods/sleep-sooner)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/sleep-sooner-fabric)\
@@ -169,7 +169,7 @@ N/A
 [Welcome Message (Forge ](https://curseforge.com/minecraft/mc-mods/welcome-message)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/welcome-message-fabric)\
 [Wool Tweaks (Forge ](https://curseforge.com/minecraft/mc-mods/wool-tweaks)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/wool-tweaks-fabric)\
 [World Border (Forge ](https://curseforge.com/minecraft/mc-mods/world-border)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/world-border-fabric)\
-[Your Items Are Safe (Forge](https://curseforge.com/minecraft/mc-mods/your-items-are-safe))\
+[Your Items Are Safe (Forge ](https://curseforge.com/minecraft/mc-mods/your-items-are-safe)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/your-items-are-safe-fabric)\
 [Zombie Horse Spawn (Forge ](https://curseforge.com/minecraft/mc-mods/zombie-horse-spawn)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/zombie-horse-spawn-fabric)\
 [Zombie Proof Doors (Forge ](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/zombie-proof-doors-fabric)\
 [Zombie Villagers From Spawner (Forge ](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner/)/[ Fabric)](https://curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner-fabric)
