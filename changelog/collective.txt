@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.1: (Fabric only) Fixed a bug causing Minecraft to prompt for safe load or not start the game.
+
+=========
 v4.0: Updated to major version 4.0.
 Backend code has been optimized and made to look cleaner.
 Better performance and easier to work with.
