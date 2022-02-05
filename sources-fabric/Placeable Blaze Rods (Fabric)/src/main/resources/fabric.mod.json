@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "placeableblazerods-fabric",
+  "version": "1.4",
+
+  "name": "Placeable Blaze Rods (Fabric)",
+  "description": "Makes blaze rods placeable as a block in the world, similar to end rods.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/placeable-blaze-rods-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Placeable%20Blaze%20Rods%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Placeable%20Blaze%20Rods"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.placeableblazerods.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.12.6",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17",
+    "collective-fabric": ">=4.1"
+  }
+}

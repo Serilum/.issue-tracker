@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:blaze_rod",
+          "name": "placeableblazerods:blaze_rod"
+        }
+      ]
+    }
+  ]
+}
