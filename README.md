@@ -181,17 +181,6 @@ N/A
   - [Edible Magma Cream](https://curseforge.com/minecraft/mc-mods/edible-magma-cream)
   - [Edible Sugar](https://curseforge.com/minecraft/mc-mods/edible-sugar)
 
-- Mods superseded by [Omega Mute](https://curseforge.com/minecraft/mc-mods/omega-mute):
-  - [Mute Chickens](https://curseforge.com/minecraft/mc-mods/mute-chickens)
-  - [Mute Cows](https://curseforge.com/minecraft/mc-mods/mute-cows)
-  - [Mute Droppers and Dispensers](https://curseforge.com/minecraft/mc-mods/mute-droppers-and-dispensers)
-  - [Mute Pigs](https://curseforge.com/minecraft/mc-mods/mute-pigs)
-  - [Mute Pistons](https://curseforge.com/minecraft/mc-mods/mute-pistons)
-  - [Mute Sheep](https://curseforge.com/minecraft/mc-mods/mute-sheep)
-  - [Mute Villagers](https://curseforge.com/minecraft/mc-mods/mute-villagers)
-  - [Mute Withers](https://curseforge.com/minecraft/mc-mods/mute-withers)
-  - [Unmute Mobs](https://curseforge.com/minecraft/mc-mods/unmute-mobs)
-
 - Mod superseded by [Areas](https://curseforge.com/minecraft/mc-mods/areas):
   - [Named Areas](https://curseforge.com/minecraft/mc-mods/named-areas)
 
