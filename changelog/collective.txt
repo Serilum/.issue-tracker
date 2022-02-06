@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.2: (Fabric 1.16.x only) Fixed items prevented from being loaded into the world.
+
+=========
 v4.1: (Fabric only) Fixed a bug causing Minecraft to prompt for safe load or not start the game.
 
 =========

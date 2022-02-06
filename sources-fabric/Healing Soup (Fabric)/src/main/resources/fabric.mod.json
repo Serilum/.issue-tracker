@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "healingsoup-fabric",
+  "version": "2.4",
+
+  "name": "Healing Soup (Fabric)",
+  "description": "Soup heals hearts. Adds cactus soup, mushroom soup and chocolate milk items and recipes.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/healing-soup-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Healing%20Soup%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Healing%20Soup"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.healingsoup.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.12.6",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17",
+    "collective-fabric": ">=4.1"
+  }
+}
