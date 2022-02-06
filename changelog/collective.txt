@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.3-4.4: (Fabric only) Added left-click-block event callback.
+Added silencer for "Mismatch in destroy block pos" messages.
+
+=========
 v4.2: (Fabric 1.16.x only) Fixed items prevented from being loaded into the world.
 
 =========
@@ -18,7 +22,7 @@ Thanks for downloading!
 v3.20: (Fabric 1.18.x only) Removed a debug line which changed all server chat messages to "lol". Apologies for that one.
 
 =========
-v3.19: (Fabric only) Updated backend code.
+v3.16-3.19: (Fabric only) Updated backend code.
 
 =========
 v3.15: (Fabric only) Fixed the ServerGamePacketListenerImplMixin causing other mods to have unexpected behaviour when they rely on chat for input.

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "endportalrecipe-fabric",
+  "version": "2.6",
+
+  "name": "End Portal Recipe (Fabric)",
+  "description": "Makes the end portal craftable and available in survival plus other tweaks.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/end-portal-recipe-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/End%20Portal%20Recipe%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20End%20Portal%20Recipe"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.endportalrecipe.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.12.6",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17",
+    "collective-fabric": ">=4.4"
+  }
+}

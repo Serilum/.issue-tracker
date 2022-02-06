@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 4.2.
+ * Minecraft version: 1.18.x, mod version: 4.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -13,8 +13,6 @@
  */
 
 package com.natamus.collective_fabric.fabric.callbacks;
-
-import java.util.EnumSet;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
@@ -29,6 +27,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.BlockHitResult;
+
+import java.util.EnumSet;
 
 public class CollectiveBlockEvents {
 	private CollectiveBlockEvents() { }
@@ -78,6 +78,16 @@ public class CollectiveBlockEvents {
         
         return true;
     });
+
+	public static final Event<CollectiveBlockEvents.Block_Left_Click> BLOCK_LEFT_CLICK = EventFactory.createArrayBacked(CollectiveBlockEvents.Block_Left_Click.class, callbacks -> (world, player, pos, direction) -> {
+		for (CollectiveBlockEvents.Block_Left_Click callback : callbacks) {
+			if (!callback.onBlockLeftClick(world, player, pos, direction)) {
+				return false;
+			}
+		}
+
+		return true;
+	});
     
 	@FunctionalInterface
 	public interface On_Block_Place {
@@ -102,5 +112,10 @@ public class CollectiveBlockEvents {
 	@FunctionalInterface
 	public interface Block_Right_Click {
 		 boolean onBlockRightClick(Level world, Player player, InteractionHand hand, BlockPos pos, BlockHitResult hitVec);
+	}
+
+	@FunctionalInterface
+	public interface Block_Left_Click {
+		boolean onBlockLeftClick(Level world, Player player, BlockPos pos, Direction direction);
 	}
 }
