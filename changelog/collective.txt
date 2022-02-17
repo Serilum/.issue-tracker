@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.5: (Fabric only) Added various callbacks related to item use.
+
+=========
 v4.3-4.4: (Fabric only) Added left-click-block event callback.
 Added silencer for "Mismatch in destroy block pos" messages.
 

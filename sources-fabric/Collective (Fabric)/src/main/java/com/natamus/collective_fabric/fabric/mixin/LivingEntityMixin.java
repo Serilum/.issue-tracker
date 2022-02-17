@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 4.4.
+ * Minecraft version: 1.18.x, mod version: 4.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,26 +14,31 @@
 
 package com.natamus.collective_fabric.fabric.mixin;
 
+import com.natamus.collective_fabric.fabric.callbacks.CollectiveEntityEvents;
+import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import com.natamus.collective_fabric.fabric.callbacks.CollectiveEntityEvents;
-
-import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.Level;
-
 @Mixin(value = LivingEntity.class, priority = 1001)
-public class LivingEntityMixin {
-	@Inject(method = "tick()V", at = @At(value = "HEAD")) 
+public abstract class LivingEntityMixin {
+	@Shadow protected ItemStack useItem;
+
+	@Shadow public abstract InteractionHand getUsedItemHand();
+
+	@Inject(method = "tick()V", at = @At(value = "HEAD"))
 	public void LivingEntity_tick(CallbackInfo ci) {
 		Entity entity = (Entity)(Object)this;
 		Level world = entity.getCommandSenderWorld();

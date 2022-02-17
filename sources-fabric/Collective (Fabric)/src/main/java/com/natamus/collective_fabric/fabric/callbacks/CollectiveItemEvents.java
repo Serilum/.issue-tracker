@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 4.4.
+ * Minecraft version: 1.18.x, mod version: 4.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -18,6 +18,8 @@ import java.util.List;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FishingHook;
@@ -43,6 +45,18 @@ public class CollectiveItemEvents {
         	callback.onItemTossed(player, itemStack);
         }
     });
+
+	public static final Event<CollectiveItemEvents.Item_Destroyed> ON_ITEM_DESTROYED = EventFactory.createArrayBacked(CollectiveItemEvents.Item_Destroyed.class, callbacks -> (player, itemStack, hand) -> {
+		for (CollectiveItemEvents.Item_Destroyed callback : callbacks) {
+			callback.onItemDestroyed(player, itemStack, hand);
+		}
+	});
+
+	public static final Event<CollectiveItemEvents.Item_Use_Finished> ON_ITEM_USE_FINISHED = EventFactory.createArrayBacked(CollectiveItemEvents.Item_Use_Finished.class, callbacks -> (player, usedItem, newItem, hand) -> {
+		for (CollectiveItemEvents.Item_Use_Finished callback : callbacks) {
+			callback.onItemUsedFinished(player, usedItem, newItem, hand);
+		}
+	});
     
 	@FunctionalInterface
 	public interface Item_Expire {
@@ -57,5 +71,15 @@ public class CollectiveItemEvents {
 	@FunctionalInterface
 	public interface Item_Tossed {
 		 void onItemTossed(Player player, ItemStack itemStack);
+	}
+
+	@FunctionalInterface
+	public interface Item_Destroyed {
+		void onItemDestroyed(Player player, ItemStack stack, InteractionHand hand);
+	}
+
+	@FunctionalInterface
+	public interface Item_Use_Finished {
+		void onItemUsedFinished(Player player, ItemStack usedItem, ItemStack newItem, InteractionHand hand);
 	}
 }

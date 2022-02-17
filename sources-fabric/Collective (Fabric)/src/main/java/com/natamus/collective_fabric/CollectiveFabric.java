@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 4.4.
+ * Minecraft version: 1.18.x, mod version: 4.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -17,19 +17,18 @@ package com.natamus.collective_fabric;
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.collective_fabric.config.CollectiveConfigHandler;
 import com.natamus.collective_fabric.events.CollectiveEvents;
-import com.natamus.collective_fabric.fabric.callbacks.CollectiveBlockEvents;
+import com.natamus.collective_fabric.fabric.callbacks.CollectiveItemEvents;
 import com.natamus.collective_fabric.util.Reference;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
 
 public class CollectiveFabric implements ModInitializer { 
 	@Override
