@@ -3,6 +3,12 @@ Passive Endermen
 https://www.curseforge.com/minecraft/mc-mods/passive-endermen
 
 =========
+v2.1: Fixed the config 'preventEndermenFromAttacking' not working correctly.
+
+=========
+v2.0: Updated lots of backend code to make the mod work as intended.
+
+=========
 v1.7: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

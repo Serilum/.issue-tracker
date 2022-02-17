@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "collective-fabric",
-  "version": "4.5",
+  "version": "4.8",
 
   "name": "Collective (Fabric)",
   "description": "Collective Fabric is a shared library with common code for all of Serilum's mods.",
@@ -9,7 +9,7 @@
     "Rick South"
   ],
   "contact": {
-    "homepage": "https://curseforge.com/minecraft/mc-mods/collective"
+    "homepage": "https://curseforge.com/minecraft/mc-mods/collective-fabric"
   },
 
   "license": "All Rights Reserved",

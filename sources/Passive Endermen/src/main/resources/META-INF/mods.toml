@@ -5,18 +5,18 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Pass
 
 [[mods]]
 modId="passiveendermen"
-version="1.7"
+version="2.1"
 displayName="Passive Endermen"
 displayURL="https://curseforge.com/minecraft/mc-mods/passive-endermen"
 authors="Rick South"
 description="Configurably prevent an enderman from picking up blocks, griefing and attacking players."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Cherriesaurus, joj, Kreezcraft.com, limpjellyfish, Michael W. S., Morgan Schetzle, Robert Gilbert, Tyler Behl   
+Adam E, Aternos.org, Cherriesaurus, Kreezcraft.com, limpjellyfish, Markus B., Michael W. S., Morgan Schetzle, Reforged Network, Robert Gilbert, Tyler Behl, Zhovan8   
 '''
 
 [[dependencies.passiveendermen]]
     modId="collective"
     mandatory=true
-    versionRange="[3.8,)"
+    versionRange="[4.7,)"
     ordering="NONE"
     side="BOTH"

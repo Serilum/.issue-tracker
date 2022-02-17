@@ -3,6 +3,9 @@ Bigger Sponge Absorption Radius
 https://www.curseforge.com/minecraft/mc-mods/bigger-sponge-absorption-radius
 
 =========
+v2.0: Updated mod to use mixins instead of a custom sponge block to increase compatibility.
+
+=========
 v1.6: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

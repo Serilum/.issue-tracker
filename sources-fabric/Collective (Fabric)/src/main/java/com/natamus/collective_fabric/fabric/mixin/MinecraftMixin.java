@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 4.5.
+ * Minecraft version: 1.18.x, mod version: 4.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -19,22 +19,17 @@ import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.main.GameConfig;
-import org.apache.logging.log4j.Logger;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = Minecraft.class, priority = 1001)
 public class MinecraftMixin {
-    @Shadow @Final private static Logger LOGGER;
-
     @Inject(method = "createUserApiService", cancellable = true, at = @At(value = "HEAD"))
     public void Minecraft_createUserApiService(YggdrasilAuthenticationService yggdrasilAuthenticationService, GameConfig gameConfig, CallbackInfoReturnable<UserApiService> cir) {
         if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
-            LOGGER.error("Failed to verify authentication");
+            System.out.println("Failed to verify authentication");
             cir.setReturnValue(UserApiService.OFFLINE);
         }
     }

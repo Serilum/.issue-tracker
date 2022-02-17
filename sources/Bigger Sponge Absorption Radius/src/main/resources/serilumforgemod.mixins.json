@@ -5,13 +5,11 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "serilumforgemod.refmap.json",
   "mixins": [
-
+    "SpongeBlockMixin"
   ],
   "client": [
-  
   ],
   "server": [
-
   ],
   "injectors": {
     "defaultRequire": 1

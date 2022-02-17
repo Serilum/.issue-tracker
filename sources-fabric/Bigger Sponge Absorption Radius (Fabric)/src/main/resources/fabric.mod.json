@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "biggerspongeabsorptionradius-fabric",
+  "version": "2.0",
+
+  "name": "Bigger Sponge Absorption Radius (Fabric)",
+  "description": "Each extra sponge block placed next to another increases the water absorption radius.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/bigger-sponge-absorption-radius-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Bigger%20Sponge%20Absorption%20Radius%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Bigger%20Sponge%20Absorption%20Radius"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.biggerspongeabsorptionradius.Main" ] },
+  "mixins": [
+    "biggerspongeabsorptionradius_fabric.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.12.6",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17",
+    "collective-fabric": ">=4.5"
+  }
+}

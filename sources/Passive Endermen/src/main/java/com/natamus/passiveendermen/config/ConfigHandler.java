@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Passive Endermen.
- * Minecraft version: 1.18.1, mod version: 1.7.
+ * Minecraft version: 1.18.1, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Passive Endermen ever released, along with some other perks.
@@ -35,8 +35,8 @@ public class ConfigHandler {
 					.comment("If enabled, prevents from picking up and placing blocks.")
 					.define("preventEndermenFromGriefing", true);
 			preventEndermenFromAttackingFirst = builder
-					.comment("If enabled, stops the endermen from attacking first when a player looks at them. Also works for endermite.")
-					.define("preventEndermenFromAttackingFirst", true);
+					.comment("If enabled, stops the endermen from attacking.")
+					.define("preventEndermenFromAttacking", true);
 			
 			builder.pop();
 		}

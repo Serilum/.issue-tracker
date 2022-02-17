@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.1, mod version: 4.0.
+ * Minecraft version: 1.18.1, mod version: 4.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ConfigFunctions {
@@ -52,5 +53,44 @@ public class ConfigFunctions {
 		}
 		
 		return values;
+	}
+
+	public static HashMap<String, String> getDictValues(String modid) {
+		return getDictValues(modid, false);
+	}
+
+	public static HashMap<String, String> getDictValues(String modid, boolean tve) {
+		HashMap<String, String> hm = new HashMap<String, String>();
+
+		List<String> rawvalues = getRawConfigValues(modid, tve);
+		for (String rawvalue : rawvalues) {
+			if (rawvalue.length() < 3) {
+				continue;
+			}
+
+			String rv = rawvalue.replace("\"", "");
+
+			String[] rvspl;
+			if (rv.contains("=")) {
+				rvspl = rv.split("=");
+			}
+			else if (rv.contains(":")) {
+				rvspl = rv.split(":");
+			}
+			else {
+				continue;
+			}
+
+			if (rvspl.length < 2) {
+				continue;
+			}
+
+			String keystr = rvspl[0].trim();
+			String valuestr = rvspl[1].trim();
+
+			hm.put(keystr, valuestr);
+		}
+
+		return hm;
 	}
 }

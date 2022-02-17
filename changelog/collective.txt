@@ -3,6 +3,15 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.8: (Fabric only) Corrected mod url. Lowered PlayerMixin priority.
+
+=========
+v4.7: Extended ConfigFunctions to receive config values in a dictionary format before config classes are loaded to be able to for example use them within mixins.
+
+=========
+v4.6: (Fabric only) Made some changes to MinecraftMixin to increase compatibility with snapshot versions.
+
+=========
 v4.5: (Fabric only) Added various callbacks related to item use.
 
 =========

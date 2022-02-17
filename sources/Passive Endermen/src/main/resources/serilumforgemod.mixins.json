@@ -5,13 +5,13 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "serilumforgemod.refmap.json",
   "mixins": [
-
+    "EndermanLeaveBlockGoalMixin",
+    "EnderManMixin",
+    "EndermanTakeBlockGoalMixin"
   ],
   "client": [
-  
   ],
   "server": [
-
   ],
   "injectors": {
     "defaultRequire": 1

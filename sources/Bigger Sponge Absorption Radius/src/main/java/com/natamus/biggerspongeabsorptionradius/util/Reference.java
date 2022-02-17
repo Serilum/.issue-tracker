@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bigger Sponge Absorption Radius.
- * Minecraft version: 1.18.1, mod version: 1.6.
+ * Minecraft version: 1.18.1, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Bigger Sponge Absorption Radius ever released, along with some other perks.
@@ -17,6 +17,6 @@ package com.natamus.biggerspongeabsorptionradius.util;
 public class Reference {
 	public static final String MOD_ID = "biggerspongeabsorptionradius";
 	public static final String NAME = "Bigger Sponge Absorption Radius";
-	public static final String VERSION = "1.6";
+	public static final String VERSION = "2.0";
 	public static final String ACCEPTED_VERSIONS = "[1.18.1]";
 }
