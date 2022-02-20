@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 4.8.
+ * Minecraft version: 1.18.x, mod version: 4.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -31,13 +31,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class ItemStackMixin {
 	@Inject(method = "finishUsingItem(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/item/ItemStack;", at = @At(value = "HEAD"), cancellable = true)
 	public void finishUsingItem(Level level, LivingEntity livingEntity, CallbackInfoReturnable<ItemStack> cir) {
-		ItemStack itemStack = (ItemStack)(Object)this;
-		ItemStack copyStack = itemStack.copy();
-		ItemStack newStack = itemStack.getItem().finishUsingItem(itemStack, level, livingEntity);
+		if (livingEntity instanceof Player) {
+			ItemStack itemStack = (ItemStack) (Object) this;
+			ItemStack copyStack = itemStack.copy();
+			ItemStack newStack = itemStack.getItem().finishUsingItem(itemStack, level, livingEntity);
 
-		InteractionHand hand = livingEntity.getUsedItemHand();
-		CollectiveItemEvents.ON_ITEM_USE_FINISHED.invoker().onItemUsedFinished((Player)livingEntity, copyStack, newStack, hand);
+			InteractionHand hand = livingEntity.getUsedItemHand();
+			CollectiveItemEvents.ON_ITEM_USE_FINISHED.invoker().onItemUsedFinished((Player) livingEntity, copyStack, newStack, hand);
 
-		cir.setReturnValue(newStack);
+			cir.setReturnValue(newStack);
+		}
 	}
 }

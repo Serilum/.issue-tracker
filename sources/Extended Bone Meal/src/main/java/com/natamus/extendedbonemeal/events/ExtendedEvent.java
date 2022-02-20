@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Extended Bone Meal.
- * Minecraft version: 1.18.1, mod version: 1.5.
+ * Minecraft version: 1.18.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Extended Bone Meal ever released, along with some other perks.
@@ -44,6 +44,10 @@ public class ExtendedEvent {
 		}
 		
 		Player player = e.getPlayer();
+		if (player == null) {
+			return;
+		}
+
 		if (!player.isShiftKeyDown()) {
 			return;
 		}

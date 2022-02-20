@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "extendedbonemeal-fabric",
-  "version": "1.4",
+  "version": "1.6",
 
   "name": "Extended Bone Meal (Fabric)",
   "description": "Extends bone meal behaviour. Instant grow with sneak, grow netherwart and other tweaks.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=17",
-    "collective-fabric": ">=3.9"
+    "collective-fabric": ">=4.9"
   }
 }

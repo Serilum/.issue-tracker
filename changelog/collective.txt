@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.9: (Fabric only) Fixed whenever an entity that was not a player consumed an item causing a crash.
+
+=========
 v4.8: (Fabric only) Corrected mod url. Lowered PlayerMixin priority.
 
 =========

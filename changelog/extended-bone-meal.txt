@@ -3,6 +3,9 @@ Extended Bone Meal
 https://www.curseforge.com/minecraft/mc-mods/extended-bone-meal
 
 =========
+v1.6: Improved mod compatibility.
+
+=========
 v1.5: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========
