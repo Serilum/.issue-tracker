@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Compass.
- * Minecraft version: 1.18.x, mod version: 1.8.
+ * Minecraft version: 1.18.x, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Compass ever released, along with some other perks.
@@ -92,7 +92,23 @@ public class GUIEvent {
 		if (facing < 0) {
 			facing = facing * -1;
 		}
-		
-		return direction.get(facing) + ": " + ppos.getX() + ", " + ppos.getY() + ", " + ppos.getZ();
+
+		String format = ConfigHandler.guiCompassFormat.getValue();
+		String toshow = "";
+
+		if (format.contains("F")) {
+			toshow += direction.get(facing) + ": ";
+		}
+		if (format.contains("X")) {
+			toshow += ppos.getX() + ", ";
+		}
+		if (format.contains("Y")) {
+			toshow += ppos.getY() + ", ";
+		}
+		if (format.contains("Z")) {
+			toshow += ppos.getZ() + ", ";
+		}
+
+		return toshow.substring(0, toshow.length() - 2);
 	}
 }

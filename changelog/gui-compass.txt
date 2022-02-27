@@ -3,6 +3,9 @@ GUI Compass
 https://www.curseforge.com/minecraft/mc-mods/gui-compass
 
 =========
+v2.0: Added the 'guiCompassFormat' config option which allows users to specify what is shown in the GUI.
+
+=========
 v1.8: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

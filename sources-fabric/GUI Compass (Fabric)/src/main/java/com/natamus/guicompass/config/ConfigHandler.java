@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Compass.
- * Minecraft version: 1.18.x, mod version: 1.8.
+ * Minecraft version: 1.18.x, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Compass ever released, along with some other perks.
@@ -33,7 +33,8 @@ import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.JanksonValueSerial
 import io.github.fablabsmc.fablabs.api.fiber.v1.tree.ConfigTree;
 import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
 
-public class ConfigHandler { 
+public class ConfigHandler {
+	public static PropertyMirror<String> guiCompassFormat = PropertyMirror.create(ConfigTypes.STRING);
 	public static PropertyMirror<Boolean> mustHaveCompassInInventory = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> compassPositionIsLeft = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> compassPositionIsCenter = PropertyMirror.create(ConfigTypes.BOOLEAN);
@@ -43,7 +44,11 @@ public class ConfigHandler {
 	public static PropertyMirror<Integer> RGB_G = PropertyMirror.create(ConfigTypes.INTEGER);
 	public static PropertyMirror<Integer> RGB_B = PropertyMirror.create(ConfigTypes.INTEGER);
 
-	private static final ConfigTree CONFIG = ConfigTree.builder() 
+	private static final ConfigTree CONFIG = ConfigTree.builder()
+			.beginValue("guiCompassFormat", ConfigTypes.STRING, "FXYZ")
+			.withComment("What of the GUI compass should be displayed. Default: [FXYZ]. F: facing (direction), X: x coord, Y: y coord (depth), Z: z coord.")
+			.finishValue(guiCompassFormat::mirror)
+
 			.beginValue("mustHaveCompassInInventory", ConfigTypes.BOOLEAN, true)
 			.withComment("When enabled, will only show the GUI compass when a compass is present in the inventory.")
 			.finishValue(mustHaveCompassInInventory::mirror)

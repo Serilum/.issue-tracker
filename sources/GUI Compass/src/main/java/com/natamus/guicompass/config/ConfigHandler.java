@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Compass.
- * Minecraft version: 1.18.1, mod version: 1.8.
+ * Minecraft version: 1.18.1, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Compass ever released, along with some other perks.
@@ -21,7 +21,8 @@ public class ConfigHandler {
 	public static final General GENERAL = new General(BUILDER);
 	public static final ForgeConfigSpec spec = BUILDER.build();
 
-	public static class General {	
+	public static class General {
+		public final ForgeConfigSpec.ConfigValue<String> guiCompassFormat;
 		public final ForgeConfigSpec.ConfigValue<Boolean> mustHaveCompassInInventory;
 		
 		public final ForgeConfigSpec.ConfigValue<Boolean> compassPositionIsLeft;
@@ -36,6 +37,9 @@ public class ConfigHandler {
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
+			guiCompassFormat = builder
+					.comment("What of the GUI compass should be displayed. Default: [FXYZ]. F: facing (direction), X: x coord, Y: y coord (depth), Z: z coord.")
+					.define("guiCompassFormat", "FXYZ");
 			mustHaveCompassInInventory = builder
 					.comment("When enabled, will only show the GUI compass when a compass is present in the inventory.")
 					.define("mustHaveCompassInInventory", true);
