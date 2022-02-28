@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 4.9.
+ * Minecraft version: 1.18.x, mod version: 4.12.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -15,34 +15,24 @@
 package com.natamus.collective_fabric.functions;
 
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.AttachedStemBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BushBlock;
-import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.DeadBushBlock;
-import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.world.level.block.FlowerBlock;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.NetherPortalBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.SnowLayerBlock;
-import net.minecraft.world.level.block.StemBlock;
-import net.minecraft.world.level.block.SweetBerryBushBlock;
-import net.minecraft.world.level.block.TallGrassBlock;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.*;
 
 public class CompareBlockFunctions {
+	public static boolean blockIsInRegistryHolder(Block block, TagKey<Block> tagKey) {
+		return block.builtInRegistryHolder().is(tagKey);
+	}
+
 	public static boolean isStoneBlock(Block block) {
-		return BlockTags.BASE_STONE_OVERWORLD.contains(block);
+		return blockIsInRegistryHolder(block, BlockTags.BASE_STONE_OVERWORLD);
 	}
 	
 	public static boolean isNetherStoneBlock(Block block) {
-		return BlockTags.BASE_STONE_NETHER.contains(block);
+		return blockIsInRegistryHolder(block, BlockTags.BASE_STONE_NETHER);
 	}
 	
 	public static boolean isTreeLeaf(Block block, boolean withNetherVariants) {
-		if (BlockTags.LEAVES.contains(block) || block instanceof LeavesBlock) {
+		if (blockIsInRegistryHolder(block, BlockTags.LEAVES) || block instanceof LeavesBlock) {
 			return true;
 		}
 		if (withNetherVariants) {
@@ -60,11 +50,11 @@ public class CompareBlockFunctions {
 	}
 	
 	public static boolean isTreeLog(Block block) {
-		return BlockTags.LOGS.contains(block) || block instanceof RotatedPillarBlock;
+		return blockIsInRegistryHolder(block, BlockTags.LOGS) || block instanceof RotatedPillarBlock;
 	}
 	
 	public static boolean isSapling(Block block) {
-		return BlockTags.SAPLINGS.contains(block) || block instanceof SaplingBlock;
+		return blockIsInRegistryHolder(block, BlockTags.SAPLINGS) || block instanceof SaplingBlock;
 	}
 	
 	public static boolean isDirtBlock(Block block) {
