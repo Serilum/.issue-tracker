@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "biggerspongeabsorptionradius-fabric",
-  "version": "2.0",
+  "version": "2.1",
 
   "name": "Bigger Sponge Absorption Radius (Fabric)",
   "description": "Each extra sponge block placed next to another increases the water absorption radius.",
@@ -25,6 +25,6 @@
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=17",
-    "collective-fabric": ">=4.5"
+    "collective-fabric": ">=4.12"
   }
 }

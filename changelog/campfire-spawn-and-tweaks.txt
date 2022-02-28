@@ -3,6 +3,9 @@ Campfire Spawn and Tweaks
 https://curseforge.com/minecraft/mc-mods/campfire-spawn-and-tweaks
 
 =========
+v1.6: (Forge only) Improved mod compatibility by adding the custom tool action "light_campfire" and the tool type "flint_and_steel".
+
+=========
 v1.5: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

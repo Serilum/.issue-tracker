@@ -3,6 +3,9 @@ Passive Endermen
 https://www.curseforge.com/minecraft/mc-mods/passive-endermen
 
 =========
+v2.2: (Fabric 1.18 only) Updated to work with Minecraft 1.18.2 and future snapshots.
+
+=========
 v2.1: Fixed the config 'preventEndermenFromAttacking' not working correctly.
 
 =========

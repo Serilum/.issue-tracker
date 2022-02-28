@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Campfire Spawn and Tweaks.
- * Minecraft version: 1.18.1, mod version: 1.5.
+ * Minecraft version: 1.18.1, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Campfire Spawn and Tweaks ever released, along with some other perks.
@@ -23,6 +23,7 @@ import java.util.List;
 import com.mojang.datafixers.util.Pair;
 import com.natamus.campfirespawnandtweaks.config.ConfigHandler;
 import com.natamus.campfirespawnandtweaks.util.Util;
+import com.natamus.campfirespawnandtweaks.util.Variables;
 import com.natamus.collective.functions.BlockFunctions;
 import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.collective.functions.StringFunctions;
@@ -162,7 +163,7 @@ public class CampfireEvent {
 		Block block = state.getBlock();
 		if (block instanceof CampfireBlock) {
 			Player player = (Player)entity;
-			if (player.getMainHandItem().getItem() instanceof FlintAndSteelItem || player.getOffhandItem().getItem() instanceof FlintAndSteelItem) {
+			if (player.getMainHandItem().getItem() instanceof FlintAndSteelItem || player.getMainHandItem().canPerformAction(Variables.LIGHT_CAMPFIRE) || player.getOffhandItem().getItem() instanceof FlintAndSteelItem || player.getOffhandItem().canPerformAction(Variables.LIGHT_CAMPFIRE)) {
 				return;
 			}
 			
@@ -201,7 +202,7 @@ public class CampfireEvent {
 			Item item = itemstack.getItem();
 			
 			boolean holdinglighter = false;
-			if (player.getMainHandItem().getItem() instanceof FlintAndSteelItem || player.getOffhandItem().getItem() instanceof FlintAndSteelItem) {
+			if (player.getMainHandItem().getItem() instanceof FlintAndSteelItem || player.getMainHandItem().canPerformAction(Variables.LIGHT_CAMPFIRE) || player.getOffhandItem().getItem() instanceof FlintAndSteelItem || player.getOffhandItem().canPerformAction(Variables.LIGHT_CAMPFIRE)) {
 				holdinglighter = true;
 				if (state.getValue(CampfireBlock.LIT)) {
 					e.setCanceled(true);
