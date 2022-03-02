@@ -10,10 +10,12 @@ buildscript {
         classpath 'org.spongepowered:mixingradle:0.7.+' // mixin
     }
 }
+plugins {
+    id 'eclipse'
+    id 'maven-publish'
+}
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin' // mixin
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
 
 version = '1.0'
 group = 'com.yourname.modid' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -23,7 +25,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'official', version: '1.18.1'
+    mappings channel: 'official', version: '1.18.2'
 
     runs {
         client {
@@ -132,6 +134,6 @@ repositories {
 }
 
 dependencies {
-    runtimeOnly fg.deobf("com.natamus.collective:collective:1.18.1-3.8")
-    compileOnly fg.deobf("com.natamus.collective:collective:1.18.1-3.8")
+    runtimeOnly fg.deobf("com.natamus.collective:collective:1.18.2-4.7")
+    compileOnly fg.deobf("com.natamus.collective:collective:1.18.2-4.7")
 }

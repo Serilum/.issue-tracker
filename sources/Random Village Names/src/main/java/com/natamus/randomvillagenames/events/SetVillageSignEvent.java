@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Village Names.
- * Minecraft version: 1.18.1, mod version: 1.5.
+ * Minecraft version: 1.18.2, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Random Village Names ever released, along with some other perks.
@@ -84,7 +84,7 @@ public class SetVillageSignEvent {
 		ServerLevel serverworld = (ServerLevel)world;
 		BlockPos ppos = player.blockPosition();
 		
-		BlockPos villagepos = BlockPosFunctions.getNearbyStructure(serverworld, StructureFeature.VILLAGE, ppos, 100);
+		BlockPos villagepos = BlockPosFunctions.getNearbyVillage(serverworld, ppos); // BlockPosFunctions.getNearbyStructure(serverworld, StructureFeature.VILLAGE, ppos, 100);
 		if (villagepos == null) {
 			return;
 		}
