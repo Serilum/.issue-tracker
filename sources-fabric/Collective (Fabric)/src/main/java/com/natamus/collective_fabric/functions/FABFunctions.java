@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.x, mod version: 4.12.
+ * Minecraft version: 1.19.x, mod version: 4.12.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -17,7 +17,6 @@ package com.natamus.collective_fabric.functions;
 import com.natamus.collective_fabric.config.CollectiveConfigHandler;
 import com.natamus.collective_fabric.data.GlobalVariables;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Vec3i;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -27,7 +26,6 @@ import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.*;
 
@@ -69,8 +67,7 @@ public class FABFunctions {
 			
 			if (loadedtiletype.equals(tetype)) {
 				BlockPos ltepos = loadedtileentity.getBlockPos();
-				Vec3 vec3 = entity.position();
-				if (ltepos.closerThan(new Vec3i(vec3.x, vec3.y, vec3.z), radius)) {
+				if (ltepos.closerThan(entity.position(), radius)) {
 					nearbypositions.add(loadedtileentity.getBlockPos());
 				}
 			}

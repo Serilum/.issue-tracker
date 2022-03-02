@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.cryingghasts.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.12.5",
+    "fabricloader": ">=0.13.3",
     "fabric": "*",
-    "minecraft": "1.18.x",
+    "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=3.9"
+    "collective-fabric": ">=4.12"
   }
 }

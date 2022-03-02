@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Furnace Recycle.
- * Minecraft version: 1.18.x, mod version: 1.0.
+ * Minecraft version: 1.19.x, mod version: 1.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Furnace Recycle ever released, along with some other perks.
@@ -18,5 +18,5 @@ public class Reference {
 	public static final String MOD_ID = "furnacerecycle-fabric";
 	public static final String NAME = "Furnace Recycle (Fabric)";
 	public static final String VERSION = "1.0";
-	public static final String ACCEPTED_VERSIONS = "[1.18.x]";
+	public static final String ACCEPTED_VERSIONS = "[1.19.x]";
 }

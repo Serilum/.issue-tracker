@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Wool Tweaks.
- * Minecraft version: 1.18.x, mod version: 1.5.
+ * Minecraft version: 1.19.x, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Wool Tweaks ever released, along with some other perks.
@@ -39,7 +39,7 @@ public class WoolClickEvent {
 	public static InteractionResult onWoolClick(Player player, Level world, InteractionHand hand, HitResult hitResult) {
 		ItemStack handstack = player.getItemInHand(hand);
 		Item handitem = handstack.getItem();
-		if (!(handitem instanceof DyeItem)) {
+		if (handitem instanceof DyeItem == false) {
 			return InteractionResult.PASS;
 		}
 		
@@ -49,7 +49,7 @@ public class WoolClickEvent {
 		Block block = state.getBlock();
 		
 		Block newblock = null;
-		if (block.builtInRegistryHolder().is(BlockTags.WOOL)) {
+		if (BlockTags.WOOL.contains(block)) {
 			newblock = Util.woolblocks.get(handitem);
 		}
 		else if (block instanceof BedBlock) {

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Recipe Commands.
- * Minecraft version: 1.18.x, mod version: 1.4.
+ * Minecraft version: 1.19.x, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Recipe Commands ever released, along with some other perks.
@@ -14,8 +14,12 @@
 
 package com.natamus.recipecommands.cmds;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.mojang.brigadier.CommandDispatcher;
@@ -32,7 +36,6 @@ import net.minecraft.commands.synchronization.SuggestionProviders;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -118,11 +121,11 @@ public class CommandRecipes {
 			Item item = itemstack.getItem();
 			String itemname = item.toString();
     		if (possiblestacks.length > 1 && !itemname.equalsIgnoreCase("cobblestone")) {
-				Set<TagKey<Item>> tags = itemstack.getTags().collect(Collectors.toSet());
-				if (tags.size() > 0) {
-					TagKey<Item> tag = tags.iterator().next();
-					itemname = tag.location().getPath();
-				}
+    			Collection<ResourceLocation> tags = ItemTags.getAllTags().getMatchingTags(item);
+    			if (tags.size() > 0) {
+    				ResourceLocation tag = tags.iterator().next();
+    				itemname = tag.getPath();
+    			}
     		}
     		
     		itemname = StringFunctions.capitalizeEveryWord(itemname);
