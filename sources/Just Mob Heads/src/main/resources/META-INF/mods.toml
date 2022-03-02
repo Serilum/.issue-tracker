@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[39,)"
+loaderVersion="[40,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Just%20Mob%20Heads"
 
@@ -11,12 +11,12 @@ displayURL="https://curseforge.com/minecraft/mc-mods/just-mob-heads"
 authors="Rick South"
 description="A minimalistic mod that adds a configurable chance for mobs to drop their respective heads on death."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Cherriesaurus, joj, Kreezcraft.com, limpjellyfish, Michael W. S., Morgan Schetzle, Robert Gilbert, Tyler Behl   
+Adam E, Aternos.org, Cherriesaurus, Kreezcraft.com, limpjellyfish, Markus B., Michael W. S., Morgan Schetzle, Reforged Network, Robert Gilbert, Tyler Behl, Zhovan8   
 '''
 
 [[dependencies.justmobheads]]
     modId="collective"
     mandatory=true
-    versionRange="[3.8,)"
+    versionRange="[4.7,)"
     ordering="NONE"
     side="BOTH"

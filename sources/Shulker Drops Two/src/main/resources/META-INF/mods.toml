@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[39,)"
+loaderVersion="[40,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Shulker%20Drops%20Two"
 
@@ -11,12 +11,12 @@ displayURL="https://curseforge.com/minecraft/mc-mods/shulker-drops-two"
 authors="Rick South"
 description="A minimalistic configurable mod that allows shulkers to drop two or more shells and ignore their default drop chance."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
-Cherriesaurus, joj, Kreezcraft.com, limpjellyfish, Michael W. S., Morgan Schetzle, Robert Gilbert, Tyler Behl   
+Adam E, Aternos.org, Cherriesaurus, Kreezcraft.com, limpjellyfish, Markus B., Michael W. S., Morgan Schetzle, Reforged Network, Robert Gilbert, Tyler Behl, Zhovan8   
 '''
 
 [[dependencies.shulkerdropstwo]]
     modId="collective"
     mandatory=true
-    versionRange="[3.8,)"
+    versionRange="[4.7,)"
     ordering="NONE"
     side="BOTH"

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Healing Campfire.
- * Minecraft version: 1.18.1, mod version: 3.4.
+ * Minecraft version: 1.18.2, mod version: 3.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Healing Campfire ever released, along with some other perks.
@@ -18,5 +18,5 @@ public class Reference {
 	public static final String MOD_ID = "healingcampfire";
 	public static final String NAME = "Healing Campfire";
 	public static final String VERSION = "3.4";
-	public static final String ACCEPTED_VERSIONS = "[1.18.1]";
+	public static final String ACCEPTED_VERSIONS = "[1.18.2]";
 }

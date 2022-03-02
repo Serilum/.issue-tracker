@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "betterspawnercontrol-fabric",
-  "version": "1.5",
+  "version": "1.6",
 
   "name": "Better Spawner Control (Fabric)",
   "description": "A drag-and-drop mod which disables mob spawners whenever they are surrounded by 5 torches.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=17",
-    "collective-fabric": ">=3.9"
+    "collective-fabric": ">=4.12"
   }
 }

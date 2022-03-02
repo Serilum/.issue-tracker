@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Recipe Commands.
- * Minecraft version: 1.18.1, mod version: 1.4.
+ * Minecraft version: 1.18.2, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Recipe Commands ever released, along with some other perks.
@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 import com.mojang.brigadier.CommandDispatcher;
@@ -35,6 +36,7 @@ import net.minecraft.commands.arguments.ResourceLocationArgument;
 import net.minecraft.commands.synchronization.SuggestionProviders;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -105,7 +107,7 @@ public class CommandRecipes {
     	
     	Recipe<?> recipe = ResourceLocationArgument.getRecipe(command, "recipe");
     	ResourceLocation recipelocation = recipe.getId();
-    	String recipename = recipelocation.getPath().toString();
+    	String recipename = recipelocation.getPath();
     	
     	List<String> items = new ArrayList<String>();
     	HashMap<String, Integer> itemcount = new HashMap<String, Integer>();
@@ -121,10 +123,10 @@ public class CommandRecipes {
 			Item item = itemstack.getItem();
 			String itemname = item.toString();
     		if (possiblestacks.length > 1 && !itemname.equalsIgnoreCase("cobblestone")) {
-    			Set<ResourceLocation> tags = item.getTags();
+    			Set<TagKey<Item>> tags = itemstack.getTags().collect(Collectors.toSet());
     			if (tags.size() > 0) {
-    				ResourceLocation tag = tags.iterator().next();
-    				itemname = tag.getPath();
+    				TagKey<Item> tag = tags.iterator().next();
+    				itemname = tag.location().getPath();
     			}
     		}
     		

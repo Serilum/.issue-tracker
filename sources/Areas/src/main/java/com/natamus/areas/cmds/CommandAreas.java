@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.18.1, mod version: 2.9.
+ * Minecraft version: 1.18.2, mod version: 2.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Areas ever released, along with some other perks.
@@ -25,6 +25,7 @@ import com.natamus.collective.functions.StringFunctions;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -62,7 +63,7 @@ public class CommandAreas {
 								prefix = ao.areaname + " a";
 							}
 							
-							double distance = Math.round(Math.sqrt(signpos.distSqr(pvec.x, pvec.y, pvec.z, true)) * 100.0) / 100.0;
+							double distance = Math.round(Math.sqrt(signpos.distSqr(new Vec3i(pvec.x, pvec.y, pvec.z))) * 100.0) / 100.0;
 							String blocksaway = " (" + distance + " blocks)";
 							
 							StringFunctions.sendMessage(player, " " + prefix + "t x=" + signpos.getX() + ", y=" + signpos.getY() + ", z=" + signpos.getZ() + "." + blocksaway, ChatFormatting.YELLOW);

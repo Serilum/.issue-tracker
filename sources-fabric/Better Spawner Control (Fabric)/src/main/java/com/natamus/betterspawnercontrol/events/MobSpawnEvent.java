@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Spawner Control.
- * Minecraft version: 1.18.x, mod version: 1.5.
+ * Minecraft version: 1.18.x, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Better Spawner Control ever released, along with some other perks.
@@ -39,10 +39,10 @@ public class MobSpawnEvent {
 				return true;
 			}
 			
-			Boolean alltorches = true;
+			boolean alltorches = true;
 			for (BlockPos ap : BlockPosFunctions.getBlocksAround(spawnerPos, false)) {
 				Block block = world.getBlockState(ap).getBlock();
-				if (block instanceof TorchBlock == false && block instanceof WallTorchBlock == false) {
+				if (!(block instanceof TorchBlock) && !(block instanceof WallTorchBlock)) {
 					alltorches = false;
 					break;
 				}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nether Portal Spread.
- * Minecraft version: 1.18.x, mod version: 5.6.
+ * Minecraft version: 1.18.x, mod version: 5.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Nether Portal Spread ever released, along with some other perks.
@@ -39,6 +39,7 @@ import com.natamus.netherportalspread.config.ConfigHandler;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
+import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
@@ -258,7 +259,7 @@ public class Util {
 	
 	private static Boolean portalExists(Level world, BlockPos pos) {
 		for (BlockPos portalpos : portals.get(world)) {
-			Double distance = pos.distSqr(portalpos.getX(), portalpos.getY(), portalpos.getZ(), true);
+			Double distance = pos.distSqr(new Vec3i(portalpos.getX(), portalpos.getY(), portalpos.getZ()));
 			if (distance < 10) {
 				return true;
 			}
@@ -368,7 +369,7 @@ public class Util {
 						}
 					}
 				}
-				double npnd = portal.distSqr(np.getX(), np.getY(), np.getZ(), true);
+				double npnd = portal.distSqr(new Vec3i(np.getX(), np.getY(), np.getZ()));
 				if (npnd < nearestdistance) {
 					if (isNetherTarget(world, np, false)) {
 						nearestdistance = npnd;

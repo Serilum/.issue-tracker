@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "wooltweaks-fabric",
-  "version": "1.4",
+  "version": "1.5",
 
   "name": "Wool Tweaks (Fabric)",
   "description": "Dye beds, wool blocks and beds with a right-click in the world. Adds wool to string recipe for all wool blocks and allows players to dye any colour wool block with any dye.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=17",
-    "collective-fabric": ">=3.9"
+    "collective-fabric": ">=4.12"
   }
 }

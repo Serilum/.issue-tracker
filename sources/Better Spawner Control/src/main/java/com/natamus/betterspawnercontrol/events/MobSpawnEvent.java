@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Spawner Control.
- * Minecraft version: 1.18.1, mod version: 1.6.
+ * Minecraft version: 1.18.2, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Better Spawner Control ever released, along with some other perks.
@@ -23,6 +23,7 @@ import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.Level;
@@ -59,7 +60,7 @@ public class MobSpawnEvent {
 			for (BlockPos epos : entities.keySet()) {
 				BlockEntity blockentity = entities.get(epos);
 				if (blockentity.getType().equals(BlockEntityType.MOB_SPAWNER)) {
-					if (epos.distSqr(entitypos, true) <= 50) {
+					if (epos.distSqr(new Vec3i(entitypos.getX(), entitypos.getY(), entitypos.getZ())) <= 50) {
 						spawnerpos = epos.immutable();
 						break;
 					}
@@ -70,10 +71,10 @@ public class MobSpawnEvent {
 				return;
 			}
 			
-			Boolean alltorches = true;
+			boolean alltorches = true;
 			for (BlockPos ap : BlockPosFunctions.getBlocksAround(spawnerpos, false)) {
 				Block block = world.getBlockState(ap).getBlock();
-				if (block instanceof TorchBlock == false && block instanceof WallTorchBlock == false) {
+				if (!(block instanceof TorchBlock) && !(block instanceof WallTorchBlock)) {
 					alltorches = false;
 					break;
 				}

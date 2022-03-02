@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Your Items Are Safe.
- * Minecraft version: 1.18.1, mod version: 1.1.
+ * Minecraft version: 1.18.2, mod version: 1.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Your Items Are Safe ever released, along with some other perks.
@@ -18,5 +18,5 @@ public class Reference {
 	public static final String MOD_ID = "youritemsaresafe";
 	public static final String NAME = "Your Items Are Safe";
 	public static final String VERSION = "1.1";
-	public static final String ACCEPTED_VERSIONS = "[1.18.1]";
+	public static final String ACCEPTED_VERSIONS = "[1.18.2]";
 }
