@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "furnacerecycle-fabric",
-  "version": "1.0",
+  "version": "1.2",
 
   "name": "Furnace Recycle (Fabric)",
   "description": "Makes all metal-containing items in the game recyclable in a furnace.",

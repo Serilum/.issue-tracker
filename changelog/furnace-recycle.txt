@@ -3,6 +3,9 @@ Furnace Recycle
 https://curseforge.com/minecraft/mc-mods/furnace-recycle
 
 =========
+v1.2: Grouped furnace recycle recipes correctly to make the smelting recipe book look a lot cleaner.
+
+=========
 v1.1: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

@@ -1,5 +1,6 @@
 {
   "type": "minecraft:smelting",
+  "group": "gold_nugget",
   "ingredient": {
     "item": "minecraft:powered_rail"
   },

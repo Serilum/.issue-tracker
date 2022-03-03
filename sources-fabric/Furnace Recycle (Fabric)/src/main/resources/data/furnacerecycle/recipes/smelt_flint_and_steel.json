@@ -1,5 +1,6 @@
 {
   "type": "minecraft:smelting",
+  "group": "iron_nugget",
   "ingredient": {
     "item": "minecraft:flint_and_steel"
   },
