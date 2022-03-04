@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.1, mod version: 4.7.
+ * Minecraft version: 1.18.2, mod version: 4.13.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -16,8 +16,17 @@ package com.natamus.collective.functions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 
+import com.mojang.datafixers.util.Pair;
+import com.natamus.collective.data.GlobalVariables;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -25,6 +34,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.HitResult;
@@ -111,7 +121,7 @@ public class BlockPosFunctions {
 			for (int y = height; y > 0; y--) {
 				BlockState blockstate = serverworld.getBlockState(pos);
 				Material material = blockstate.getMaterial();
-				if (blockstate.getLightBlock(serverworld, pos) >= 15 || material.equals(Material.ICE) || material.equals(Material.ICE_SOLID)) {
+				if (blockstate.getLightBlock(serverworld, pos) >= 15 || GlobalVariables.surfacematerials.contains(material)) {
 					returnpos = pos.above().immutable();
 					break;
 				}
@@ -143,21 +153,65 @@ public class BlockPosFunctions {
 		return getNearbyVillage(serverworld, new BlockPos(0, 0, 0));
 	}
 	public static BlockPos getNearbyVillage(ServerLevel serverworld, BlockPos nearpos) {
-		return getNearbyStructure(serverworld, StructureFeature.VILLAGE, nearpos, 9999);
+		try {
+			Registry<ConfiguredStructureFeature<?, ?>> registry = serverworld.registryAccess().registryOrThrow(Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY);
+
+			List<ResourceLocation> villagerls = new ArrayList<ResourceLocation>();
+			for (ResourceLocation rl : registry.keySet()) {
+				if (rl.toString().contains("village_")) {
+					villagerls.add(rl);
+				}
+			}
+
+			BlockPos closestvillage = null;
+			for (ResourceLocation rl : villagerls) {
+				Optional<ResourceKey<ConfiguredStructureFeature<?, ?>>> optional_vk = registry.getResourceKey(registry.get(rl));
+				if (optional_vk.isPresent()) {
+					ResourceKey<ConfiguredStructureFeature<?, ?>> villagekey = optional_vk.get();
+					Optional<Holder<ConfiguredStructureFeature<?, ?>>> optional_s = registry.getHolder(villagekey);
+					if (optional_s.isPresent()) {
+						Holder<ConfiguredStructureFeature<?, ?>> structure = optional_s.get();
+						HolderSet<ConfiguredStructureFeature<?, ?>> holderset = HolderSet.direct(structure);
+						BlockPos villagepos = getNearbyStructure(serverworld, holderset, nearpos, 3000);
+						if (villagepos != null) {
+							if (closestvillage != null) {
+								if (nearpos.distManhattan(villagepos) >= nearpos.distManhattan(closestvillage)) {
+									continue;
+								}
+							}
+
+							closestvillage = villagepos.immutable();
+						}
+					}
+				}
+
+			}
+
+			return closestvillage;
+		}
+		catch (Exception ex) {
+			System.out.println("[Collective Exception] Unable to access nearby village location.");
+		}
+		return null;
 	}
-	
-	public static BlockPos getCenterNearbyStructure(ServerLevel serverworld, StructureFeature<?> structure) {
+
+	public static BlockPos getCenterNearbyStructure(ServerLevel serverworld, HolderSet<ConfiguredStructureFeature<?, ?>> structure) {
 		return getNearbyStructure(serverworld, structure, new BlockPos(0, 0, 0));
 	}
-	public static BlockPos getNearbyStructure(ServerLevel serverworld, StructureFeature<?> structure, BlockPos nearpos) {
+	public static BlockPos getNearbyStructure(ServerLevel serverworld, HolderSet<ConfiguredStructureFeature<?, ?>> structure, BlockPos nearpos) {
 		return getNearbyStructure(serverworld, structure, nearpos, 9999);
-	}	
-	public static BlockPos getNearbyStructure(ServerLevel serverworld, StructureFeature<?> structure, BlockPos nearpos, int radius) {
-		BlockPos villagepos = serverworld.findNearestMapFeature(structure, nearpos, radius, false);
+	}
+	public static BlockPos getNearbyStructure(ServerLevel serverworld, HolderSet<ConfiguredStructureFeature<?, ?>> structure, BlockPos nearpos, int radius) {
+		Pair<BlockPos, Holder<ConfiguredStructureFeature<?, ?>>> pair = serverworld.getChunkSource().getGenerator().findNearestMapFeature(serverworld, structure, nearpos, radius, false);
+		if (pair == null) {
+			return null;
+		}
+
+		BlockPos villagepos = pair.getFirst();
 		if (villagepos == null) {
 			return null;
 		}
-		
+
 		BlockPos spawnpos = null;
 		for (int y = serverworld.getHeight()-1; y > 0; y--) {
 			BlockPos checkpos = new BlockPos(villagepos.getX(), y, villagepos.getZ());
@@ -167,17 +221,17 @@ public class BlockPosFunctions {
 			spawnpos = checkpos.above().immutable();
 			break;
 		}
-		
+
 		return spawnpos;
 	}
-	
-	public static BlockPos getCenterBiome(ServerLevel serverworld, Biome biome) {
+
+	public static BlockPos getCenterBiome(ServerLevel serverworld, Predicate<Holder<Biome>> biome) {
 		BlockPos centerpos = new BlockPos(0, 0, 0);
-		BlockPos biomepos = serverworld.findNearestBiome(biome, centerpos, 999999, 0);
+		BlockPos biomepos = serverworld.findNearestBiome(biome, centerpos, 999999, 0).getFirst();
 		if (biomepos == null) {
 			return null;
 		}
-		
+
 		BlockPos spawnpos = null;
 		for (int y = serverworld.getHeight()-1; y > 0; y--) {
 			BlockPos checkpos = new BlockPos(biomepos.getX(), y, biomepos.getZ());
@@ -187,7 +241,7 @@ public class BlockPosFunctions {
 			spawnpos = checkpos.above().immutable();
 			break;
 		}
-		
+
 		return spawnpos;
 	}
 	

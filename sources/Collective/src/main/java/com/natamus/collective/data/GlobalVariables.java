@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.1, mod version: 4.7.
+ * Minecraft version: 1.18.2, mod version: 4.13.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -30,6 +30,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.material.Material;
 
 public class GlobalVariables {
 	public static Random random = new Random();
@@ -68,8 +69,8 @@ public class GlobalVariables {
 	}
 		
 	// Block and item collections
-	public static List<Block> growblocks = new ArrayList<Block>(Arrays.asList(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.PODZOL, Blocks.SAND, Blocks.RED_SAND));
-	public static List<Block> stoneblocks = new ArrayList<Block>(Arrays.asList(Blocks.COBBLESTONE, Blocks.MOSSY_COBBLESTONE, Blocks.STONE, Blocks.STONE_BRICKS, Blocks.CHISELED_STONE_BRICKS, Blocks.CRACKED_STONE_BRICKS, Blocks.SMOOTH_STONE, Blocks.GRAVEL, Blocks.ANDESITE, Blocks.POLISHED_ANDESITE, Blocks.DIORITE, Blocks.POLISHED_DIORITE, Blocks.GRANITE, Blocks.POLISHED_GRANITE, Blocks.SANDSTONE, Blocks.CHISELED_SANDSTONE, Blocks.CUT_SANDSTONE, Blocks.SMOOTH_SANDSTONE, Blocks.RED_SANDSTONE, Blocks.CHISELED_RED_SANDSTONE, Blocks.CUT_RED_SANDSTONE, Blocks.SMOOTH_RED_SANDSTONE, Blocks.END_STONE, Blocks.END_STONE_BRICKS, Blocks.NETHERRACK, Blocks.NETHER_BRICKS, Blocks.RED_NETHER_BRICKS));
-	public static List<Item> stoneblockitems = new ArrayList<Item>(Arrays.asList(Items.COBBLESTONE, Items.MOSSY_COBBLESTONE, Items.STONE, Items.STONE_BRICKS, Items.CHISELED_STONE_BRICKS, Items.CRACKED_STONE_BRICKS, Items.SMOOTH_STONE, Items.GRAVEL, Items.ANDESITE, Items.POLISHED_ANDESITE, Items.DIORITE, Items.POLISHED_DIORITE, Items.GRANITE, Items.POLISHED_GRANITE, Items.SANDSTONE, Items.CHISELED_SANDSTONE, Items.CUT_SANDSTONE, Items.SMOOTH_SANDSTONE, Items.RED_SANDSTONE, Items.CHISELED_RED_SANDSTONE, Items.CUT_RED_SANDSTONE, Items.SMOOTH_RED_SANDSTONE, Items.END_STONE, Items.END_STONE_BRICKS, Items.NETHERRACK, Items.NETHER_BRICKS, Items.RED_NETHER_BRICKS));
-
+	public static List<Block> growblocks = Arrays.asList(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.PODZOL, Blocks.SAND, Blocks.RED_SAND);
+	public static List<Block> stoneblocks = Arrays.asList(Blocks.COBBLESTONE, Blocks.MOSSY_COBBLESTONE, Blocks.STONE, Blocks.STONE_BRICKS, Blocks.CHISELED_STONE_BRICKS, Blocks.CRACKED_STONE_BRICKS, Blocks.SMOOTH_STONE, Blocks.GRAVEL, Blocks.ANDESITE, Blocks.POLISHED_ANDESITE, Blocks.DIORITE, Blocks.POLISHED_DIORITE, Blocks.GRANITE, Blocks.POLISHED_GRANITE, Blocks.SANDSTONE, Blocks.CHISELED_SANDSTONE, Blocks.CUT_SANDSTONE, Blocks.SMOOTH_SANDSTONE, Blocks.RED_SANDSTONE, Blocks.CHISELED_RED_SANDSTONE, Blocks.CUT_RED_SANDSTONE, Blocks.SMOOTH_RED_SANDSTONE, Blocks.END_STONE, Blocks.END_STONE_BRICKS, Blocks.NETHERRACK, Blocks.NETHER_BRICKS, Blocks.RED_NETHER_BRICKS);
+	public static List<Item> stoneblockitems = Arrays.asList(Items.COBBLESTONE, Items.MOSSY_COBBLESTONE, Items.STONE, Items.STONE_BRICKS, Items.CHISELED_STONE_BRICKS, Items.CRACKED_STONE_BRICKS, Items.SMOOTH_STONE, Items.GRAVEL, Items.ANDESITE, Items.POLISHED_ANDESITE, Items.DIORITE, Items.POLISHED_DIORITE, Items.GRANITE, Items.POLISHED_GRANITE, Items.SANDSTONE, Items.CHISELED_SANDSTONE, Items.CUT_SANDSTONE, Items.SMOOTH_SANDSTONE, Items.RED_SANDSTONE, Items.CHISELED_RED_SANDSTONE, Items.CUT_RED_SANDSTONE, Items.SMOOTH_RED_SANDSTONE, Items.END_STONE, Items.END_STONE_BRICKS, Items.NETHERRACK, Items.NETHER_BRICKS, Items.RED_NETHER_BRICKS);
+	public static List<Material> surfacematerials = Arrays.asList(Material.WATER, Material.LAVA, Material.ICE, Material.ICE_SOLID);
 }

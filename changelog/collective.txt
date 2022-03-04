@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.13: The find surface block position now correctly considers water to be on the surface.
+
+=========
 v4.10-4.12: (Fabric only) Updated to work with Minecraft version 1.18.2 and future snapshots.
 
 =========

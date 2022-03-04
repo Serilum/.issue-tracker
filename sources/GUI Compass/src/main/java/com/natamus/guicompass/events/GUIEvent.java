@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Compass.
- * Minecraft version: 1.18.2, mod version: 2.0.
+ * Minecraft version: 1.18.2, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Compass ever released, along with some other perks.
@@ -28,7 +28,10 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.CompassItem;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
@@ -51,16 +54,18 @@ public class GUIEvent extends Gui {
 		}
 		
 		if (ConfigHandler.GENERAL.mustHaveCompassInInventory.get()) {
-			boolean found = false;
-			Inventory inv = mc.player.getInventory();
-			for (int n = 0; n <= 35; n++) {
-				if (inv.getItem(n).getItem().equals(Items.COMPASS)) {
-					found = true;
-					break;
+			if (!(mc.player.getOffhandItem().getItem() instanceof CompassItem)) {
+				boolean found = false;
+				Inventory inv = mc.player.getInventory();
+				for (int n = 0; n <= 35; n++) {
+					if (inv.getItem(n).getItem() instanceof CompassItem) {
+						found = true;
+						break;
+					}
 				}
-			}
-			if (!found) {
-				return;
+				if (!found) {
+					return;
+				}
 			}
 		}
 		
@@ -93,22 +98,17 @@ public class GUIEvent extends Gui {
 		posestack.popPose();
 	}
 
-	private static List<String> direction = new ArrayList<String>(Arrays.asList("S", "SW", "W", "NW", "N", "NE", "E", "SE"));
+	private static List<String> direction = Arrays.asList("S", "SW", "W", "NW", "N", "NE", "E", "SE", "S");
 	private static String getCoordinates() {
-		LocalPlayer player = mc.player;
+		Entity player = mc.getCameraEntity();
 		BlockPos ppos = player.blockPosition();
-		
-		int yaw = (int)player.getYHeadRot();
-		if (yaw < 0) {
-			yaw += 360;
-		}
-		yaw+=22;
-		yaw%=360;
 
-		int facing = yaw/45;
-		if (facing < 0) {
-			facing = facing * -1;
+		float degrees = Mth.wrapDegrees(player.getYRot());
+		if (degrees < 0) {
+			degrees += 360;
 		}
+
+		int facing = Math.round(degrees/45);
 
 		String format = ConfigHandler.GENERAL.guiCompassFormat.get();
 		String toshow = "";

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.x, mod version: 4.12.
+ * Minecraft version: 1.19.x, mod version: 4.13.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -15,8 +15,10 @@
 package com.natamus.collective_fabric.functions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import com.natamus.collective_fabric.data.GlobalVariables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
@@ -101,7 +103,6 @@ public class BlockPosFunctions {
 		}
 	}
 	// END RECURSIVE GET BLOCKS
-	
 	public static BlockPos getSurfaceBlockPos(ServerLevel serverworld, int x, int z) {
 		int height = serverworld.getHeight();
 		
@@ -111,7 +112,7 @@ public class BlockPosFunctions {
 			for (int y = height; y > 0; y--) {
 				BlockState blockstate = serverworld.getBlockState(pos);
 				Material material = blockstate.getMaterial();
-				if (blockstate.getLightBlock(serverworld, pos) >= 15 || material.equals(Material.ICE) || material.equals(Material.ICE_SOLID)) {
+				if (blockstate.getLightBlock(serverworld, pos) >= 15 || GlobalVariables.surfacematerials.contains(material)) {
 					returnpos = pos.above().immutable();
 					break;
 				}
