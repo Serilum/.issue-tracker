@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "guicompass-fabric",
-  "version": "2.1",
+  "version": "2.2",
 
   "name": "GUI Compass (Fabric)",
   "description": "Shows the direction and coordinates in the GUI with a compass in the inventory.",

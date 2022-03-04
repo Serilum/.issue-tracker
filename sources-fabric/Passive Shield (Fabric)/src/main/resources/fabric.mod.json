@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "passiveshield-fabric",
+  "version": "2.0",
+
+  "name": "Passive Shield (Fabric)",
+  "description": "The shield is hidden in the offhand until right-clicked, and shields passively negate damage when held but not in use.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/passive-shield-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Passive%20Shield%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Passive%20Shield"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.passiveshield.Main" ], "client": [ "com.natamus.passiveshield.ClientMain" ] },
+
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "1.19.x",
+    "java": ">=17",
+    "collective-fabric": ">=4.18"
+  }
+}

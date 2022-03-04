@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Double Doors.
- * Minecraft version: 1.18.2, mod version: 3.2.
+ * Minecraft version: 1.18.2, mod version: 3.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Double Doors ever released, along with some other perks.
@@ -14,31 +14,28 @@
 
 package com.natamus.doubledoors.events;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.doubledoors.util.Util;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.PressurePlateBlock;
-import net.minecraft.world.level.block.StoneButtonBlock;
-import net.minecraft.world.level.block.WoodButtonBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 @EventBusSubscriber
 public class DoorEvent {
@@ -53,12 +50,13 @@ public class DoorEvent {
 		}
 		
 		BooleanProperty proppowered = BlockStateProperties.POWERED;
+		IntegerProperty weightedpower = BlockStateProperties.POWER;
 		BlockPos pos = e.getPos().immutable();
 		BlockState state = e.getState();
 		Block block = state.getBlock();
 		
-		if (block instanceof PressurePlateBlock == false) {
-			if (block instanceof StoneButtonBlock == false && block instanceof WoodButtonBlock == false) {
+		if (!(block instanceof PressurePlateBlock) && !(block instanceof WeightedPressurePlateBlock)) {
+			if (!(block instanceof StoneButtonBlock) && !(block instanceof WoodButtonBlock)) {
 				return;
 			}
 			else {
@@ -78,6 +76,13 @@ public class DoorEvent {
 				}
 			}
 		}
+		else if (block instanceof WeightedPressurePlateBlock) {
+			if (state.getValue(weightedpower) == 0) {
+				if (!prevpoweredpos.contains(pos)) {
+					return;
+				}
+			}
+		}
 		else {
 			if (!state.getValue(proppowered)) {
 				if (!prevpoweredpos.contains(pos)) {
@@ -85,9 +90,15 @@ public class DoorEvent {
 				}
 			}
 		}
-		
+
 		boolean playsound = true;
-		boolean stateprop = state.getValue(proppowered);
+		boolean stateprop;
+		if (block instanceof WeightedPressurePlateBlock) {
+			stateprop = state.getValue(weightedpower) > 0;
+		}
+		else {
+			stateprop = state.getValue(proppowered);
+		}
 		
 		Iterator<BlockPos> blocksaround = BlockPos.betweenClosedStream(pos.getX()-1, pos.getY(), pos.getZ()-1, pos.getX()+1, pos.getY()+1, pos.getZ()+1).iterator();
 		

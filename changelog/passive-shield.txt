@@ -3,6 +3,11 @@ Passive Shield
 https://curseforge.com/minecraft/mc-mods/passive-shield
 
 =========
+v2.0: Backend code simplified and improved.
+Fixed the shield sometimes not showing up even when blocking.
+Improved code efficiency.
+
+=========
 v1.6: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

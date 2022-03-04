@@ -3,6 +3,9 @@ GUI Compass
 https://www.curseforge.com/minecraft/mc-mods/gui-compass
 
 =========
+v2.2: Updated code efficiency when the GUI format is changed.
+
+=========
 v2.1: Improved compatibility with modded compasses.
 Fixed desync issues with compass directions.
 Fixed a compass not being detected in the offhand.

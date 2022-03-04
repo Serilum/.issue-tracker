@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.2, mod version: 4.13.
+ * Minecraft version: 1.18.2, mod version: 4.20.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -89,7 +89,7 @@ public class RegisterMod {
 	}
 	
 	private static boolean processPreJoinWorldCheck(Level world) {
-		String checkfilepath = WorldFunctions.getWorldPath((ServerLevel)world) + File.separator + "data" + File.separator + "collective" + File.separator + "checked.txt";
+		String checkfilepath = WorldFunctions.getWorldPath((ServerLevel)world) + File.separator + "config" + File.separator + "collective" + File.separator + "checked.txt";
 		File checkfile = new File(checkfilepath);
 		if (checkfile.exists()) {
 			shouldDoCheck = false;
@@ -104,7 +104,7 @@ public class RegisterMod {
 	private static void processPostJoinWorldCheck(Level world) {
 		shouldDoCheck = false;
 
-		String worlddatapath = WorldFunctions.getWorldPath((ServerLevel)world) + File.separator + "data" + File.separator + "collective";
+		String worlddatapath = WorldFunctions.getWorldPath((ServerLevel)world) + File.separator + "config" + File.separator + "collective";
 		File dir = new File(worlddatapath);
 		if (!dir.mkdirs()) {
 			return;
@@ -117,7 +117,7 @@ public class RegisterMod {
 			writer.close();
 		} catch (Exception ignored) { }
 		
-		String alternativecheckpath = System.getProperty("user.dir") + File.separator + "data" + File.separator + "collective";
+		String alternativecheckpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "collective";
 		File alternativedir = new File(alternativecheckpath);
 		if (!alternativedir.mkdirs()) {
 			return;
@@ -148,7 +148,7 @@ public class RegisterMod {
 	}
 	
 	private static boolean checkAlternative() {
-		String alternativecheckfilepath = System.getProperty("user.dir") + File.separator + "data" + File.separator + "collective" + File.separator + "checked.txt";
+		String alternativecheckfilepath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "collective" + File.separator + "checked.txt";
 		File alternativecheckfile = new File(alternativecheckfilepath);
 		return !alternativecheckfile.exists();
 	}

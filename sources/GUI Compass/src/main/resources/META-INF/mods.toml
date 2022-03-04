@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20GUI%
 
 [[mods]]
 modId="guicompass"
-version="2.1"
+version="2.2"
 displayName="GUI Compass"
 displayURL="https://curseforge.com/minecraft/mc-mods/gui-compass"
 authors="Rick South"

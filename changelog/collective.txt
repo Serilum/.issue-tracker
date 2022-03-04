@@ -3,6 +3,18 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.20: Changed Collective's data path to ./config.
+
+=========
+v4.19: (Fabric only) Improved the way how Collective attempts to prevent mod reposting.
+
+=========
+v4.18: (Fabric only) Fixed incorrect version sync.
+
+=========
+v4.14-4.17: (Fabric only) Updated backend code and corrected version syntax.
+
+=========
 v4.13: The find surface block position now correctly considers water to be on the surface.
 
 =========

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Compass.
- * Minecraft version: 1.19.x, mod version: 2.1.
+ * Minecraft version: 1.19.x, mod version: 2.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Compass ever released, along with some other perks.
@@ -83,17 +83,16 @@ public class GUIEvent {
 		Entity player = mc.getCameraEntity();
 		BlockPos ppos = player.blockPosition();
 
-		float degrees = Mth.wrapDegrees(player.getYRot());
-		if (degrees < 0) {
-			degrees += 360;
-		}
-
-		int facing = Math.round(degrees/45);
-
 		String format = ConfigHandler.guiCompassFormat.getValue();
 		String toshow = "";
 
 		if (format.contains("F")) {
+			float degrees = Mth.wrapDegrees(player.getYRot());
+			if (degrees < 0) {
+				degrees += 360;
+			}
+
+			int facing = Math.round(degrees/45);
 			toshow += direction.get(facing) + ": ";
 		}
 		if (format.contains("X")) {

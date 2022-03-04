@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Doub
 
 [[mods]]
 modId="doubledoors"
-version="3.2"
+version="3.3"
 displayName="Double Doors"
 displayURL="https://curseforge.com/minecraft/mc-mods/double-doors"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adam E, Aternos.org, Cherriesaurus, Kreezcraft.com, limpjellyfish, Markus B., Mi
 [[dependencies.doubledoors]]
     modId="collective"
     mandatory=true
-    versionRange="[4.7,)"
+    versionRange="[4.13,)"
     ordering="NONE"
     side="BOTH"

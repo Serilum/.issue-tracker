@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Double Doors.
- * Minecraft version: 1.18.2, mod version: 3.2.
+ * Minecraft version: 1.18.2, mod version: 3.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Double Doors ever released, along with some other perks.
@@ -14,44 +14,35 @@
 
 package com.natamus.doubledoors.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-
 import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.doubledoors.config.ConfigHandler;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.FenceGateBlock;
-import net.minecraft.world.level.block.PressurePlateBlock;
-import net.minecraft.world.level.block.StoneButtonBlock;
-import net.minecraft.world.level.block.TrapDoorBlock;
-import net.minecraft.world.level.block.WoodButtonBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.material.Material;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
 public class Util {
 	public static boolean isDoorBlock(BlockState blockstate) {
 		Block block = blockstate.getBlock();
-		if (block instanceof DoorBlock || block instanceof TrapDoorBlock || block instanceof FenceGateBlock) {
-			return true;
-		}
-		return false;
+		return block instanceof DoorBlock || block instanceof TrapDoorBlock || block instanceof FenceGateBlock;
 	}
 	
 	public static boolean isPressureBlock(BlockState blockstate) {
 		Block block = blockstate.getBlock();
+		if (block instanceof WeightedPressurePlateBlock) {
+			return blockstate.getValue(BlockStateProperties.POWER) > 0;
+		}
 		if (block instanceof PressurePlateBlock || block instanceof WoodButtonBlock || block instanceof StoneButtonBlock) {
-			if (blockstate.getValue(BlockStateProperties.POWERED)) {
-				return true;
-			}
+			return blockstate.getValue(BlockStateProperties.POWERED);
 		}
 		return false;
 	}
@@ -70,7 +61,7 @@ public class Util {
 		}
 		
 		int yoffset = 0;
-		if (block instanceof DoorBlock == false) {
+		if (!(block instanceof DoorBlock)) {
 			yoffset = 1;
 		}
 		
@@ -95,7 +86,7 @@ public class Util {
 					playsound = false;
 				}
 				else {
-					world.setBlock(toopen, ostate.setValue(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);
+					world.setBlock(toopen, ostate.setValue(DoorBlock.OPEN, isopen), 10);
 				}
 			}
 			else if (block instanceof TrapDoorBlock) {
@@ -114,14 +105,14 @@ public class Util {
 					playsound = false;
 				}
 
-				world.setBlock(toopen, ostate.setValue(BlockStateProperties.OPEN, Boolean.valueOf(isopen)), 10);
+				world.setBlock(toopen, ostate.setValue(BlockStateProperties.OPEN, isopen), 10);
 			}
 			else if (block instanceof FenceGateBlock) {
 				if (!ConfigHandler.GENERAL.enableFenceGates.get()) {
 					continue;
 				}
 				
-				world.setBlock(toopen, ostate.setValue(DoorBlock.OPEN, Boolean.valueOf(isopen)), 10);
+				world.setBlock(toopen, ostate.setValue(DoorBlock.OPEN, isopen), 10);
 			}
 		}
 		
