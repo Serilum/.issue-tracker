@@ -14,9 +14,19 @@
 
 package com.natamus.realisticbees.util;
 
-public class Reference {
-	public static final String MOD_ID = "realisticbees";
-	public static final String NAME = "Realistic Bees";
-	public static final String VERSION = "2.5";
-	public static final String ACCEPTED_VERSIONS = "[1.18.2]";
+import com.natamus.collective.functions.ConfigFunctions;
+import com.natamus.collective.functions.NumberFunctions;
+
+public class Util {
+    public static boolean getPreventBeeSuffocationDamage() {
+        return ConfigFunctions.getDictValues(Reference.MOD_ID).get("preventBeeSuffocationDamage").equals("true");
+    }
+
+    public static int getBeehiveBeeSpace() {
+        String beehiveBeeSpaceString = ConfigFunctions.getDictValues(Reference.MOD_ID).get("beeHiveBeeSpace");
+        if (NumberFunctions.isNumeric(beehiveBeeSpaceString)) {
+            return Integer.parseInt(beehiveBeeSpaceString);
+        }
+        return 3;
+    }
 }

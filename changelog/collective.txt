@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.22: Configured BlockPosFunctions to be more efficient.
+
+=========
+v4.21: Updated NumberFunctions to correctly parse null variables.
+
+=========
 v4.20: Changed Collective's data path to ./config.
 
 =========

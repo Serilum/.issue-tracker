@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Realistic Bees.
- * Minecraft version: 1.18.2, mod version: 2.4.
+ * Minecraft version: 1.18.2, mod version: 2.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Realistic Bees ever released, along with some other perks.
@@ -14,19 +14,10 @@
 
 package com.natamus.realisticbees.events;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
-
 import com.natamus.collective.data.GlobalVariables;
-import com.natamus.collective.functions.EntityFunctions;
-import com.natamus.collective.functions.SpawnEntityFunctions;
-import com.natamus.collective.functions.StringFunctions;
-import com.natamus.collective.functions.TaskFunctions;
+import com.natamus.collective.functions.*;
 import com.natamus.realisticbees.config.ConfigHandler;
 import com.natamus.realisticbees.util.Reference;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -42,22 +33,41 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Set;
 
 @EventBusSubscriber
 public class BeeEvent {
 	private static HashMap<Player, Integer> stung_players = new HashMap<Player, Integer>();
 	private static HashMap<Player, Date> last_sting_player = new HashMap<Player, Date>();
 	private static HashMap<LivingEntity, Vec3> stingerless_bees = new HashMap<LivingEntity, Vec3>();
-	
+
+	@SubscribeEvent
+	public static void onBeeCheckSpawn(LivingSpawnEvent.SpecialSpawn e) {
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		if (world == null) {
+			return;
+		}
+
+		Entity entity = e.getEntity();
+		if (!(entity instanceof Bee)) {
+			return;
+		}
+
+		entity.addTag("SpawnReason." + e.getSpawnReason().name());
+	}
+
 	@SubscribeEvent
 	public static void onBeeSpawn(EntityJoinWorldEvent e) {
 		Level world = e.getWorld();
@@ -66,7 +76,7 @@ public class BeeEvent {
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof Bee == false) {
+		if (!(entity instanceof Bee)) {
 			return;
 		}
 		
@@ -75,6 +85,10 @@ public class BeeEvent {
 			return;
 		}
 		entity.addTag(Reference.MOD_ID + ".ignorebee");
+
+		if (tags.contains("SpawnReason.BUCKET") || tags.contains("SpawnReason.SPAWN_EGG")) {
+			return;
+		}
 		
 		BlockPos entitypos = entity.blockPosition();
 		if (!world.hasChunk(Mth.floor(entitypos.getX()) >> 4, Mth.floor(entitypos.getZ()) >> 4)) {
@@ -86,7 +100,7 @@ public class BeeEvent {
 			return;
 		}
 		
-		if (world instanceof ServerLevel == false) {
+		if (!(world instanceof ServerLevel)) {
 			return;
 		}
 		
@@ -97,12 +111,7 @@ public class BeeEvent {
 		
 		TaskFunctions.enqueueImmediateTask(world, () -> {
         	Vec3 beevec = entity.position();
-    		
-    		List<Player> playersaround = world.getEntitiesOfClass(Player.class, new AABB(beevec.x-16, beevec.y-16, beevec.z-16, beevec.x+16, beevec.y+16, beevec.z+16));
-    		if (playersaround.size() > 0) {
-    			return;
-    		}
-    		
+
     		ServerLevel serverworld = (ServerLevel)world;
     		for (int i = 0; i < extrabees; i++) {
     			Bee newbee = EntityType.BEE.create(world);
@@ -122,14 +131,12 @@ public class BeeEvent {
 			return;
 		}
 		
-		if (entity instanceof Player == false) {
+		if (!(entity instanceof Player)) {
 			return;
 		}
 		
 		Player player = (Player)entity;
-		if (stung_players.containsKey(player)) {
-			stung_players.remove(player);
-		}
+		stung_players.remove(player);
 	}
 
 	@SubscribeEvent
@@ -141,15 +148,12 @@ public class BeeEvent {
 		}
 		
 		Entity truesource = e.getSource().getEntity();
-		if (truesource instanceof Bee == false) {
+		if (!(truesource instanceof Bee)) {
 			return;
 		}
 		
-		boolean targetisplayer = false;
-		if (target instanceof Player) {
-			targetisplayer = true;
-		}
-		
+		boolean targetisplayer = target instanceof Player;
+
 		if (!ConfigHandler.GENERAL.beesDieFromStingingPlayer.get()) {
 			if (targetisplayer) {
 				return;
@@ -162,7 +166,7 @@ public class BeeEvent {
 			}
 		}
 		
-		Double chance = GlobalVariables.random.nextDouble();
+		double chance = GlobalVariables.random.nextDouble();
 		if (chance > ConfigHandler.GENERAL.chanceBeeLeavesItsStinger.get()) {
 			return;
 		}
@@ -201,7 +205,7 @@ public class BeeEvent {
 		}
 		
 		if(entity instanceof Bee) {
-			if (entity instanceof LivingEntity == false) {
+			if (!(entity instanceof LivingEntity)) {
 				return;
 			}
 			
@@ -228,7 +232,7 @@ public class BeeEvent {
 			le.teleportTo(lastvec.x, beevec.y, lastvec.z);
 		}
 		else if (entity instanceof Player) {
-			if (entity instanceof LivingEntity == false) {
+			if (!(entity instanceof LivingEntity)) {
 				return;
 			}
 			
@@ -262,11 +266,11 @@ public class BeeEvent {
 		Player player = e.getPlayer();
 		if (stung_players.containsKey(player)) {
 			ItemStack hand = e.getItemStack();
-			if (hand.getItem() instanceof ShearsItem == false) {
+			if (!(hand.getItem() instanceof ShearsItem)) {
 				return;
 			}
 			
-			Double chance = GlobalVariables.random.nextDouble();
+			double chance = GlobalVariables.random.nextDouble();
 			if (chance > ConfigHandler.GENERAL.chanceBeeStingerIsPulledOut.get()) {
 				StringFunctions.sendMessage(player, "You failed to get the stinger out!", ChatFormatting.YELLOW);
 				return;

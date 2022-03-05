@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.x, mod version: 4.20.
+ * Minecraft version: 1.19.x, mod version: 4.22.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -144,7 +144,11 @@ public class BlockPosFunctions {
 		return getNearbyVillage(serverworld, new BlockPos(0, 0, 0));
 	}
 	public static BlockPos getNearbyVillage(ServerLevel serverworld, BlockPos nearpos) {
-		return getNearbyStructure(serverworld, StructureFeature.VILLAGE, nearpos, 9999);
+		if (!WorldFunctions.isOverworld(serverworld)) {
+			return null;
+		}
+
+		return getNearbyStructure(serverworld, StructureFeature.VILLAGE, nearpos, 2000);
 	}
 	
 	public static BlockPos getCenterNearbyStructure(ServerLevel serverworld, StructureFeature<?> structure) {

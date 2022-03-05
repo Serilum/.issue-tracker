@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.2, mod version: 4.20.
+ * Minecraft version: 1.18.2, mod version: 4.22.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -15,6 +15,7 @@
 package com.natamus.collective.functions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -153,17 +154,21 @@ public class BlockPosFunctions {
 		return getNearbyVillage(serverworld, new BlockPos(0, 0, 0));
 	}
 	public static BlockPos getNearbyVillage(ServerLevel serverworld, BlockPos nearpos) {
-		try {
-			Registry<ConfiguredStructureFeature<?, ?>> registry = serverworld.registryAccess().registryOrThrow(Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY);
+		if (!WorldFunctions.isOverworld(serverworld)) {
+			return null;
+		}
 
-			List<ResourceLocation> villagerls = new ArrayList<ResourceLocation>();
-			for (ResourceLocation rl : registry.keySet()) {
-				if (rl.toString().contains("village_")) {
-					villagerls.add(rl);
-				}
+		Registry<ConfiguredStructureFeature<?, ?>> registry = serverworld.registryAccess().registryOrThrow(Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY);
+
+		List<ResourceLocation> villagerls = new ArrayList<ResourceLocation>();
+		for (ResourceLocation rl : registry.keySet()) {
+			if (rl.toString().contains("village_")) {
+				villagerls.add(rl);
 			}
+		}
 
-			BlockPos closestvillage = null;
+		BlockPos closestvillage = null;
+		for (int radius : Arrays.asList(200, 500, 1000)) {
 			for (ResourceLocation rl : villagerls) {
 				Optional<ResourceKey<ConfiguredStructureFeature<?, ?>>> optional_vk = registry.getResourceKey(registry.get(rl));
 				if (optional_vk.isPresent()) {
@@ -172,7 +177,7 @@ public class BlockPosFunctions {
 					if (optional_s.isPresent()) {
 						Holder<ConfiguredStructureFeature<?, ?>> structure = optional_s.get();
 						HolderSet<ConfiguredStructureFeature<?, ?>> holderset = HolderSet.direct(structure);
-						BlockPos villagepos = getNearbyStructure(serverworld, holderset, nearpos, 3000);
+						BlockPos villagepos = getNearbyStructure(serverworld, holderset, nearpos, radius);
 						if (villagepos != null) {
 							if (closestvillage != null) {
 								if (nearpos.distManhattan(villagepos) >= nearpos.distManhattan(closestvillage)) {
@@ -187,12 +192,12 @@ public class BlockPosFunctions {
 
 			}
 
-			return closestvillage;
+			if (closestvillage != null) {
+				break;
+			}
 		}
-		catch (Exception ex) {
-			System.out.println("[Collective Exception] Unable to access nearby village location.");
-		}
-		return null;
+
+		return closestvillage;
 	}
 
 	public static BlockPos getCenterNearbyStructure(ServerLevel serverworld, HolderSet<ConfiguredStructureFeature<?, ?>> structure) {

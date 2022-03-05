@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.2, mod version: 4.20.
+ * Minecraft version: 1.18.2, mod version: 4.22.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -44,6 +44,10 @@ public class NumberFunctions {
 	}
 	
 	public static boolean isNumeric(String string) {
+		if (string == null) {
+			return false;
+		}
+
 		try {
 			Double.parseDouble(string);
 		}
