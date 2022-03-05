@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "surfacemushrooms-fabric",
-  "version": "1.3",
+  "version": "1.4",
 
   "name": "Surface Mushrooms (Fabric)",
   "description": "Mushrooms can be placed on the surface in daylight and in any brightness.",
@@ -16,15 +16,12 @@
 
   "environment": "*",
   "entrypoints": { "main": [ "com.natamus.surfacemushrooms.Main" ] },
-  "mixins": [
-    "surfacemushrooms_fabric.mixins.json"
-  ],
 
   "depends": {
     "fabricloader": ">=0.13.3",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.22"
   }
 }

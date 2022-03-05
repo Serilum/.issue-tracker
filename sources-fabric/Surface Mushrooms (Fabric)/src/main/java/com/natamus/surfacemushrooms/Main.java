@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Surface Mushrooms.
- * Minecraft version: 1.19.x, mod version: 1.3.
+ * Minecraft version: 1.19.x, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Surface Mushrooms ever released, along with some other perks.
@@ -15,9 +15,15 @@
 package com.natamus.surfacemushrooms;
 
 import com.natamus.collective_fabric.check.RegisterMod;
+import com.natamus.collective_fabric.fabric.callbacks.CollectiveBlockEvents;
+import com.natamus.surfacemushrooms.events.MushroomBlockEvent;
 import com.natamus.surfacemushrooms.util.Reference;
-
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 
 public class Main implements ModInitializer {
 	@Override
@@ -28,6 +34,8 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-		
+		CollectiveBlockEvents.BLOCK_RIGHT_CLICK.register((Level world, Player player, InteractionHand hand, BlockPos pos, BlockHitResult hitVec) -> {
+			return MushroomBlockEvent.onMushroomPlace(world, player, hand, pos, hitVec);
+		});
 	}
 }

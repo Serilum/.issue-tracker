@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hoe Tweaks.
- * Minecraft version: 1.19.x, mod version: 1.2.
+ * Minecraft version: 1.19.x, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Hoe Tweaks ever released, along with some other perks.
@@ -14,15 +14,12 @@
 
 package com.natamus.hoetweaks.events;
 
-import com.natamus.collective_fabric.data.GlobalVariables;
 import com.natamus.collective_fabric.functions.BlockPosFunctions;
 import com.natamus.collective_fabric.functions.CompareBlockFunctions;
 import com.natamus.collective_fabric.functions.ToolFunctions;
 import com.natamus.hoetweaks.config.ConfigHandler;
 import com.natamus.hoetweaks.util.Util;
-
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -56,7 +53,7 @@ public class HoeEvent {
 			block = world.getBlockState(cpos).getBlock();
 		}
 		
-		int damage = 0;
+		int damage;
 		if (block.equals(Blocks.FARMLAND)) {
 			if (!player.isCrouching() && ConfigHandler.mustCrouchToHaveBiggerHoeRange.getValue()) {
 				world.setBlock(cpos, Blocks.DIRT.defaultBlockState(), 3);
@@ -89,7 +86,7 @@ public class HoeEvent {
 		player.swing(hand);
 		
 		if (!player.isCreative()) {
-			stack.hurt(damage, GlobalVariables.random, (ServerPlayer)player);
+			stack.hurtAndBreak(damage, player, (player1 -> player1.broadcastBreakEvent(hand)));
 		}
 		
 		return InteractionResult.SUCCESS;

@@ -3,6 +3,9 @@ Hoe Tweaks
 https://curseforge.com/minecraft/mc-mods/hoe-tweaks
 
 =========
+v1.4: Fixed a hoe going into negative durability instead of breaking when tilling a large area.
+
+=========
 v1.3: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========
