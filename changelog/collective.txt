@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.23-4.24: Added function that parses item damage and when broken correctly runs a forge/fabric itemDestroyed event.
+
+=========
 v4.22: Configured BlockPosFunctions to be more efficient.
 
 =========

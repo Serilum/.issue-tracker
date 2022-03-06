@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.x, mod version: 4.22.
+ * Minecraft version: 1.19.x, mod version: 4.25.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -22,6 +22,7 @@ import java.util.Map.Entry;
 
 import com.natamus.collective_fabric.config.CollectiveConfigHandler;
 import com.natamus.collective_fabric.data.GlobalVariables;
+import com.natamus.collective_fabric.fabric.callbacks.CollectiveItemEvents;
 import com.natamus.collective_fabric.fakeplayer.FakePlayer;
 import com.natamus.collective_fabric.fakeplayer.FakePlayerFactory;
 
@@ -30,6 +31,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -140,6 +143,22 @@ public class ItemFunctions {
 	public static void giveOrDropItemStack(Player player, ItemStack give) {
 		if (!player.getInventory().add(give)) {
 			player.drop(give, false);
+		}
+	}
+
+	public static void itemHurtBreakAndEvent(ItemStack itemStack, ServerPlayer player, InteractionHand hand, int damage) {
+		if (!(player.getAbilities().instabuild)) {
+			if (itemStack.isDamageableItem()) {
+				if (itemStack.hurt(damage, player.getRandom(), player)) {
+					CollectiveItemEvents.ON_ITEM_DESTROYED.invoker().onItemDestroyed(player, itemStack, hand);
+
+					Item item = itemStack.getItem();
+					itemStack.shrink(1);
+					itemStack.setDamageValue(0);
+
+					player.awardStat(Stats.ITEM_BROKEN.get(item));
+				}
+			}
 		}
 	}
 	

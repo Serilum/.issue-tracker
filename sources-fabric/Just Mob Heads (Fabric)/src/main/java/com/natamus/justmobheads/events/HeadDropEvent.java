@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.19.x, mod version: 5.2.
+ * Minecraft version: 1.19.x, mod version: 5.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Mob Heads ever released, along with some other perks.
@@ -14,13 +14,10 @@
 
 package com.natamus.justmobheads.events;
 
-import java.util.UUID;
-
 import com.mojang.authlib.GameProfile;
 import com.natamus.justmobheads.config.ConfigHandler;
 import com.natamus.justmobheads.util.HeadData;
 import com.natamus.justmobheads.util.MobHeads;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -38,6 +35,8 @@ import net.minecraft.world.level.block.WallSkullBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.SkullBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.UUID;
 
 public class HeadDropEvent {	
 	public static void mobItemDrop(Level world, Entity entity, DamageSource damageSource) {
@@ -75,6 +74,7 @@ public class HeadDropEvent {
 		}
 		
 		String mobname = MobHeads.getName(entity);
+		System.out.println(mobname);
 		if (mobname == "") {
 			return;
 		}

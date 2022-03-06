@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.x, mod version: 4.22.
+ * Minecraft version: 1.19.x, mod version: 4.25.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -46,63 +46,74 @@ public class BlockPosFunctions {
 		}
 		return around;
 	}
-	
+
 	// START: RECURSIVE GET BLOCKS
 	public static List<BlockPos> getBlocksNextToEachOther(Level world, BlockPos startpos, List<Block> possibleblocks) {
+		return getBlocksNextToEachOther(world, startpos, possibleblocks, 50);
+	}
+	public static List<BlockPos> getBlocksNextToEachOther(Level world, BlockPos startpos, List<Block> possibleblocks, int maxDistance) {
 		List<BlockPos> checkedblocks = new ArrayList<BlockPos>();
 		List<BlockPos> theblocksaround = new ArrayList<BlockPos>();
 		if (possibleblocks.contains(world.getBlockState(startpos).getBlock())) {
 			theblocksaround.add(startpos);
 			checkedblocks.add(startpos);
 		}
-		
-		recursiveGetNextBlocks(world, startpos, possibleblocks, theblocksaround, checkedblocks);
+
+		recursiveGetNextBlocks(world, startpos, startpos, possibleblocks, theblocksaround, checkedblocks, maxDistance);
 		return theblocksaround;
 	}
-	private static void recursiveGetNextBlocks(Level world, BlockPos pos, List<Block> possibleblocks, List<BlockPos> theblocksaround, List<BlockPos> checkedblocks) {
+	private static void recursiveGetNextBlocks(Level world, BlockPos startpos, BlockPos pos, List<Block> possibleblocks, List<BlockPos> theblocksaround, List<BlockPos> checkedblocks, int maxDistance) {
 		List<BlockPos> possibleblocksaround = getBlocksAround(pos, true);
 		for (BlockPos pba : possibleblocksaround) {
 			if (checkedblocks.contains(pba)) {
 				continue;
 			}
 			checkedblocks.add(pba);
-			
+
 			if (possibleblocks.contains(world.getBlockState(pba).getBlock())) {
 				if (!theblocksaround.contains(pba)) {
 					theblocksaround.add(pba);
-					recursiveGetNextBlocks(world, pba, possibleblocks, theblocksaround, checkedblocks);
+					if (BlockPosFunctions.withinDistance(startpos, pba, maxDistance)) {
+						recursiveGetNextBlocks(world, startpos, pba, possibleblocks, theblocksaround, checkedblocks, maxDistance);
+					}
 				}
 			}
 		}
 	}
 	public static List<BlockPos> getBlocksNextToEachOtherMaterial(Level world, BlockPos startpos, List<Material> possiblematerials) {
+		return getBlocksNextToEachOtherMaterial(world, startpos, possiblematerials, 50);
+	}
+	public static List<BlockPos> getBlocksNextToEachOtherMaterial(Level world, BlockPos startpos, List<Material> possiblematerials, int maxDistance) {
 		List<BlockPos> checkedblocks = new ArrayList<BlockPos>();
 		List<BlockPos> theblocksaround = new ArrayList<BlockPos>();
 		if (possiblematerials.contains(world.getBlockState(startpos).getMaterial())) {
 			theblocksaround.add(startpos);
 			checkedblocks.add(startpos);
 		}
-		
-		recursiveGetNextBlocksMaterial(world, startpos, possiblematerials, theblocksaround, checkedblocks);
+
+		recursiveGetNextBlocksMaterial(world, startpos, startpos, possiblematerials, theblocksaround, checkedblocks, maxDistance);
 		return theblocksaround;
 	}
-	private static void recursiveGetNextBlocksMaterial(Level world, BlockPos pos, List<Material> possiblematerials, List<BlockPos> theblocksaround, List<BlockPos> checkedblocks) {
+	private static void recursiveGetNextBlocksMaterial(Level world, BlockPos startpos, BlockPos pos, List<Material> possiblematerials, List<BlockPos> theblocksaround, List<BlockPos> checkedblocks, int maxDistance) {
 		List<BlockPos> possibleblocksaround = getBlocksAround(pos, true);
 		for (BlockPos pba : possibleblocksaround) {
 			if (checkedblocks.contains(pba)) {
 				continue;
 			}
 			checkedblocks.add(pba);
-			
+
 			if (possiblematerials.contains(world.getBlockState(pba).getMaterial())) {
 				if (!theblocksaround.contains(pba)) {
 					theblocksaround.add(pba);
-					recursiveGetNextBlocksMaterial(world, pba, possiblematerials, theblocksaround, checkedblocks);
+					if (BlockPosFunctions.withinDistance(startpos, pba, maxDistance)) {
+						recursiveGetNextBlocksMaterial(world, startpos, pba, possiblematerials, theblocksaround, checkedblocks, maxDistance);
+					}
 				}
 			}
 		}
 	}
 	// END RECURSIVE GET BLOCKS
+
 	public static BlockPos getSurfaceBlockPos(ServerLevel serverworld, int x, int z) {
 		int height = serverworld.getHeight();
 		

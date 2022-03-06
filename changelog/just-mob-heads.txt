@@ -3,6 +3,11 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v5.4: Fixed 1.17 mobs not dropping their head in later versions.
+Updated backend code.
+(1.19 only) Added Warden mob head.
+
+=========
 v5.3: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.2, mod version: 4.22.
+ * Minecraft version: 1.18.2, mod version: 4.25.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,17 +14,13 @@
 
 package com.natamus.collective.functions;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-
 import com.natamus.collective.config.ConfigHandler;
 import com.natamus.collective.data.GlobalVariables;
-
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -45,7 +41,13 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 
 public class ItemFunctions {
 	public static void generateEntityDropsFromLootTable(Level world) {
@@ -137,6 +139,23 @@ public class ItemFunctions {
 	public static void giveOrDropItemStack(Player player, ItemStack give) {
 		if (!player.getInventory().add(give)) {
 			player.drop(give, false);
+		}
+	}
+
+	public static void itemHurtBreakAndEvent(ItemStack itemStack, ServerPlayer player, InteractionHand hand, int damage) {
+		if (!(player.getAbilities().instabuild)) {
+			if (itemStack.isDamageableItem()) {
+				damage = itemStack.getItem().damageItem(itemStack, damage, player, (player1 -> player1.broadcastBreakEvent(hand)));
+				if (itemStack.hurt(damage, player.getRandom(), player)) {
+					ForgeEventFactory.onPlayerDestroyItem(player, itemStack, hand);
+
+					Item item = itemStack.getItem();
+					itemStack.shrink(1);
+					itemStack.setDamageValue(0);
+
+					player.awardStat(Stats.ITEM_BROKEN.get(item));
+				}
+			}
 		}
 	}
 	
