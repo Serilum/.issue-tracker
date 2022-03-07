@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.18.2, mod version: 5.0.
+ * Minecraft version: 1.19.x, mod version: 5.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -14,21 +14,17 @@
 
 package com.natamus.treeharvester.events;
 
+import net.minecraft.client.resources.sounds.SoundInstance;
+import net.minecraft.client.sounds.SoundEngine;
+
 import java.util.Date;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.sound.PlaySoundEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-
-@EventBusSubscriber(value = Dist.CLIENT)
 public class SoundHarvestEvent {
 	public static Date lastplayedlog = null;
 	public static Date lastplayedleaf = null;
 	
-	@SubscribeEvent
-	public void onSoundEvent(PlaySoundEvent e) {
-		String name = e.getName().trim();
+	public static boolean onSoundEvent(SoundEngine soundEngine, SoundInstance soundInstance) {
+		String name = soundInstance.toString();
 		
 		if (name.equals("block.grass.break") || name.equals("block.wood.break")) {
 			Date now = new Date();
@@ -46,9 +42,11 @@ public class SoundHarvestEvent {
 			if (then != null) {
 				long ms = (now.getTime()-then.getTime());
 				if (ms < 10) {
-					e.setSound(null);
+					return false;
 				}
 			}
 		}
+
+		return true;
 	}
 }

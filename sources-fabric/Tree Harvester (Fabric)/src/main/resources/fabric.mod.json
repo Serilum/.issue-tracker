@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "treeharvester-fabric",
-  "version": "4.1",
+  "version": "5.0",
 
   "name": "Tree Harvester (Fabric)",
-  "description": "Harvest trees instantly by chopping down the bottom block with fast leaf decay and sapling replacement.",
+  "description": "Harvest (nether) trees and giant mushrooms instantly with fast leaf decay and sapling replacement.",
   "authors": [ "Rick South" ],
   "contact": {
     "homepage": "https://curseforge.com/minecraft/mc-mods/tree-harvester-fabric",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.25"
   }
 }

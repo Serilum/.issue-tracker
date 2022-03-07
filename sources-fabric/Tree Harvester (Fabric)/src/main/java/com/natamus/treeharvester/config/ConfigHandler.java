@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.19.x, mod version: 4.1.
+ * Minecraft version: 1.19.x, mod version: 5.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -34,25 +34,24 @@ import io.github.fablabsmc.fablabs.api.fiber.v1.tree.ConfigTree;
 import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
 
 public class ConfigHandler { 
-	public static PropertyMirror<Boolean> replaceSaplingIfBottomLogIsBroken = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> mustHoldAxeForTreeHarvest = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> treeHarvestWithoutSneak = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> instantBreakLeavesAround = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> automaticallyFindBottomBlock = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> enableFastLeafDecay = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> enableNetherTrees = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> automaticallyFindBottomBlock = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	
+	public static PropertyMirror<Boolean> enableHugeMushrooms = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> replaceSaplingOnTreeHarvest = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> replaceMushroomOnMushroomHarvest = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> loseDurabilityPerHarvestedLog = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Double> loseDurabilityModifier = PropertyMirror.create(ConfigTypes.DOUBLE);
-	
 	public static PropertyMirror<Boolean> increaseExhaustionPerHarvestedLog = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Double> increaseExhaustionModifier = PropertyMirror.create(ConfigTypes.DOUBLE);
+	public static PropertyMirror<Boolean> increaseHarvestingTimePerLog = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Double> increasedHarvestingTimePerLogModifier = PropertyMirror.create(ConfigTypes.DOUBLE);
+	public static PropertyMirror<Integer> amountOfLeavesBrokenPerTick = PropertyMirror.create(ConfigTypes.INTEGER);
 
 	private static final ConfigTree CONFIG = ConfigTree.builder() 
-			.beginValue("replaceSaplingIfBottomLogIsBroken", ConfigTypes.BOOLEAN, true)
-			.withComment("If enabled, automatically replaces the sapling from the drops when the bottom log is broken and the player is not holding the sneak button.")
-			.finishValue(replaceSaplingIfBottomLogIsBroken::mirror)
-
 			.beginValue("mustHoldAxeForTreeHarvest", ConfigTypes.BOOLEAN, true)
 			.withComment("If enabled, tree harvesting only works when a player is holding an axe in the main hand.")
 			.finishValue(mustHoldAxeForTreeHarvest::mirror)
@@ -65,6 +64,10 @@ public class ConfigHandler {
 			.withComment("If enabled, players instantly break the leaves as well as all logs of the tree when a bottom log is broken.")
 			.finishValue(instantBreakLeavesAround::mirror)
 
+			.beginValue("automaticallyFindBottomBlock", ConfigTypes.BOOLEAN, true)
+			.withComment("Whether the mod should attempt to find the actual bottom log of the tree and start there. This means you can break a tree in the middle and it will still completely be felled.")
+			.finishValue(automaticallyFindBottomBlock::mirror)
+
 			.beginValue("enableFastLeafDecay", ConfigTypes.BOOLEAN, true)
 			.withComment("If enabled, the leaves around a broken tree will quickly disappear. Only works with 'instantBreakLeavesAround' disabled.")
 			.finishValue(enableFastLeafDecay::mirror)
@@ -72,26 +75,46 @@ public class ConfigHandler {
 			.beginValue("enableNetherTrees", ConfigTypes.BOOLEAN, true)
 			.withComment("If enabled, the warped stem/crimson trees in the nether will also be chopped down quickly.")
 			.finishValue(enableNetherTrees::mirror)
-			
-			.beginValue("automaticallyFindBottomBlock", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether the mod should attempt to find the actual bottom log of the tree and start there. This means you can break a tree in the middle and it will still completely be felled.")
-			.finishValue(automaticallyFindBottomBlock::mirror)
-			
+
+			.beginValue("enableHugeMushrooms", ConfigTypes.BOOLEAN, true)
+			.withComment("If enabled, giant/huge mushrooms will also be chopped down quickly.")
+			.finishValue(enableHugeMushrooms::mirror)
+
+			.beginValue("replaceSaplingOnTreeHarvest", ConfigTypes.BOOLEAN, true)
+			.withComment("If enabled, automatically replaces the sapling from the drops when a tree is harvested.")
+			.finishValue(replaceSaplingOnTreeHarvest::mirror)
+
+			.beginValue("replaceMushroomOnMushroomHarvest", ConfigTypes.BOOLEAN, true)
+			.withComment("If enabled, automatically replaces the sapling from the drops when a huge mushroom is harvested and 'enableHugeMushrooms' is enabled.")
+			.finishValue(replaceMushroomOnMushroomHarvest::mirror)
+
 			.beginValue("loseDurabilityPerHarvestedLog", ConfigTypes.BOOLEAN, true)
 			.withComment("If enabled, for every log harvested, the axe held loses durability.")
 			.finishValue(loseDurabilityPerHarvestedLog::mirror)
-			
+
 			.beginValue("loseDurabilityModifier", ConfigTypes.DOUBLE, 1.0)
 			.withComment("Here you can set how much durability chopping down a tree should take from the axe. For example if set to 0.1, this means that every 10 logs take 1 durability.")
 			.finishValue(loseDurabilityModifier::mirror)
-			
+
 			.beginValue("increaseExhaustionPerHarvestedLog", ConfigTypes.BOOLEAN, true)
 			.withComment("If enabled, players' exhaustion level increases 0.005 per harvested log (Minecraft's default per broken block) * increaseExhaustionModifier.")
 			.finishValue(increaseExhaustionPerHarvestedLog::mirror)
-			
+
 			.beginValue("increaseExhaustionModifier", ConfigTypes.DOUBLE, 1.0)
 			.withComment("This determines how much exhaustion should be added to the player per harvested log. By default 0.005 * 1.0.")
 			.finishValue(increaseExhaustionModifier::mirror)
+
+			.beginValue("increaseHarvestingTimePerLog", ConfigTypes.BOOLEAN, true)
+			.withComment("If enabled, harvesting time will increase per existing log in the tree. The amount is determined by 'increasedHarvestingTimePerLogModifier'.")
+			.finishValue(increaseHarvestingTimePerLog::mirror)
+
+			.beginValue("increasedHarvestingTimePerLogModifier", ConfigTypes.DOUBLE, 0.1)
+			.withComment("How much longer it takes to harvest a tree with 'increaseHarvestingTimePerLog' enabled. The actual speed is: newSpeed = originalSpeed / (1 + (logCount * increasedHarvestingTimePerLogModifier)).")
+			.finishValue(increasedHarvestingTimePerLogModifier::mirror)
+
+			.beginValue("amountOfLeavesBrokenPerTick", ConfigTypes.INTEGER, 3)
+			.withComment("How many leaves should be broken per tick after a tree has been harvested. Increasing this will speed up the fast leaf decay, but costs more processing power per tick.")
+			.finishValue(amountOfLeavesBrokenPerTick::mirror)
 
 			.build();
 

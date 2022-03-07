@@ -3,6 +3,18 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v5.0: The big 5.0 update!
+Improved the algorithm behind which logs and leaves should be broken. This creates better remaining trees (next to the one harvested) and no more floating leaf blocks.
+Huge mushrooms can now be harvested just like trees.
+The amount of time it takes to harvest a tree is determined by the amount of logs.
+Added config option to increase/slow down fast leaf decay.
+Improved the search for a bottom block for 2x2 trees.
+Added compatibility with Stack Refill.
+The mod now fires the BlockBreak and BlockPlace event.
+Added blacklist feature to disable certain axe types from being able to harvest trees.
+Overall improved backend code.
+
+=========
 v4.2: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

@@ -5,11 +5,11 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Tree
 
 [[mods]]
 modId="treeharvester"
-version="4.2"
+version="5.0"
 displayName="Tree Harvester"
 displayURL="https://curseforge.com/minecraft/mc-mods/tree-harvester"
 authors="Rick South"
-description="Harvest trees instantly by chopping down the bottom block with fast leaf decay and sapling replacement."
+description="Harvest (nether) trees and giant mushrooms instantly with fast leaf decay and sapling replacement."
 credits='''Thank you very much to my patrons at https://patreon.com/ricksouth for sponsoring the development of this mod:   
 Adam E, Aternos.org, Cherriesaurus, Kreezcraft.com, limpjellyfish, Markus B., Michael W. S., Morgan Schetzle, Reforged Network, Robert Gilbert, Tyler Behl, Zhovan8   
 '''
@@ -17,6 +17,6 @@ Adam E, Aternos.org, Cherriesaurus, Kreezcraft.com, limpjellyfish, Markus B., Mi
 [[dependencies.treeharvester]]
     modId="collective"
     mandatory=true
-    versionRange="[4.7,)"
+    versionRange="[4.25,)"
     ordering="NONE"
     side="BOTH"
