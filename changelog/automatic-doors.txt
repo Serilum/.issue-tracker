@@ -3,6 +3,12 @@ Automatic Doors
 https://www.curseforge.com/minecraft/mc-mods/automatic-doors
 
 =========
+v2.3-2.4: Fixed doors not closing after last update.
+
+=========
+v2.2: Fixed doors closing incorrectly when multiple players were nearby.
+
+=========
 v2.1: Improved multi-dimension support.
 Fixed the mod not working as intended in multiplayer.
 

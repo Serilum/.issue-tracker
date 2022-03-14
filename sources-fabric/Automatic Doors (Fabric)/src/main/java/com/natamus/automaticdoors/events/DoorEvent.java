@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Automatic Doors.
- * Minecraft version: 1.19.x, mod version: 2.1.
+ * Minecraft version: 1.19.x, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Automatic Doors ever released, along with some other perks.
@@ -62,21 +62,30 @@ public class DoorEvent {
 					continue;
 				}
 
-				for (Player player : world.getEntitiesOfClass(Player.class, new AABB(bp.getX() - 3, bp.getY() - 1, bp.getZ() - 3, bp.getX() + 3, bp.getY() + 1, bp.getZ() + 3))) {
+				boolean canclose = true;
+				for (Player player : world.getEntitiesOfClass(Player.class, new AABB(bp.getX() - 2, bp.getY(), bp.getZ() - 2, bp.getX() + 2, bp.getY(), bp.getZ() + 2))) {
 					BlockPos ppos = player.blockPosition();
 
-					if (!ppos.closerThan(bp, 3) || (ConfigHandler.preventOpeningOnSneak.getValue() && player.isShiftKeyDown())) {
-						for (BlockPos aroundpos : BlockPos.betweenClosed(bp.getX() - 1, bp.getY(), bp.getZ() - 1, bp.getX() + 1, bp.getY(), bp.getZ() + 1)) {
-							BlockState aroundstate = world.getBlockState(aroundpos);
-							Block aroundblock = aroundstate.getBlock();
-							if (Util.isDoor(aroundblock)) {
-								((DoorBlock) block).setOpen(null, world, aroundstate, aroundpos, false); // toggleDoor
-							}
+					if (ppos.closerThan(bp, 3)) {
+						if (ConfigHandler.preventOpeningOnSneak.getValue() && player.isCrouching()) {
+							continue;
 						}
 
-						closetoremove.add(bp);
+						canclose = false;
 						break;
 					}
+				}
+
+				if (canclose) {
+					for (BlockPos aroundpos : BlockPos.betweenClosed(bp.getX() - 1, bp.getY(), bp.getZ() - 1, bp.getX() + 1, bp.getY(), bp.getZ() + 1)) {
+						BlockState aroundstate = world.getBlockState(aroundpos);
+						Block aroundblock = aroundstate.getBlock();
+						if (Util.isDoor(aroundblock)) {
+							((DoorBlock) block).setOpen(null, world, aroundstate, aroundpos, false); // toggleDoor
+						}
+					}
+
+					closetoremove.add(bp);
 				}
 			}
 

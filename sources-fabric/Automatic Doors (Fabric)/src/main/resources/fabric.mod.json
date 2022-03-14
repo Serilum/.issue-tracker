@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "automaticdoors-fabric",
-  "version": "2.1",
+  "version": "2.4",
 
   "name": "Automatic Doors (Fabric)",
   "description": "Automatically opens doors in front of the player and closes them with a configurable delay.",
