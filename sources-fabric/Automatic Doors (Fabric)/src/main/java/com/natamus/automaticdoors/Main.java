@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Automatic Doors.
- * Minecraft version: 1.19.x, mod version: 1.9.
+ * Minecraft version: 1.19.x, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Automatic Doors ever released, along with some other perks.
@@ -19,8 +19,10 @@ import com.natamus.automaticdoors.events.DoorEvent;
 import com.natamus.automaticdoors.util.Reference;
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.collective_fabric.fabric.callbacks.CollectivePlayerEvents;
-
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -35,6 +37,14 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
+		ServerWorldEvents.LOAD.register((MinecraftServer server, ServerLevel world) -> {
+			DoorEvent.onWorldLoad(world);
+		});
+
+		ServerTickEvents.START_WORLD_TICK.register((ServerLevel world) -> {
+			DoorEvent.onWorldTick(world);
+		});
+
 		CollectivePlayerEvents.PLAYER_TICK.register((ServerLevel world, ServerPlayer player) -> {
 			DoorEvent.onPlayerTick(world, player);
 		});

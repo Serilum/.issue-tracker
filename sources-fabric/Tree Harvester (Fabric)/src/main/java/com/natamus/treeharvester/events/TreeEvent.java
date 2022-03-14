@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.19.x, mod version: 5.0.
+ * Minecraft version: 1.19.x, mod version: 5.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -331,6 +331,10 @@ public class TreeEvent {
 		}
 
 		if (logcount < 0) {
+			if (Util.isTreeAndReturnLogAmount(world, bpos) < 0) {
+				return digSpeed;
+			}
+
 			logcount = BlockPosFunctions.getBlocksNextToEachOtherMaterial(world, bpos, Arrays.asList(Material.WOOD), 30).size(); // Util.isTreeAndReturnLogAmount(world, bpos);
 			if (logcount <= 0) {
 				return digSpeed;

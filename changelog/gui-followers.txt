@@ -3,6 +3,9 @@ GUI Followers
 https://curseforge.com/minecraft/mc-mods/gui-followers
 
 =========
+v1.9: Fixed followers being duplicated in the GUI list between world joins.
+
+=========
 v1.8: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

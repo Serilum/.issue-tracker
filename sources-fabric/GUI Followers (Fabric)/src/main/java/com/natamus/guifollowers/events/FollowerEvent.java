@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.19.x, mod version: 1.7.
+ * Minecraft version: 1.19.x, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Followers ever released, along with some other perks.
@@ -52,7 +52,7 @@ public class FollowerEvent {
 		Vec3 pvec = player.position();
 		List<Entity> entitiesaround = world.getEntities(player, new AABB(pvec.x-dc, pvec.y-dc, pvec.z-dc, pvec.x+dc, pvec.y+dc, pvec.z+dc));
 		for (Entity ea : entitiesaround) {
-			if (ea instanceof TamableAnimal == false) {
+			if (!(ea instanceof TamableAnimal)) {
 				continue;
 			}
 			
@@ -68,8 +68,16 @@ public class FollowerEvent {
 			if (te.isInSittingPose()) {
 				continue;
 			}
-			
-			if (!Variables.activefollowers.contains(ea)) {
+
+			boolean exists = false;
+			for (Entity entity : Variables.activefollowers) {
+				if (entity.getUUID().equals(ea.getUUID())) {
+					exists = true;
+					break;
+				}
+			}
+
+			if (!exists) {
 				Variables.activefollowers.add(ea);
 			}
 		}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Automatic Doors.
- * Minecraft version: 1.19.x, mod version: 1.9.
+ * Minecraft version: 1.19.x, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Automatic Doors ever released, along with some other perks.
@@ -20,6 +20,7 @@ import java.util.List;
 import com.natamus.automaticdoors.config.ConfigHandler;
 import com.natamus.automaticdoors.events.DoorEvent;
 
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.core.BlockPos;
@@ -31,16 +32,14 @@ public class Util {
 		if (block instanceof DoorBlock) {
 			if (!ConfigHandler.shouldOpenIronDoors.getValue()) {
 				String name = block.toString().toLowerCase();
-				if (name.contains("iron")) {
-					return false;
-				}
+				return !name.contains("iron");
 			}
 			return true;
 		}
 		return false;
 	}
 	
-	public static void delayDoorClose(BlockPos pos) {
+	public static void delayDoorClose(Level world, BlockPos pos) {
 		if (pos == null) {
 			return;
 		}
@@ -50,16 +49,14 @@ public class Util {
 		}
 		
 		runnables.add(pos);
-		new Thread( new Runnable() {
-	    	public void run()  {
-	        	try  { Thread.sleep( ConfigHandler.doorOpenTime.getValue() ); }
-	            catch (InterruptedException ie)  {}
-	        	
-	        	if (!DoorEvent.toclosedoors.contains(pos) && !DoorEvent.newclosedoors.contains(pos)) {
-	        		DoorEvent.newclosedoors.add(pos);
-	        	}
-	        	runnables.remove(pos);
-	    	}
-	    } ).start();
+		new Thread(() -> {
+			try  { Thread.sleep( ConfigHandler.doorOpenTime.getValue() ); }
+			catch (InterruptedException ignored)  {}
+
+			if (!DoorEvent.toclosedoors.get(world).contains(pos) && !DoorEvent.newclosedoors.get(world).contains(pos)) {
+				DoorEvent.newclosedoors.get(world).add(pos);
+			}
+			runnables.remove(pos);
+		}).start();
 	}
 }

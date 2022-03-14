@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "automaticdoors-fabric",
-  "version": "1.9",
+  "version": "2.1",
 
   "name": "Automatic Doors (Fabric)",
   "description": "Automatically opens doors in front of the player and closes them with a configurable delay.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.25"
   }
 }

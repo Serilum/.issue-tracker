@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.18.2, mod version: 1.8.
+ * Minecraft version: 1.18.2, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Followers ever released, along with some other perks.
@@ -36,11 +36,10 @@ import net.minecraftforge.event.entity.player.PlayerEvent.PlayerLoggedOutEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber
+@EventBusSubscriber(value = Dist.CLIENT)
 public class FollowerEvent {
 	private final Minecraft mc = Minecraft.getInstance();
-	
-	@OnlyIn(Dist.CLIENT)
+
 	@SubscribeEvent
 	public void onPlayerTick(ClientTickEvent e) {
 		if (!e.phase.equals(Phase.START)) {
@@ -69,7 +68,7 @@ public class FollowerEvent {
 		Vec3 pvec = player.position();
 		List<Entity> entitiesaround = world.getEntities(player, new AABB(pvec.x-dc, pvec.y-dc, pvec.z-dc, pvec.x+dc, pvec.y+dc, pvec.z+dc));
 		for (Entity ea : entitiesaround) {
-			if (ea instanceof TamableAnimal == false) {
+			if (!(ea instanceof TamableAnimal)) {
 				continue;
 			}
 			
@@ -85,20 +84,26 @@ public class FollowerEvent {
 			if (te.isInSittingPose()) {
 				continue;
 			}
-			
-			if (!Variables.activefollowers.contains(ea)) {
+
+			boolean exists = false;
+			for (Entity entity : Variables.activefollowers) {
+				if (entity.getUUID().equals(ea.getUUID())) {
+					exists = true;
+					break;
+				}
+			}
+
+			if (!exists) {
 				Variables.activefollowers.add(ea);
 			}
 		}
 	}
-	
-	@OnlyIn(Dist.CLIENT)
+
 	@SubscribeEvent
 	public void onPlayerLogout(PlayerLoggedOutEvent e) {
 		Variables.activefollowers = new ArrayList<Entity>();
 	}
-	
-	@OnlyIn(Dist.CLIENT)
+
 	@SubscribeEvent
 	public void onKey(InputEvent.KeyInputEvent e) {
 		if (e.getAction() != 1) {

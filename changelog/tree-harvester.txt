@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v5.1: Fixed chopping down log blocks being slow without it being part of a tree.
+
+=========
 v5.0: The big 5.0 update!
 Improved the algorithm behind which logs and leaves should be broken. This creates better remaining trees (next to the one harvested) and no more floating leaf blocks.
 Huge mushrooms can now be harvested just like trees.
