@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Passive Endermen.
- * Minecraft version: 1.18.2, mod version: 2.1.
+ * Minecraft version: 1.18.2, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Passive Endermen ever released, along with some other perks.
@@ -25,16 +25,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = EnderMan.class, priority = 1001)
 public class EnderManMixin {
+    private final boolean preventEndermenFromTeleporting = ConfigFunctions.getDictValues(Reference.MOD_ID).get("preventEndermenFromTeleporting").equals("true");
+    private final boolean preventEndermenFromAttacking = ConfigFunctions.getDictValues(Reference.MOD_ID).get("preventEndermenFromAttacking").equals("true");
+
     @Inject(method = "teleport(DDD)Z", at = @At(value = "HEAD"), cancellable = true)
     private void teleport(double p_32544_, double p_32545_, double p_32546_, CallbackInfoReturnable<Boolean> cir) {
-        if (ConfigFunctions.getDictValues(Reference.MOD_ID).get("preventEndermenFromTeleporting").equals("true")) {
+        if (preventEndermenFromTeleporting) {
             cir.setReturnValue(false);
         }
     }
 
     @Inject(method = "registerGoals()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V", ordinal = 8), cancellable = true)
     protected void registerGoals(CallbackInfo ci) {
-        if (ConfigFunctions.getDictValues(Reference.MOD_ID).get("preventEndermenFromAttacking").equals("true")) {
+        if (preventEndermenFromAttacking) {
             ci.cancel();
         }
     }

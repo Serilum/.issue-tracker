@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.x, mod version: 4.25.
+ * Minecraft version: 1.19.x, mod version: 4.26.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -16,7 +16,6 @@ package com.natamus.collective_fabric.fabric.mixin;
 
 import com.natamus.collective_fabric.fabric.callbacks.CollectiveBlockEvents;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.MultiPlayerGameMode;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
@@ -36,20 +35,20 @@ public class MultiPlayerGameModeMixin {
 	@Shadow @Final private Minecraft minecraft;
 
 	@Inject(method = "useItemOn", at = @At(value = "HEAD"), cancellable = true)
-	public void MultiPlayerGameMode_useItemOn(LocalPlayer player, ClientLevel level, InteractionHand interactionHand, BlockHitResult blockHitResult, CallbackInfoReturnable<InteractionResult> ci) {
-		if (!CollectiveBlockEvents.BLOCK_RIGHT_CLICK.invoker().onBlockRightClick(level, player, interactionHand, blockHitResult.getBlockPos(), blockHitResult)) {
-			ci.setReturnValue(InteractionResult.FAIL);
+	public void MultiPlayerGameMode_useItemOn(LocalPlayer localPlayer, InteractionHand interactionHand, BlockHitResult blockHitResult, CallbackInfoReturnable<InteractionResult> cir) {
+		if (!CollectiveBlockEvents.BLOCK_RIGHT_CLICK.invoker().onBlockRightClick(localPlayer.level, localPlayer, interactionHand, blockHitResult.getBlockPos(), blockHitResult)) {
+			cir.setReturnValue(InteractionResult.FAIL);
 		}
 	}
 
-	@Inject(method = "startDestroyBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;destroyBlock(Lnet/minecraft/core/BlockPos;)Z", ordinal = 0), cancellable = true)
+	@Inject(method = "startDestroyBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;startPrediction(Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/multiplayer/prediction/PredictiveAction;)V", ordinal = 0), cancellable = true)
 	public void MultiPlayerGameMode_startDestroyBlock_creative(BlockPos blockPos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
 		if (!CollectiveBlockEvents.BLOCK_LEFT_CLICK.invoker().onBlockLeftClick(minecraft.level, minecraft.player, blockPos, direction)) {
 			cir.setReturnValue(false);
 		}
 	}
 
-	@Inject(method = "startDestroyBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;isAir()Z"), cancellable = true)
+	@Inject(method = "startDestroyBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;startPrediction(Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/multiplayer/prediction/PredictiveAction;)V", ordinal = 1), cancellable = true)
 	public void MultiPlayerGameMode_startDestroyBlock_survival(BlockPos blockPos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
 		if (!CollectiveBlockEvents.BLOCK_LEFT_CLICK.invoker().onBlockLeftClick(minecraft.level, minecraft.player, blockPos, direction)) {
 			cir.setReturnValue(false);

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Passive Endermen.
- * Minecraft version: 1.19.x, mod version: 2.2.
+ * Minecraft version: 1.19.x, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Passive Endermen ever released, along with some other perks.
@@ -47,7 +47,7 @@ public class ConfigHandler {
 			.withComment("If enabled, prevents from picking up and placing blocks.")
 			.finishValue(preventEndermenFromGriefing::mirror)
 
-			.beginValue("preventEndermenFromAttacking", ConfigTypes.BOOLEAN, true)
+			.beginValue("preventEndermenFromAttackingFirst", ConfigTypes.BOOLEAN, true)
 			.withComment("If enabled, stops the endermen from attacking.")
 			.finishValue(preventEndermenFromAttackingFirst::mirror)
 

@@ -3,6 +3,9 @@ Just Player Heads
 https://www.curseforge.com/minecraft/mc-mods/just-player-heads
 
 =========
+v2.0: (Forge only) Fixed the /jph command not being registered correctly.
+
+=========
 v1.9: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

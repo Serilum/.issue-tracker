@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.26: (Fabric only) Updated backend code
+(Fabric 1.19 only) Updated to work with the latest snapshot 22w11a.
+
+=========
 v4.25: Added max distance to recursive lookup functions.
 
 =========

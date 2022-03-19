@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.x, mod version: 4.25.
+ * Minecraft version: 1.19.x, mod version: 4.26.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,7 +14,6 @@
 
 package com.natamus.collective_fabric.functions;
 
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
@@ -28,33 +27,33 @@ public class ToolFunctions {
 		if (itemstack == null) {
 			return false;
 		}
-		
+
 		Item item = itemstack.getItem();
 		if (item instanceof ShovelItem || item instanceof AxeItem || item instanceof PickaxeItem || item instanceof SwordItem || item instanceof HoeItem) {
 			return true;
 		}
-		
+
 		String itemname = item.toString().toLowerCase();
-        return itemname.contains("_sword") || itemname.contains("_pickaxe") || itemname.contains("_axe") || itemname.contains("_shovel") || itemname.contains("_hoe");
-    }
-	
+		return itemname.contains("_sword") || itemname.contains("_pickaxe") || itemname.contains("_axe") || itemname.contains("_shovel") || itemname.contains("_hoe");
+	}
+
 	public static Boolean isSword(ItemStack itemstack) {
-        return itemstack.getItem() instanceof SwordItem;
-    }
-	
+		return itemstack.getItem() instanceof SwordItem;
+	}
+
 	public static Boolean isPickaxe(ItemStack itemstack) {
-        return itemstack.getItem() instanceof PickaxeItem || FabricToolTags.PICKAXES.contains(itemstack.getItem());
-    }
-	
+		return itemstack.getItem() instanceof PickaxeItem;// || FabricToolTags.PICKAXES.contains(itemstack.getItem()); TODO: add tag support
+	}
+
 	public static Boolean isAxe(ItemStack itemstack) {
-        return itemstack.getItem() instanceof AxeItem || FabricToolTags.AXES.contains(itemstack.getItem());
-    }
-	
+		return itemstack.getItem() instanceof AxeItem;// || FabricToolTags.AXES.contains(itemstack.getItem());
+	}
+
 	public static Boolean isShovel(ItemStack itemstack) {
-        return itemstack.getItem() instanceof ShovelItem || FabricToolTags.SHOVELS.contains(itemstack.getItem());
-    }
-	
+		return itemstack.getItem() instanceof ShovelItem;// || FabricToolTags.SHOVELS.contains(itemstack.getItem());
+	}
+
 	public static Boolean isHoe(ItemStack itemstack) {
-        return itemstack.getItem() instanceof HoeItem || FabricToolTags.HOES.contains(itemstack.getItem());
-    }
+		return itemstack.getItem() instanceof HoeItem;// || FabricToolTags.HOES.contains(itemstack.getItem());
+	}
 }

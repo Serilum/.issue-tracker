@@ -3,6 +3,9 @@ Passive Endermen
 https://www.curseforge.com/minecraft/mc-mods/passive-endermen
 
 =========
+v2.3: Fixed Endermen still being able to pick up blocks.
+
+=========
 v2.2: (Fabric 1.18 only) Updated to work with Minecraft 1.18.2 and future snapshots.
 
 =========
