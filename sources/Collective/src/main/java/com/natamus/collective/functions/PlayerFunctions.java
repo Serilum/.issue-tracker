@@ -38,12 +38,14 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 
 public class PlayerFunctions {
 	public static boolean respawnPlayer(Level world, Player player) {
@@ -81,7 +83,8 @@ public class PlayerFunctions {
 	}
 	
 	public static boolean isHoldingWater(Player player) {
-		return player.getItemInHand(InteractionHand.OFF_HAND).getItem().equals(Items.WATER_BUCKET) || player.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(Items.WATER_BUCKET);
+		return Fluids.WATER.isSame(FluidUtil.getFluidContained(player.getItemInHand(InteractionHand.OFF_HAND)).orElse(FluidStack.EMPTY).getFluid())
+				|| Fluids.WATER.isSame(FluidUtil.getFluidContained(player.getItemInHand(InteractionHand.MAIN_HAND)).orElse(FluidStack.EMPTY).getFluid());
 	}
 	
 	public static boolean isJoiningWorldForTheFirstTime(Player player, String modid) {
