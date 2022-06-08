@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Recipe Commands.
- * Minecraft version: 1.19.x, mod version: 1.5.
+ * Minecraft version: 1.19.x, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Recipe Commands ever released, along with some other perks.
@@ -41,108 +41,108 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 
 public class CommandRecipes {
-	public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-		dispatcher.register(Commands.literal("recipes")
-				.requires((iCommandSender) -> iCommandSender.getEntity() instanceof ServerPlayer)
-				.executes((command) -> {
-					CommandSourceStack source = command.getSource();
-
-					sendUsage(source);
-					return 1;
-				})
-				.then(Commands.argument("recipe", ResourceLocationArgument.id()).suggests(SuggestionProviders.ALL_RECIPES)
-						.executes((command) -> {
-							CommandSourceStack source = command.getSource();
-
-							try {
-								sendRecipe(command);
-							}
-							catch (CommandSyntaxException ex) {
-								StringFunctions.sendMessage(source, "Unable to find recipe.", ChatFormatting.RED);
-							}
-							return 1;
-						}))
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+    	dispatcher.register(Commands.literal("recipes")
+			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof ServerPlayer)
+			.executes((command) -> {
+				CommandSourceStack source = command.getSource();
+				
+				sendUsage(source);
+				return 1;
+			})
+			.then(Commands.argument("recipe", ResourceLocationArgument.id()).suggests(SuggestionProviders.ALL_RECIPES)
+			.executes((command) -> {
+				CommandSourceStack source = command.getSource();
+				
+				try {
+					sendRecipe(command);
+				}
+				catch (CommandSyntaxException ex) {
+					StringFunctions.sendMessage(source, "Unable to find recipe.", ChatFormatting.RED);
+				}
+				return 1;
+			}))
 		);
-		dispatcher.register(Commands.literal("rec")
-				.requires((iCommandSender) -> iCommandSender.getEntity() instanceof ServerPlayer)
-				.executes((command) -> {
-					CommandSourceStack source = command.getSource();
-
-					sendUsage(source);
-					return 1;
-				})
-				.then(Commands.argument("recipe", ResourceLocationArgument.id()).suggests(SuggestionProviders.ALL_RECIPES)
-						.executes((command) -> {
-							CommandSourceStack source = command.getSource();
-
-							try {
-								sendRecipe(command);
-							}
-							catch (CommandSyntaxException ex) {
-								StringFunctions.sendMessage(source, "Unable to find recipe.", ChatFormatting.RED);
-							}
-							return 1;
-						}))
-		);
-	}
-
-	private static void sendUsage(CommandSourceStack source) {
-		StringFunctions.sendMessage(source, "Recipe Commands Usage:", ChatFormatting.DARK_GREEN);
-		StringFunctions.sendMessage(source, " /rec <recipe>", ChatFormatting.DARK_GREEN);
-	}
-
-	@SuppressWarnings("unchecked")
+    	dispatcher.register(Commands.literal("rec")
+    			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof ServerPlayer)
+    			.executes((command) -> {
+    				CommandSourceStack source = command.getSource();
+    				
+    				sendUsage(source);
+    				return 1;
+    			})
+    			.then(Commands.argument("recipe", ResourceLocationArgument.id()).suggests(SuggestionProviders.ALL_RECIPES)
+    			.executes((command) -> {
+    				CommandSourceStack source = command.getSource();
+    				
+    				try {
+    					sendRecipe(command);
+    				}
+    				catch (CommandSyntaxException ex) {
+    					StringFunctions.sendMessage(source, "Unable to find recipe.", ChatFormatting.RED);
+    				}
+    				return 1;
+    			}))
+    		);
+    }
+    
+    private static void sendUsage(CommandSourceStack source) {
+    	StringFunctions.sendMessage(source, "Recipe Commands Usage:", ChatFormatting.DARK_GREEN);
+    	StringFunctions.sendMessage(source, " /rec <recipe>", ChatFormatting.DARK_GREEN);
+    }
+    
+    @SuppressWarnings("unchecked")
 	private static void sendRecipe(CommandContext<CommandSourceStack> command) throws CommandSyntaxException {
-		CommandSourceStack source = command.getSource();
-		Player player = source.getPlayerOrException();
-		Level world = player.getCommandSenderWorld();
-		if (world.isClientSide) {
-			return;
-		}
-
-		Recipe<?> recipe = ResourceLocationArgument.getRecipe(command, "recipe");
-		ResourceLocation recipelocation = recipe.getId();
-		String recipename = recipelocation.getPath().toString();
-
-		List<String> items = new ArrayList<String>();
-		HashMap<String, Integer> itemcount = new HashMap<String, Integer>();
-
-		List<Ingredient> ingredients = recipe.getIngredients();
-		for (Ingredient ingredient : ingredients) {
-			ItemStack[] possiblestacks = ingredient.getItems();
-			if (possiblestacks.length <= 0) {
-				continue;
-			}
-
-			ItemStack itemstack = possiblestacks[0];
+    	CommandSourceStack source = command.getSource();
+    	Player player = source.getPlayerOrException();
+    	Level world = player.getCommandSenderWorld();
+    	if (world.isClientSide) {
+    		return;
+    	}
+    	
+    	Recipe<?> recipe = ResourceLocationArgument.getRecipe(command, "recipe");
+    	ResourceLocation recipelocation = recipe.getId();
+    	String recipename = recipelocation.getPath().toString();
+    	
+    	List<String> items = new ArrayList<String>();
+    	HashMap<String, Integer> itemcount = new HashMap<String, Integer>();
+    	
+    	List<Ingredient> ingredients = recipe.getIngredients();
+    	for (Ingredient ingredient : ingredients) {
+    		ItemStack[] possiblestacks = ingredient.getItems();
+    		if (possiblestacks.length <= 0) {
+    			continue;
+    		}
+    		
+    		ItemStack itemstack = possiblestacks[0];
 			Item item = itemstack.getItem();
 			String itemname = item.toString();
-			if (possiblestacks.length > 1 && !itemname.equalsIgnoreCase("cobblestone")) {
+    		if (possiblestacks.length > 1 && !itemname.equalsIgnoreCase("cobblestone")) {
 				Set<TagKey<Item>> tags = itemstack.getTags().collect(Collectors.toSet());
 				if (tags.size() > 0) {
 					TagKey<Item> tag = tags.iterator().next();
 					itemname = tag.location().getPath();
 				}
-			}
-
-			itemname = StringFunctions.capitalizeEveryWord(itemname);
-
+    		}
+    		
+    		itemname = StringFunctions.capitalizeEveryWord(itemname);
+    		
 			if (items.contains(itemname)) {
 				int currentcount = itemcount.get(itemname);
 				itemcount.put(itemname, currentcount+1);
 				continue;
 			}
-
+			
 			items.add(itemname);
 			itemcount.put(itemname, 1);
-		}
-
-		Collections.sort(items);
-
-		List<String> pattern = new ArrayList<String>();
-		HashMap<String, String> itemkeys = new HashMap<String, String>();
-
-		String shape = "shaped";
+    	}
+    	
+    	Collections.sort(items);
+    	
+    	List<String> pattern = new ArrayList<String>();
+    	HashMap<String, String> itemkeys = new HashMap<String, String>();
+    	
+    	String shape = "shaped";
 		if (Recipes.jsonrecipes.containsKey(recipename)) {
 			String jsonrecipe = Recipes.jsonrecipes.get(recipename);
 			Gson gson = new Gson();
@@ -151,9 +151,9 @@ public class CommandRecipes {
 			if (rawjson.contains("shapeless")) {
 				shape = "shapeless";
 			}
-
+			
 			pattern = (List<String>) map.get("pattern");
-
+			
 			String[] spl1 = rawjson.split("key=\\{");
 			if (spl1.length > 1) {
 				String keys = spl1[1].split("\\}},")[0];
@@ -162,7 +162,7 @@ public class CommandRecipes {
 					if (keyspl.length <= 1) {
 						continue;
 					}
-
+					
 					String key = keyspl[0];
 					if (Recipes.replacekeys.containsKey(key)) {
 						key = Recipes.replacekeys.get(key);
@@ -172,40 +172,40 @@ public class CommandRecipes {
 				}
 			}
 		}
-
-		ItemStack output = recipe.getResultItem();
-		String outputname = output.getItem().toString();
-		outputname = StringFunctions.capitalizeEveryWord(outputname.replace("_", " "));
-
-		StringFunctions.sendMessage(source, outputname + " has a " + shape + " recipe.", ChatFormatting.DARK_GREEN, true);
-		StringFunctions.sendMessage(source, " Ingredients:", ChatFormatting.DARK_GREEN);
-		for (String itemname : items) {
-			int count = itemcount.get(itemname);
-			String todisplayname = itemname;
-			if (shape.equalsIgnoreCase("shaped")) {
-				String shapeditemname = itemname.toLowerCase().replace(" ", "_").split("\\/")[0];
-				if (itemkeys.containsKey(shapeditemname)) {
-					String itemkey = itemkeys.get(shapeditemname);
-					todisplayname += " (" + itemkey + ")";
-				}
-			}
-
-			todisplayname = todisplayname.replace("_", " ");
-
-			StringFunctions.sendMessage(source, "  " + count + "x " + todisplayname, ChatFormatting.DARK_GREEN);
-		}
-
-		if (shape.equalsIgnoreCase("shaped")) {
-			if (pattern.size() > 0) {
-				StringFunctions.sendMessage(source, " Pattern:", ChatFormatting.DARK_GREEN);
-
-				for (String line : pattern) {
-					for (String toreplace : Recipes.replacekeys.keySet()) {
-						line = line.replaceAll(toreplace, Recipes.replacekeys.get(toreplace));
-					}
-					StringFunctions.sendMessage(source, "  " + line.replace(" ", "_"), ChatFormatting.DARK_GREEN);
-				}
-			}
-		}
-	}
+    	
+    	ItemStack output = recipe.getResultItem();
+    	String outputname = output.getItem().toString();
+    	outputname = StringFunctions.capitalizeEveryWord(outputname.replace("_", " "));
+		
+    	StringFunctions.sendMessage(source, outputname + " has a " + shape + " recipe.", ChatFormatting.DARK_GREEN, true);
+    	StringFunctions.sendMessage(source, " Ingredients:", ChatFormatting.DARK_GREEN);
+    	for (String itemname : items) {
+    		int count = itemcount.get(itemname);
+    		String todisplayname = itemname;
+    		if (shape.equalsIgnoreCase("shaped")) {
+    			String shapeditemname = itemname.toLowerCase().replace(" ", "_").split("\\/")[0];
+    			if (itemkeys.containsKey(shapeditemname)) {
+    				String itemkey = itemkeys.get(shapeditemname);
+    				todisplayname += " (" + itemkey + ")";
+    			}
+    		}
+    		
+    		todisplayname = todisplayname.replace("_", " ");
+    		
+        	StringFunctions.sendMessage(source, "  " + count + "x " + todisplayname, ChatFormatting.DARK_GREEN);
+    	}
+    	
+    	if (shape.equalsIgnoreCase("shaped")) { 		
+    		if (pattern.size() > 0) {
+    			StringFunctions.sendMessage(source, " Pattern:", ChatFormatting.DARK_GREEN);
+    			
+        		for (String line : pattern) {
+        			for (String toreplace : Recipes.replacekeys.keySet()) {
+        				line = line.replaceAll(toreplace, Recipes.replacekeys.get(toreplace));
+        			}
+        			StringFunctions.sendMessage(source, "  " + line.replace(" ", "_"), ChatFormatting.DARK_GREEN);
+        		}
+    		}
+    	}
+    }
 }

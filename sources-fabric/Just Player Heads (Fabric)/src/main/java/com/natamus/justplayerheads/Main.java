@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Player Heads.
- * Minecraft version: 1.19.x, mod version: 1.8.
+ * Minecraft version: 1.19.x, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Player Heads ever released, along with some other perks.
@@ -22,7 +22,7 @@ import com.natamus.justplayerheads.events.PlayerEvent;
 import com.natamus.justplayerheads.util.Reference;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -37,7 +37,7 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
 			CommandJph.register(dispatcher);
 		});
 		

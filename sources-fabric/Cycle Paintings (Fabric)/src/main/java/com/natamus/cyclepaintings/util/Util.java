@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Cycle Paintings.
- * Minecraft version: 1.19.x, mod version: 2.1.
+ * Minecraft version: 1.19.x, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Cycle Paintings ever released, along with some other perks.
@@ -21,10 +21,11 @@ import com.natamus.cyclepaintings.config.ConfigHandler;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.decoration.Motive;
+import net.minecraft.world.entity.decoration.PaintingVariant;
+import net.minecraft.core.Holder;
 
 public class Util {
-	private static List<Motive> paintingtypes = new ArrayList<Motive>();
+	private static List<PaintingVariant> paintingtypes = new ArrayList<PaintingVariant>();
 	
 	public static void setPaintings() {
 		String[] allignore = ConfigHandler.ignorePaintingsInCycleResourceLocation.getValue().split(",");
@@ -34,7 +35,7 @@ public class Util {
 			System.out.println("[Cycle Paintings Debug] The config option 'showRegisteredPaintingsDebug' has been enabled. Showing paintings during cycle registration.");
 		}
 		
-		for (ResourceLocation motiverl : Registry.MOTIVE.keySet()) {
+		for (ResourceLocation motiverl : Registry.PAINTING_VARIANT.keySet()) {
 			if (motiverl == null) {
 				continue;
 			}
@@ -65,18 +66,18 @@ public class Util {
 					System.out.println("[Cycle Paintings Debug] " + motiverls + " (allowed)");
 				}
 				
-				Motive motive = Registry.MOTIVE.get(motiverl);
+				PaintingVariant motive = Registry.PAINTING_VARIANT.get(motiverl);
 				paintingtypes.add(motive);
 			}
 		}
 	}
 	
-	public static List<Motive> getSimilarArt(Motive currentart) {
-		List<Motive> similarart = new ArrayList<Motive>();
+	public static List<PaintingVariant> getSimilarArt(PaintingVariant currentart) {
+		List<PaintingVariant> similarart = new ArrayList<PaintingVariant>();
 		int xsize = currentart.getWidth();
 		int ysize = currentart.getHeight();
 		
-		for (Motive aa : paintingtypes) {
+		for (PaintingVariant aa : paintingtypes) {
 			if (aa.getWidth() == xsize && aa.getHeight() == ysize) {
 				similarart.add(aa);
 			}

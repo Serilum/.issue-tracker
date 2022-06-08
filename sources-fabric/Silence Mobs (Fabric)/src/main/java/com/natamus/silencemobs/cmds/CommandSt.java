@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Silence Mobs.
- * Minecraft version: 1.19.x, mod version: 2.0.
+ * Minecraft version: 1.19.x, mod version: 2.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Silence Mobs ever released, along with some other perks.
@@ -26,7 +26,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 
 public class CommandSt {
@@ -61,7 +61,7 @@ public class CommandSt {
 		}
 		
 		ItemStack silencestick = new ItemStack(Items.STICK, 1);
-		silencestick.setHoverName(new TextComponent(ChatFormatting.GOLD + "The Silence Stick"));
+		silencestick.setHoverName(Component.literal(ChatFormatting.GOLD + "The Silence Stick"));
 		player.addItem(silencestick);
 		StringFunctions.sendMessage(player, "You have been given The Silence Stick! Handle with care.", ChatFormatting.DARK_GREEN);
 		return;			

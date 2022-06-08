@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "edibles-fabric",
-  "version": "2.4",
+  "version": "2.6",
 
   "name": "Edibles (Fabric)",
   "description": "Makes lots of ingredients edible, after which the player receives a short status effect.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.edibles.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

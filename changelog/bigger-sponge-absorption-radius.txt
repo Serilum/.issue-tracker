@@ -3,6 +3,9 @@ Bigger Sponge Absorption Radius
 https://www.curseforge.com/minecraft/mc-mods/bigger-sponge-absorption-radius
 
 =========
+v1.8: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+
+=========
 v2.1: (Fabric 1.18 only) Updated to work with Minecraft 1.18.2 and future snapshots.
 
 =========

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "villagespawnpoint-fabric",
-  "version": "1.8",
+  "version": "2.0",
 
   "name": "Village Spawn Point (Fabric)",
   "description": "Sets the spawn point of a new world to always be in the center of a village.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.villagespawnpoint.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

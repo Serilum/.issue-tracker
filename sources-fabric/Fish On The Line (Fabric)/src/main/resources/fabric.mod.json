@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "fishontheline-fabric",
-  "version": "1.2",
+  "version": "1.5",
 
   "name": "Fish On The Line (Fabric)",
   "description": "Rings the bell held in your offhand when you are fishing and something's on the line.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.fishontheline.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

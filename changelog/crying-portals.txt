@@ -3,6 +3,9 @@ Crying Portals
 https://curseforge.com/minecraft/mc-mods/crying-portals
 
 =========
+v1.3: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+
+=========
 v1.2: Increased mod compatibility by disabling mixins when another mod changes the target method, which before this would cause a hard crash.
 
 =========

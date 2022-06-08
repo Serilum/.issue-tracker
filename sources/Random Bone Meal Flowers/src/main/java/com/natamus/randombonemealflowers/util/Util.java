@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Bone Meal Flowers.
- * Minecraft version: 1.18.2, mod version: 1.6.
+ * Minecraft version: 1.19.0, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Random Bone Meal Flowers ever released, along with some other perks.
@@ -59,7 +59,7 @@ public class Util {
 		
 		for (Block block : ForgeRegistries.BLOCKS) {
 			if (block instanceof FlowerBlock) {
-				ResourceLocation rl = block.getRegistryName();
+				ResourceLocation rl = ForgeRegistries.BLOCKS.getKey(block);
 				if (rl == null) {
 					continue;
 				}

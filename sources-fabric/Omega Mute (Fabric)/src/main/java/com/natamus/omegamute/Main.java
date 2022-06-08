@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Omega Mute.
- * Minecraft version: 1.19.x, mod version: 1.9.
+ * Minecraft version: 1.19.x, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Omega Mute ever released, along with some other perks.
@@ -19,7 +19,7 @@ import com.natamus.omegamute.cmds.CommandOmega;
 import com.natamus.omegamute.util.Reference;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
 public class Main implements ModInitializer {
 	@Override
@@ -30,7 +30,7 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
 			CommandOmega.register(dispatcher);
 		});
 	}

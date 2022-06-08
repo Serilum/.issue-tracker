@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hide Hands.
- * Minecraft version: 1.18.2, mod version: 1.5.
+ * Minecraft version: 1.19.0, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Hide Hands ever released, along with some other perks.
@@ -15,13 +15,13 @@
 package com.natamus.hidehands.events;
 
 import com.natamus.hidehands.config.ConfigHandler;
-
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @EventBusSubscriber
 public class HandEvent {
@@ -50,7 +50,7 @@ public class HandEvent {
 	
 	private static boolean isHoldingItem(String hideitems, ItemStack item) {
 		if (hideitems.length() > 1) {
-			String itemstackid = item.getItem().getRegistryName().toString().toLowerCase();
+			String itemstackid = ForgeRegistries.ITEMS.getKey(item.getItem()).toString().toLowerCase();
 			if (hideitems.toLowerCase().contains(itemstackid)) {
 				return true;
 			}

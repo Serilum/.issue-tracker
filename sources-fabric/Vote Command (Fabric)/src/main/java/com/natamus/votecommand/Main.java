@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Vote Command.
- * Minecraft version: 1.19.x, mod version: 1.6.
+ * Minecraft version: 1.19.x, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Vote Command ever released, along with some other perks.
@@ -20,7 +20,7 @@ import com.natamus.votecommand.config.ConfigHandler;
 import com.natamus.votecommand.util.Reference;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
 public class Main implements ModInitializer {
 	@Override
@@ -33,7 +33,7 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             CommandVote.register(dispatcher);
         });
 	}

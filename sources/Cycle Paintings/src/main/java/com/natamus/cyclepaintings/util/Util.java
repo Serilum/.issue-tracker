@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Cycle Paintings.
- * Minecraft version: 1.18.2, mod version: 2.2.
+ * Minecraft version: 1.19.0, mod version: 2.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Cycle Paintings ever released, along with some other perks.
@@ -14,17 +14,16 @@
 
 package com.natamus.cyclepaintings.util;
 
+import com.natamus.cyclepaintings.config.ConfigHandler;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.decoration.PaintingVariant;
+import net.minecraftforge.registries.ForgeRegistries;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.natamus.cyclepaintings.config.ConfigHandler;
-
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.decoration.Motive;
-import net.minecraftforge.registries.ForgeRegistries;
-
 public class Util {
-	private static List<Motive> paintingtypes = new ArrayList<Motive>();
+	private static List<PaintingVariant> paintingtypes = new ArrayList<PaintingVariant>();
 	
 	public static void setPaintings() {
 		String[] allignore = ConfigHandler.GENERAL.ignorePaintingsInCycleResourceLocation.get().split(",");
@@ -34,7 +33,7 @@ public class Util {
 			System.out.println("[Cycle Paintings Debug] The config option 'showRegisteredPaintingsDebug' has been enabled. Showing paintings during cycle registration.");
 		}
 		
-		for (ResourceLocation motiverl : ForgeRegistries.PAINTING_TYPES.getKeys()) {
+		for (ResourceLocation motiverl : ForgeRegistries.PAINTING_VARIANTS.getKeys()) {
 			if (motiverl == null) {
 				continue;
 			}
@@ -65,18 +64,18 @@ public class Util {
 					System.out.println("[Cycle Paintings Debug] " + motiverls + " (allowed)");
 				}
 				
-				Motive motive = ForgeRegistries.PAINTING_TYPES.getValue(motiverl);
+				PaintingVariant motive = ForgeRegistries.PAINTING_VARIANTS.getValue(motiverl);
 				paintingtypes.add(motive);
 			}
 		}
 	}
 	
-	public static List<Motive> getSimilarArt(Motive currentart) {
-		List<Motive> similarart = new ArrayList<Motive>();
+	public static List<PaintingVariant> getSimilarArt(PaintingVariant currentart) {
+		List<PaintingVariant> similarart = new ArrayList<PaintingVariant>();
 		int xsize = currentart.getWidth();
 		int ysize = currentart.getHeight();
 		
-		for (Motive aa : paintingtypes) {
+		for (PaintingVariant aa : paintingtypes) {
 			if (aa.getWidth() == xsize && aa.getHeight() == ysize) {
 				similarart.add(aa);
 			}

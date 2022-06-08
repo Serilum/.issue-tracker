@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.2, mod version: 4.25.
+ * Minecraft version: 1.19.0, mod version: 4.28.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,34 +14,24 @@
 
 package com.natamus.collective.functions;
 
-import java.util.UUID;
-
 import com.natamus.collective.data.GlobalVariables;
-
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.Sheep;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
-import net.minecraft.world.entity.animal.horse.Donkey;
-import net.minecraft.world.entity.animal.horse.Horse;
-import net.minecraft.world.entity.animal.horse.Llama;
-import net.minecraft.world.entity.animal.horse.Mule;
+import net.minecraft.world.entity.animal.horse.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.UUID;
 
 public class EntityFunctions {
 	// START: CHECK functions
@@ -81,7 +71,7 @@ public class EntityFunctions {
 	public static String getEntityString(Entity entity) {
 		String entitystring = "";
 		
-		ResourceLocation rl = entity.getType().getRegistryName();
+		ResourceLocation rl = EntityType.getKey(entity.getType());
 		if (rl != null) {
 			entitystring = rl.toString(); // minecraft:villager, minecraft:wandering_trader
 			if (entitystring.contains(":")) {
@@ -99,7 +89,7 @@ public class EntityFunctions {
 	// Do functions
 	public static void nameEntity(Entity entity, String name) {
 		if (!name.equals("")) {
-			entity.setCustomName(new TextComponent(name));
+			entity.setCustomName(Component.literal(name));
 		}
 	}
 	

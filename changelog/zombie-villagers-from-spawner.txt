@@ -3,6 +3,9 @@ Zombie Villagers From Spawner
 https://www.curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner
 
 =========
+v1.7: (Fabric 1.19 only) Updated mod to work with the latest 1.19 release version.
+
+=========
 v1.7: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

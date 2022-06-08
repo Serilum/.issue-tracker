@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Village Spawn Point.
- * Minecraft version: 1.18.2, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Village Spawn Point ever released, along with some other perks.
@@ -42,7 +42,7 @@ public class VillageSpawnEvent {
 		ServerLevel serverworld = (ServerLevel)world;
 		WorldGenSettings generatorsettings = serverworld.getServer().getWorldData().worldGenSettings();
 		
-		if (!generatorsettings.generateFeatures()) {
+		if (!generatorsettings.generateStructures()) {
 			return;
 		}
 		

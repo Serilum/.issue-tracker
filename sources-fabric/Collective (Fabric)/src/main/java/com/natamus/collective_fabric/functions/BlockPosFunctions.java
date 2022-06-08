@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.x, mod version: 4.26.
+ * Minecraft version: 1.19.x, mod version: 4.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -239,7 +239,7 @@ public class BlockPosFunctions {
 		return spawnpos;
 	}
 
-	public static BlockPos getCenterBiome(ServerLevel serverworld, Predicate<Holder<Biome>> biome) {
+	/*public static BlockPos getCenterBiome(ServerLevel serverworld, Predicate<Holder<Biome>> biome) {
 		BlockPos centerpos = new BlockPos(0, 0, 0);
 		BlockPos biomepos = serverworld.findNearestBiome(biome, centerpos, 999999, 0).getFirst();
 		if (biomepos == null) {
@@ -257,7 +257,7 @@ public class BlockPosFunctions {
 		}
 
 		return spawnpos;
-	}
+	}*/
 
 	public static BlockPos getBlockPlayerIsLookingAt(Level world, Player player, boolean stopOnLiquid) {
 		HitResult raytraceresult = RayTraceFunctions.rayTrace(world, player, stopOnLiquid);

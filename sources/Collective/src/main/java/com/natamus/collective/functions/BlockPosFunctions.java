@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.2, mod version: 4.25.
+ * Minecraft version: 1.19.0, mod version: 4.28.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,12 +14,6 @@
 
 package com.natamus.collective.functions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
-
 import com.mojang.datafixers.util.Pair;
 import com.natamus.collective.data.GlobalVariables;
 import net.minecraft.core.BlockPos;
@@ -31,15 +25,18 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
-import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 public class BlockPosFunctions {
 	// START: GET functions
@@ -159,7 +156,7 @@ public class BlockPosFunctions {
 		
 		return returnpos;
 	}
-	
+
 	public static BlockPos getCenterNearbyVillage(ServerLevel serverworld) {
 		return getNearbyVillage(serverworld, new BlockPos(0, 0, 0));
 	}
@@ -168,7 +165,7 @@ public class BlockPosFunctions {
 			return null;
 		}
 
-		Registry<ConfiguredStructureFeature<?, ?>> registry = serverworld.registryAccess().registryOrThrow(Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY);
+		Registry<Structure> registry = serverworld.registryAccess().registryOrThrow(Registry.STRUCTURE_REGISTRY);
 
 		List<ResourceLocation> villagerls = new ArrayList<ResourceLocation>();
 		for (ResourceLocation rl : registry.keySet()) {
@@ -180,13 +177,13 @@ public class BlockPosFunctions {
 		BlockPos closestvillage = null;
 		for (int radius : Arrays.asList(200, 500, 1000)) {
 			for (ResourceLocation rl : villagerls) {
-				Optional<ResourceKey<ConfiguredStructureFeature<?, ?>>> optional_vk = registry.getResourceKey(registry.get(rl));
+				Optional<ResourceKey<Structure>> optional_vk = registry.getResourceKey(registry.get(rl));
 				if (optional_vk.isPresent()) {
-					ResourceKey<ConfiguredStructureFeature<?, ?>> villagekey = optional_vk.get();
-					Optional<Holder<ConfiguredStructureFeature<?, ?>>> optional_s = registry.getHolder(villagekey);
+					ResourceKey<Structure> villagekey = optional_vk.get();
+					Optional<Holder<Structure>> optional_s = registry.getHolder(villagekey);
 					if (optional_s.isPresent()) {
-						Holder<ConfiguredStructureFeature<?, ?>> structure = optional_s.get();
-						HolderSet<ConfiguredStructureFeature<?, ?>> holderset = HolderSet.direct(structure);
+						Holder<Structure> structure = optional_s.get();
+						HolderSet<Structure> holderset = HolderSet.direct(structure);
 						BlockPos villagepos = getNearbyStructure(serverworld, holderset, nearpos, radius);
 						if (villagepos != null) {
 							if (closestvillage != null) {
@@ -210,14 +207,14 @@ public class BlockPosFunctions {
 		return closestvillage;
 	}
 
-	public static BlockPos getCenterNearbyStructure(ServerLevel serverworld, HolderSet<ConfiguredStructureFeature<?, ?>> structure) {
+	public static BlockPos getCenterNearbyStructure(ServerLevel serverworld, HolderSet<Structure> structure) {
 		return getNearbyStructure(serverworld, structure, new BlockPos(0, 0, 0));
 	}
-	public static BlockPos getNearbyStructure(ServerLevel serverworld, HolderSet<ConfiguredStructureFeature<?, ?>> structure, BlockPos nearpos) {
+	public static BlockPos getNearbyStructure(ServerLevel serverworld, HolderSet<Structure> structure, BlockPos nearpos) {
 		return getNearbyStructure(serverworld, structure, nearpos, 9999);
 	}
-	public static BlockPos getNearbyStructure(ServerLevel serverworld, HolderSet<ConfiguredStructureFeature<?, ?>> structure, BlockPos nearpos, int radius) {
-		Pair<BlockPos, Holder<ConfiguredStructureFeature<?, ?>>> pair = serverworld.getChunkSource().getGenerator().findNearestMapFeature(serverworld, structure, nearpos, radius, false);
+	public static BlockPos getNearbyStructure(ServerLevel serverworld, HolderSet<Structure> structure, BlockPos nearpos, int radius) {
+		Pair<BlockPos, Holder<Structure>> pair = serverworld.getChunkSource().getGenerator().findNearestMapStructure(serverworld, structure, nearpos, radius, false);
 		if (pair == null) {
 			return null;
 		}
@@ -240,7 +237,7 @@ public class BlockPosFunctions {
 		return spawnpos;
 	}
 
-	public static BlockPos getCenterBiome(ServerLevel serverworld, Predicate<Holder<Biome>> biome) {
+	/*public static BlockPos getCenterBiome(ServerLevel serverworld, Predicate<Holder<Biome>> biome) {
 		BlockPos centerpos = new BlockPos(0, 0, 0);
 		BlockPos biomepos = serverworld.findNearestBiome(biome, centerpos, 999999, 0).getFirst();
 		if (biomepos == null) {
@@ -258,7 +255,7 @@ public class BlockPosFunctions {
 		}
 
 		return spawnpos;
-	}
+	}*/
 	
 	public static BlockPos getBlockPlayerIsLookingAt(Level world, Player player, boolean stopOnLiquid) {
 		HitResult raytraceresult = RayTraceFunctions.rayTrace(world, player, stopOnLiquid);

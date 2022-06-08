@@ -3,6 +3,9 @@ Automatic Doors
 https://www.curseforge.com/minecraft/mc-mods/automatic-doors
 
 =========
+v2.5: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+
+=========
 v2.3-2.4: Fixed doors not closing after last update.
 
 =========

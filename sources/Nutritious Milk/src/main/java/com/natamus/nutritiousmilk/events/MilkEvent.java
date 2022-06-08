@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nutritious Milk.
- * Minecraft version: 1.18.2, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Nutritious Milk ever released, along with some other perks.
@@ -14,10 +14,7 @@
 
 package com.natamus.nutritiousmilk.events;
 
-import java.lang.reflect.Field;
-
 import com.natamus.nutritiousmilk.config.ConfigHandler;
-
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -30,6 +27,9 @@ import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.lang.reflect.Field;
 
 @EventBusSubscriber
 public class MilkEvent {
@@ -42,13 +42,13 @@ public class MilkEvent {
 		if (world.isClientSide) {
 			return;
 		}
-		if (entity instanceof Player == false) {
+		if (!(entity instanceof Player)) {
 			return;
 		}
 		
 		ItemStack itemused = e.getItem();
 		Item item = itemused.getItem();
-		String registryname = item.getRegistryName().toString();
+		String registryname = ForgeRegistries.ITEMS.getKey(item).toString();
 		if (item.equals(Items.MILK_BUCKET) || registryname.contains("milk_bucket")) {
 			Player player = (Player)entity;
 			FoodData fs = player.getFoodData();
@@ -59,7 +59,7 @@ public class MilkEvent {
 			if (player instanceof ServerPlayer) {
 				try {
 					foodStats_foodSaturationLevel.set(player, saturation);
-				} catch (Exception ex) { }
+				} catch (Exception ignored) { }
 				return;
 			}
 			

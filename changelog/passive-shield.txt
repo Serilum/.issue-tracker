@@ -3,6 +3,9 @@ Passive Shield
 https://curseforge.com/minecraft/mc-mods/passive-shield
 
 =========
+v1.8: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+
+=========
 v2.0: Backend code simplified and improved.
 Fixed the shield sometimes not showing up even when blocking.
 Improved code efficiency.

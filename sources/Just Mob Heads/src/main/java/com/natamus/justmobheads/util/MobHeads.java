@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.18.2, mod version: 5.4.
+ * Minecraft version: 1.19.0, mod version: 5.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Mob Heads ever released, along with some other perks.
@@ -14,22 +14,16 @@
 
 package com.natamus.justmobheads.util;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.mojang.datafixers.util.Pair;
 import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.collective.functions.HeadFunctions;
-
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.animal.Cat;
-import net.minecraft.world.entity.animal.MushroomCow;
-import net.minecraft.world.entity.animal.Parrot;
-import net.minecraft.world.entity.animal.Rabbit;
-import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.animal.axolotl.Axolotl;
+import net.minecraft.world.entity.animal.frog.Frog;
 import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.animal.horse.Llama;
 import net.minecraft.world.entity.animal.horse.TraderLlama;
@@ -42,12 +36,14 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MobHeads {
 	static List<String> horsetypes = Arrays.asList("white", "creamy", "chestnut", "brown", "black", "gray", "dark_brown");
 	static List<String> llamatypes = Arrays.asList("creamy", "white", "brown", "gray");
 	static List<String> parrottypes = Arrays.asList("red", "blue", "green", "cyan", "gray");
 	static List<String> rabbittypes = Arrays.asList("brown", "white", "black", "black_and_white", "gold", "salt_and_pepper");
-	static List<String> cattypes = Arrays.asList("tabby", "tuxedo", "red", "siamese", "british_shorthair", "calico", "persian", "ragdoll", "white", "jellie", "black");
 	static List<String> axolotltypes = Arrays.asList("lucy", "wild", "gold", "cyan", "blue");
 	
 	public static ItemStack getMobHead(String mobname, Integer amount) {
@@ -59,26 +55,20 @@ public class MobHeads {
 		String headname = capitalizeFirst(mobname.replace("_", " ")) + " Head";
 		String oldid = mobdata.getFirst();
 		String texture = mobdata.getSecond();
-		
-		ItemStack mobhead = HeadFunctions.getTexturedHead(headname, texture, oldid, amount);
-		
-		return mobhead;
+
+		return HeadFunctions.getTexturedHead(headname, texture, oldid, amount);
 	}
 	
 	public static ItemStack getStandardHead(String headname) {
 		ItemStack mobhead = new ItemStack(Items.PLAYER_HEAD, 1);
 		String mob = headname.toLowerCase().split(" ")[0];
-		if (mob.equals("creeper")) {
-			mobhead = new ItemStack(Items.CREEPER_HEAD, 1);
-		}
-		else if (mob.equals("zombie")) {
-			mobhead = new ItemStack(Items.ZOMBIE_HEAD, 1);
-		}
-		else if (mob.equals("skeleton")) {
-			mobhead = new ItemStack(Items.SKELETON_SKULL, 1);
+		switch (mob) {
+			case "creeper" -> mobhead = new ItemStack(Items.CREEPER_HEAD, 1);
+			case "zombie" -> mobhead = new ItemStack(Items.ZOMBIE_HEAD, 1);
+			case "skeleton" -> mobhead = new ItemStack(Items.SKELETON_SKULL, 1);
 		}
 		
-		mobhead.setHoverName(new TextComponent(headname));
+		mobhead.setHoverName(Component.literal(headname));
 		return mobhead;
 	}
 	
@@ -96,15 +86,16 @@ public class MobHeads {
 		else if (entity instanceof Cat) {
 			Cat cat = (Cat)entity;
 			
-			Integer type = cat.getCatType();
-			if (type < cattypes.size()) {
-				mobname = cattypes.get(type) + "_cat";
-			}
+			CatVariant variant = cat.getCatVariant();
+
+			ResourceLocation texture = variant.texture();
+			String type = texture.toString().split("cat/")[1].replace(".png", "");
+			mobname = type + "_cat";
 		}
 		else if (entity instanceof Horse) {
 			Horse horse = (Horse)entity;
 			CompoundTag nbt = horse.serializeNBT();
-			Integer type = nbt.getInt("Variant"); // horse.getHorseVariant();
+			int type = nbt.getInt("Variant"); // horse.getHorseVariant();
 			
 			if (type >= 1024) {
 				type -= 1024;
@@ -122,28 +113,28 @@ public class MobHeads {
 		}
 		else if (entity instanceof Llama) {
 			Llama llama = (Llama)entity;
-			Integer type = llama.getVariant();
+			int type = llama.getVariant();
 			if (type < llamatypes.size()) {
 				mobname = llamatypes.get(type) + "_" + mobname;
 			}
 		}
 		else if (entity instanceof TraderLlama) {
 			TraderLlama traderllama = (TraderLlama)entity;
-			Integer type = traderllama.getVariant();
+			int type = traderllama.getVariant();
 			if (type < llamatypes.size()) {
 				mobname = llamatypes.get(type) + "_trader_" + mobname;
 			}
 		}
 		else if (entity instanceof Parrot) {
 			Parrot parrot = (Parrot)entity;
-			Integer type = parrot.getVariant();
+			int type = parrot.getVariant();
 			if (type < parrottypes.size()) {
 				mobname = parrottypes.get(type) + "_parrot";
 			}
 		}
 		else if (entity instanceof Rabbit) {
 			Rabbit rabbit = (Rabbit)entity;
-			Integer type = rabbit.getRabbitType();
+			int type = rabbit.getRabbitType();
 			if (type < rabbittypes.size()) {
 				mobname = rabbittypes.get(type) + "_rabbit";
 			}
@@ -175,17 +166,25 @@ public class MobHeads {
 		}
 		else if (entity instanceof Axolotl) {
 			Axolotl axolotl = (Axolotl)entity;
-			Integer type = axolotl.getVariant().getId();
+			int type = axolotl.getVariant().getId();
 			if (type < axolotltypes.size()) {
 				mobname = axolotltypes.get(type) + "_axolotl";
 			}
+		}
+		else if (entity instanceof Frog) {
+			Frog frog = (Frog)entity;
+			FrogVariant variant = frog.getVariant();
+
+			ResourceLocation texture = variant.texture();
+			String type = texture.toString().split("frog/")[1].replace(".png", "");
+			mobname = type;
 		}
 		else if (entity instanceof Villager) {
 			Villager villager = (Villager)entity;
 			
 			VillagerData d = villager.getVillagerData();
 			VillagerProfession prof = d.getProfession();
-			if (prof.toString() != "none") {
+			if (!prof.toString().equals("none")) {
 				mobname = prof.toString();
 			}
 		}
@@ -194,8 +193,8 @@ public class MobHeads {
 
 			VillagerData d = zombievillager.getVillagerData();
 			VillagerProfession prof = d.getProfession();
-			if (prof.toString() != "none") {
-				mobname = "zombie_" + prof.toString();
+			if (!prof.toString().equals("none")) {
+				mobname = "zombie_" + prof;
 			}	
 		}
 		
@@ -203,7 +202,7 @@ public class MobHeads {
 	}
 	
 	public static String capitalizeFirst(String string) {
-		StringBuffer sb = new StringBuffer(string);
+		StringBuilder sb = new StringBuilder(string);
 		for(int i=0; i < sb.length(); i++) {
 			if(i == 0 || sb.charAt(i-1) == ' ') {
 				sb.setCharAt(i, Character.toUpperCase(sb.charAt(i)));

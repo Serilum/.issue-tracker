@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "betterconduitplacement-fabric",
-  "version": "1.3",
+  "version": "1.5",
 
   "name": "Better Conduit Placement (Fabric)",
   "description": "Place conduits in front of you, place blocks by clicking the conduit and other tweaks.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.betterconduitplacement.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nutritious Milk.
- * Minecraft version: 1.18.2, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Nutritious Milk ever released, along with some other perks.
@@ -18,5 +18,5 @@ public class Reference {
 	public static final String MOD_ID = "nutritiousmilk";
 	public static final String NAME = "Nutritious Milk";
 	public static final String VERSION = "1.9";
-	public static final String ACCEPTED_VERSIONS = "[1.18.2]";
+	public static final String ACCEPTED_VERSIONS = "[1.19.0]";
 }

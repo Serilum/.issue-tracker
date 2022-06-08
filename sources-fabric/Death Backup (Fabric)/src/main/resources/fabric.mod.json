@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "deathbackup-fabric",
-  "version": "1.5",
+  "version": "1.7",
 
   "name": "Death Backup (Fabric)",
   "description": "Creates a backup of an inventory right before a player death, which can be loaded via a command.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.deathbackup.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

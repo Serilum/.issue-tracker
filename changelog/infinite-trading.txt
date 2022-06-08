@@ -3,6 +3,9 @@ Infinite Trading
 https://www.curseforge.com/minecraft/mc-mods/infinite-trading
 
 =========
+v1.7: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+
+=========
 v2.1: (Fabric only) Increased mod compatibility by disabling mixins when another mod changes the target method, which before this would cause a hard crash.
 
 =========

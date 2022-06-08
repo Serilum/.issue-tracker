@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.18.2, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Followers ever released, along with some other perks.
@@ -20,7 +20,6 @@ import com.natamus.guifollowers.events.FollowerEvent;
 import com.natamus.guifollowers.events.GUIEvent;
 import com.natamus.guifollowers.util.Reference;
 import com.natamus.guifollowers.util.Variables;
-
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
@@ -62,7 +61,7 @@ public class Main {
     }
 	
     private void loadComplete(final FMLLoadCompleteEvent event) {
-    	MinecraftForge.EVENT_BUS.register(new GUIEvent(Minecraft.getInstance()));
+    	MinecraftForge.EVENT_BUS.register(new GUIEvent(Minecraft.getInstance(), Minecraft.getInstance().getItemRenderer()));
     	MinecraftForge.EVENT_BUS.register(new FollowerEvent());
 	}
 }

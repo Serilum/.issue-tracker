@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Entity Information.
- * Minecraft version: 1.18.2, mod version: 1.7.
+ * Minecraft version: 1.19.0, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Entity Information ever released, along with some other perks.
@@ -24,7 +24,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 
 public class CommandSt {
@@ -50,7 +50,7 @@ public class CommandSt {
 		Player player = (Player)source.getPlayerOrException();
 		
 		ItemStack informationstick = new ItemStack(Items.STICK, 1);
-		informationstick.setHoverName(new TextComponent(ChatFormatting.BLUE + "The Information Stick"));
+		informationstick.setHoverName(Component.literal(ChatFormatting.BLUE + "The Information Stick"));
 		player.addItem(informationstick);
 		StringFunctions.sendMessage(player, "You have been given The Information Stick!", ChatFormatting.BLUE);
 		return;			

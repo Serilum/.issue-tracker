@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "trampleeverything-fabric",
-  "version": "1.3",
+  "version": "1.5",
 
   "name": "Trample Everything (Fabric)",
   "description": "A highly configurable mod which makes players trample everything, not just crops.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.trampleeverything.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

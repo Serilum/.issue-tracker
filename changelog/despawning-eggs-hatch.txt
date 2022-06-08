@@ -3,6 +3,9 @@ Despawning Eggs Hatch
 https://www.curseforge.com/minecraft/mc-mods/despawning-eggs-hatch
 
 =========
+v1.5: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+
+=========
 v2.4: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

@@ -3,6 +3,9 @@ Replanting Crops
 https://www.curseforge.com/minecraft/mc-mods/replanting-crops
 
 =========
+v2.7: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+
+=========
 v2.6: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

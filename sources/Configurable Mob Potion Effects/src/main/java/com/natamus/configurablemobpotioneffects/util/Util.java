@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Mob Potion Effects.
- * Minecraft version: 1.18.2, mod version: 1.5.
+ * Minecraft version: 1.19.0, mod version: 1.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Mob Potion Effects ever released, along with some other perks.
@@ -14,11 +14,16 @@
 
 package com.natamus.configurablemobpotioneffects.util;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import com.natamus.collective.functions.NumberFunctions;
+import com.natamus.collective.functions.StringFunctions;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -26,16 +31,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import com.natamus.collective.functions.NumberFunctions;
-import com.natamus.collective.functions.StringFunctions;
-
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class Util {
 	private static String dirpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "configurablemobpotioneffects";
@@ -138,7 +133,7 @@ public class Util {
 		
 		if (permanentwriter != null || damagewriter != null) {
 			for (MobEffect effect : ForgeRegistries.MOB_EFFECTS) {
-				String n = effect.getRegistryName().toString().toLowerCase();
+				String n = ForgeRegistries.MOB_EFFECTS.getKey(effect).toString().toLowerCase();
 				if (n.contains(":")) {
 					n = n.split(":")[1];
 				}
@@ -147,7 +142,7 @@ public class Util {
 				phm.put(n, effect);
 			}
 			for (EntityType<?> entitytype : ForgeRegistries.ENTITIES) {
-				String n = entitytype.getRegistryName().toString().toLowerCase();
+				String n = ForgeRegistries.ENTITIES.getKey(entitytype).toString().toLowerCase();
 				if (n.contains(":")) {
 					n = n.split(":")[1];
 				}
@@ -169,7 +164,7 @@ public class Util {
 					emptydamageeffects += "|";
 				}
 				
-				ResourceLocation rl = effect.getRegistryName();
+				ResourceLocation rl = ForgeRegistries.MOB_EFFECTS.getKey(effect);
 				
 				emptypermanenteffects += rl.toString() + ",lvl:0";
 				emptydamageeffects += rl.toString() + ",lvl:0,duration:5";
@@ -183,7 +178,7 @@ public class Util {
 				
 				MobCategory classification = entitytype.getCategory();
 				if (!classification.equals(MobCategory.MISC)) {
-					ResourceLocation rl = entitytype.getRegistryName();
+					ResourceLocation rl = ForgeRegistries.ENTITIES.getKey(entitytype);
 					permanentwriter.println("'" + rl.toString() + "'" + " : '" + emptypermanenteffects + "'," + "\n");
 					
 					mobpermanent.put(entitytype, new CopyOnWriteArrayList<MobEffectInstance>());
@@ -200,7 +195,7 @@ public class Util {
 				
 				MobCategory classification = entitytype.getCategory();
 				if (!classification.equals(MobCategory.MISC)) {
-					ResourceLocation rl = entitytype.getRegistryName();
+					ResourceLocation rl = ForgeRegistries.ENTITIES.getKey(entitytype);
 					damagewriter.println("'" + rl.toString() + "'" + " : '" + emptydamageeffects + "'," + "\n");
 					
 					mobdamage.put(entitytype, new CopyOnWriteArrayList<MobEffectInstance>());

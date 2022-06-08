@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.28: Fixed bug in mod registering function.
+Updated backend code.
+
+=========
 v4.27: Updated Collective (Fabric) to the Minecraft 1.19 release.
 Updated backend code.
 

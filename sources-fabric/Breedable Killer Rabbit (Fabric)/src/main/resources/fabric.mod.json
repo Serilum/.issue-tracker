@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "breedablekillerrabbit-fabric",
-  "version": "1.5",
+  "version": "1.8",
 
   "name": "Breedable Killer Rabbit (Fabric)",
   "description": "A minimalistic configurable mod which makes the killer rabbit tamable and available by breeding.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.breedablekillerrabbit.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

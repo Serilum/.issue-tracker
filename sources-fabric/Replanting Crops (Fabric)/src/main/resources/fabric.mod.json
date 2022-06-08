@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "replantingcrops-fabric",
-  "version": "2.5",
+  "version": "2.7",
 
   "name": "Replanting Crops (Fabric)",
   "description": "Automatically replants/replaces/reseeds crops harvested with seeds from drops, negated by holding the sneak button.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.replantingcrops.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

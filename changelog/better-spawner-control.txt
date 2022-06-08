@@ -3,6 +3,9 @@ Better Spawner Control
 https://www.curseforge.com/minecraft/mc-mods/better-spawner-control
 
 =========
+v2.2: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+
+=========
 v1.6: (Fabric 1.18 only) Updated mod to work with 1.18.2 and future snapshots.
 
 =========

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Compact Help Command.
- * Minecraft version: 1.19.x, mod version: 1.1.
+ * Minecraft version: 1.19.x, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Compact Help Command ever released, along with some other perks.
@@ -14,11 +14,6 @@
 
 package com.natamus.compacthelpcommand.cmds;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -27,12 +22,17 @@ import com.mojang.brigadier.tree.CommandNode;
 import com.natamus.collective_fabric.functions.NumberFunctions;
 import com.natamus.collective_fabric.functions.StringFunctions;
 import com.natamus.compacthelpcommand.config.ConfigHandler;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class CommandHelp {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -102,17 +102,17 @@ public class CommandHelp {
 					csuffix = csuffix.replace("|", " | ");
 				}
 				
-				TextComponent tc = new TextComponent("");
-				
-				TextComponent tc0 = new TextComponent(acmd);
+				MutableComponent tc = Component.literal("");
+
+				MutableComponent tc0 = Component.literal(acmd);
 				tc0.withStyle(commandcolour);
 				tc.append(tc0);
-				
-				TextComponent tc1 = new TextComponent(csuffix);
+
+				MutableComponent tc1 = Component.literal(csuffix);
 				tc1.withStyle(subcommandcolour);
 				tc.append(tc1);
 				
-				player.sendMessage(tc, player.getUUID());
+				player.sendSystemMessage(tc);
 			}
 		}
 		

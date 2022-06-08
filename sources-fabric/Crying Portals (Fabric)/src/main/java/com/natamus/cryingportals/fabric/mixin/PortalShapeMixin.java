@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Crying Portals.
- * Minecraft version: 1.19.x, mod version: 1.2.
+ * Minecraft version: 1.19.x, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Crying Portals ever released, along with some other perks.
@@ -25,9 +25,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.portal.PortalShape;
 
-@Mixin(value = PortalShape.class, priority = 1001)
+@Mixin(value = PortalShape.class, priority = 1001, remap = false)
 public class PortalShapeMixin {
-	@Inject(method = "lambda$static$0(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z", at = @At(value = "TAIL"), cancellable = true)
+	@Inject(method = "method_30487", at = @At(value = "TAIL"), cancellable = true)
 	private static void PortalShape_FRAME(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CallbackInfoReturnable<Boolean> cir) {
 		if (blockState.is(Blocks.CRYING_OBSIDIAN)) {
 			cir.setReturnValue(true);

@@ -3,6 +3,9 @@ Surface Mushrooms
 https://curseforge.com/minecraft/mc-mods/surface-mushrooms
 
 =========
+v2.0: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+
+=========
 v1.4: Mod completely rewritten to increase compatibility with other mods and fix cases where mushrooms weren't able to be placed in daylight.
 
 =========

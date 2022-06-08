@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.19.x, mod version: 5.4.
+ * Minecraft version: 1.19.x, mod version: 5.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Mob Heads ever released, along with some other perks.
@@ -228,6 +228,10 @@ public class HeadData {
 			defaultchances.put("glow_squid", 0.2); headdata.put("glow_squid", new Pair<String, String>("de0e5ce0-b979-4bd2-a963-e665e424b525", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTczMjdlZTExODEyYjc2NGM3YWRlNzBiMjgyY2NlNGM1OGU2MzViMjAxNTI0NDA4MWQxNDkwNTQzZGE3MjgwZSJ9fX0="));
 		}
 		if (onenineteen) {
+			defaultchances.put("temperate_frog", 0.25); headdata.put("temperate_frog", new Pair<String, String>("", ""));
+			defaultchances.put("warm_frog", 0.25); headdata.put("warm_frog", new Pair<String, String>("", ""));
+			defaultchances.put("cold_frog", 0.25); headdata.put("cold_frog", new Pair<String, String>("", ""));
+
 			defaultchances.put("warden", 0.5); headdata.put("warden", new Pair<String, String>("5c99bc96-0a8a-4317-99b4-986c9875409f", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzk1OWFlMDJlMzVjYmM0NzQzZTZlNzAyZmRhNjk4MGJhZDJlOTgwNDk0MDNjMTY5OTYyODZlYjQxMmY5NDY4OSJ9fX0="));
 		}
 		

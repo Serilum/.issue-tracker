@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pet Names.
- * Minecraft version: 1.19.x, mod version: 1.6.
+ * Minecraft version: 1.19.x, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Pet Names ever released, along with some other perks.
@@ -17,6 +17,6 @@ package com.natamus.petnames.util;
 public class Reference {
 	public static final String MOD_ID = "petnames-fabric";
 	public static final String NAME = "Pet Names (Fabric)";
-	public static final String VERSION = "1.6";
+	public static final String VERSION = "1.8";
 	public static final String ACCEPTED_VERSIONS = "[1.19.x]";
 }

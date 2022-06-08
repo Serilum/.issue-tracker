@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "fixedanvilrepaircost-fabric",
-  "version": "1.6",
+  "version": "1.8",
 
   "name": "Fixed Anvil Repair Cost (Fabric)",
   "description": "Allows setting the level and material cost of repairing an item on an anvil to always be the same configurable amount and also allows setting how much percent is repaired.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.fixedanvilrepaircost.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

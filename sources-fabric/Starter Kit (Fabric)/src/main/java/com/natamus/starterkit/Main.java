@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Starter Kit.
- * Minecraft version: 1.19.x, mod version: 3.1.
+ * Minecraft version: 1.19.x, mod version: 3.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Starter Kit ever released, along with some other perks.
@@ -24,7 +24,7 @@ import com.natamus.starterkit.util.Reference;
 import com.natamus.starterkit.util.Util;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.level.ServerLevel;
@@ -45,7 +45,7 @@ public class Main implements ModInitializer {
 			Util.getOrCreateGearConfig(true);
 		} catch (Exception e) { }
 		
-		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             CommandStarterkit.register(dispatcher);
         });
 		

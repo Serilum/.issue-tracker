@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "passiveshield-fabric",
-  "version": "2.0",
+  "version": "2.1",
 
   "name": "Passive Shield (Fabric)",
   "description": "The shield is hidden in the offhand until right-clicked, and shields passively negate damage when held but not in use.",
@@ -15,13 +15,13 @@
   "license": "All Right Reserved",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.passiveshield.Main" ], "client": [ "com.natamus.passiveshield.ClientMain" ] },
+  "entrypoints": { "main": [ "com.natamus.passiveshield.Main" ], "client": [ "com.natamus.passiveshield.ClientMain" ]  },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.18"
+    "collective-fabric": ">=4.27"
   }
 }

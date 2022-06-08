@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Silence Mobs.
- * Minecraft version: 1.19.x, mod version: 2.0.
+ * Minecraft version: 1.19.x, mod version: 2.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Silence Mobs ever released, along with some other perks.
@@ -22,7 +22,7 @@ import com.natamus.silencemobs.events.EntityEvent;
 import com.natamus.silencemobs.util.Reference;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
@@ -38,7 +38,7 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             CommandSt.register(dispatcher);
         });
 		

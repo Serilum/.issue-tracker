@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "keepmysoiltilled-fabric",
-  "version": "1.0",
+  "version": "1.2",
 
   "name": "Keep My Soil Tilled (Fabric)",
   "description": "Keeps soil tilled below a stem block (melon/pumpkin) after harvesting.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.keepmysoiltilled.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

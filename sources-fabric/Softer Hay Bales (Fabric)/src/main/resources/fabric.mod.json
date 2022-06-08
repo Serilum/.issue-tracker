@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "softerhaybales-fabric",
-  "version": "1.5",
+  "version": "1.7",
 
   "name": "Softer Hay Bales (Fabric)",
   "description": "Makes hay bales negate fall damage entirely, Assassin's Creed style.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.softerhaybales.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

@@ -3,6 +3,9 @@ Double Doors
 https://www.curseforge.com/minecraft/mc-mods/double-doors
 
 =========
+v1.6: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+
+=========
 v3.3: Fixed weighted plates not triggering double doors correctly.
 Improved code efficiency.
 

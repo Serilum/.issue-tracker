@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Clock.
- * Minecraft version: 1.18.2, mod version: 3.1.
+ * Minecraft version: 1.19.0, mod version: 3.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Clock ever released, along with some other perks.
@@ -51,6 +51,6 @@ public class Main {
     }
 	
     private void loadComplete(final FMLLoadCompleteEvent event) {
-    	MinecraftForge.EVENT_BUS.register(new GUIEvent(Minecraft.getInstance()));
+    	MinecraftForge.EVENT_BUS.register(new GUIEvent(Minecraft.getInstance(), Minecraft.getInstance().getItemRenderer()));
 	}
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "petnames-fabric",
-  "version": "1.6",
+  "version": "1.8",
 
   "name": "Pet Names (Fabric)",
   "description": "Gives tamable baby animals a pre-defined name. For Wolves, Cats, Horses, Donkeys, Mules and Llamas.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.petnames.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

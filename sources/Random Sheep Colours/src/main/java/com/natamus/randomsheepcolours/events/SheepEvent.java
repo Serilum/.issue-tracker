@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Sheep Colours.
- * Minecraft version: 1.18.2, mod version: 1.7.
+ * Minecraft version: 1.19.0, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Random Sheep Colours ever released, along with some other perks.
@@ -20,7 +20,7 @@ import com.natamus.collective.data.GlobalVariables;
 import com.natamus.collective.util.Reference;
 import com.natamus.randomsheepcolours.util.Util;
 
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Sheep;
@@ -68,7 +68,7 @@ public class SheepEvent {
 			}
 			
 			if (randomcolour == null) {
-				sheep.setCustomName(new TextComponent("jeb_"));
+				sheep.setCustomName(Component.literal("jeb_"));
 				sheep.setCustomNameVisible(false);
 			}
 			else {

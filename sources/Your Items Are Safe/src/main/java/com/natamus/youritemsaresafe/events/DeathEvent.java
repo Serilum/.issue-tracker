@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Your Items Are Safe.
- * Minecraft version: 1.18.2, mod version: 1.1.
+ * Minecraft version: 1.19.0, mod version: 1.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Your Items Are Safe ever released, along with some other perks.
@@ -27,7 +27,7 @@ import com.natamus.youritemsaresafe.util.Util;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -238,7 +238,7 @@ public class DeathEvent {
 			}
 			
 			SignBlockEntity signentity = (SignBlockEntity)te;
-			signentity.setMessage(1, new TextComponent(playername));
+			signentity.setMessage(1, Component.literal(playername));
 			TileEntityFunctions.updateTileEntity(world, signpos, signentity);
 		}
 	}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Village Names.
- * Minecraft version: 1.18.2, mod version: 1.6.
+ * Minecraft version: 1.19.0, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Random Village Names ever released, along with some other perks.
@@ -14,18 +14,13 @@
 
 package com.natamus.randomvillagenames.events;
 
-import java.util.ConcurrentModificationException;
-import java.util.HashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.collective.functions.TileEntityFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.randomvillagenames.util.Util;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -35,13 +30,16 @@ import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+
+import java.util.ConcurrentModificationException;
+import java.util.HashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @EventBusSubscriber
 public class SetVillageSignEvent {
@@ -131,7 +129,7 @@ public class SetVillageSignEvent {
 		}
 		
 		SignBlockEntity signentity = (SignBlockEntity)te;
-		signentity.setMessage(0, new TextComponent("[Area] 60"));
+		signentity.setMessage(0, Component.literal("[Area] 60"));
 		TileEntityFunctions.updateTileEntity(serverworld, signpos, signentity);
 	}
 	

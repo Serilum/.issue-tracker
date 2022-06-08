@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.18.2, mod version: 2.9.
+ * Minecraft version: 1.19.0, mod version: 2.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Areas ever released, along with some other perks.
@@ -14,21 +14,21 @@
 
 package com.natamus.areas.events;
 
-import java.awt.Color;
-import java.util.UUID;
-
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.natamus.areas.config.ConfigHandler;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import java.awt.*;
+import java.util.UUID;
 
 public class GUIEvent extends Gui {
 	public static String hudmessage = "";
@@ -40,8 +40,8 @@ public class GUIEvent extends Gui {
 	
 	private Minecraft mc;
 	
-	public GUIEvent(Minecraft mcIn) {
-		super(mcIn);
+	public GUIEvent(Minecraft mcIn, ItemRenderer itemRenderer) {
+		super(mcIn, itemRenderer);
 		mc = mcIn;
 	}
 	
@@ -106,7 +106,7 @@ public class GUIEvent extends Gui {
 				}
 			}
 			
-			PoseStack posestack = e.getMatrixStack();
+			PoseStack posestack = e.getPoseStack();
 			posestack.pushPose();
 			
 			RenderSystem.enableBlend(); // GL11.glEnable(GL11.GL_BLEND);

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "smallernetherportals-fabric",
-  "version": "1.8",
+  "version": "2.0",
 
   "name": "Smaller Nether Portals (Fabric)",
   "description": "Allows the creation of smaller nether portals, specifically 1x2, 1x3 and 2x2.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.smallernetherportals.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

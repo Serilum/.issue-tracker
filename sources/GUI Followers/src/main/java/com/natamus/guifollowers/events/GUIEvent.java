@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.18.2, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Followers ever released, along with some other perks.
@@ -14,21 +14,16 @@
 
 package com.natamus.guifollowers.events;
 
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.guifollowers.config.ConfigHandler;
 import com.natamus.guifollowers.util.Variables;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.TamableAnimal;
@@ -38,11 +33,16 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class GUIEvent extends Gui {
 	private static Minecraft mc;
 
-	public GUIEvent(Minecraft mc){
-		super(mc);
+	public GUIEvent(Minecraft mc, ItemRenderer itemRenderer){
+		super(mc, itemRenderer);
 		GUIEvent.mc = mc; 
 	}
 	
@@ -55,7 +55,7 @@ public class GUIEvent extends Gui {
 
 		Font fontRender = mc.font;
 		Window scaled = mc.getWindow();
-		PoseStack posestack = e.getMatrixStack();
+		PoseStack posestack = e.getPoseStack();
 		posestack.pushPose();
 		
 		if (Variables.activefollowers.size() > 0) {

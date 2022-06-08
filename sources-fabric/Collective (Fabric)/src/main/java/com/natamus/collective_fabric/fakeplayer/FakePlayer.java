@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.x, mod version: 4.26.
+ * Minecraft version: 1.19.x, mod version: 4.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -105,14 +105,12 @@ import net.minecraft.world.phys.Vec3;
 
 //Preliminary, simple Fake Player class
 public class FakePlayer extends ServerPlayer {
-	    public FakePlayer(MinecraftServer minecraftServer, ServerLevel serverLevel, GameProfile gameProfile,
-			ServerPlayerGameMode serverPlayerGameMode) {
-		super(minecraftServer, serverLevel, gameProfile);
-	}
+	    public FakePlayer(MinecraftServer minecraftServer, ServerLevel serverLevel, GameProfile gameProfile, ServerPlayerGameMode serverPlayerGameMode) {
+			super(minecraftServer, serverLevel, gameProfile, null);
+		}
 		@Override public Vec3 position(){ return new Vec3(0, 0, 0); }
 	    @Override public BlockPos blockPosition(){ return BlockPos.ZERO; }
 	    @Override public void displayClientMessage(Component chatComponent, boolean actionBar){}
-	    @Override public void sendMessage(Component component, UUID senderUUID) {}
 	    @Override public void awardStat(Stat<?> par1StatBase, int par2){}
 	    //@Override public void openGui(Object mod, int modGuiId, World world, int x, int y, int z){}
 	    @Override public boolean isInvulnerableTo(DamageSource source){ return true; }

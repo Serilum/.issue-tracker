@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Extra Mob Drops.
- * Minecraft version: 1.18.2, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Extra Mob Drops ever released, along with some other perks.
@@ -14,22 +14,8 @@
 
 package com.natamus.configurableextramobdrops.util;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.natamus.collective.functions.StringFunctions;
-
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
 import net.minecraft.resources.ResourceLocation;
@@ -37,6 +23,15 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Util {
 	private static String dirpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "configurableextramobdrops";
@@ -107,7 +102,7 @@ public class Util {
 			for (EntityType<?> entitytype : ForgeRegistries.ENTITIES) {
 				MobCategory classification = entitytype.getCategory();
 				if (!classification.equals(MobCategory.MISC) || specialmiscmobs.contains(entitytype)) {
-					ResourceLocation rl = entitytype.getRegistryName();
+					ResourceLocation rl = ForgeRegistries.ENTITIES.getKey(entitytype);
 					writer.println("'" + rl.toString() + "'" + " : '',");
 					
 					mobdrops.put(entitytype, new CopyOnWriteArrayList<ItemStack>());
@@ -128,7 +123,7 @@ public class Util {
 		for (EntityType<?> entitytype : ForgeRegistries.ENTITIES) {
 			MobCategory classification = entitytype.getCategory();
 			if (!classification.equals(MobCategory.MISC) || specialmiscmobs.contains(entitytype)) {
-				ResourceLocation rl = entitytype.getRegistryName();
+				ResourceLocation rl = ForgeRegistries.ENTITIES.getKey(entitytype);
 				
 				String itemdata = "";
 				if (mobdrops.containsKey(entitytype)) {

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "bouncierbeds-fabric",
-  "version": "1.0",
+  "version": "1.2",
 
   "name": "Bouncier Beds (Fabric)",
   "description": "Makes players bounce configurably higher on beds and prevents fall damage on them.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.bouncierbeds.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

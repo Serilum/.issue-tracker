@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "morezombievillagers-fabric",
-  "version": "1.5",
+  "version": "1.7",
 
   "name": "More Zombie Villagers (Fabric)",
   "description": "Allows modifying the default chance a zombie spawn is of the villager variant.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.morezombievillagers.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

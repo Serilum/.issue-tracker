@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "icepreventscropgrowth-fabric",
-  "version": "1.4",
+  "version": "1.6",
 
   "name": "Ice Prevents Crop Growth (Fabric)",
   "description": "Crops growing on tilled soil with an ice block underneath will never grow to the next stage, for design purposes.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.icepreventscropgrowth.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

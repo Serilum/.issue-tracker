@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v2.0: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+
+=========
 v5.1: Fixed chopping down log blocks being slow without it being part of a tree.
 
 =========

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.18.2, mod version: 5.1.
+ * Minecraft version: 1.19.0, mod version: 5.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -83,7 +83,7 @@ public class Util {
 
 		for (Item item : ForgeRegistries.ITEMS) {
 			if (ToolFunctions.isAxe(new ItemStack(item))) {
-				ResourceLocation rl = item.getRegistryName();
+				ResourceLocation rl = ForgeRegistries.ITEMS.getKey(item);
 				if (rl == null) {
 					continue;
 				}

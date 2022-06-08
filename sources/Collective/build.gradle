@@ -25,7 +25,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'official', version: '1.18.2'
+    mappings channel: 'official', version: '1.19'
 
     runs {
         client {
@@ -134,6 +134,6 @@ repositories {
 }
 
 dependencies {
-    runtimeOnly fg.deobf("com.natamus.collective:collective:1.18.2-4.25")
-    compileOnly fg.deobf("com.natamus.collective:collective:1.18.2-4.25")
+    runtimeOnly fg.deobf("com.natamus.collective:collective:1.19.0-4.28")
+    compileOnly fg.deobf("com.natamus.collective:collective:1.19.0-4.28")
 }

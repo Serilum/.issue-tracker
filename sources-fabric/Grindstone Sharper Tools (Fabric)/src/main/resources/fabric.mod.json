@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "grindstonesharpertools-fabric",
-  "version": "1.6",
+  "version": "1.8",
 
   "name": "Grindstone Sharper Tools (Fabric)",
   "description": "The grindstone can temporarily increase the damage of tools used on it.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.grindstonesharpertools.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

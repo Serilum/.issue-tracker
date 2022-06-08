@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.19.x, mod version: 5.1.
+ * Minecraft version: 1.19.x, mod version: 5.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -324,8 +324,6 @@ public class TreeEvent {
 			bpos = ((BlockHitResult)hitResult).getBlockPos();
 		}
 
-		System.out.println(bpos);
-
 		if (bpos == null) {
 			return digSpeed;
 		}
@@ -343,7 +341,6 @@ public class TreeEvent {
 			harvestSpeedCache.put(keypair, new Pair<Date, Integer>(now, logcount));
 		}
 
-		System.out.println(digSpeed/(1+(logcount * ConfigHandler.increasedHarvestingTimePerLogModifier.getValue().floatValue())));
 		return digSpeed/(1+(logcount * ConfigHandler.increasedHarvestingTimePerLogModifier.getValue().floatValue()));
 	}
 }

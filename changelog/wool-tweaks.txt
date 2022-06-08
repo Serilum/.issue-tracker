@@ -3,6 +3,9 @@ Wool Tweaks
 https://curseforge.com/minecraft/mc-mods/wool-tweaks
 
 =========
+v1.7: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+
+=========
 v1.6: (Fabric 1.19 only) Updated to work with the latest snapshot 22w11a.
 
 =========

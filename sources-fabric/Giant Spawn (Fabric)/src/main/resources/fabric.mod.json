@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "giantspawn-fabric",
-  "version": "2.7",
+  "version": "2.9",
 
   "name": "Giant Spawn (Fabric)",
   "description": "Allows the giant to spawn naturally and other tweaks.",
@@ -21,10 +21,10 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

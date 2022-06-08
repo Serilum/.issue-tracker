@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Recipe Commands.
- * Minecraft version: 1.19.x, mod version: 1.5.
+ * Minecraft version: 1.19.x, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Recipe Commands ever released, along with some other perks.
@@ -20,7 +20,7 @@ import com.natamus.recipecommands.util.Recipes;
 import com.natamus.recipecommands.util.Reference;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
 public class Main implements ModInitializer {
 	@Override
@@ -33,7 +33,7 @@ public class Main implements ModInitializer {
 	private void registerEvents() {
 		Recipes.InitRecipes();
 		
-		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
 			CommandRecipes.register(dispatcher);
 		});
 	}

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "doubledoors-fabric",
-  "version": "3.3",
+  "version": "3.4",
 
   "name": "Double Doors (Fabric)",
   "description": "Adds the ability for identical double doors, trapdoors and fence gates to be opened simultaneously via click or pressure plates and buttons.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.doubledoors.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.19"
+    "collective-fabric": ">=4.27"
   }
 }

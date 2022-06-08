@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.18.2, mod version: 2.9.
+ * Minecraft version: 1.19.0, mod version: 2.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Areas ever released, along with some other perks.
@@ -14,6 +14,7 @@
 
 package com.natamus.areas.util;
 
+import java.awt.*;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +33,8 @@ import com.natamus.collective.functions.TileEntityFunctions;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -169,7 +171,7 @@ public class Util {
 				
 				i = 0;
 				for (String line : newsigncontentlist) {
-					signentity.setMessage(i, new TextComponent(line));
+					signentity.setMessage(i, Component.literal(line));
 					i+=1;
 				}
 				
@@ -189,7 +191,7 @@ public class Util {
 						line = "[" + zoneprefix + "] " + radius;
 					}
 					
-					signentity.setMessage(i, new TextComponent(line));
+					signentity.setMessage(i, Component.literal(line));
 					i+=1;
 				}
 				
@@ -217,9 +219,9 @@ public class Util {
 	}
 	
 	public static boolean hasZonePrefix(SignBlockEntity signentity) {
-		TextComponent[] signcontent;
+		MutableComponent[] signcontent;
 		try {
-			signcontent = (TextComponent[]) signText.get(signentity);
+			signcontent = (MutableComponent[]) signText.get(signentity);
 		} catch (Exception ex) {
 			return false;
 		}

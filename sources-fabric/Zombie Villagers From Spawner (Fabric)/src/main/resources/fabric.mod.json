@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "zombievillagersfromspawner-fabric",
-  "version": "1.6",
+  "version": "1.7",
 
   "name": "Zombie Villagers From Spawner (Fabric)",
   "description": "Puts back the ability for zombie spawners to spawn the villager variant, removed in 1.11.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.zombievillagersfromspawner.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

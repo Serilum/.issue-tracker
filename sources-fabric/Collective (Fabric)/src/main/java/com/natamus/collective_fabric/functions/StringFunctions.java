@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.x, mod version: 4.26.
+ * Minecraft version: 1.19.x, mod version: 4.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -19,8 +19,9 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.ClickEvent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -63,10 +64,10 @@ public class StringFunctions {
 		}
 		
 		if (emptyline) {
-			source.sendSuccess(new TextComponent(""), false);
+			source.sendSuccess(Component.literal(""), false);
 		}
 		
-		TextComponent message = new TextComponent(m);
+		MutableComponent message = Component.literal(m);
 		message.withStyle(colour);
 		if (m.contains("http") || !url.isEmpty()) {
 			if (url.isEmpty()) {
@@ -92,10 +93,10 @@ public class StringFunctions {
 		}
 		
 		if (emptyline) {
-			player.sendMessage(new TextComponent(""), player.getUUID());
+			player.sendSystemMessage(Component.literal(""));
 		}
 		
-		TextComponent message = new TextComponent(m);
+		MutableComponent message = Component.literal(m);
 		message.withStyle(colour);
 		if (m.contains("http") || !url.isEmpty()) {
 			if (url.isEmpty()) {
@@ -112,7 +113,7 @@ public class StringFunctions {
 				message.withStyle(clickstyle);
 			}
 		}
-		player.sendMessage(message, player.getUUID());
+		player.sendSystemMessage(message);
 	}
 	
 	public static void broadcastMessage(Level world, String m, ChatFormatting colour) {
@@ -120,7 +121,7 @@ public class StringFunctions {
 			return;
 		}
 		
-		TextComponent message = new TextComponent(m);
+		MutableComponent message = Component.literal(m);
 		message.withStyle(colour);
 		MinecraftServer server = world.getServer();
 		if (server == null) {

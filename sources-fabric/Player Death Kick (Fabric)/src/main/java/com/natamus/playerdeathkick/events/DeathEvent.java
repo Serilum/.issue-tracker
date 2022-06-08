@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Death Kick.
- * Minecraft version: 1.19.x, mod version: 1.5.
+ * Minecraft version: 1.19.x, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Player Death Kick ever released, along with some other perks.
@@ -18,7 +18,7 @@ import com.natamus.collective_fabric.functions.StringFunctions;
 import com.natamus.playerdeathkick.config.ConfigHandler;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -58,7 +58,7 @@ public class DeathEvent {
 			deathmessage = deathmessage.replace("%death%", imsourcename);
 		}
 		
-		serverplayer.connection.disconnect(new TextComponent(deathmessage));
+		serverplayer.connection.disconnect(Component.literal(deathmessage));
 		
 		if (ConfigHandler.broadcastKickToServer.getValue()) {
 			String playername = serverplayer.getName().getString();

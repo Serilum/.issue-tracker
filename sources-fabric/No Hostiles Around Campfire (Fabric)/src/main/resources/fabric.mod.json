@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "nohostilesaroundcampfire-fabric",
-  "version": "3.8",
+  "version": "4.0",
 
   "name": "No Hostiles Around Campfire (Fabric)",
   "description": "Prevents hostile mob spawns around the campfire in a configurable radius.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.nohostilesaroundcampfire.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }

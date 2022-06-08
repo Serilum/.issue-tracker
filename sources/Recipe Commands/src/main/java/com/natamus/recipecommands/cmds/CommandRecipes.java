@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Recipe Commands.
- * Minecraft version: 1.18.2, mod version: 1.4.
+ * Minecraft version: 1.19.0, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Recipe Commands ever released, along with some other perks.
@@ -14,21 +14,12 @@
 
 package com.natamus.recipecommands.cmds;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.google.gson.Gson;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.recipecommands.util.Recipes;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -44,6 +35,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CommandRecipes {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -145,7 +140,7 @@ public class CommandRecipes {
     	Collections.sort(items);
     	
     	RecipeSerializer<?> serializer = recipe.getSerializer();
-    	ResourceLocation srl = serializer.getRegistryName();
+    	ResourceLocation srl = ForgeRegistries.RECIPE_SERIALIZERS.getKey(serializer);
 
     	List<String> pattern = new ArrayList<String>();
     	HashMap<String, String> itemkeys = new HashMap<String, String>();

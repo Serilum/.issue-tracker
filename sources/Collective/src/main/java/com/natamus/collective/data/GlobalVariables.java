@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.2, mod version: 4.25.
+ * Minecraft version: 1.19.0, mod version: 4.28.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,16 +14,8 @@
 
 package com.natamus.collective.data;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import com.natamus.collective.objects.SAMObject;
-
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -32,8 +24,12 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.material.Material;
 
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 public class GlobalVariables {
 	public static Random random = new Random();
+	public static RandomSource randomSource = RandomSource.create();
 	
 	// Spawn A Mob variables
 	public static CopyOnWriteArrayList<EntityType<?>> activesams = new CopyOnWriteArrayList<EntityType<?>>();

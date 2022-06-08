@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Double Doors.
- * Minecraft version: 1.18.2, mod version: 3.3.
+ * Minecraft version: 1.19.0, mod version: 3.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Double Doors ever released, along with some other perks.
@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.material.Material;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -134,7 +135,7 @@ public class Util {
 			BlockState ostate = world.getBlockState(bpa);
 			Block oblock = ostate.getBlock();
 			if (Util.isDoorBlock(ostate)) {
-				if (oblock.getRegistryName().equals(block.getRegistryName())) {
+				if (ForgeRegistries.BLOCKS.getKey(oblock).equals(ForgeRegistries.BLOCKS.getKey(block))) {
 					postoopen.add(bpa.immutable());
 					
 					if (ConfigHandler.GENERAL.enableRecursiveOpening.get()) {

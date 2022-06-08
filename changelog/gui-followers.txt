@@ -3,6 +3,9 @@ GUI Followers
 https://curseforge.com/minecraft/mc-mods/gui-followers
 
 =========
+v1.5: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+
+=========
 v1.9: Fixed followers being duplicated in the GUI list between world joins.
 
 =========

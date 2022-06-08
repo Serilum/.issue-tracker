@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Silence Mobs.
- * Minecraft version: 1.19.x, mod version: 2.0.
+ * Minecraft version: 1.19.x, mod version: 2.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Silence Mobs ever released, along with some other perks.
@@ -19,7 +19,7 @@ import com.natamus.collective_fabric.functions.StringFunctions;
 import com.natamus.silencemobs.config.ConfigHandler;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -68,7 +68,7 @@ public class EntityEvent {
 						entity.setCustomName(null);
 					}
 					else {
-						entity.setCustomName(new TextComponent(entityname.trim()));
+						entity.setCustomName(Component.literal(entityname.trim()));
 					}
 				}
 				else {
@@ -82,7 +82,7 @@ public class EntityEvent {
 		else {
 			entity.setSilent(true);
 			if (ConfigHandler.renameSilencedMobs.getValue()) {
-				entity.setCustomName(new TextComponent("Silenced " + entityname));
+				entity.setCustomName(Component.literal("Silenced " + entityname));
 			}
 			else {
 				StringFunctions.sendMessage(player, "The " + entityname.toLowerCase() + " has been silenced.", ChatFormatting.DARK_GREEN);

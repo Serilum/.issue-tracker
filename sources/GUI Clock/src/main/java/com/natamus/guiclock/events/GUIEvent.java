@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Clock.
- * Minecraft version: 1.18.2, mod version: 3.1.
+ * Minecraft version: 1.19.0, mod version: 3.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Clock ever released, along with some other perks.
@@ -39,8 +39,8 @@ public class GUIEvent extends Gui {
 	private static Minecraft mc;
 	private static String daystring = "";
 
-	public GUIEvent(Minecraft mc){
-		super(mc);
+	public GUIEvent(Minecraft mc, ItemRenderer itemRenderer){
+		super(mc, itemRenderer);
 		GUIEvent.mc = mc; 
 	}
 	
@@ -66,7 +66,7 @@ public class GUIEvent extends Gui {
 			}
 		}
 		
-		PoseStack posestack = e.getMatrixStack();
+		PoseStack posestack = e.getPoseStack();
 		posestack.pushPose();
 		
 		Font fontRender = mc.font;

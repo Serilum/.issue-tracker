@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Name Tag Tweaks.
- * Minecraft version: 1.18.2, mod version: 1.8.
+ * Minecraft version: 1.19.0, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Name Tag Tweaks ever released, along with some other perks.
@@ -26,7 +26,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 
 public class NametagCommand {
@@ -58,7 +58,7 @@ public class NametagCommand {
 					name = name.replace("_", " ");
 				}
 				
-				nametagstack.setHoverName(new TextComponent(name));
+				nametagstack.setHoverName(Component.literal(name));
 				nametagstack.setRepairCost(0);
 				StringFunctions.sendMessage(player, "Set name value to '" + name + "'.", ChatFormatting.DARK_GREEN);
 				return 1;

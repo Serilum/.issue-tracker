@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Extra Mob Drops.
- * Minecraft version: 1.18.2, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Extra Mob Drops ever released, along with some other perks.
@@ -14,10 +14,6 @@
 
 package com.natamus.configurableextramobdrops.cmd;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -25,14 +21,18 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.configurableextramobdrops.util.Util;
-
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.ChatFormatting;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CommandCemd {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -56,7 +56,7 @@ public class CommandCemd {
 				
 				ArrayList<String> mobnames = new ArrayList<String>();
 				for (EntityType<?> et : Util.mobdrops.keySet()) {
-					String lowerregister = et.getRegistryName().toString().toLowerCase();
+					String lowerregister = ForgeRegistries.ENTITIES.getKey(et).toString().toLowerCase();
 					String[] nspl = lowerregister.split(":");
 					if (nspl.length < 2) {
 						continue;
@@ -133,7 +133,7 @@ public class CommandCemd {
 				EntityType<?> entitytype = null;
 				
 				for (EntityType<?> et : Util.mobdrops.keySet()) {
-					String registrystring = et.getRegistryName().toString();
+					String registrystring = ForgeRegistries.ENTITIES.getKey(et).toString();
 					if (!registrystring.contains(":")) {
 						continue;
 					}
@@ -195,7 +195,7 @@ public class CommandCemd {
 		EntityType<?> entitytype = null;
 		
 		for (EntityType<?> et : Util.mobdrops.keySet()) {
-			String registrystring = et.getRegistryName().toString();
+			String registrystring = ForgeRegistries.ENTITIES.getKey(et).toString();
 			if (!registrystring.contains(":")) {
 				continue;
 			}

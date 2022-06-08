@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Cycle Paintings.
- * Minecraft version: 1.19.x, mod version: 2.1.
+ * Minecraft version: 1.19.x, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Cycle Paintings ever released, along with some other perks.
@@ -24,7 +24,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Entity.RemovalReason;
-import net.minecraft.world.entity.decoration.Motive;
+import net.minecraft.world.entity.decoration.PaintingVariant;
+import net.minecraft.core.Holder;
 import net.minecraft.world.entity.decoration.Painting;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -48,11 +49,11 @@ public class PaintingEvent {
 		}
 		
 		Painting painting = (Painting)target;
-		Motive art = painting.motive;
+		PaintingVariant art = painting.getVariant().value();
 		
-		Motive newart = null;
+		PaintingVariant newart = null;
 		
-		List<Motive> similarart = Util.getSimilarArt(art);
+		List<PaintingVariant> similarart = Util.getSimilarArt(art);
 		if (player.isCrouching()) {
 			Collections.reverse(similarart);
 		}
@@ -62,7 +63,7 @@ public class PaintingEvent {
 		}
 		else {
 			Boolean choosenext = false;
-			for (Motive sa : similarart) {
+			for (PaintingVariant sa : similarart) {
 				if (choosenext) {
 					newart = sa;
 					break;
@@ -78,9 +79,8 @@ public class PaintingEvent {
 		}
 		
 		BlockPos ppos = painting.getPos();
-		Painting newpainting = new Painting(world, ppos, painting.getMotionDirection());
+		Painting newpainting = new Painting(world, ppos, painting.getMotionDirection(), Holder.direct(newart));
 		
-		newpainting.motive = newart;
 		newpainting.setPos(ppos.getX(), ppos.getY(), ppos.getZ());
 		
 		painting.remove(RemovalReason.DISCARDED);

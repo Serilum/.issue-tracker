@@ -3,6 +3,9 @@ Configurable Extra Mob Drops
 https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops
 
 =========
+v1.2: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+
+=========
 v1.9: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

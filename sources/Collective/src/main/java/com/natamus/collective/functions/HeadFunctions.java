@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.18.2, mod version: 4.25.
+ * Minecraft version: 1.19.0, mod version: 4.28.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,17 +14,17 @@
 
 package com.natamus.collective.functions;
 
+import com.natamus.collective.data.GlobalVariables;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+
 import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
-
-import com.natamus.collective.data.GlobalVariables;
-
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
 public class HeadFunctions {
 	public static ItemStack getPlayerHead(String playername, Integer amount) {
@@ -72,7 +72,7 @@ public class HeadFunctions {
 		skullOwner.put("Properties", properties);
 		texturedhead.addTagElement("SkullOwner", skullOwner);
 		
-		TextComponent tcname = new TextComponent(headname);
+		MutableComponent tcname = Component.literal(headname);
 		texturedhead.setHoverName(tcname);		
 		return texturedhead;
 	}

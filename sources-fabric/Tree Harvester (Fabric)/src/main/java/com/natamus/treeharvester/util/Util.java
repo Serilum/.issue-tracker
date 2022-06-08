@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.19.x, mod version: 5.1.
+ * Minecraft version: 1.19.x, mod version: 5.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Tree Harvester ever released, along with some other perks.
@@ -21,6 +21,7 @@ import com.natamus.collective_fabric.functions.CompareItemFunctions;
 import com.natamus.collective_fabric.functions.ToolFunctions;
 import com.natamus.treeharvester.config.ConfigHandler;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;

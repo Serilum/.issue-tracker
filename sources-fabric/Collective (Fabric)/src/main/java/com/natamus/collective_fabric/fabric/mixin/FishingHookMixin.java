@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.x, mod version: 4.26.
+ * Minecraft version: 1.19.x, mod version: 4.27.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -27,7 +27,7 @@ import net.minecraft.world.item.ItemStack;
 
 @Mixin(value = FishingHook.class, priority = 1001)
 public abstract class FishingHookMixin {
-	@ModifyVariable(method = "retrieve", at = @At(value= "INVOKE_ASSIGN", target = "Lnet/minecraft/world/level/storage/loot/LootTable;getRandomItems(Lnet/minecraft/world/level/storage/loot/LootContext;)Ljava/util/List;"))
+	@ModifyVariable(method = "retrieve", at = @At(value= "INVOKE_ASSIGN", target = "Lnet/minecraft/world/level/storage/loot/LootTable;getRandomItems(Lnet/minecraft/world/level/storage/loot/LootContext;)Lit/unimi/dsi/fastutil/objects/ObjectArrayList;"))
 	private List<ItemStack> FishingHook_retrieve(List<ItemStack> list, ItemStack itemStack) {
 		FishingHook hook = (FishingHook)(Object)this;
 		CollectiveItemEvents.ON_ITEM_FISHED.invoker().onItemFished(list, hook);

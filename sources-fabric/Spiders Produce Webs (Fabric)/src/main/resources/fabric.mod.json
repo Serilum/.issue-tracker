@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "spidersproducewebs-fabric",
-  "version": "1.5",
+  "version": "1.7",
 
   "name": "Spiders Produce Webs (Fabric)",
   "description": "Spiders and cave spiders can periodically produce a web when a player is close.",
@@ -18,10 +18,10 @@
   "entrypoints": { "main": [ "com.natamus.spidersproducewebs.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": "1.19.x",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
+    "collective-fabric": ">=4.27"
   }
 }
