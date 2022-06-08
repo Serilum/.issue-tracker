@@ -3,6 +3,10 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v5.5: Updated mod to work with Minecraft's latest 1.19 release version.
+Added 1.19 heads: allay, cold frog, temperate frog, warm frog, tadpole, warden.
+
+=========
 v5.4: Fixed 1.17 mobs not dropping their head in later versions.
 Updated backend code.
 (1.19 only) Added Warden mob head.
