@@ -29,8 +29,8 @@ public class ConfigHandler {
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
 			repairCostLevelAmount = builder
-					.comment("The amount of level it costs to repair an item on an anvil. A value of 0 keeps vanilla behaviour.")
-					.defineInRange("repairCostLevelAmount", 3, 0, 100);
+					.comment("The amount of level it costs to repair an item on an anvil. A value of -1 keeps vanilla behaviour.")
+					.defineInRange("repairCostLevelAmount", 3, -1, 100);
 			repairCostMaterialAmount = builder
 					.comment("The amount of material it costs to repair an item on an anvil. A value of 0 keeps vanilla behaviour.")
 					.defineInRange("repairCostMaterialAmount", 1, 0, 64);

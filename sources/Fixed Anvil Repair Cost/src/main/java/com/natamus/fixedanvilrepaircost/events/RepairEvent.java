@@ -40,8 +40,8 @@ public class RepairEvent {
 			int levelcost = ConfigHandler.GENERAL.repairCostLevelAmount.get();
 			int materialcost = ConfigHandler.GENERAL.repairCostMaterialAmount.get();
 			
-			if (levelcost >= 1 || materialcost >= 1) {
-				if (levelcost >= 1) {
+			if (levelcost >= 0 || materialcost >= 1) {
+				if (levelcost >= 0) {
 					e.setCost(levelcost);
 				}
 				if (materialcost >= 1) {
