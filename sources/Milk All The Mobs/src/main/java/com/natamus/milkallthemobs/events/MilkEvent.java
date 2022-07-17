@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Milk All The Mobs.
- * Minecraft version: 1.19.0, mod version: 1.7.
+ * Minecraft version: 1.19.0, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Milk All The Mobs ever released, along with some other perks.
@@ -31,7 +31,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MilkEvent {
 	@SubscribeEvent
 	public void onEntityInteract(PlayerInteractEvent.EntityInteract e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -40,7 +40,7 @@ public class MilkEvent {
 		if (itemstack.getItem().equals(Items.BUCKET)) {
 			Entity target = e.getTarget();
 			if (EntityFunctions.isMilkable(target)) {
-				Player player = e.getPlayer();
+				Player player = e.getEntity();
 				
 				player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
 				itemstack.shrink(1);

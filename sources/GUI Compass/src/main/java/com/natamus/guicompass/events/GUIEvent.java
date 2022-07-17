@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Compass.
- * Minecraft version: 1.19.0, mod version: 2.2.
+ * Minecraft version: 1.19.0, mod version: 2.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Compass ever released, along with some other perks.
@@ -26,8 +26,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.CompassItem;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -44,12 +43,7 @@ public class GUIEvent extends Gui {
 	}
 	
 	@SubscribeEvent(priority = EventPriority.NORMAL)
-	public void renderOverlay(RenderGameOverlayEvent.Pre e) {
-		ElementType type = e.getType();
-		if (type != ElementType.TEXT) {
-			return;
-		}
-		
+	public void renderOverlay(RenderGuiOverlayEvent.Pre e) {
 		if (ConfigHandler.GENERAL.mustHaveCompassInInventory.get()) {
 			if (!(mc.player.getOffhandItem().getItem() instanceof CompassItem)) {
 				boolean found = false;

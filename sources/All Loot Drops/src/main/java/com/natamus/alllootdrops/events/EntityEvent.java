@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of All Loot Drops.
- * Minecraft version: 1.19.0, mod version: 2.4.
+ * Minecraft version: 1.19.0, mod version: 2.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of All Loot Drops ever released, along with some other perks.
@@ -34,15 +34,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class EntityEvent {
 	@SubscribeEvent
-	public void onWorldLoad(WorldEvent.Load e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+	public void onWorldLoad(LevelEvent.Load e) {
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}

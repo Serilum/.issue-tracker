@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Double Doors.
- * Minecraft version: 1.19.0, mod version: 3.3.
+ * Minecraft version: 1.19.0, mod version: 3.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Double Doors ever released, along with some other perks.
@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -44,7 +44,7 @@ public class DoorEvent {
 	
 	@SubscribeEvent
 	public void onNeighbourNotice(BlockEvent.NeighborNotifyEvent e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}
@@ -123,12 +123,12 @@ public class DoorEvent {
 	
 	@SubscribeEvent
 	public void onDoorClick(PlayerInteractEvent.RightClickBlock e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide && e.getHand().equals(InteractionHand.MAIN_HAND)) {
 			return;
 		}
 		
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		if (player.isShiftKeyDown()) {
 			return;
 		}

@@ -3,6 +3,9 @@ Trample Everything
 https://curseforge.com/minecraft/mc-mods/trample-everything
 
 =========
+v1.6: (Forge 1.19 only) Updated to Forge version 41.0.94+. Use the previous uploaded file if you're on an older version.
+
+=========
 v2.3: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
 
 =========

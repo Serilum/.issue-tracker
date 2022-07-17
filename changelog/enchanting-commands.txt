@@ -3,6 +3,17 @@ Enchanting Commands
 https://www.curseforge.com/minecraft/mc-mods/enchanting-commands
 
 =========
+v2.2: (Forge 1.19 only) Updated to Forge version 41.0.94+. Use the previous uploaded file if you're on an older version.
+
+=========
+v2.1: Improved compatibility with modded enchantments.
+
+=========
+v2.0: Added suggestions to the /ec command. You can now use Tab to autocomplete enchantment names.
+The mod now gets available enchantments from the registry, instead of a list.
+(1.19 only) Fixed the wrong enchantment being applied.
+
+=========
 v2.7: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
 
 =========

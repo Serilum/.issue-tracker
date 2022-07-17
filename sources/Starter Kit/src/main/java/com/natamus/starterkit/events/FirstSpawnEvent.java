@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Starter Kit.
- * Minecraft version: 1.19.0, mod version: 3.2.
+ * Minecraft version: 1.19.0, mod version: 3.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Starter Kit ever released, along with some other perks.
@@ -28,15 +28,15 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.CommandEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class FirstSpawnEvent {
 	@SubscribeEvent
-	public void onSpawn(EntityJoinWorldEvent e) {
-		Level world = e.getWorld();
+	public void onSpawn(EntityJoinLevelEvent e) {
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Campfire Spawn and Tweaks.
- * Minecraft version: 1.19.0, mod version: 1.6.
+ * Minecraft version: 1.19.0, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Campfire Spawn and Tweaks ever released, along with some other perks.
@@ -48,12 +48,12 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.TickEvent.WorldTickEvent;
+import net.minecraftforge.event.TickEvent.LevelTickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.event.world.BlockEvent.EntityPlaceEvent;
-import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent.EntityPlaceEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -67,8 +67,8 @@ public class CampfireEvent {
 	private static List<Block> extinguishblocks = new ArrayList<Block>(Arrays.asList(Blocks.DIRT, Blocks.GRASS, Blocks.SAND, Blocks.RED_SAND, Blocks.SOUL_SAND));
 	
 	@SubscribeEvent
-	public void onWorldLoad(WorldEvent.Load e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+	public void onWorldLoad(LevelEvent.Load e) {
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}
@@ -79,8 +79,8 @@ public class CampfireEvent {
 	}
 	
 	@SubscribeEvent
-	public void onWorldTick(WorldTickEvent e) {
-		Level world = e.world;
+	public void onWorldTick(LevelTickEvent e) {
+		Level world = e.level;
 		if (world.isClientSide) {
 			return;
 		}
@@ -148,7 +148,7 @@ public class CampfireEvent {
 	
 	@SubscribeEvent
 	public void onEntityBlockPlace(EntityPlaceEvent e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}
@@ -175,12 +175,12 @@ public class CampfireEvent {
 	
 	@SubscribeEvent
 	public void onRightClickCampfireBlock(PlayerInteractEvent.RightClickBlock e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		BlockPos pos = e.getPos();
 		BlockState state = world.getBlockState(pos);
 		Block block = state.getBlock();
@@ -295,7 +295,7 @@ public class CampfireEvent {
 	
 	@SubscribeEvent
 	public void onCampfireBreak(BlockEvent.BreakEvent e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}
@@ -316,7 +316,7 @@ public class CampfireEvent {
 	
 	@SubscribeEvent
 	public void onPlayerRespawn(PlayerRespawnEvent e) {
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;

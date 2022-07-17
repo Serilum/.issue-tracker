@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Move Minecarts.
- * Minecraft version: 1.19.0, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Move Minecarts ever released, along with some other perks.
@@ -20,7 +20,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.event.InputEvent.MouseInputEvent;
+import net.minecraftforge.client.event.InputEvent.MouseButton.Post;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -64,12 +64,12 @@ public class MinecartEvent {
 		if (!e.getTarget().getClass().getName().toLowerCase().contains(".minecart")) {
 			return;
 		}
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
 		if (ConfigHandler.GENERAL.mustSneakToPickUp.get()) {
-			if (!e.getPlayer().isCrouching()) {
+			if (!e.getEntity().isCrouching()) {
 				return;
 			}
 		}
@@ -85,7 +85,7 @@ public class MinecartEvent {
 	}
 	
 	@SubscribeEvent
-	public static void onMouseEvent(MouseInputEvent e) {
+	public static void onMouseEvent(Post e) {
 		if (e.getButton() != 1) return;
 		if (!rmbdown) {
 			if (pickedupminecart != null) {

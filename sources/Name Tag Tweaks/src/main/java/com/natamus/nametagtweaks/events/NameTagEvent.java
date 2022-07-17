@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Name Tag Tweaks.
- * Minecraft version: 1.19.0, mod version: 1.8.
+ * Minecraft version: 1.19.0, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Name Tag Tweaks ever released, along with some other perks.
@@ -32,7 +32,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class NameTagEvent {
 	@SubscribeEvent
 	public void mobItemDrop(LivingDeathEvent e) {
-		LivingEntity entity = e.getEntityLiving();
+		LivingEntity entity = e.getEntity();
 		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;

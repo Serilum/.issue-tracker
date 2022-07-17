@@ -3,6 +3,9 @@ Alternative World Save Location (Fabric)
 https://curseforge.com/minecraft/mc-mods/alternative-world-save-location
 
 =========
+v1.4: (Forge 1.19 only) Updated to Forge version 41.0.94+. Use the previous uploaded file if you're on an older version.
+
+=========
 v1.6: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
 
 =========

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Snowballs Freeze Mobs.
- * Minecraft version: 1.19.0, mod version: 1.6.
+ * Minecraft version: 1.19.0, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Snowballs Freeze Mobs ever released, along with some other perks.
@@ -58,7 +58,7 @@ public class SnowEvent {
 	}
 	
 	@SubscribeEvent
-	public void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {
+	public void onLivingUpdate(LivingEvent.LivingTickEvent e) {
 		Entity entity = e.getEntity();
 		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {

@@ -3,6 +3,9 @@ Realistic Bees
 https://www.curseforge.com/minecraft/mc-mods/realistic-bees
 
 =========
+v2.6: (Forge 1.19 only) Updated to Forge version 41.0.94+. Use the previous uploaded file if you're on an older version.
+
+=========
 v2.5: Added the `beeHiveBeeSpace` config value which overwrites how many bees can go inside a hive.
 Improved code efficiency.
 Improved compatibility with other mods.

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Extra Mob Drops.
- * Minecraft version: 1.19.0, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Extra Mob Drops ever released, along with some other perks.
@@ -56,7 +56,7 @@ public class CommandCemd {
 				
 				ArrayList<String> mobnames = new ArrayList<String>();
 				for (EntityType<?> et : Util.mobdrops.keySet()) {
-					String lowerregister = ForgeRegistries.ENTITIES.getKey(et).toString().toLowerCase();
+					String lowerregister = ForgeRegistries.ENTITY_TYPES.getKey(et).toString().toLowerCase();
 					String[] nspl = lowerregister.split(":");
 					if (nspl.length < 2) {
 						continue;
@@ -133,7 +133,7 @@ public class CommandCemd {
 				EntityType<?> entitytype = null;
 				
 				for (EntityType<?> et : Util.mobdrops.keySet()) {
-					String registrystring = ForgeRegistries.ENTITIES.getKey(et).toString();
+					String registrystring = ForgeRegistries.ENTITY_TYPES.getKey(et).toString();
 					if (!registrystring.contains(":")) {
 						continue;
 					}
@@ -195,7 +195,7 @@ public class CommandCemd {
 		EntityType<?> entitytype = null;
 		
 		for (EntityType<?> et : Util.mobdrops.keySet()) {
-			String registrystring = ForgeRegistries.ENTITIES.getKey(et).toString();
+			String registrystring = ForgeRegistries.ENTITY_TYPES.getKey(et).toString();
 			if (!registrystring.contains(":")) {
 				continue;
 			}

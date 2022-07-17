@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Villager Names.
- * Minecraft version: 1.19.0, mod version: 3.5.
+ * Minecraft version: 1.19.0, mod version: 3.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Villager Names ever released, along with some other perks.
@@ -27,7 +27,7 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerData;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -35,8 +35,8 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 @EventBusSubscriber
 public class VillagerEvent {
 	@SubscribeEvent
-	public void onSpawn(EntityJoinWorldEvent e) {
-		Level world = e.getWorld();
+	public void onSpawn(EntityJoinLevelEvent e) {
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -61,7 +61,7 @@ public class VillagerEvent {
 	
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent.EntityInteract e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -75,7 +75,7 @@ public class VillagerEvent {
 			return;
 		}
 		
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		if (player.isCrouching()) {
 			return;
 		}

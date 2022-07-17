@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Rain Be Gone Ritual.
- * Minecraft version: 1.19.0, mod version: 1.8.
+ * Minecraft version: 1.19.0, mod version: 2.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Rain Be Gone Ritual ever released, along with some other perks.
@@ -48,7 +48,7 @@ public class RitualEvent {
 	
 	@SubscribeEvent
 	public void onClick(PlayerInteractEvent.RightClickBlock e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}

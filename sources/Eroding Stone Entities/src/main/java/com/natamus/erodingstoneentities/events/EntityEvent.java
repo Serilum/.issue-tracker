@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Eroding Stone Entities.
- * Minecraft version: 1.19.0, mod version: 2.5.
+ * Minecraft version: 1.19.0, mod version: 2.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Eroding Stone Entities ever released, along with some other perks.
@@ -32,8 +32,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.TickEvent.WorldTickEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.TickEvent.LevelTickEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -44,8 +44,8 @@ public class EntityEvent {
 	private static HashMap<ItemEntity, Integer> iecount = new HashMap<ItemEntity, Integer>();
 	
 	@SubscribeEvent
-	public void onWorldTick(WorldTickEvent e) {
-		Level world = e.world;
+	public void onWorldTick(LevelTickEvent e) {
+		Level world = e.level;
 		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
@@ -104,8 +104,8 @@ public class EntityEvent {
 	}
 	
 	@SubscribeEvent
-	public void onEntityJoin(EntityJoinWorldEvent e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+	public void onEntityJoin(EntityJoinLevelEvent e) {
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Skeleton Horse Spawn.
- * Minecraft version: 1.19.0, mod version: 2.0.
+ * Minecraft version: 1.19.0, mod version: 2.2.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Skeleton Horse Spawn ever released, along with some other perks.
@@ -26,9 +26,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.horse.SkeletonHorse;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.TickEvent.WorldTickEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.TickEvent.LevelTickEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -38,8 +38,8 @@ public class SkeletonHorseEvent {
 	private static HashMap<Level, Integer> tickdelay_per_world = new HashMap<Level, Integer>();
 	
 	@SubscribeEvent
-	public void onWorldLoad(WorldEvent.Load e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+	public void onWorldLoad(LevelEvent.Load e) {
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}
@@ -49,8 +49,8 @@ public class SkeletonHorseEvent {
 	}
 	
 	@SubscribeEvent
-	public void onEntityJoin(EntityJoinWorldEvent e) {
-		Level world = e.getWorld();
+	public void onEntityJoin(EntityJoinLevelEvent e) {
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -64,8 +64,8 @@ public class SkeletonHorseEvent {
 	}
 	
 	@SubscribeEvent
-	public void onWorldTick(WorldTickEvent e) {
-		Level world = e.world;
+	public void onWorldTick(LevelTickEvent e) {
+		Level world = e.level;
 		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}

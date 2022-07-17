@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Extended Bone Meal.
- * Minecraft version: 1.19.0, mod version: 1.6.
+ * Minecraft version: 1.19.0, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Extended Bone Meal ever released, along with some other perks.
@@ -38,12 +38,12 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class ExtendedEvent {
 	@SubscribeEvent
 	public void onBoneMeal(BonemealEvent e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		if (player == null) {
 			return;
 		}
@@ -71,12 +71,12 @@ public class ExtendedEvent {
 	
 	@SubscribeEvent
 	public void onNetherwartClick(PlayerInteractEvent.RightClickBlock e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		ItemStack hand = e.getItemStack();
 		if (!hand.getItem().equals(Items.BONE_MEAL)) {
 			return;

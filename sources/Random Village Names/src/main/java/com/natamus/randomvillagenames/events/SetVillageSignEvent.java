@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Village Names.
- * Minecraft version: 1.19.0, mod version: 1.6.
+ * Minecraft version: 1.19.0, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Random Village Names ever released, along with some other perks.
@@ -32,8 +32,8 @@ import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -47,8 +47,8 @@ public class SetVillageSignEvent {
 	private static HashMap<String, Integer> lastticks = new HashMap<String, Integer>();
 	
 	@SubscribeEvent
-	public void onWorldLoad(WorldEvent.Load e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+	public void onWorldLoad(LevelEvent.Load e) {
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}
@@ -135,7 +135,7 @@ public class SetVillageSignEvent {
 	
 	@SubscribeEvent
 	public void onSignBreak(BlockEvent.BreakEvent e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}

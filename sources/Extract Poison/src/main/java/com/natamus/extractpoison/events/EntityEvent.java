@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Extract Poison.
- * Minecraft version: 1.19.0, mod version: 1.7.
+ * Minecraft version: 1.19.0, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Extract Poison ever released, along with some other perks.
@@ -47,7 +47,7 @@ public class EntityEvent {
 	
 	@SubscribeEvent
 	public void onEntityInteract(PlayerInteractEvent.EntityInteract e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -57,7 +57,7 @@ public class EntityEvent {
 			Entity target = e.getTarget();
 			String entityname = EntityFunctions.getEntityString(target).toLowerCase();
 			if (entityname.contains("cavespider") || target instanceof CaveSpider || target instanceof Pufferfish || target instanceof Bee) {
-				Player player = e.getPlayer();
+				Player player = e.getEntity();
 				e.setCanceled(true);
 				
 				LocalTime now = LocalTime.now();
@@ -82,14 +82,14 @@ public class EntityEvent {
 	
 	@SubscribeEvent
 	public void onWaterClick(PlayerInteractEvent.RightClickItem e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		ItemStack itemstack = e.getItemStack();
 		if (itemstack.getItem().equals(Items.GLASS_BOTTLE)) {
-			Player player = e.getPlayer();
+			Player player = e.getEntity();
 			BlockPos pos = e.getPos();
 			List<Entity> entitiesaround = world.getEntities(player, new AABB(pos.getX()-1, pos.getY()-1, pos.getZ()-1, pos.getX()+1, pos.getY()+1, pos.getZ()+1));
 			for (Entity ea : entitiesaround) {

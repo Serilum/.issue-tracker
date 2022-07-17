@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Clock.
- * Minecraft version: 1.19.0, mod version: 3.1.
+ * Minecraft version: 1.19.0, mod version: 3.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Clock ever released, along with some other perks.
@@ -14,14 +14,10 @@
 
 package com.natamus.guiclock.events;
 
-import java.awt.Color;
-import java.util.Collection;
-
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.guiclock.config.ConfigHandler;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.Gui;
@@ -30,10 +26,12 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import java.awt.*;
+import java.util.Collection;
 
 public class GUIEvent extends Gui {
 	private static Minecraft mc;
@@ -45,12 +43,7 @@ public class GUIEvent extends Gui {
 	}
 	
 	@SubscribeEvent(priority = EventPriority.NORMAL)
-	public void renderOverlay(RenderGameOverlayEvent.Post e){
-		ElementType type = e.getType();
-		if (type != ElementType.TEXT) {
-			return;
-		}
-		
+	public void renderOverlay(RenderGuiOverlayEvent.Post e){
 		boolean gametimeb = ConfigHandler.GENERAL.mustHaveClockInInventoryForGameTime.get();
 		boolean realtimeb = ConfigHandler.GENERAL.mustHaveClockInInventoryForRealTime.get();
 		boolean found = true;

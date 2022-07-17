@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nether Portal Spread.
- * Minecraft version: 1.19.0, mod version: 5.7.
+ * Minecraft version: 1.19.0, mod version: 6.0.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Nether Portal Spread ever released, along with some other perks.
@@ -25,10 +25,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.TickEvent.WorldTickEvent;
+import net.minecraftforge.event.TickEvent.LevelTickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerChangedDimensionEvent;
-import net.minecraftforge.event.world.BlockEvent.PortalSpawnEvent;
-import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.level.BlockEvent.PortalSpawnEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -38,8 +38,8 @@ public class SpreadEvent {
 	private static HashMap<Level, Integer> worldticks = new HashMap<Level, Integer>();
 	
 	@SubscribeEvent
-	public void onWorldTick(WorldTickEvent e) {
-		Level world = e.world;
+	public void onWorldTick(LevelTickEvent e) {
+		Level world = e.level;
 		if (world.isClientSide || !e.phase.equals(Phase.END)) {
 			return;
 		}
@@ -71,8 +71,8 @@ public class SpreadEvent {
 	}
 	
 	@SubscribeEvent
-	public void onWorldLoad(WorldEvent.Load e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+	public void onWorldLoad(LevelEvent.Load e) {
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}
@@ -91,7 +91,7 @@ public class SpreadEvent {
 
 	@SubscribeEvent
 	public void onPortalSpawn(PortalSpawnEvent e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}
@@ -106,7 +106,7 @@ public class SpreadEvent {
 	
 	@SubscribeEvent
 	public void onDimensionChange(PlayerChangedDimensionEvent e) {
-		final Player player = e.getPlayer();
+		final Player player = e.getEntity();
 
     	Level world = player.getCommandSenderWorld();
     	if (world.isClientSide) {

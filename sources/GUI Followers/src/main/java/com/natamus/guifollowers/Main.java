@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.19.0, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Followers ever released, along with some other perks.
@@ -23,13 +23,13 @@ import com.natamus.guifollowers.util.Variables;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ClientRegistry;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
@@ -48,16 +48,17 @@ public class Main {
         ModLoadingContext modLoadingContext = ModLoadingContext.get();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
     	
-        modEventBus.addListener(this::initClient);
         modEventBus.addListener(this::loadComplete);
+        MinecraftForge.EVENT_BUS.register(this);
         modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHandler.spec);
 
         RegisterMod.register(Reference.NAME, Reference.MOD_ID, Reference.VERSION, Reference.ACCEPTED_VERSIONS);
     }
-    
-    private void initClient(final FMLClientSetupEvent event) {
+
+    @SubscribeEvent
+	public void registerKeyBinding(RegisterKeyMappingsEvent e) {
     	Variables.clearlist_hotkey = new KeyMapping("Clear Follower List", 92, "key.categories.misc");
-    	ClientRegistry.registerKeyBinding(Variables.clearlist_hotkey);    	
+    	e.register(Variables.clearlist_hotkey);
     }
 	
     private void loadComplete(final FMLLoadCompleteEvent event) {

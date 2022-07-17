@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Underwater Enchanting.
- * Minecraft version: 1.19.0, mod version: 1.6.
+ * Minecraft version: 1.19.0, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Underwater Enchanting ever released, along with some other perks.
@@ -29,7 +29,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class EnhantmentEvent {
 	@SubscribeEvent
 	public void onEnchanting(EnchantmentLevelSetEvent e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -55,7 +55,7 @@ public class EnhantmentEvent {
 					return;
 				}
 				
-				e.setLevel(level);
+				e.setEnchantLevel(level);
 			}
 		}
 	}

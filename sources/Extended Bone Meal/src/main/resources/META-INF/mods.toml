@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Exte
 
 [[mods]]
 modId="extendedbonemeal"
-version="1.6"
+version="1.8"
 displayName="Extended Bone Meal"
 displayURL="https://curseforge.com/minecraft/mc-mods/extended-bone-meal"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adam E, Aternos.org, Cherriesaurus, Ed Blake, Kreezcraft.com, limpjellyfish, Mar
 [[dependencies.extendedbonemeal]]
     modId="collective"
     mandatory=true
-    versionRange="[4.25,)"
+    versionRange="[4.30,)"
     ordering="NONE"
     side="BOTH"

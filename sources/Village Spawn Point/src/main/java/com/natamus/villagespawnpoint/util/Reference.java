@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Village Spawn Point.
- * Minecraft version: 1.19.0, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Village Spawn Point ever released, along with some other perks.
@@ -17,6 +17,6 @@ package com.natamus.villagespawnpoint.util;
 public class Reference {
 	public static final String MOD_ID = "villagespawnpoint";
 	public static final String NAME = "Village Spawn Point";
-	public static final String VERSION = "1.9";
+	public static final String VERSION = "2.1";
 	public static final String ACCEPTED_VERSIONS = "[1.19.0]";
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.0, mod version: 4.28.
+ * Minecraft version: 1.19.0, mod version: 4.30.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -65,7 +65,7 @@ public class ItemFunctions {
 		lootingsword.enchant(Enchantments.MOB_LOOTING, 10);
 		fakeplayer.setItemSlot(EquipmentSlot.MAINHAND, lootingsword);
 		
-		Collection<EntityType<?>> entitytypes = ForgeRegistries.ENTITIES.getValues();
+		Collection<EntityType<?>> entitytypes = ForgeRegistries.ENTITY_TYPES.getValues();
 		for (EntityType<?> type : entitytypes) {
 			if (type == null) {
 				continue;

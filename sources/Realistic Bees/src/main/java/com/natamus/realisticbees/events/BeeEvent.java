@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Realistic Bees.
- * Minecraft version: 1.19.0, mod version: 2.5.
+ * Minecraft version: 1.19.0, mod version: 2.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Realistic Bees ever released, along with some other perks.
@@ -34,7 +34,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -55,7 +55,7 @@ public class BeeEvent {
 
 	@SubscribeEvent
 	public static void onBeeCheckSpawn(LivingSpawnEvent.SpecialSpawn e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}
@@ -69,8 +69,8 @@ public class BeeEvent {
 	}
 
 	@SubscribeEvent
-	public static void onBeeSpawn(EntityJoinWorldEvent e) {
-		Level world = e.getWorld();
+	public static void onBeeSpawn(EntityJoinLevelEvent e) {
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -197,7 +197,7 @@ public class BeeEvent {
 	}
 	
 	@SubscribeEvent
-	public static void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {
+	public static void onLivingUpdate(LivingEvent.LivingTickEvent e) {
 		Entity entity = e.getEntity();
 		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
@@ -258,12 +258,12 @@ public class BeeEvent {
 	
 	@SubscribeEvent
 	public static void onStingerPull(PlayerInteractEvent.RightClickItem e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		if (stung_players.containsKey(player)) {
 			ItemStack hand = e.getItemStack();
 			if (!(hand.getItem() instanceof ShearsItem)) {

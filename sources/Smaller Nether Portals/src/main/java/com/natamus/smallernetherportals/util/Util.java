@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Smaller Nether Portals.
- * Minecraft version: 1.19.0, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Smaller Nether Portals ever released, along with some other perks.
@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 
 public class Util {
 	public static void processSmallerPortal(Level world, BlockPos pos) {

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Automatic Doors.
- * Minecraft version: 1.19.0, mod version: 2.4.
+ * Minecraft version: 1.19.0, mod version: 2.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Automatic Doors ever released, along with some other perks.
@@ -26,8 +26,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
-import net.minecraftforge.event.TickEvent.WorldTickEvent;
-import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.TickEvent.LevelTickEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -42,8 +42,8 @@ public class DoorEvent {
 	public static HashMap<Level, List<BlockPos>> newclosedoors = new HashMap<Level, List<BlockPos>>();
 
 	@SubscribeEvent
-	public void onWorldLoad(WorldEvent.Load e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+	public void onWorldLoad(LevelEvent.Load e) {
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}
@@ -53,8 +53,8 @@ public class DoorEvent {
 	}
 
 	@SubscribeEvent
-	public void onWorldTick(WorldTickEvent e) {
-		Level world = e.world;
+	public void onWorldTick(LevelTickEvent e) {
+		Level world = e.level;
 		if (world.isClientSide || e.phase != Phase.START) {
 			return;
 		}

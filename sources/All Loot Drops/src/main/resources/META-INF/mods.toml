@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20All%
 
 [[mods]]
 modId="alllootdrops"
-version="2.4"
+version="2.5"
 displayName="All Loot Drops"
 displayURL="https://curseforge.com/minecraft/mc-mods/all-loot-drops"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adam E, Aternos.org, Cherriesaurus, Ed Blake, Kreezcraft.com, limpjellyfish, Mar
 [[dependencies.alllootdrops]]
     modId="collective"
     mandatory=true
-    versionRange="[4.25,)"
+    versionRange="[4.30,)"
     ordering="NONE"
     side="BOTH"

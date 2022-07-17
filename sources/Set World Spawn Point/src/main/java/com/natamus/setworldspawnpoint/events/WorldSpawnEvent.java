@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Set World Spawn Point.
- * Minecraft version: 1.19.0, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Set World Spawn Point ever released, along with some other perks.
@@ -34,17 +34,17 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerRespawnEvent;
-import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class WorldSpawnEvent {
 	@SubscribeEvent
-	public void onWorldLoad(WorldEvent.CreateSpawnPosition e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+	public void onWorldLoad(LevelEvent.CreateSpawnPosition e) {
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}
@@ -67,7 +67,7 @@ public class WorldSpawnEvent {
 	
 	@SubscribeEvent
 	public void onPlayerRespawn(PlayerRespawnEvent e) {
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		Level world = player.level;
 		if (world.isClientSide) {
 			return;
@@ -111,8 +111,8 @@ public class WorldSpawnEvent {
 	}
 	
 	@SubscribeEvent
-	public void onEntityJoin(EntityJoinWorldEvent e) {
-		Level world = e.getWorld();
+	public void onEntityJoin(EntityJoinLevelEvent e) {
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}

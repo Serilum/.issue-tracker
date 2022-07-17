@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Extra Mob Drops.
- * Minecraft version: 1.19.0, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Extra Mob Drops ever released, along with some other perks.
@@ -74,7 +74,7 @@ public class Util {
 				String itemstring = linespl[1].trim();
 				itemstring = itemstring.substring(0, itemstring.length() - 1).trim();
 				
-				EntityType<?> entitytype = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(entityrl));
+				EntityType<?> entitytype = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(entityrl));
 				if (entitytype == null) {
 					continue;
 				}
@@ -99,10 +99,10 @@ public class Util {
 		}
 		
 		if (writer != null) {
-			for (EntityType<?> entitytype : ForgeRegistries.ENTITIES) {
+			for (EntityType<?> entitytype : ForgeRegistries.ENTITY_TYPES) {
 				MobCategory classification = entitytype.getCategory();
 				if (!classification.equals(MobCategory.MISC) || specialmiscmobs.contains(entitytype)) {
-					ResourceLocation rl = ForgeRegistries.ENTITIES.getKey(entitytype);
+					ResourceLocation rl = ForgeRegistries.ENTITY_TYPES.getKey(entitytype);
 					writer.println("'" + rl.toString() + "'" + " : '',");
 					
 					mobdrops.put(entitytype, new CopyOnWriteArrayList<ItemStack>());
@@ -120,10 +120,10 @@ public class Util {
 		
 		PrintWriter writer = new PrintWriter(dirpath + File.separator + "mobdropconfig.txt", "UTF-8");
 		
-		for (EntityType<?> entitytype : ForgeRegistries.ENTITIES) {
+		for (EntityType<?> entitytype : ForgeRegistries.ENTITY_TYPES) {
 			MobCategory classification = entitytype.getCategory();
 			if (!classification.equals(MobCategory.MISC) || specialmiscmobs.contains(entitytype)) {
-				ResourceLocation rl = ForgeRegistries.ENTITIES.getKey(entitytype);
+				ResourceLocation rl = ForgeRegistries.ENTITY_TYPES.getKey(entitytype);
 				
 				String itemdata = "";
 				if (mobdrops.containsKey(entitytype)) {

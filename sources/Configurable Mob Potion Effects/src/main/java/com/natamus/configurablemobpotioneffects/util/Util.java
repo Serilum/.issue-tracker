@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Mob Potion Effects.
- * Minecraft version: 1.19.0, mod version: 1.5.
+ * Minecraft version: 1.19.0, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Configurable Mob Potion Effects ever released, along with some other perks.
@@ -82,7 +82,7 @@ public class Util {
 				String potioneffects = linespl[1].trim();
 				potioneffects = potioneffects.substring(0, potioneffects.length() - 1).trim();
 				
-				EntityType<?> entitytype = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(entityrl));
+				EntityType<?> entitytype = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(entityrl));
 				if (entitytype == null) {
 					continue;
 				}
@@ -114,7 +114,7 @@ public class Util {
 				String potioneffects = linespl[1].trim();
 				potioneffects = potioneffects.substring(0, potioneffects.length() - 1).trim();
 
-				EntityType<?> entitytype = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(entityrl));
+				EntityType<?> entitytype = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(entityrl));
 				if (entitytype == null) {
 					continue;
 				}
@@ -141,8 +141,8 @@ public class Util {
 				sortedpotions.add(n);
 				phm.put(n, effect);
 			}
-			for (EntityType<?> entitytype : ForgeRegistries.ENTITIES) {
-				String n = ForgeRegistries.ENTITIES.getKey(entitytype).toString().toLowerCase();
+			for (EntityType<?> entitytype : ForgeRegistries.ENTITY_TYPES) {
+				String n = ForgeRegistries.ENTITY_TYPES.getKey(entitytype).toString().toLowerCase();
 				if (n.contains(":")) {
 					n = n.split(":")[1];
 				}
@@ -178,7 +178,7 @@ public class Util {
 				
 				MobCategory classification = entitytype.getCategory();
 				if (!classification.equals(MobCategory.MISC)) {
-					ResourceLocation rl = ForgeRegistries.ENTITIES.getKey(entitytype);
+					ResourceLocation rl = ForgeRegistries.ENTITY_TYPES.getKey(entitytype);
 					permanentwriter.println("'" + rl.toString() + "'" + " : '" + emptypermanenteffects + "'," + "\n");
 					
 					mobpermanent.put(entitytype, new CopyOnWriteArrayList<MobEffectInstance>());
@@ -195,7 +195,7 @@ public class Util {
 				
 				MobCategory classification = entitytype.getCategory();
 				if (!classification.equals(MobCategory.MISC)) {
-					ResourceLocation rl = ForgeRegistries.ENTITIES.getKey(entitytype);
+					ResourceLocation rl = ForgeRegistries.ENTITY_TYPES.getKey(entitytype);
 					damagewriter.println("'" + rl.toString() + "'" + " : '" + emptydamageeffects + "'," + "\n");
 					
 					mobdamage.put(entitytype, new CopyOnWriteArrayList<MobEffectInstance>());

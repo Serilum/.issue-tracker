@@ -3,6 +3,13 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.30: Added the correct requirement syntax.
+
+=========
+v4.29: (Forge 1.19 only) Updated Collective to Forge version 41.0.64+. Use collective-1.19.0-4.28.jar if you're on an older version.
+Updated backend code
+
+=========
 v4.28: Fixed bug in mod registering function.
 Updated backend code.
 

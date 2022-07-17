@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Edibles.
- * Minecraft version: 1.19.0, mod version: 2.5.
+ * Minecraft version: 1.19.0, mod version: 2.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Edibles ever released, along with some other perks.
@@ -50,13 +50,13 @@ public class EdibleEvent {
 	
 	@SubscribeEvent
 	public void onBlockClick(PlayerInteractEvent.RightClickBlock e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		if (e.getHand().equals(InteractionHand.OFF_HAND)) {
-			Player player = e.getPlayer();
+			Player player = e.getEntity();
 			Item mainhanditem = player.getMainHandItem().getItem();
 			if (edibles.contains(mainhanditem)) {
 				e.setCanceled(true);
@@ -68,12 +68,12 @@ public class EdibleEvent {
 	
 	@SubscribeEvent
 	public void onClickEmpty(PlayerInteractEvent.RightClickItem e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		String playername = player.getName().getString();
 		
 		ItemStack itemstack = e.getItemStack();

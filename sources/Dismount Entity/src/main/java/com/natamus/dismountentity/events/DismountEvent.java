@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Dismount Entity.
- * Minecraft version: 1.19.0, mod version: 1.6.
+ * Minecraft version: 1.19.0, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Dismount Entity ever released, along with some other perks.
@@ -28,12 +28,12 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class DismountEvent {
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent.EntityInteract e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide || !e.getHand().equals(InteractionHand.MAIN_HAND)) {
 			return;
 		}
 
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		if (!player.isShiftKeyDown()) {
 			return;
 		}

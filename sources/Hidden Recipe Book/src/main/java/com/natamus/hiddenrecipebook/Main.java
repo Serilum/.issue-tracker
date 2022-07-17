@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hidden Recipe Book.
- * Minecraft version: 1.19.0, mod version: 2.4.
+ * Minecraft version: 1.19.0, mod version: 2.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Hidden Recipe Book ever released, along with some other perks.
@@ -19,16 +19,15 @@ import com.natamus.hiddenrecipebook.config.ConfigHandler;
 import com.natamus.hiddenrecipebook.events.BookGUIEvent;
 import com.natamus.hiddenrecipebook.util.Reference;
 import com.natamus.hiddenrecipebook.util.Variables;
-
 import net.minecraft.client.KeyMapping;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ClientRegistry;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
@@ -49,16 +48,14 @@ public class Main {
     	
         modEventBus.addListener(this::loadComplete);
         modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHandler.spec);
-        
-        modEventBus.addListener(this::initClient);
-        modEventBus.addListener(this::loadComplete);
 
         RegisterMod.register(Reference.NAME, Reference.MOD_ID, Reference.VERSION, Reference.ACCEPTED_VERSIONS);
     }
     
-    private void initClient(final FMLClientSetupEvent event) {
+    @SubscribeEvent
+	public void registerKeyBinding(RegisterKeyMappingsEvent e) {
     	Variables.hotkey = new KeyMapping("Show recipe book in crafting grid toggle.", 258, "key.categories.misc");
-    	ClientRegistry.registerKeyBinding(Variables.hotkey);    	
+    	e.register(Variables.hotkey);    	
     }
 	
     private void loadComplete(final FMLLoadCompleteEvent event) {

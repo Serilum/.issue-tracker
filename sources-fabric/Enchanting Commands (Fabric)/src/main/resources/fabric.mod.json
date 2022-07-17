@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "enchantingcommands-fabric",
-  "version": "1.9",
+  "version": "2.1",
 
   "name": "Enchanting Commands (Fabric)",
   "description": "A minimalistic mod which allows for easy creation of enchanted items via commands with levels above the default limit. Usage: /ec",

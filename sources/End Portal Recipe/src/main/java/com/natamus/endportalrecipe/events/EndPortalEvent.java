@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of End Portal Recipe.
- * Minecraft version: 1.19.0, mod version: 2.6.
+ * Minecraft version: 1.19.0, mod version: 2.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of End Portal Recipe ever released, along with some other perks.
@@ -68,7 +68,7 @@ public class EndPortalEvent {
 	
 	@SubscribeEvent
 	public void onRightClick(PlayerInteractEvent.RightClickBlock e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -143,7 +143,7 @@ public class EndPortalEvent {
 	
 	@SubscribeEvent
 	public void onLeftClick(PlayerInteractEvent.LeftClickBlock e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -159,7 +159,7 @@ public class EndPortalEvent {
 			BlockPos cpos = e.getPos().immutable();
 			BlockState cbs = world.getBlockState(cpos);
 			if (cbs.getBlock().equals(Blocks.END_PORTAL_FRAME)) {
-				Player player = e.getPlayer();
+				Player player = e.getEntity();
 				ItemStack portalframe = new ItemStack(Blocks.END_PORTAL_FRAME, 1);
 				ItemStack endereye = new ItemStack(Items.ENDER_EYE, 1);
 				

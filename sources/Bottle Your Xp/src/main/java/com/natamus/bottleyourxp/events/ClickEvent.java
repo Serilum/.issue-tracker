@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bottle Your Xp.
- * Minecraft version: 1.19.0, mod version: 1.7.
+ * Minecraft version: 1.19.0, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Bottle Your Xp ever released, along with some other perks.
@@ -31,14 +31,14 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class ClickEvent {
 	@SubscribeEvent
 	public void onClickBottle(PlayerInteractEvent.RightClickItem e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
 		
 		ItemStack itemstack = e.getItemStack();
 		if (itemstack.getItem().equals(Items.GLASS_BOTTLE)) {
-			Player player = e.getPlayer();
+			Player player = e.getEntity();
 			if (player.isShiftKeyDown()) {
 				if (ExperienceFunctions.canConsumeXp(player, ConfigHandler.GENERAL.rawXpConsumedOnCreation.get())) {
 					if (ConfigHandler.GENERAL.damageOnCreation.get() && !player.isCreative()) {

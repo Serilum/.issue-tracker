@@ -3,6 +3,9 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v6.0: (Forge 1.19 only) Updated to Forge version 41.0.94+. Use the previous uploaded file if you're on an older version.
+
+=========
 v4.0: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
 
 =========

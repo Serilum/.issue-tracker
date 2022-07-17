@@ -3,6 +3,9 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v5.6: (Forge 1.19 only) Updated to Forge version 41.0.94+. Use the previous uploaded file if you're on an older version.
+
+=========
 v5.5: Updated mod to work with Minecraft's latest 1.19 release version.
 Added 1.19 heads: allay, cold frog, temperate frog, warm frog, tadpole, warden.
 

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Stack Refill.
- * Minecraft version: 1.19.0, mod version: 2.1.
+ * Minecraft version: 1.19.0, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Stack Refill ever released, along with some other perks.
@@ -37,12 +37,12 @@ import net.minecraft.world.item.PotionItem;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.TickEvent.WorldTickEvent;
+import net.minecraftforge.event.TickEvent.LevelTickEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -55,8 +55,8 @@ public class RefillEvent {
 	private static List<Pair<InteractionHand, Pair<Player, Item>>> checkitemused = new ArrayList<Pair<InteractionHand, Pair<Player, Item>>>();
 	
 	@SubscribeEvent
-	public void onWorldTick(WorldTickEvent e) {
-		Level world = e.world;
+	public void onWorldTick(LevelTickEvent e) {
+		Level world = e.level;
 		if (world.isClientSide || !e.phase.equals(Phase.START)) {
 			return;
 		}
@@ -137,7 +137,7 @@ public class RefillEvent {
 	
 	@SubscribeEvent
 	public void onBlockPlace(BlockEvent.EntityPlaceEvent e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}
@@ -243,7 +243,7 @@ public class RefillEvent {
 	
 	@SubscribeEvent
 	public void onItemBreak(PlayerDestroyItemEvent e) {
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
@@ -305,7 +305,7 @@ public class RefillEvent {
 			return;
 		}
 		
-		ItemStack tossed = e.getEntityItem().getItem();
+		ItemStack tossed = e.getEntity().getItem();
 		Item tosseditem = tossed.getItem();
 		
 		InteractionHand activehand = InteractionHand.MAIN_HAND;
@@ -353,12 +353,12 @@ public class RefillEvent {
 	
 	@SubscribeEvent
 	public void onItemBreak(PlayerInteractEvent.RightClickItem e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		if (player.isCreative()) {
 			return;
 		}
@@ -387,12 +387,12 @@ public class RefillEvent {
 	
 	@SubscribeEvent
 	public void onBlockRightClick(PlayerInteractEvent.RightClickBlock e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		if (player.isCreative()) {
 			return;
 		}

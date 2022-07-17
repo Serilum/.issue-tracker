@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Beacon Placement.
- * Minecraft version: 1.19.0, mod version: 1.5.
+ * Minecraft version: 1.19.0, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Better Beacon Placement ever released, along with some other perks.
@@ -27,7 +27,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -35,7 +35,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class BeaconEvent {
 	@SubscribeEvent
 	public void onBeaconClick(PlayerInteractEvent.RightClickBlock e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -51,7 +51,7 @@ public class BeaconEvent {
 		}
 		
 		boolean set = false;
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		while (hand.getCount() > 0) {
 			BlockPos nextpos = Util.getNextLocation(world, cpos);
 			if (nextpos == null) {
@@ -86,7 +86,7 @@ public class BeaconEvent {
 	
 	@SubscribeEvent
 	public void onBlockBreak(BlockEvent.BreakEvent e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}

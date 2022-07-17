@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Anvil Restoration.
- * Minecraft version: 1.19.0, mod version: 1.2.
+ * Minecraft version: 1.19.0, mod version: 1.4.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Anvil Restoration ever released, along with some other perks.
@@ -35,7 +35,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class AnvilInteractEvent {
 	@SubscribeEvent
 	public void onAnvilClick(PlayerInteractEvent.RightClickBlock e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -75,7 +75,7 @@ public class AnvilInteractEvent {
 		
 		e.setCanceled(true);
 		
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		if (!player.isCreative() && item.equals(Items.IRON_INGOT)) {
 			hand.shrink(1);
 		}

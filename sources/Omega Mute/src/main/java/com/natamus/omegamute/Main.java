@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Omega Mute.
- * Minecraft version: 1.19.0, mod version: 2.0.
+ * Minecraft version: 1.19.0, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Omega Mute ever released, along with some other perks.
@@ -23,7 +23,7 @@ import com.natamus.omegamute.util.Variables;
 
 import net.minecraft.client.KeyMapping;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ClientRegistry;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -47,8 +47,7 @@ public class Main {
         
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(this);
-        modEventBus.addListener(this::initClient);
-        modEventBus.addListener(this::loadComplete);
+                modEventBus.addListener(this::loadComplete);
 
         RegisterMod.register(Reference.NAME, Reference.MOD_ID, Reference.VERSION, Reference.ACCEPTED_VERSIONS);
     }
@@ -58,9 +57,10 @@ public class Main {
     	CommandOmega.register(e.getDispatcher());
     }
     
-    private void initClient(final FMLClientSetupEvent event) {
+    @SubscribeEvent
+	public void registerKeyBinding(RegisterKeyMappingsEvent e) {
     	Variables.hotkey = new KeyMapping("Reload Omega Mute config", 46, "key.categories.misc");
-    	ClientRegistry.registerKeyBinding(Variables.hotkey);    	
+    	e.register(Variables.hotkey);    	
     }
 	
     private void loadComplete(final FMLLoadCompleteEvent event) {

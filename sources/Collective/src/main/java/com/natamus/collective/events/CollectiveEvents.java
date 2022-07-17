@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.0, mod version: 4.28.
+ * Minecraft version: 1.19.0, mod version: 4.30.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -34,10 +34,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.TickEvent.WorldTickEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.TickEvent.LevelTickEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -52,8 +52,8 @@ public class CollectiveEvents {
 	public static HashMap<ServerLevel, HashMap<Entity, Entity>> entitiesToRide = new HashMap<ServerLevel, HashMap<Entity, Entity>>();
 	
 	@SubscribeEvent
-	public void onWorldLoad(WorldEvent.Load e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+	public void onWorldLoad(LevelEvent.Load e) {
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}
@@ -64,8 +64,8 @@ public class CollectiveEvents {
 	}
 	
 	@SubscribeEvent
-	public void onWorldTick(WorldTickEvent e) {
-		Level world = e.world;
+	public void onWorldTick(LevelTickEvent e) {
+		Level world = e.level;
 		if (world.isClientSide || !e.phase.equals(Phase.END)) {
 			return;
 		}
@@ -90,7 +90,7 @@ public class CollectiveEvents {
 	
 	@SubscribeEvent
 	public void onMobSpawnerSpawn(LivingSpawnEvent.SpecialSpawn e) {
-		Level Level = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level Level = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (Level == null) {
 			return;
 		}
@@ -103,8 +103,8 @@ public class CollectiveEvents {
 	}
 	
 	@SubscribeEvent
-	public void onEntityJoinLevel(EntityJoinWorldEvent e) {
-		Level world = e.getWorld();
+	public void onEntityJoinLevel(EntityJoinLevelEvent e) {
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}

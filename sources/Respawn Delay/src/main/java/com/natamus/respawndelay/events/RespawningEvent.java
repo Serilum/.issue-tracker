@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Respawn Delay.
- * Minecraft version: 1.19.0, mod version: 2.6.
+ * Minecraft version: 1.19.0, mod version: 2.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Respawn Delay ever released, along with some other perks.
@@ -173,7 +173,7 @@ public class RespawningEvent {
 	
 	@SubscribeEvent
 	public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent e) {
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
@@ -190,7 +190,7 @@ public class RespawningEvent {
 	
 	@SubscribeEvent
 	public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent e) {
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		Level world = player.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;

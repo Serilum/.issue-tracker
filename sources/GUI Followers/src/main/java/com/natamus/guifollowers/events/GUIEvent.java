@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.19.0, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Followers ever released, along with some other perks.
@@ -28,8 +28,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -47,12 +46,7 @@ public class GUIEvent extends Gui {
 	}
 	
 	@SubscribeEvent(priority = EventPriority.NORMAL)
-	public void renderOverlay(RenderGameOverlayEvent.Pre e){
-		ElementType type = e.getType();
-		if (type != ElementType.TEXT) {
-			return;
-		}
-
+	public void renderOverlay(RenderGuiOverlayEvent.Pre e){
 		Font fontRender = mc.font;
 		Window scaled = mc.getWindow();
 		PoseStack posestack = e.getPoseStack();

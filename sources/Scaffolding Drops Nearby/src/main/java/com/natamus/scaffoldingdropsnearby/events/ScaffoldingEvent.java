@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Scaffolding Drops Nearby.
- * Minecraft version: 1.19.0, mod version: 1.6.
+ * Minecraft version: 1.19.0, mod version: 1.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Scaffolding Drops Nearby ever released, along with some other perks.
@@ -29,8 +29,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ScaffoldingBlockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -40,8 +40,8 @@ public class ScaffoldingEvent {
 	private static HashMap<BlockPos, Date> lastaction = new HashMap<BlockPos, Date>();
 	
 	@SubscribeEvent
-	public void onScaffoldingItem(EntityJoinWorldEvent e) {
-		Level world = e.getWorld();
+	public void onScaffoldingItem(EntityJoinLevelEvent e) {
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -81,7 +81,7 @@ public class ScaffoldingEvent {
 	
 	@SubscribeEvent
 	public void onBlockBreak(BlockEvent.BreakEvent e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}

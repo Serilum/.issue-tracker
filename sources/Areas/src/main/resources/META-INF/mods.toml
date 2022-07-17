@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Area
 
 [[mods]]
 modId="areas"
-version="2.9"
+version="3.0"
 displayName="Areas"
 displayURL="https://curseforge.com/minecraft/mc-mods/areas"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adam E, Aternos.org, Cherriesaurus, Ed Blake, Kreezcraft.com, limpjellyfish, Mar
 [[dependencies.areas]]
     modId="collective"
     mandatory=true
-    versionRange="[4.25,)"
+    versionRange="[4.30,)"
     ordering="NONE"
     side="BOTH"

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Conduit Placement.
- * Minecraft version: 1.19.0, mod version: 1.4.
+ * Minecraft version: 1.19.0, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Better Conduit Placement ever released, along with some other perks.
@@ -29,7 +29,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -37,7 +37,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class ConduitEvent {
 	@SubscribeEvent
 	public void onWaterClick(PlayerInteractEvent.RightClickItem e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -47,7 +47,7 @@ public class ConduitEvent {
 			return;
 		}
 		
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		Vec3 look = player.getLookAngle();
 		float distance = 2.0F;
 		double dx = player.getX() + (look.x * distance);
@@ -69,7 +69,7 @@ public class ConduitEvent {
 	
 	@SubscribeEvent
 	public void onConduitClick(PlayerInteractEvent.RightClickBlock e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -85,7 +85,7 @@ public class ConduitEvent {
 		}
 		
 		boolean set = false;
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		while (hand.getCount() > 0) {
 			BlockPos nextpos = Util.getNextLocation(world, cpos);
 			if (nextpos == null) {
@@ -119,7 +119,7 @@ public class ConduitEvent {
 	
 	@SubscribeEvent
 	public void onBlockBreak(BlockEvent.BreakEvent e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}

@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Fire
 
 [[mods]]
 modId="firespreadtweaks"
-version="1.3"
+version="1.5"
 displayName="Fire Spread Tweaks"
 displayURL="https://curseforge.com/minecraft/mc-mods/fire-spread-tweaks"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adam E, Aternos.org, Cherriesaurus, Ed Blake, Kreezcraft.com, limpjellyfish, Mar
 [[dependencies.firespreadtweaks]]
     modId="collective"
     mandatory=true
-    versionRange="[4.25,)"
+    versionRange="[4.30,)"
     ordering="NONE"
     side="BOTH"

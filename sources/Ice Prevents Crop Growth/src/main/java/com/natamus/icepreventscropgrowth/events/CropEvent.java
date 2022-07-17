@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Ice Prevents Crop Growth.
- * Minecraft version: 1.19.0, mod version: 1.5.
+ * Minecraft version: 1.19.0, mod version: 1.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Ice Prevents Crop Growth ever released, along with some other perks.
@@ -25,7 +25,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.world.BlockEvent.CropGrowEvent;
+import net.minecraftforge.event.level.BlockEvent.CropGrowEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -36,7 +36,7 @@ public class CropEvent {
 	
 	@SubscribeEvent
 	public void mobItemDrop(CropGrowEvent.Pre e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}

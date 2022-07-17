@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hidden Recipe Book.
- * Minecraft version: 1.19.0, mod version: 2.4.
+ * Minecraft version: 1.19.0, mod version: 2.5.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Hidden Recipe Book ever released, along with some other perks.
@@ -42,13 +42,13 @@ public class BookGUIEvent {
     private static Minecraft mc = null;
     private static Date lastpress = null;
     private static Field imageButton_resourceLocation = ObfuscationReflectionHelper.findField(ImageButton.class, "f_94223_"); // resourceLocation
-    private static ScreenEvent.InitScreenEvent.Post lastguipost = null;
+    private static ScreenEvent.Init.Post lastguipost = null;
     
 	private static HashMap<String, ImageButton> recipe_buttons = new HashMap<String, ImageButton>();
 	private static boolean showbook = !ConfigHandler.GENERAL.shouldHideRecipeBook.get();
 	
     @SubscribeEvent
-    public static void onGUIScreen(ScreenEvent.InitScreenEvent.Post e) {
+    public static void onGUIScreen(ScreenEvent.Init.Post e) {
     	String guiname = e.getScreen().getTitle().getString();
     	if (guiname.equalsIgnoreCase("crafting")) {
     		lastguipost = e;
@@ -94,7 +94,7 @@ public class BookGUIEvent {
     
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
-	public void onKey(ScreenEvent.KeyboardKeyPressedEvent e) {
+	public void onKey(ScreenEvent.KeyPressed e) {
 		if (!ConfigHandler.GENERAL.allowRecipeBookToggleHotkey.get()) {
 			return;
 		}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Replanting Crops.
- * Minecraft version: 1.19.0, mod version: 2.6.
+ * Minecraft version: 1.19.0, mod version: 2.8.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Replanting Crops ever released, along with some other perks.
@@ -35,8 +35,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CocoaBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -47,7 +47,7 @@ public class CropEvent {
 	
 	@SubscribeEvent
 	public void onHarvest(BlockEvent.BreakEvent e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;
 		}
@@ -105,8 +105,8 @@ public class CropEvent {
 	}
 	
 	@SubscribeEvent
-	public void onHarvest(EntityJoinWorldEvent e) {
-		Level world = e.getWorld();
+	public void onHarvest(EntityJoinLevelEvent e) {
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}

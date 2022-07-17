@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Camp
 
 [[mods]]
 modId="campfirespawnandtweaks"
-version="1.6"
+version="1.8"
 displayName="Campfire Spawn and Tweaks"
 displayURL="https://curseforge.com/minecraft/mc-mods/campfire-spawn-and-tweaks"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adam E, Aternos.org, Cherriesaurus, Ed Blake, Kreezcraft.com, limpjellyfish, Mar
 [[dependencies.campfirespawnandtweaks]]
     modId="collective"
     mandatory=true
-    versionRange="[4.25,)"
+    versionRange="[4.30,)"
     ordering="NONE"
     side="BOTH"

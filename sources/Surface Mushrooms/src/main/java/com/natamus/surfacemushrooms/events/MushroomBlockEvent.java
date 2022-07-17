@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Surface Mushrooms.
- * Minecraft version: 1.19.0, mod version: 1.4.
+ * Minecraft version: 1.19.0, mod version: 1.6.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Surface Mushrooms ever released, along with some other perks.
@@ -36,7 +36,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MushroomBlockEvent {
     @SubscribeEvent
     public void onMushroomPlace(PlayerInteractEvent.RightClickBlock e) {
-        Level world = e.getWorld();
+        Level world = e.getLevel();
         if (world.isClientSide) {
             return;
         }
@@ -60,7 +60,7 @@ public class MushroomBlockEvent {
             BlockState placestate = block.defaultBlockState();
             world.setBlock(above, placestate, 3);
 
-            Player player = e.getPlayer();
+            Player player = e.getEntity();
             player.swing(e.getHand());
 
             if (!player.isCreative()) {

@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Conf
 
 [[mods]]
 modId="configurabledespawntimer"
-version="2.5"
+version="2.6"
 displayName="Configurable Despawn Timer"
 displayURL="https://curseforge.com/minecraft/mc-mods/configurable-despawn-timer"
 authors="Rick South"
@@ -17,6 +17,6 @@ Adam E, Aternos.org, Cherriesaurus, Ed Blake, Kreezcraft.com, limpjellyfish, Mar
 [[dependencies.configurabledespawntimer]]
     modId="collective"
     mandatory=true
-    versionRange="[4.25,)"
+    versionRange="[4.30,)"
     ordering="NONE"
     side="BOTH"

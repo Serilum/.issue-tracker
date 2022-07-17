@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.19.0, mod version: 1.9.
+ * Minecraft version: 1.19.0, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of GUI Followers ever released, along with some other perks.
@@ -105,12 +105,12 @@ public class FollowerEvent {
 	}
 
 	@SubscribeEvent
-	public void onKey(InputEvent.KeyInputEvent e) {
+	public void onKey(InputEvent.Key e) {
 		if (e.getAction() != 1) {
 			return;
 		}
 
-		if (e.getKey() == Variables.clearlist_hotkey.getKey().getValue()) {
+		if (Variables.clearlist_hotkey != null && e.getKey() == Variables.clearlist_hotkey.getKey().getValue()) {
 			Variables.activefollowers = new ArrayList<Entity>();
 		}
 	}

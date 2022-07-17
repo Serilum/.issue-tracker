@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Breedable Killer Rabbit.
- * Minecraft version: 1.19.0, mod version: 1.7.
+ * Minecraft version: 1.19.0, mod version: 1.9.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Breedable Killer Rabbit ever released, along with some other perks.
@@ -27,7 +27,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -67,7 +67,7 @@ public class EntityEvent {
 	
 	@SubscribeEvent
 	public void onEntityInteract(PlayerInteractEvent.EntityInteract e) {
-		Level world = e.getWorld();
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}
@@ -77,7 +77,7 @@ public class EntityEvent {
 			return;
 		}
 		
-		Player player = e.getPlayer();
+		Player player = e.getEntity();
 		ItemStack itemstack = e.getItemStack();
 		
 		if (!itemstack.getItem().equals(Items.GOLDEN_CARROT)) {
@@ -120,8 +120,8 @@ public class EntityEvent {
 	}
 	
 	@SubscribeEvent
-	public void mobSpawn(EntityJoinWorldEvent e) {
-		Level world = e.getWorld();
+	public void mobSpawn(EntityJoinLevelEvent e) {
+		Level world = e.getLevel();
 		if (world.isClientSide) {
 			return;
 		}

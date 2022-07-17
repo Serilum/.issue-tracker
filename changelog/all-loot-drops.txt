@@ -3,6 +3,9 @@ All Loot Drops
 https://www.curseforge.com/minecraft/mc-mods/all-loot-drops
 
 =========
+v2.5: (Forge 1.19 only) Updated to Forge version 41.0.94+. Use the previous uploaded file if you're on an older version.
+
+=========
 v2.4: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========

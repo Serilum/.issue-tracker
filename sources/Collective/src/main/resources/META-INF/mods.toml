@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Library%3A%
 
 [[mods]]
 modId="collective"
-version="4.28"
+version="4.30"
 displayName="Collective"
 displayURL="https://curseforge.com/minecraft/mc-mods/collective"
 authors="Rick South"
@@ -14,7 +14,7 @@ description="Collective is a shared library with common code for all of Serilum'
 [[dependencies.collective]]
     modId="forge"
     mandatory=true
-    versionRange="[41,)"
+    versionRange="[41.0.94,)"
     ordering="NONE"
     side="BOTH"
 

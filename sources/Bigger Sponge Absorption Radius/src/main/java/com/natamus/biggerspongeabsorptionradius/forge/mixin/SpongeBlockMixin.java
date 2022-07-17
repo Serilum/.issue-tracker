@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bigger Sponge Absorption Radius.
- * Minecraft version: 1.19.0, mod version: 2.0.
+ * Minecraft version: 1.19.0, mod version: 2.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Bigger Sponge Absorption Radius ever released, along with some other perks.
@@ -32,6 +32,8 @@ import org.spongepowered.asm.mixin.Overwrite;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 @Mixin(value = SpongeBlock.class, priority = 999)
 public class SpongeBlockMixin extends Block {
