@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Beautified Chat Server.
- * Minecraft version: 1.19.0, mod version: 1.3.
+ * Minecraft version: 1.19.1, mod version: 1.3.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Beautified Chat Server ever released, along with some other perks.
@@ -33,7 +33,8 @@ public class BeautifulChatEvent {
 		String timestamp = new SimpleDateFormat(ConfigHandler.GENERAL.timestampFormat.get()).format(new Date());
 		
 		String user = e.getUsername();
-		String message = e.getMessage();
+		Component component = e.getMessage();
+		String message = component.getString();
 		
 		MutableComponent output = Component.literal("");
 		String raw_outputstring = ConfigHandler.GENERAL.chatMessageFormat.get();
@@ -56,6 +57,6 @@ public class BeautifulChatEvent {
 			output.append(wordcomponent);
 		}
 
-		e.setComponent(output);
+		e.setMessage(output);
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Set World Spawn Point.
- * Minecraft version: 1.19.0, mod version: 2.1.
+ * Minecraft version: 1.19.1, mod version: 2.1.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Set World Spawn Point ever released, along with some other perks.
@@ -18,5 +18,5 @@ public class Reference {
 	public static final String MOD_ID = "setworldspawnpoint";
 	public static final String NAME = "Set World Spawn Point";
 	public static final String VERSION = "2.1";
-	public static final String ACCEPTED_VERSIONS = "[1.19.0]";
+	public static final String ACCEPTED_VERSIONS = "[1.19.1]";
 }

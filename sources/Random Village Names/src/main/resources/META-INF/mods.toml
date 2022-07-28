@@ -1,11 +1,11 @@
 modLoader="javafml"
-loaderVersion="[41,)"
+loaderVersion="[42,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Random%20Village%20Names"
 
 [[mods]]
 modId="randomvillagenames"
-version="1.8"
+version="1.9"
 displayName="Random Village Names"
 displayURL="https://curseforge.com/minecraft/mc-mods/random-village-names"
 authors="Rick South"
