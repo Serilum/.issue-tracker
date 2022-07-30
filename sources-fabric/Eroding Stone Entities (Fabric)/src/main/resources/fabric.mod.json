@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "erodingstoneentities-fabric",
-  "version": "2.6",
+  "version": "2.8",
 
   "name": "Eroding Stone Entities (Fabric)",
   "description": "When stone-type entities are left in flowing water for some time they turn into sand.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=4.36"
   }
 }

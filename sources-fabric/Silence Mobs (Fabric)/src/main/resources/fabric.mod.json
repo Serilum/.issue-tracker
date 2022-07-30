@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "silencemobs-fabric",
-  "version": "2.2",
+  "version": "2.4",
 
   "name": "Silence Mobs (Fabric)",
   "description": "Adds the functionality to silence a mob with The Silence Stick, which can be collected by transforming a stick via the /silencestick command.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=> 1.44"
   }
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "anvilrestoration-fabric",
-  "version": "1.3",
+  "version": "1.5",
 
   "name": "Anvil Restoration (Fabric)",
   "description": "Adds the ability to repair placed anvils with iron ingots and destroy them with obsidian.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=4.36"
   }
 }

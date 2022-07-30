@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "collective-fabric",
-  "version": "4.27",
+  "version": "4.36",
 
   "name": "Collective (Fabric)",
   "description": "Collective Fabric is a shared library with common code for all of Serilum's mods.",
@@ -28,7 +28,7 @@
   "depends": {
     "fabricloader": ">=0.13.3",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17"
   }
 }

@@ -3,6 +3,9 @@ Villager Death Messages
 https://www.curseforge.com/minecraft/mc-mods/villager-death-messages
 
 =========
+v2.5: (Fabric only) Changed the version syntax of fabric mods. Due the subversions (e.g. 1.18.1 -> 1.18.2) increasingly being different, it's no longer reliable to have the same file for all subversions of Minecraft. From now on, there will be a new release for each. This will hopefully prevent confusion and make the whole updating process a lot more reliable for me and you, the user.
+
+=========
 v2.4: (Forge 1.19 only) Updated to Forge version 41.0.94+. Use the previous uploaded file if you're on an older version.
 
 =========

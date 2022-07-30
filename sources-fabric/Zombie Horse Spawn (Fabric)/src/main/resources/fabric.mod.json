@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "zombiehorsespawn-fabric",
-  "version": "3.1",
+  "version": "3.3",
 
   "name": "Zombie Horse Spawn (Fabric)",
   "description": "Allows the zombie horse to spawn with a zombie riding it and other tweaks.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=> 1.44"
   }
 }

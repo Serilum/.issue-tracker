@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "guiclock-fabric",
-  "version": "3.2",
+  "version": "3.4",
 
   "name": "GUI Clock (Fabric)",
   "description": "Shows the time and days played in the GUI on the screen with a clock in the inventory.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=4.36"
   }
 }

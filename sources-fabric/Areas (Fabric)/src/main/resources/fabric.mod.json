@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "areas-fabric",
-  "version": "2.8",
+  "version": "3.1",
 
   "name": "Areas (Fabric)",
   "description": "Create custom named areas/towns with a radius using signs, which sends join and leave messages.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.12.5",
     "fabric": "*",
-    "minecraft": "1.18.x",
+    "minecraft": "1.18.2",
     "java": ">=17",
-    "collective-fabric": ">=3.9"
+    "collective-fabric": ">=4.36"
   }
 }

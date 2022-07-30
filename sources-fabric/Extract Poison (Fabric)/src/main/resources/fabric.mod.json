@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "extractpoison-fabric",
-  "version": "1.8",
+  "version": "2.0",
 
   "name": "Extract Poison (Fabric)",
   "description": "Allows the extraction of poison from cave spiders, pufferfish and bees with an empty bottle.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=4.36"
   }
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "alwaysawitherskull-fabric",
-  "version": "1.6",
+  "version": "1.8",
 
   "name": "Always a Wither Skull (Fabric)",
   "description": "A drag-and-drop mod that makes wither skeletons always drop their skull on death.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=4.36"
   }
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "inventorytotem-fabric",
-  "version": "1.7",
+  "version": "1.9",
 
   "name": "Inventory Totem (Fabric)",
   "description": "Makes the totem of undying effect work when existing in the player's inventory.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=4.36"
   }
 }

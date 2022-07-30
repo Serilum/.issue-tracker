@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.x, mod version: 4.27.
+ * Minecraft version: 1.19.1, mod version: 4.36.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,25 +14,12 @@
 
 package com.natamus.collective_fabric.fabric.mixin;
 
-import com.mojang.datafixers.util.Pair;
-import com.natamus.collective_fabric.fabric.callbacks.CollectiveChatEvents;
-import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.PlayerChatMessage;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.network.FilteredText;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = ServerGamePacketListenerImpl.class, priority = 1001)
 public abstract class ServerGamePacketListenerImplMixin {
-	@Shadow private @Final MinecraftServer server;
+	/*@Shadow private @Final MinecraftServer server;
 	@Shadow public ServerPlayer player;
 	@Shadow private int chatSpamTickCount;
 	@Shadow public void disconnect(Component component) { }
@@ -51,5 +38,5 @@ public abstract class ServerGamePacketListenerImplMixin {
 			}
 			ci.cancel();
 		}
-	}
+	}*/
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "tntbreaksbedrock-fabric",
-  "version": "2.0",
+  "version": "2.2",
 
   "name": "TNT Breaks Bedrock (Fabric)",
   "description": "Allows TNT to break bedrock. Now you've finally got easy access to the nether roof.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=> 1.44"
   }
 }

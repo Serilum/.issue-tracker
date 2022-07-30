@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "conduitspreventdrowned-fabric",
-  "version": "1.6",
+  "version": "1.8",
 
   "name": "Conduits Prevent Drowned (Fabric)",
   "description": "Disables drowned zombie spawns around the player when the conduit effect is active.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=4.36"
   }
 }

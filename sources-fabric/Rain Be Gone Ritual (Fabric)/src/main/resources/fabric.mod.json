@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "rainbegoneritual-fabric",
-  "version": "1.9",
+  "version": "2.1",
 
   "name": "Rain Be Gone Ritual (Fabric)",
   "description": "Adds the ability to stop the rain with a multi-block structure ritual.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=> 1.44"
   }
 }

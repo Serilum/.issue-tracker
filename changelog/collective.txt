@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.30-4.36: (Fabric only) Changed the version syntax of fabric mods. Due the subversions (e.g. 1.19 -> 1.19.1) increasingly being different, it's no longer reliable to have the same mod version for all subversions of Minecraft. From now on, there will be a new release for each. This will hopefully prevent confusion and make the whole updating process a lot more reliable for me and you, the user.
+(Fabric 1.19.1 only) Released Collective (Fabric) for Minecraft version 1.19.1.
+
+=========
 v4.30: Added the correct requirement syntax.
 
 =========

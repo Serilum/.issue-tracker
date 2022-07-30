@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "fallthroughslime-fabric",
-  "version": "1.6",
+  "version": "1.8",
 
   "name": "Fall Through Slime (Fabric)",
   "description": "Slime blocks no longer support your weight when standing still, and you'll slowly fall through.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=4.36"
   }
 }

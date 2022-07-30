@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "configurablefurnaceburntime-fabric",
-  "version": "1.2",
+  "version": "1.4",
 
   "name": "Configurable Furnace Burn Time (Fabric)",
   "description": "Allows users to change the fuel burn time in a furnace globally via a config.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=4.36"
   }
 }

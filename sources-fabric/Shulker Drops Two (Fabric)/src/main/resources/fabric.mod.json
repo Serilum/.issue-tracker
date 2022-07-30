@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "shulkerdropstwo-fabric",
-  "version": "1.9",
+  "version": "2.1",
 
   "name": "Shulker Drops Two (Fabric)",
   "description": "A minimalistic configurable mod that allows shulkers to drop two or more shells and ignore their default drop chance.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=> 1.44"
   }
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "naturallychargedcreepers-fabric",
-  "version": "1.9",
+  "version": "2.1",
 
   "name": "Naturally Charged Creepers (Fabric)",
   "description": "A minimalistic mod that allows creepers to spawn charged, both naturally and from a spawn egg.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=4.36"
   }
 }

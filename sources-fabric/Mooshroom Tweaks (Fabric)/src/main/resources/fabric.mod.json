@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "mooshroomtweaks-fabric",
-  "version": "1.8",
+  "version": "2.0",
 
   "name": "Mooshroom Tweaks (Fabric)",
   "description": "A minimalistic mod that tweaks the spawning behaviour of mooshrooms, allowing both red and brown to spawn naturally.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=4.36"
   }
 }

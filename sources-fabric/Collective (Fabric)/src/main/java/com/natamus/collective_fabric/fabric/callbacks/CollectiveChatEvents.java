@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.x, mod version: 4.27.
+ * Minecraft version: 1.19.1, mod version: 4.36.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Collective ever released, along with some other perks.
@@ -14,15 +14,13 @@
 
 package com.natamus.collective_fabric.fabric.callbacks;
 
-import java.util.UUID;
-
 import com.mojang.datafixers.util.Pair;
-
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+
+import java.util.UUID;
 
 public class CollectiveChatEvents {
 	private CollectiveChatEvents() { }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "healingcampfire-fabric",
-  "version": "3.5",
+  "version": "3.7",
 
   "name": "Healing Campfire (Fabric)",
   "description": "A minimalistic mod which creates an area around the campfire where players and passive mobs receive the regeneration effect in a configurable radius.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=4.36"
   }
 }

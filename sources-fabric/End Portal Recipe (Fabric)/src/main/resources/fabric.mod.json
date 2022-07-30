@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "endportalrecipe-fabric",
-  "version": "2.7",
+  "version": "2.9",
 
   "name": "End Portal Recipe (Fabric)",
   "description": "Makes the end portal craftable and available in survival plus other tweaks.",
@@ -20,8 +20,8 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=4.27"
+    "collective-fabric": ">=4.36"
   }
 }

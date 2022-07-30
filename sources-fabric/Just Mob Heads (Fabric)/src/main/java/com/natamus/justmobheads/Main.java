@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.19.x, mod version: 5.5.
+ * Minecraft version: 1.19.1, mod version: 5.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Just Mob Heads ever released, along with some other perks.
@@ -21,9 +21,8 @@ import com.natamus.justmobheads.config.ConfigHandler;
 import com.natamus.justmobheads.events.HeadDropEvent;
 import com.natamus.justmobheads.util.HeadData;
 import com.natamus.justmobheads.util.Reference;
-
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -49,7 +48,7 @@ public class Main implements ModInitializer {
 			return HeadDropEvent.onPlayerHeadBreak(world, player, pos, state, entity);
 		});
 		
-		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
 			CommandJmh.register(dispatcher);
 		});
 	}
