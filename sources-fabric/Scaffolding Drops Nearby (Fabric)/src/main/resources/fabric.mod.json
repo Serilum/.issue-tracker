@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "scaffoldingdropsnearby-fabric",
-  "version": "1.9",
+  "version": "2.0",
 
   "name": "Scaffolding Drops Nearby (Fabric)",
   "description": "When breaking a scaffolding block, all chained blocks will drop at the first block's position.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=> 1.44"
+    "collective-fabric": ">=4.36"
   }
 }

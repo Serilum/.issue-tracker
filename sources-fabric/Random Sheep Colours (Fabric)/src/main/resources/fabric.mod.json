@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "randomsheepcolours-fabric",
-  "version": "2.0",
+  "version": "2.1",
 
   "name": "Random Sheep Colours (Fabric)",
   "description": "Gives new sheep spawns a random wool colour based on a configurable list.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=> 1.44"
+    "collective-fabric": ">=4.36"
   }
 }

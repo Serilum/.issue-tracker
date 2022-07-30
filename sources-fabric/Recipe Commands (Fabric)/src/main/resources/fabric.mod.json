@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "recipecommands-fabric",
-  "version": "1.8",
+  "version": "1.9",
 
   "name": "Recipe Commands (Fabric)",
   "description": "Adds the ability to receive the pattern and ingredients of any recipe via chat by a command.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=> 1.44"
+    "collective-fabric": ">=4.36"
   }
 }

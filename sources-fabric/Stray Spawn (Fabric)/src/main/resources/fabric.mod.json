@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "strayspawn-fabric",
-  "version": "1.9",
+  "version": "2.0",
 
   "name": "Stray Spawn (Fabric)",
   "description": "Allows a chance for strays to spawn naturally everywhere instead of a skeleton.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=> 1.44"
+    "collective-fabric": ">=4.36"
   }
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "treeharvester-fabric",
-  "version": "5.4",
+  "version": "5.5",
 
   "name": "Tree Harvester (Fabric)",
   "description": "Harvest (nether) trees and giant mushrooms instantly with fast leaf decay and sapling replacement.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=> 1.44"
+    "collective-fabric": ">=4.36"
   }
 }

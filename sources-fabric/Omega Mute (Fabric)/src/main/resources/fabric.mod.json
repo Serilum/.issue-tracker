@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "omegamute-fabric",
-  "version": "2.4",
+  "version": "2.5",
 
   "name": "Omega Mute (Fabric)",
   "description": "[Client] The last mod you'll ever need for culling and silencing Minecraft sounds while in-game or via a file.",

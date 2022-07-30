@@ -3,6 +3,9 @@ Stack Refill
 https://curseforge.com/minecraft/mc-mods/stack-refill
 
 =========
+v2.5: (Fabric 1.19.1 only) Fixed incorrect Collective (Fabric) dependency reference.
+
+=========
 v2.4: (Fabric only) Changed the version syntax of fabric mods. Due the subversions (e.g. 1.18.1 -> 1.18.2) increasingly being different, it's no longer reliable to have the same file for all subversions of Minecraft. From now on, there will be a new release for each. This will hopefully prevent confusion and make the whole updating process a lot more reliable for me and you, the user.
 
 =========

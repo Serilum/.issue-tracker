@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "worldborder-fabric",
-  "version": "2.9",
+  "version": "3.0",
 
   "name": "World Border (Fabric)",
   "description": "Allows the creation of a configurable world border for each dimension, limiting the world size.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": "1.19.1",
     "java": ">=17",
-    "collective-fabric": ">=> 1.44"
+    "collective-fabric": ">=4.36"
   }
 }
