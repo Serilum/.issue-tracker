@@ -1,16 +1,18 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.natamus.realisticbees.forge.mixin",
+  "package": "com.natamus.transcendingtrident.forge.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "serilumforgemod.refmap.json",
+  "refmap": "transcendingtrident.refmap.json",
   "mixins": [
-    "BeeEntityMixin",
-    "BeehiveBlockEntityMixin"
+	"EntityMixin",
+	"TridentItemMixin"
   ],
   "client": [
+  
   ],
   "server": [
+
   ],
   "injectors": {
     "defaultRequire": 1

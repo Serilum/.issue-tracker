@@ -1,18 +1,16 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.natamus.cryingportals.forge.mixin",
+  "package": "com.natamus.realisticbees.forge.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "serilumforgemod.refmap.json",
+  "refmap": "realisticbees.refmap.json",
   "mixins": [
-  	"BaseFireBlockMixin",
-  	"PortalShapeMixin"
+    "BeeEntityMixin",
+    "BeehiveBlockEntityMixin"
   ],
   "client": [
-  
   ],
   "server": [
-
   ],
   "injectors": {
     "defaultRequire": 1

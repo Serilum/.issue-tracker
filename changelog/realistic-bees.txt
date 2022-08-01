@@ -3,6 +3,10 @@ Realistic Bees
 https://www.curseforge.com/minecraft/mc-mods/realistic-bees
 
 =========
+v2.7: (Forge only) Changed the mixin file name to be unique, fixing overlap with other mods.
+If the bee hive cap config wasn't working before, this will most likely fix it.
+
+=========
 v2.6: (Forge 1.19 only) Updated to Forge version 41.0.94+. Use the previous uploaded file if you're on an older version.
 
 =========

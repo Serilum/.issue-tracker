@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Realistic Bees.
- * Minecraft version: 1.19.1, mod version: 2.6.
+ * Minecraft version: 1.19.1, mod version: 2.7.
  *
  * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
  * You'll be added to a private repository which contains all versions' source of Realistic Bees ever released, along with some other perks.
@@ -14,6 +14,7 @@
 
 package com.natamus.realisticbees.events;
 
+import com.natamus.collective.functions.ConfigFunctions;
 import com.natamus.realisticbees.config.ConfigHandler;
 import com.natamus.realisticbees.renderer.CustomBeeRenderer;
 import com.natamus.realisticbees.util.Reference;
@@ -28,8 +29,10 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 public class ClientEvent {
 	@SubscribeEvent
     public static void loadComplete(EntityRenderersEvent.RegisterRenderers e) {
-		if (ConfigHandler.GENERAL.beeSizeModifier.get() == 1.0) {
-			return;
+		if (ConfigFunctions.getDictValues(Reference.MOD_ID).size() > 0 && ConfigFunctions.getDictValues(Reference.MOD_ID).get("beeSizeModifier") != null) {
+			if (ConfigFunctions.getDictValues(Reference.MOD_ID).get("beeSizeModifier").equals("1.0")) {
+				return;
+			}
 		}
 		
 		e.registerEntityRenderer(EntityType.BEE, manager -> new CustomBeeRenderer(manager));

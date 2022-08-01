@@ -1,12 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.natamus.transcendingtrident.forge.mixin",
+  "package": "com.natamus.cryingportals.forge.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "serilumforgemod.refmap.json",
+  "refmap": "cryingportals.refmap.json",
   "mixins": [
-	"EntityMixin",
-	"TridentItemMixin"
+  	"BaseFireBlockMixin",
+  	"PortalShapeMixin"
   ],
   "client": [
   

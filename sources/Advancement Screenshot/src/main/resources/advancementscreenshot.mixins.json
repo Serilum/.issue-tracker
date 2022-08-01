@@ -1,19 +1,19 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.natamus.beautifiedchatserver.forge.mixin",
+  "package": "com.natamus.advancementscreenshot.forge.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "serilumforgemod.refmap.json",
+  "refmap": "advancementscreenshot.refmap.json",
   "mixins": [
 
   ],
   "client": [
-  
+  	"AdvancementToastMixin"
   ],
   "server": [
 
   ],
   "injectors": {
-    "defaultRequire": 0
+    "defaultRequire": 1
   }
 }

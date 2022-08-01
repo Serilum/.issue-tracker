@@ -1,17 +1,15 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.natamus.alternativeworldsavelocation.forge.mixin",
+  "package": "com.natamus.biggerspongeabsorptionradius.forge.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "serilumforgemod.refmap.json",
+  "refmap": "biggerspongeabsorptionradius.refmap.json",
   "mixins": [
-
+    "SpongeBlockMixin"
   ],
   "client": [
-    "MinecraftMixin"
   ],
   "server": [
-
   ],
   "injectors": {
     "defaultRequire": 1
