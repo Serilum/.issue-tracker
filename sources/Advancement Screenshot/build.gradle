@@ -84,7 +84,7 @@ dependencies {
 
 mixin { // mixin
     add sourceSets.main, "advancementscreenshot.refmap.json" // mixin
-    config 'advancementscreenshot.refmap.json' // mixin
+    config 'advancementscreenshot.mixins.json' // mixin
     
     debug.verbose = true // mixin
     debug.export = true // mixin

@@ -3,6 +3,11 @@ Passive Endermen
 https://www.curseforge.com/minecraft/mc-mods/passive-endermen
 
 =========
+v3.0: Passive Endermen has had a big code overhaul. Fixing incompatibilities and incorrect spawning behaviour.
+Gave the mixin config file a unique identifier.
+The mod is a lot more reliable now.
+
+=========
 v2.7-2.8: (Fabric 1.19.1 only) Fixed incorrect Collective (Fabric) dependency reference.
 
 =========

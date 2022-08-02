@@ -1,15 +1,9 @@
 /*
  * This is the latest source code of Passive Endermen.
- * Minecraft version: 1.19.1, mod version: 2.8.
+ * Minecraft version: 1.19.1, mod version: 3.0.
  *
- * If you'd like access to the source code of previous Minecraft versions or previous mod versions, consider becoming a Github Sponsor or Patron.
- * You'll be added to a private repository which contains all versions' source of Passive Endermen ever released, along with some other perks.
- *
- * Github Sponsor link: https://github.com/sponsors/ricksouth
- * Patreon link: https://patreon.com/ricksouth
- *
- * Becoming a Sponsor or Patron allows me to dedicate more time to the development of mods.
- * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
+ * Please don't distribute without permission.
+ * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
  */
 
 package com.natamus.passiveendermen.fabric.mixin;
@@ -26,19 +20,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(value = EnderMan.class, priority = 1001)
 public class EnderManMixin {
     private final boolean preventEndermenFromTeleporting = ConfigFunctions.getDictValues(Reference.MOD_ID).get("preventEndermenFromTeleporting").equals("true");
-    private final boolean preventEndermenFromAttacking = ConfigFunctions.getDictValues(Reference.MOD_ID).get("preventEndermenFromAttacking").equals("true");
 
     @Inject(method = "teleport(DDD)Z", at = @At(value = "HEAD"), cancellable = true)
     private void teleport(double p_32544_, double p_32545_, double p_32546_, CallbackInfoReturnable<Boolean> cir) {
         if (preventEndermenFromTeleporting) {
             cir.setReturnValue(false);
-        }
-    }
-
-    @Inject(method = "registerGoals()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V", ordinal = 8), cancellable = true)
-    protected void registerGoals(CallbackInfo ci) {
-        if (preventEndermenFromAttacking) {
-            ci.cancel();
         }
     }
 }
