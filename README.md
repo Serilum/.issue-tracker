@@ -6,23 +6,6 @@ Other versions might get an update in rare cases, but the main development is fo
 
 I appreciate every submitted issue greatly, and will respond while working through them. This might take some time!
 
-If you're a(n aspiring) mod developer, this list of all Forge events might be useful: [https://eventlistforge.com/](https://eventlistforge.com/)
-
-‎
-
-## Waiting For Approval Mods:
-> <em>CurseForge can take 1-3 days to approve new mods. The following links take you to posts on my [Patreon Page](https://patreon.com/ricksouth), where you can get access to the downloads before they're available on CurseForge.</em>\
-\
-N/A
-
- 
-‎\
-[![line](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/line.jpg)](#)
-[![promo0](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/BisectHosting/promo0.jpg)](https://bisecthosting.com/serilum)
-[![promo1](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/BisectHosting/promo1.jpg)](https://github.com/ricksouth/serilum-mc-mods/wiki/Dedicated-Minecraft-Server)
-[![line](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Patreon/patrons.jpg)](https://patreon.com/ricksouth)
-
-
 
 ## Modpacks:
 [The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)
