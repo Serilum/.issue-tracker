@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "skeletonhorsespawn-fabric",
-  "version": "2.4",
+  "version": "2.5",
 
   "name": "Skeleton Horse Spawn (Fabric)",
   "description": "Allows the skeleton horse to spawn naturally with a skeleton riding it and other tweaks.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

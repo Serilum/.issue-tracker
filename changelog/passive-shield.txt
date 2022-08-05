@@ -3,6 +3,9 @@ Passive Shield
 https://curseforge.com/minecraft/mc-mods/passive-shield
 
 =========
+v2.5: (Fabric) Updated mod to Minecraft version 1.19.2.
+
+=========
 v2.4: (Fabric 1.19.1 only) Fixed incorrect Collective (Fabric) dependency reference.
 
 =========

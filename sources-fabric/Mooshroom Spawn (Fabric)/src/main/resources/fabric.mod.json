@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "mooshroomspawn-fabric",
-  "version": "1.9",
+  "version": "2.0",
 
   "name": "Mooshroom Spawn (Fabric)",
   "description": "Adds a chance for mooshrooms to spawn naturally everywhere in place of a cow.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

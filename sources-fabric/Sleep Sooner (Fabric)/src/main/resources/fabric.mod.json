@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "sleepsooner-fabric",
-  "version": "3.1",
+  "version": "3.2",
 
   "name": "Sleep Sooner (Fabric)",
   "description": "A minimalistic mod that adds a configurable functionality to be able to sleep a little sooner.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "betterconduitplacement-fabric",
-  "version": "1.7",
+  "version": "1.8",
 
   "name": "Better Conduit Placement (Fabric)",
   "description": "Place conduits in front of you, place blocks by clicking the conduit and other tweaks.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

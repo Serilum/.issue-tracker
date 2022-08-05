@@ -3,6 +3,9 @@ Random Mob Effects
 https://curseforge.com/minecraft/mc-mods/random-mob-effects
 
 =========
+v2.2: (Fabric) Updated mod to Minecraft version 1.19.2.
+
+=========
 v2.1: (Fabric 1.19.1 only) Fixed incorrect Collective (Fabric) dependency reference.
 
 =========

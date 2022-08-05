@@ -3,6 +3,9 @@ Recast
 https://curseforge.com/minecraft/mc-mods/recast
 
 =========
+v2.1: (Fabric) Updated mod to Minecraft version 1.19.2.
+
+=========
 v2.0: (Fabric 1.19.1 only) Fixed incorrect Collective (Fabric) dependency reference.
 
 =========

@@ -3,6 +3,9 @@ Zombie Proof Doors
 https://www.curseforge.com/minecraft/mc-mods/zombie-proof-doors
 
 =========
+v1.9: (Fabric) Updated mod to Minecraft version 1.19.2.
+
+=========
 v1.8: (Fabric 1.19.1 only) Fixed incorrect Collective (Fabric) dependency reference.
 
 =========

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "recast-fabric",
-  "version": "2.0",
+  "version": "2.1",
 
   "name": "Recast (Fabric)",
   "description": "Automatically re-casts the fishing rod for a player when they catch an item.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

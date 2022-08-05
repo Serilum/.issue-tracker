@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "welcomemessage-fabric",
-  "version": "1.5",
+  "version": "1.6",
 
   "name": "Welcome Message (Fabric)",
   "description": "An easy to configure welcome message mod for players after login with URL support.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

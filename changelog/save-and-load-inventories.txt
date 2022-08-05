@@ -3,6 +3,9 @@ Save and Load Inventories
 https://curseforge.com/minecraft/mc-mods/save-and-load-inventories
 
 =========
+v2.2: (Fabric) Updated mod to Minecraft version 1.19.2.
+
+=========
 v2.1: (Fabric 1.19.1 only) Fixed incorrect Collective (Fabric) dependency reference.
 
 =========

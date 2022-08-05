@@ -3,6 +3,9 @@ Rain Be Gone Ritual
 https://curseforge.com/minecraft/mc-mods/rain-be-gone-ritual
 
 =========
+v2.3: (Fabric) Updated mod to Minecraft version 1.19.2.
+
+=========
 v2.2: (Fabric 1.19.1 only) Fixed incorrect Collective (Fabric) dependency reference.
 
 =========

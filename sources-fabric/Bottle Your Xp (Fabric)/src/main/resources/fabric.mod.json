@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "bottleyourxp-fabric",
-  "version": "2.0",
+  "version": "2.1",
 
   "name": "Bottle Your Xp (Fabric)",
   "description": "A minimalistic configurable mod that allows the creation of experience bottles from your own gathered xp.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

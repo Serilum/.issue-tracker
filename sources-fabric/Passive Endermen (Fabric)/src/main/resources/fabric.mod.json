@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "passiveendermen-fabric",
-  "version": "3.0",
+  "version": "3.1",
 
   "name": "Passive Endermen (Fabric)",
   "description": "Configurably prevent an enderman from picking up blocks, griefing and attacking players.",
@@ -23,7 +23,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

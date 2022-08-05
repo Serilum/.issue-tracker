@@ -3,6 +3,9 @@ Advancement Screenshot
 https://curseforge.com/minecraft/mc-mods/advancement-screenshot
 
 =========
+v3.7: (Fabric) Updated mod to Minecraft version 1.19.2.
+
+=========
 v3.6: (Forge only) Changed the mixin file name to be unique, fixing overlap with other mods.
 If the mod wasn't working before, this will most likely fix it.
 

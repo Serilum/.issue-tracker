@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "cryingportals-fabric",
-  "version": "1.5",
+  "version": "1.6",
 
   "name": "Crying Portals (Fabric)",
   "description": "Allows the creation of nether portals with crying obsidian blocks.",
@@ -23,7 +23,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

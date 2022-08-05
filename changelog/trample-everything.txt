@@ -3,6 +3,9 @@ Trample Everything
 https://curseforge.com/minecraft/mc-mods/trample-everything
 
 =========
+v1.9: (Fabric) Updated mod to Minecraft version 1.19.2.
+
+=========
 v1.8: (Fabric 1.19.1 only) Fixed incorrect Collective (Fabric) dependency reference.
 
 =========

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "milkallthemobs-fabric",
-  "version": "2.0",
+  "version": "2.1",
 
   "name": "Milk All The Mobs (Fabric)",
   "description": "Allows sheep, llamas, pigs, donkeys, horses and mules to produce a bucket of milk.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

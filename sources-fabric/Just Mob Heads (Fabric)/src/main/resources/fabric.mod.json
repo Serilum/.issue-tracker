@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "justmobheads-fabric",
-  "version": "5.7",
+  "version": "5.8",
 
   "name": "Just Mob Heads (Fabric)",
   "description": "A minimalistic mod that adds a configurable chance for mobs to drop their respective heads on death.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

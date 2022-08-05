@@ -3,6 +3,9 @@ Extended Bone Meal
 https://www.curseforge.com/minecraft/mc-mods/extended-bone-meal
 
 =========
+v2.0: (Fabric) Updated mod to Minecraft version 1.19.2.
+
+=========
 v1.9: (Fabric only) Changed the version syntax of fabric mods. Due the subversions (e.g. 1.18.1 -> 1.18.2) increasingly being different, it's no longer reliable to have the same file for all subversions of Minecraft. From now on, there will be a new release for each. This will hopefully prevent confusion and make the whole updating process a lot more reliable for me and you, the user.
 
 =========

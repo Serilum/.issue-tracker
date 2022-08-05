@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "kelpfertilizer-fabric",
-  "version": "2.1",
+  "version": "2.2",
 
   "name": "Kelp Fertilizer (Fabric)",
   "description": "Kelp seaweed has a cell structure that filters sea water for rich nutrients. It can now act as a fertilizer like bone meal.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

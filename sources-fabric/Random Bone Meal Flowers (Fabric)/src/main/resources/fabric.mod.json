@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "randombonemealflowers-fabric",
-  "version": "2.1",
+  "version": "2.2",
 
   "name": "Random Bone Meal Flowers (Fabric)",
   "description": "Randomizes the flowers spawned by bone meal, allowing all (modded) types to spawn everywhere.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

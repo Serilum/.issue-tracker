@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "playertracking-fabric",
-  "version": "2.1",
+  "version": "2.2",
 
   "name": "Player Tracking (Fabric)",
   "description": "A PvP mod which allows tracking players via trackers in the world, originally created by mcpvp.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

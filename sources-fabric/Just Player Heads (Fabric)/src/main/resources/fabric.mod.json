@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "justplayerheads-fabric",
-  "version": "2.3",
+  "version": "2.4",
 
   "name": "Just Player Heads (Fabric)",
   "description": "A minimalistic mod that adds a configurable chance for players to drop their respective heads on death and via a command. All heads are generated with texture-data.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

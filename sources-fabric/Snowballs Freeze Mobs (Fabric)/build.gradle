@@ -33,7 +33,7 @@ dependencies {
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
-	modImplementation "com.natamus.collective:collective-fabric:1.19.1-4.36"
+	modImplementation "com.natamus.collective:collective-fabric:1.19.2-4.36"
 	
 	// Permissions
 	//modImplementation 'me.lucko:fabric-permissions-api:0.1-SNAPSHOT'

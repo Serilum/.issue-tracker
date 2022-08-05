@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "hidehands-fabric",
-  "version": "1.8",
+  "version": "1.9",
 
   "name": "Hide Hands (Fabric)",
   "description": "Hide your offhand and/or mainhand, always or while holding specific items.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

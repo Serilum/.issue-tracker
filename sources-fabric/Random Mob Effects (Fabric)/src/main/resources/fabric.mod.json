@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "randommobeffects-fabric",
-  "version": "2.1",
+  "version": "2.2",
 
   "name": "Random Mob Effects (Fabric)",
   "description": "Randomly assigns a potion effect to all hostile mobs in the world. With blacklist and modded effects supported.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

@@ -3,6 +3,9 @@ Recipe Commands
 https://curseforge.com/minecraft/mc-mods/recipe-commands
 
 =========
+v2.0: (Fabric) Updated mod to Minecraft version 1.19.2.
+
+=========
 v1.9: (Fabric 1.19.1 only) Fixed incorrect Collective (Fabric) dependency reference.
 
 =========

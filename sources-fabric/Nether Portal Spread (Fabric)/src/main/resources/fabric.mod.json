@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "netherportalspread-fabric",
-  "version": "6.2",
+  "version": "6.3",
 
   "name": "Nether Portal Spread (Fabric)",
   "description": "Nether portals spread (custom) nether blocks to the overworld around the portal in a configurable radius.",
@@ -20,7 +20,7 @@
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.19.1",
+    "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=4.36"
   }

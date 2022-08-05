@@ -3,6 +3,9 @@ World Border
 https://www.curseforge.com/minecraft/mc-mods/world-border
 
 =========
+v3.1: (Fabric) Updated mod to Minecraft version 1.19.2.
+
+=========
 v3.0: (Fabric 1.19.1 only) Fixed incorrect Collective (Fabric) dependency reference.
 
 =========

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Compass.
- * Minecraft version: 1.19.1, mod version: 2.5.
+ * Minecraft version: 1.19.2, mod version: 2.6.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
