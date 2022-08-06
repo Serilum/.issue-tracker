@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[42,)"
+loaderVersion="[43,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Player%20Death%20Kick"
 
@@ -17,6 +17,6 @@ Adam E, Aternos.org, Cherriesaurus, Ed Blake, Kreezcraft.com, limpjellyfish, Mar
 [[dependencies.playerdeathkick]]
     modId="collective"
     mandatory=true
-    versionRange="[4.30,)"
+    versionRange="[4.37,)"
     ordering="NONE"
     side="BOTH"
