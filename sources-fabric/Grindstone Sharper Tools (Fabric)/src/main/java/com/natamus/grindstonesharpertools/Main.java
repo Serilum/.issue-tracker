@@ -31,12 +31,8 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-		CollectiveEntityEvents.ON_LIVING_DAMAGE_CALC.register((Level world, Entity entity, DamageSource damageSource, float damageAmount) -> {
-			return GrindEvent.onDamage(world, entity, damageSource, damageAmount);
-		});
-		
-		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
-			return GrindEvent.onClick(player, world, hand, hitResult);
-		});
+		CollectiveEntityEvents.ON_LIVING_DAMAGE_CALC.register(GrindEvent::onDamage);
+
+		UseBlockCallback.EVENT.register(GrindEvent::onClick);
 	}
 }
