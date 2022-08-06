@@ -37,15 +37,21 @@ public class GrassEvent {
 		
 		BlockPos cpos = BlockPosFunctions.getBlockPosFromHitResult(hitResult).below();
 		Block block = world.getBlockState(cpos).getBlock();
+		BlockPos up = cpos.above();
+		Block upBlock = world.getBlockState(up).getBlock();
+
+		if (upBlock.equals(Blocks.FARMLAND)) {
+			return InteractionResult.PASS;
+		}
+
 		if (block.equals(Blocks.DIRT)) {
 			world.setBlockAndUpdate(cpos, Blocks.GRASS_BLOCK.defaultBlockState());
 		}
 		else if (block.equals(Blocks.GRASS_BLOCK)) {
-			BlockPos up = cpos.above();
-			if (world.getBlockState(up).getBlock().equals(Blocks.AIR)) {
+			if (upBlock.equals(Blocks.AIR)) {
 				world.setBlockAndUpdate(up, Blocks.GRASS.defaultBlockState());
 			}
-			else if (world.getBlockState(up).getBlock().equals(Blocks.GRASS)) {
+			else if (upBlock.equals(Blocks.GRASS)) {
 				upgradeGrass(world, up);
 			}
 			else {
