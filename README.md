@@ -6,6 +6,12 @@ Other versions might get an update in rare cases, but the main development is fo
 
 I appreciate every submitted issue greatly, and will respond while working through them. This might take some time!
 
+Serilum.com with an overview of all mods:\
+ https://serilum.com/
+ 
+CurseForge project page:\
+ https://www.curseforge.com/members/serilum/projects
+
 
 ## Modpacks:
 [The Vanilla Experience](https://curseforge.com/minecraft/modpacks/the-vanilla-experience)
