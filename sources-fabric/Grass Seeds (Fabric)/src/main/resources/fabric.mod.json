@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "grassseeds-fabric",
-  "version": "2.1",
+  "version": "2.2",
 
   "name": "Grass Seeds (Fabric)",
-  "description": "A minimalistic mod which allows players to use normal seeds to transform dirt to grass.",
+  "description": "Allows the use of wheat seeds to transform dirt blocks to grass blocks and to create (tall) grass on them.",
   "authors": [ "Rick South" ],
   "contact": {
     "homepage": "https://curseforge.com/minecraft/mc-mods/grass-seeds-fabric",
