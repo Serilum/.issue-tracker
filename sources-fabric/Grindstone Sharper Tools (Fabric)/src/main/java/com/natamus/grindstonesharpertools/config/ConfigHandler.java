@@ -34,6 +34,7 @@ public class ConfigHandler {
 	public static PropertyMirror<Boolean> showUsesLeftInItemName = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<String> nameUsesPrefix = PropertyMirror.create(ConfigTypes.STRING);
 	public static PropertyMirror<String> nameUsesSuffix = PropertyMirror.create(ConfigTypes.STRING);
+	public static PropertyMirror<Boolean> infiniteCreativeUses = PropertyMirror.create(ConfigTypes.BOOLEAN);
 
 	private static final ConfigTree CONFIG = ConfigTree.builder() 
 			.beginValue("usesAfterGrinding", ConfigTypes.INTEGER, 32)
@@ -59,6 +60,10 @@ public class ConfigHandler {
 			.beginValue("nameUsesSuffix", ConfigTypes.STRING, ")")
 			.withComment("The suffix of the sharpened uses left in the tool name.")
 			.finishValue(nameUsesSuffix::mirror)
+
+			.beginValue("infiniteCreativeUses", ConfigTypes.BOOLEAN, false)
+			.withComment("Whether to decrease sharpened uses in creative.")
+			.finishValue(infiniteCreativeUses::mirror)
 
 			.build();
 
