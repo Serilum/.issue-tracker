@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Grindstone Sharper Tools.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -30,6 +30,8 @@ import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
 public class ConfigHandler { 
 	public static PropertyMirror<Integer> usesAfterGrinding = PropertyMirror.create(ConfigTypes.INTEGER);
 	public static PropertyMirror<Double> sharpenedDamageModifier = PropertyMirror.create(ConfigTypes.DOUBLE);
+	public static PropertyMirror<Boolean> infiniteCreativeUses = PropertyMirror.create(ConfigTypes.BOOLEAN);
+
 	public static PropertyMirror<Boolean> sendUsesLeftInChat = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> showUsesLeftInItemName = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<String> nameUsesPrefix = PropertyMirror.create(ConfigTypes.STRING);
@@ -43,6 +45,10 @@ public class ConfigHandler {
 			.beginValue("sharpenedDamageModifier", ConfigTypes.DOUBLE, 1.5)
 			.withComment("The damage modifier of sharpened tools.")
 			.finishValue(sharpenedDamageModifier::mirror)
+
+			.beginValue("infiniteCreativeUses", ConfigTypes.BOOLEAN, false)
+			.withComment("Whether to decrease sharpened uses in creative.")
+			.finishValue(infiniteCreativeUses::mirror)
 
 			.beginValue("sendUsesLeftInChat", ConfigTypes.BOOLEAN, true)
 			.withComment("Sends the sharpened tool user a message at 75%, 50%, 25%, 10%.")

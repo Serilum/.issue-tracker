@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "grindstonesharpertools-fabric",
-  "version": "2.1",
+  "version": "2.2",
 
   "name": "Grindstone Sharper Tools (Fabric)",
-  "description": "The grindstone can temporarily increase the damage of tools used on it.",
+  "description": "The grindstone can sharpen tools, temporarily increasing their damage dealt.",
   "authors": [ "Rick South" ],
   "contact": {
     "homepage": "https://curseforge.com/minecraft/mc-mods/grindstone-sharper-tools-fabric",

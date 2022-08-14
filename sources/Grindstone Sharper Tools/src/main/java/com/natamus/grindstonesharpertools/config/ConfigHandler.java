@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Grindstone Sharper Tools.
- * Minecraft version: 1.19.2, mod version: 1.9.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -18,6 +18,7 @@ public class ConfigHandler {
 	public static class General {
 		public final ForgeConfigSpec.ConfigValue<Integer> usesAfterGrinding;
 		public final ForgeConfigSpec.ConfigValue<Double> sharpenedDamageModifier;
+		public final ForgeConfigSpec.ConfigValue<Boolean> infiniteCreativeUses;
 		
 		public final ForgeConfigSpec.ConfigValue<Boolean> sendUsesLeftInChat;
 		public final ForgeConfigSpec.ConfigValue<Boolean> showUsesLeftInItemName;
@@ -33,6 +34,9 @@ public class ConfigHandler {
 			sharpenedDamageModifier = builder
 					.comment("The damage modifier of sharpened tools.")
 					.defineInRange("sharpenedDamageModifier", 1.5, 0, 100.0);
+			infiniteCreativeUses = builder
+					.comment("Whether to decrease sharpened uses in creative.")
+					.define("infiniteCreativeUses", false);
 
 			sendUsesLeftInChat = builder
 					.comment("Sends the sharpened tool user a message at 75%, 50%, 25%, 10%.")

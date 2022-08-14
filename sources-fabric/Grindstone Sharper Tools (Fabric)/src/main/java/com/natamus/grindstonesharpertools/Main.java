@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Grindstone Sharper Tools.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -9,6 +9,7 @@
 package com.natamus.grindstonesharpertools;
 
 import com.natamus.collective_fabric.check.RegisterMod;
+import com.natamus.collective_fabric.fabric.callbacks.CollectiveBlockEvents;
 import com.natamus.collective_fabric.fabric.callbacks.CollectiveEntityEvents;
 import com.natamus.grindstonesharpertools.config.ConfigHandler;
 import com.natamus.grindstonesharpertools.events.GrindEvent;
@@ -16,9 +17,13 @@ import com.natamus.grindstonesharpertools.util.Reference;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 
 public class Main implements ModInitializer {
 	@Override
@@ -34,9 +39,9 @@ public class Main implements ModInitializer {
 		CollectiveEntityEvents.ON_LIVING_DAMAGE_CALC.register((Level world, Entity entity, DamageSource damageSource, float damageAmount) -> {
 			return GrindEvent.onDamage(world, entity, damageSource, damageAmount);
 		});
-		
-		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
-			return GrindEvent.onClick(player, world, hand, hitResult);
+
+		CollectiveBlockEvents.BLOCK_RIGHT_CLICK.register((Level world, Player player, InteractionHand hand, BlockPos pos, BlockHitResult hitVec) -> {
+			return GrindEvent.onClick(world, player, hand, pos, hitVec);
 		});
 	}
 }
