@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.19.2, mod version: 5.6.
+ * Minecraft version: 1.19.2, mod version: 5.9.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -170,8 +170,7 @@ public class MobHeads {
 			FrogVariant variant = frog.getVariant();
 
 			ResourceLocation texture = variant.texture();
-			String type = texture.toString().split("frog/")[1].replace(".png", "");
-			mobname = type;
+			mobname = texture.toString().split("frog/")[1].replace(".png", "");
 		}
 		else if (entity instanceof Villager) {
 			Villager villager = (Villager)entity;

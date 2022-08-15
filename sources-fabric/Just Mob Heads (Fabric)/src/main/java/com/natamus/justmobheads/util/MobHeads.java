@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.19.2, mod version: 5.8.
+ * Minecraft version: 1.19.2, mod version: 5.9.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -47,23 +47,17 @@ public class MobHeads {
 		String headname = capitalizeFirst(mobname.replace("_", " ")) + " Head";
 		String oldid = mobdata.getFirst();
 		String texture = mobdata.getSecond();
-		
-		ItemStack mobhead = HeadFunctions.getTexturedHead(headname, texture, oldid, amount);
-		
-		return mobhead;
+
+		return HeadFunctions.getTexturedHead(headname, texture, oldid, amount);
 	}
 	
 	public static ItemStack getStandardHead(String headname) {
 		ItemStack mobhead = new ItemStack(Items.PLAYER_HEAD, 1);
 		String mob = headname.toLowerCase().split(" ")[0];
-		if (mob.equals("creeper")) {
-			mobhead = new ItemStack(Items.CREEPER_HEAD, 1);
-		}
-		else if (mob.equals("zombie")) {
-			mobhead = new ItemStack(Items.ZOMBIE_HEAD, 1);
-		}
-		else if (mob.equals("skeleton")) {
-			mobhead = new ItemStack(Items.SKELETON_SKULL, 1);
+		switch (mob) {
+			case "creeper" -> mobhead = new ItemStack(Items.CREEPER_HEAD, 1);
+			case "zombie" -> mobhead = new ItemStack(Items.ZOMBIE_HEAD, 1);
+			case "skeleton" -> mobhead = new ItemStack(Items.SKELETON_SKULL, 1);
 		}
 		
 		mobhead.setHoverName(Component.literal(headname));
@@ -173,7 +167,7 @@ public class MobHeads {
 			
 			VillagerData d = villager.getVillagerData();
 			VillagerProfession prof = d.getProfession();
-			if (prof.toString() != "none") {
+			if (!prof.toString().equals("none")) {
 				mobname = prof.toString();
 			}
 		}
@@ -182,8 +176,8 @@ public class MobHeads {
 
 			VillagerData d = zombievillager.getVillagerData();
 			VillagerProfession prof = d.getProfession();
-			if (prof.toString() != "none") {
-				mobname = "zombie_" + prof.toString();
+			if (!prof.toString().equals("none")) {
+				mobname = "zombie_" + prof;
 			}	
 		}
 		
@@ -191,7 +185,7 @@ public class MobHeads {
 	}
 	
 	public static String capitalizeFirst(String string) {
-		StringBuffer sb = new StringBuffer(string);
+		StringBuilder sb = new StringBuilder(string);
 		for(int i=0; i < sb.length(); i++) {
 			if(i == 0 || sb.charAt(i-1) == ' ') {
 				sb.setCharAt(i, Character.toUpperCase(sb.charAt(i)));

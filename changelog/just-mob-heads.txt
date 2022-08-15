@@ -3,6 +3,11 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v5.9: Added the snow golem head, it's a small pumpkin!
+Optimized backend code
+(Fabric) Fixed the console message shown when a mob was killed.
+
+=========
 v5.8: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

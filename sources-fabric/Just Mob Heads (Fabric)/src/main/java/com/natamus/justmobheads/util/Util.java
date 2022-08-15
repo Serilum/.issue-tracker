@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.19.2, mod version: 5.8.
+ * Minecraft version: 1.19.2, mod version: 5.9.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -15,6 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -33,8 +34,10 @@ public class Util {
 		
 		PrintWriter writer = null;
 		if (!dir.isDirectory() || !file.isFile()) {
-			dir.mkdirs();
-			writer = new PrintWriter(dirpath + File.separator + "headchances.txt", "UTF-8");
+			if (!dir.mkdirs()) {
+				return false;
+			}
+			writer = new PrintWriter(dirpath + File.separator + "headchances.txt", StandardCharsets.UTF_8);
 		}
 		else {
 			String content = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + "headchances.txt", new String[0])));

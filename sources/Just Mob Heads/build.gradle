@@ -30,7 +30,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-            arg "-mixin.config=serilumforgemod.mixins.json" // mixin
+            arg "-mixin.config=justmobheads.mixins.json" // mixin
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -44,7 +44,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            arg "-mixin.config=serilumforgemod.mixins.json" // mixin
+            arg "-mixin.config=justmobheads.mixins.json" // mixin
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -58,7 +58,7 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-            arg "-mixin.config=serilumforgemod.mixins.json" // mixin
+            arg "-mixin.config=justmobheads.mixins.json" // mixin
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -83,8 +83,8 @@ dependencies {
 }
 
 mixin { // mixin
-    add sourceSets.main, "serilumforgemod.refmap.json" // mixin
-    config 'serilumforgemod.mixins.json' // mixin
+    add sourceSets.main, "justmobheads.refmap.json" // mixin
+    config 'justmobheads.mixins.json' // mixin
     
     debug.verbose = true // mixin
     debug.export = true // mixin

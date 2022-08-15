@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.19.2, mod version: 5.6.
+ * Minecraft version: 1.19.2, mod version: 5.9.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -8,36 +8,29 @@
 
 package com.natamus.justmobheads.util;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Util {
 	private static String dirpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "justmobheads";
 	private static File dir = new File(dirpath);
 	private static File file = new File(dirpath + File.separator + "headchances.txt");
 	
-	public static boolean generateChanceConfig(Map<String, Double> defaultchances) throws IOException, FileNotFoundException, UnsupportedEncodingException {
+	public static boolean generateChanceConfig(Map<String, Double> defaultchances) throws IOException {
 		HeadData.headchances = new HashMap<String, Double>();
 		
-		PrintWriter writer = null;
+		PrintWriter writer;
 		if (!dir.isDirectory() || !file.isFile()) {
-			dir.mkdirs();
-			writer = new PrintWriter(dirpath + File.separator + "headchances.txt", "UTF-8");
+			if (!dir.mkdirs()) {
+				return false;
+			}
+			writer = new PrintWriter(dirpath + File.separator + "headchances.txt", StandardCharsets.UTF_8);
 		}
 		else {
-			String content = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + "headchances.txt", new String[0])));
+			String content = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + "headchances.txt")));
 			String[] cspl = content.replaceAll("\n", "").split(",");
 			for (String line : cspl) {
 				String[] linespl = line.replace("\"", "").replaceAll(" ", "").trim().split(":");
@@ -46,7 +39,7 @@ public class Util {
 				}
 				
 				String mobname = linespl[0];
-				Double chancevalue = 0.0;
+				double chancevalue;
 				try {
 					chancevalue = Double.parseDouble(linespl[1]);
 				}

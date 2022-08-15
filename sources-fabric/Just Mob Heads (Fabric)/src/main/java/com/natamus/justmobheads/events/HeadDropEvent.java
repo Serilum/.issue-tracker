@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.19.2, mod version: 5.8.
+ * Minecraft version: 1.19.2, mod version: 5.9.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -52,7 +52,7 @@ public class HeadDropEvent {
 				}
 			}
 			else if (ConfigHandler.onlyDropHeadsByPlayerKill.getValue()) {
-				if (sourceentity instanceof Player == false) {
+				if (!(sourceentity instanceof Player)) {
 					return;
 				}
 			}
@@ -68,8 +68,7 @@ public class HeadDropEvent {
 		}
 		
 		String mobname = MobHeads.getName(entity);
-		System.out.println(mobname);
-		if (mobname == "") {
+		if (mobname.equals("")) {
 			return;
 		}
 		
