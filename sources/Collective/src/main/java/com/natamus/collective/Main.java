@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.1, mod version: 4.37.
+ * Minecraft version: 1.19.2, mod version: 4.41.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -22,7 +22,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(Reference.MOD_ID)
-public class Main {
+public class Main { //
 	public static Main instance;
 	
     public Main() {

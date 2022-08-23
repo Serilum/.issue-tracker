@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Passive Shield.
- * Minecraft version: 1.19.2, mod version: 2.2.
+ * Minecraft version: 1.19.2, mod version: 2.6.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -30,8 +30,8 @@ public class ServerEvent {
 			
 		if (target instanceof Player) {
 			Player player = (Player)target;
-			if (player.getMainHandItem().getItem() instanceof ShieldItem == false) {
-				if (player.getOffhandItem().getItem() instanceof ShieldItem == false) {
+			if (!(player.getMainHandItem().getItem() instanceof ShieldItem)) {
+				if (!(player.getOffhandItem().getItem() instanceof ShieldItem)) {
 					return;
 				}
 			}

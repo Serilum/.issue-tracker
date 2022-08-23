@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "passiveshield-fabric",
-  "version": "2.5",
+  "version": "2.6",
 
   "name": "Passive Shield (Fabric)",
-  "description": "The shield is hidden in the offhand until right-clicked, and shields passively negate damage when held but not in use.",
+  "description": "The shield is hidden in the offhand until used, and they can passively block damage when held.",
   "authors": [ "Rick South" ],
   "contact": {
     "homepage": "https://curseforge.com/minecraft/mc-mods/passive-shield-fabric",

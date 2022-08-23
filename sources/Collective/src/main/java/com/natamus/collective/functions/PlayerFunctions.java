@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.1, mod version: 4.37.
+ * Minecraft version: 1.19.2, mod version: 4.41.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -8,17 +8,8 @@
 
 package com.natamus.collective.functions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.natamus.collective.util.Reference;
-
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -40,6 +31,8 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
+
+import java.util.*;
 
 public class PlayerFunctions {
 	public static boolean respawnPlayer(Level world, Player player) {

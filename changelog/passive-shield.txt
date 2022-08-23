@@ -3,6 +3,10 @@ Passive Shield
 https://curseforge.com/minecraft/mc-mods/passive-shield
 
 =========
+v2.6: Updated backend code.
+Updated mod description.
+
+=========
 v2.5: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

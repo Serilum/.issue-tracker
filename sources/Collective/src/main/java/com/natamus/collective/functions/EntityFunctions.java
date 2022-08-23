@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.1, mod version: 4.37.
+ * Minecraft version: 1.19.2, mod version: 4.41.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -17,9 +17,11 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.MushroomCow;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.animal.horse.*;
+import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -99,14 +101,12 @@ public class EntityFunctions {
 	
 	public static void chargeEntity(Entity entity) {
 		Level world = entity.getCommandSenderWorld();
-		Vec3 evec = entity.position();
-		
-		LightningBolt lightning = new LightningBolt(EntityType.LIGHTNING_BOLT, world);
-		lightning.setPos(evec.x(), evec.y(), evec.z());
-		lightning.setUUID(new UUID(0, GlobalVariables.random.nextInt()*1000000));
-		entity.thunderHit((ServerLevel)world, lightning);
-		
-		entity.clearFire();
+		if (entity instanceof Creeper) {
+			entity.getEntityData().set(Creeper.DATA_IS_POWERED, true);
+		}
+		else if (entity instanceof MushroomCow) {
+			((MushroomCow)entity).setMushroomType(MushroomCow.MushroomType.BROWN);
+		}
 	}
 
 	public static void transferItemsBetweenEntities(Entity from, Entity to, boolean ignoremainhand) {

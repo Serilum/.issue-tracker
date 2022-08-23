@@ -3,6 +3,10 @@ Mooshroom Spawn
 https://www.curseforge.com/minecraft/mc-mods/mooshroom-spawn
 
 =========
+v2.1: Added support for the new Collective changes.
+Fixes a bug where two cows could spawn an adult mooshroom cow, instead of a baby.
+
+=========
 v2.0: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

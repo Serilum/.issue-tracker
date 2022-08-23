@@ -3,6 +3,11 @@ Naturally Charged Creepers
 https://www.curseforge.com/minecraft/mc-mods/naturally-charged-creepers
 
 =========
+v2.3: The mod no longer uses lightning to charge creepers, but edits the entity's data directly.
+Creepers no longer spawn with 15/20 health.
+Updated mod description.
+
+=========
 v2.2: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

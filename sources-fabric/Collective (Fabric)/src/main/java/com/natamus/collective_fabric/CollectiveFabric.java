@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.1, mod version: 4.36.
+ * Minecraft version: 1.19.2, mod version: 4.41.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -20,7 +20,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 
-public class CollectiveFabric implements ModInitializer { 
+public class CollectiveFabric implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		System.out.println("Loading Collective (Fabric) version " + Reference.VERSION + ".");

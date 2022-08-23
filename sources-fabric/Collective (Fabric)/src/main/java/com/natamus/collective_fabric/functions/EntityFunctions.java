@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.1, mod version: 4.36.
+ * Minecraft version: 1.19.2, mod version: 4.41.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -28,6 +28,7 @@ import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.MushroomCow;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
@@ -35,6 +36,7 @@ import net.minecraft.world.entity.animal.horse.Donkey;
 import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.animal.horse.Llama;
 import net.minecraft.world.entity.animal.horse.Mule;
+import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -109,17 +111,15 @@ public class EntityFunctions {
 		LivingEntity le = (LivingEntity)entity;
 		le.removeEffect(effect);
 	}
-	
+
 	public static void chargeEntity(Entity entity) {
 		Level world = entity.getCommandSenderWorld();
-		Vec3 evec = entity.position();
-		
-		LightningBolt lightning = new LightningBolt(EntityType.LIGHTNING_BOLT, world);
-		lightning.setPos(evec.x(), evec.y(), evec.z());
-		lightning.setUUID(new UUID(0, GlobalVariables.random.nextInt()*1000000));
-		entity.thunderHit((ServerLevel)world, lightning);
-		
-		entity.clearFire();
+		if (entity instanceof Creeper) {
+			entity.getEntityData().set(Creeper.DATA_IS_POWERED, true);
+		}
+		else if (entity instanceof MushroomCow) {
+			((MushroomCow)entity).setMushroomType(MushroomCow.MushroomType.BROWN);
+		}
 	}
 
 	public static void transferItemsBetweenEntities(Entity from, Entity to, boolean ignoremainhand) {

@@ -3,6 +3,16 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.41: Added support for ageable entities in the Spawn Mob code. If a replaced entity is a baby, the new entity will also be a baby.
+
+=========
+v4.40: (Fabric) Fixed typo in access widener file reference.
+
+=========
+v4.39: Added access transformer file, which makes accessing private fields a lot easier for future builds.
+Updated the chargeEntity function to use AT's.
+
+=========
 v4.37: (Forge only) Added support for modded water buckets in the isHoldingWater function. Thanks @cech12 on Github for the pull request.
 
 =========

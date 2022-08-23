@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.1, mod version: 4.36.
+ * Minecraft version: 1.19.2, mod version: 4.41.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -18,6 +18,7 @@ import com.natamus.collective_fabric.objects.SAMObject;
 import com.natamus.collective_fabric.util.Reference;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Entity.RemovalReason;
 import net.minecraft.world.entity.EntityType;
@@ -113,7 +114,9 @@ public class CollectiveEvents {
 		if (size == 0) {
 			return;
 		}
-		
+
+		boolean ageable = entity instanceof AgeableMob;
+
 		for (SAMObject sam : possibles) {
 			double num = GlobalVariables.random.nextDouble();
 			if (num > sam.chance) {
@@ -134,6 +137,12 @@ public class CollectiveEvents {
 
 			//to.setWorld(Level);
 			to.setPos(evec.x, evec.y, evec.z);
+
+			if (ageable && to instanceof AgeableMob) {
+				AgeableMob am = (AgeableMob)to;
+				am.setAge(((AgeableMob)entity).getAge());
+				to = am;
+			}
 
 			boolean ignoremainhand = false;
 			if (sam.helditem != null) {
