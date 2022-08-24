@@ -3,6 +3,11 @@ Village Spawn Point
 https://www.curseforge.com/minecraft/mc-mods/village-spawn-point
 
 =========
+v2.5: Decreased world loading time by a lot. Fixing the issue of having to wait at 0% generation for a long time.
+Added support for modded villages.
+Added log messages for when the mod starts looking for and has found a village.
+
+=========
 v2.4: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

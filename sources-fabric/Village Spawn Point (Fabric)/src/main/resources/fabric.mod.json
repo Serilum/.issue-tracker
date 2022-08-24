@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "villagespawnpoint-fabric",
-  "version": "2.4",
+  "version": "2.5",
 
   "name": "Village Spawn Point (Fabric)",
   "description": "Sets the spawn point of a new world to always be in the center of a village.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
+    "collective-fabric": ">=4.42"
   }
 }

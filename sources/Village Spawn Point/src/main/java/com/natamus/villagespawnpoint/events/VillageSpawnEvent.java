@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Village Spawn Point.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -29,7 +29,7 @@ public class VillageSpawnEvent {
 			return;
 		}
 		
-		if (world instanceof ServerLevel == false) {
+		if (!(world instanceof ServerLevel)) {
 			return;
 		}
 		
@@ -39,11 +39,14 @@ public class VillageSpawnEvent {
 		if (!generatorsettings.generateStructures()) {
 			return;
 		}
-		
+
+		System.out.println("[Village Spawn Point] Finding the nearest village. This might take a few seconds.");
 		BlockPos spawnpos = BlockPosFunctions.getCenterNearbyVillage(serverworld);
 		if (spawnpos == null) {
 			return;
 		}
+
+		System.out.println("[Village Spawn Point] Village found! The world will now generate.");
 		
 		e.setCanceled(true);
 		serverworld.setDefaultSpawnPos(spawnpos, 1.0f);

@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.43-4.44: Further improved BlockPosFunctions, increasing compatibility with other mods.
+
+=========
+v4.42: Improved the way Collective tries to find the center of a nearby village. Increasing performance.
+
+=========
 v4.41: Added support for ageable entities in the Spawn Mob code. If a replaced entity is a baby, the new entity will also be a baby.
 
 =========

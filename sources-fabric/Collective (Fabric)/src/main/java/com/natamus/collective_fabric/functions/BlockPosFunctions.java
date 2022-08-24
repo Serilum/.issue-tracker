@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.41.
+ * Minecraft version: 1.19.2, mod version: 4.44.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -10,29 +10,27 @@ package com.natamus.collective_fabric.functions;
 
 import com.mojang.datafixers.util.Pair;
 import com.natamus.collective_fabric.data.GlobalVariables;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BaseCommandBlock;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
 
 public class BlockPosFunctions {
 	// START: GET functions
@@ -157,46 +155,45 @@ public class BlockPosFunctions {
 		return getNearbyVillage(serverworld, new BlockPos(0, 0, 0));
 	}
 	public static BlockPos getNearbyVillage(ServerLevel serverworld, BlockPos nearpos) {
-		if (!WorldFunctions.isOverworld(serverworld)) {
+		BlockPos closestvillage = null;
+		if (!serverworld.getServer().getWorldData().worldGenSettings().generateStructures()) {
 			return null;
 		}
 
-		Registry<Structure> registry = serverworld.registryAccess().registryOrThrow(Registry.STRUCTURE_REGISTRY);
-
-		List<ResourceLocation> villagerls = new ArrayList<ResourceLocation>();
-		for (ResourceLocation rl : registry.keySet()) {
-			if (rl.toString().contains("village_")) {
-				villagerls.add(rl);
+		BaseCommandBlock bcb = new BaseCommandBlock() {
+			@Override
+			public @NotNull ServerLevel getLevel() {
+				return serverworld;
 			}
-		}
 
-		BlockPos closestvillage = null;
-		for (int radius : Arrays.asList(200, 500, 1000)) {
-			for (ResourceLocation rl : villagerls) {
-				Optional<ResourceKey<Structure>> optional_vk = registry.getResourceKey(registry.get(rl));
-				if (optional_vk.isPresent()) {
-					ResourceKey<Structure> villagekey = optional_vk.get();
-					Optional<Holder<Structure>> optional_s = registry.getHolder(villagekey);
-					if (optional_s.isPresent()) {
-						Holder<Structure> structure = optional_s.get();
-						HolderSet<Structure> holderset = HolderSet.direct(structure);
-						BlockPos villagepos = getNearbyStructure(serverworld, holderset, nearpos, radius);
-						if (villagepos != null) {
-							if (closestvillage != null) {
-								if (nearpos.distManhattan(villagepos) >= nearpos.distManhattan(closestvillage)) {
-									continue;
-								}
-							}
+			@Override
+			public void onUpdated() { }
 
-							closestvillage = villagepos.immutable();
-						}
-					}
+			@Override
+			public @NotNull Vec3 getPosition() {
+				return new Vec3(nearpos.getX(), nearpos.getY(), nearpos.getZ());
+			}
+
+			@Override
+			public @NotNull CommandSourceStack createCommandSourceStack() {
+				return new CommandSourceStack(this, getPosition(), Vec2.ZERO, serverworld, 2, "dev", Component.literal("dev"), serverworld.getServer(), null);
+			}
+		};
+
+		bcb.setCommand("/locate structure #minecraft:village");
+		bcb.setTrackOutput(true);
+		bcb.performCommand(serverworld);
+
+		String raw = bcb.getLastOutput().getString();
+		if (raw.contains("nearest") && raw.contains("[")) {
+			String rawcoords = raw.split("nearest")[1].split("\\[")[1].split("\\]")[0];
+			String[] coords = rawcoords.split(", ");
+			if (coords.length == 3) {
+				String sx = coords[0];
+				String sz = coords[2];
+				if (NumberFunctions.isNumeric(sx) && NumberFunctions.isNumeric(sz)) {
+					return getSurfaceBlockPos(serverworld, Integer.parseInt(sx), Integer.parseInt(sz));
 				}
-
-			}
-
-			if (closestvillage != null) {
-				break;
 			}
 		}
 
