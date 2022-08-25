@@ -3,6 +3,10 @@ Set World Spawn Point
 https://www.curseforge.com/minecraft/mc-mods/set-world-spawn-point
 
 =========
+v2.5: Added compatibility with Village Spawn Point. You no longer spawn high up in the sky with both mods installed.
+Updated backend code.
+
+=========
 v2.4: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

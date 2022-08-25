@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.44.
+ * Minecraft version: 1.19.2, mod version: 4.49.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -29,7 +29,7 @@ public class FABFunctions {
 	private static final Map<Block, Map<Level, List<BlockPos>>> getMapFromBlock = new HashMap<Block, Map<Level, List<BlockPos>>>();
 	private static final Map<Level, Map<Date, BlockPos>> timeoutpositions = new HashMap<Level, Map<Date, BlockPos>>();
 	
-	private static List<BlockEntity> getBlockEntitiesAroundPosition(Level world, BlockPos pos, Integer radius) {
+	public static List<BlockEntity> getBlockEntitiesAroundPosition(Level world, BlockPos pos, Integer radius) {
 		List<BlockEntity> blockentities = new ArrayList<BlockEntity>();
 		
 		int chunkradius = (int)Math.ceil(radius/16.0);
@@ -45,31 +45,33 @@ public class FABFunctions {
 				}
 	    	}
 	    }
-		
+
 		return blockentities;
 	}
 	
-	public static List<BlockPos> getAllTileEntityPositionsNearbyEntity(BlockEntityType<?> tetype, Integer radius,  Level world, Entity entity) {
-		BlockPos entitypos = entity.blockPosition();
-		
+	public static List<BlockPos> getAllTileEntityPositionsNearbyEntity(BlockEntityType<?> tetype, Integer radius, Level world, Entity entity) {
+		return getAllTileEntityPositionsNearbyPosition(tetype, radius, world, entity.blockPosition());
+	}
+
+	public static List<BlockPos> getAllTileEntityPositionsNearbyPosition(BlockEntityType<?> tetype, Integer radius, Level world, BlockPos pos) {
 		List<BlockPos> nearbypositions = new ArrayList<BlockPos>();
-		List<BlockEntity> blockentities = getBlockEntitiesAroundPosition(world, entitypos, radius);
-		
+		List<BlockEntity> blockentities = getBlockEntitiesAroundPosition(world, pos, radius);
+
 		for (BlockEntity loadedtileentity : blockentities) {
 			BlockEntityType<?> loadedtiletype = loadedtileentity.getType();
 			if (loadedtiletype == null) {
 				continue;
 			}
-			
+
 			if (loadedtiletype.equals(tetype)) {
 				BlockPos ltepos = loadedtileentity.getBlockPos();
-				Vec3 vec3 = entity.position();
+				Vec3 vec3 = new Vec3(pos.getX(), pos.getY(), pos.getZ());
 				if (ltepos.closerThan(new Vec3i(vec3.x, vec3.y, vec3.z), radius)) {
 					nearbypositions.add(loadedtileentity.getBlockPos());
 				}
 			}
 		}
-		
+
 		return nearbypositions;
 	}
 	

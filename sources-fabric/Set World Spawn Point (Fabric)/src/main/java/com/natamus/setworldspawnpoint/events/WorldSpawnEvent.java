@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Set World Spawn Point.
- * Minecraft version: 1.19.2, mod version: 2.4.
+ * Minecraft version: 1.19.2, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -8,14 +8,11 @@
 
 package com.natamus.setworldspawnpoint.events;
 
-import java.util.Iterator;
-import java.util.Optional;
-
 import com.natamus.collective_fabric.functions.BlockPosFunctions;
 import com.natamus.collective_fabric.functions.PlayerFunctions;
 import com.natamus.setworldspawnpoint.config.ConfigHandler;
 import com.natamus.setworldspawnpoint.util.Reference;
-
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -29,8 +26,17 @@ import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.storage.ServerLevelData;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.Iterator;
+import java.util.Optional;
+
 public class WorldSpawnEvent {
+	private static FabricLoader fabricLoader = FabricLoader.getInstance();
+
 	public static void onWorldLoad(ServerLevel serverworld, ServerLevelData serverLevelData) {
+		if (fabricLoader.isModLoaded("village-spawn-point-fabric")) {
+			return;
+		}
+
 		int x = ConfigHandler.xCoordSpawnPoint.getValue();
 		int y = ConfigHandler.yCoordSpawnPoint.getValue();
 		int z = ConfigHandler.zCoordSpawnPoint.getValue();
@@ -51,16 +57,15 @@ public class WorldSpawnEvent {
 		}
 		
 		if (ConfigHandler._forceExactSpawn.getValue()) {
-			ServerPlayer serverplayer = (ServerPlayer)player;
 			ServerLevel serverworld = (ServerLevel)world;
 			
 			BlockPos respawnlocation = serverworld.getSharedSpawnPos(); // get spawn point
 			Vec3 respawnvec = new Vec3(respawnlocation.getX(), respawnlocation.getY(), respawnlocation.getZ());
 			
-			BlockPos bedpos = serverplayer.getRespawnPosition();
+			BlockPos bedpos = player.getRespawnPosition();
 			if (bedpos != null) {
 				Optional<Vec3> optionalbed = Player.findRespawnPositionAndUseSpawnBlock(serverworld, bedpos, 1.0f, false, false);
-				if (optionalbed != null) {
+				if (optionalbed.isPresent()) {
 					if (optionalbed.isPresent()) {
 						Vec3 bedlocation = optionalbed.get();
 						BlockPos bl = new BlockPos(bedlocation.x(), bedlocation.y(), bedlocation.z());
@@ -96,7 +101,7 @@ public class WorldSpawnEvent {
 			return;
 		}
 		
-		if (entity instanceof Player == false) {
+		if (!(entity instanceof Player)) {
 			return;
 		}
 		

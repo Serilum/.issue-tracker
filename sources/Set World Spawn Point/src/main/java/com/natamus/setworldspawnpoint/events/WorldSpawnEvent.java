@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Set World Spawn Point.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -8,31 +8,31 @@
 
 package com.natamus.setworldspawnpoint.events;
 
-import java.util.Iterator;
-import java.util.Optional;
-
 import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.collective.functions.PlayerFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.setworldspawnpoint.config.ConfigHandler;
 import com.natamus.setworldspawnpoint.util.Reference;
-
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.state.properties.BedPart;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+
+import java.util.Iterator;
+import java.util.Optional;
 
 @EventBusSubscriber
 public class WorldSpawnEvent {
@@ -40,6 +40,10 @@ public class WorldSpawnEvent {
 	public void onWorldLoad(LevelEvent.CreateSpawnPosition e) {
 		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
+			return;
+		}
+
+		if (ModList.get().isLoaded("village-spawn-point")) {
 			return;
 		}
 		
@@ -77,7 +81,7 @@ public class WorldSpawnEvent {
 			BlockPos bedpos = serverplayer.getRespawnPosition();
 			if (bedpos != null) {
 				Optional<Vec3> optionalbed = Player.findRespawnPositionAndUseSpawnBlock(serverworld, bedpos, 1.0f, false, false);
-				if (optionalbed != null) {
+				if (optionalbed.isPresent()) {
 					if (optionalbed.isPresent()) {
 						Vec3 bedlocation = optionalbed.get();
 						BlockPos bl = new BlockPos(bedlocation.x(), bedlocation.y(), bedlocation.z());
@@ -116,7 +120,7 @@ public class WorldSpawnEvent {
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof Player == false) {
+		if (!(entity instanceof Player)) {
 			return;
 		}
 		

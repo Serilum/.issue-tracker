@@ -2,11 +2,13 @@ buildscript {
     repositories {
         // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
         maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://maven.parchmentmc.org' }
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' } // mixin
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'org.parchmentmc:librarian:1.+'
         classpath 'org.spongepowered:mixingradle:0.7.+' // mixin
     }
 }
@@ -15,6 +17,7 @@ plugins {
     id 'maven-publish'
 }
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin' // mixin
 
 version = '1.0'
@@ -25,12 +28,13 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'official', version: '1.19.2'
+    //mappings channel: 'official', version: '1.19.2'
+    mappings channel: 'parchment', version: '2022.08.21-1.19.2'
 
     runs {
         client {
             workingDirectory project.file('run')
-            arg "-mixin.config=serilumforgemod.mixins.json" // mixin
+            arg "-mixin.config=setworldspawnpoint.mixins.json" // mixin
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -44,7 +48,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            arg "-mixin.config=serilumforgemod.mixins.json" // mixin
+            arg "-mixin.config=setworldspawnpoint.mixins.json" // mixin
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -58,7 +62,7 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-            arg "-mixin.config=serilumforgemod.mixins.json" // mixin
+            arg "-mixin.config=setworldspawnpoint.mixins.json" // mixin
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -83,8 +87,8 @@ dependencies {
 }
 
 mixin { // mixin
-    add sourceSets.main, "serilumforgemod.refmap.json" // mixin
-    config 'serilumforgemod.mixins.json' // mixin
+    add sourceSets.main, "setworldspawnpoint.refmap.json" // mixin
+    config 'setworldspawnpoint.mixins.json' // mixin
     
     debug.verbose = true // mixin
     debug.export = true // mixin
@@ -134,6 +138,6 @@ repositories {
 }
 
 dependencies {
-    runtimeOnly fg.deobf("com.natamus.collective:collective:1.19.2-4.37")
-    compileOnly fg.deobf("com.natamus.collective:collective:1.19.2-4.37")
+    runtimeOnly fg.deobf("com.natamus.collective:collective:1.19.2-4.49")
+    compileOnly fg.deobf("com.natamus.collective:collective:1.19.2-4.49")
 }

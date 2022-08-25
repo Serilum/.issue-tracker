@@ -3,6 +3,13 @@ Random Village Names
 https://curseforge.com/minecraft/mc-mods/random-village-names
 
 =========
+v2.0: The mod has completely been rewritten. This fixes various issues.
+Performance has been improved by a lot.
+The TPS lag in servers has been fixed.
+You can now remove a sign created by the mod and place your own if you want. Make sure it's within a 15 block radius of the old sign.
+The mod is, combined with the latest Collective update, now compatible with modded villages.
+
+=========
 v1.9: (Forge 1.19.1 only) Fixed incorrect Areas version reference.
 
 =========

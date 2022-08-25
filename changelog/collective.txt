@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.45-4.49: Added the SignFunctions class, which adds easy access to sign contents.
+Updated FABFunctions to work with block positions and not just entities.
+
+=========
 v4.43-4.44: Further improved BlockPosFunctions, increasing compatibility with other mods.
 
 =========

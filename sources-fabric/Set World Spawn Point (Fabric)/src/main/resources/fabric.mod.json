@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "setworldspawnpoint-fabric",
-  "version": "2.4",
+  "version": "2.5",
 
   "name": "Set World Spawn Point (Fabric)",
   "description": "Allows setting an exact custom spawn point for newly created worlds.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
+    "collective-fabric": ">=4.44"
   }
 }

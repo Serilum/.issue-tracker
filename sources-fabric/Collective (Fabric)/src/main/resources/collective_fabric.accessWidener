@@ -1,3 +1,4 @@
 accessWidener	v1 named
 accessible method net/minecraft/world/entity/animal/MushroomCow setMushroomType (Lnet/minecraft/world/entity/animal/MushroomCow$MushroomType;)V
 accessible field net/minecraft/world/entity/monster/Creeper DATA_IS_POWERED Lnet/minecraft/network/syncher/EntityDataAccessor;
+accessible method net/minecraft/world/level/block/entity/SignBlockEntity getMessages (Z)[Lnet/minecraft/network/chat/Component;
