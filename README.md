@@ -1,5 +1,6 @@
 ## A hub for source code, issues and content suggestions for Serilum's mods on CurseForge.
-You can create an [issue](https://github.com/ricksouth/serilum-mc-mods/issues/new/choose) if you have found a bug, got a feature idea, want to say something or just want to ask a question.<br>**Please specify the correct category, thanks! :)**
+You can create an [issue](https://github.com/ricksouth/serilum-mc-mods/issues/new/choose) if you have found a bug, got a feature idea, want to say something or just want to ask a question.
+<br><br>**Please read the [FAQ](https://github.com/ricksouth/serilum-mc-mods/wiki/FAQ) beforehand and specify the correct category. Thanks! :)**<br><br>
 
 **_The current actively developed Minecraft versions are 1.16.5, 1.18.2 and 1.19.2 for both Forge and Fabric._**\
 Other versions might get an update in rare cases, but the main development is focused on these three. Not all older versions can be maintained to allow me to spend more of my time on bugs and features.
