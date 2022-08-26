@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of No Hostiles Around Campfire.
- * Minecraft version: 1.19.2, mod version: 4.4.
+ * Minecraft version: 1.19.2, mod version: 4.5.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -8,19 +8,16 @@
 
 package com.natamus.nohostilesaroundcampfire.events;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import com.natamus.collective_fabric.functions.BlockPosFunctions;
+import com.natamus.collective_fabric.functions.CompareBlockFunctions;
 import com.natamus.collective_fabric.functions.EntityFunctions;
 import com.natamus.collective_fabric.functions.FABFunctions;
 import com.natamus.nohostilesaroundcampfire.config.ConfigHandler;
 import com.natamus.nohostilesaroundcampfire.util.Reference;
 import com.natamus.nohostilesaroundcampfire.util.Util;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -36,10 +33,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class CampfireEvent {
 	private static HashMap<Level, List<BlockPos>> checkCampfireBurn = new HashMap<Level, List<BlockPos>>();
@@ -52,7 +52,7 @@ public class CampfireEvent {
 		if (checkCampfireBurn.get(world).size() > 0) {
 			BlockPos campfirepos = checkCampfireBurn.get(world).get(0);
 			BlockState campfirestate = world.getBlockState(campfirepos);
-			if (campfirestate.getBlock() instanceof CampfireBlock) {
+			if (CompareBlockFunctions.blockIsInRegistryHolder(campfirestate.getBlock(), BlockTags.CAMPFIRES)) {
 				boolean islit = true;
 				if (ConfigHandler.campfireMustBeLit.getValue()) {
 					islit = campfirestate.getValue(CampfireBlock.LIT);
@@ -89,7 +89,7 @@ public class CampfireEvent {
 			return true;
 		}
 		
-		List<BlockPos> nearbycampfires = FABFunctions.getAllTileEntityPositionsNearbyEntity(BlockEntityType.CAMPFIRE, ConfigHandler.preventHostilesRadius.getValue(), world, entity);
+		List<BlockPos> nearbycampfires = FABFunctions.getAllTaggedTileEntityPositionsNearbyEntity(BlockTags.CAMPFIRES, ConfigHandler.preventHostilesRadius.getValue(), world, entity);
 		if (nearbycampfires.size() == 0) {
 			return true;
 		}
@@ -98,7 +98,7 @@ public class CampfireEvent {
 		for (BlockPos nearbycampfire : nearbycampfires) {
 			BlockState campfirestate = world.getBlockState(nearbycampfire);
 			Block block = campfirestate.getBlock();
-			if (block instanceof CampfireBlock == false) {
+			if (!(block instanceof CampfireBlock)) {
 				continue;
 			}
 			if (!ConfigHandler.enableEffectForNormalCampfires.getValue()) {
@@ -153,7 +153,7 @@ public class CampfireEvent {
 		}
 		
 		Block block = blockState.getBlock();
-		if (block instanceof CampfireBlock == false) {
+		if (!(CompareBlockFunctions.blockIsInRegistryHolder(block, BlockTags.CAMPFIRES))) {
 			return;
 		}
 		
@@ -180,7 +180,7 @@ public class CampfireEvent {
 		BlockState state = world.getBlockState(pos);
 		Block block = state.getBlock();
 		
-		if (block instanceof CampfireBlock) {
+		if (CompareBlockFunctions.blockIsInRegistryHolder(block, BlockTags.CAMPFIRES)) {
 			if (state.getValue(CampfireBlock.LIT)) {
 				return InteractionResult.PASS;
 			}
@@ -203,7 +203,7 @@ public class CampfireEvent {
 		}
 		
 		Block block = blockState.getBlock();
-		if (block instanceof CampfireBlock == false) {
+		if (!(CompareBlockFunctions.blockIsInRegistryHolder(block, BlockTags.CAMPFIRES))) {
 			return;
 		}
 		

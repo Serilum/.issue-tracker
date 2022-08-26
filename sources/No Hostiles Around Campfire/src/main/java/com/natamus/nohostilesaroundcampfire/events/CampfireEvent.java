@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of No Hostiles Around Campfire.
- * Minecraft version: 1.19.2, mod version: 4.1.
+ * Minecraft version: 1.19.2, mod version: 4.5.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -8,17 +8,14 @@
 
 package com.natamus.nohostilesaroundcampfire.events;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
+import com.natamus.collective.functions.CompareBlockFunctions;
 import com.natamus.collective.functions.FABFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 import com.natamus.nohostilesaroundcampfire.config.ConfigHandler;
 import com.natamus.nohostilesaroundcampfire.util.Reference;
 import com.natamus.nohostilesaroundcampfire.util.Util;
-
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Entity.RemovalReason;
 import net.minecraft.world.entity.player.Player;
@@ -28,11 +25,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.TickEvent.LevelTickEvent;
+import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
@@ -41,6 +37,10 @@ import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @EventBusSubscriber
 public class CampfireEvent {
@@ -66,7 +66,7 @@ public class CampfireEvent {
 		if (checkCampfireBurn.get(world).size() > 0) {
 			BlockPos campfirepos = checkCampfireBurn.get(world).get(0);
 			BlockState campfirestate = world.getBlockState(campfirepos);
-			if (campfirestate.getBlock() instanceof CampfireBlock) {
+			if (CompareBlockFunctions.blockIsInRegistryHolder(campfirestate.getBlock(), BlockTags.CAMPFIRES)) {
 				boolean islit = true;
 				if (ConfigHandler.GENERAL.campfireMustBeLit.get()) {
 					islit = campfirestate.getValue(CampfireBlock.LIT);
@@ -112,7 +112,7 @@ public class CampfireEvent {
 			return;
 		}
 		
-		List<BlockPos> nearbycampfires = FABFunctions.getAllTileEntityPositionsNearbyEntity(BlockEntityType.CAMPFIRE, ConfigHandler.GENERAL.preventHostilesRadius.get(), world, entity);
+		List<BlockPos> nearbycampfires = FABFunctions.getAllTaggedTileEntityPositionsNearbyEntity(BlockTags.CAMPFIRES, ConfigHandler.GENERAL.preventHostilesRadius.get(), world, entity);
 		if (nearbycampfires.size() == 0) {
 			return;
 		}
@@ -121,7 +121,7 @@ public class CampfireEvent {
 		for (BlockPos nearbycampfire : nearbycampfires) {
 			BlockState campfirestate = world.getBlockState(nearbycampfire);
 			Block block = campfirestate.getBlock();
-			if (block instanceof CampfireBlock == false) {
+			if (!(block instanceof CampfireBlock)) {
 				continue;
 			}
 			if (!ConfigHandler.GENERAL.enableEffectForNormalCampfires.get()) {
@@ -179,7 +179,7 @@ public class CampfireEvent {
 		
 		BlockState state = e.getPlacedBlock();
 		Block block = state.getBlock();
-		if (block instanceof CampfireBlock == false) {
+		if (!(CompareBlockFunctions.blockIsInRegistryHolder(block, BlockTags.CAMPFIRES))) {
 			return;
 		}
 		
@@ -214,7 +214,7 @@ public class CampfireEvent {
 		BlockState state = world.getBlockState(pos);
 		Block block = state.getBlock();
 		
-		if (block instanceof CampfireBlock) {
+		if (CompareBlockFunctions.blockIsInRegistryHolder(block, BlockTags.CAMPFIRES)) {
 			if (state.getValue(CampfireBlock.LIT)) {
 				return;
 			}
@@ -237,7 +237,7 @@ public class CampfireEvent {
 		}
 		
 		Block block = e.getState().getBlock();
-		if (block instanceof CampfireBlock == false) {
+		if (!(CompareBlockFunctions.blockIsInRegistryHolder(block, BlockTags.CAMPFIRES))) {
 			return;
 		}
 		

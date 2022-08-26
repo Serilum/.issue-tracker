@@ -3,6 +3,10 @@ Healing Campfire
 https://www.curseforge.com/minecraft/mc-mods/healing-campfire
 
 =========
+v3.9: Added support for modded campfires.
+Updated mod description.
+
+=========
 v3.8: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.49.
+ * Minecraft version: 1.19.2, mod version: 4.50.
  *
  * Please don't distribute without permission.
  * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
@@ -12,6 +12,7 @@ import com.natamus.collective_fabric.config.CollectiveConfigHandler;
 import com.natamus.collective_fabric.data.GlobalVariables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -49,6 +50,31 @@ public class FABFunctions {
 		return blockentities;
 	}
 
+	public static List<BlockPos> getAllTaggedTileEntityPositionsNearbyEntity(TagKey<Block> tetag, Integer radius, Level world, Entity entity) {
+		return getAllTaggedTileEntityPositionsNearbyPosition(tetag, radius, world, entity.blockPosition());
+	}
+
+	public static List<BlockPos> getAllTaggedTileEntityPositionsNearbyPosition(TagKey<Block> tetag, Integer radius, Level world, BlockPos pos) {
+		List<BlockPos> nearbypositions = new ArrayList<BlockPos>();
+		List<BlockEntity> blockentities = getBlockEntitiesAroundPosition(world, pos, radius);
+
+		for (BlockEntity loadedtileentity : blockentities) {
+			BlockState loadedtilestate = loadedtileentity.getBlockState();
+			if (loadedtilestate == null) {
+				continue;
+			}
+
+			if (loadedtilestate.is(tetag)) {
+				BlockPos ltepos = loadedtileentity.getBlockPos();
+				if (ltepos.closerThan(new Vec3i(pos.getX(), pos.getY(), pos.getZ()), radius)) {
+					nearbypositions.add(loadedtileentity.getBlockPos());
+				}
+			}
+		}
+
+		return nearbypositions;
+	}
+
 	public static List<BlockPos> getAllTileEntityPositionsNearbyEntity(BlockEntityType<?> tetype, Integer radius, Level world, Entity entity) {
 		return getAllTileEntityPositionsNearbyPosition(tetype, radius, world, entity.blockPosition());
 	}
@@ -65,8 +91,7 @@ public class FABFunctions {
 
 			if (loadedtiletype.equals(tetype)) {
 				BlockPos ltepos = loadedtileentity.getBlockPos();
-				Vec3 vec3 = new Vec3(pos.getX(), pos.getY(), pos.getZ());
-				if (ltepos.closerThan(new Vec3i(vec3.x, vec3.y, vec3.z), radius)) {
+				if (ltepos.closerThan(new Vec3i(pos.getX(), pos.getY(), pos.getZ()), radius)) {
 					nearbypositions.add(loadedtileentity.getBlockPos());
 				}
 			}

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "healingcampfire-fabric",
-  "version": "3.8",
+  "version": "3.9",
 
   "name": "Healing Campfire (Fabric)",
-  "description": "A minimalistic mod which creates an area around the campfire where players and passive mobs receive the regeneration effect in a configurable radius.",
+  "description": "Creates an area around the campfire where players and passive mobs receive the regeneration effect in a configurable radius.",
   "authors": [ "Rick South" ],
   "contact": {
     "homepage": "https://curseforge.com/minecraft/mc-mods/healing-campfire-fabric",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
+    "collective-fabric": ">=4.50"
   }
 }

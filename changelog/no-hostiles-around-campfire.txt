@@ -3,6 +3,10 @@ No Hostiles Around Campfire
 https://www.curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire
 
 =========
+v4.5: Added support for modded campfires.
+Updated mod description.
+
+=========
 v4.4: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

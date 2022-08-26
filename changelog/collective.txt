@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.50: Added function to find BlockEntities such as campfires via BlockTags. Thanks @Brittank88 on Github for the work.
+Improved backend performance.
+
+=========
 v4.45-4.49: Added the SignFunctions class, which adds easy access to sign contents.
 Updated FABFunctions to work with block positions and not just entities.
 

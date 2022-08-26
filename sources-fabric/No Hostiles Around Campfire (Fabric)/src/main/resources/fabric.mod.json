@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "nohostilesaroundcampfire-fabric",
-  "version": "4.4",
+  "version": "4.5",
 
   "name": "No Hostiles Around Campfire (Fabric)",
-  "description": "Prevents hostile mob spawns around the campfire in a configurable radius.",
+  "description": "Prevent hostile mobs from spawning around the campfire and burn existing mobs when placing a campfire down. With a configurable radius.",
   "authors": [ "Rick South" ],
   "contact": {
     "homepage": "https://curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire-fabric",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
+    "collective-fabric": ">=4.50"
   }
 }
