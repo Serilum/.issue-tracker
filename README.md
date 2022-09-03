@@ -1,4 +1,4 @@
-[![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/header.png)](https://serilum.com/){:target="_blank"}\
+[![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/header.png)](https://serilum.com/)\
 &nbsp;\
 [![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/serilumcom.png)](https://serilum.com/)\
 &nbsp;\
