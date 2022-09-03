@@ -3,7 +3,9 @@
  * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
- * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
+ * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
+ *  CurseForge: https://curseforge.com/members/serilum/projects
+ *  Modrinth: https://modrinth.com/user/serilum
  */
 
 package com.natamus.grindstonesharpertools.config;
@@ -36,7 +38,6 @@ public class ConfigHandler {
 	public static PropertyMirror<Boolean> showUsesLeftInItemName = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<String> nameUsesPrefix = PropertyMirror.create(ConfigTypes.STRING);
 	public static PropertyMirror<String> nameUsesSuffix = PropertyMirror.create(ConfigTypes.STRING);
-	public static PropertyMirror<Boolean> infiniteCreativeUses = PropertyMirror.create(ConfigTypes.BOOLEAN);
 
 	private static final ConfigTree CONFIG = ConfigTree.builder() 
 			.beginValue("usesAfterGrinding", ConfigTypes.INTEGER, 32)
@@ -66,10 +67,6 @@ public class ConfigHandler {
 			.beginValue("nameUsesSuffix", ConfigTypes.STRING, ")")
 			.withComment("The suffix of the sharpened uses left in the tool name.")
 			.finishValue(nameUsesSuffix::mirror)
-
-			.beginValue("infiniteCreativeUses", ConfigTypes.BOOLEAN, false)
-			.withComment("Whether to decrease sharpened uses in creative.")
-			.finishValue(infiniteCreativeUses::mirror)
 
 			.build();
 
