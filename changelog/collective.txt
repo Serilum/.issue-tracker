@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.51: Updated EntityFunctions.
+Cleaned up code and added setEntityFlag function.
+
+=========
 v4.50: Added function to find BlockEntities such as campfires via BlockTags. Thanks @Brittank88 on Github for the work.
 Improved backend performance.
 

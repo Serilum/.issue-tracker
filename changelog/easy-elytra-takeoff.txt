@@ -3,6 +3,12 @@ Easy Elytra Takeoff
 https://www.curseforge.com/minecraft/mc-mods/easy-elytra-takeoff
 
 =========
+v3.0: Improved takeoff code! Easier taking off with less simulated rockets.
+The mod now uses TickEvents instead of a delayed function.
+Fixed being able to use a free rocket by taking the elytra off mid-air and re-equiping it.
+Improved performance.
+
+=========
 v2.6: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

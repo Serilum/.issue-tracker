@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Easy Elytra Takeoff.
- * Minecraft version: 1.19.2, mod version: 2.4.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -10,11 +10,9 @@
 
 package com.natamus.easyelytratakeoff.events;
 
-import java.lang.reflect.Method;
-import java.util.Collection;
-import java.util.Iterator;
-
-import net.minecraft.world.entity.Entity;
+import com.natamus.collective.functions.EntityFunctions;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
@@ -23,14 +21,43 @@ import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+
+import java.util.Collection;
+import java.util.HashMap;
 
 @EventBusSubscriber
 public class ElytraEvent {
-	private static Method setFlag = ObfuscationReflectionHelper.findMethod(Entity.class, "m_20115_", int.class, boolean.class); // setSharedFlag
+	private static HashMap<String, Integer> newrockets = new HashMap<String, Integer>();
+
+	@SubscribeEvent
+	public void onPlayerTick(TickEvent.PlayerTickEvent e) {
+		Player player = e.player;
+		Level level = player.level;
+		if (level.isClientSide) {
+			return;
+		}
+
+		String playerName = player.getName().getString();
+		if (newrockets.containsKey(playerName)) {
+			int left = newrockets.get(playerName);
+			if (left > -5) {
+				if (left > 0) {
+					EntityFunctions.setEntityFlag(player, 7, true);
+					FireworkRocketEntity efr = new FireworkRocketEntity(level, player.getItemInHand(InteractionHand.MAIN_HAND), player);
+					level.addFreshEntity(efr);
+				}
+
+				EntityFunctions.setEntityFlag(player, 7, true);
+				newrockets.put(playerName, left-1);
+			}
+		}
+	}
 	
 	@SubscribeEvent
 	public void onFirework(PlayerInteractEvent.RightClickItem e) {
@@ -48,11 +75,24 @@ public class ElytraEvent {
 		if (player.isFallFlying()) {
 			return;
 		}
-		
+
+		BlockPos belowpos = player.blockPosition().below();
+
+		boolean inAir = true;
+		for (BlockPos next : BlockPos.betweenClosed(belowpos.getX() - 1, belowpos.getY() - 1, belowpos.getZ() - 1, belowpos.getX() + 1, belowpos.getY() - 1, belowpos.getZ() + 1)) {
+			Block nextblock = world.getBlockState(next).getBlock();
+			if (!nextblock.equals(Blocks.AIR)) {
+				inAir = false;
+				break;
+			}
+		}
+
+		if (inAir) {
+			return;
+		}
+
 		boolean foundelytra = false;
-		Iterator<ItemStack> it = player.getArmorSlots().iterator();
-		while (it.hasNext()) {
-			ItemStack nis = it.next();
+		for (ItemStack nis : player.getArmorSlots()) {
 			if (nis.getItem() instanceof ElytraItem) {
 				foundelytra = true;
 				break;
@@ -79,64 +119,12 @@ public class ElytraEvent {
 				return;
 			}
 		}
-		
-		try {
-			setFlag.invoke(player, 7, true);
-		} catch (Exception ex) { 
-			return;
-		}
-		
-		FireworkRocketEntity efr1 = new FireworkRocketEntity(world, hand, player);
-		FireworkRocketEntity efr2 = new FireworkRocketEntity(world, hand, player);
-		FireworkRocketEntity efr3 = new FireworkRocketEntity(world, hand, player);
-		FireworkRocketEntity efr4 = new FireworkRocketEntity(world, hand, player);
 
-		new Thread( new Runnable() {
-	    	public void run()  {
-	        	try  { Thread.sleep( 10 ); }
-	            catch (InterruptedException ie)  {}
-	        	
-	        	world.addFreshEntity(efr1);
-	    		try {
-	    			setFlag.invoke(player, 7, true);
-	    		} catch (Exception ex) { 
-	    			return;
-	    		}
-	    		new Thread( new Runnable() {
-	    	    	public void run()  {
-	    	        	try  { Thread.sleep( 10 ); }
-	    	            catch (InterruptedException ie)  {}
-	    	        	
-	    	        	world.addFreshEntity(efr2);
-	    	    		try {
-	    	    			setFlag.invoke(player, 7, true);
-	    	    		} catch (Exception ex) { 
-	    	    			return;
-	    	    		}
-	    	    		new Thread( new Runnable() {
-	    	    	    	public void run()  {
-	    	    	        	try  { Thread.sleep( 10 ); }
-	    	    	            catch (InterruptedException ie)  {}
-	    	    	        	
-	    	    	        	world.addFreshEntity(efr3);
-	    	    	    		try {
-	    	    	    			setFlag.invoke(player, 7, true);
-	    	    	    		} catch (Exception ex) { 
-	    	    	    			return;
-	    	    	    		}
-	    	    	    		new Thread( new Runnable() {
-	    	    	    	    	public void run()  {
-	    	    	    	        	try  { Thread.sleep( 30 ); }
-	    	    	    	            catch (InterruptedException ie)  {}
-	    	    	    	        	
-	    	    	    	        	world.addFreshEntity(efr4);
-	    	    	    	    	}
-	    	    	    	    } ).start();
-	    	    	    	}
-	    	    	    } ).start();
-	    	    	}
-	    	    } ).start();
-	    	}
-	    } ).start();
+		String playerName = player.getName().getString();
+		newrockets.put(playerName, 1);
+
+		if (!player.isCreative()) {
+			hand.shrink(1);
+		}
 	}
 }
