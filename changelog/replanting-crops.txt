@@ -3,6 +3,10 @@ Replanting Crops
 https://www.curseforge.com/minecraft/mc-mods/replanting-crops
 
 =========
+v4.0: Added support for modded crops that extend the CropBlock.
+Fixed the hoe being able to go below 0 durability on use.
+
+=========
 v3.1: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========
