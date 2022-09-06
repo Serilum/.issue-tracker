@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.52: Extended EntityFunctions to work with Villagers, Wandering Traders and their merchant offers.
+
+=========
 v4.51: Updated EntityFunctions.
 Cleaned up code and added setEntityFlag function.
 

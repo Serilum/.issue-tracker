@@ -10,37 +10,36 @@
 
 package com.natamus.infinitetrading.events;
 
-import com.natamus.collective.functions.EntityFunctions;
+import com.natamus.collective_fabric.functions.EntityFunctions;
 import com.natamus.infinitetrading.config.ConfigHandler;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.WanderingTrader;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraft.world.phys.EntityHitResult;
 
-@EventBusSubscriber
 public class VillagerEvent {
-	@SubscribeEvent
-	public void onVillagerClick(PlayerInteractEvent.EntityInteract e) {
-		Level world = e.getLevel();
+	public static InteractionResult onVillagerClick(Player player, Level world, InteractionHand hand, Entity target, EntityHitResult hitResult) {
 		if (world.isClientSide) {
-			return;
+			return InteractionResult.PASS;
 		}
-		
-		Entity target = e.getTarget();
+
 		if (target instanceof Villager) {
-			if (ConfigHandler.GENERAL.villagerInfiniteTrades.get()) {
+			if (ConfigHandler.villagerInfiniteTrades.getValue()) {
 				Villager villager = (Villager) target;
 				EntityFunctions.resetMerchantOffers(villager);
 			}
 		}
 		else if (target instanceof WanderingTrader) {
-			if (ConfigHandler.GENERAL.wanderingTraderInfiniteTrades.get()) {
+			if (ConfigHandler.wanderingTraderInfiniteTrades.getValue()) {
 				WanderingTrader wanderer = (WanderingTrader)target;
 				EntityFunctions.resetMerchantOffers(wanderer);
 			}
 		}
+
+		return InteractionResult.PASS;
 	}
 }

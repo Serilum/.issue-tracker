@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Infinite Trading.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -31,11 +31,16 @@ import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
 
 public class ConfigHandler { 
 	public static PropertyMirror<Boolean> wanderingTraderInfiniteTrades = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	public static PropertyMirror<Boolean> villagerInfiniteTrades = PropertyMirror.create(ConfigTypes.BOOLEAN);
 
 	private static final ConfigTree CONFIG = ConfigTree.builder() 
 			.beginValue("wanderingTraderInfiniteTrades", ConfigTypes.BOOLEAN, true)
-			.withComment("When enabled, the trades of the wandering trader also never lock up.")
+			.withComment("When enabled, the trades of the wandering trader will never lock up.")
 			.finishValue(wanderingTraderInfiniteTrades::mirror)
+
+			.beginValue("villagerInfiniteTrades", ConfigTypes.BOOLEAN, true)
+			.withComment("When enabled, the trades of villagers will never lock up.")
+			.finishValue(villagerInfiniteTrades::mirror)
 
 			.build();
 

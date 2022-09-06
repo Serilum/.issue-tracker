@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Infinite Trading.
- * Minecraft version: 1.19.2, mod version: 2.3.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,12 +19,16 @@ public class ConfigHandler {
 
 	public static class General {
 		public final ForgeConfigSpec.ConfigValue<Boolean> wanderingTraderInfiniteTrades;
+		public final ForgeConfigSpec.ConfigValue<Boolean> villagerInfiniteTrades;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
 			wanderingTraderInfiniteTrades = builder
-					.comment("When enabled, the trades of the wandering trader also never lock up.")
+					.comment("When enabled, the trades of the wandering trader will never lock up.")
 					.define("wanderingTraderInfiniteTrades", true);
+			villagerInfiniteTrades = builder
+					.comment("When enabled, the trades of villagers will never lock up.")
+					.define("villagerInfiniteTrades", true);
 			
 			builder.pop();
 		}

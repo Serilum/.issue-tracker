@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.51.
+ * Minecraft version: 1.19.2, mod version: 4.52.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -23,8 +23,11 @@ import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.animal.horse.*;
 import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
 
 public class EntityFunctions {
@@ -109,6 +112,21 @@ public class EntityFunctions {
 
 	public static void setEntityFlag(Entity entity, int flag, boolean set) {
 		entity.setSharedFlag(flag, set);
+	}
+
+	public static void resetMerchantOffers(Villager villager) {
+		for (MerchantOffer offer : villager.getOffers()) {
+			resetMerchantOffer(offer);
+		}
+	}
+	public static void resetMerchantOffers(WanderingTrader wanderingTrader) {
+		for (MerchantOffer offer : wanderingTrader.getOffers()) {
+			resetMerchantOffer(offer);
+		}
+	}
+	public static void resetMerchantOffer(MerchantOffer offer) {
+		offer.uses = 0;
+		offer.maxUses = Integer.MAX_VALUE;
 	}
 
 	public static void transferItemsBetweenEntities(Entity from, Entity to, boolean ignoremainhand) {

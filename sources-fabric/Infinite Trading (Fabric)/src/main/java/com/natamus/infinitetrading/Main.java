@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Infinite Trading.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -12,9 +12,10 @@ package com.natamus.infinitetrading;
 
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.infinitetrading.config.ConfigHandler;
+import com.natamus.infinitetrading.events.VillagerEvent;
 import com.natamus.infinitetrading.util.Reference;
-
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 
 public class Main implements ModInitializer {
 	@Override
@@ -27,6 +28,8 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-
+		UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
+			return VillagerEvent.onVillagerClick(player, world, hand, entity, hitResult);
+		});
 	}
 }
