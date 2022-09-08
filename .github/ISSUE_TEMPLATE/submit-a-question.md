@@ -2,7 +2,7 @@
 name: Submit a question.
 about: There are no wrong questions! If your question is about a specific mod, please mention the mod name.
 title: ''
-labels: "Mod Label Needed, 🤔 Question 🤔"
+labels: "👀 Mod Label Missing 👀, 🤔 Question 🤔"
 assignees: ricksouth
 
 ---
