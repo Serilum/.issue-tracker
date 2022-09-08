@@ -8,6 +8,9 @@ assignees: ricksouth
 ---
 
 ## **Information**
+Minecraft version: 1.xx.xx
+Modloader: Forge / Fabric
+
 Mod name: Mod
 
 
