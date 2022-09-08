@@ -1,5 +1,5 @@
 ---
-name: Submit a comment, what's on your mind?
+name: Submit a comment. What's on your mind?
 about: This can be about anything. Hello! :)
 title: ''
 labels: "💬 Comment 💬"
