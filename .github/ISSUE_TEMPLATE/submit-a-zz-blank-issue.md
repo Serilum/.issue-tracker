@@ -1,5 +1,5 @@
 ---
-name: Submit something different, what you need is not covered by any of the previous.
+name: Submit something different, what you need is not covered by any of the previous options.
 about: I'd love to help. What's up?
 title: ''
 labels: ""
