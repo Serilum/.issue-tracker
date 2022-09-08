@@ -1,8 +1,8 @@
 ---
 name: Submit a bug/crash/error.
-about: Something doesn't work as expected.
+about: Something doesn't work as expected. Please specify the mod name and provide a crash report if possible.
 title: ''
-labels: "Mod Label Needed, ‎‎A Bug"
+labels: "👀 Mod Label Missing 👀, 👾 Bug 👾"
 assignees: ricksouth
 
 ---
@@ -18,7 +18,7 @@ Mod version: x.x
 
 
 ## **Description**
-Hey! This happened..
+Hey! This happened.
 
 
 ## **Crash report**
