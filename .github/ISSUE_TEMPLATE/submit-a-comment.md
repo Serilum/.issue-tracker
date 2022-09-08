@@ -1,8 +1,8 @@
 ---
-name: Submit a comment.
-about: Just want to say something? This is your chance!
+name: Submit a comment, what's on your mind?
+about: This can be about anything. Hello! :)
 title: ''
-labels: "Mod Label Needed"
+labels: "💬 Comment 💬"
 assignees: ricksouth
 
 ---
@@ -19,4 +19,4 @@ Mod version: x.x
 
 
 ## **Comment**
-!
+Hi!
