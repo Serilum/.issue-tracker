@@ -1,8 +1,8 @@
 ---
-name: Submit a feature idea.
-about: Something could be improved or added!
+name: Submit a feature idea for an existing mod.
+about: Something could be improved or added! Please mention the mod name your feature request is for.
 title: ''
-labels: "Mod Label Needed, A Feature"
+labels: "👀 Mod Label Missing 👀, 🛠 Feature Request 🛠"
 assignees: ricksouth
 
 ---
@@ -12,4 +12,4 @@ Mod name: Mod
 
 
 ## **Feature description**
-I've had this amazing idea..
+I've had this amazing idea!
