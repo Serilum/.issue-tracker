@@ -1,4 +1,10 @@
-[![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/header.png)](https://serilum.com/)\
+[![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/header.png)](https://serilum.com/)
+
+<div align="center">
+<p><strong>Feeling generous? ❤️</strong></p>
+<p><a href="https://ricksouth.com/donate" target=_blank><img src="https://github.com/ricksouth/ricksouth/raw/main/assets/shields/donation.svg" height="60" width="auto"></a></p>
+</div>
+
 &nbsp;\
 [![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/serilumcom.png)](https://serilum.com/)\
 &nbsp;\
