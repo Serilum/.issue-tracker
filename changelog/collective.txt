@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.53-4.54: Added functions related to in-game settings.
+
+=========
 v4.52: Extended EntityFunctions to work with Villagers, Wandering Traders and their merchant offers.
 
 =========
