@@ -6,3 +6,6 @@ accessible method net/minecraft/world/entity/Entity setSharedFlag (IZ)V
 accessible field net/minecraft/world/item/trading/MerchantOffer maxUses I
 mutable field net/minecraft/world/item/trading/MerchantOffer maxUses I
 accessible field net/minecraft/world/item/trading/MerchantOffer uses I
+
+accessible field net/minecraft/client/Options gamma Lnet/minecraft/client/OptionInstance;
+mutable field net/minecraft/client/Options gamma Lnet/minecraft/client/OptionInstance;
