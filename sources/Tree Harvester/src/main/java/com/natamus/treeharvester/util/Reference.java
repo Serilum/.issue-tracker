@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.19.2, mod version: 5.3.
+ * Minecraft version: 1.19.2, mod version: 5.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,6 @@ package com.natamus.treeharvester.util;
 public class Reference {
 	public static final String MOD_ID = "treeharvester";
 	public static final String NAME = "Tree Harvester";
-	public static final String VERSION = "5.3";
+	public static final String VERSION = "5.7";
 	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
 }

@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "com.natamus.treeharvester.forge.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "serilumforgemod.refmap.json",
+  "refmap": "treeharvester.refmap.json",
   "mixins": [
 
   ],

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.19.2, mod version: 5.3.
+ * Minecraft version: 1.19.2, mod version: 5.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -21,7 +21,6 @@ import com.natamus.treeharvester.config.ConfigHandler;
 import com.natamus.treeharvester.events.SoundHarvestEvent;
 import com.natamus.treeharvester.events.TreeEvent;
 import com.natamus.treeharvester.util.Reference;
-import com.natamus.treeharvester.util.Util;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -49,12 +48,6 @@ public class Main {
     }
 	
     private void loadComplete(final FMLLoadCompleteEvent event) {
-        try {
-            Util.setupAxeBlacklist();
-        } catch (Exception ex) {
-            System.out.println("[Tree Harvester] Something went wrong setting up the axe blacklist file.");
-        }
-
         MinecraftForge.EVENT_BUS.register(new TreeEvent());
     	
 		if (FMLEnvironment.dist.equals(Dist.CLIENT)) {

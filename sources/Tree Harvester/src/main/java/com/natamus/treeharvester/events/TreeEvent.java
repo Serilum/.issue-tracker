@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.19.2, mod version: 5.3.
+ * Minecraft version: 1.19.2, mod version: 5.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -37,6 +37,8 @@ import net.minecraftforge.event.TickEvent.LevelTickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.level.LevelEvent;
+import net.minecraftforge.event.server.ServerStartedEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -45,9 +47,26 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 @EventBusSubscriber
 public class TreeEvent {
+	private static boolean setupBlacklistRan = false;
+
 	private static HashMap<Level, CopyOnWriteArrayList<List<BlockPos>>> processleaves = new HashMap<Level, CopyOnWriteArrayList<List<BlockPos>>>();
 	private static HashMap<Pair<Level, BlockPos>, Pair<Date, Integer>> harvestSpeedCache = new HashMap<Pair<Level, BlockPos>, Pair<Date, Integer>>();
-	
+
+	@SubscribeEvent
+	public void onServerStart(ServerStartedEvent e) {
+		if (setupBlacklistRan) {
+			return;
+		}
+		setupBlacklistRan = true;
+
+		try {
+			Util.setupAxeBlacklist();
+		}
+		catch(Exception ex) {
+			System.out.println("[Tree Harvester] Something went wrong setting up the axe blacklist file.");
+		}
+	}
+
 	@SubscribeEvent
 	public void onWorldLoad(LevelEvent.Load e) {
 		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());

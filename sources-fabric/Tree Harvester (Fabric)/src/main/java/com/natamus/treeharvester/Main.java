@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.19.2, mod version: 5.6.
+ * Minecraft version: 1.19.2, mod version: 5.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -34,7 +34,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class Main implements ModInitializer {
-	private boolean blackListSetup;
+	private boolean setupBlacklistRan = false;
 
 	@Override
 	public void onInitialize() {
@@ -47,15 +47,16 @@ public class Main implements ModInitializer {
 	
 	private void registerEvents() {
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
-			if (blackListSetup) {
+			if (setupBlacklistRan) {
 				return;
 			}
-			blackListSetup = true;
+			setupBlacklistRan = true;
+
 			try {
 				Util.setupAxeBlacklist();
 			}
 			catch(Exception ex) {
-				return;
+				System.out.println("[Tree Harvester] Something went wrong setting up the axe blacklist file.");
 			}
 		});
 
