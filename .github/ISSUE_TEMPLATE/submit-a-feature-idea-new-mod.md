@@ -2,7 +2,7 @@
 name: Submit a feature idea for a new mod.
 about: Something that you'd think is a great addition to the game.
 title: ''
-labels: "🛠 Feature Request 🛠"
+labels: "Feature Request"
 assignees: ricksouth
 
 ---

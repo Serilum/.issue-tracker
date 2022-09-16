@@ -2,7 +2,7 @@
 name: Submit a mod incompatibility.
 about: Two mods aren't working together as they should. Please specify both mods and explain the situation.
 title: ''
-labels: "👀 Mod Label Missing 👀, ☯️ Incompatibility ☯️"
+labels: "Mod Label Missing, Incompatibility"
 assignees: ricksouth
 
 ---

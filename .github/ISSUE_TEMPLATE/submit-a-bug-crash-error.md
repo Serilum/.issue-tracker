@@ -2,7 +2,7 @@
 name: Submit a bug/crash/error.
 about: Something doesn't work as expected. Please specify the mod name and provide a crash report if possible.
 title: ''
-labels: "👀 Mod Label Missing 👀, 👾‎‎ Bug 👾"
+labels: "Mod Label Missing, Bug"
 assignees: ricksouth
 
 ---
@@ -22,4 +22,6 @@ Hey! This happened.
 
 
 ## **Crash report**
+_(Please use https://gist.github.com/, to prevent the paste from expiring)_
+
 If available.
