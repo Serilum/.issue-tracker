@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.6-4.55: Added a multitide of functions related to sending messages, in their own class MessageFunctions.
+Updated to work with MutableComponents directly.
+
+=========
 v4.53-4.54: Added functions related to in-game settings.
 
 =========

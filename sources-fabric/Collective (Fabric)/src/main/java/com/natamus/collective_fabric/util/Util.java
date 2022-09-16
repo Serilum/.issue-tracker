@@ -14,28 +14,10 @@
  * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
-package com.natamus.collective.functions;
+package com.natamus.collective_fabric.util;
 
-import net.minecraft.network.chat.CommonComponents;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.block.entity.SignBlockEntity;
+public class Util {
+    public static void init() {
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class SignFunctions {
-    public static List<String> getSignText(SignBlockEntity signentity) {
-        List<String> lines = new ArrayList<String>();
-
-        for (Component line : signentity.getMessages(false)) {
-            if (line.equals(CommonComponents.EMPTY)) {
-                lines.add("");
-                continue;
-            }
-
-            lines.add(line.getString());
-        }
-
-        return lines;
     }
 }

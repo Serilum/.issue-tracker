@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Beautified Chat Server.
- * Minecraft version: 1.19.2, mod version: 1.3.
+ * Minecraft version: 1.19.2, mod version: 1.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,6 +18,7 @@ package com.natamus.beautifiedchatserver.events;
 
 import com.natamus.beautifiedchatserver.config.ConfigHandler;
 import com.natamus.beautifiedchatserver.util.Util;
+import com.natamus.collective.functions.MessageFunctions;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -31,7 +32,7 @@ import java.util.Date;
 @EventBusSubscriber
 public class BeautifulChatEvent {
 	@SubscribeEvent
-	public void onServerChat(ServerChatEvent e) {
+	public void onServerChat(ServerChatEvent.Submitted e) {
 		String timestamp = new SimpleDateFormat(ConfigHandler.GENERAL.timestampFormat.get()).format(new Date());
 		
 		String user = e.getUsername();
@@ -59,6 +60,7 @@ public class BeautifulChatEvent {
 			output.append(wordcomponent);
 		}
 
-		e.setMessage(output);
+		e.setCanceled(true);
+		MessageFunctions.broadcastMessage(e.getPlayer().getCommandSenderWorld(), output);
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.54.
+ * Minecraft version: 1.19.2, mod version: 4.55.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,9 +16,28 @@
 
 package com.natamus.collective_fabric.functions;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
+import net.minecraft.network.chat.Component;
+
+import static net.minecraft.client.Options.genericValueLabel;
 
 public class GameSettingsFunctions {
+    public static void setGammaValue() {
+        Minecraft.getInstance().options.gamma = new OptionInstance("options.gamma", OptionInstance.noTooltip(), (component, double_) -> {
+            int i = (int)((double)double_ * 100.0);
+            if (i == 0) {
+                return genericValueLabel(component, Component.translatable("options.gamma.min"));
+            } else if (i == 50) {
+                return genericValueLabel(component, Component.translatable("options.gamma.default"));
+            } else {
+                return i == 100 ? genericValueLabel(component, Component.translatable("options.gamma.max")) : genericValueLabel(component, i);
+            }
+        }, OptionInstance.UnitDouble.INSTANCE, 0.5, (double_) -> {
+        });
+    }
+
     public static void setGamma(Options options, double gamma) {
         options.gamma.set(gamma);
     }
