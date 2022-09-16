@@ -3,6 +3,9 @@ GUI Compass
 https://www.curseforge.com/minecraft/mc-mods/gui-compass
 
 =========
+v2.7: Fixed holding a compass in the offhand not counting towards having one in the inventory.
+
+=========
 v2.6: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

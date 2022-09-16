@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "guicompass-fabric",
-  "version": "2.6",
+  "version": "2.7",
 
   "name": "GUI Compass (Fabric)",
   "description": "Shows the direction and coordinates in the GUI with a compass in the inventory.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
+    "collective-fabric": ">=4.55"
   }
 }

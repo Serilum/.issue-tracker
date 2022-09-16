@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Clock.
- * Minecraft version: 1.19.2, mod version: 3.3.
+ * Minecraft version: 1.19.2, mod version: 3.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -34,6 +34,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.awt.*;
 import java.util.Collection;
+import java.util.Objects;
 
 public class GUIEvent extends Gui {
 	private static Minecraft mc;
@@ -51,12 +52,14 @@ public class GUIEvent extends Gui {
 		boolean found = true;
 		
 		if (gametimeb || realtimeb) {
-			found = false;
-			Inventory inv = mc.player.getInventory();
-			for (int n = 0; n <= 35; n++) {
-				if (inv.getItem(n).getItem().equals(Items.CLOCK)) {
-					found = true;
-					break;
+			found = mc.player.getOffhandItem().getItem().equals(Items.CLOCK);
+			if (!found) {
+				Inventory inv = mc.player.getInventory();
+				for (int n = 0; n <= 35; n++) {
+					if (inv.getItem(n).getItem().equals(Items.CLOCK)) {
+						found = true;
+						break;
+					}
 				}
 			}
 		}
@@ -90,8 +93,8 @@ public class GUIEvent extends Gui {
 			}
 		}
 		
-		int xcoord = 0;
-		int daycoord = 0;
+		int xcoord;
+		int daycoord;
 		if (ConfigHandler.GENERAL.showOnlyMinecraftClockIcon.get()) {
 			if (gametimeb) {
 				if (!found) {
@@ -115,7 +118,7 @@ public class GUIEvent extends Gui {
 			itemrenderer.renderAndDecorateItem(new ItemStack(Items.CLOCK), xcoord, heightoffset);
 		}
 		else {
-			String time = "";
+			String time;
 			String realtime = StringFunctions.getPCLocalTime(ConfigHandler.GENERAL._24hourformat.get(), ConfigHandler.GENERAL.showRealTimeSeconds.get());
 			if (ConfigHandler.GENERAL.showBothTimes.get()) {
 				if (gametimeb && realtimeb) {
@@ -151,7 +154,7 @@ public class GUIEvent extends Gui {
 				time = getGameTime();
 			}
 			
-			if (time == "") {
+			if (time.equals("")) {
 				return;
 			}
 			
@@ -177,7 +180,7 @@ public class GUIEvent extends Gui {
 			daycoord += ConfigHandler.GENERAL.clockWidthOffset.get();
 			
 			fontRender.draw(posestack, time, xcoord, heightoffset, colour.getRGB());
-			if (daystring != "") {
+			if (!daystring.equals("")) {
 				fontRender.draw(posestack, daystring, daycoord, heightoffset+10, colour.getRGB());
 			}
 		}
@@ -186,7 +189,7 @@ public class GUIEvent extends Gui {
 	}
 	
 	private static String getGameTime() {
-		int time = 0;
+		int time;
 		int gametime = (int)mc.level.getDayTime();
 		int daysplayed = 0;
 		
@@ -225,13 +228,13 @@ public class GUIEvent extends Gui {
 			}
 		}
 		
-		String stringtime = time/10 + "";
+		StringBuilder stringtime = new StringBuilder(time / 10 + "");
 		for (int n = stringtime.length(); n < 4; n++) {
-			stringtime = "0" + stringtime;
+			stringtime.insert(0, "0");
 		}
 		
 		
-		String[] strsplit = stringtime.split("");
+		String[] strsplit = stringtime.toString().split("");
 		
 		int minutes = (int)Math.floor(Double.parseDouble(strsplit[2] + strsplit[3])/100*60);
 		String sm = minutes + "";
@@ -240,10 +243,10 @@ public class GUIEvent extends Gui {
 		}
 		
 		if (!ConfigHandler.GENERAL._24hourformat.get() && strsplit[0].equals("0")) {
-			stringtime = strsplit[1] + ":" + sm.charAt(0) + sm.charAt(1);
+			stringtime = new StringBuilder(strsplit[1] + ":" + sm.charAt(0) + sm.charAt(1));
 		}
 		else {
-			stringtime = strsplit[0] + strsplit[1] + ":" + sm.charAt(0) + sm.charAt(1);
+			stringtime = new StringBuilder(strsplit[0] + strsplit[1] + ":" + sm.charAt(0) + sm.charAt(1));
 		}
 		
 		return stringtime + suffix;

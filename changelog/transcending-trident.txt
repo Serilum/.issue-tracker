@@ -3,6 +3,9 @@ Transcending Trident
 https://www.curseforge.com/minecraft/mc-mods/transcending-trident
 
 =========
+v2.8: (Forge) Fixed the mod not working correctly due to a mixin not being applied outside the dev environment.
+
+=========
 v2.7: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

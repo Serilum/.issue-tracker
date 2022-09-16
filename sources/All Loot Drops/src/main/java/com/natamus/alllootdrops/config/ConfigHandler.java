@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of All Loot Drops.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.2, mod version: 2.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -24,12 +24,16 @@ public class ConfigHandler {
 	public static final ForgeConfigSpec spec = BUILDER.build();
 
 	public static class General {
+		public final ForgeConfigSpec.ConfigValue<Boolean> keepOriginalLootQuantityIfHigher;
 		public final ForgeConfigSpec.ConfigValue<Integer> lootQuantity;
 		public final ForgeConfigSpec.ConfigValue<Boolean> lootingEnchantAffectsQuantity;
 		public final ForgeConfigSpec.ConfigValue<Double> lootingEnchantExtraQuantityChance;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
+			keepOriginalLootQuantityIfHigher = builder
+					.comment("If for example Iron Golems drop more iron than the default lootQuantity setting, keep that original amount instead of nerfing it.")
+					.define("keepOriginalLootQuantityIfHigher", true);
 			lootQuantity = builder
 					.comment("Determines the amount of loot dropped by each mob.")
 					.defineInRange("lootQuantity", 1, 1, 128);

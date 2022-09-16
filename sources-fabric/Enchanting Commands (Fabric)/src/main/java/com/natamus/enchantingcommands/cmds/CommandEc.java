@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Enchanting Commands.
- * Minecraft version: 1.19.2, mod version: 2.4.
+ * Minecraft version: 1.19.2, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -34,8 +34,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
-import java.util.List;
-
 public class CommandEc {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
     	dispatcher.register(Commands.literal(ConfigHandler.enchantCommandString.getValue())
@@ -48,7 +46,7 @@ public class CommandEc {
 			.executes((command) -> {
 				CommandSourceStack source = command.getSource();
 
-				String joined = String.join(", ", Util.enchantments());
+				String joined = String.join(", ", Util.getEnchantmentKeys());
 				StringFunctions.sendMessage(source, "--- Enchanting Commands List ---", ChatFormatting.DARK_GREEN, true);
 				StringFunctions.sendMessage(source, " " + joined, ChatFormatting.DARK_GREEN);
 				return 1;
@@ -70,7 +68,6 @@ public class CommandEc {
 				Enchantment enchantment = ItemEnchantmentArgument.getEnchantment(command, "enchantment");
 				int level = IntegerArgumentType.getInteger(command, "level");
 
-				List<String> enchantments = Util.enchantments();
 				if (!player.hasItemInSlot(EquipmentSlot.MAINHAND)) {
 					StringFunctions.sendMessage(player, "You do not have an enchantable item in your main hand.", ChatFormatting.RED);
 					return 0;

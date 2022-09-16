@@ -1,9 +1,9 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.natamus.enchantingcommands.forge.mixin",
+  "package": "com.natamus.guiclock.forge.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "serilumforgemod.refmap.json",
+  "refmap": "guiclock.refmap.json",
   "mixins": [
 
   ],

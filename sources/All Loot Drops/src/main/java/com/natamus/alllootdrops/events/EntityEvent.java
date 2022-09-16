@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of All Loot Drops.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.2, mod version: 2.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,29 +16,29 @@
 
 package com.natamus.alllootdrops.events;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-
 import com.natamus.alllootdrops.config.ConfigHandler;
 import com.natamus.collective.data.GlobalVariables;
 import com.natamus.collective.functions.ItemFunctions;
 import com.natamus.collective.functions.WorldFunctions;
-
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.frog.Frog;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.MagmaCube;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @EventBusSubscriber
 public class EntityEvent {
@@ -58,13 +58,18 @@ public class EntityEvent {
 	
 	@SubscribeEvent
 	public void mobItemDrop(LivingDropsEvent e) {
-		Entity entity = e.getEntity();
+		LivingEntity entity = e.getEntity();
 		Level world = entity.getCommandSenderWorld();
 		if (world.isClientSide) {
 			return;
 		}
 		
-		if (entity instanceof Player || entity instanceof LivingEntity == false) {
+		if (entity instanceof Player || !(entity instanceof LivingEntity)) {
+			return;
+		}
+
+		DamageSource source = e.getSource();
+		if (entity instanceof MagmaCube && source.getEntity() instanceof Frog) {
 			return;
 		}
 		
@@ -77,13 +82,13 @@ public class EntityEvent {
 			}
 		}
 
-		LivingEntity le = (LivingEntity)entity;
-		EntityType<?> type = le.getType();
-		
-		List<Item> alldrops = GlobalVariables.entitydrops.get(type);
-		if (alldrops == null) {
+		EntityType<?> type = entity.getType();
+
+		if (!GlobalVariables.entitydrops.containsKey(type)) {
 			return;
 		}
+		
+		List<Item> alldrops = new ArrayList<Item>(GlobalVariables.entitydrops.get(type));
 		
 		int amount = ConfigHandler.GENERAL.lootQuantity.get();
 		if (ConfigHandler.GENERAL.lootingEnchantAffectsQuantity.get()) {
@@ -101,10 +106,8 @@ public class EntityEvent {
 		
 		Collection<ItemEntity> drops = e.getDrops();
 		List<ItemEntity> tr = new ArrayList<ItemEntity>();
-		
-		Iterator<ItemEntity> it = e.getDrops().iterator();
-		while (it.hasNext()) {
-			ItemEntity ie = it.next();
+
+		for (ItemEntity ie : e.getDrops()) {
 			ItemStack stack = ie.getItem();
 			Item item = stack.getItem();
 			if (alldrops.contains(item)) {
@@ -114,6 +117,13 @@ public class EntityEvent {
 		
 		if (tr.size() > 0) {
 			for (ItemEntity ie : tr) {
+				ItemStack ieitemstack = ie.getItem();
+				if (ConfigHandler.GENERAL.keepOriginalLootQuantityIfHigher.get()) {
+					if (ieitemstack.getCount() > ConfigHandler.GENERAL.lootQuantity.get()) {
+						alldrops.remove(ieitemstack.getItem());
+						continue;
+					}
+				}
 				drops.remove(ie);
 			}
 		}

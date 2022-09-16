@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "enchantingcommands-fabric",
-  "version": "2.4",
+  "version": "2.5",
 
   "name": "Enchanting Commands (Fabric)",
-  "description": "A minimalistic mod which allows for easy creation of enchanted items via commands with levels above the default limit. Usage: /ec",
+  "description": "Adds the /ec command, which allows for easy creation of enchanted items via commands with levels above the default limit.",
   "authors": [ "Rick South" ],
   "contact": {
     "homepage": "https://curseforge.com/minecraft/mc-mods/enchanting-commands-fabric",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
+    "collective-fabric": ">=4.56"
   }
 }

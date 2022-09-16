@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Compass.
- * Minecraft version: 1.19.2, mod version: 2.4.
+ * Minecraft version: 1.19.2, mod version: 2.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -48,12 +48,14 @@ public class GUIEvent extends Gui {
 	public void renderOverlay(RenderGuiOverlayEvent.Pre e) {
 		if (ConfigHandler.GENERAL.mustHaveCompassInInventory.get()) {
 			if (!(mc.player.getOffhandItem().getItem() instanceof CompassItem)) {
-				boolean found = false;
-				Inventory inv = mc.player.getInventory();
-				for (int n = 0; n <= 35; n++) {
-					if (inv.getItem(n).getItem() instanceof CompassItem) {
-						found = true;
-						break;
+				boolean found = mc.player.getOffhandItem().getItem() instanceof CompassItem;
+				if (!found) {
+					Inventory inv = mc.player.getInventory();
+					for (int n = 0; n <= 35; n++) {
+						if (inv.getItem(n).getItem() instanceof CompassItem) {
+							found = true;
+							break;
+						}
 					}
 				}
 				if (!found) {

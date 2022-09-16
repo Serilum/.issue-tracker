@@ -3,6 +3,10 @@ All Loot Drops
 https://www.curseforge.com/minecraft/mc-mods/all-loot-drops
 
 =========
+v2.6: Added the 'keepOriginalLootQuantityIfHigher' config option to fix an unintended nerf when a mob drops more than the set lootQuantity.
+(1.19) Fixed magma cubes not dropping a Froglight when consumed by a frog.
+
+=========
 v2.5: (Forge 1.19 only) Updated to Forge version 41.0.94+. Use the previous uploaded file if you're on an older version.
 
 =========

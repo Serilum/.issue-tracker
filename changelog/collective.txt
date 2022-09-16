@@ -3,7 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
-v4.6-4.55: Added a multitide of functions related to sending messages, in their own class MessageFunctions.
+v4.56: Fixed Collective crashing when trying to spawn an entity into an incorrectly loaded world.
+
+=========
+v4.55: Added a multitide of functions related to sending messages, in their own class MessageFunctions.
 Updated to work with MutableComponents directly.
 
 =========

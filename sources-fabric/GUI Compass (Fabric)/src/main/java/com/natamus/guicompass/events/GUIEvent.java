@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Compass.
- * Minecraft version: 1.19.2, mod version: 2.6.
+ * Minecraft version: 1.19.2, mod version: 2.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -26,7 +26,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.CompassItem;
-import net.minecraft.world.item.Items;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -38,12 +37,14 @@ public class GUIEvent {
 	public static void renderOverlay(PoseStack posestack, float tickDelta){
 		if (ConfigHandler.mustHaveCompassInInventory.getValue()) {
 			if (!(mc.player.getOffhandItem().getItem() instanceof CompassItem)) {
-				boolean found = false;
-				Inventory inv = mc.player.getInventory();
-				for (int n = 0; n <= 35; n++) {
-					if (inv.getItem(n).getItem() instanceof CompassItem) {
-						found = true;
-						break;
+				boolean found = mc.player.getOffhandItem().getItem() instanceof CompassItem;
+				if (!found) {
+					Inventory inv = mc.player.getInventory();
+					for (int n = 0; n <= 35; n++) {
+						if (inv.getItem(n).getItem() instanceof CompassItem) {
+							found = true;
+							break;
+						}
 					}
 				}
 				if (!found) {
@@ -64,7 +65,7 @@ public class GUIEvent {
 			
 		posestack.pushPose();
 		
-		int xcoord = 0;
+		int xcoord;
 		if (ConfigHandler.compassPositionIsLeft.getValue()) {
 			xcoord = 5;
 		}
