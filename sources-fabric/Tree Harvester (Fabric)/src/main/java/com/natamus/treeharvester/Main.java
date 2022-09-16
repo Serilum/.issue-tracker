@@ -23,6 +23,7 @@ import com.natamus.treeharvester.events.TreeEvent;
 import com.natamus.treeharvester.util.Reference;
 import com.natamus.treeharvester.util.Util;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
@@ -33,6 +34,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class Main implements ModInitializer {
+	private boolean blackListSetup;
+
 	@Override
 	public void onInitialize() {
 		ConfigHandler.setup();
@@ -43,12 +46,18 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-		try {
-			Util.setupAxeBlacklist();
-		}
-		catch(Exception ex) {
-			return;
-		}
+		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
+			if (blackListSetup) {
+				return;
+			}
+			blackListSetup = true;
+			try {
+				Util.setupAxeBlacklist();
+			}
+			catch(Exception ex) {
+				return;
+			}
+		});
 
 		ServerWorldEvents.LOAD.register((MinecraftServer server, ServerLevel world) -> {
 			TreeEvent.onWorldLoad(world);
