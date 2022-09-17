@@ -3,6 +3,9 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v4.1: Fixed rare JsonSyntaxException due to mod incompatibility.
+
+=========
 v4.0: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

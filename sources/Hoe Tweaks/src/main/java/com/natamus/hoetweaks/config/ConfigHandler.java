@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hoe Tweaks.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.2, mod version: 1.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -24,6 +24,7 @@ public class ConfigHandler {
 	public static final ForgeConfigSpec spec = BUILDER.build();
 
 	public static class General {
+		public final ForgeConfigSpec.ConfigValue<Boolean> onlyUntillWithOtherHandEmpty;
 		public final ForgeConfigSpec.ConfigValue<Double> cropBlockBreakSpeedModifier;
 		public final ForgeConfigSpec.ConfigValue<Boolean> mustCrouchToHaveBiggerHoeRange;
 		
@@ -36,6 +37,9 @@ public class ConfigHandler {
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
+			onlyUntillWithOtherHandEmpty = builder
+					.comment("When enabled, only allows the un-till function to work when the other hand is empty. Allows placing seeds with hoe in other hand.")
+					.define("onlyUntillWithOtherHandEmpty", true);
 			cropBlockBreakSpeedModifier = builder
 					.comment("How much quicker a cropblock (pumpkin/melon) is broken than by default.")
 					.defineInRange("cropBlockBreakSpeedModifier", 8.0, 0.0, 20.0);

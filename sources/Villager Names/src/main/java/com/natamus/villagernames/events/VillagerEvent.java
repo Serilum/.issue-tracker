@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Villager Names.
- * Minecraft version: 1.19.2, mod version: 3.7.
+ * Minecraft version: 1.19.2, mod version: 4.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,13 +16,11 @@
 
 package com.natamus.villagernames.events;
 
-import java.util.HashMap;
-
+import com.google.gson.JsonSyntaxException;
 import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.collective.functions.JsonFunctions;
 import com.natamus.villagernames.config.ConfigHandler;
 import com.natamus.villagernames.util.Names;
-
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.Villager;
@@ -34,6 +32,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+import java.util.HashMap;
+
 @EventBusSubscriber
 public class VillagerEvent {
 	@SubscribeEvent
@@ -43,7 +43,7 @@ public class VillagerEvent {
 			return;
 		}
 		Entity entity = e.getEntity();
-		if (entity instanceof Villager == false) {
+		if (!(entity instanceof Villager)) {
 			boolean goname = false;
 			if (ConfigHandler.GENERAL.nameModdedVillagers.get()) {
 				if (EntityFunctions.isModdedVillager(entity)) {
@@ -86,7 +86,7 @@ public class VillagerEvent {
 		VillagerData d = villager.getVillagerData();
 		
 		String profession = d.getProfession().toString();
-		if (profession == "none" || profession == "nitwit") {
+		if (profession.equals("none") || profession.equals("nitwit")) {
 			return;
 		}
 		
@@ -98,23 +98,26 @@ public class VillagerEvent {
 		}
 		
 		Component namecomponent = villager.getName();
-		String json = Component.Serializer.toJson(namecomponent); // {"bold":true,"color":"blue","text":"Hero Villager"}
-		HashMap<String, String> map = JsonFunctions.JsonStringToHashMap(json);
-		
-		String prevname = map.get("text");
-		String upperprofession = profession.substring(0, 1).toUpperCase() + profession.substring(1);
-		
-		map.put("text", prevname + " the " + upperprofession);
-		villager.setCustomName(Component.Serializer.fromJson(JsonFunctions.HashMapToJsonString(map)));
-		
-		new Thread( new Runnable() {
-	    	public void run()  {
-	        	try  { Thread.sleep( 10 ); }
-	            catch (InterruptedException ie)  {}
-	        	
-	        	map.put("text", prevname.replace(" the ", "").replace(upperprofession, ""));
-	    		villager.setCustomName(Component.Serializer.fromJson(JsonFunctions.HashMapToJsonString(map)));
-	    	}
-	    } ).start();
+
+		try {
+			String json = Component.Serializer.toJson(namecomponent); // {"bold":true,"color":"blue","text":"Hero Villager"}
+			HashMap<String, String> map = JsonFunctions.JsonStringToHashMap(json);
+
+			String prevname = map.get("text");
+			String upperprofession = profession.substring(0, 1).toUpperCase() + profession.substring(1);
+
+			map.put("text", prevname + " the " + upperprofession);
+			villager.setCustomName(Component.Serializer.fromJson(JsonFunctions.HashMapToJsonString(map)));
+
+			new Thread(() -> {
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException ignored) { }
+
+				map.put("text", prevname.replace(" the ", "").replace(upperprofession, ""));
+				villager.setCustomName(Component.Serializer.fromJson(JsonFunctions.HashMapToJsonString(map)));
+			}).start();
+		}
+		catch (JsonSyntaxException ignored) { }
 	}
 }

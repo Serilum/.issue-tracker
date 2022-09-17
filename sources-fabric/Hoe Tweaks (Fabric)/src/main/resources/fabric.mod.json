@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "hoetweaks-fabric",
-  "version": "1.8",
+  "version": "1.9",
 
   "name": "Hoe Tweaks (Fabric)",
   "description": "Makes various changes to hoe mechanics. Faster crop block breaking, increased hoe radius and be able to un-till soil.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
+    "collective-fabric": ">=4.63"
   }
 }

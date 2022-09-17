@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "villagernames-fabric",
-  "version": "4.0",
+  "version": "4.1",
 
   "name": "Villager Names (Fabric)",
   "description": "A minimalistic mod which gives all unnamed villagers a (pre-)defined name.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
+    "collective-fabric": ">=4.63"
   }
 }

@@ -3,6 +3,10 @@ Hoe Tweaks
 https://curseforge.com/minecraft/mc-mods/hoe-tweaks
 
 =========
+v1.9: Added the onlyUntillWithOtherHandEmpty config option, which allows placing seeds while holding them in the offhand.
+Added compatibility with Advanced Netherite.
+
+=========
 v1.8: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

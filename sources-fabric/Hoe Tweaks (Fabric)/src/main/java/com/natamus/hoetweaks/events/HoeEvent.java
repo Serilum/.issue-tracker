@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hoe Tweaks.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 1.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -46,6 +46,12 @@ public class HoeEvent {
 		ItemStack stack = player.getItemInHand(hand);
 		if (!ToolFunctions.isHoe(stack)) {
 			return InteractionResult.PASS;
+		}
+
+		if (ConfigHandler.onlyUntillWithOtherHandEmpty.getValue()) {
+			if (!player.getMainHandItem().isEmpty() && !player.getOffhandItem().isEmpty()) {
+				return InteractionResult.PASS;
+			}
 		}
 		
 		BlockPos cpos = BlockPosFunctions.getBlockPosFromHitResult(hitResult);

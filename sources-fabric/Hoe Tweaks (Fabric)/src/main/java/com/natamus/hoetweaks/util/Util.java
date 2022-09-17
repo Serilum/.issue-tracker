@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hoe Tweaks.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 1.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -55,7 +55,7 @@ public class Util {
 		else if (tier.equals(Tiers.DIAMOND)) {
 			range = ConfigHandler.diamondTierHoeRange.getValue();
 		}
-		else if (tier.equals(Tiers.NETHERITE)) {
+		else if (tier.equals(Tiers.NETHERITE) || tierstring.equals("netherite")) {
 			range = ConfigHandler.netheriteTierHoeRange.getValue();
 		}
 		

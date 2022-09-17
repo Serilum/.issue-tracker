@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Replanting Crops.
- * Minecraft version: 1.19.2, mod version: 4.0.
+ * Minecraft version: 1.19.2, mod version: 4.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -83,7 +83,7 @@ public class CropEvent {
 			return true;
 		}
 		
-		if (!player.isCreative()) {
+		if (hand != null && !player.isCreative()) {
 			ItemFunctions.itemHurtBreakAndEvent(player.getItemInHand(hand), (ServerPlayer)player, hand, 1);
 		}
 		
@@ -108,7 +108,7 @@ public class CropEvent {
 
 		Item compareitem = null;
 		if (preblock instanceof CropBlock) {
-			compareitem = ((CropBlock)preblock).getCloneItemStack(world, ipos, null).getItem();
+			compareitem = preblock.getCloneItemStack(world, ipos, null).getItem();
 		}
 		
 		ItemEntity itementity = (ItemEntity)entity;

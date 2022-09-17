@@ -3,6 +3,9 @@ Replanting Crops
 https://www.curseforge.com/minecraft/mc-mods/replanting-crops
 
 =========
+v4.1: Fixed the mod not working correctly with mustHoldHoeForReplanting set to false.
+
+=========
 v4.0: Added support for modded crops that extend the CropBlock.
 Fixed the hoe being able to go below 0 durability on use.
 

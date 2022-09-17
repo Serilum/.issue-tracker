@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hoe Tweaks.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 1.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -35,7 +35,8 @@ import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.JanksonValueSerial
 import io.github.fablabsmc.fablabs.api.fiber.v1.tree.ConfigTree;
 import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
 
-public class ConfigHandler { 
+public class ConfigHandler {
+	public static PropertyMirror<Boolean> onlyUntillWithOtherHandEmpty = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Double> cropBlockBreakSpeedModifier = PropertyMirror.create(ConfigTypes.DOUBLE);
 	public static PropertyMirror<Boolean> mustCrouchToHaveBiggerHoeRange = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Integer> woodenTierHoeRange = PropertyMirror.create(ConfigTypes.INTEGER);
@@ -45,7 +46,11 @@ public class ConfigHandler {
 	public static PropertyMirror<Integer> diamondTierHoeRange = PropertyMirror.create(ConfigTypes.INTEGER);
 	public static PropertyMirror<Integer> netheriteTierHoeRange = PropertyMirror.create(ConfigTypes.INTEGER);
 
-	private static final ConfigTree CONFIG = ConfigTree.builder() 
+	private static final ConfigTree CONFIG = ConfigTree.builder()
+			.beginValue("onlyUntillWithOtherHandEmpty", ConfigTypes.BOOLEAN, true)
+			.withComment("When enabled, only allows the un-till function to work when the other hand is empty. Allows placing seeds with hoe in other hand.")
+			.finishValue(onlyUntillWithOtherHandEmpty::mirror)
+
 			.beginValue("cropBlockBreakSpeedModifier", ConfigTypes.DOUBLE, 8.0)
 			.withComment("How much quicker a cropblock (pumpkin/melon) is broken than by default.")
 			.finishValue(cropBlockBreakSpeedModifier::mirror)
