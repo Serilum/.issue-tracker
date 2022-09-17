@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Stack Refill.
- * Minecraft version: 1.19.2, mod version: 2.6.
+ * Minecraft version: 1.19.2, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -169,21 +169,18 @@ public class RefillEvent {
 		player.getInventory().setChanged();
 	}
 	
-	public static void onItemUse(Player player, ItemStack used, ItemStack newItem, InteractionHand hand) {
-		Level world = player.getCommandSenderWorld();
-		if (world.isClientSide) {
-			return;
-		}
-
+	public static ItemStack onItemUse(Player player, ItemStack used, ItemStack newItem, InteractionHand hand) {
 		if (player.isCreative()) {
-			return;
+			return null;
 		}
 		
 		int amount = used.getCount();
 		if (amount > 1) {
-			return;
+			return null;
 		}
-		
+
+		ItemStack changedStack = null;
+
 		Item useditem = used.getItem();
 
 		Inventory inv = player.getInventory();
@@ -201,13 +198,14 @@ public class RefillEvent {
 					ItemFunctions.giveOrDropItemStack(player, new ItemStack(Items.BUCKET, 1));
 				}
 
-				player.setItemInHand(hand, slot.copy());
+				changedStack = slot.copy();
 				slot.setCount(0);
 				break;
 			}
 		}
 		
 		player.getInventory().setChanged();
+		return changedStack;
 	}
 	
 	public static void onItemBreak(Player player, ItemStack used, InteractionHand hand) {

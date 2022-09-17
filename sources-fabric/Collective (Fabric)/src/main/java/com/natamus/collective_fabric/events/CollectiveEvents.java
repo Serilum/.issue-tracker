@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.56.
+ * Minecraft version: 1.19.2, mod version: 4.63.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -38,34 +38,40 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.WeakHashMap;
 
 public class CollectiveEvents {
-	public static HashMap<ServerLevel, List<Entity>> entitiesToSpawn = new HashMap<ServerLevel, List<Entity>>();
-	public static HashMap<ServerLevel, HashMap<Entity, Entity>> entitiesToRide = new HashMap<ServerLevel, HashMap<Entity, Entity>>();
+	public static WeakHashMap<ServerLevel, List<Entity>> entitiesToSpawn = new WeakHashMap<ServerLevel, List<Entity>>();
+	public static WeakHashMap<ServerLevel, WeakHashMap<Entity, Entity>> entitiesToRide = new WeakHashMap<ServerLevel, WeakHashMap<Entity, Entity>>();
 	
-	public static void onWorldLoad(ServerLevel serverworld) {
-		entitiesToSpawn.put(serverworld, new ArrayList<Entity>());
-		entitiesToRide.put(serverworld, new HashMap<Entity, Entity>());
+	public static void onWorldLoad(ServerLevel serverlevel) {
+		entitiesToSpawn.put(serverlevel, new ArrayList<Entity>());
+		entitiesToRide.put(serverlevel, new WeakHashMap<Entity, Entity>());
 	}
 	
-	public static void onWorldTick(ServerLevel world) {
-		if (entitiesToSpawn.get(world).size() > 0) {
-			Entity tospawn = entitiesToSpawn.get(world).get(0);
-			
-			world.addFreshEntityWithPassengers(tospawn);
-			
-			if (entitiesToRide.get(world).containsKey(tospawn)) {
-				Entity rider = entitiesToRide.get(world).get(tospawn);
+	public static void onWorldTick(ServerLevel serverlevel) {
+		if (!entitiesToSpawn.containsKey(serverlevel)) {
+			entitiesToSpawn.put(serverlevel, new ArrayList<Entity>());
+		}
+		else if (entitiesToSpawn.get(serverlevel).size() > 0) {
+			Entity tospawn = entitiesToSpawn.get(serverlevel).get(0);
+
+			serverlevel.addFreshEntityWithPassengers(tospawn);
+
+			if (!entitiesToRide.containsKey(serverlevel)) {
+				entitiesToRide.put(serverlevel, new WeakHashMap<Entity, Entity>());
+			}
+			else if (entitiesToRide.get(serverlevel).containsKey(tospawn)) {
+				Entity rider = entitiesToRide.get(serverlevel).get(tospawn);
 				
 				rider.startRiding(tospawn);
 				
-				entitiesToRide.get(world).remove(tospawn);
+				entitiesToRide.get(serverlevel).remove(tospawn);
 			}
 			
-			entitiesToSpawn.get(world).remove(0);
+			entitiesToSpawn.get(serverlevel).remove(0);
 		}
 	}
 	

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.56.
+ * Minecraft version: 1.19.2, mod version: 4.57.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -30,14 +30,12 @@ import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.tags.ITag;
 
 import java.util.*;
 
 public class FABFunctions {
-	private static final Map<Block, Map<Level, List<BlockPos>>> getMapFromBlock = new HashMap<Block, Map<Level, List<BlockPos>>>();
-	private static final Map<Level, Map<Date, BlockPos>> timeoutpositions = new HashMap<Level, Map<Date, BlockPos>>();
+	private static final Map<Block, WeakHashMap<Level, List<BlockPos>>> getMapFromBlock = new HashMap<Block, WeakHashMap<Level, List<BlockPos>>>();
+	private static final WeakHashMap<Level, Map<Date, BlockPos>> timeoutpositions = new WeakHashMap<Level, Map<Date, BlockPos>>();
 	
 	public static List<BlockEntity> getBlockEntitiesAroundPosition(Level world, BlockPos pos, Integer radius) {
 		List<BlockEntity> blockentities = new ArrayList<BlockEntity>();
@@ -111,7 +109,7 @@ public class FABFunctions {
 	
 	public static BlockPos getRequestedBlockAroundEntitySpawn(Block rawqueryblock, Integer radius, Double radiusmodifier, Level world, Entity entity) {
 		Block requestedblock = processCommonBlock(rawqueryblock);
-		Map<Level, List<BlockPos>> worldblocks = getMap(requestedblock);
+		WeakHashMap<Level, List<BlockPos>> worldblocks = getMap(requestedblock);
 
 		BlockPos epos = entity.blockPosition();
 		
@@ -233,7 +231,7 @@ public class FABFunctions {
 	public static BlockPos updatePlacedBlock(Block requestedblock, BlockPos bpos, Level world) {
 		BlockState state = world.getBlockState(bpos);
 		if (state.getBlock().equals(requestedblock)) {
-			Map<Level, List<BlockPos>> worldblocks = getMap(requestedblock);
+			WeakHashMap<Level, List<BlockPos>> worldblocks = getMap(requestedblock);
 			
 			List<BlockPos> currentblocks;
 			if (worldblocks.containsKey(world)) {
@@ -255,13 +253,13 @@ public class FABFunctions {
 	}
 	
 	// Internal util functions
-	private static Map<Level,List<BlockPos>> getMap(Block requestedblock) {
-		Map<Level,List<BlockPos>> worldblocks;
+	private static WeakHashMap<Level, List<BlockPos>> getMap(Block requestedblock) {
+		WeakHashMap<Level, List<BlockPos>> worldblocks;
 		if (getMapFromBlock.containsKey(requestedblock)) {
 			worldblocks = getMapFromBlock.get(requestedblock);
 		}
 		else {
-			worldblocks = new HashMap<Level, List<BlockPos>>();
+			worldblocks = new WeakHashMap<Level, List<BlockPos>>();
 		}
 		return worldblocks;
 	}

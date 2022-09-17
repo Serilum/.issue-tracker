@@ -3,6 +3,15 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.58-4.63: (Fabric) Fixed incompatibilities with other mods due to an incorrectly applied ItemStackMixin.
+ Fixes item events from other mods not being run correctly.
+ Thanks @Pyrofab on Github for the code the current function is based on!
+
+=========
+v4.57: Fixed a crash when a dimension was loaded before the WorldLoadEvent was run.
+Improved performance by using WeakHashMaps to allow better garbage collection.
+
+=========
 v4.56: Fixed Collective crashing when trying to spawn an entity into an incorrectly loaded world.
 
 =========

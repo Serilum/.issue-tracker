@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.56.
+ * Minecraft version: 1.19.2, mod version: 4.63.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,16 +16,15 @@
 
 package com.natamus.collective_fabric.fabric.callbacks;
 
-import java.util.List;
-
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.List;
 
 public class CollectiveItemEvents {
 	private CollectiveItemEvents() { }
@@ -56,8 +55,12 @@ public class CollectiveItemEvents {
 
 	public static final Event<CollectiveItemEvents.Item_Use_Finished> ON_ITEM_USE_FINISHED = EventFactory.createArrayBacked(CollectiveItemEvents.Item_Use_Finished.class, callbacks -> (player, usedItem, newItem, hand) -> {
 		for (CollectiveItemEvents.Item_Use_Finished callback : callbacks) {
-			callback.onItemUsedFinished(player, usedItem, newItem, hand);
+			ItemStack changedStack = callback.onItemUsedFinished(player, usedItem, newItem, hand);
+			if (changedStack != null) {
+				return changedStack;
+			}
 		}
+		return null;
 	});
     
 	@FunctionalInterface
@@ -82,6 +85,6 @@ public class CollectiveItemEvents {
 
 	@FunctionalInterface
 	public interface Item_Use_Finished {
-		void onItemUsedFinished(Player player, ItemStack usedItem, ItemStack newItem, InteractionHand hand);
+		ItemStack onItemUsedFinished(Player player, ItemStack usedItem, ItemStack newItem, InteractionHand hand);
 	}
 }

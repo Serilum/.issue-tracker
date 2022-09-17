@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.56.
+ * Minecraft version: 1.19.2, mod version: 4.57.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,12 +17,11 @@
 package com.natamus.collective.functions;
 
 import com.natamus.collective.events.CollectiveEvents;
-
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.WeakHashMap;
 
 public class SpawnEntityFunctions {
 	public static void spawnEntityOnNextTick(ServerLevel serverlevel, Entity entity) {
@@ -34,7 +33,7 @@ public class SpawnEntityFunctions {
 
 	public static void startRidingEntityOnNextTick(ServerLevel serverlevel, Entity ridden, Entity rider) {
 		if (!CollectiveEvents.entitiesToRide.containsKey(serverlevel)) {
-			CollectiveEvents.entitiesToRide.put(serverlevel, new HashMap<Entity, Entity>());
+			CollectiveEvents.entitiesToRide.put(serverlevel, new WeakHashMap<Entity, Entity>());
 		}
 		CollectiveEvents.entitiesToRide.get(serverlevel).put(ridden, rider);
 	}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Stack Refill.
- * Minecraft version: 1.19.2, mod version: 2.6.
+ * Minecraft version: 1.19.2, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -53,7 +53,7 @@ public class Main implements ModInitializer {
 		});
 
 		CollectiveItemEvents.ON_ITEM_USE_FINISHED.register((Player player, ItemStack usedItem, ItemStack newItem, InteractionHand hand) -> {
-			RefillEvent.onItemUse(player, usedItem, newItem, hand);
+			return RefillEvent.onItemUse(player, usedItem, newItem, hand);
 		});
 
 		CollectiveItemEvents.ON_ITEM_DESTROYED.register((Player player, ItemStack stack, InteractionHand hand) -> {

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.56.
+ * Minecraft version: 1.19.2, mod version: 4.57.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -44,15 +44,12 @@ import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @EventBusSubscriber
 public class CollectiveEvents {
-	public static HashMap<ServerLevel, List<Entity>> entitiesToSpawn = new HashMap<ServerLevel, List<Entity>>();
-	public static HashMap<ServerLevel, HashMap<Entity, Entity>> entitiesToRide = new HashMap<ServerLevel, HashMap<Entity, Entity>>();
+	public static WeakHashMap<ServerLevel, List<Entity>> entitiesToSpawn = new WeakHashMap<ServerLevel, List<Entity>>();
+	public static WeakHashMap<ServerLevel, WeakHashMap<Entity, Entity>> entitiesToRide = new WeakHashMap<ServerLevel, WeakHashMap<Entity, Entity>>();
 	
 	@SubscribeEvent
 	public void onWorldLoad(LevelEvent.Load e) {
@@ -61,9 +58,9 @@ public class CollectiveEvents {
 			return;
 		}
 		
-		ServerLevel serverworld = (ServerLevel)world;
-		entitiesToSpawn.put(serverworld, new ArrayList<Entity>());
-		entitiesToRide.put(serverworld, new HashMap<Entity, Entity>());
+		ServerLevel serverlevel = (ServerLevel)world;
+		entitiesToSpawn.put(serverlevel, new ArrayList<Entity>());
+		entitiesToRide.put(serverlevel, new WeakHashMap<Entity, Entity>());
 	}
 	
 	@SubscribeEvent
@@ -73,21 +70,27 @@ public class CollectiveEvents {
 			return;
 		}
 			
-		ServerLevel serverworld = (ServerLevel)world;
-		if (entitiesToSpawn.get(serverworld).size() > 0) {
-			Entity tospawn = entitiesToSpawn.get(serverworld).get(0);
-			
-			serverworld.addFreshEntityWithPassengers(tospawn);
-			
-			if (entitiesToRide.get(world).containsKey(tospawn)) {
-				Entity rider = entitiesToRide.get(world).get(tospawn);
+		ServerLevel serverlevel = (ServerLevel)world;
+		if (!entitiesToSpawn.containsKey(serverlevel)) {
+			entitiesToSpawn.put(serverlevel, new ArrayList<Entity>());
+		}
+		else if (entitiesToSpawn.get(serverlevel).size() > 0) {
+			Entity tospawn = entitiesToSpawn.get(serverlevel).get(0);
+
+			serverlevel.addFreshEntityWithPassengers(tospawn);
+
+			if (!entitiesToRide.containsKey(serverlevel)) {
+				entitiesToRide.put(serverlevel, new WeakHashMap<Entity, Entity>());
+			}
+			else if (entitiesToRide.get(serverlevel).containsKey(tospawn)) {
+				Entity rider = entitiesToRide.get(serverlevel).get(tospawn);
 				
 				rider.startRiding(tospawn);
 				
-				entitiesToRide.get(world).remove(tospawn);
+				entitiesToRide.get(serverlevel).remove(tospawn);
 			}
 			
-			entitiesToSpawn.get(world).remove(0);
+			entitiesToSpawn.get(serverlevel).remove(0);
 		}
 	}
 	

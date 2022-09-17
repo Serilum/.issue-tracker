@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Beautified Chat Server.
- * Minecraft version: 1.19.2, mod version: 1.5.
+ * Minecraft version: 1.19.2, mod version: 1.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,25 +16,31 @@
 
 package com.natamus.beautifiedchatserver.events;
 
+import com.mojang.logging.LogUtils;
 import com.natamus.beautifiedchatserver.config.ConfigHandler;
 import com.natamus.beautifiedchatserver.util.Util;
 import com.natamus.collective.functions.MessageFunctions;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import org.slf4j.Logger;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @EventBusSubscriber
 public class BeautifulChatEvent {
+	private static final Logger logger = LogUtils.getLogger();
+
 	@SubscribeEvent
 	public void onServerChat(ServerChatEvent.Submitted e) {
 		String timestamp = new SimpleDateFormat(ConfigHandler.GENERAL.timestampFormat.get()).format(new Date());
-		
+
+		ServerPlayer serverplayer = e.getPlayer();
 		String user = e.getUsername();
 		Component component = e.getMessage();
 		String message = component.getString();
@@ -61,6 +67,9 @@ public class BeautifulChatEvent {
 		}
 
 		e.setCanceled(true);
-		MessageFunctions.broadcastMessage(e.getPlayer().getCommandSenderWorld(), output);
+		serverplayer.server.execute(() -> {
+			logger.info(output.getString());
+			MessageFunctions.broadcastMessage(serverplayer.level, output);
+		});
 	}
 }
