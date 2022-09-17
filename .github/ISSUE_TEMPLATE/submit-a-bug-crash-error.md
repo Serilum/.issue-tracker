@@ -22,6 +22,6 @@ Hey! This happened.
 
 
 ## **Crash report**
-_(Please use https://gist.github.com/, to prevent the paste from expiring)_
+_(Please either drag the file directly here, or use https://gist.github.com/ to prevent the paste from expiring)_
 
 If available.
