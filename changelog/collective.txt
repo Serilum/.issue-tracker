@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.64: Added an extra check to the recursive find block functions to prevent a StackOverflow error.
+(Fabric) Fixed a nullpointerexception when checking if an entity was from a spawner.
+
+=========
 v4.58-4.63: (Fabric) Fixed incompatibilities with other mods due to an incorrectly applied ItemStackMixin.
  Fixes item events from other mods not being run correctly.
  Thanks @Pyrofab on Github for the code the current function is based on!

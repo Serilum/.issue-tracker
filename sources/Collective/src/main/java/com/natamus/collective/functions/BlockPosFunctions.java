@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.57.
+ * Minecraft version: 1.19.2, mod version: 4.64.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -38,6 +38,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class BlockPosFunctions {
@@ -56,6 +57,8 @@ public class BlockPosFunctions {
 	}
 
 	// START: RECURSIVE GET BLOCKS
+	private static HashMap<BlockPos, Integer> rgnbcount = new HashMap<BlockPos, Integer>();
+
 	public static List<BlockPos> getBlocksNextToEachOther(Level world, BlockPos startpos, List<Block> possibleblocks) {
 		return getBlocksNextToEachOther(world, startpos, possibleblocks, 50);
 	}
@@ -67,10 +70,17 @@ public class BlockPosFunctions {
 			checkedblocks.add(startpos);
 		}
 
+		rgnbcount.put(startpos.immutable(), 0);
 		recursiveGetNextBlocks(world, startpos, startpos, possibleblocks, theblocksaround, checkedblocks, maxDistance);
 		return theblocksaround;
 	}
 	private static void recursiveGetNextBlocks(Level world, BlockPos startpos, BlockPos pos, List<Block> possibleblocks, List<BlockPos> theblocksaround, List<BlockPos> checkedblocks, int maxDistance) {
+		int rgnbc = rgnbcount.get(startpos);
+		if (rgnbc > 100) {
+			return;
+		}
+		rgnbcount.put(startpos, rgnbc + 1);
+
 		List<BlockPos> possibleblocksaround = getBlocksAround(pos, true);
 		for (BlockPos pba : possibleblocksaround) {
 			if (checkedblocks.contains(pba)) {
@@ -88,6 +98,8 @@ public class BlockPosFunctions {
 			}
 		}
 	}
+	private static HashMap<BlockPos, Integer> rgnbmcount = new HashMap<BlockPos, Integer>();
+
 	public static List<BlockPos> getBlocksNextToEachOtherMaterial(Level world, BlockPos startpos, List<Material> possiblematerials) {
 		return getBlocksNextToEachOtherMaterial(world, startpos, possiblematerials, 50);
 	}
@@ -99,10 +111,17 @@ public class BlockPosFunctions {
 			checkedblocks.add(startpos);
 		}
 
+		rgnbmcount.put(startpos.immutable(), 0);
 		recursiveGetNextBlocksMaterial(world, startpos, startpos, possiblematerials, theblocksaround, checkedblocks, maxDistance);
 		return theblocksaround;
 	}
 	private static void recursiveGetNextBlocksMaterial(Level world, BlockPos startpos, BlockPos pos, List<Material> possiblematerials, List<BlockPos> theblocksaround, List<BlockPos> checkedblocks, int maxDistance) {
+		int rgnbmc = rgnbmcount.get(startpos);
+		if (rgnbmc > 100) {
+			return;
+		}
+		rgnbmcount.put(startpos, rgnbmc + 1);
+
 		List<BlockPos> possibleblocksaround = getBlocksAround(pos, true);
 		for (BlockPos pba : possibleblocksaround) {
 			if (checkedblocks.contains(pba)) {

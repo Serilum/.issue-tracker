@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "stackrefill-fabric",
-  "version": "2.5",
+  "version": "2.7",
 
   "name": "Stack Refill (Fabric)",
-  "description": "Automatically refills the item in the hand of the player when using the final item if possible.",
+  "description": "A quality of life mod whih automatically refills the item in the hand of the player when using the final item if possible.",
   "authors": [ "Rick South" ],
   "contact": {
     "homepage": "https://curseforge.com/minecraft/mc-mods/stack-refill-fabric",

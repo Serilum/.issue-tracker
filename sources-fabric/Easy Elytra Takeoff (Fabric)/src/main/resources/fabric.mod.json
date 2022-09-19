@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "easyelytratakeoff-fabric",
-  "version": "3.0",
+  "version": "3.1",
 
   "name": "Easy Elytra Takeoff (Fabric)",
   "description": "Allows easy taking off by elytra with a firework from the ground without that awkward jump.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.51"
+    "collective-fabric": ">=4.64"
   }
 }
