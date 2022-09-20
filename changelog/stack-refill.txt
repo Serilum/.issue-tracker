@@ -3,6 +3,16 @@ Stack Refill
 https://curseforge.com/minecraft/mc-mods/stack-refill
 
 =========
+v3.0: The big 3.0 rewrite!
+Improved code performance.
+Fixed visual desyncs in the inventory, the mod now works better with clients.
+Fixed snowballs and firework rockets not refilling.
+Fixed crash due to mod incompatibility.
+FIxed the offhand slot not being refilled correctly.
+Improved refill during item tossing.
+Fixed items sometimes not returning their container after consumption.
+
+=========
 v2.7: Fixed incorrectly set mod version.
 Updated mod description.
 

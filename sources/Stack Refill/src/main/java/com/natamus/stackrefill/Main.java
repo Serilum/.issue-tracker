@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Stack Refill.
- * Minecraft version: 1.19.2, mod version: 2.7.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,9 +17,9 @@
 package com.natamus.stackrefill;
 
 import com.natamus.collective.check.RegisterMod;
+import com.natamus.stackrefill.events.ClientRefillEvent;
 import com.natamus.stackrefill.events.RefillEvent;
 import com.natamus.stackrefill.util.Reference;
-
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -41,5 +41,6 @@ public class Main {
 	
     private void loadComplete(final FMLLoadCompleteEvent event) {
     	MinecraftForge.EVENT_BUS.register(new RefillEvent());
+        MinecraftForge.EVENT_BUS.register(new ClientRefillEvent());
 	}
 }

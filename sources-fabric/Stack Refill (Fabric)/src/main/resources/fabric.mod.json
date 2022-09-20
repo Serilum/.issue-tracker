@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "stackrefill-fabric",
-  "version": "2.7",
+  "version": "3.0",
 
   "name": "Stack Refill (Fabric)",
-  "description": "A quality of life mod whih automatically refills the item in the hand of the player when using the final item if possible.",
+  "description": "A quality of life mod which automatically refills the item in the hand of the player when using the final item if possible.",
   "authors": [ "Rick South" ],
   "contact": {
     "homepage": "https://curseforge.com/minecraft/mc-mods/stack-refill-fabric",
@@ -15,13 +15,13 @@
   "license": "All Right Reserved",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.stackrefill.Main" ] },
+  "entrypoints": { "main": [ "com.natamus.stackrefill.Main" ], "client": [ "com.natamus.stackrefill.ClientMain" ] },
 
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.63"
+    "collective-fabric": ">=4.64"
   }
 }

@@ -14,11 +14,12 @@
  * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
-package com.natamus.stackrefill.util;
+package com.natamus.stackrefill.events;
 
-public class Reference {
-	public static final String MOD_ID = "stackrefill";
-	public static final String NAME = "Stack Refill";
-	public static final String VERSION = "3.0";
-	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
+import net.minecraft.client.Minecraft;
+
+public class ClientRefillEvent {
+    public static void onClientTick(Minecraft mc) {
+        RefillEvent.processTick(true);
+    }
 }

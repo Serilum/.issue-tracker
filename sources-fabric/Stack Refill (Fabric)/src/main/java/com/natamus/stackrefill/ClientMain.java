@@ -14,11 +14,22 @@
  * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
-package com.natamus.stackrefill.util;
+package com.natamus.stackrefill;
 
-public class Reference {
-	public static final String MOD_ID = "stackrefill";
-	public static final String NAME = "Stack Refill";
-	public static final String VERSION = "3.0";
-	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
+import com.natamus.stackrefill.events.ClientRefillEvent;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.minecraft.client.Minecraft;
+
+public class ClientMain implements ClientModInitializer {
+	@Override
+	public void onInitializeClient() { 
+		registerEvents();
+	}
+	
+	private void registerEvents() {
+		ClientTickEvents.START_CLIENT_TICK.register((Minecraft client) -> {
+			ClientRefillEvent.onClientTick(client);
+		});
+	}
 }

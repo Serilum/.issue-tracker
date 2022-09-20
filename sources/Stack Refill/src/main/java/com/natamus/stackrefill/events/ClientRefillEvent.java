@@ -14,11 +14,21 @@
  * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
-package com.natamus.stackrefill.util;
+package com.natamus.stackrefill.events;
 
-public class Reference {
-	public static final String MOD_ID = "stackrefill";
-	public static final String NAME = "Stack Refill";
-	public static final String VERSION = "3.0";
-	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+@Mod.EventBusSubscriber(Dist.CLIENT)
+public class ClientRefillEvent {
+    @SubscribeEvent()
+    public void onWorldTick(TickEvent.ClientTickEvent e) {
+        if (!e.phase.equals(TickEvent.Phase.START)) {
+            return;
+        }
+
+        RefillEvent.processTick(true);
+    }
 }
