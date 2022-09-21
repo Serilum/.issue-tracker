@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Wool Tweaks.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -44,7 +44,8 @@ public class Util {
 		woolblocks.put(Items.PURPLE_DYE, Blocks.PURPLE_WOOL);
 		woolblocks.put(Items.RED_DYE, Blocks.RED_WOOL);
 		woolblocks.put(Items.YELLOW_DYE, Blocks.YELLOW_WOOL);
-		
+		woolblocks.put(Items.WHITE_DYE, Blocks.WHITE_WOOL);
+
 		bedblocks.put(Items.BLACK_DYE, Blocks.BLACK_BED);
 		bedblocks.put(Items.BLUE_DYE, Blocks.BLUE_BED);
 		bedblocks.put(Items.BROWN_DYE, Blocks.BROWN_BED);
@@ -60,7 +61,8 @@ public class Util {
 		bedblocks.put(Items.PURPLE_DYE, Blocks.PURPLE_BED);
 		bedblocks.put(Items.RED_DYE, Blocks.RED_BED);
 		bedblocks.put(Items.YELLOW_DYE, Blocks.YELLOW_BED);
-		
+		bedblocks.put(Items.WHITE_DYE, Blocks.WHITE_BED);
+
 		carpetblocks.put(Items.BLACK_DYE, Blocks.BLACK_CARPET);
 		carpetblocks.put(Items.BLUE_DYE, Blocks.BLUE_CARPET);
 		carpetblocks.put(Items.BROWN_DYE, Blocks.BROWN_CARPET);
@@ -76,5 +78,6 @@ public class Util {
 		carpetblocks.put(Items.PURPLE_DYE, Blocks.PURPLE_CARPET);
 		carpetblocks.put(Items.RED_DYE, Blocks.RED_CARPET);
 		carpetblocks.put(Items.YELLOW_DYE, Blocks.YELLOW_CARPET);
+		carpetblocks.put(Items.WHITE_DYE, Blocks.WHITE_CARPET);
 	}
 }

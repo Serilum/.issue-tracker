@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Wool Tweaks.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,6 +17,7 @@
 package com.natamus.wooltweaks;
 
 import com.natamus.collective_fabric.check.RegisterMod;
+import com.natamus.collective_fabric.fabric.callbacks.CollectiveBlockEvents;
 import com.natamus.wooltweaks.events.WoolClickEvent;
 import com.natamus.wooltweaks.util.Reference;
 import com.natamus.wooltweaks.util.Util;
@@ -34,8 +35,8 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
-			return WoolClickEvent.onWoolClick(player, world, hand, hitResult);
+		CollectiveBlockEvents.BLOCK_RIGHT_CLICK.register((world, player, hand, pos, hitVec) -> {
+			return WoolClickEvent.onWoolClick(world, player, hand, pos, hitVec);
 		});
 	}
 }

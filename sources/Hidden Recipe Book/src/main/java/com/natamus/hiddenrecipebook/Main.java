@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hidden Recipe Book.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -26,7 +26,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -47,17 +47,18 @@ public class Main {
         
         ModLoadingContext modLoadingContext = ModLoadingContext.get();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-    	
+
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> modEventBus.addListener(this::registerKeyBinding));
+
         modEventBus.addListener(this::loadComplete);
         modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHandler.spec);
 
         RegisterMod.register(Reference.NAME, Reference.MOD_ID, Reference.VERSION, Reference.ACCEPTED_VERSIONS);
     }
-    
-    @SubscribeEvent
-	public void registerKeyBinding(RegisterKeyMappingsEvent e) {
-    	Variables.hotkey = new KeyMapping("Show recipe book in crafting grid toggle.", 258, "key.categories.misc");
-    	e.register(Variables.hotkey);    	
+
+	public void registerKeyBinding(final RegisterKeyMappingsEvent e) {
+    	Variables.hotkey = new KeyMapping("key.hiddenrecipebook.togglebook.desc", 258, "key.categories.misc");
+    	e.register(Variables.hotkey);
     }
 	
     private void loadComplete(final FMLLoadCompleteEvent event) {

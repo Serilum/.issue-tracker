@@ -1,9 +1,9 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.natamus.hiddenrecipebook.forge.mixin",
+  "package": "com.natamus.wooltweaks.forge.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "serilumforgemod.refmap.json",
+  "refmap": "wooltweaks.refmap.json",
   "mixins": [
 
   ],

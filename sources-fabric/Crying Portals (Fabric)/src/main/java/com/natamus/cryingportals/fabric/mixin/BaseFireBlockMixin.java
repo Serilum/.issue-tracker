@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Crying Portals.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.2, mod version: 1.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -34,8 +34,7 @@ public class BaseFireBlockMixin {
 		Direction[] var5 = Direction.values();
 		int var6 = var5.length;
 
-		for(int var7 = 0; var7 < var6; ++var7) {
-			Direction direction2 = var5[var7];
+		for (Direction direction2 : var5) {
 			if (level.getBlockState(mutableBlockPos.set(blockPos).move(direction2)).is(Blocks.CRYING_OBSIDIAN)) {
 				return true;
 			}

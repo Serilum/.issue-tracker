@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "cryingportals-fabric",
-  "version": "1.6",
+  "version": "1.7",
 
   "name": "Crying Portals (Fabric)",
-  "description": "Allows the creation of nether portals with crying obsidian blocks.",
+  "description": "Extends the blocks allowed for nether portal creation to use normal and crying obsidian.",
   "authors": [ "Rick South" ],
   "contact": {
     "homepage": "https://curseforge.com/minecraft/mc-mods/crying-portals-fabric",
@@ -25,6 +25,6 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
+    "collective-fabric": ">=4.64"
   }
 }

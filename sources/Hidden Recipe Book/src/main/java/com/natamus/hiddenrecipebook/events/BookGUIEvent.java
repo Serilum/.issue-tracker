@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hidden Recipe Book.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,15 +16,11 @@
 
 package com.natamus.hiddenrecipebook.events;
 
-import java.lang.reflect.Field;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-
+import com.natamus.collective.functions.ConfigFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.hiddenrecipebook.config.ConfigHandler;
+import com.natamus.hiddenrecipebook.util.Reference;
 import com.natamus.hiddenrecipebook.util.Variables;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ImageButton;
@@ -39,20 +35,25 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
-@EventBusSubscriber
+import java.lang.reflect.Field;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+@EventBusSubscriber(Dist.CLIENT)
 public class BookGUIEvent {
-    private static Minecraft mc = null;
+    private static Minecraft mc = Minecraft.getInstance();
     private static Date lastpress = null;
     private static Field imageButton_resourceLocation = ObfuscationReflectionHelper.findField(ImageButton.class, "f_94223_"); // resourceLocation
     private static ScreenEvent.Init.Post lastguipost = null;
     
 	private static HashMap<String, ImageButton> recipe_buttons = new HashMap<String, ImageButton>();
-	private static boolean showbook = !ConfigHandler.GENERAL.shouldHideRecipeBook.get();
+	private static boolean showbook = ConfigFunctions.getDictValues(Reference.MOD_ID).getOrDefault("shouldHideRecipeBook", "true").equals("false");
 	
     @SubscribeEvent
     public static void onGUIScreen(ScreenEvent.Init.Post e) {
     	String guiname = e.getScreen().getTitle().getString();
-    	if (guiname.equalsIgnoreCase("crafting")) {
+    	if (guiname.equalsIgnoreCase("crafting") || guiname.equalsIgnoreCase("furnace")) {
     		lastguipost = e;
 			
     		List<GuiEventListener> widgets = e.getListenersList();
@@ -67,7 +68,7 @@ public class BookGUIEvent {
     	    				recipe_buttons.put(guiname, imagebutton);
     	    				break;
     					}
-    				} catch (Exception ex) { continue; }
+    				} catch (Exception ignored) {}
     			}
     		}
     		
@@ -93,16 +94,15 @@ public class BookGUIEvent {
     		}
     	}
     }
-    
-	@OnlyIn(Dist.CLIENT)
+
 	@SubscribeEvent
 	public void onKey(ScreenEvent.KeyPressed e) {
 		if (!ConfigHandler.GENERAL.allowRecipeBookToggleHotkey.get()) {
 			return;
 		}
-		
-		if (mc == null) {
-			mc = Minecraft.getInstance();
+
+		if (Variables.hotkey == null) {
+			return;
 		}
 		
 		if (mc.screen instanceof ChatScreen) {

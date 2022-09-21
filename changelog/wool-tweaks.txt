@@ -3,6 +3,10 @@ Wool Tweaks
 https://curseforge.com/minecraft/mc-mods/wool-tweaks
 
 =========
+v2.2: White dye can now be used to dye blocks, beds and carpets in the world.
+Added white wool recipe with white dye and any other coloured wool block.
+
+=========
 v2.1: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

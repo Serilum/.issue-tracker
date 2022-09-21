@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Wool Tweaks.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -37,6 +37,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class WoolClickEvent {
+	@SuppressWarnings( "deprecation" )
 	@SubscribeEvent
 	public void onWoolClick(PlayerInteractEvent.RightClickBlock e) {
 		Level world = e.getLevel();
@@ -75,6 +76,8 @@ public class WoolClickEvent {
 		if (block.equals(newblock)) {
 			return;
 		}
+
+		Player player = e.getEntity();
 		
 		e.setCanceled(true);
 		
@@ -108,8 +111,8 @@ public class WoolClickEvent {
 		}
 		
 		world.setBlockAndUpdate(target, newstate);
-		
-		Player player = e.getEntity();
+		player.swing(e.getHand());
+
 		if (!player.isCreative()) {
 			handstack.shrink(1);
 		}

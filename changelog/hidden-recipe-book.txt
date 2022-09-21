@@ -3,6 +3,12 @@ Hidden Recipe Book
 https://curseforge.com/minecraft/mc-mods/hidden-recipe-book
 
 =========
+v3.0: Fixed the config shouldHideRecipeBook not being read correctly on first run.
+The recipe book is now also hidden in the furnace GUI.
+Correctly added support for translation keys.
+(1.19) Fixed mod not loading correctly.
+
+=========
 v2.5: (Forge 1.19 only) Updated to Forge version 41.0.94+. Use the previous uploaded file if you're on an older version.
 
 =========
