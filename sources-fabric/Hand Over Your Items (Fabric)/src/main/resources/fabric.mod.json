@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "handoveryouritems-fabric",
-  "version": "1.8",
+  "version": "2.0",
 
   "name": "Hand Over Your Items (Fabric)",
-  "description": "Adds to ability to give other players items without dropping them on the floor.",
+  "description": "Adds to ability to give other players items in a server without dropping them on the floor.",
   "authors": [ "Rick South" ],
   "contact": {
     "homepage": "https://curseforge.com/minecraft/mc-mods/hand-over-your-items-fabric",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
+    "collective-fabric": ">=4.64"
   }
 }

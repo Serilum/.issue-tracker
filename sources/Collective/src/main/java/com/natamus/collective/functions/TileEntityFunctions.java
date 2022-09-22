@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.64.
+ * Minecraft version: 1.19.2, mod version: 4.65.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,7 +16,9 @@
 
 package com.natamus.collective.functions;
 
+import com.natamus.collective.data.GlobalVariables;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,5 +36,15 @@ public class TileEntityFunctions {
 		world.setBlocksDirty(pos, state, state);
 		world.sendBlockUpdated(pos, state, state, 3);
 		tileentity.setChanged();
+	}
+
+	public static void setMobSpawnerDelay(BaseSpawner spawner, int delay) {
+		spawner.spawnDelay = delay;
+	}
+	public static void resetMobSpawnerDelay(BaseSpawner spawner, int min, int max) {
+		setMobSpawnerDelay(spawner, min + GlobalVariables.randomSource.nextInt(max - min));
+	}
+	public static void resetMobSpawnerDelay(BaseSpawner spawner) {
+		resetMobSpawnerDelay(spawner, 200, 800);
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of End Portal Recipe.
- * Minecraft version: 1.19.2, mod version: 2.8.
+ * Minecraft version: 1.19.2, mod version: 4.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -26,6 +26,7 @@ public class ConfigHandler {
 	public static class General {
 		public final ForgeConfigSpec.ConfigValue<Boolean> mustHaveSilkTouchToBreakPortal;
 		public final ForgeConfigSpec.ConfigValue<Boolean> addBrokenPortalFramesToInventory;
+		public final ForgeConfigSpec.ConfigValue<Boolean> sendMessageOnExtraDragonEggDrop;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
@@ -35,6 +36,9 @@ public class ConfigHandler {
 			addBrokenPortalFramesToInventory = builder
 					.comment("If enabled, add portal frames directly to the player's inventory to lower the chance of them being destroyed. Still drops the item entity if the inventory is full.")
 					.define("addBrokenPortalFramesToInventory", true);
+			sendMessageOnExtraDragonEggDrop = builder
+					.comment("Whether a message should be sent to the player where the extra dragon egg will drop.")
+					.define("sendMessageOnExtraDragonEggDrop", true);
 			
 			builder.pop();
 		}

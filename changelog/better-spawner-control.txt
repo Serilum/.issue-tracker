@@ -3,6 +3,11 @@ Better Spawner Control
 https://www.curseforge.com/minecraft/mc-mods/better-spawner-control
 
 =========
+v3.0: Improved performance by resetting the mob spawner delay after a spawn was denied by the mod, instead of having it keep checking for a possible spawn.
+Fixed mob spawns sometimes not being blocked.
+Updated mod description.
+
+=========
 v2.0: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

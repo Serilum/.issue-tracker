@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.65: Added functions related to setting and resetting mob spawner delay.
+
+=========
 v4.64: Added an extra check to the recursive find block functions to prevent a StackOverflow error.
 (Fabric) Fixed a nullpointerexception when checking if an entity was from a spawner.
 

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Spawner Control.
- * Minecraft version: 1.19.2, mod version: 2.0.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,25 +16,21 @@
 
 package com.natamus.betterspawnercontrol.events;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.natamus.collective_fabric.functions.BlockPosFunctions;
 import com.natamus.collective_fabric.functions.EntityFunctions;
-
+import com.natamus.collective_fabric.functions.TileEntityFunctions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.WallTorchBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.SpawnerBlockEntity;
 
 public class MobSpawnEvent {
-	final static List<Block> torchblocks = new ArrayList<Block>(Arrays.asList(Blocks.TORCH, Blocks.WALL_TORCH, Blocks.SOUL_TORCH, Blocks.SOUL_WALL_TORCH));
-	
 	public static boolean onMobSpawn(Mob entity, ServerLevel world, BlockPos spawnerPos, MobSpawnType spawnReason) {
 		if (EntityFunctions.isEntityFromSpawner(entity)) {
 			if (spawnerPos == null) {
@@ -51,6 +47,14 @@ public class MobSpawnEvent {
 			}
 			
 			if (alltorches) {
+				BlockEntity blockentity = world.getBlockEntity(spawnerPos);
+				if (blockentity instanceof SpawnerBlockEntity) {
+					SpawnerBlockEntity sbe = (SpawnerBlockEntity)blockentity;
+					if (sbe != null) {
+						BaseSpawner basespawner = sbe.getSpawner();
+						TileEntityFunctions.resetMobSpawnerDelay(basespawner);
+					}
+				}
 				return false;
 			}
 		}

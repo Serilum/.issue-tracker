@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "endportalrecipe-fabric",
-  "version": "3.0",
+  "version": "4.0",
 
   "name": "End Portal Recipe (Fabric)",
-  "description": "Makes the end portal craftable and available in survival plus other tweaks.",
+  "description": "Makes the end portal craftable and available in survival via a recipe and adds an extra dragon egg drop to create it. The portal can be picked up via silk touch.",
   "authors": [ "Rick South" ],
   "contact": {
     "homepage": "https://curseforge.com/minecraft/mc-mods/end-portal-recipe-fabric",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
+    "collective-fabric": ">=4.64"
   }
 }

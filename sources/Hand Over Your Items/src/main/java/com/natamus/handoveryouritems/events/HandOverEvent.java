@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hand Over Your Items.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,7 +19,6 @@ package com.natamus.handoveryouritems.events;
 import com.natamus.collective.functions.ItemFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import com.natamus.handoveryouritems.config.ConfigHandler;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
@@ -35,17 +34,12 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class HandOverEvent {
 	@SubscribeEvent
 	public void onPlayerClick(PlayerInteractEvent.EntityInteract e) {
-		Level world = e.getLevel();
-		if (world.isClientSide) {
-			return;
-		}
-		
 		if (!e.getHand().equals(InteractionHand.MAIN_HAND)) {
 			return;
 		}
 		
 		Entity target = e.getTarget();
-		if (target instanceof Player == false) {
+		if (!(target instanceof Player)) {
 			return;
 		}
 		
@@ -60,6 +54,8 @@ public class HandOverEvent {
 				return;
 			}
 		}
+
+		Level level = e.getLevel();
 		
 		e.setCanceled(true);
 		e.setResult(Result.DENY);
@@ -69,13 +65,16 @@ public class HandOverEvent {
 		
 		Player playertarget = (Player)target;
 		ItemFunctions.giveOrDropItemStack(playertarget, stacktogive.copy());
-		if (ConfigHandler.GENERAL.sendItemReceivedMessage.get()) {
-			StringFunctions.sendMessage(playertarget, "You have been given " + stacksize + " " + itemstring + " by " + player.getName().getString() + ".", ChatFormatting.DARK_GREEN);
-		}
-		
 		stacktogive.setCount(0);
-		if (ConfigHandler.GENERAL.sendItemGivenMessage.get()) {
-			StringFunctions.sendMessage(player, "You have given " + stacksize + " " + itemstring + " to " + target.getName().getString() + ".", ChatFormatting.BLUE);
+
+		if (!level.isClientSide) {
+			if (ConfigHandler.GENERAL.sendItemReceivedMessage.get()) {
+				StringFunctions.sendMessage(playertarget, "You have been given " + stacksize + " " + itemstring + " by " + player.getName().getString() + ".", ChatFormatting.DARK_GREEN);
+			}
+
+			if (ConfigHandler.GENERAL.sendItemGivenMessage.get()) {
+				StringFunctions.sendMessage(player, "You have given " + stacksize + " " + itemstring + " to " + target.getName().getString() + ".", ChatFormatting.BLUE);
+			}
 		}
 		
 		player.getInventory().setChanged();

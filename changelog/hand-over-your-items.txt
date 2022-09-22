@@ -3,6 +3,10 @@ Hand Over Your Items
 https://curseforge.com/minecraft/mc-mods/hand-over-your-items
 
 =========
+v2.0: Fixed desyncs on the client when giving items such as a water bucket.
+Updated mod description.
+
+=========
 v1.8: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

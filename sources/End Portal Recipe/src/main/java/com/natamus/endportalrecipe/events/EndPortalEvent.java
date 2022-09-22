@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of End Portal Recipe.
- * Minecraft version: 1.19.2, mod version: 2.8.
+ * Minecraft version: 1.19.2, mod version: 4.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,16 +16,12 @@
 
 package com.natamus.endportalrecipe.events;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import com.google.common.primitives.Ints;
 import com.natamus.collective.functions.BlockFunctions;
 import com.natamus.collective.functions.ItemFunctions;
+import com.natamus.collective.functions.MessageFunctions;
 import com.natamus.collective.functions.ToolFunctions;
 import com.natamus.endportalrecipe.config.ConfigHandler;
-
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
@@ -36,13 +32,16 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+
+import java.util.Iterator;
+import java.util.List;
 
 @EventBusSubscriber
 public class EndPortalEvent {
@@ -54,95 +53,40 @@ public class EndPortalEvent {
 			return;
 		}
 		
-		if (entity instanceof EnderDragon == false) {
-			return;
-		}
-		
-		Entity source = e.getSource().getEntity();
-		if (entity instanceof Player == false) {
+		if (!(entity instanceof EnderDragon)) {
 			return;
 		}
 
-		Player player = (Player)source;
 		ItemStack egg = new ItemStack(Blocks.DRAGON_EGG, 1);
-		ItemFunctions.giveOrDropItemStack(player, egg);
-	}
-	
-	@SubscribeEvent
-	public void onRightClick(PlayerInteractEvent.RightClickBlock e) {
-		Level world = e.getLevel();
-		if (world.isClientSide) {
-			return;
-		}
-		
-		ItemStack itemstack = e.getItemStack();
-		if (itemstack.getItem().equals(Items.FLINT_AND_STEEL)) {
-			int aircount = 0;
-			BlockPos centerpos = null;
-			
-			BlockPos cpos = e.getPos();
-			Iterator<BlockPos> it = BlockPos.betweenClosedStream(cpos.getX()-1, cpos.getY()+1, cpos.getZ()-1, cpos.getX()+1, cpos.getY()+1, cpos.getZ()+1).iterator();
-			while (it.hasNext()) {
-				aircount = 0;
-				BlockPos np = it.next();
-				Iterator<BlockPos> npit = BlockPos.betweenClosedStream(np.getX()-1, np.getY(), np.getZ()-1, np.getX()+1, np.getY(), np.getZ()+1).iterator();
-				while (npit.hasNext()) {
-					BlockPos npp = npit.next();
-					Block block = world.getBlockState(npp).getBlock();
-					if (block.equals(Blocks.AIR) || block.equals(Blocks.FIRE)) {
-						if (aircount == 4) {
-							centerpos = npp.immutable();
-						}
-						aircount++;
-					}
-				}
-				if (aircount == 9) {
+
+		Player playertodrop = null;
+		Entity source = e.getSource().getEntity();
+		if (!(entity instanceof Player)) {
+			BlockPos pos = entity.blockPosition();
+			List<Entity> entitiesaround = world.getEntities(null, new AABB(pos.getX()-50, pos.getY()-50, pos.getZ()-50, pos.getX()+50, pos.getY()+50, pos.getZ()+50));
+			for (Entity ea : entitiesaround) {
+				if (ea instanceof Player) {
+					playertodrop = (Player)ea;
 					break;
 				}
-				aircount++;
 			}
-			
-			if (aircount != 9) {
+
+			if (playertodrop == null) {
 				return;
 			}
-			
-			if (centerpos != null) {
-				//       1 2 3 
-				//    5         9
-				//   10         14
-				//   15         19
-				//     21 22 23
-				List<Integer> portalnumbers = new ArrayList<Integer>(Ints.asList(1, 2, 3, 5, 9, 10, 14, 15, 19, 21, 22, 23));
-				
-				int pi = 0;
-				Iterator<BlockPos> centerit = BlockPos.betweenClosedStream(centerpos.getX()-2, centerpos.getY(), centerpos.getZ()-2, centerpos.getX()+2, centerpos.getY(), centerpos.getZ()+2).iterator();
-				while (centerit.hasNext()) {
-					BlockPos ncp = centerit.next();
-					if (portalnumbers.contains(pi)) {
-						BlockState ibs = world.getBlockState(ncp);
-						if (ibs.getBlock().equals(Blocks.END_PORTAL_FRAME)) {
-							if (!BlockFunctions.isFilledPortalFrame(ibs)) {
-								break;
-							}
-						}
-						else {
-							break;
-						}
-					}
-					pi++;
-				}
-				
-				if (pi == 25) {
-					Iterator<BlockPos> portalposses = BlockPos.betweenClosedStream(centerpos.getX()-1, centerpos.getY(), centerpos.getZ()-1, centerpos.getX()+1, centerpos.getY(), centerpos.getZ()+1).iterator();
-					while (portalposses.hasNext()) {
-						BlockPos ppp = portalposses.next();
-						world.setBlockAndUpdate(ppp, Blocks.END_PORTAL.defaultBlockState());
-					}
-				}
-			}
+		}
+		else {
+			playertodrop = (Player)source;
+		}
+
+		ItemFunctions.giveOrDropItemStack(playertodrop, egg);
+
+		if (ConfigHandler.GENERAL.sendMessageOnExtraDragonEggDrop.get()) {
+			MessageFunctions.sendMessage(playertodrop, "An extra dragon egg has dropped at your position!", ChatFormatting.DARK_GREEN);
 		}
 	}
-	
+
+	@SuppressWarnings( "deprecation" )
 	@SubscribeEvent
 	public void onLeftClick(PlayerInteractEvent.LeftClickBlock e) {
 		Level world = e.getLevel();
