@@ -3,6 +3,13 @@ Your Items Are Safe
 https://curseforge.com/minecraft/mc-mods/your-items-are-safe
 
 =========
+v2.0: Fixed the totem of undying effect not being applied.
+Fixed mustHaveItemsInInventoryForCreation set to false not working correctly.
+Fixed a bug which duplicated the player's main hand when the armor stand creation was set to false.
+Fixed a crash when another mod increases the player inventory size.
+Removed a debug line.
+
+=========
 v1.6: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

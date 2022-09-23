@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Your Items Are Safe.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,12 +16,9 @@
 
 package com.natamus.youritemsaresafe.util;
 
-import java.util.List;
-
 import com.natamus.collective_fabric.functions.CompareItemFunctions;
 import com.natamus.collective_fabric.functions.StringFunctions;
 import com.natamus.youritemsaresafe.config.ConfigHandler;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -29,6 +26,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.List;
 
 public class Util {
 	public static int processCheck(List<ItemStack> itemstacks, int itemsleft, String compare, int decrease) {
@@ -51,20 +50,14 @@ public class Util {
 	}
 	
 	public static boolean comparePassed(String compare, ItemStack itemstack) {
-		switch (compare) {
-			case "log":
-				return CompareItemFunctions.isLog(itemstack);
-			case "plank":
-				return CompareItemFunctions.isPlank(itemstack);
-			case "chest":
-				return CompareItemFunctions.isChest(itemstack);
-			case "stone":
-				return CompareItemFunctions.isStone(itemstack);
-			case "slab":
-				return CompareItemFunctions.isSlab(itemstack);
-		}
-		
-		return false;
+		return switch (compare) {
+			case "log" -> CompareItemFunctions.isLog(itemstack);
+			case "plank" -> CompareItemFunctions.isPlank(itemstack);
+			case "chest" -> CompareItemFunctions.isChest(itemstack);
+			case "stone" -> CompareItemFunctions.isStone(itemstack);
+			case "slab" -> CompareItemFunctions.isSlab(itemstack);
+			default -> false;
+		};
 	}
 	
 	public static int processLogCheck(List<ItemStack> itemstacks, int planksleft) {
@@ -98,7 +91,6 @@ public class Util {
 		Level world = player.getCommandSenderWorld();
 		Vec3 vec = player.position();
 		
-		System.out.println(planksleft + ", " + planksneeded);
 		if (planksleft != planksneeded) {
 			ItemEntity planks = new ItemEntity(world, vec.x, vec.y+1, vec.z, new ItemStack(Items.OAK_PLANKS, planksneeded-planksleft));
 			world.addFreshEntity(planks);

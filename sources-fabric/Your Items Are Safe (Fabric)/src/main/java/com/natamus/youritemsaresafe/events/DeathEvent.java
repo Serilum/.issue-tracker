@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Your Items Are Safe.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,17 +16,13 @@
 
 package com.natamus.youritemsaresafe.events;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.natamus.collective_fabric.functions.CompareBlockFunctions;
 import com.natamus.collective_fabric.functions.DataFunctions;
 import com.natamus.collective_fabric.functions.HeadFunctions;
 import com.natamus.collective_fabric.functions.TileEntityFunctions;
 import com.natamus.youritemsaresafe.config.ConfigHandler;
 import com.natamus.youritemsaresafe.util.Util;
-
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -36,6 +32,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ChestBlock;
@@ -45,7 +42,12 @@ import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class DeathEvent {
+	private static FabricLoader fabricLoader = FabricLoader.getInstance();
 	private static final List<EquipmentSlot> slottypes = new ArrayList<EquipmentSlot>(Arrays.asList(EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET));
 	
 	public static void onPlayerDeath(ServerPlayer player, DamageSource damageSource, float damageAmount) {
@@ -78,61 +80,75 @@ public class DeathEvent {
 		if (totalitemcount == 0) {
 			return;
 		}
-		
-		if (ConfigHandler.needChestMaterials.getValue() || ConfigHandler.needArmorStandMaterials.getValue() || ConfigHandler.needSignMaterials.getValue()) {			
-			if (ConfigHandler.createArmorStand.getValue() && ConfigHandler.addPlayerHeadToArmorStand.getValue() && !player.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
-				totalitemcount += 1;
-			}
-			
-			int stoneleft = 1; // 1 armor stand
-			int planksleft = 0; // 1 chest, 1 armor stand
-			
-			if (ConfigHandler.needChestMaterials.getValue()) {
-				planksleft += 8;
-				if (totalitemcount > 27) {
-					planksleft += 8;
+
+		if (fabricLoader.isModLoaded("inventory-totem-fabric")) {
+			for (ItemStack inventoryStack : itemstacks) {
+				if (inventoryStack.getItem().equals(Items.TOTEM_OF_UNDYING)) {
+					return;
 				}
 			}
-			
-			if (ConfigHandler.createArmorStand.getValue() && ConfigHandler.needArmorStandMaterials.getValue()) {
-				planksleft += 3;
-			}
-			
-			if (ConfigHandler.createSignWithPlayerName.getValue() && ConfigHandler.needSignMaterials.getValue()) {
-				planksleft += 7;
-			}
-			
-			if (ConfigHandler.ignoreStoneMaterialNeed.getValue()) {
-				stoneleft = 0;
-			}
-			
-			int planksneeded = planksleft;
-			int stoneneeded = stoneleft;
-			
-			planksleft = Util.processLogCheck(itemstacks, planksleft);
-			
-			if (planksleft > 0) {
-				planksleft = Util.processPlankCheck(itemstacks, planksleft);
-			}
-			if (planksleft > 0) {
-				planksleft = Util.processChestCheck(itemstacks, planksleft);
-			}
-			
-			if (planksleft > 0) {
-				Util.failureMessage(player, planksleft, stoneleft, planksneeded, stoneneeded);
-				return;
-			}
-			
-			if (stoneleft > 0) {
-				stoneleft = Util.processStoneCheck(itemstacks, stoneleft);
-			}
-			if (stoneleft > 0) {
-				stoneleft = Util.processSlabCheck(itemstacks, stoneleft);
-			}
-			
-			if (stoneleft > 0) {
-				Util.failureMessage(player, planksleft, stoneleft, planksneeded, stoneneeded);
-				return;
+		}
+
+		if (player.getMainHandItem().getItem().equals(Items.TOTEM_OF_UNDYING) || player.getOffhandItem().getItem().equals(Items.TOTEM_OF_UNDYING)) {
+			return;
+		}
+
+		if (ConfigHandler.mustHaveItemsInInventoryForCreation.getValue()) {
+			if (ConfigHandler.needChestMaterials.getValue() || ConfigHandler.needArmorStandMaterials.getValue() || ConfigHandler.needSignMaterials.getValue()) {
+				if (ConfigHandler.createArmorStand.getValue() && ConfigHandler.addPlayerHeadToArmorStand.getValue() && !player.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
+					totalitemcount += 1;
+				}
+
+				int stoneleft = 1; // 1 armor stand
+				int planksleft = 0; // 1 chest, 1 armor stand
+
+				if (ConfigHandler.needChestMaterials.getValue()) {
+					planksleft += 8;
+					if (totalitemcount > 27) {
+						planksleft += 8;
+					}
+				}
+
+				if (ConfigHandler.createArmorStand.getValue() && ConfigHandler.needArmorStandMaterials.getValue()) {
+					planksleft += 3;
+				}
+
+				if (ConfigHandler.createSignWithPlayerName.getValue() && ConfigHandler.needSignMaterials.getValue()) {
+					planksleft += 7;
+				}
+
+				if (ConfigHandler.ignoreStoneMaterialNeed.getValue()) {
+					stoneleft = 0;
+				}
+
+				int planksneeded = planksleft;
+				int stoneneeded = stoneleft;
+
+				planksleft = Util.processLogCheck(itemstacks, planksleft);
+
+				if (planksleft > 0) {
+					planksleft = Util.processPlankCheck(itemstacks, planksleft);
+				}
+				if (planksleft > 0) {
+					planksleft = Util.processChestCheck(itemstacks, planksleft);
+				}
+
+				if (planksleft > 0) {
+					Util.failureMessage(player, planksleft, stoneleft, planksneeded, stoneneeded);
+					return;
+				}
+
+				if (stoneleft > 0) {
+					stoneleft = Util.processStoneCheck(itemstacks, stoneleft);
+				}
+				if (stoneleft > 0) {
+					stoneleft = Util.processSlabCheck(itemstacks, stoneleft);
+				}
+
+				if (stoneleft > 0) {
+					Util.failureMessage(player, planksleft, stoneleft, planksneeded, stoneneeded);
+					return;
+				}
 			}
 		}
 		
@@ -168,6 +184,10 @@ public class DeathEvent {
 		}
 		else {
 			for (EquipmentSlot slottype : slottypes) {
+				if (slottype.equals(EquipmentSlot.MAINHAND)) {
+					continue;
+				}
+
 				itemstacks.add(player.getItemBySlot(slottype).copy());
 				player.setItemSlot(slottype, ItemStack.EMPTY);
 			}
@@ -200,6 +220,10 @@ public class DeathEvent {
 					world.setBlock(deathposup, cheststate, 3);
 					world.setBlockEntity(chestentitytwo);
 				}
+
+				if (i-27 > 26) {
+					break;
+				}
 				
 				chestentitytwo.setItem(i-27, itemstack.copy());
 				itemstack.setCount(0);
@@ -221,7 +245,7 @@ public class DeathEvent {
 			world.setBlockAndUpdate(signpos, Blocks.OAK_WALL_SIGN.defaultBlockState().setValue(WallSignBlock.FACING, Direction.SOUTH));
 			
 			BlockEntity te = world.getBlockEntity(signpos);
-			if (te instanceof SignBlockEntity == false) {
+			if (!(te instanceof SignBlockEntity)) {
 				return;
 			}
 			
