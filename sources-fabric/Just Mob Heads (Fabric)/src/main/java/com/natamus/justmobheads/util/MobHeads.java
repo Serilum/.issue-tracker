@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.19.2, mod version: 5.9.
+ * Minecraft version: 1.19.2, mod version: 6.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,7 @@ package com.natamus.justmobheads.util;
 import com.mojang.datafixers.util.Pair;
 import com.natamus.collective_fabric.functions.EntityFunctions;
 import com.natamus.collective_fabric.functions.HeadFunctions;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.*;
@@ -34,7 +35,6 @@ import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.network.chat.Component;
 
 import java.util.Arrays;
 import java.util.List;
@@ -94,7 +94,7 @@ public class MobHeads {
 		}
 		else if (entity instanceof Horse) {
 			Horse horse = (Horse)entity;
-			Integer type = horse.getVariant().getId(); // horse.getHorseVariant();
+			int type = horse.getVariant().getId(); // horse.getHorseVariant();
 			
 			if (type >= 1024) {
 				type -= 1024;
@@ -112,33 +112,39 @@ public class MobHeads {
 		}
 		else if (entity instanceof Llama) {
 			Llama llama = (Llama)entity;
-			Integer type = llama.getVariant();
+			int type = llama.getVariant();
 			if (type < llamatypes.size()) {
 				mobname = llamatypes.get(type) + "_" + mobname;
 			}
 		}
 		else if (entity instanceof TraderLlama) {
 			TraderLlama traderllama = (TraderLlama)entity;
-			Integer type = traderllama.getVariant();
+			int type = traderllama.getVariant();
 			if (type < llamatypes.size()) {
 				mobname = llamatypes.get(type) + "_trader_" + mobname;
 			}
 		}
 		else if (entity instanceof Parrot) {
 			Parrot parrot = (Parrot)entity;
-			Integer type = parrot.getVariant();
+			int type = parrot.getVariant();
 			if (type < parrottypes.size()) {
 				mobname = parrottypes.get(type) + "_parrot";
 			}
 		}
 		else if (entity instanceof Rabbit) {
 			Rabbit rabbit = (Rabbit)entity;
-			Integer type = rabbit.getRabbitType();
-			if (type < rabbittypes.size()) {
-				mobname = rabbittypes.get(type) + "_rabbit";
+			int type = rabbit.getRabbitType();
+			String rabbitname = rabbit.getDisplayName().getString();
+			if (rabbitname.equals("Toast")) {
+				mobname = "toast_rabbit";
 			}
-			else if (type == 99) {
-				mobname = "killer_rabbit";
+			else {
+				if (type < rabbittypes.size()) {
+					mobname = rabbittypes.get(type) + "_rabbit";
+				}
+				else if (type == 99) {
+					mobname = "killer_rabbit";
+				}
 			}
 		}
 		else if (entity instanceof Sheep) {
@@ -163,9 +169,18 @@ public class MobHeads {
 				mobname = "brown_mooshroom";
 			}	
 		}
+		else if (entity instanceof Fox) {
+			Fox fox = (Fox)entity;
+			if (fox.getFoxType() == Fox.Type.SNOW) {
+				mobname = "snow_fox";
+			}
+			else {
+				mobname = "red_fox";
+			}
+		}
 		else if (entity instanceof Axolotl) {
 			Axolotl axolotl = (Axolotl)entity;
-			Integer type = axolotl.getVariant().getId();
+			int type = axolotl.getVariant().getId();
 			if (type < axolotltypes.size()) {
 				mobname = axolotltypes.get(type) + "_axolotl";
 			}

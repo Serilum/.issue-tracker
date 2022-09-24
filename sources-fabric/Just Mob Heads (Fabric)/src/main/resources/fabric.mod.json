@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "justmobheads-fabric",
-  "version": "5.9",
+  "version": "6.0",
 
   "name": "Just Mob Heads (Fabric)",
-  "description": "A minimalistic mod that adds a configurable chance for mobs to drop their respective heads on death.",
+  "description": "Mobs have a configurable chance to drop their heads on death. Uses lag-free vanilla resources. Collect them all!",
   "authors": [ "Rick South" ],
   "contact": {
     "homepage": "https://curseforge.com/minecraft/mc-mods/just-mob-heads-fabric",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
+    "collective-fabric": ">=4.68"
   }
 }

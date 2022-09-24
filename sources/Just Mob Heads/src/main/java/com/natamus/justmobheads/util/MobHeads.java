@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.19.2, mod version: 5.9.
+ * Minecraft version: 1.19.2, mod version: 6.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -137,11 +137,17 @@ public class MobHeads {
 		else if (entity instanceof Rabbit) {
 			Rabbit rabbit = (Rabbit)entity;
 			int type = rabbit.getRabbitType();
-			if (type < rabbittypes.size()) {
-				mobname = rabbittypes.get(type) + "_rabbit";
+			String rabbitname = rabbit.getDisplayName().getString();
+			if (rabbitname.equals("Toast")) {
+				mobname = "toast_rabbit";
 			}
-			else if (type == 99) {
-				mobname = "killer_rabbit";
+			else {
+				if (type < rabbittypes.size()) {
+					mobname = rabbittypes.get(type) + "_rabbit";
+				}
+				else if (type == 99) {
+					mobname = "killer_rabbit";
+				}
 			}
 		}
 		else if (entity instanceof Sheep) {
@@ -165,6 +171,15 @@ public class MobHeads {
 			if (mooshroom.getMushroomType() == MushroomCow.MushroomType.BROWN) {
 				mobname = "brown_mooshroom";
 			}	
+		}
+		else if (entity instanceof Fox) {
+			Fox fox = (Fox)entity;
+			if (fox.getFoxType() == Fox.Type.SNOW) {
+				mobname = "snow_fox";
+			}
+			else {
+				mobname = "red_fox";
+			}
 		}
 		else if (entity instanceof Axolotl) {
 			Axolotl axolotl = (Axolotl)entity;
