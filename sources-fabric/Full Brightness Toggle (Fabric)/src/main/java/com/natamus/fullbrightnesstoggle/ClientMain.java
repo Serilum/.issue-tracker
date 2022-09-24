@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Full Brightness Toggle.
- * Minecraft version: 1.19.2, mod version: 1.3.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -25,7 +25,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
 
 public class ClientMain implements ClientModInitializer {
-	private static KeyMapping hotkey = KeyBindingHelper.registerKeyBinding(new KeyMapping("Toggle Brightness", InputConstants.Type.KEYSYM, 71, "key.categories.misc"));
+	private static KeyMapping hotkey = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.fullbrightnesstoggle.togglebrightness.desc", InputConstants.Type.KEYSYM, 71, "key.categories.misc"));
 	
     @Override
     public void onInitializeClient() {		

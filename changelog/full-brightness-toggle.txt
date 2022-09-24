@@ -3,6 +3,15 @@ Full Brightness Toggle
 https://www.curseforge.com/minecraft/mc-mods/full-brightness-toggle
 
 =========
+v2.1: (2.0) Released an up-to-date version for Minecraft 1.19.2.
+ Added language file support for the keybinding.
+(2.1) Fixed version reference typo.
+
+=========
+v2.0: Released an up-to-date version for Minecraft 1.19.2.
+Added language file support for the keybinding.
+
+=========
 v1.5: (Fabric only) Changed the version syntax of fabric mods. Due the subversions (e.g. 1.18.1 -> 1.18.2) increasingly being different, it's no longer reliable to have the same file for all subversions of Minecraft. From now on, there will be a new release for each. This will hopefully prevent confusion and make the whole updating process a lot more reliable for me and you, the user.
 
 =========

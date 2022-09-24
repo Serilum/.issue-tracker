@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.66-4.68: Updated GameSettingsFunctions to be able to set the gamma value in-game.
+
+=========
 v4.65: Added functions related to setting and resetting mob spawner delay.
 
 =========

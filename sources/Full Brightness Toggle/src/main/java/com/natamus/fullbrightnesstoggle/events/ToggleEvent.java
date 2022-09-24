@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Full Brightness Toggle.
- * Minecraft version: 1.18.2, mod version: 1.4.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,62 +16,61 @@
 
 package com.natamus.fullbrightnesstoggle.events;
 
-import com.natamus.fullbrightnesstoggle.Main;
-
+import com.natamus.collective.functions.GameSettingsFunctions;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber
+@EventBusSubscriber(Dist.CLIENT)
 public class ToggleEvent {
-	private static Minecraft mc = null;
+	private static Minecraft mc = Minecraft.getInstance();
+	public static KeyMapping hotkey;
 	private static double initialgamma = -1;
-	private static double maxgamma = 14.0F % 28.0F + 1.0F;
-	
-	@OnlyIn(Dist.CLIENT)
+
 	@SubscribeEvent
-	public void onKey(InputEvent.KeyInputEvent e) {
+	public void onKey(InputEvent.Key e) {
 		if (e.getAction() != 1) {
 			return;
-		}
-		
-		if (mc == null) {
-			mc = Minecraft.getInstance();
 		}
 		
 		if (mc.screen instanceof ChatScreen) {
 			return;
 		}
-		
-		if (e.getKey() == Main.hotkey.getKey().getValue()) {
-			Options settings = mc.options;
+
+		if (hotkey == null) {
+			return;
+		}
+
+		if (e.getKey() == hotkey.getKey().getValue()) {
+			Options options = mc.options;
 			if (initialgamma < 0) {
-				if (settings.gamma >= 1.0F) {
+				if (GameSettingsFunctions.getGamma(options) >= 1.0F) {
 					initialgamma = 1.0F;
-					settings.gamma = 1.0F;
+					GameSettingsFunctions.setGamma(options, 1.0F);
 				}
 				else {
-					initialgamma = settings.gamma;			
+					initialgamma = GameSettingsFunctions.getGamma(options);
 				}
 			}
 			
 			boolean gomax = false;
-			if (settings.gamma != initialgamma && settings.gamma != maxgamma) {
-				initialgamma = settings.gamma;
+			double maxgamma = 14.0F % 28.0F + 1.0F;
+			if (GameSettingsFunctions.getGamma(options) != initialgamma && GameSettingsFunctions.getGamma(options) != maxgamma) {
+				initialgamma = GameSettingsFunctions.getGamma(options);
 				gomax = true;
 			}
 			
-			if (settings.gamma == initialgamma || gomax) {
-				settings.gamma = maxgamma;
+			if (GameSettingsFunctions.getGamma(options) == initialgamma || gomax) {
+				GameSettingsFunctions.setGamma(options, maxgamma);
 			}
-			else {		          
-				settings.gamma = initialgamma;
-			} 			
+			else {
+				GameSettingsFunctions.setGamma(options, initialgamma);
+			}
 		}
 	}
 }
