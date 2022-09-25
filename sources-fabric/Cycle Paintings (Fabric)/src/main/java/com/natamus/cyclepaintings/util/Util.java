@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Cycle Paintings.
- * Minecraft version: 1.19.2, mod version: 2.6.
+ * Minecraft version: 1.19.2, mod version: 2.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,15 +16,13 @@
 
 package com.natamus.cyclepaintings.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.natamus.cyclepaintings.config.ConfigHandler;
-
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.decoration.PaintingVariant;
-import net.minecraft.core.Holder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Util {
 	private static List<PaintingVariant> paintingtypes = new ArrayList<PaintingVariant>();

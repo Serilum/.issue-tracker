@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Cycle Paintings.
- * Minecraft version: 1.19.2, mod version: 2.6.
+ * Minecraft version: 1.19.2, mod version: 2.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -21,8 +21,8 @@ import com.natamus.cyclepaintings.config.ConfigHandler;
 import com.natamus.cyclepaintings.events.PaintingEvent;
 import com.natamus.cyclepaintings.util.Reference;
 import com.natamus.cyclepaintings.util.Util;
-
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 
 public class Main implements ModInitializer {
@@ -36,8 +36,9 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-		Util.setPaintings();
-		
+		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
+			Util.setPaintings();
+		});
 		UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
 			return PaintingEvent.onClick(player, world, hand, entity, hitResult);
 		});

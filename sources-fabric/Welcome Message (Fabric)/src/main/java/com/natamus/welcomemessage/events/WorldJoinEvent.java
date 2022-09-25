@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Welcome Message.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.2, mod version: 1.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,23 +18,16 @@ package com.natamus.welcomemessage.events;
 
 import com.natamus.collective_fabric.functions.StringFunctions;
 import com.natamus.welcomemessage.config.ConfigHandler;
-
 import net.minecraft.ChatFormatting;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 public class WorldJoinEvent {
-	public static void onSpawn(Level world, Entity entity) {
+	public static void onSpawn(Level world, Player player) {
 		if (world.isClientSide) {
 			return;
 		}
 
-		if (entity instanceof Player == false) {
-			return;
-		}
-		
-		Player player = (Player)entity;
 		if (ConfigHandler.onlyRunOnDedicatedServers.getValue()) {
 			if (!world.getServer().isDedicatedServer()) {
 				return;

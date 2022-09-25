@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bottled Air.
- * Minecraft version: 1.19.2, mod version: 1.3.
+ * Minecraft version: 1.19.2, mod version: 1.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -21,7 +21,6 @@ import com.natamus.bottledair.util.Util;
 import com.natamus.collective.data.GlobalVariables;
 import com.natamus.collective.functions.ItemFunctions;
 import com.natamus.collective.functions.PlayerFunctions;
-
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -30,7 +29,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -39,18 +37,23 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class AirEvent {
 	@SubscribeEvent
 	public void onBottleClick(PlayerInteractEvent.RightClickItem e) {
-		Level world = e.getLevel();
-		if (world.isClientSide) {
+		Player player = e.getEntity();
+		if (!player.isInWater()) {
 			return;
 		}
 		
 		ItemStack stack = e.getItemStack();
-		if (!stack.getItem().equals(Items.GLASS_BOTTLE)) {
-			return;
-		}
-		
-		Player player = e.getEntity();
-		if (!player.isInWater()) {
+		Item stackitem = stack.getItem();
+		if (!stackitem.equals(Items.GLASS_BOTTLE)) {
+			if (ConfigHandler.GENERAL.disableWaterConsumptionUnderwater.get()) {
+				if (stackitem.equals(Items.POTION)) {
+					if (PotionUtils.getPotion(stack).equals(Potions.WATER)) {
+						if (player.isUnderWater()) {
+							e.setCanceled(true);
+						}
+					}
+				}
+			}
 			return;
 		}
 		

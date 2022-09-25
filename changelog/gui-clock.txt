@@ -3,6 +3,9 @@ GUI Clock
 https://www.curseforge.com/minecraft/mc-mods/gui-clock
 
 =========
+v3.7: The mod now correctly changes the height of the time in the GUI with lowerClockWhenPlayerHasEffects enabled. For positive and negative effects.
+
+=========
 v3.6: Fixed holding a clock in the offhand not counting towards having one in the inventory.
 Updated backend code.
 

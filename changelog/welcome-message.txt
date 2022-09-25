@@ -3,6 +3,9 @@ Welcome Message
 https://curseforge.com/minecraft/mc-mods/welcome-message
 
 =========
+v1.7: Fixed the welcome message being sent whenever a player changed dimensions.
+
+=========
 v1.6: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

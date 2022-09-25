@@ -1,9 +1,9 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.natamus.cyclepaintings.forge.mixin",
+  "package": "com.natamus.bottledair.forge.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "serilumforgemod.refmap.json",
+  "refmap": "bottledair.refmap.json",
   "mixins": [
 
   ],

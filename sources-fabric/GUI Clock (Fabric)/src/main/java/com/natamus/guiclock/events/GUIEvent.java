@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Clock.
- * Minecraft version: 1.19.2, mod version: 3.6.
+ * Minecraft version: 1.19.2, mod version: 3.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,21 +16,21 @@
 
 package com.natamus.guiclock.events;
 
-import java.awt.Color;
-import java.util.Collection;
-
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.natamus.collective_fabric.functions.StringFunctions;
 import com.natamus.guiclock.config.ConfigHandler;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+
+import java.awt.*;
+import java.util.Collection;
 
 public class GUIEvent {
 	private static final Minecraft mc = Minecraft.getInstance();
@@ -68,16 +68,28 @@ public class GUIEvent {
 		if (ConfigHandler.lowerClockWhenPlayerHasEffects.getValue()) {
 			Collection<MobEffectInstance> activeeffects = mc.player.getActiveEffects();
 			if (activeeffects.size() > 0) {
-				boolean isvisible = false;
+				boolean haspositive = false;
+				boolean hasnegative = false;
 				for (MobEffectInstance effect : activeeffects) {
 					if (effect.isVisible()) {
-						isvisible = true;
-						break;
+						if (effect.getEffect().getCategory().equals(MobEffectCategory.BENEFICIAL)) {
+							haspositive = true;
+						}
+						else {
+							hasnegative = true;
+						}
+
+						if (haspositive && hasnegative) {
+							break;
+						}
 					}
 				}
-				
-				if (isvisible) {
-					heightoffset += 24;
+
+				if (hasnegative && haspositive) {
+					heightoffset += 50;
+				}
+				else if (haspositive && !hasnegative) {
+					heightoffset += 25;
 				}
 			}
 		}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bottled Air.
- * Minecraft version: 1.19.2, mod version: 1.5.
+ * Minecraft version: 1.19.2, mod version: 1.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -35,12 +35,17 @@ import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.JanksonValueSerial
 import io.github.fablabsmc.fablabs.api.fiber.v1.tree.ConfigTree;
 import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
 
-public class ConfigHandler { 
+public class ConfigHandler {
+	public static PropertyMirror<Boolean> disableWaterConsumptionUnderwater = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Boolean> holdFireTypeItemInOffhandToPreventWaterBottleCreation = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Double> chanceGlassBottleBreaksWithFireTypeInOffhand = PropertyMirror.create(ConfigTypes.DOUBLE);
 	public static PropertyMirror<Integer> amountOfAirInBottles = PropertyMirror.create(ConfigTypes.INTEGER);
 
-	private static final ConfigTree CONFIG = ConfigTree.builder() 
+	private static final ConfigTree CONFIG = ConfigTree.builder()
+			.beginValue("disableWaterConsumptionUnderwater", ConfigTypes.BOOLEAN, true)
+			.withComment("If enabled, players will be unable to drink water bottles underwater to prevent getting unlimited oxygen.")
+			.finishValue(disableWaterConsumptionUnderwater::mirror)
+
 			.beginValue("holdFireTypeItemInOffhandToPreventWaterBottleCreation", ConfigTypes.BOOLEAN, true)
 			.withComment("Whether the creation of water bottles should be prevented (evaporated) when holding a fire type block in the offhand.")
 			.finishValue(holdFireTypeItemInOffhandToPreventWaterBottleCreation::mirror)

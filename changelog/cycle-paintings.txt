@@ -3,6 +3,10 @@ Cycle Paintings
 https://www.curseforge.com/minecraft/mc-mods/cycle-paintings
 
 =========
+v2.7: Cleaned up code.
+(Fabric) Fixed painting cycle not working with modded paintings.
+
+=========
 v2.6: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

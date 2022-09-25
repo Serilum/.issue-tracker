@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bottled Air.
- * Minecraft version: 1.19.2, mod version: 1.3.
+ * Minecraft version: 1.19.2, mod version: 1.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -24,12 +24,16 @@ public class ConfigHandler {
 	public static final ForgeConfigSpec spec = BUILDER.build();
 
 	public static class General {
+		public final ForgeConfigSpec.ConfigValue<Boolean> disableWaterConsumptionUnderwater;
 		public final ForgeConfigSpec.ConfigValue<Boolean> holdFireTypeItemInOffhandToPreventWaterBottleCreation;
 		public final ForgeConfigSpec.ConfigValue<Double> chanceGlassBottleBreaksWithFireTypeInOffhand;
 		public final ForgeConfigSpec.ConfigValue<Integer> amountOfAirInBottles;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
+			disableWaterConsumptionUnderwater = builder
+					.comment("If enabled, players will be unable to drink water bottles underwater to prevent getting unlimited oxygen.")
+					.define("disableWaterConsumptionUnderwater", true);
 			holdFireTypeItemInOffhandToPreventWaterBottleCreation = builder
 					.comment("Whether the creation of water bottles should be prevented (evaporated) when holding a fire type block in the offhand.")
 					.define("holdFireTypeItemInOffhandToPreventWaterBottleCreation", true);
