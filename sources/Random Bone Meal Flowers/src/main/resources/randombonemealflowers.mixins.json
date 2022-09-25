@@ -1,9 +1,9 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.natamus.weakerspiderwebs.forge.mixin",
+  "package": "com.natamus.randombonemealflowers.forge.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "serilumforgemod.refmap.json",
+  "refmap": "randombonemealflowers.refmap.json",
   "mixins": [
 
   ],

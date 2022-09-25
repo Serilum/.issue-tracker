@@ -3,6 +3,10 @@ Weaker Spiderwebs
 https://www.curseforge.com/minecraft/mc-mods/weaker-spiderwebs
 
 =========
+v2.7: Fixed spiderwebs being broken in spectator mode.
+Cleaned up code.
+
+=========
 v2.6: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

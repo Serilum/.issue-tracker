@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Bone Meal Flowers.
- * Minecraft version: 1.19.2, mod version: 1.9.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -20,7 +20,6 @@ import com.natamus.collective.check.RegisterMod;
 import com.natamus.randombonemealflowers.events.FlowerEvent;
 import com.natamus.randombonemealflowers.util.Reference;
 import com.natamus.randombonemealflowers.util.Util;
-
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -44,9 +43,10 @@ public class Main {
     	try {
 			Util.setFlowerList();
 		} catch (Exception ex) {
-			System.out.println("!!! Something went wrong while initializing Random Bone Meal Flowers. The mod has been disabled.");
+			System.out.println("[Random Bone Meal Flower] Error: Unable to generate flower list.");
 			return;
 		}
+
     	MinecraftForge.EVENT_BUS.register(new FlowerEvent());
 	}
 }

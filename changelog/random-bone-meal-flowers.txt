@@ -3,6 +3,11 @@ Random Bone Meal Flowers
 https://www.curseforge.com/minecraft/mc-mods/random-bone-meal-flowers
 
 =========
+v3.0: The wither rose is now blacklisted by default.
+Changed the replacing of flowers to a server runnable.
+(Fabric) Improved blacklist compatibility with other mods.
+
+=========
 v2.2: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

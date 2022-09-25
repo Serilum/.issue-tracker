@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Bone Meal Flowers.
- * Minecraft version: 1.19.2, mod version: 2.2.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,22 +16,20 @@
 
 package com.natamus.randombonemealflowers.util;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.natamus.collective_fabric.data.GlobalVariables;
-
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerBlock;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Util {
 	public static List<Block> allflowers = new ArrayList<Block>();
@@ -41,16 +39,19 @@ public class Util {
 	private static File dir = new File(dirpath);
 	private static File file = new File(dirpath + File.separator + "blacklist.txt");
 	
-	public static void setFlowerList() throws IOException, FileNotFoundException, UnsupportedEncodingException {
+	public static void setFlowerList() throws IOException {
 		List<String> blacklist = new ArrayList<String>();
+		allflowers = new ArrayList<Block>();
+		flowers = new ArrayList<Block>();
 		
 		PrintWriter writer = null;
 		if (!dir.isDirectory() || !file.isFile()) {
-			dir.mkdirs();
-			writer = new PrintWriter(dirpath + File.separator + "blacklist.txt", "UTF-8");
+			if (dir.mkdirs()) {
+				writer = new PrintWriter(dirpath + File.separator + "blacklist.txt", StandardCharsets.UTF_8);
+			}
 		}
 		else {
-			String blcontent = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + "blacklist.txt", new String[0])));
+			String blcontent = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + "blacklist.txt")));
 			for (String flowerrl : blcontent.split("," )) {
 				String name = flowerrl.replace("\n", "").trim();
 				if (name.startsWith("!")) {
@@ -71,7 +72,13 @@ public class Util {
 				allflowers.add(block);
 				
 				if (writer != null) {
-					writer.println(name + ",");
+					String prefix = "";
+					if (name.equals("minecraft:wither_rose")) {
+						blacklist.add(name);
+						prefix = "!";
+					}
+
+					writer.println(prefix + name + ",");
 				}
 				
 				if (!blacklist.contains(name)) {

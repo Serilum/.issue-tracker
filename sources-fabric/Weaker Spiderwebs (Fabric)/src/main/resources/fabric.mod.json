@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "weakerspiderwebs-fabric",
-  "version": "2.6",
+  "version": "2.7",
 
   "name": "Weaker Spiderwebs (Fabric)",
   "description": "Breaks spider webs/cobwebs with a configurable delay when walking through.",
@@ -22,6 +22,6 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
+    "collective-fabric": ">=4.68"
   }
 }
