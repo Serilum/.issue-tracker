@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Keep My Soil Tilled.
- * Minecraft version: 1.19.2, mod version: 1.3.
+ * Minecraft version: 1.19.2, mod version: 1.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,13 +16,11 @@
 
 package com.natamus.keepmysoiltilled.events;
 
-import java.util.Iterator;
-
 import com.natamus.collective.functions.WorldFunctions;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.StemGrownBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -45,14 +43,12 @@ public class StemBlockHarvestEvent {
 			
 			BlockState farmstate = null;
 			boolean foundfarmland = false;
-			
-			Iterator<BlockPos> blocksaroundbelow = BlockPos.betweenClosed(pos.getX()-1, pos.getY()-1, pos.getZ()-1, pos.getX()+1, pos.getY()-1, pos.getZ()+1).iterator();
-			while (blocksaroundbelow.hasNext()) {
-				BlockPos np = blocksaroundbelow.next();
+
+			for (BlockPos np : BlockPos.betweenClosed(pos.getX() - 1, pos.getY() - 1, pos.getZ() - 1, pos.getX() + 1, pos.getY() - 1, pos.getZ() + 1)) {
 				Block nb = world.getBlockState(np).getBlock();
 				if (nb instanceof FarmBlock) {
 					foundfarmland = true;
-					farmstate = nb.defaultBlockState();
+					farmstate = Blocks.FARMLAND.defaultBlockState();
 					break;
 				}
 			}
