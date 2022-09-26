@@ -1,18 +1,20 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.18.x, mod version: 3.1.
+ * Minecraft version: 1.19.2, mod version: 3.1.
  *
  * Please don't distribute without permission.
- * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
+ * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
+ *  CurseForge: https://curseforge.com/members/serilum/projects
+ *  Modrinth: https://modrinth.com/user/serilum
+ *  Overview: https://serilum.com/
+ *
+ * If you are feeling generous and would like to support the development of the mods, you can!
+ *  https://ricksouth.com/donate contains all the information. <3
+ *
+ * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
 package com.natamus.areas.events;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.natamus.areas.config.ConfigHandler;
 import com.natamus.areas.objects.AreaObject;
@@ -20,28 +22,26 @@ import com.natamus.areas.objects.Variables;
 import com.natamus.areas.util.Util;
 import com.natamus.collective_fabric.functions.FABFunctions;
 import com.natamus.collective_fabric.functions.StringFunctions;
-import com.natamus.collective_fabric.functions.WorldFunctions;
-
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
-import net.minecraftforge.event.TickEvent.ServerTickEvent;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.event.world.WorldEvent;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class AreaEvent {
-	int tickdelay = 20;
+	static int tickdelay = 20;
 	
-	public static void onWorldLoad(ServerLevel world) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
-		if (world == null) {
-			return;
-		}
-		
+	public static void onWorldLoad(MinecraftServer server, ServerLevel world) {
 		if (!Variables.areasperworld.containsKey(world)) {
 			Variables.areasperworld.put(world, new HashMap<BlockPos, AreaObject>());
 			Variables.ignoresignsperworld.put(world, new CopyOnWriteArrayList<BlockPos>());
@@ -52,10 +52,6 @@ public class AreaEvent {
 	}
 	
 	public static void onServerTick(MinecraftServer server) {
-		if (!e.phase.equals(Phase.START)) {
-			return;
-		}
-		
 		if (tickdelay > 0) {
 			tickdelay -= 1;
 			return;
@@ -85,9 +81,7 @@ public class AreaEvent {
 	}
 	
 	public static void onPlayerTick(ServerLevel world, ServerPlayer player) {
-		Player player = e.player;
-		Level world = player.getCommandSenderWorld();
-		if (world.isClientSide || !e.phase.equals(Phase.END)) {
+		if (world.isClientSide) {
 			return;
 		}
 		
@@ -150,35 +144,26 @@ public class AreaEvent {
 			}
 		}
 	}
-	
-	public static void onSignBreak(Level world, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getWorld());
-		if (world == null) {
+
+	public static void onSignBreak(Level world, Player player, BlockPos signpos, BlockState state, BlockEntity blockEntity) {
+		if (world.isClientSide) {
 			return;
 		}
-		
-		BlockState state = e.getState();
+
 		if (Util.isSignBlock(state.getBlock())) {
-			BlockPos signpos = e.getPos();
 			if (Variables.areasperworld.get(world).containsKey(signpos)) {
 				AreaObject ao = Variables.areasperworld.get(world).get(signpos);
 				List<Player> playersinside = ao.containsplayers;
-				for (Player player : playersinside) {
-					Util.areaChangeMessage(player, StringFunctions.capitalizeFirst(ao.areaname) + " no longer exists.", ao.customrgb);
+				for (Player insideplayer : playersinside) {
+					Util.areaChangeMessage(insideplayer, StringFunctions.capitalizeFirst(ao.areaname) + " no longer exists.", ao.customrgb);
 				}
 				
 				Variables.areasperworld.get(world).remove(signpos);
 			}
-			if (Variables.ignoresignsperworld.get(world).contains(signpos)) {
-				Variables.ignoresignsperworld.get(world).remove(signpos);
-			}
-			
-			if (Variables.checkifshouldignoreperworld.get(world).contains(signpos)) {
-				Variables.checkifshouldignoreperworld.get(world).remove(signpos);
-			}
-			if (Variables.ignoremap.get(world).containsKey(signpos)) {
-				Variables.ignoremap.get(world).remove(signpos);
-			}
+
+			Variables.ignoresignsperworld.get(world).remove(signpos);
+			Variables.checkifshouldignoreperworld.get(world).remove(signpos);
+			Variables.ignoremap.get(world).remove(signpos);
 		}
 	}
 }

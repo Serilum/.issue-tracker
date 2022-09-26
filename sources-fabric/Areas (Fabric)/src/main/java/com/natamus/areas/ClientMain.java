@@ -14,11 +14,25 @@
  * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
-package com.natamus.areas.util;
+package com.natamus.areas;
 
-public class Reference {
-	public static final String MOD_ID = "areas-fabric";
-	public static final String NAME = "Areas (Fabric)";
-	public static final String VERSION = "3.1";
-	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.natamus.areas.events.GUIEvent;
+import com.natamus.areas.network.PacketToClientShowGUI;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+
+public class ClientMain implements ClientModInitializer {
+	@Override
+	public void onInitializeClient() { 
+		registerEvents();
+	}
+	
+	private void registerEvents() {
+		PacketToClientShowGUI.registerHandle();
+
+		HudRenderCallback.EVENT.register((PoseStack poseStack, float tickDelta) -> {
+			GUIEvent.renderOverlay(poseStack, tickDelta);
+		});
+	}
 }

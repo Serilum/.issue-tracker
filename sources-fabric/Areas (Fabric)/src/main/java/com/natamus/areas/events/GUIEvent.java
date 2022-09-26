@@ -1,29 +1,32 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.18.x, mod version: 3.1.
+ * Minecraft version: 1.19.2, mod version: 3.1.
  *
  * Please don't distribute without permission.
- * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
+ * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
+ *  CurseForge: https://curseforge.com/members/serilum/projects
+ *  Modrinth: https://modrinth.com/user/serilum
+ *  Overview: https://serilum.com/
+ *
+ * If you are feeling generous and would like to support the development of the mods, you can!
+ *  https://ricksouth.com/donate contains all the information. <3
+ *
+ * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
 package com.natamus.areas.events;
-
-import java.awt.Color;
-import java.util.UUID;
 
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.natamus.areas.config.ConfigHandler;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.Gui;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
-import net.minecraftforge.eventbus.api.EventPriority;
 
-public class GUIEvent extends Gui {
+import java.awt.*;
+import java.util.UUID;
+
+public class GUIEvent {
 	public static String hudmessage = "";
 	public static String rgb = "";
 	public static int gopacity = 0;
@@ -31,21 +34,10 @@ public class GUIEvent extends Gui {
 	private static String currentmessage = "";
 	private static String currentrandom = "";
 	
-	private Minecraft mc;
-	
-	public GUIEvent(Minecraft mcIn) {
-		super(mcIn);
-		mc = mcIn;
-	}
-	
-	@SubscribeEvent(priority = EventPriority.NORMAL)
-	public void renderOverlay(RenderGameOverlayEvent.Post e){
-		ElementType type = e.getType();
-		if (type != ElementType.TEXT) {
-			return;
-		}
+	private static Minecraft mc = Minecraft.getInstance();
 
-		if (hudmessage != "") {
+	public static void renderOverlay(PoseStack posestack, float tickDelta){
+		if (!hudmessage.equals("")) {
 			Font fontRender = mc.font;
 			Window scaled = mc.getWindow();
 			int width = scaled.getGuiScaledWidth();
@@ -61,8 +53,8 @@ public class GUIEvent extends Gui {
 				gopacity = 255;
 			}
 			
-			Color colour = new Color(ConfigHandler.HUD.HUD_RGB_R.get(), ConfigHandler.HUD.HUD_RGB_G.get(), ConfigHandler.HUD.HUD_RGB_B.get(), gopacity);
-			if (rgb != "") {
+			Color colour = new Color(ConfigHandler.HUD_RGB_R.getValue(), ConfigHandler.HUD_RGB_G.getValue(), ConfigHandler.HUD_RGB_B.getValue(), gopacity);
+			if (!rgb.equals("")) {
 				String[] rgbs = rgb.split(",");
 				if (rgbs.length == 3) {
 					try {
@@ -98,43 +90,40 @@ public class GUIEvent extends Gui {
 					}
 				}
 			}
-			
-			PoseStack posestack = e.getMatrixStack();
+
 			posestack.pushPose();
 			
 			RenderSystem.enableBlend(); // GL11.glEnable(GL11.GL_BLEND);
 			RenderSystem.blendFunc(0x302, 0x303); //GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			
-			float modifier = (ConfigHandler.HUD.HUD_FontSizeScaleModifier.get().floatValue() + 0.5F);
+			float modifier = (ConfigHandler.HUD_FontSizeScaleModifier.getValue().floatValue() + 0.5F);
 			posestack.scale(modifier, modifier, modifier);
 			
-			fontRender.draw(posestack, hudmessage, (int)(Math.round((width / 2) / modifier) - stringWidth/2), ConfigHandler.HUD.HUDMessageHeightOffset.get(), colour.getRGB());
+			fontRender.draw(posestack, hudmessage, (int)(Math.round((width / 2) / modifier) - stringWidth/2), ConfigHandler.HUDMessageHeightOffset.getValue(), colour.getRGB());
 			
 			posestack.popPose();
 			
-			if (currentmessage != hudmessage) {
+			if (!currentmessage.equals(hudmessage)) {
 				currentmessage = hudmessage;
 				setHUDFade(UUID.randomUUID().toString());
 			}
 		}
 	}
 	
-	public void setHUDFade(String random) {
+	public static void setHUDFade(String random) {
 		currentrandom = random;
 		
-		new Thread( new Runnable() {
-	    	public void run()  {
-	        	try  { Thread.sleep( ConfigHandler.HUD.HUDMessageFadeDelayMs.get() ); }
-	            catch (InterruptedException ie)  {}
-	        	
-	        	if (currentrandom.equals(random)) {
-	        		startFadeOut(random);
-	        	}
-	        }
-	    } ).start();
+		new Thread(() -> {
+			try  { Thread.sleep( ConfigHandler.HUDMessageFadeDelayMs.getValue() ); }
+			catch (InterruptedException ignored)  {}
+
+			if (currentrandom.equals(random)) {
+				startFadeOut(random);
+			}
+		}).start();
 	}
 	
-	public void startFadeOut(String random) {
+	public static void startFadeOut(String random) {
 		if (!currentrandom.equals(random)) {
 			return;
 		}
@@ -146,12 +135,10 @@ public class GUIEvent extends Gui {
 		}
 		
 		gopacity -= 10;
-		new Thread( new Runnable() {
-	    	public void run()  {
-	        	try  { Thread.sleep( 50 ); }
-	            catch (InterruptedException ie)  {}
-	        	startFadeOut(random);
-	        }
-	    } ).start();		
+		new Thread(() -> {
+			try  { Thread.sleep( 50 ); }
+			catch (InterruptedException ignored)  {}
+			startFadeOut(random);
+		}).start();
 	}
 }

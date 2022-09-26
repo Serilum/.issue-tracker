@@ -1,31 +1,34 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.18.x, mod version: 3.1.
+ * Minecraft version: 1.19.2, mod version: 3.1.
  *
  * Please don't distribute without permission.
- * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
+ * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
+ *  CurseForge: https://curseforge.com/members/serilum/projects
+ *  Modrinth: https://modrinth.com/user/serilum
+ *  Overview: https://serilum.com/
+ *
+ * If you are feeling generous and would like to support the development of the mods, you can!
+ *  https://ricksouth.com/donate contains all the information. <3
+ *
+ * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
 package com.natamus.areas.config;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-
 import com.natamus.areas.util.Reference;
-
 import io.github.fablabsmc.fablabs.api.fiber.v1.exception.ValueDeserializationException;
 import io.github.fablabsmc.fablabs.api.fiber.v1.schema.type.derived.ConfigTypes;
 import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.FiberSerialization;
 import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.JanksonValueSerializer;
 import io.github.fablabsmc.fablabs.api.fiber.v1.tree.ConfigTree;
 import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class ConfigHandler { 
 	public static PropertyMirror<Boolean> giveUnnamedAreasRandomName = PropertyMirror.create(ConfigTypes.BOOLEAN);
@@ -39,6 +42,7 @@ public class ConfigHandler {
 	public static PropertyMirror<Boolean> HUDOnlyAreaName = PropertyMirror.create(ConfigTypes.BOOLEAN);
 	public static PropertyMirror<Integer> HUDMessageFadeDelayMs = PropertyMirror.create(ConfigTypes.INTEGER);
 	public static PropertyMirror<Integer> HUDMessageHeightOffset = PropertyMirror.create(ConfigTypes.INTEGER);
+	public static PropertyMirror<Double> HUD_FontSizeScaleModifier = PropertyMirror.create(ConfigTypes.DOUBLE);
 	public static PropertyMirror<Integer> HUD_RGB_R = PropertyMirror.create(ConfigTypes.INTEGER);
 	public static PropertyMirror<Integer> HUD_RGB_G = PropertyMirror.create(ConfigTypes.INTEGER);
 	public static PropertyMirror<Integer> HUD_RGB_B = PropertyMirror.create(ConfigTypes.INTEGER);
@@ -87,6 +91,10 @@ public class ConfigHandler {
 			.beginValue("HUDMessageHeightOffset", ConfigTypes.INTEGER, 10)
 			.withComment("The vertical offset (y coord) for the HUD message. This determines how far down the message should be on the screen. Can be changed to prevent GUIs from overlapping.")
 			.finishValue(HUDMessageHeightOffset::mirror)
+
+			.beginValue("HUD_FontSizeScaleModifier", ConfigTypes.DOUBLE, 1.0)
+			.withComment("Increases the font size of the text in the HUD message. If you change this value, make sure to test the different GUI scale settings in-game. 6.0 is considered large.")
+			.finishValue(HUD_FontSizeScaleModifier::mirror)
 
 			.beginValue("HUD_RGB_R", ConfigTypes.INTEGER, 100)
 			.withComment("The red RGB value for the HUD message.")

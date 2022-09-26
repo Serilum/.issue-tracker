@@ -1,23 +1,37 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.18.x, mod version: 3.1.
+ * Minecraft version: 1.19.2, mod version: 3.1.
  *
  * Please don't distribute without permission.
- * For all modding projects, feel free to visit the CurseForge page: https://curseforge.com/members/serilum/projects
+ * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
+ *  CurseForge: https://curseforge.com/members/serilum/projects
+ *  Modrinth: https://modrinth.com/user/serilum
+ *  Overview: https://serilum.com/
+ *
+ * If you are feeling generous and would like to support the development of the mods, you can!
+ *  https://ricksouth.com/donate contains all the information. <3
+ *
+ * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
 package com.natamus.areas;
 
-import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.areas.config.ConfigHandler;
+import com.natamus.areas.events.AreaEvent;
 import com.natamus.areas.util.Reference;
-
+import com.natamus.collective_fabric.check.RegisterMod;
+import com.natamus.collective_fabric.fabric.callbacks.CollectivePlayerEvents;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 
 public class Main implements ModInitializer {
 	@Override
-	public void onInitialize() { 
- import net.minecraftforge.fml.loading.FMLEnvironment;
+	public void onInitialize() {
 		ConfigHandler.setup();
 
 		registerEvents();
@@ -26,20 +40,17 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-		/*         MinecraftForge.EVENT_BUS.register(this);
-		ServerEntityEvents.ENTITY_LOAD.register((Entity entity, ServerLevel world) -> {
-			SheepEvent.onSheepSpawn(world, entity);
+		ServerWorldEvents.LOAD.register((MinecraftServer server, ServerLevel world) -> {
+			AreaEvent.onWorldLoad(server, world);
 		});
-		*/
-/* 			MinecraftForge.EVENT_BUS.register(new GUIEvent(Minecraft.getInstance()));
-		ServerEntityEvents.ENTITY_LOAD.register((Entity entity, ServerLevel world) -> {
-			SheepEvent.onSheepSpawn(world, entity);
+		ServerTickEvents.START_SERVER_TICK.register((MinecraftServer server) -> {
+			AreaEvent.onServerTick(server);
 		});
-		*/
-/*     	MinecraftForge.EVENT_BUS.register(new AreaEvent());
-		ServerEntityEvents.ENTITY_LOAD.register((Entity entity, ServerLevel world) -> {
-			SheepEvent.onSheepSpawn(world, entity);
+		CollectivePlayerEvents.PLAYER_TICK.register((ServerLevel world, ServerPlayer player) -> {
+			AreaEvent.onPlayerTick(world, player);
 		});
-		*/
+		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, entity) -> {
+			AreaEvent.onSignBreak(world, player, pos, state, entity);
+		});
 	}
 }

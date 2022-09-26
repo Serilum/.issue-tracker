@@ -10,4 +10,5 @@ accessible method net/minecraft/world/entity/Entity setSharedFlag (IZ)V
 accessible field net/minecraft/world/item/trading/MerchantOffer maxUses I
 mutable field net/minecraft/world/item/trading/MerchantOffer maxUses I
 accessible field net/minecraft/world/item/trading/MerchantOffer uses I
+accessible field net/minecraft/world/item/trading/MerchantOffer demand I
 accessible field net/minecraft/world/level/BaseSpawner spawnDelay I

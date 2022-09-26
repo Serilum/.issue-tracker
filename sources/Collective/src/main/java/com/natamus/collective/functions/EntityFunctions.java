@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.68.
+ * Minecraft version: 1.19.2, mod version: 4.69.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -133,6 +133,7 @@ public class EntityFunctions {
 	public static void resetMerchantOffer(MerchantOffer offer) {
 		offer.uses = 0;
 		offer.maxUses = Integer.MAX_VALUE;
+		offer.demand = 0;
 	}
 
 	public static void transferItemsBetweenEntities(Entity from, Entity to, boolean ignoremainhand) {
