@@ -27,7 +27,8 @@
     "ServerGamePacketListenerImplMixin",
     "ServerLevelMixin",
     "ServerPlayerGameModeMixin",
-    "ServerPlayerMixin"
+    "ServerPlayerMixin",
+    "TeleportCommandMixin"
   ],
   "client": [
     "ClientPacketListenerMixin",

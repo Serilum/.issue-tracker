@@ -203,6 +203,10 @@
 		"fabric" : 536752,
 		"forge" : 390913
 	},
+	"Followers Teleport Too" : {
+		"fabric" : 682212,
+		"forge" : 682198
+	},
 	"Full Brightness Toggle" : {
 		"fabric" : 530388,
 		"forge" : 391656

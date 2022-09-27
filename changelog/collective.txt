@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v4.70: (Fabric) Added entity teleport command callback to CollectiveEntityEvents.
+
+=========
 v4.69: Now also setting the demand variable to 0 when resetting a merchant's offer.
 
 =========

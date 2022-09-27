@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.69.
+ * Minecraft version: 1.19.2, mod version: 4.70.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -87,6 +87,15 @@ public final class CollectiveEntityEvents {
         	callback.onLivingJump(world, entity);
         }
     });
+
+	public static final Event<CollectiveEntityEvents.Entity_On_Teleport_Command> ON_ENTITY_TELEPORT_COMMAND = EventFactory.createArrayBacked(CollectiveEntityEvents.Entity_On_Teleport_Command.class, callbacks -> (world, entity, targetX, targetY, targetZ) -> {
+		for (CollectiveEntityEvents.Entity_On_Teleport_Command callback : callbacks) {
+			if (!callback.onTeleportCommand(world, entity, targetX, targetY, targetZ)) {
+				return false;
+			}
+		}
+		return true;
+	});
     
 	@FunctionalInterface
 	public interface Living_Tick {
@@ -126,5 +135,10 @@ public final class CollectiveEntityEvents {
 	@FunctionalInterface
 	public interface Entity_Is_Jumping {
 		 void onLivingJump(Level world, Entity entity);
+	}
+
+	@FunctionalInterface
+	public interface Entity_On_Teleport_Command {
+		boolean onTeleportCommand(Level world, Entity entity, double targetX, double targetY, double targetZ);
 	}
 }

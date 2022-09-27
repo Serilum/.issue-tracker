@@ -1,6 +1,7 @@
 accessWidener	v1 named
 accessible field net/minecraft/client/Options gamma Lnet/minecraft/client/OptionInstance;
 mutable field net/minecraft/client/Options gamma Lnet/minecraft/client/OptionInstance;
+accessible class net/minecraft/server/commands/TeleportCommand$LookAt
 accessible field net/minecraft/client/OptionInstance value Ljava/lang/Object;
 mutable field net/minecraft/client/OptionInstance value Ljava/lang/Object;
 accessible method net/minecraft/world/entity/animal/MushroomCow setMushroomType (Lnet/minecraft/world/entity/animal/MushroomCow$MushroomType;)V

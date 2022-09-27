@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "followersteleporttoo-fabric",
+  "version": "1.0",
+
+  "name": "Followers Teleport Too (Fabric)",
+  "description": "",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/followers-teleport-too-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Followers%20Teleport%20Too%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Followers%20Teleport%20Too"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.followersteleporttoo.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": ">=1.19",
+    "java": ">=17",
+    "collective-fabric": ">=4.70"
+  }
+}
