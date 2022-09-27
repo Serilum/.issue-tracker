@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "nutritiousmilk-fabric",
+  "version": "2.1",
+
+  "name": "Nutritious Milk (Fabric)",
+  "description": "Adds a nutritious value to milk, filling up the food bar and saturation when consumed.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/nutritious-milk-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Nutritious%20Milk%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Nutritious%20Milk"
+  },
+
+  "license": "All Right Reserved",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.nutritiousmilk.Main" ] },
+
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": ">=1.19",
+    "java": ">=17",
+    "collective-fabric": ">=4.69"
+  }
+}
