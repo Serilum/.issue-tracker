@@ -3,4 +3,7 @@ Followers Teleport Too
 https://curseforge.com/minecraft/mc-mods/followers-teleport-too
 
 =========
+v1.1: Updated mod description.
+
+=========
 v1.0: Initial release of Followers Teleport Too.

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "followersteleporttoo-fabric",
-  "version": "1.0",
+  "version": "1.1",
 
   "name": "Followers Teleport Too (Fabric)",
-  "description": "",
+  "description": "Whenever a player is teleported via a command, their pets will be teleported alongside them.",
   "authors": [ "Rick South" ],
   "contact": {
     "homepage": "https://curseforge.com/minecraft/mc-mods/followers-teleport-too-fabric",
