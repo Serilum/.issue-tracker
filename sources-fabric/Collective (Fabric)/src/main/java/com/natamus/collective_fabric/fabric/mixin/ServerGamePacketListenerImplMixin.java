@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.0.
+ * Minecraft version: 1.19.2, mod version: 5.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,29 +16,50 @@
 
 package com.natamus.collective_fabric.fabric.mixin;
 
+import com.mojang.datafixers.util.Pair;
+import com.natamus.collective_fabric.fabric.callbacks.CollectiveChatEvents;
+import com.natamus.collective_fabric.functions.MessageFunctions;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FilterMask;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.PlayerChatMessage;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.FilteredText;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = ServerGamePacketListenerImpl.class, priority = 1001)
+import java.util.concurrent.CompletableFuture;
+
+@Mixin(value = ServerGamePacketListenerImpl.class, priority = 1001, remap = false)
 public abstract class ServerGamePacketListenerImplMixin {
-	/*@Shadow private @Final MinecraftServer server;
+	@Shadow private @Final MinecraftServer server;
 	@Shadow public ServerPlayer player;
 	@Shadow private int chatSpamTickCount;
 	@Shadow public void disconnect(Component component) { }
-	
-	@Inject(method = "broadcastChatMessage(Lnet/minecraft/server/network/FilteredText;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/players/PlayerList;broadcastChatMessage(Lnet/minecraft/server/network/FilteredText;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/resources/ResourceKey;)V"), cancellable = true)
-	private void ServerGamePacketListenerImpl_broadcastChatMessage(FilteredText<PlayerChatMessage> filteredText, CallbackInfo ci) {
-		Pair<Boolean, Component> pair = CollectiveChatEvents.SERVER_CHAT_RECEIVED.invoker().onServerChat(player, filteredText.raw().serverContent(), player.getUUID());
-		if (pair != null) {
-			Component newMessage = pair.getSecond();
 
-			server.getPlayerList().broadcastChatMessage(new FilteredText<PlayerChatMessage>(new PlayerChatMessage(newMessage, null, null), null), this.player, ChatType.CHAT);
-			
-			this.chatSpamTickCount += 20;
-			if (this.chatSpamTickCount > 200 && !this.server.getPlayerList().isOp(this.player.getGameProfile())) {
-				this.disconnect(Component.translatable("disconnect.spam"));
-			}
-			ci.cancel();
-		}
-	}*/
+    @Inject(method = "method_45064(Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/CompletableFuture;Ljava/lang/Void;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/chat/PlayerChatMessage;filter(Lnet/minecraft/network/chat/FilterMask;)Lnet/minecraft/network/chat/PlayerChatMessage;"), cancellable = true)
+    public void handleChat(CompletableFuture completableFuture, CompletableFuture completableFuture2, Void void_, CallbackInfo ci) {
+        FilterMask filterMask = ((FilteredText)completableFuture.join()).mask();
+        PlayerChatMessage playerChatMessage = ((PlayerChatMessage)completableFuture2.join()).filter(filterMask);
+        Component message = Component.literal("<" + this.player.getName().getString() + "> " + playerChatMessage.serverContent().getString());
+
+        Pair<Boolean, Component> pair = CollectiveChatEvents.SERVER_CHAT_RECEIVED.invoker().onServerChat(this.player, message, player.getUUID());
+        if (pair != null) {
+            Component newMessage = pair.getSecond();
+
+            MessageFunctions.broadcastMessage(this.player.getCommandSenderWorld(), (MutableComponent) newMessage);
+
+            this.chatSpamTickCount += 20;
+            if (this.chatSpamTickCount > 200 && !this.server.getPlayerList().isOp(this.player.getGameProfile())) {
+                this.disconnect(Component.translatable("disconnect.spam"));
+            }
+            ci.cancel();
+        }
+    }
 }

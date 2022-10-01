@@ -3,6 +3,20 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.1: (Fabric) Updated mixins related to client and server chat messages.
+
+=========
+v5.0: (Fabric) A new major update!
+Added support for Mod Menu.
+Added custom configuration screen compatible with Mod Menu.
+The config now correctly uses the .json5 suffix. This does mean you'll have to update the config files again.
+Added extra information to fabric.mod.json.
+Added Minecraft loaded event callback.
+Added default language loaded event callback.
+Dependent mods will be updated to work with Mod Menu too.
+(Forge) Added mod icon. Synced versions with Fabric.
+
+=========
 v4.70: (Fabric) Added entity teleport command callback to CollectiveEntityEvents.
 
 =========

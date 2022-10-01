@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Beautified Chat Server.
- * Minecraft version: 1.19.2, mod version: 1.2.
+ * Minecraft version: 1.19.2, mod version: 1.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,20 +16,22 @@
 
 package com.natamus.beautifiedchatserver.events;
 
+import com.mojang.datafixers.util.Pair;
+import com.mojang.logging.LogUtils;
+import com.natamus.beautifiedchatserver.config.ConfigHandler;
+import com.natamus.beautifiedchatserver.util.Util;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.server.level.ServerPlayer;
+import org.slf4j.Logger;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-import com.mojang.datafixers.util.Pair;
-import com.natamus.beautifiedchatserver.config.ConfigHandler;
-import com.natamus.beautifiedchatserver.util.Util;
-
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.server.level.ServerPlayer;
-
 public class BeautifulChatEvent {
+	private static final Logger logger = LogUtils.getLogger();
 	public static Pair<Boolean, Component> onServerChat(ServerPlayer serverPlayer, Component messageComponent, UUID uuid) {
 		String timestamp = new SimpleDateFormat(ConfigHandler.timestampFormat.getValue()).format(new Date());
 		
@@ -43,7 +45,7 @@ public class BeautifulChatEvent {
 			message = message.substring(message.split("> ")[0].length() + 2);
 		}
 		
-		TextComponent output = new TextComponent("");
+		MutableComponent output = Component.literal("");
 		String raw_outputstring = ConfigHandler.chatMessageFormat.getValue();
 		for (String word : raw_outputstring.split("%")) {
 			ChatFormatting colour = Util.getColour(word);
@@ -58,12 +60,13 @@ public class BeautifulChatEvent {
 			else if (word.equalsIgnoreCase("chatmessage")) {
 				toappend = message;
 			}
-			
-			TextComponent wordcomponent = new TextComponent(toappend);
+
+			MutableComponent wordcomponent = Component.literal(toappend);
 			wordcomponent.withStyle(colour);
 			output.append(wordcomponent);
 		}
 
+		logger.info(output.getString());
 		return new Pair<Boolean, Component>(true, output);
 	}
 }

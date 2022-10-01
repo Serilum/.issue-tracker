@@ -3,6 +3,9 @@ Beautified Chat Server
 https://curseforge.com/minecraft/mc-mods/beautified-chat-server
 
 =========
+v1.7: (Fabric) Updated mod to 1.19.2.
+
+=========
 v1.6: (Forge 1.19) The messages sent in the server now show up in the console and in logs.
 
 =========

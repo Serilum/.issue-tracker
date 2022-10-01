@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "beautifiedchatserver-fabric",
-  "version": "1.2",
+  "version": "1.7",
 
   "name": "Beautified Chat Server (Fabric)",
   "description": "A highly configurable mod to change the style and colour of incoming chat messages server-wide.",
@@ -20,8 +20,28 @@
   "depends": {
     "fabricloader": ">=0.13.3",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.12"
-  }
+    "collective-fabric": ">=5.1"
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }
