@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.1.
+ * Minecraft version: 1.19.2, mod version: 5.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,7 @@ package com.natamus.collective_fabric.fabric.callbacks;
 import com.mojang.datafixers.util.Pair;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -27,9 +28,9 @@ import java.util.UUID;
 public class CollectiveChatEvents {
 	private CollectiveChatEvents() { }
 	 
-    public static final Event<CollectiveChatEvents.On_Client_Chat> CLIENT_CHAT_RECEIVED = EventFactory.createArrayBacked(CollectiveChatEvents.On_Client_Chat.class, callbacks -> (type, message, senderUUID) -> {
+    public static final Event<CollectiveChatEvents.On_Client_Chat> CLIENT_CHAT_RECEIVED = EventFactory.createArrayBacked(CollectiveChatEvents.On_Client_Chat.class, callbacks -> (chatType, message, senderUUID) -> {
         for (CollectiveChatEvents.On_Client_Chat callback : callbacks) {
-        	Component newMessage = callback.onClientChat(type, message, senderUUID);
+        	Component newMessage = callback.onClientChat(chatType, message, senderUUID);
         	if (newMessage != message) {
         		return newMessage;
         	}
@@ -53,7 +54,7 @@ public class CollectiveChatEvents {
     
 	@FunctionalInterface
 	public interface On_Client_Chat {
-		 Component onClientChat(int queryId, Component message, UUID senderUUID);
+		 Component onClientChat(ChatType.BoundNetwork chatType, Component message, UUID senderUUID);
 	}
 	
 	@FunctionalInterface

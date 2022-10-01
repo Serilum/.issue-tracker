@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.21-5.3: (Fabric) Added backwards compatibility for the previous .json files. They'll be transformed to .json5 when loaded with the new configuration manager.
+
+=========
+v5.11-5.2: (Fabric) Rolled back an update to mixins related to chat functions for now due to a crash.
+
+=========
 v5.1: (Fabric) Updated mixins related to client and server chat messages.
 
 =========

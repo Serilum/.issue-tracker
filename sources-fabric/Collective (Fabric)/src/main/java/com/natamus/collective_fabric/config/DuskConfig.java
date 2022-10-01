@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.1.
+ * Minecraft version: 1.19.2, mod version: 5.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -52,6 +52,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.*;
 import java.util.function.BiFunction;
@@ -532,10 +533,20 @@ public abstract class DuskConfig {
 	}
 
 	public static void loadJson(Path path, String modid) throws JsonSyntaxException, IOException {
+		boolean movedOldJson = false;
+		Path jsonPath = FabricLoader.getInstance().getConfigDir().resolve(modid + ".json"); // backwards compatibility
+		if (Files.exists(jsonPath)) {
+			Files.move(jsonPath, path, StandardCopyOption.REPLACE_EXISTING);
+			movedOldJson = true;
+		}
+
 		String content = Files.readString(path);
-		content = Stream.of(content.split("\n"))
-				.filter(s -> !s.startsWith("\t//"))
-				.collect(Collectors.joining("\n"));
+		content = Stream.of(content.split("\n")).filter(s -> !s.startsWith("\t//")).collect(Collectors.joining("\n"));
+
 		gson.fromJson(new StringReader(content), configClass.get(modid));
+
+		if (movedOldJson) {
+			write(modid);
+		}
 	}
 }
