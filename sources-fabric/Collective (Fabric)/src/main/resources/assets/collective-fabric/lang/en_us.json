@@ -1,0 +1,15 @@
+{
+  "collective-fabric.duskconfig.title": "Collective Config",
+  "collective-fabric.duskconfig.DESC_transferItemsBetweenReplacedEntities": "When enabled, transfer the held items and armour from replaced entities by any of the Entity Spawn mods which depend on Collective.",
+  "collective-fabric.duskconfig.transferItemsBetweenReplacedEntities": "Transfer Items Between Replaced Entities",
+  "collective-fabric.duskconfig.DESC_loopsAmountUsedToGetAllEntityDrops": "The amount of times Collective loops through possible mob drops to get them all procedurally. Drops are only generated when a dependent mod uses them. Lowering this can increase world load time but decrease accuracy.",
+  "collective-fabric.duskconfig.RANGE_loopsAmountUsedToGetAllEntityDrops": "min: 1, max: 500",
+  "collective-fabric.duskconfig.loopsAmountUsedToGetAllEntityDrops": "Loops Amount Used To Get All Entity Drops",
+  "collective-fabric.duskconfig.DESC_findABlockcheckAroundEntitiesDelayMs": "The delay of the is-there-a-block-around-check around entities in ms. Used in mods which depends on a specific blockstate in the world. Increasing this number can increase TPS if needed.",
+  "collective-fabric.duskconfig.RANGE_findABlockcheckAroundEntitiesDelayMs": "min: 0, max: 3600000",
+  "collective-fabric.duskconfig.findABlockcheckAroundEntitiesDelayMs": "Find A Block Check Around Entities Delay Ms",
+  "collective-fabric.duskconfig.DESC_enableAntiRepostingCheck": "Please check out https://stopmodreposts.org/ for more information on why this feature exists.",
+  "collective-fabric.duskconfig.enableAntiRepostingCheck": "Enable Anti Reposting Check",
+  "collective-fabric.duskconfig.DESC_enablePatronPets": "Enables pets for Patrons. Will be added in a future release.",
+  "collective-fabric.duskconfig.enablePatronPets": "Enable Patron Pets"
+}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.70.
+ * Minecraft version: 1.19.2, mod version: 5.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -161,7 +161,7 @@ public class FABFunctions {
 						}
 					}
 					long ms = (now.getTime()-todate.getTime());
-					if (ms > CollectiveConfigHandler.findABlockcheckAroundEntitiesDelayMs.getValue()) {
+					if (ms > CollectiveConfigHandler.findABlockcheckAroundEntitiesDelayMs) {
 						totoremove.add(todate);
 						continue;
 					}

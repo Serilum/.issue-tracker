@@ -1,23 +1,29 @@
 {
   "schemaVersion": 1,
   "id": "collective-fabric",
-  "version": "4.70",
+  "version": "5.0",
 
   "name": "Collective (Fabric)",
-  "description": "Collective Fabric is a shared library with common code for all of Serilum's mods.",
+  "description": "Collective is a shared library with common code for all of Serilum's mods.",
   "authors": [
     "Rick South"
   ],
   "contact": {
-    "homepage": "https://curseforge.com/minecraft/mc-mods/collective-fabric"
+    "homepage": "https://curseforge.com/minecraft/mc-mods/collective-fabric",
+    "sources": "https://github.com/ricksouth/serilum-mc-mods/tree/master/sources-fabric/Collective%20(Fabric)",
+    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Collective"
   },
 
   "license": "All Rights Reserved",
+  "icon": "assets/collective-fabric/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
       "com.natamus.collective_fabric.CollectiveFabric"
+    ],
+    "modmenu": [
+      "com.natamus.collective_fabric.config.CollectiveModMenu"
     ]
   },
   "mixins": [
@@ -31,5 +37,35 @@
     "fabric": "*",
     "minecraft": "1.19.2",
     "java": ">=17"
-  }
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      },
+      "badges": [ "library" ]
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

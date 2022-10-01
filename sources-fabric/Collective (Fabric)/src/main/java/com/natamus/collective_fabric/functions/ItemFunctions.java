@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 4.70.
+ * Minecraft version: 1.19.2, mod version: 5.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,18 +16,11 @@
 
 package com.natamus.collective_fabric.functions;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
-
 import com.natamus.collective_fabric.config.CollectiveConfigHandler;
 import com.natamus.collective_fabric.data.GlobalVariables;
 import com.natamus.collective_fabric.fabric.callbacks.CollectiveItemEvents;
 import com.natamus.collective_fabric.fakeplayer.FakePlayer;
 import com.natamus.collective_fabric.fakeplayer.FakePlayerFactory;
-
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -53,6 +46,12 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
 
 public class ItemFunctions {
 	public static void generateEntityDropsFromLootTable(Level world) {
@@ -95,7 +94,7 @@ public class ItemFunctions {
 	                .create(LootContextParamSets.ENTITY);
 			
 			List<Item> alldrops = new ArrayList<Item>();
-			for (int n = 0; n < CollectiveConfigHandler.loopsAmountUsedToGetAllEntityDrops.getValue(); n++) {
+			for (int n = 0; n < CollectiveConfigHandler.loopsAmountUsedToGetAllEntityDrops; n++) {
 				List<ItemStack> newdrops = loottable.getRandomItems(context);
 				for (ItemStack newdrop : newdrops) {
 					Item newitem = newdrop.getItem();

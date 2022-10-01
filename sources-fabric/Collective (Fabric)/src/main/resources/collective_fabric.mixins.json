@@ -16,6 +16,7 @@
     "FishingHookMixin",
     "ItemEntityMixin",
     "ItemStackMixin",
+    "LanguageMixin",
     "LevelMixin",
     "LivingEntityMixin",
     "MagmaCubeMixin",

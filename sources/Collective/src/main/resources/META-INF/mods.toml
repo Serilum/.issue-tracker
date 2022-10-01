@@ -1,15 +1,20 @@
 modLoader="javafml"
 loaderVersion="[43,)"
-license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Library%3A%20Collective"
+license="All rights reserved"
+logoFile="/assets/collective/icon.png"
 
 [[mods]]
 modId="collective"
-version="4.69"
+version="5.0"
 displayName="Collective"
 displayURL="https://curseforge.com/minecraft/mc-mods/collective"
 authors="Rick South"
 description="Collective is a shared library with common code for all of Serilum's mods."
+credits='''Thank you very much to my Membership sponsors for supporting the development of this mod:  
+Adam E, Alister, aternosorg, Cherriesaurus, Kreezxil, limpjellyfish, Michael W. S., Mir3JonCZ, Robert Gilbert, Sija, Tyler Behl   
+If you would like to contribute too, check out https://ricksouth.com/donate. Appreciate it! <3   
+'''
 
 [[dependencies.collective]]
     modId="forge"
@@ -17,6 +22,10 @@ description="Collective is a shared library with common code for all of Serilum'
     versionRange="[43,)"
     ordering="NONE"
     side="BOTH"
+credits='''Thank you very much to my Membership sponsors for supporting the development of this mod:  
+Adam E, Alister, aternosorg, Cherriesaurus, Kreezxil, limpjellyfish, Michael W. S., Mir3JonCZ, Robert Gilbert, Sija, Tyler Behl   
+If you would like to contribute too, check out https://ricksouth.com/donate. Appreciate it! <3   
+'''
 
 [[dependencies.collective]]
     modId="minecraft"
