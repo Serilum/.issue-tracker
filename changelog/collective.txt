@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.31-5.4: (Fabric) Fixed some config values not being parsed correctly.
+
+=========
 v5.21-5.3: (Fabric) Added backwards compatibility for the previous .json files. They'll be transformed to .json5 when loaded with the new configuration manager.
 
 =========

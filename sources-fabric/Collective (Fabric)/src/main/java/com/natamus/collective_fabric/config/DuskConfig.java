@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.3.
+ * Minecraft version: 1.19.2, mod version: 5.4.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -257,7 +257,17 @@ public abstract class DuskConfig {
 					}
 				}
 				else {
-					line = "\n\t\"" + fieldname + "\": " + field.get(cC) + ",";
+					if (field.getType().isAssignableFrom(String.class)){
+						String fieldvalue = field.get(cC).toString();
+						if (fieldvalue.charAt(0) != '"') {
+							fieldvalue = '"' + fieldvalue + '"';
+						}
+
+						line = "\n\t\"" + fieldname + "\": " + fieldvalue + ",";
+					}
+					else {
+						line = "\n\t\"" + fieldname + "\": " + field.get(cC) + ",";
+					}
 				}
 
 				if (!lastline.equals("")) {
@@ -273,7 +283,7 @@ public abstract class DuskConfig {
 
 			json5.setLength(json5.length() - 1);
 			json5.append("\n}");
-			
+
 			Files.write(path, json5.toString().getBytes());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -380,7 +390,7 @@ public abstract class DuskConfig {
 					} else if (info.field.getType() == List.class) {
 						if (!reload) info.index = 0;
 						EditBox widget = new EditBox(font, width - 160, 0, 150, 20, null);
-						widget.setMaxLength(info.width);
+						widget.setMaxLength(Integer.MAX_VALUE);
 						if (info.index < ((List<String>)info.value).size()) widget.setValue((String.valueOf(((List<String>)info.value).get(info.index))));
 						else widget.setValue("");
 						Predicate<String> processor = ((BiFunction<EditBox, Button, Predicate<String>>) info.widget).apply(widget, done);
@@ -399,7 +409,7 @@ public abstract class DuskConfig {
 						this.list.addButton(List.of(widget, resetButton, cycleButton), name, info);
 					} else if (info.widget != null) {
 						EditBox widget = new EditBox(font, width - 160, 0, 150, 20, null);
-						widget.setMaxLength(info.width);
+						widget.setMaxLength(Integer.MAX_VALUE);
 						widget.setValue(info.tempValue);
 						Predicate<String> processor = ((BiFunction<EditBox, Button, Predicate<String>>) info.widget).apply(widget, done);
 						widget.setFilter(processor);
