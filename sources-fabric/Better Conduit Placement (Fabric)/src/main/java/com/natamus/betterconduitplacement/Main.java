@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Conduit Placement.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 1.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,6 +17,7 @@
 package com.natamus.betterconduitplacement;
 
 import com.natamus.betterconduitplacement.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.betterconduitplacement.events.ConduitEvent;
 import com.natamus.betterconduitplacement.util.Reference;
 import com.natamus.collective_fabric.check.RegisterMod;
@@ -29,7 +30,7 @@ import net.fabricmc.fabric.api.event.player.UseItemCallback;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

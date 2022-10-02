@@ -1,0 +1,8 @@
+{
+  "shulkerdropstwo-fabric.duskconfig.title": "Shulker Drops Two Config",
+  "shulkerdropstwo-fabric.duskconfig.DESC_alwaysDropShells": "Ignore the drop chance (default 50%) that a Shulker will drop their shell and instead makes them always drop it.",
+  "shulkerdropstwo-fabric.duskconfig.alwaysDropShells": "Always Drop Shells",
+  "shulkerdropstwo-fabric.duskconfig.DESC_shulkerDropAmount": "Sets the amount of shells Shulkers drop.",
+  "shulkerdropstwo-fabric.duskconfig.RANGE_shulkerDropAmount": "min: 1, max: 64",
+  "shulkerdropstwo-fabric.duskconfig.shulkerDropAmount": "Shulker Drop Amount"
+}

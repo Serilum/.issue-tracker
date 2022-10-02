@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "icepreventscropgrowth-fabric",
-  "version": "1.9",
+  "version": "2.0",
 
   "name": "Ice Prevents Crop Growth (Fabric)",
   "description": "Crops growing on tilled soil with an ice block underneath will never grow to the next stage, for design purposes.",
@@ -13,6 +13,7 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/icepreventscropgrowth-fabric/icon.png",
 
   "environment": "*",
   "entrypoints": { "main": [ "com.natamus.icepreventscropgrowth.Main" ] },
@@ -22,6 +23,35 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
-  }
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

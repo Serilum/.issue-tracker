@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Silence Mobs.
- * Minecraft version: 1.19.2, mod version: 2.6.
+ * Minecraft version: 1.19.2, mod version: 2.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -63,7 +63,7 @@ public class EntityEvent {
 			
 		if (entity.isSilent()) {
 			entity.setSilent(false);
-			if (ConfigHandler.renameSilencedMobs.getValue()) {
+			if (ConfigHandler.renameSilencedMobs) {
 				if (entityname.substring(entityname.length() - 1).equals(" ") && entityname.toLowerCase().contains("silenced")) {
 					entityname = entityname.replace("Silenced ", "").trim();
 					if (entityname.toLowerCase().equals(defaultname.toLowerCase())) {
@@ -83,7 +83,7 @@ public class EntityEvent {
 		}
 		else {
 			entity.setSilent(true);
-			if (ConfigHandler.renameSilencedMobs.getValue()) {
+			if (ConfigHandler.renameSilencedMobs) {
 				entity.setCustomName(Component.literal("Silenced " + entityname));
 			}
 			else {

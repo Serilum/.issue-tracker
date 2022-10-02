@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Villager Names.
- * Minecraft version: 1.19.2, mod version: 4.1.
+ * Minecraft version: 1.19.2, mod version: 4.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -62,17 +62,17 @@ public class Names {
 	
 	public static String getRandomName() {
 		List<String> allnames = null;
-		if (ConfigHandler._useFemaleNames.getValue() && ConfigHandler._useMaleNames.getValue()) {
+		if (ConfigHandler._useFemaleNames && ConfigHandler._useMaleNames) {
 			allnames = Stream.concat(GlobalVariables.femalenames.stream(), GlobalVariables.malenames.stream()).collect(Collectors.toList());
 		}
-		else if (ConfigHandler._useFemaleNames.getValue()) {
+		else if (ConfigHandler._useFemaleNames) {
 			allnames = GlobalVariables.femalenames;
 		}
-		else if (ConfigHandler._useMaleNames.getValue()) {
+		else if (ConfigHandler._useMaleNames) {
 			allnames = GlobalVariables.malenames;
 		}
 		
-		if (ConfigHandler._useCustomNames.getValue() && customnames != null) {
+		if (ConfigHandler._useCustomNames && customnames != null) {
 			if (allnames == null) {
 				allnames = customnames;
 			}

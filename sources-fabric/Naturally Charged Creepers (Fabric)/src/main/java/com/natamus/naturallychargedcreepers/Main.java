@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Naturally Charged Creepers.
- * Minecraft version: 1.19.2, mod version: 2.3.
+ * Minecraft version: 1.19.2, mod version: 2.4.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,6 +18,7 @@ package com.natamus.naturallychargedcreepers;
 
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.naturallychargedcreepers.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.naturallychargedcreepers.events.EntityEvent;
 import com.natamus.naturallychargedcreepers.util.Reference;
 
@@ -29,7 +30,7 @@ import net.minecraft.world.entity.Entity;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

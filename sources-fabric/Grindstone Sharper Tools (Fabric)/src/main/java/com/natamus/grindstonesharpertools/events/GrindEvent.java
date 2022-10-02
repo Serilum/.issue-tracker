@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Grindstone Sharper Tools.
- * Minecraft version: 1.19.2, mod version: 2.2.
+ * Minecraft version: 1.19.2, mod version: 2.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -58,17 +58,17 @@ public class GrindEvent {
 			CompoundTag nbtc = hand.getOrCreateTag();
 			if (nbtc.contains("sharper")) {
 				int sharpLeft = nbtc.getInt("sharper");
-				if (!player.isCreative() || !ConfigHandler.infiniteCreativeUses.getValue()) {
+				if (!player.isCreative() || !ConfigHandler.infiniteCreativeUses) {
 					sharpLeft--;
 				}
 
 				if (sharpLeft > 0) {
 					nbtc.putInt("sharper", sharpLeft);
-					double modifier = ConfigHandler.sharpenedDamageModifier.getValue();
+					double modifier = ConfigHandler.sharpenedDamageModifier;
 					damageAmount *= (float) modifier;
 
-					if (ConfigHandler.sendUsesLeftInChat.getValue()) {
-						int totalUses = ConfigHandler.usesAfterGrinding.getValue();
+					if (ConfigHandler.sendUsesLeftInChat) {
+						int totalUses = ConfigHandler.usesAfterGrinding;
 						if ((double) sharpLeft == (double) totalUses * 0.75) {
 							StringFunctions.sendMessage(player, "Your sharpened tool has 75% of its uses left.", ChatFormatting.BLUE);
 						}
@@ -106,7 +106,7 @@ public class GrindEvent {
 				ItemStack itemstack = player.getItemInHand(hand);
 				if (ItemFunctions.isTool(itemstack)) {
 					CompoundTag nbtc = itemstack.getOrCreateTag();
-					int sharpeneduses = ConfigHandler.usesAfterGrinding.getValue();
+					int sharpeneduses = ConfigHandler.usesAfterGrinding;
 
 					nbtc.putInt("sharper", sharpeneduses);
 					itemstack.setTag(nbtc);

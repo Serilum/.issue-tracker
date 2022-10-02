@@ -1,0 +1,19 @@
+{
+  "mineralchance-fabric.duskconfig.title": "Mineral Chance Config",
+  "mineralchance-fabric.duskconfig.DESC_extraMineralChanceOnOverworldStoneBreak": "The chance a mineral is dropped when an overworld stone block is broken. By default 1/50.",
+  "mineralchance-fabric.duskconfig.RANGE_extraMineralChanceOnOverworldStoneBreak": "min: 0, max: 1.0",
+  "mineralchance-fabric.duskconfig.extraMineralChanceOnOverworldStoneBreak": "Extra Mineral Chance On Overworld Stone Break",
+  "mineralchance-fabric.duskconfig.DESC_extraMineralChanceOnNetherStoneBreak": "The chance a mineral is dropped when a nether stone block is broken. By default 1/100.",
+  "mineralchance-fabric.duskconfig.RANGE_extraMineralChanceOnNetherStoneBreak": "min: 0, max: 1.0",
+  "mineralchance-fabric.duskconfig.extraMineralChanceOnNetherStoneBreak": "Extra Mineral Chance On Nether Stone Break",
+  "mineralchance-fabric.duskconfig.DESC_enableOverworldMinerals": "If enabled, mining overworld stone blocks in the overworld has a chance to drop an overworld mineral. These consist of diamonds, gold nuggets, iron nuggets, lapis lazuli, redstone and emeralds.",
+  "mineralchance-fabric.duskconfig.enableOverworldMinerals": "Enable Overworld Minerals",
+  "mineralchance-fabric.duskconfig.DESC_enableNetherMinerals": "If enabled, mining nether stone blocks in the nether has a chance to drop a nether mineral. These consist of quartz and gold nuggets.",
+  "mineralchance-fabric.duskconfig.enableNetherMinerals": "Enable Nether Minerals",
+  "mineralchance-fabric.duskconfig.DESC_sendMessageOnMineralFind": "If enabled, sends a message when a mineral is found to the player who broke the stone block.",
+  "mineralchance-fabric.duskconfig.sendMessageOnMineralFind": "Send Message On Mineral Find",
+  "mineralchance-fabric.duskconfig.DESC_foundMineralMessage": "The message sent to the player who found a hidden mineral when 'sendMessageOnMineralFind' is enabled.",
+  "mineralchance-fabric.duskconfig.foundMineralMessage": "Found Mineral Message",
+  "mineralchance-fabric.duskconfig.DESC_ignoreFakePlayers": "If enabled, minerals won't be dropped if the player is a fake. For example when a mod breaks a block as a simulated player.",
+  "mineralchance-fabric.duskconfig.ignoreFakePlayers": "Ignore Fake Players"
+}

@@ -3,6 +3,10 @@ Enchanting Commands
 https://www.curseforge.com/minecraft/mc-mods/enchanting-commands
 
 =========
+v2.6: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v2.5: Improved compatibility with modded enchantments.
 Improved code efficiency.
 Updated mod description.

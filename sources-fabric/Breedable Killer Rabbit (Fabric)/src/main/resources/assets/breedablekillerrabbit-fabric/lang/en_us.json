@@ -1,0 +1,8 @@
+{
+  "breedablekillerrabbit-fabric.duskconfig.title": "Breedable Killer Rabbit Config",
+  "breedablekillerrabbit-fabric.duskconfig.DESC_chanceBabyRabbitIsKiller": "The chance that a baby rabbit is of the killer variant.",
+  "breedablekillerrabbit-fabric.duskconfig.RANGE_chanceBabyRabbitIsKiller": "min: 0, max: 1.0",
+  "breedablekillerrabbit-fabric.duskconfig.chanceBabyRabbitIsKiller": "Chance Baby Rabbit Is Killer",
+  "breedablekillerrabbit-fabric.duskconfig.DESC_removeKillerRabbitNameTag": "Remove the name 'The Killer Bunny' from the baby killer rabbit.",
+  "breedablekillerrabbit-fabric.duskconfig.removeKillerRabbitNameTag": "Remove Killer Rabbit Name Tag"
+}

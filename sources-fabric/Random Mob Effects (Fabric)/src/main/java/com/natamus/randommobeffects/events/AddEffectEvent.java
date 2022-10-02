@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Mob Effects.
- * Minecraft version: 1.19.2, mod version: 2.2.
+ * Minecraft version: 1.19.2, mod version: 2.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -44,7 +44,7 @@ public class AddEffectEvent {
 			return;
 		}
 		
-		if (ConfigHandler.disableCreepers.getValue()) {
+		if (ConfigHandler.disableCreepers) {
 			if (entity instanceof Creeper) {
 				return;
 			}
@@ -60,11 +60,11 @@ public class AddEffectEvent {
 		MobEffect randomeffect = Util.getRandomEffect();
 		
 		MobEffectInstance effectinstance;
-		if (ConfigHandler.hideEffectParticles.getValue()) {
-			effectinstance = new MobEffectInstance(randomeffect, Integer.MAX_VALUE, ConfigHandler.potionEffectLevel.getValue()-1, true, false);
+		if (ConfigHandler.hideEffectParticles) {
+			effectinstance = new MobEffectInstance(randomeffect, Integer.MAX_VALUE, ConfigHandler.potionEffectLevel-1, true, false);
 		}
 		else {
-			effectinstance = new MobEffectInstance(randomeffect, Integer.MAX_VALUE, ConfigHandler.potionEffectLevel.getValue()-1);
+			effectinstance = new MobEffectInstance(randomeffect, Integer.MAX_VALUE, ConfigHandler.potionEffectLevel-1);
 		}
 		
 		le.addEffect(effectinstance);

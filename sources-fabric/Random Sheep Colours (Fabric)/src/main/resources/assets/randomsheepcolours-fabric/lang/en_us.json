@@ -1,0 +1,5 @@
+{
+  "randomsheepcolours-fabric.duskconfig.title": "Random Sheep Colours Config",
+  "randomsheepcolours-fabric.duskconfig.DESC_possibleSheepColours": "The possible sheep colours which the mod chooses from, divided by a comma.",
+  "randomsheepcolours-fabric.duskconfig.possibleSheepColours": "Possible Sheep Colours"
+}

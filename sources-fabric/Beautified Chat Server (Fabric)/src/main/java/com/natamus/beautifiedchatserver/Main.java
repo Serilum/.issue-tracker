@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Beautified Chat Server.
- * Minecraft version: 1.19.2, mod version: 1.7.
+ * Minecraft version: 1.18.2, mod version: 1.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,8 @@ package com.natamus.beautifiedchatserver;
 import java.util.UUID;
 
 import com.natamus.beautifiedchatserver.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.beautifiedchatserver.events.BeautifulChatEvent;
 import com.natamus.beautifiedchatserver.util.Reference;
 import com.natamus.collective_fabric.check.RegisterMod;
@@ -31,7 +33,7 @@ import net.minecraft.server.level.ServerPlayer;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

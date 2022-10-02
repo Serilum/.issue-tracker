@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of World Border.
- * Minecraft version: 1.19.2, mod version: 3.1.
+ * Minecraft version: 1.19.2, mod version: 3.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -45,34 +45,34 @@ public class BorderEvent {
 		int posz = 0;
 		int negz = 0;
 		if (dimension.equals("minecraft:overworld")) {
-			if (!ConfigHandler.enableCustomOverworldBorder.getValue()) {
+			if (!ConfigHandler.enableCustomOverworldBorder) {
 				return;
 			}
 			
-			posx = ConfigHandler.overworldBorderPositiveX.getValue();
-			negx = ConfigHandler.overworldBorderNegativeX.getValue();
-			posz = ConfigHandler.overworldBorderPositiveZ.getValue();
-			negz = ConfigHandler.overworldBorderNegativeZ.getValue();
+			posx = ConfigHandler.overworldBorderPositiveX;
+			negx = ConfigHandler.overworldBorderNegativeX;
+			posz = ConfigHandler.overworldBorderPositiveZ;
+			negz = ConfigHandler.overworldBorderNegativeZ;
 		}
 		else if (dimension.equals("minecraft:the_nether")) {
-			if (!ConfigHandler.enableCustomNetherBorder.getValue()) {
+			if (!ConfigHandler.enableCustomNetherBorder) {
 				return;
 			}
 			
-			posx = ConfigHandler.netherBorderPositiveX.getValue();
-			negx = ConfigHandler.netherBorderNegativeX.getValue();
-			posz = ConfigHandler.netherBorderPositiveZ.getValue();
-			negz = ConfigHandler.netherBorderNegativeZ.getValue();
+			posx = ConfigHandler.netherBorderPositiveX;
+			negx = ConfigHandler.netherBorderNegativeX;
+			posz = ConfigHandler.netherBorderPositiveZ;
+			negz = ConfigHandler.netherBorderNegativeZ;
 		}
 		else if (dimension.equals("minecraft:the_end")) {
-			if (!ConfigHandler.enableCustomEndBorder.getValue()) {
+			if (!ConfigHandler.enableCustomEndBorder) {
 				return;
 			}
 			
-			posx = ConfigHandler.endBorderPositiveX.getValue();
-			negx = ConfigHandler.endBorderNegativeX.getValue();
-			posz = ConfigHandler.endBorderPositiveZ.getValue();
-			negz = ConfigHandler.endBorderNegativeZ.getValue();
+			posx = ConfigHandler.endBorderPositiveX;
+			negx = ConfigHandler.endBorderNegativeX;
+			posz = ConfigHandler.endBorderPositiveZ;
+			negz = ConfigHandler.endBorderNegativeZ;
 		}
 		else {
 			return;
@@ -80,11 +80,11 @@ public class BorderEvent {
 		
 		BlockPos ppos = player.blockPosition();
 		boolean altered = false;
-		boolean shouldloop = ConfigHandler.shouldLoopToOppositeBorder.getValue();
+		boolean shouldloop = ConfigHandler.shouldLoopToOppositeBorder;
 		
 		int x = ppos.getX();
 		int z = ppos.getZ();
-		int d = ConfigHandler.distanceTeleportedBack.getValue();
+		int d = ConfigHandler.distanceTeleportedBack;
 		if (x <= negx) {
 			if (shouldloop) {
 				x = posx - d;
@@ -165,10 +165,10 @@ public class BorderEvent {
 			player.teleportTo(newpos.getX(), newpos.getY(), newpos.getZ());
 			
 			if (shouldloop) {
-				StringFunctions.sendMessage(player, ConfigHandler.loopBorderMessage.getValue(), ChatFormatting.DARK_GREEN);
+				StringFunctions.sendMessage(player, ConfigHandler.loopBorderMessage, ChatFormatting.DARK_GREEN);
 			}
 			else {
-				StringFunctions.sendMessage(player, ConfigHandler.hitBorderMessage.getValue(), ChatFormatting.RED);
+				StringFunctions.sendMessage(player, ConfigHandler.hitBorderMessage, ChatFormatting.RED);
 			}
 		}
 		else {
@@ -207,7 +207,7 @@ public class BorderEvent {
 					return;
 				}
 				
-				StringFunctions.sendMessage(player, ConfigHandler.nearBorderMessage.getValue(), ChatFormatting.YELLOW);
+				StringFunctions.sendMessage(player, ConfigHandler.nearBorderMessage, ChatFormatting.YELLOW);
 			}
 		}
 	}

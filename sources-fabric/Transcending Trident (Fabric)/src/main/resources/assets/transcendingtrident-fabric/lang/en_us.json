@@ -1,0 +1,11 @@
+{
+  "transcendingtrident-fabric.duskconfig.title": "Transcending Trident Config",
+  "transcendingtrident-fabric.duskconfig.DESC_mustHoldBucketOfWater": "When enabled, Riptide can only be used without rain when the user is holding a bucket of water.",
+  "transcendingtrident-fabric.duskconfig.mustHoldBucketOfWater": "Must Hold Bucket Of Water",
+  "transcendingtrident-fabric.duskconfig.DESC_tridentUseDuration": "The amount of time a player needs to charge the trident before being able to use Riptide. Minecraft's default is 10.",
+  "transcendingtrident-fabric.duskconfig.RANGE_tridentUseDuration": "min: 0, max: 20",
+  "transcendingtrident-fabric.duskconfig.tridentUseDuration": "Trident Use Duration",
+  "transcendingtrident-fabric.duskconfig.DESC_tridentUsePowerModifier": "The riptide power of the trident is multiplied by this number on use. Allows traveling a greater distance with a single charge.",
+  "transcendingtrident-fabric.duskconfig.RANGE_tridentUsePowerModifier": "min: 0, max: 100.0",
+  "transcendingtrident-fabric.duskconfig.tridentUsePowerModifier": "Trident Use Power Modifier"
+}

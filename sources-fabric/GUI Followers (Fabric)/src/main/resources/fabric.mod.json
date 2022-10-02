@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "guifollowers-fabric",
-  "version": "2.3",
+  "version": "2.4",
 
   "name": "GUI Followers (Fabric)",
   "description": "[Client] Shows a list in the GUI/HUD with all tamed non-sitting followers around the player.",
@@ -13,15 +13,45 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/guifollowers-fabric/icon.png",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.guifollowers.Main" ], "client": [ "com.natamus.guifollowers.ClientMain" ] },
+  "entrypoints": { "main": [ "com.natamus.guifollowers.Main" ], "client": [ "com.natamus.guifollowers.ClientMain" ], "modmenu": [ "com.natamus.guifollowers.config.GUIFollowersModMenu" ] },
 
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
-  }
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

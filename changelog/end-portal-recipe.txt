@@ -3,6 +3,10 @@ End Portal Recipe
 https://www.curseforge.com/minecraft/mc-mods/end-portal-recipe
 
 =========
+v4.1: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v4.0: Removed the extra right-click event check. The portal can now be created by just placing the portal blocks in the correct direction.
 Added a configurable option to send a message to the player where the extra dragon egg drops.
 If the dragon was killed by anything other than a player, the mod now has an extra check for players around to give the dragon egg to.

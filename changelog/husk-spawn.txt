@@ -3,6 +3,10 @@ Husk Spawn
 https://www.curseforge.com/minecraft/mc-mods/husk-spawn
 
 =========
+v2.0: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v1.9: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

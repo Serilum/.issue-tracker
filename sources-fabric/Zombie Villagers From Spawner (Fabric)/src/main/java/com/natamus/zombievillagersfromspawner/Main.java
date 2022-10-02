@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Zombie Villagers From Spawner.
- * Minecraft version: 1.19.2, mod version: 2.2.
+ * Minecraft version: 1.19.2, mod version: 2.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,7 @@ package com.natamus.zombievillagersfromspawner;
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.collective_fabric.objects.SAMObject;
 import com.natamus.zombievillagersfromspawner.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.zombievillagersfromspawner.util.Reference;
 
 import net.fabricmc.api.ModInitializer;
@@ -27,7 +28,7 @@ import net.minecraft.world.entity.EntityType;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		
@@ -35,6 +36,6 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-    	new SAMObject(EntityType.ZOMBIE, EntityType.ZOMBIE_VILLAGER, null, ConfigHandler.isZombieVillagerChance.getValue(), true, false, false);
+    	new SAMObject(EntityType.ZOMBIE, EntityType.ZOMBIE_VILLAGER, null, ConfigHandler.isZombieVillagerChance, true, false, false);
 	}
 }

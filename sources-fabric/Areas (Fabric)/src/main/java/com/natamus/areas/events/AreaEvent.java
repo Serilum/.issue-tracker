@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.19.2, mod version: 3.1.
+ * Minecraft version: 1.19.2, mod version: 3.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -95,7 +95,7 @@ public class AreaEvent {
 		List<String> enteredareas = new ArrayList<String>();
 		List<BlockPos> ignoresigns = Variables.ignoresignsperworld.get(world);
 		
-		List<BlockPos> nearbysigns = FABFunctions.getAllTileEntityPositionsNearbyEntity(BlockEntityType.SIGN, ConfigHandler.radiusAroundPlayerToCheckForSigns.getValue(), world, player);
+		List<BlockPos> nearbysigns = FABFunctions.getAllTileEntityPositionsNearbyEntity(BlockEntityType.SIGN, ConfigHandler.radiusAroundPlayerToCheckForSigns, world, player);
 		for (BlockPos nspos : nearbysigns) {
 			if (ignoresigns.contains(nspos)) {
 				continue;

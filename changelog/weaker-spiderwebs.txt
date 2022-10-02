@@ -3,6 +3,10 @@ Weaker Spiderwebs
 https://www.curseforge.com/minecraft/mc-mods/weaker-spiderwebs
 
 =========
+v2.8: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v2.7: Fixed spiderwebs being broken in spectator mode.
 Cleaned up code.
 

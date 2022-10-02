@@ -3,6 +3,14 @@ Beautified Chat Server
 https://curseforge.com/minecraft/mc-mods/beautified-chat-server
 
 =========
+v1.9: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
+v1.8: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v1.7: (Fabric) Updated mod to 1.19.2.
 
 =========

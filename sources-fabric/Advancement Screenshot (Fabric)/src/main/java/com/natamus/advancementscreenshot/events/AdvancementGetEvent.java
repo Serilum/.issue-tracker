@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Advancement Screenshot.
- * Minecraft version: 1.19.2, mod version: 3.7.
+ * Minecraft version: 1.19.2, mod version: 3.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -37,7 +37,7 @@ public class AdvancementGetEvent {
 			
 			Screenshot.grab(mc.gameDirectory, mc.getMainRenderTarget(), (context) -> {
 				mc.execute(() -> {
-					if (ConfigHandler.showScreenshotTakenMessage.getValue()) {
+					if (ConfigHandler.showScreenshotTakenMessage) {
 						mc.gui.getChat().addMessage(context);
 					}
 				});

@@ -3,6 +3,10 @@ Villager Death Messages
 https://www.curseforge.com/minecraft/mc-mods/villager-death-messages
 
 =========
+v2.8: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v2.7: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

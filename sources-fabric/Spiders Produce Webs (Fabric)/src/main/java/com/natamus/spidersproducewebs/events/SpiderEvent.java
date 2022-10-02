@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Spiders Produce Webs.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -35,13 +35,13 @@ public class SpiderEvent {
 			return;
 		}
 		
-		if (player.tickCount % ConfigHandler.spiderWebProduceDelayTicks.getValue() != 0) {
+		if (player.tickCount % ConfigHandler.spiderWebProduceDelayTicks != 0) {
 			return;
 		}
 		
 		BlockPos ppos = player.blockPosition();
 		
-		int r = ConfigHandler.maxDistanceToSpiderBlocks.getValue();
+		int r = ConfigHandler.maxDistanceToSpiderBlocks;
 		List<Entity> entities = world.getEntities(player, new AABB(ppos.getX()-r, ppos.getY()-r, ppos.getZ()-r, ppos.getX()+r, ppos.getY()+r, ppos.getZ()+r));
 		for (Entity entity : entities) {
 			if (entity instanceof Spider || entity instanceof CaveSpider) {

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hoe Tweaks.
- * Minecraft version: 1.19.2, mod version: 1.9.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,7 @@ package com.natamus.hoetweaks;
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.collective_fabric.fabric.callbacks.CollectivePlayerEvents;
 import com.natamus.hoetweaks.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.hoetweaks.events.HoeEvent;
 import com.natamus.hoetweaks.util.Reference;
 
@@ -31,7 +32,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Despawning Eggs Hatch.
- * Minecraft version: 1.19.2, mod version: 2.8.
+ * Minecraft version: 1.19.2, mod version: 2.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -46,7 +46,7 @@ public class EggEvent {
 			return;
 		}
 		
-		if (ConfigHandler.eggOnlyHatchesWhenOnTopOfHayBlock.getValue()) {
+		if (ConfigHandler.eggOnlyHatchesWhenOnTopOfHayBlock) {
 			BlockPos blockpos = entityitem.blockPosition();
 			Block belowblock = world.getBlockState(blockpos.below()).getBlock();
 			if (belowblock instanceof HayBlock == false) {
@@ -55,13 +55,13 @@ public class EggEvent {
 		}
 		
 		double num = GlobalVariables.random.nextDouble();
-		if (num <= ConfigHandler.eggWillHatchChance.getValue()) {
+		if (num <= ConfigHandler.eggWillHatchChance) {
 			int itemamount = itemstack.getCount();
 			
-			int moblimit = ConfigHandler.onlyHatchIfLessChickensAroundThan.getValue();
+			int moblimit = ConfigHandler.onlyHatchIfLessChickensAroundThan;
 			Vec3 iposvec = entityitem.position();
 			
-			int r = ConfigHandler.radiusEntityLimiterCheck.getValue();
+			int r = ConfigHandler.radiusEntityLimiterCheck;
 			int chickencount = 0;
 			Iterator<Entity> it = world.getEntities(entityitem, new AABB(iposvec.x()-r, iposvec.y()-r, iposvec.z()-r, iposvec.x()+r, iposvec.y()+r, iposvec.z()+r)).iterator();
 			while (it.hasNext()) {
@@ -78,7 +78,7 @@ public class EggEvent {
 				
 				Chicken chicken = new Chicken(EntityType.CHICKEN, world);
 				chicken.setPos(iposvec.x, iposvec.y+1, iposvec.z);
-				if (ConfigHandler.newHatchlingIsBaby.getValue()) {
+				if (ConfigHandler.newHatchlingIsBaby) {
 					chicken.setAge(-24000);
 				}
 				

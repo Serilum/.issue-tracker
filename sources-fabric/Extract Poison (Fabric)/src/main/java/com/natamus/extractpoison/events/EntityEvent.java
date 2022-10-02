@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Extract Poison.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -58,7 +58,7 @@ public class EntityEvent {
 					LocalTime lastnow = lastuse.get(targetuuid); 
 					
 					int msbetween = (int)Duration.between(lastnow, now).toMillis();
-					if (msbetween < ConfigHandler.extractDelayMs.getValue()) {
+					if (msbetween < ConfigHandler.extractDelayMs) {
 						return InteractionResult.FAIL;
 					}
 				}

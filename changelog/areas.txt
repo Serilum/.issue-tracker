@@ -3,6 +3,10 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v3.2: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v3.2-3.1: Cleaned up code in preparation for Fabric port.
 
 =========

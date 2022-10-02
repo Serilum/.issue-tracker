@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Compass.
- * Minecraft version: 1.19.2, mod version: 2.7.
+ * Minecraft version: 1.19.2, mod version: 2.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -35,7 +35,7 @@ public class GUIEvent {
 	private static final Minecraft mc = Minecraft.getInstance();
 
 	public static void renderOverlay(PoseStack posestack, float tickDelta){
-		if (ConfigHandler.mustHaveCompassInInventory.getValue()) {
+		if (ConfigHandler.mustHaveCompassInInventory) {
 			if (!(mc.player.getOffhandItem().getItem() instanceof CompassItem)) {
 				boolean found = mc.player.getOffhandItem().getItem() instanceof CompassItem;
 				if (!found) {
@@ -61,22 +61,22 @@ public class GUIEvent {
 		
 		int stringWidth = fontRender.width(coordinates);
 		
-		Color colour = new Color(ConfigHandler.RGB_R.getValue(), ConfigHandler.RGB_G.getValue(), ConfigHandler.RGB_B.getValue(), 255);
+		Color colour = new Color(ConfigHandler.RGB_R, ConfigHandler.RGB_G, ConfigHandler.RGB_B, 255);
 			
 		posestack.pushPose();
 		
 		int xcoord;
-		if (ConfigHandler.compassPositionIsLeft.getValue()) {
+		if (ConfigHandler.compassPositionIsLeft) {
 			xcoord = 5;
 		}
-		else if (ConfigHandler.compassPositionIsCenter.getValue()) {
+		else if (ConfigHandler.compassPositionIsCenter) {
 			xcoord = (width/2) - (stringWidth/2);
 		}
 		else {
 			xcoord = width - stringWidth - 5;
 		}
 
-		fontRender.draw(posestack, coordinates, xcoord, ConfigHandler.compassHeightOffset.getValue(), colour.getRGB());
+		fontRender.draw(posestack, coordinates, xcoord, ConfigHandler.compassHeightOffset, colour.getRGB());
 		
 		posestack.popPose();
 	}
@@ -86,7 +86,7 @@ public class GUIEvent {
 		Entity player = mc.getCameraEntity();
 		BlockPos ppos = player.blockPosition();
 
-		String format = ConfigHandler.guiCompassFormat.getValue();
+		String format = ConfigHandler.guiCompassFormat;
 		String toshow = "";
 
 		if (format.contains("F")) {

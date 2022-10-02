@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hide Hands.
- * Minecraft version: 1.19.2, mod version: 1.9.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -26,15 +26,15 @@ import net.minecraft.world.item.ItemStack;
 public class HandEvent {
 	public static boolean onHandRender(InteractionHand hand, PoseStack poseStack, ItemStack itemstack) {
 		if (hand.equals(InteractionHand.MAIN_HAND)) {
-			if (!ConfigHandler.alwaysHideMainHand.getValue()) {
-				if(!isHoldingItem(ConfigHandler.hideMainHandWithItems.getValue(), itemstack)) {
+			if (!ConfigHandler.alwaysHideMainHand) {
+				if(!isHoldingItem(ConfigHandler.hideMainHandWithItems, itemstack)) {
 					return true;
 				}
 			}
 		}
 		else if (hand.equals(InteractionHand.OFF_HAND)) {
-			if (!ConfigHandler.alwaysHideOffhand.getValue()) {
-				if(!isHoldingItem(ConfigHandler.hideOffhandWithItems.getValue(), itemstack)) {
+			if (!ConfigHandler.alwaysHideOffhand) {
+				if(!isHoldingItem(ConfigHandler.hideOffhandWithItems, itemstack)) {
 					return true;
 				}
 			}

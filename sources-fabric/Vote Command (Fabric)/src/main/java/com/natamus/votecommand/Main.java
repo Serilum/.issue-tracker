@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Vote Command.
- * Minecraft version: 1.19.2, mod version: 2.2.
+ * Minecraft version: 1.19.2, mod version: 2.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,7 @@ package com.natamus.votecommand;
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.votecommand.cmds.CommandVote;
 import com.natamus.votecommand.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.votecommand.util.Reference;
 
 import net.fabricmc.api.ModInitializer;
@@ -27,7 +28,7 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

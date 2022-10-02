@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Name Tag Tweaks.
- * Minecraft version: 1.19.2, mod version: 2.2.
+ * Minecraft version: 1.19.2, mod version: 2.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -56,7 +56,7 @@ public class NametagCommand {
 				}
 				
 				String name = StringArgumentType.getString(command, "name");
-				if (ConfigHandler.nameTagCommandReplaceUnderscoresWithSpaces.getValue()) {
+				if (ConfigHandler.nameTagCommandReplaceUnderscoresWithSpaces) {
 					name = name.replace("_", " ");
 				}
 				

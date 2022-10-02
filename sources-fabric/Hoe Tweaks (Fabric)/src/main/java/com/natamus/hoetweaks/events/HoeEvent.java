@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hoe Tweaks.
- * Minecraft version: 1.19.2, mod version: 1.9.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -48,7 +48,7 @@ public class HoeEvent {
 			return InteractionResult.PASS;
 		}
 
-		if (ConfigHandler.onlyUntillWithOtherHandEmpty.getValue()) {
+		if (ConfigHandler.onlyUntillWithOtherHandEmpty) {
 			if (!player.getMainHandItem().isEmpty() && !player.getOffhandItem().isEmpty()) {
 				return InteractionResult.PASS;
 			}
@@ -63,7 +63,7 @@ public class HoeEvent {
 		
 		int damage;
 		if (block.equals(Blocks.FARMLAND)) {
-			if (!player.isCrouching() && ConfigHandler.mustCrouchToHaveBiggerHoeRange.getValue()) {
+			if (!player.isCrouching() && ConfigHandler.mustCrouchToHaveBiggerHoeRange) {
 				world.setBlock(cpos, Blocks.DIRT.defaultBlockState(), 3);
 				damage = 1;
 			}
@@ -78,7 +78,7 @@ public class HoeEvent {
 			}
 		}
 		else if (CompareBlockFunctions.isDirtBlock(block)) {
-			if (!player.isCrouching() && ConfigHandler.mustCrouchToHaveBiggerHoeRange.getValue()) {
+			if (!player.isCrouching() && ConfigHandler.mustCrouchToHaveBiggerHoeRange) {
 				return InteractionResult.PASS;
 			}
 			
@@ -108,7 +108,7 @@ public class HoeEvent {
 		
 		Block block = state.getBlock();
 		if (block instanceof PumpkinBlock || block instanceof MelonBlock) {
-			return ConfigHandler.cropBlockBreakSpeedModifier.getValue().floatValue();
+			return (float)ConfigHandler.cropBlockBreakSpeedModifier;
 		}
 		
 		return digSpeed;

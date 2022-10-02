@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.19.2, mod version: 3.1.
+ * Minecraft version: 1.19.2, mod version: 3.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -123,7 +123,7 @@ public class Util {
 		}
 		
 		boolean setradius = false;
-		int maxradius = ConfigHandler.radiusAroundPlayerToCheckForSigns.getValue();
+		int maxradius = ConfigHandler.radiusAroundPlayerToCheckForSigns;
 		if (radius > maxradius) {
 			radius = maxradius;
 			setradius = true;
@@ -131,7 +131,7 @@ public class Util {
 		
 		boolean updatesign = false;		
 		if (areaname.toString().trim().equals("")) {
-			if (ConfigHandler.giveUnnamedAreasRandomName.getValue()) {
+			if (ConfigHandler.giveUnnamedAreasRandomName) {
 				List<String> newsigncontentlist = new ArrayList<String>();
 				
 				newsigncontentlist.add("[" + zoneprefix + "] " + radius);
@@ -268,7 +268,7 @@ public class Util {
 		}
 		
 		if (shouldmessage) {
-			String message = ConfigHandler.joinPrefix.getValue() + ao.areaname + ConfigHandler.joinSuffix.getValue();
+			String message = ConfigHandler.joinPrefix + ao.areaname + ConfigHandler.joinSuffix;
 			areaChangeMessage(player, message, ao.customrgb);
 		}
 	}
@@ -279,15 +279,15 @@ public class Util {
 		ao.containsplayers.remove(player);
 		
 		if (shouldmessage) {
-			String message = ConfigHandler.leavePrefix.getValue() + ao.areaname + ConfigHandler.leaveSuffix.getValue();
+			String message = ConfigHandler.leavePrefix + ao.areaname + ConfigHandler.leaveSuffix;
 			areaChangeMessage(player, message, ao.customrgb);
 		}
 	}
 	public static void areaChangeMessage(Player player, String message, String rgb) {
-		if (ConfigHandler.sendChatMessages.getValue()) {
+		if (ConfigHandler.sendChatMessages) {
 			StringFunctions.sendMessage(player, message, ChatFormatting.DARK_GREEN);
 		}
-		if (ConfigHandler.showHUDMessages.getValue()) {
+		if (ConfigHandler.showHUDMessages) {
 			ServerPlayNetworking.send((ServerPlayer)player, Variables.networkchannel, PacketToClientShowGUI.createBuffer(message, rgb));
 		}		
 	}

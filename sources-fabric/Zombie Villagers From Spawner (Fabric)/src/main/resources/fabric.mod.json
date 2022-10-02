@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "zombievillagersfromspawner-fabric",
-  "version": "2.2",
+  "version": "2.3",
 
   "name": "Zombie Villagers From Spawner (Fabric)",
   "description": "Puts back the ability for zombie spawners to spawn the villager variant, removed in 1.11.",
@@ -13,15 +13,45 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/zombievillagersfromspawner-fabric/icon.png",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.zombievillagersfromspawner.Main" ] },
+  "entrypoints": { "main": [ "com.natamus.zombievillagersfromspawner.Main" ], "modmenu": [ "com.natamus.zombievillagersfromspawner.config.ZombieVillagersFromSpawnerModMenu" ] },
 
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
-  }
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

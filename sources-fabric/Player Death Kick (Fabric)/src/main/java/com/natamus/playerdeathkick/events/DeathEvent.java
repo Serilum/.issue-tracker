@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Death Kick.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -28,16 +28,16 @@ import net.minecraft.world.level.Level;
 
 public class DeathEvent {
 	public static void onDeathEvent(ServerPlayer serverplayer, DamageSource source, float damageAmount) {
-		if (ConfigHandler.exemptAdminPlayers.getValue()) {
+		if (ConfigHandler.exemptAdminPlayers) {
 			if (serverplayer.hasPermissions(2)) {
 				return;
 			}
 		}
 		
 		Level world = serverplayer.level;
-		String deathmessage = ConfigHandler.disconnectMessage.getValue();
+		String deathmessage = ConfigHandler.disconnectMessage;
 		
-		if (ConfigHandler.addDeathCauseToMessage.getValue()) {
+		if (ConfigHandler.addDeathCauseToMessage) {
 			String imsourcename = source.getMsgId();
 			String sourcename = "";
 			
@@ -62,7 +62,7 @@ public class DeathEvent {
 		
 		serverplayer.connection.disconnect(Component.literal(deathmessage));
 		
-		if (ConfigHandler.broadcastKickToServer.getValue()) {
+		if (ConfigHandler.broadcastKickToServer) {
 			String playername = serverplayer.getName().getString();
 			StringFunctions.broadcastMessage(world, "The player " + playername + " has died and been kicked from the server.", ChatFormatting.DARK_GRAY);
 		}

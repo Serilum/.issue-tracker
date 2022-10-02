@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.19.2, mod version: 2.3.
+ * Minecraft version: 1.19.2, mod version: 2.4.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -37,7 +37,7 @@ public class FollowerEvent {
 			return;
 		}
 		
-		if (player.tickCount % (20* ConfigHandler.timeBetweenChecksInSeconds.getValue()) != 0) {
+		if (player.tickCount % (20* ConfigHandler.timeBetweenChecksInSeconds) != 0) {
 			return;
 		}
 		
@@ -46,7 +46,7 @@ public class FollowerEvent {
 			return;
 		}
 
-		int dc = ConfigHandler.distanceToCheckForFollowersAround.getValue(); // distancecheck
+		int dc = ConfigHandler.distanceToCheckForFollowersAround; // distancecheck
 		if (dc <= 0) {
 			return;
 		}

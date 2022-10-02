@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Set World Spawn Point.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.2, mod version: 2.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -45,9 +45,9 @@ public class WorldSpawnEvent {
 			return;
 		}
 
-		int x = ConfigHandler.xCoordSpawnPoint.getValue();
-		int y = ConfigHandler.yCoordSpawnPoint.getValue();
-		int z = ConfigHandler.zCoordSpawnPoint.getValue();
+		int x = ConfigHandler.xCoordSpawnPoint;
+		int y = ConfigHandler.yCoordSpawnPoint;
+		int z = ConfigHandler.zCoordSpawnPoint;
 		
 		if (y < 0) {
 			BlockPos surfacepos = BlockPosFunctions.getSurfaceBlockPos(serverworld, x, z);
@@ -64,7 +64,7 @@ public class WorldSpawnEvent {
 			return;
 		}
 		
-		if (ConfigHandler._forceExactSpawn.getValue()) {
+		if (ConfigHandler._forceExactSpawn) {
 			ServerLevel serverworld = (ServerLevel)world;
 			
 			BlockPos respawnlocation = serverworld.getSharedSpawnPos(); // get spawn point
@@ -105,7 +105,7 @@ public class WorldSpawnEvent {
 			return;
 		}
 		
-		if (!ConfigHandler._forceExactSpawn.getValue()) {
+		if (!ConfigHandler._forceExactSpawn) {
 			return;
 		}
 		

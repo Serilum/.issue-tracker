@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of End Portal Recipe.
- * Minecraft version: 1.19.2, mod version: 4.0.
+ * Minecraft version: 1.19.2, mod version: 4.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -76,7 +76,7 @@ public class EndPortalEvent {
 
 		ItemFunctions.giveOrDropItemStack(playertodrop, egg);
 
-		if (ConfigHandler.sendMessageOnExtraDragonEggDrop.getValue()) {
+		if (ConfigHandler.sendMessageOnExtraDragonEggDrop) {
 			MessageFunctions.sendMessage(playertodrop, "An extra dragon egg has dropped at your position!", ChatFormatting.DARK_GREEN);
 		}
 	}
@@ -88,7 +88,7 @@ public class EndPortalEvent {
 		
 		ItemStack hand = player.getItemInHand(InteractionHand.MAIN_HAND);
 		if (ToolFunctions.isPickaxe(hand)) {
-			if (ConfigHandler.mustHaveSilkTouchToBreakPortal.getValue()) {
+			if (ConfigHandler.mustHaveSilkTouchToBreakPortal) {
 				if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, hand) < 1) {
 					return true;
 				}
@@ -99,7 +99,7 @@ public class EndPortalEvent {
 				ItemStack portalframe = new ItemStack(Blocks.END_PORTAL_FRAME, 1);
 				ItemStack endereye = new ItemStack(Items.ENDER_EYE, 1);
 				
-				if (ConfigHandler.addBrokenPortalFramesToInventory.getValue()) {
+				if (ConfigHandler.addBrokenPortalFramesToInventory) {
 					ItemFunctions.giveOrDropItemStack(player, portalframe);
 					if (BlockFunctions.isFilledPortalFrame(cbs)) {
 						ItemFunctions.giveOrDropItemStack(player, endereye);

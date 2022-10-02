@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "passiveendermen-fabric",
-  "version": "3.1",
+  "version": "3.2",
 
   "name": "Passive Endermen (Fabric)",
   "description": "Configurably prevent an enderman from picking up blocks, griefing and attacking players.",
@@ -13,9 +13,10 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/passiveendermen-fabric/icon.png",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.passiveendermen.Main" ] },
+  "entrypoints": { "main": [ "com.natamus.passiveendermen.Main" ], "modmenu": [ "com.natamus.passiveendermen.config.PassiveEndermenModMenu" ] },
   "mixins": [
     "passiveendermen_fabric.mixins.json"
   ],
@@ -25,6 +26,35 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
-  }
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

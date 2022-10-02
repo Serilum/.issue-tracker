@@ -1,0 +1,11 @@
+{
+  "playerdeathkick-fabric.duskconfig.title": "Player Death Kick Config",
+  "playerdeathkick-fabric.duskconfig.DESC_disconnectMessage": "The message players will receive when disconnected on death.",
+  "playerdeathkick-fabric.duskconfig.disconnectMessage": "Disconnect Message",
+  "playerdeathkick-fabric.duskconfig.DESC_addDeathCauseToMessage": "If enabled, replaces %death% in the disconnect message with the death cause.",
+  "playerdeathkick-fabric.duskconfig.addDeathCauseToMessage": "Add Death Cause To Message",
+  "playerdeathkick-fabric.duskconfig.DESC_exemptAdminPlayers": "If enabled, exempts admin players (with cheat access, OPs) from being kicked on death.",
+  "playerdeathkick-fabric.duskconfig.exemptAdminPlayers": "Exempt Admin Players",
+  "playerdeathkick-fabric.duskconfig.DESC_broadcastKickToServer": "If enabled, sends a message to all players online with who was kicked.",
+  "playerdeathkick-fabric.duskconfig.broadcastKickToServer": "Broadcast Kick To Server"
+}

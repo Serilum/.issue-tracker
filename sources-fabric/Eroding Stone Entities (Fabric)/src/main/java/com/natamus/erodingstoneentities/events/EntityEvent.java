@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Eroding Stone Entities.
- * Minecraft version: 1.19.2, mod version: 2.9.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -70,7 +70,7 @@ public class EntityEvent {
 				if (ieposstate.getBlock().equals(Blocks.WATER)) {
 					int level = ieposstate.getValue(LiquidBlock.LEVEL);
 					if (level > 0) { // flowing
-						if (ConfigHandler.preventErosionIfAboveIceBlock.getValue()) {
+						if (ConfigHandler.preventErosionIfAboveIceBlock) {
 							Block belowblock = world.getBlockState(iepos.below()).getBlock();
 							if (Util.isIceBlock(belowblock)) {
 								continue;
@@ -115,6 +115,6 @@ public class EntityEvent {
 			perworldentities.get(world).add(ie);
 		}
 		
-		iecount.put(ie, ConfigHandler.durationInSecondsStoneErodes.getValue());
+		iecount.put(ie, ConfigHandler.durationInSecondsStoneErodes);
 	}
 }

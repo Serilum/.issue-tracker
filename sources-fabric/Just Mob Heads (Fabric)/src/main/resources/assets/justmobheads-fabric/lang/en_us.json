@@ -1,0 +1,21 @@
+{
+  "justmobheads-fabric.duskconfig.title": "Just Mob Heads Config",
+  "justmobheads-fabric.duskconfig.DESC_mobSpecificDropChances": "If enabled, overrides the 'overallDropChance' variable with the specific values.",
+  "justmobheads-fabric.duskconfig.mobSpecificDropChances": "Mob Specific Drop Chances",
+  "justmobheads-fabric.duskconfig.DESC_enableStandardHeads": "If enabled, allows Creepers, Skeletons and Zombies to drop their heads.",
+  "justmobheads-fabric.duskconfig.enableStandardHeads": "Enable Standard Heads",
+  "justmobheads-fabric.duskconfig.DESC_enableLootingEnchant": "If enabled, the looting enchant will have an effect on the drop chance.",
+  "justmobheads-fabric.duskconfig.enableLootingEnchant": "Enable Looting Enchant",
+  "justmobheads-fabric.duskconfig.DESC_onlyAdultMobsDropTheirHead": "If enabled, only adult tameable mobs will have a chance to drop their head on death.",
+  "justmobheads-fabric.duskconfig.onlyAdultMobsDropTheirHead": "Only Adult Mobs Drop Their Head",
+  "justmobheads-fabric.duskconfig.DESC_overallDropChance": "Sets the chance of a mob dropping its head if 'mobSpecificDropChances' is disabled.",
+  "justmobheads-fabric.duskconfig.RANGE_overallDropChance": "min: 0.0001, max: 1.0",
+  "justmobheads-fabric.duskconfig.overallDropChance": "Overall Drop Chance",
+  "justmobheads-fabric.duskconfig.DESC_creeperSkeletonZombieDropChance": "Sets head drop chance for Zombies, Skeletons and Creepers if 'enableStandardHeads' is enabled.",
+  "justmobheads-fabric.duskconfig.RANGE_creeperSkeletonZombieDropChance": "min: 0.0001, max: 1.0",
+  "justmobheads-fabric.duskconfig.creeperSkeletonZombieDropChance": "Creeper Skeleton Zombie Drop Chance",
+  "justmobheads-fabric.duskconfig.DESC_onlyDropHeadsByChargedCreeper": "When enabled, only drops mob heads if the source on death is a charged creeper. This overwrites the onlyDropHeadsByPlayerKill value.",
+  "justmobheads-fabric.duskconfig.onlyDropHeadsByChargedCreeper": "Only Drop Heads By Charged Creeper",
+  "justmobheads-fabric.duskconfig.DESC_onlyDropHeadsByPlayerKill": "When enabled, only drops mob heads if the source on death is from a player.",
+  "justmobheads-fabric.duskconfig.onlyDropHeadsByPlayerKill": "Only Drop Heads By Player Kill"
+}

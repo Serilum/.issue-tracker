@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Healing Soup.
- * Minecraft version: 1.19.2, mod version: 2.8.
+ * Minecraft version: 1.19.2, mod version: 2.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -49,7 +49,7 @@ public class SoupEvent {
 					return InteractionResultHolder.pass(handstack);
 				}	
 
-				int food = stats.getFoodLevel() + ConfigHandler.soupHalfHeartHealAmount.getValue();
+				int food = stats.getFoodLevel() + ConfigHandler.soupHalfHeartHealAmount;
 
 				if (food > 20) {
 					stats.setFoodLevel(20);
@@ -59,7 +59,7 @@ public class SoupEvent {
 				}
 			}
 			else {
-				int health = (int) (player.getHealth() + ConfigHandler.soupHalfHeartHealAmount.getValue());
+				int health = (int) (player.getHealth() + ConfigHandler.soupHalfHeartHealAmount);
 
 				if (health > 20) {
 					player.setHealth(20);

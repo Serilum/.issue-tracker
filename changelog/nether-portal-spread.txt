@@ -3,6 +3,10 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v6.4: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v6.3: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

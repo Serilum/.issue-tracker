@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Silence Mobs.
- * Minecraft version: 1.19.2, mod version: 2.6.
+ * Minecraft version: 1.19.2, mod version: 2.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -34,14 +34,14 @@ import net.minecraft.ChatFormatting;
 public class CommandSt {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
     	dispatcher.register(Commands.literal("st")
-			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof Player && (!ConfigHandler.onlyAllowCommandWhenCheatsEnabled.getValue() || iCommandSender.hasPermission(2)))
+			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof Player && (!ConfigHandler.onlyAllowCommandWhenCheatsEnabled || iCommandSender.hasPermission(2)))
 			.executes((command) -> {
 				processSilencestick(command);
 				return 1;
 			})
 		);
     	dispatcher.register(Commands.literal("silencestick")
-			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof Player && (!ConfigHandler.onlyAllowCommandWhenCheatsEnabled.getValue() || iCommandSender.hasPermission(2)))
+			.requires((iCommandSender) -> iCommandSender.getEntity() instanceof Player && (!ConfigHandler.onlyAllowCommandWhenCheatsEnabled || iCommandSender.hasPermission(2)))
 			.executes((command) -> {
 				processSilencestick(command);
 				return 1;
@@ -53,7 +53,7 @@ public class CommandSt {
     	CommandSourceStack source = command.getSource();
     	Player player = (Player)source.getPlayerOrException();
 		
-		if (ConfigHandler.mustHoldStick.getValue()) {
+		if (ConfigHandler.mustHoldStick) {
 			ItemStack held = player.getItemInHand(InteractionHand.MAIN_HAND);
 			if (!held.sameItem(new ItemStack(Items.STICK, 1))) {
 				StringFunctions.sendMessage(player, "You must hold a stick in your main hand to transform it into a silence-stick.", ChatFormatting.DARK_RED);

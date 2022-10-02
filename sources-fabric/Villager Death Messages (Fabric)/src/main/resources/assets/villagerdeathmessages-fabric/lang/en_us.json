@@ -1,0 +1,7 @@
+{
+  "villagerdeathmessages-fabric.duskconfig.title": "Villager Death Messages Config",
+  "villagerdeathmessages-fabric.duskconfig.DESC_showLocation": "If enabled, shows the location of the villager in the death message.",
+  "villagerdeathmessages-fabric.duskconfig.showLocation": "Show Location",
+  "villagerdeathmessages-fabric.duskconfig.DESC_mentionModdedVillagers": "If enabled, also shows death messages of modded villagers. If you've found a 'villager'-entity that isn't named let me know by opening an issue so I can add it in.",
+  "villagerdeathmessages-fabric.duskconfig.mentionModdedVillagers": "Mention Modded Villagers"
+}

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "welcomemessage-fabric",
-  "version": "1.7",
+  "version": "1.8",
 
   "name": "Welcome Message (Fabric)",
   "description": "An easy to configure welcome message mod for players after login with URL support.",
@@ -13,15 +13,45 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/welcomemessage-fabric/icon.png",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.welcomemessage.Main" ] },
+  "entrypoints": { "main": [ "com.natamus.welcomemessage.Main" ], "modmenu": [ "com.natamus.welcomemessage.config.WelcomeMessageModMenu" ] },
 
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.68"
-  }
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

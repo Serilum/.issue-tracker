@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of End Portal Recipe.
- * Minecraft version: 1.19.2, mod version: 4.0.
+ * Minecraft version: 1.19.2, mod version: 4.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -20,6 +20,7 @@ import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.collective_fabric.fabric.callbacks.CollectiveBlockEvents;
 import com.natamus.collective_fabric.fabric.callbacks.CollectiveEntityEvents;
 import com.natamus.endportalrecipe.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.endportalrecipe.events.EndPortalEvent;
 import com.natamus.endportalrecipe.util.Reference;
 import net.fabricmc.api.ModInitializer;
@@ -33,7 +34,7 @@ import net.minecraft.world.level.Level;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

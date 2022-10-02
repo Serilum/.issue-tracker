@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "nohostilesaroundcampfire-fabric",
-  "version": "4.5",
+  "version": "4.6",
 
   "name": "No Hostiles Around Campfire (Fabric)",
   "description": "Prevent hostile mobs from spawning around the campfire and burn existing mobs when placing a campfire down. With a configurable radius.",
@@ -13,15 +13,45 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/nohostilesaroundcampfire-fabric/icon.png",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.nohostilesaroundcampfire.Main" ] },
+  "entrypoints": { "main": [ "com.natamus.nohostilesaroundcampfire.Main" ], "modmenu": [ "com.natamus.nohostilesaroundcampfire.config.NoHostilesAroundCampfireModMenu" ] },
 
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.50"
-  }
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "transcendingtrident-fabric",
-  "version": "2.7",
+  "version": "2.9",
 
   "name": "Transcending Trident (Fabric)",
   "description": "Improves the vanilla trident. Hold a water bucket to use riptide, which is more powerful.",
@@ -13,9 +13,10 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/transcendingtrident-fabric/icon.png",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.transcendingtrident.Main" ] },
+  "entrypoints": { "main": [ "com.natamus.transcendingtrident.Main" ], "modmenu": [ "com.natamus.transcendingtrident.config.TranscendingTridentModMenu" ] },
   "mixins": [
     "transcendingtrident_fabric.mixins.json"
   ],
@@ -25,6 +26,35 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
-  }
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

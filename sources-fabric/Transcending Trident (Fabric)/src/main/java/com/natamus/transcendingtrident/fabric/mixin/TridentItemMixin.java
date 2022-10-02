@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Transcending Trident.
- * Minecraft version: 1.19.2, mod version: 2.7.
+ * Minecraft version: 1.19.2, mod version: 2.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -31,6 +31,6 @@ import net.minecraft.world.level.Level;
 public class TridentItemMixin {
     @ModifyVariable(method = "releaseUsing(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/util/Mth;sqrt(F)F"), ordinal = 1)
     private int TridentItem_releaseUsing(int k, ItemStack itemStack, Level level, LivingEntity livingEntity, int i) {
-    	return Math.round(k*ConfigHandler.tridentUsePowerModifier.getValue().floatValue());
+    	return Math.round(k*(float)ConfigHandler.tridentUsePowerModifier);
     }
 }

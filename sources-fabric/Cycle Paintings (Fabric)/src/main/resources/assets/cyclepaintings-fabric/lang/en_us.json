@@ -1,0 +1,7 @@
+{
+  "cyclepaintings-fabric.duskconfig.title": "Cycle Paintings Config",
+  "cyclepaintings-fabric.duskconfig.DESC_ignorePaintingsInCycleResourceLocation": "Split by a , (comma). The paintings to ignore during the cycle. You can either input an entire mod's prefix (only the part before the : (colon)) or the entire line found via 'showRegisteredPaintingsDebug'.",
+  "cyclepaintings-fabric.duskconfig.ignorePaintingsInCycleResourceLocation": "Ignore Paintings In Cycle Resource Location",
+  "cyclepaintings-fabric.duskconfig.DESC_showRegisteredPaintingsDebug": "When enabled, prints all paintings registered to the console. With this you can find which to add to the 'ignorePaintingsInCycleResourceLocationPrefix' config.",
+  "cyclepaintings-fabric.duskconfig.showRegisteredPaintingsDebug": "Show Registered Paintings Debug"
+}

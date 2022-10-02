@@ -3,6 +3,9 @@ Grass Seeds
 https://www.curseforge.com/minecraft/mc-mods/grass-seeds
 
 =========
+v2.3: (Fabric) Added Mod Menu support with project links and logo.
+
+=========
 v2.2: Updated mod description.
 (Fabric) Fixed an issue where wheat seeds were consumed twice when placed on farmland.
 

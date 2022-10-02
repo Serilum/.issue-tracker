@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "guicompass-fabric",
-  "version": "2.7",
+  "version": "2.8",
 
   "name": "GUI Compass (Fabric)",
   "description": "Shows the direction and coordinates in the GUI with a compass in the inventory.",
@@ -13,15 +13,45 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/guicompass-fabric/icon.png",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.guicompass.Main" ], "client": [ "com.natamus.guicompass.ClientMain" ] },
+  "entrypoints": { "main": [ "com.natamus.guicompass.Main" ], "client": [ "com.natamus.guicompass.ClientMain" ], "modmenu": [ "com.natamus.guicompass.config.GUICompassModMenu" ] },
 
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.55"
-  }
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

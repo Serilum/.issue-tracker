@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:blaze_rod",
-          "name": "placeableblazerods:blaze_rod"
+          "name": "placeableblazerods-fabric:blaze_rod"
         }
       ]
     }

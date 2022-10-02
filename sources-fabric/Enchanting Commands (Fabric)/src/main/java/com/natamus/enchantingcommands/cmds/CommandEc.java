@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Enchanting Commands.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.2, mod version: 2.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -36,7 +36,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 
 public class CommandEc {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-    	dispatcher.register(Commands.literal(ConfigHandler.enchantCommandString.getValue())
+    	dispatcher.register(Commands.literal(ConfigHandler.enchantCommandString)
 			.requires((iCommandSender) -> iCommandSender.hasPermission(2))
 			.executes((command) -> {
 				sendUsage(command.getSource());
@@ -104,13 +104,13 @@ public class CommandEc {
 
 	public static void sendUsage(CommandSourceStack source) {
 		StringFunctions.sendMessage(source, "--- Enchanting Commands Usage ---", ChatFormatting.DARK_GREEN, true);
-		StringFunctions.sendMessage(source, " /" + ConfigHandler.enchantCommandString.getValue() + " list", ChatFormatting.DARK_GREEN);
-		StringFunctions.sendMessage(source, " /" + ConfigHandler.enchantCommandString.getValue() + " enchant <enchant> <lvl>", ChatFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(source, " /" + ConfigHandler.enchantCommandString + " list", ChatFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(source, " /" + ConfigHandler.enchantCommandString + " enchant <enchant> <lvl>", ChatFormatting.DARK_GREEN);
 	}
 
 	public static void sendUsage(Player player) {
 		StringFunctions.sendMessage(player, "--- Enchanting Commands Usage ---", ChatFormatting.DARK_GREEN, true);
-		StringFunctions.sendMessage(player, " /" + ConfigHandler.enchantCommandString.getValue() + " list", ChatFormatting.DARK_GREEN);
-		StringFunctions.sendMessage(player, " /" + ConfigHandler.enchantCommandString.getValue() + " enchant <enchant> <lvl>", ChatFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(player, " /" + ConfigHandler.enchantCommandString + " list", ChatFormatting.DARK_GREEN);
+		StringFunctions.sendMessage(player, " /" + ConfigHandler.enchantCommandString + " enchant <enchant> <lvl>", ChatFormatting.DARK_GREEN);
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Eroding Stone Entities.
- * Minecraft version: 1.19.2, mod version: 2.9.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,6 +18,7 @@ package com.natamus.erodingstoneentities;
 
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.erodingstoneentities.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.erodingstoneentities.events.EntityEvent;
 import com.natamus.erodingstoneentities.util.Reference;
 import com.natamus.erodingstoneentities.util.Util;
@@ -31,7 +32,7 @@ import net.minecraft.world.entity.Entity;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

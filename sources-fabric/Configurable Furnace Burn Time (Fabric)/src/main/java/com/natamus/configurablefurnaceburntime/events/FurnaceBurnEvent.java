@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Furnace Burn Time.
- * Minecraft version: 1.19.2, mod version: 1.5.
+ * Minecraft version: 1.19.2, mod version: 1.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -22,6 +22,6 @@ import net.minecraft.world.item.ItemStack;
 
 public class FurnaceBurnEvent {
 	public static int furnaceBurnTimeEvent(ItemStack itemStack, int burntime) {
-		return (int)Math.ceil(burntime * ConfigHandler.burnTimeModifier.getValue());
+		return (int)Math.ceil(burntime * ConfigHandler.burnTimeModifier);
 	}
 }

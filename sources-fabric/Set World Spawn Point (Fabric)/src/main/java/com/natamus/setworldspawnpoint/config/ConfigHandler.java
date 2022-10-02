@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Set World Spawn Point.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.2, mod version: 2.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,66 +16,21 @@
 
 package com.natamus.setworldspawnpoint.config;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import com.natamus.collective_fabric.config.DuskConfig;
 
-import com.natamus.setworldspawnpoint.util.Reference;
+public class ConfigHandler extends DuskConfig {
+	@Comment public static Comment DESC__forceExactSpawn;
+	@Entry public static boolean _forceExactSpawn = true;
 
-import io.github.fablabsmc.fablabs.api.fiber.v1.exception.ValueDeserializationException;
-import io.github.fablabsmc.fablabs.api.fiber.v1.schema.type.derived.ConfigTypes;
-import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.FiberSerialization;
-import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.JanksonValueSerializer;
-import io.github.fablabsmc.fablabs.api.fiber.v1.tree.ConfigTree;
-import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
+	@Comment public static Comment DESC_xCoordSpawnPoint;
+	@Entry public static int xCoordSpawnPoint = 0;
+	@Comment public static Comment RANGE_xCoordSpawnPoint;
 
-public class ConfigHandler { 
-	public static PropertyMirror<Boolean> _forceExactSpawn = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Integer> xCoordSpawnPoint = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Integer> yCoordSpawnPoint = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Integer> zCoordSpawnPoint = PropertyMirror.create(ConfigTypes.INTEGER);
+	@Comment public static Comment DESC_yCoordSpawnPoint;
+	@Entry public static int yCoordSpawnPoint = -1;
+	@Comment public static Comment RANGE_yCoordSpawnPoint;
 
-	private static final ConfigTree CONFIG = ConfigTree.builder() 
-			.beginValue("_forceExactSpawn", ConfigTypes.BOOLEAN, true)
-			.withComment("If enabled, spawns players on the exact world spawn instead of around it.")
-			.finishValue(_forceExactSpawn::mirror)
-
-			.beginValue("xCoordSpawnPoint", ConfigTypes.INTEGER, 0)
-			.withComment("The X coordinate of the spawn point of newly created worlds.")
-			.finishValue(xCoordSpawnPoint::mirror)
-
-			.beginValue("yCoordSpawnPoint", ConfigTypes.INTEGER, -1)
-			.withComment("The Y coordinate of the spawn point of newly created worlds. By default -1, which means it'll be the first solid block descending from y=256.")
-			.finishValue(yCoordSpawnPoint::mirror)
-
-			.beginValue("zCoordSpawnPoint", ConfigTypes.INTEGER, 0)
-			.withComment("The Z coordinate of the spawn point of newly created worlds.")
-			.finishValue(zCoordSpawnPoint::mirror)
-
-			.build();
-
-	private static void writeDefaultConfig(Path path, JanksonValueSerializer serializer) {
-		try (OutputStream s = new BufferedOutputStream(Files.newOutputStream(path, StandardOpenOption.WRITE, StandardOpenOption.CREATE_NEW))) {
-			FiberSerialization.serialize(CONFIG, s, serializer);
-		} catch (IOException ignored) {}
-
-	}
-
-	public static void setup() {
-		JanksonValueSerializer serializer = new JanksonValueSerializer(false);
-		Path p = Paths.get("config", Reference.MOD_ID + ".json");
-		writeDefaultConfig(p, serializer);
-
-		try (InputStream s = new BufferedInputStream(Files.newInputStream(p, StandardOpenOption.READ, StandardOpenOption.CREATE))) {
-			FiberSerialization.deserialize(CONFIG, s, serializer);
-		} catch (IOException | ValueDeserializationException e) {
-			System.out.println("Error loading config");
-		}
-	}
+	@Comment public static Comment DESC_zCoordSpawnPoint;
+	@Entry public static int zCoordSpawnPoint = 0;
+	@Comment public static Comment RANGE_zCoordSpawnPoint;
 }

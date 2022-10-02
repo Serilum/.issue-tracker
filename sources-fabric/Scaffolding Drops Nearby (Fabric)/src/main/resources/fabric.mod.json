@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "scaffoldingdropsnearby-fabric",
-  "version": "2.1",
+  "version": "2.2",
 
   "name": "Scaffolding Drops Nearby (Fabric)",
   "description": "When breaking a scaffolding block, all chained blocks will drop at the first block's position.",
@@ -13,6 +13,7 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/scaffoldingdropsnearby-fabric/icon.png",
 
   "environment": "*",
   "entrypoints": { "main": [ "com.natamus.scaffoldingdropsnearby.Main" ] },
@@ -22,6 +23,35 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
-  }
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

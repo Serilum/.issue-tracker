@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Name Tag Tweaks.
- * Minecraft version: 1.19.2, mod version: 2.2.
+ * Minecraft version: 1.19.2, mod version: 2.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -44,7 +44,7 @@ public class NameTagEvent {
 			}
 			
 			ItemStack nametagstack = new ItemStack(Items.NAME_TAG, 1);
-			if (ConfigHandler.droppedNameTagbyEntityKeepsNameValue.getValue()) {
+			if (ConfigHandler.droppedNameTagbyEntityKeepsNameValue) {
 				Component name = entity.getName();
 				nametagstack.setHoverName(name);
 			}

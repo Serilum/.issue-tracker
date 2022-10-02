@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Infinite Trading.
- * Minecraft version: 1.19.2, mod version: 3.0.
+ * Minecraft version: 1.19.2, mod version: 3.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -34,13 +34,13 @@ public class VillagerEvent {
 		}
 
 		if (target instanceof Villager) {
-			if (ConfigHandler.villagerInfiniteTrades.getValue()) {
+			if (ConfigHandler.villagerInfiniteTrades) {
 				Villager villager = (Villager) target;
 				EntityFunctions.resetMerchantOffers(villager);
 			}
 		}
 		else if (target instanceof WanderingTrader) {
-			if (ConfigHandler.wanderingTraderInfiniteTrades.getValue()) {
+			if (ConfigHandler.wanderingTraderInfiniteTrades) {
 				WanderingTrader wanderer = (WanderingTrader)target;
 				EntityFunctions.resetMerchantOffers(wanderer);
 			}

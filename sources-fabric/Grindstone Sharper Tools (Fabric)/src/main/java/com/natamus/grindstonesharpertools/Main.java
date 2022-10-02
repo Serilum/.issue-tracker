@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Grindstone Sharper Tools.
- * Minecraft version: 1.19.2, mod version: 2.2.
+ * Minecraft version: 1.19.2, mod version: 2.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -20,6 +20,7 @@ import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.collective_fabric.fabric.callbacks.CollectiveBlockEvents;
 import com.natamus.collective_fabric.fabric.callbacks.CollectiveEntityEvents;
 import com.natamus.grindstonesharpertools.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.grindstonesharpertools.events.GrindEvent;
 import com.natamus.grindstonesharpertools.util.Reference;
 
@@ -36,7 +37,7 @@ import net.minecraft.world.phys.BlockHitResult;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

@@ -3,6 +3,9 @@ Keep My Soil Tilled
 https://curseforge.com/minecraft/mc-mods/keep-my-soil-tilled
 
 =========
+v1.7: (Fabric) Added Mod Menu support with project links and logo.
+
+=========
 v1.6: Changed the farmland that is being created underneath the crop block from what was around to the vanilla farmland, to prevent duplication of more expensive modded farmland.
 
 =========

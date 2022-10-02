@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "beautifiedchatserver-fabric",
-  "version": "1.7",
+  "version": "1.9",
 
   "name": "Beautified Chat Server (Fabric)",
   "description": "A highly configurable mod to change the style and colour of incoming chat messages server-wide.",
@@ -13,23 +13,38 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/beautifiedchatserver-fabric/icon.png",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.beautifiedchatserver.Main" ] },
+  "entrypoints": { "main": [ "com.natamus.beautifiedchatserver.Main" ], "modmenu": [ "com.natamus.beautifiedchatserver.config.BeautifiedChatServerModMenu" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.12.5",
     "fabric": "*",
-    "minecraft": ">=1.19",
+    "minecraft": ">=1.18",
     "java": ">=17",
-    "collective-fabric": ">=5.1"
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
   },
 
   "contributors": [
     " ",
-    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    "Thank you very much to my",
+    " Membership sponsors for",
+    " supporting the development",
+    " of this mod!",
     " ",
-    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    "If you would like to contribute",
+    " too, check out",
+    " https://ricksouth.com/donate.",
     " ",
     "Membership sponsors:",
     " Adam E",

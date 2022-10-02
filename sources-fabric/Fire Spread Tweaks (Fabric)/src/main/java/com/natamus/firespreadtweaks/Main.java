@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Fire Spread Tweaks.
- * Minecraft version: 1.19.2, mod version: 1.7.
+ * Minecraft version: 1.19.2, mod version: 1.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -22,6 +22,7 @@ import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.collective_fabric.fabric.callbacks.CollectiveBlockEvents;
 import com.natamus.collective_fabric.fabric.callbacks.CollectiveWorldEvents;
 import com.natamus.firespreadtweaks.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.firespreadtweaks.events.FireSpreadEvent;
 import com.natamus.firespreadtweaks.util.Reference;
 
@@ -38,7 +39,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

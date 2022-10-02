@@ -1,0 +1,8 @@
+{
+  "followersteleporttoo-fabric.duskconfig.title": "Followers Teleport Too Config",
+  "followersteleporttoo-fabric.duskconfig.DESC_disableFollowerDamageAfterTeleport": "When enabled, disables damage for followers shortly after a teleport. This can prevent fall damage or suffocation from an estimate target position.",
+  "followersteleporttoo-fabric.duskconfig.disableFollowerDamageAfterTeleport": "Disable Follower Damage After Teleport",
+  "followersteleporttoo-fabric.duskconfig.DESC_durationInSecondsDamageShouldBeDisabled": "How long in seconds damage should be disabled for after a teleport when disableFollowerDamageAfterTeleport is enabled.",
+  "followersteleporttoo-fabric.duskconfig.RANGE_durationInSecondsDamageShouldBeDisabled": "min: 0, max: 86400",
+  "followersteleporttoo-fabric.duskconfig.durationInSecondsDamageShouldBeDisabled": "Duration In Seconds Damage Should Be Disabled"
+}

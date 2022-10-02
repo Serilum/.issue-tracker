@@ -3,6 +3,10 @@ Hand Over Your Items
 https://curseforge.com/minecraft/mc-mods/hand-over-your-items
 
 =========
+v2.1: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v2.0: Fixed desyncs on the client when giving items such as a water bucket.
 Updated mod description.
 

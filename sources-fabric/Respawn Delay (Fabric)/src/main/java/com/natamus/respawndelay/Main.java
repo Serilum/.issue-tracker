@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Respawn Delay.
- * Minecraft version: 1.19.2, mod version: 3.1.
+ * Minecraft version: 1.19.2, mod version: 3.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -20,6 +20,7 @@ import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.collective_fabric.fabric.callbacks.CollectivePlayerEvents;
 import com.natamus.respawndelay.cmds.CommandRespawnall;
 import com.natamus.respawndelay.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.respawndelay.events.RespawningEvent;
 import com.natamus.respawndelay.util.Reference;
 
@@ -35,7 +36,7 @@ import net.minecraft.world.level.Level;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

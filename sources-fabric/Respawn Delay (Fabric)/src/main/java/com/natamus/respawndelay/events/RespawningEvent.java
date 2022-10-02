@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Respawn Delay.
- * Minecraft version: 1.19.2, mod version: 3.1.
+ * Minecraft version: 1.19.2, mod version: 3.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -55,7 +55,7 @@ public class RespawningEvent {
 			return;
 		}
 		
-		int respawndelay = ConfigHandler.respawnDelayInSeconds.getValue();
+		int respawndelay = ConfigHandler.respawnDelayInSeconds;
 		if (respawndelay < 0) {
 			return;
 		}
@@ -70,7 +70,7 @@ public class RespawningEvent {
 		}
 		
 		int seconds = respawndelay - (int)(ms/1000);
-		String waitingmessage = ConfigHandler.waitingForRespawnMessage.getValue();
+		String waitingmessage = ConfigHandler.waitingForRespawnMessage;
 		waitingmessage = waitingmessage.replaceAll("<seconds_left>", seconds + "");
 		
 		StringFunctions.sendMessage(player, waitingmessage, ChatFormatting.GRAY);
@@ -81,13 +81,13 @@ public class RespawningEvent {
 			return true;
 		}
 		
-		if (ConfigHandler.ignoreAdministratorPlayers.getValue()) {
+		if (ConfigHandler.ignoreAdministratorPlayers) {
 			if (player.hasPermissions(2)) {
 				return true;
 			}
 		}
 		
-		if (ConfigHandler.ignoreCreativePlayers.getValue()) {
+		if (ConfigHandler.ignoreCreativePlayers) {
 			if (player.isCreative()) {
 				return true;
 			}
@@ -104,13 +104,13 @@ public class RespawningEvent {
 		player.clearFire();
 		
 		Vec3 pvec = player.position();
-		if (pvec.y() < ConfigHandler.lowestPossibleYCoordinate.getValue()) {
-			pvec = new Vec3(pvec.x(), ConfigHandler.lowestPossibleYCoordinate.getValue(), pvec.z());
+		if (pvec.y() < ConfigHandler.lowestPossibleYCoordinate) {
+			pvec = new Vec3(pvec.x(), ConfigHandler.lowestPossibleYCoordinate, pvec.z());
 			player.setDeltaMovement(0, 0, 0);
 			player.teleportTo(pvec.x(), pvec.y(), pvec.z());
 		}
 		
-		if (!ConfigHandler.keepItemsOnDeath.getValue()) {
+		if (!ConfigHandler.keepItemsOnDeath) {
 			Collection<ItemEntity> playerdrops = new ArrayList<ItemEntity>();
 			
 			Inventory inv = player.getInventory();
@@ -133,7 +133,7 @@ public class RespawningEvent {
 			
 			//ForgeHooks.onLivingDrops((LivingEntity)player, e.getSource(), playerdrops, 0, true);
 			
-			if (ConfigHandler.dropItemsOnDeath.getValue()) {
+			if (ConfigHandler.dropItemsOnDeath) {
 				for (ItemEntity drop : playerdrops) {
 					world.addFreshEntity(drop);
 				}
@@ -143,7 +143,7 @@ public class RespawningEvent {
 		Date now = new Date();
 		death_times.put(player, now);
 		
-		StringFunctions.sendMessage(player, ConfigHandler.onDeathMessage.getValue(), ChatFormatting.DARK_RED);
+		StringFunctions.sendMessage(player, ConfigHandler.onDeathMessage, ChatFormatting.DARK_RED);
 		return false;
 	}
 	

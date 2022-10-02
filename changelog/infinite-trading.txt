@@ -3,6 +3,10 @@ Infinite Trading
 https://www.curseforge.com/minecraft/mc-mods/infinite-trading
 
 =========
+v3.1: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v3.0: The mod has been completely rewritten! Improved performance and reliance.
 Added config option to disable infinite villager trades, if you for example only want infinite wandering trader trades.
 (Fabric) Fixed an issue of prices going up lots (demand).

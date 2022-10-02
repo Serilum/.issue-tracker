@@ -3,6 +3,9 @@ Village Spawn Point
 https://www.curseforge.com/minecraft/mc-mods/village-spawn-point
 
 =========
+v2.7: (Fabric) Added Mod Menu support with project links and logo.
+
+=========
 v2.6: (Forge) Adds support for modded world types such as TerraForged.
 
 =========

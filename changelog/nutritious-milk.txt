@@ -3,6 +3,10 @@ Nutritious Milk
 https://www.curseforge.com/minecraft/mc-mods/nutritious-milk
 
 =========
+v2.2: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v2.1: Changed the way saturation is applied when consuming milk, fixing an issue.
 
 =========

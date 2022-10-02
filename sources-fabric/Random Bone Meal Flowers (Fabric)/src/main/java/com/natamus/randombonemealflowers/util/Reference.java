@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Bone Meal Flowers.
- * Minecraft version: 1.19.2, mod version: 3.0.
+ * Minecraft version: 1.19.2, mod version: 3.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,6 @@ package com.natamus.randombonemealflowers.util;
 public class Reference {
 	public static final String MOD_ID = "randombonemealflowers-fabric";
 	public static final String NAME = "Random Bone Meal Flowers (Fabric)";
-	public static final String VERSION = "3.0";
+	public static final String VERSION = "3.1";
 	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
 }

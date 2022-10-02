@@ -3,6 +3,9 @@ Random Village Names
 https://curseforge.com/minecraft/mc-mods/random-village-names
 
 =========
+v2.1: (Fabric) Added Mod Menu support with project links and logo.
+
+=========
 v2.0: The mod has completely been rewritten. This fixes various issues.
 Performance has been improved by a lot.
 The TPS lag in servers has been fixed.

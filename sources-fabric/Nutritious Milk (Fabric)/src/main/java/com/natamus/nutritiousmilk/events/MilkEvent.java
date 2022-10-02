@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nutritious Milk.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -32,8 +32,8 @@ public class MilkEvent {
 		if (item.equals(Items.MILK_BUCKET) || registryname.contains("milk_bucket")) {
 			FoodData fs = player.getFoodData();
 			
-			fs.setFoodLevel(fs.getFoodLevel() + ConfigHandler.hungerLevelIncrease.getValue());
-			fs.setSaturation(fs.getSaturationLevel() + ConfigHandler.saturationLevelIncrease.getValue().floatValue());
+			fs.setFoodLevel(fs.getFoodLevel() + ConfigHandler.hungerLevelIncrease);
+			fs.setSaturation(fs.getSaturationLevel() + (float)ConfigHandler.saturationLevelIncrease);
 		}
 	}
 }

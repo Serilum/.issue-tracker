@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.19.2, mod version: 2.3.
+ * Minecraft version: 1.19.2, mod version: 2.4.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,116 +16,54 @@
 
 package com.natamus.guifollowers.config;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import com.natamus.collective_fabric.config.DuskConfig;
 
-import com.natamus.guifollowers.util.Reference;
+public class ConfigHandler extends DuskConfig {
+	@Comment public static Comment DESC_followerListHeaderFormat;
+	@Entry public static String followerListHeaderFormat = "Followers:";
 
-import io.github.fablabsmc.fablabs.api.fiber.v1.exception.ValueDeserializationException;
-import io.github.fablabsmc.fablabs.api.fiber.v1.schema.type.derived.ConfigTypes;
-import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.FiberSerialization;
-import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.JanksonValueSerializer;
-import io.github.fablabsmc.fablabs.api.fiber.v1.tree.ConfigTree;
-import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
+	@Comment public static Comment DESC_showFollowerHealth;
+	@Entry public static boolean showFollowerHealth = true;
 
-public class ConfigHandler { 
-	public static PropertyMirror<String> followerListHeaderFormat = PropertyMirror.create(ConfigTypes.STRING);
-	public static PropertyMirror<Boolean> showFollowerHealth = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<String> followerHealthFormat = PropertyMirror.create(ConfigTypes.STRING);
-	public static PropertyMirror<Boolean> showFollowerDistance = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<String> followerDistanceFormat = PropertyMirror.create(ConfigTypes.STRING);
-	public static PropertyMirror<Integer> distanceToCheckForFollowersAround = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Integer> timeBetweenChecksInSeconds = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Boolean> followerListPositionIsLeft = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> followerListPositionIsCenter = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> followerListPositionIsRight = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Integer> followerListHeightOffset = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Integer> RGB_R = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Integer> RGB_G = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Integer> RGB_B = PropertyMirror.create(ConfigTypes.INTEGER);
+	@Comment public static Comment DESC_followerHealthFormat;
+	@Entry public static String followerHealthFormat = ": <health>%";
 
-	private static final ConfigTree CONFIG = ConfigTree.builder() 
-			.beginValue("followerListHeaderFormat", ConfigTypes.STRING, "Followers:")
-			.withComment("The header text above the follower list.")
-			.finishValue(followerListHeaderFormat::mirror)
+	@Comment public static Comment DESC_showFollowerDistance;
+	@Entry public static boolean showFollowerDistance = true;
 
-			.beginValue("showFollowerHealth", ConfigTypes.BOOLEAN, true)
-			.withComment("If enabled, shows the follower's health in the GUI list.")
-			.finishValue(showFollowerHealth::mirror)
+	@Comment public static Comment DESC_followerDistanceFormat;
+	@Entry public static String followerDistanceFormat = " (<distance> blocks)";
 
-			.beginValue("followerHealthFormat", ConfigTypes.STRING, ": <health>%")
-			.withComment("The format of the health string in the GUI. <health> will be replaced by the percentage of total health.")
-			.finishValue(followerHealthFormat::mirror)
+	@Comment public static Comment DESC_distanceToCheckForFollowersAround;
+	@Entry public static int distanceToCheckForFollowersAround = 50;
+	@Comment public static Comment RANGE_distanceToCheckForFollowersAround;
 
-			.beginValue("showFollowerDistance", ConfigTypes.BOOLEAN, true)
-			.withComment("If enabled, shows the follower's distance in blocks to the player in the GUI list.")
-			.finishValue(showFollowerDistance::mirror)
+	@Comment public static Comment DESC_timeBetweenChecksInSeconds;
+	@Entry public static int timeBetweenChecksInSeconds = 2;
+	@Comment public static Comment RANGE_timeBetweenChecksInSeconds;
 
-			.beginValue("followerDistanceFormat", ConfigTypes.STRING, " (<distance> blocks)")
-			.withComment("The format of the distance string in the GUI. <distance> will be replaced by distance in blocks.")
-			.finishValue(followerDistanceFormat::mirror)
+	@Comment public static Comment DESC_followerListPositionIsLeft;
+	@Entry public static boolean followerListPositionIsLeft = true;
 
-			.beginValue("distanceToCheckForFollowersAround", ConfigTypes.INTEGER, 50)
-			.withComment("The distance in blocks around the player where the mod checks for tamed, non-sitting followers to add to the list. A value of -1 disables this feature.")
-			.finishValue(distanceToCheckForFollowersAround::mirror)
+	@Comment public static Comment DESC_followerListPositionIsCenter;
+	@Entry public static boolean followerListPositionIsCenter = false;
 
-			.beginValue("timeBetweenChecksInSeconds", ConfigTypes.INTEGER, 2)
-			.withComment("The time in seconds in between checking for tamed, non-sitting followers around the player.")
-			.finishValue(timeBetweenChecksInSeconds::mirror)
+	@Comment public static Comment DESC_followerListPositionIsRight;
+	@Entry public static boolean followerListPositionIsRight = false;
 
-			.beginValue("followerListPositionIsLeft", ConfigTypes.BOOLEAN, true)
-			.withComment("Places the follower list on the left.")
-			.finishValue(followerListPositionIsLeft::mirror)
+	@Comment public static Comment DESC_followerListHeightOffset;
+	@Entry public static int followerListHeightOffset = 20;
+	@Comment public static Comment RANGE_followerListHeightOffset;
 
-			.beginValue("followerListPositionIsCenter", ConfigTypes.BOOLEAN, false)
-			.withComment("Places the follower list in the middle.")
-			.finishValue(followerListPositionIsCenter::mirror)
+	@Comment public static Comment DESC_RGB_R;
+	@Entry public static int RGB_R = 255;
+	@Comment public static Comment RANGE_RGB_R;
 
-			.beginValue("followerListPositionIsRight", ConfigTypes.BOOLEAN, false)
-			.withComment("Places the follower list on the right.")
-			.finishValue(followerListPositionIsRight::mirror)
+	@Comment public static Comment DESC_RGB_G;
+	@Entry public static int RGB_G = 255;
+	@Comment public static Comment RANGE_RGB_G;
 
-			.beginValue("followerListHeightOffset", ConfigTypes.INTEGER, 20)
-			.withComment("The vertical offset (y coord) for the follower list. This determines how far down the list should be on the screen. Can be changed to prevent GUIs from overlapping.")
-			.finishValue(followerListHeightOffset::mirror)
-
-			.beginValue("RGB_R", ConfigTypes.INTEGER, 255)
-			.withComment("The red RGB value for the clock text.")
-			.finishValue(RGB_R::mirror)
-
-			.beginValue("RGB_G", ConfigTypes.INTEGER, 255)
-			.withComment("The green RGB value for the clock text.")
-			.finishValue(RGB_G::mirror)
-
-			.beginValue("RGB_B", ConfigTypes.INTEGER, 255)
-			.withComment("The blue RGB value for the clock text.")
-			.finishValue(RGB_B::mirror)
-
-			.build();
-
-	private static void writeDefaultConfig(Path path, JanksonValueSerializer serializer) {
-		try (OutputStream s = new BufferedOutputStream(Files.newOutputStream(path, StandardOpenOption.WRITE, StandardOpenOption.CREATE_NEW))) {
-			FiberSerialization.serialize(CONFIG, s, serializer);
-		} catch (IOException ignored) {}
-
-	}
-
-	public static void setup() {
-		JanksonValueSerializer serializer = new JanksonValueSerializer(false);
-		Path p = Paths.get("config", Reference.MOD_ID + ".json");
-		writeDefaultConfig(p, serializer);
-
-		try (InputStream s = new BufferedInputStream(Files.newInputStream(p, StandardOpenOption.READ, StandardOpenOption.CREATE))) {
-			FiberSerialization.deserialize(CONFIG, s, serializer);
-		} catch (IOException | ValueDeserializationException e) {
-			System.out.println("Error loading config");
-		}
-	}
+	@Comment public static Comment DESC_RGB_B;
+	@Entry public static int RGB_B = 255;
+	@Comment public static Comment RANGE_RGB_B;
 }

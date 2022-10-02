@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.19.2, mod version: 6.0.
+ * Minecraft version: 1.19.2, mod version: 6.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -46,9 +46,9 @@ public class HeadDropEvent {
 			return;
 		}
 		
-		if (ConfigHandler.onlyDropHeadsByChargedCreeper.getValue() || ConfigHandler.onlyDropHeadsByPlayerKill.getValue()) {
+		if (ConfigHandler.onlyDropHeadsByChargedCreeper || ConfigHandler.onlyDropHeadsByPlayerKill) {
 			Entity sourceentity = damageSource.getDirectEntity();
-			if (ConfigHandler.onlyDropHeadsByChargedCreeper.getValue()) {
+			if (ConfigHandler.onlyDropHeadsByChargedCreeper) {
 				if (sourceentity instanceof Creeper) {
 					Creeper creeper = (Creeper)sourceentity;
 					if (!creeper.isPowered()) {
@@ -59,14 +59,14 @@ public class HeadDropEvent {
 					return;
 				}
 			}
-			else if (ConfigHandler.onlyDropHeadsByPlayerKill.getValue()) {
+			else if (ConfigHandler.onlyDropHeadsByPlayerKill) {
 				if (!(sourceentity instanceof Player)) {
 					return;
 				}
 			}
 		}
 		
-		if (ConfigHandler.onlyAdultMobsDropTheirHead.getValue()) {
+		if (ConfigHandler.onlyAdultMobsDropTheirHead) {
 			if (entity instanceof TamableAnimal) {
 				TamableAnimal te = (TamableAnimal)entity;
 				if (te.isBaby()) {
@@ -82,7 +82,7 @@ public class HeadDropEvent {
 		
 		double extrachance = 0;
 		Entity source = damageSource.getEntity();
-		if (ConfigHandler.enableLootingEnchant.getValue() && source instanceof Player) {
+		if (ConfigHandler.enableLootingEnchant && source instanceof Player) {
 			Integer looting = EnchantmentHelper.getMobLooting((LivingEntity)source);
 			if (looting > 0) {
 				extrachance = 0.025 + (looting/100);
@@ -91,7 +91,7 @@ public class HeadDropEvent {
 		
 		String headname = "";
 		if (mobname.equals("creeper") || mobname.equals("zombie") || mobname.equals("skeleton")) {
-			if (ConfigHandler.enableStandardHeads.getValue()) {
+			if (ConfigHandler.enableStandardHeads) {
 				headname = mobname.substring(0, 1).toUpperCase() + mobname.substring(1) + " Head";
 			}
 			else {
@@ -100,7 +100,7 @@ public class HeadDropEvent {
 		}
 		
 		double num = Math.random();
-		if (ConfigHandler.mobSpecificDropChances.getValue()) {
+		if (ConfigHandler.mobSpecificDropChances) {
 			double chance = -1;
         	if (headname.equals("")) {
         		if (HeadData.headchances.containsKey(mobname)) {
@@ -108,11 +108,11 @@ public class HeadDropEvent {
         		}
         	}
         	else {
-        		chance = ConfigHandler.creeperSkeletonZombieDropChance.getValue();
+        		chance = ConfigHandler.creeperSkeletonZombieDropChance;
         	}
 	        
 	        if (chance == -1) {
-	        	if (num > ConfigHandler.overallDropChance.getValue() + extrachance) {
+	        	if (num > ConfigHandler.overallDropChance + extrachance) {
 	        		return;
 	        	}
 	        }
@@ -120,7 +120,7 @@ public class HeadDropEvent {
 	        	return;
 	        }
 		}
-		else if (num > ConfigHandler.overallDropChance.getValue() + extrachance) {
+		else if (num > ConfigHandler.overallDropChance + extrachance) {
 			return;
 		}
 		

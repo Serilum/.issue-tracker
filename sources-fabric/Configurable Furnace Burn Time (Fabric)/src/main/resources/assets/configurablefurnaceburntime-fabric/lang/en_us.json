@@ -1,0 +1,6 @@
+{
+  "configurablefurnaceburntime-fabric.duskconfig.title": "Configurable Furnace Burn Time Config",
+  "configurablefurnaceburntime-fabric.duskconfig.DESC_burnTimeModifier": "How much the fuel burn time should be modified. It's calculated by default burn time * burnTimeModifier. For example: sticks are by default 100 ticks (5 seconds). A burnTimeModifier of 2.0 makes it 200 ticks (10 seconds).",
+  "configurablefurnaceburntime-fabric.duskconfig.RANGE_burnTimeModifier": "min: 0.0, max: 1000.0",
+  "configurablefurnaceburntime-fabric.duskconfig.burnTimeModifier": "Burn Time Modifier"
+}

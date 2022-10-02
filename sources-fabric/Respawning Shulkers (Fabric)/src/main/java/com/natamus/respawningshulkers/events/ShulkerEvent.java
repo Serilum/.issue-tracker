@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Respawning Shulkers.
- * Minecraft version: 1.19.2, mod version: 2.2.
+ * Minecraft version: 1.19.2, mod version: 2.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -66,7 +66,7 @@ public class ShulkerEvent {
 		
 		Set<String> tags = entity.getTags();
 		if (tags.contains(Reference.MOD_ID + ".fromspawner")) {
-			if (ConfigHandler.shulkersFromSpawnersDoNotRespawn.getValue()) {
+			if (ConfigHandler.shulkersFromSpawnersDoNotRespawn) {
 				return;
 			}
 		}
@@ -75,7 +75,7 @@ public class ShulkerEvent {
 		newshulker.restoreFrom(entity);
 		newshulker.setHealth(30F);
 		
-		shulkersTicksLeft.put(newshulker, ConfigHandler.timeInTicksToRespawn.getValue());
+		shulkersTicksLeft.put(newshulker, ConfigHandler.timeInTicksToRespawn);
 		respawnShulkers.get(world).add(newshulker);
 	}
 	

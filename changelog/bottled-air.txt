@@ -3,6 +3,10 @@ Bottled Air
 https://curseforge.com/minecraft/mc-mods/bottled-air
 
 =========
+v1.7: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v1.6: Added the disableWaterConsumptionUnderwater config option, enabled by default, which prevents players from drinking water bottles underwater. This is to prevent an infinite oxygen loop.
 
 =========

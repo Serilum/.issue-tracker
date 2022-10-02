@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nether Portal Spread.
- * Minecraft version: 1.19.2, mod version: 6.3.
+ * Minecraft version: 1.19.2, mod version: 6.4.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -155,7 +155,7 @@ public class Util {
 		}
 		
 		if (preventSpreadBlock == null) {
-			String psbstr = ConfigHandler.preventSpreadBlockString.getValue();
+			String psbstr = ConfigHandler.preventSpreadBlockString;
 			ResourceLocation psbrl = new ResourceLocation(psbstr);
 			if (Registry.BLOCK.keySet().contains(psbrl)) {
 				preventSpreadBlock = Registry.BLOCK.get(psbrl);
@@ -198,8 +198,8 @@ public class Util {
 			return;
 		}
 		
-		int r = ConfigHandler.portalSpreadRadius.getValue();
-		Integer psamount = ConfigHandler.preventSpreadBlockAmountNeeded.getValue();
+		int r = ConfigHandler.portalSpreadRadius;
+		Integer psamount = ConfigHandler.preventSpreadBlockAmountNeeded;
 		for (int i = 0; i < listOfFiles.length; i++) {
 			String filename = listOfFiles[i].getName();
 			if (filename.endsWith(".portal")) {
@@ -213,7 +213,7 @@ public class Util {
 						BlockPos portal = new BlockPos(x, y, z);
 						portals.get(world).add(portal);
 						
-						if (ConfigHandler.preventSpreadWithBlock.getValue()) {
+						if (ConfigHandler.preventSpreadWithBlock) {
 							int coalcount = 0;
 							Iterator<BlockPos> it = BlockPos.betweenClosedStream(portal.getX()-r, portal.getY()-r, portal.getZ()-r, portal.getX()+r, portal.getY()+r, portal.getZ()+r).iterator();
 							while (it.hasNext()) {
@@ -311,8 +311,8 @@ public class Util {
 		savePortalToWorld(world, rawportal);
 		
 		int netherblockcount = countNetherBlocks(world, p);
-		if (netherblockcount < ConfigHandler.instantConvertAmount.getValue()) {
-			while (netherblockcount < ConfigHandler.instantConvertAmount.getValue()) {
+		if (netherblockcount < ConfigHandler.instantConvertAmount) {
+			while (netherblockcount < ConfigHandler.instantConvertAmount) {
 				if (!spreadNextBlock(world, p)) {
 					break;
 				}
@@ -352,18 +352,18 @@ public class Util {
 			return false;
 		}
 		
-		int r = ConfigHandler.portalSpreadRadius.getValue();
+		int r = ConfigHandler.portalSpreadRadius;
 		
 		BlockPos closest = null;
 		double nearestdistance = 100000;
 		int coalcount = 0;
 		
-		Integer psamount = ConfigHandler.preventSpreadBlockAmountNeeded.getValue();
+		Integer psamount = ConfigHandler.preventSpreadBlockAmountNeeded;
 		Iterator<BlockPos> it = BlockPos.betweenClosedStream(portal.getX()-r, portal.getY()-r, portal.getZ()-r, portal.getX()+r, portal.getY()+r, portal.getZ()+r).iterator();
 		while (it.hasNext()) {
 			try {
 				BlockPos np = it.next();
-				if (ConfigHandler.preventSpreadWithBlock.getValue()) {
+				if (ConfigHandler.preventSpreadWithBlock) {
 					if (world.getBlockState(np).getBlock().equals(preventSpreadBlock)) {
 						coalcount++;
 						if (coalcount >= psamount) {
@@ -384,7 +384,7 @@ public class Util {
 			}
 		}
 		
-		if (ConfigHandler.preventSpreadWithBlock.getValue()) {
+		if (ConfigHandler.preventSpreadWithBlock) {
 			if (coalcount >= psamount) {
 				boolean prevented = false;
 				if (preventedportals.get(world).containsKey(portal)) {
@@ -419,7 +419,7 @@ public class Util {
 
 	public static int countNetherBlocks(Level world, BlockPos p) {
 		int nethercount = 0;
-		int r = ConfigHandler.portalSpreadRadius.getValue();
+		int r = ConfigHandler.portalSpreadRadius;
 		
 		Iterator<BlockPos> it = BlockPos.betweenClosedStream(p.getX()-r, p.getY()-r, p.getZ()-r, p.getX()+r, p.getY()+r, p.getZ()+r).iterator();
 		while (it.hasNext()) {
@@ -480,30 +480,30 @@ public class Util {
 	}
 	
 	private static void sendSpreadingMessage(Level world, BlockPos p) {
-		if (!ConfigHandler.sendMessageOnPortalCreation.getValue()) {
+		if (!ConfigHandler.sendMessageOnPortalCreation) {
 			return;
 		}
 		
-		String message = ConfigHandler.messageOnPortalCreation.getValue();
-		StringFunctions.sendMessageToPlayersAround(world, p, ConfigHandler.portalSpreadRadius.getValue(), formatAroundString(message, ConfigHandler.preventSpreadBlockAmountNeeded.getValue(), p), ChatFormatting.RED);
+		String message = ConfigHandler.messageOnPortalCreation;
+		StringFunctions.sendMessageToPlayersAround(world, p, ConfigHandler.portalSpreadRadius, formatAroundString(message, ConfigHandler.preventSpreadBlockAmountNeeded, p), ChatFormatting.RED);
 	}
 	
 	private static void sendPreventedMessage(Level world, BlockPos p) {
-		if (!ConfigHandler.sendMessageOnPreventSpreadBlocksFound.getValue()) {
+		if (!ConfigHandler.sendMessageOnPreventSpreadBlocksFound) {
 			return;
 		}
 		
-		String message = ConfigHandler.messageOnPreventSpreadBlocksFound.getValue();
-		StringFunctions.sendMessageToPlayersAround(world, p, ConfigHandler.portalSpreadRadius.getValue(), formatAroundString(message, ConfigHandler.preventSpreadBlockAmountNeeded.getValue(), p), ChatFormatting.DARK_GREEN);	
+		String message = ConfigHandler.messageOnPreventSpreadBlocksFound;
+		StringFunctions.sendMessageToPlayersAround(world, p, ConfigHandler.portalSpreadRadius, formatAroundString(message, ConfigHandler.preventSpreadBlockAmountNeeded, p), ChatFormatting.DARK_GREEN);	
 	}
 	
 	private static void sendBrokenPortalMessage(Level world, BlockPos p) {
-		if (!ConfigHandler.sendMessageOnPortalBroken.getValue()) {
+		if (!ConfigHandler.sendMessageOnPortalBroken) {
 			return;
 		}
 		
-		String message = ConfigHandler.messageOnPortalBroken.getValue();
-		StringFunctions.sendMessageToPlayersAround(world, p, ConfigHandler.portalSpreadRadius.getValue(), formatAroundString(message, ConfigHandler.preventSpreadBlockAmountNeeded.getValue(), p), ChatFormatting.DARK_GREEN);	
+		String message = ConfigHandler.messageOnPortalBroken;
+		StringFunctions.sendMessageToPlayersAround(world, p, ConfigHandler.portalSpreadRadius, formatAroundString(message, ConfigHandler.preventSpreadBlockAmountNeeded, p), ChatFormatting.DARK_GREEN);	
 	}
 	
 	private static String formatAroundString(String message, int amountneeded, BlockPos portal) {
@@ -515,8 +515,8 @@ public class Util {
 
 		message = message.replace("%preventSpreadBlockString%", blockstring);
 		message = message.replace("%preventSpreadBlockAmountNeeded%", amountneeded + "");
-		message = message.replace("%portalSpreadRadius%", ConfigHandler.portalSpreadRadius.getValue() + "");
-		if (ConfigHandler.prefixPortalCoordsInMessage.getValue()) {
+		message = message.replace("%portalSpreadRadius%", ConfigHandler.portalSpreadRadius + "");
+		if (ConfigHandler.prefixPortalCoordsInMessage) {
 			message = "Portal {" + portal.getX() + ", " + portal.getY() + ", " + portal.getZ() + "}: " + message;
 		}
 		return message;

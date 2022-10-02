@@ -1,0 +1,9 @@
+{
+  "spidersproducewebs-fabric.duskconfig.title": "Spiders Produce Webs Config",
+  "spidersproducewebs-fabric.duskconfig.DESC_maxDistanceToSpiderBlocks": "The maximum distance in blocks the player can be away from a spider in order for the it to produce a web periodically.",
+  "spidersproducewebs-fabric.duskconfig.RANGE_maxDistanceToSpiderBlocks": "min: 1, max: 256",
+  "spidersproducewebs-fabric.duskconfig.maxDistanceToSpiderBlocks": "Max Distance To Spider Blocks",
+  "spidersproducewebs-fabric.duskconfig.DESC_spiderWebProduceDelayTicks": "The delay in between spiders producing a web in ticks (1 second = 20 ticks).",
+  "spidersproducewebs-fabric.duskconfig.RANGE_spiderWebProduceDelayTicks": "min: 1, max: 72000",
+  "spidersproducewebs-fabric.duskconfig.spiderWebProduceDelayTicks": "Spider Web Produce Delay Ticks"
+}

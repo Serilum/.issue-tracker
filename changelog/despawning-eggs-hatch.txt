@@ -3,6 +3,10 @@ Despawning Eggs Hatch
 https://www.curseforge.com/minecraft/mc-mods/despawning-eggs-hatch
 
 =========
+v2.9: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v2.8: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

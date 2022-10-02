@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Areas.
- * Minecraft version: 1.19.2, mod version: 3.1.
+ * Minecraft version: 1.19.2, mod version: 3.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -53,7 +53,7 @@ public class GUIEvent {
 				gopacity = 255;
 			}
 			
-			Color colour = new Color(ConfigHandler.HUD_RGB_R.getValue(), ConfigHandler.HUD_RGB_G.getValue(), ConfigHandler.HUD_RGB_B.getValue(), gopacity);
+			Color colour = new Color(ConfigHandler.HUD_RGB_R, ConfigHandler.HUD_RGB_G, ConfigHandler.HUD_RGB_B, gopacity);
 			if (!rgb.equals("")) {
 				String[] rgbs = rgb.split(",");
 				if (rgbs.length == 3) {
@@ -96,10 +96,10 @@ public class GUIEvent {
 			RenderSystem.enableBlend(); // GL11.glEnable(GL11.GL_BLEND);
 			RenderSystem.blendFunc(0x302, 0x303); //GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			
-			float modifier = (ConfigHandler.HUD_FontSizeScaleModifier.getValue().floatValue() + 0.5F);
+			float modifier = ((float)ConfigHandler.HUD_FontSizeScaleModifier + 0.5F);
 			posestack.scale(modifier, modifier, modifier);
 			
-			fontRender.draw(posestack, hudmessage, (int)(Math.round((width / 2) / modifier) - stringWidth/2), ConfigHandler.HUDMessageHeightOffset.getValue(), colour.getRGB());
+			fontRender.draw(posestack, hudmessage, (int)(Math.round((width / 2) / modifier) - stringWidth/2), ConfigHandler.HUDMessageHeightOffset, colour.getRGB());
 			
 			posestack.popPose();
 			
@@ -114,7 +114,7 @@ public class GUIEvent {
 		currentrandom = random;
 		
 		new Thread(() -> {
-			try  { Thread.sleep( ConfigHandler.HUDMessageFadeDelayMs.getValue() ); }
+			try  { Thread.sleep( ConfigHandler.HUDMessageFadeDelayMs ); }
 			catch (InterruptedException ignored)  {}
 
 			if (currentrandom.equals(random)) {

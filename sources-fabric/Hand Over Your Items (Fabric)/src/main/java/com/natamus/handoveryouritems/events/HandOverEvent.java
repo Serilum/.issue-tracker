@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hand Over Your Items.
- * Minecraft version: 1.19.2, mod version: 2.0.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -43,7 +43,7 @@ public class HandOverEvent {
 			return InteractionResult.PASS;
 		}
 		
-		if (ConfigHandler.mustCrouchToGiveItem.getValue()) {
+		if (ConfigHandler.mustCrouchToGiveItem) {
 			if (!player.isCrouching()) {
 				return InteractionResult.PASS;
 			}
@@ -57,11 +57,11 @@ public class HandOverEvent {
 		stacktogive.setCount(0);
 
 		if (!level.isClientSide) {
-			if (ConfigHandler.sendItemReceivedMessage.getValue()) {
+			if (ConfigHandler.sendItemReceivedMessage) {
 				StringFunctions.sendMessage(playertarget, "You have been given " + stacksize + " " + itemstring + " by " + player.getName().getString() + ".", ChatFormatting.DARK_GREEN);
 			}
 
-			if (ConfigHandler.sendItemGivenMessage.getValue()) {
+			if (ConfigHandler.sendItemGivenMessage) {
 				StringFunctions.sendMessage(player, "You have given " + stacksize + " " + itemstring + " to " + target.getName().getString() + ".", ChatFormatting.BLUE);
 			}
 		}

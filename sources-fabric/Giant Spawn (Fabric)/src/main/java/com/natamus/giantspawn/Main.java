@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Giant Spawn.
- * Minecraft version: 1.19.2, mod version: 3.2.
+ * Minecraft version: 1.19.2, mod version: 3.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,7 @@ package com.natamus.giantspawn;
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.collective_fabric.objects.SAMObject;
 import com.natamus.giantspawn.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.giantspawn.events.GiantEvent;
 import com.natamus.giantspawn.util.Reference;
 
@@ -34,7 +35,7 @@ import net.minecraft.world.entity.EntityType;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		
@@ -42,7 +43,7 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-    	new SAMObject(EntityType.ZOMBIE, EntityType.GIANT, null, ConfigHandler.chanceSurfaceZombieIsGiant.getValue(), false, false, true);	
+    	new SAMObject(EntityType.ZOMBIE, EntityType.GIANT, null, ConfigHandler.chanceSurfaceZombieIsGiant, false, false, true);	
 		
 		ServerEntityEvents.ENTITY_LOAD.register((Entity entity, ServerLevel world) -> {
 			GiantEvent.onEntityJoin(world, entity);

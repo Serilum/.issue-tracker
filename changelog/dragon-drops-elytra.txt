@@ -3,6 +3,9 @@ Dragon Drops Elytra
 https://www.curseforge.com/minecraft/mc-mods/dragon-drops-elytra
 
 =========
+v2.0: (Fabric) Added Mod Menu support with project links and logo.
+
+=========
 v1.9: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

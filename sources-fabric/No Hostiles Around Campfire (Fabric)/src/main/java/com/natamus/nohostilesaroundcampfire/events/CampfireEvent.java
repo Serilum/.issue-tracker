@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of No Hostiles Around Campfire.
- * Minecraft version: 1.19.2, mod version: 4.5.
+ * Minecraft version: 1.19.2, mod version: 4.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -62,12 +62,12 @@ public class CampfireEvent {
 			BlockState campfirestate = world.getBlockState(campfirepos);
 			if (CompareBlockFunctions.blockIsInRegistryHolder(campfirestate.getBlock(), BlockTags.CAMPFIRES)) {
 				boolean islit = true;
-				if (ConfigHandler.campfireMustBeLit.getValue()) {
+				if (ConfigHandler.campfireMustBeLit) {
 					islit = campfirestate.getValue(CampfireBlock.LIT);
 				}
 				
 				if (islit) {
-					int r = (int)(ConfigHandler.preventHostilesRadius.getValue() * ConfigHandler.burnHostilesRadiusModifier.getValue());
+					int r = (int)(ConfigHandler.preventHostilesRadius * ConfigHandler.burnHostilesRadiusModifier);
 					List<Entity> entities = world.getEntities(null, new AABB(campfirepos.getX()-r, campfirepos.getY()-r, campfirepos.getZ()-r, campfirepos.getX()+r, campfirepos.getY()+r, campfirepos.getZ()+r));
 					for (Entity entity : entities) {
 						if (Util.entityIsHostile(entity)) {
@@ -87,7 +87,7 @@ public class CampfireEvent {
 		}
 		entity.addTag(Reference.MOD_ID + ".checked");
 		
-		if (!ConfigHandler.preventMobSpawnerSpawns.getValue()) {
+		if (!ConfigHandler.preventMobSpawnerSpawns) {
 			if (EntityFunctions.isEntityFromSpawner(entity)) {
 				return true;
 			}
@@ -97,7 +97,7 @@ public class CampfireEvent {
 			return true;
 		}
 		
-		List<BlockPos> nearbycampfires = FABFunctions.getAllTaggedTileEntityPositionsNearbyEntity(BlockTags.CAMPFIRES, ConfigHandler.preventHostilesRadius.getValue(), world, entity);
+		List<BlockPos> nearbycampfires = FABFunctions.getAllTaggedTileEntityPositionsNearbyEntity(BlockTags.CAMPFIRES, ConfigHandler.preventHostilesRadius, world, entity);
 		if (nearbycampfires.size() == 0) {
 			return true;
 		}
@@ -109,24 +109,24 @@ public class CampfireEvent {
 			if (!(block instanceof CampfireBlock)) {
 				continue;
 			}
-			if (!ConfigHandler.enableEffectForNormalCampfires.getValue()) {
+			if (!ConfigHandler.enableEffectForNormalCampfires) {
 				if (block.equals(Blocks.CAMPFIRE)) {
 					continue;
 				}
 			}
-			if (!ConfigHandler.enableEffectForSoulCampfires.getValue()) {
+			if (!ConfigHandler.enableEffectForSoulCampfires) {
 				if (block.equals(Blocks.SOUL_CAMPFIRE)) {
 					continue;
 				}
 			}
 			
-			if (ConfigHandler.campfireMustBeLit.getValue()) {
+			if (ConfigHandler.campfireMustBeLit) {
 				Boolean islit = campfirestate.getValue(CampfireBlock.LIT);
 				if (!islit) {
 					continue;
 				}
 			}
-			if (ConfigHandler.campfireMustBeSignalling.getValue()) {
+			if (ConfigHandler.campfireMustBeSignalling) {
 				Boolean issignalling = campfirestate.getValue(CampfireBlock.SIGNAL_FIRE);
 				if (!issignalling) {
 					continue;
@@ -156,7 +156,7 @@ public class CampfireEvent {
 			return;
 		}
 		
-		if (!ConfigHandler.burnHostilesAroundWhenPlaced.getValue()) {
+		if (!ConfigHandler.burnHostilesAroundWhenPlaced) {
 			return;
 		}
 		
@@ -165,12 +165,12 @@ public class CampfireEvent {
 			return;
 		}
 		
-		if (!ConfigHandler.enableEffectForNormalCampfires.getValue()) {
+		if (!ConfigHandler.enableEffectForNormalCampfires) {
 			if (block.equals(Blocks.CAMPFIRE)) {
 				return;
 			}
 		}
-		if (!ConfigHandler.enableEffectForSoulCampfires.getValue()) {
+		if (!ConfigHandler.enableEffectForSoulCampfires) {
 			if (block.equals(Blocks.SOUL_CAMPFIRE)) {
 				return;
 			}
@@ -206,7 +206,7 @@ public class CampfireEvent {
 			return;
 		}
 		
-		if (!ConfigHandler.burnHostilesAroundWhenPlaced.getValue()) {
+		if (!ConfigHandler.burnHostilesAroundWhenPlaced) {
 			return;
 		}
 		
@@ -215,18 +215,18 @@ public class CampfireEvent {
 			return;
 		}
 		
-		if (!ConfigHandler.enableEffectForNormalCampfires.getValue()) {
+		if (!ConfigHandler.enableEffectForNormalCampfires) {
 			if (block.equals(Blocks.CAMPFIRE)) {
 				return;
 			}
 		}
-		if (!ConfigHandler.enableEffectForSoulCampfires.getValue()) {
+		if (!ConfigHandler.enableEffectForSoulCampfires) {
 			if (block.equals(Blocks.SOUL_CAMPFIRE)) {
 				return;
 			}
 		}
 
-		int r = (int)(ConfigHandler.preventHostilesRadius.getValue() * ConfigHandler.burnHostilesRadiusModifier.getValue());
+		int r = (int)(ConfigHandler.preventHostilesRadius * ConfigHandler.burnHostilesRadiusModifier);
 		List<Entity> entities = world.getEntities(null, new AABB(ppos.getX()-r, ppos.getY()-r, ppos.getZ()-r, ppos.getX()+r, ppos.getY()+r, ppos.getZ()+r));
 		for (Entity entity : entities) {
 			if (Util.entityIsHostile(entity)) {

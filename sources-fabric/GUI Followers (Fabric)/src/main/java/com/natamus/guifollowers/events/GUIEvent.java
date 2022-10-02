@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Followers.
- * Minecraft version: 1.19.2, mod version: 2.3.
+ * Minecraft version: 1.19.2, mod version: 2.4.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -46,18 +46,18 @@ public class GUIEvent {
 		if (Variables.activefollowers.size() > 0) {
 			int width = scaled.getGuiScaledWidth();
 			
-			String displaystring = ConfigHandler.followerListHeaderFormat.getValue();
+			String displaystring = ConfigHandler.followerListHeaderFormat;
 			
 			int stringWidth = fontRender.width(displaystring);
 			
-			Color colour = new Color(ConfigHandler.RGB_R.getValue(), ConfigHandler.RGB_G.getValue(), ConfigHandler.RGB_B.getValue(), 255);
+			Color colour = new Color(ConfigHandler.RGB_R, ConfigHandler.RGB_G, ConfigHandler.RGB_B, 255);
 			
 			int xcoord = 0;
 			int xoffset = 5;
-			if (ConfigHandler.followerListPositionIsLeft.getValue()) {
+			if (ConfigHandler.followerListPositionIsLeft) {
 				xcoord = 5;
 			}
-			else if (ConfigHandler.followerListPositionIsCenter.getValue()) {
+			else if (ConfigHandler.followerListPositionIsCenter) {
 				xcoord = (width/2) - (stringWidth/2);
 			}
 			else {
@@ -65,7 +65,7 @@ public class GUIEvent {
 			}
 			
 			boolean drawnfirst = false;
-			int heightoffset = ConfigHandler.followerListHeightOffset.getValue();
+			int heightoffset = ConfigHandler.followerListHeightOffset;
 			
 			LocalPlayer player = mc.player;
 			String playerdimension = WorldFunctions.getWorldDimensionName(player.getCommandSenderWorld());
@@ -92,7 +92,7 @@ public class GUIEvent {
 				}
 				
 				String follower_string = follower.getName().getString();
-				if (ConfigHandler.showFollowerHealth.getValue()) {
+				if (ConfigHandler.showFollowerHealth) {
 					LivingEntity le = (LivingEntity)follower;
 					float currenthealth = le.getHealth();
 					float maxhealth = le.getMaxHealth();
@@ -103,25 +103,25 @@ public class GUIEvent {
 						continue;
 					}
 					
-					String healthformat = ConfigHandler.followerHealthFormat.getValue();
+					String healthformat = ConfigHandler.followerHealthFormat;
 					follower_string = follower_string + healthformat.replaceAll("<health>", percenthealth + "");
 				}
 				
-				if (ConfigHandler.showFollowerDistance.getValue()) {
+				if (ConfigHandler.showFollowerDistance) {
 					Vec3 pvec = player.position();
 					Vec3 fvec = follower.position();
 					
 					double distance = pvec.distanceTo(fvec);
-					String distanceformat = ConfigHandler.followerDistanceFormat.getValue();
+					String distanceformat = ConfigHandler.followerDistanceFormat;
 					follower_string = follower_string + distanceformat.replaceAll("<distance>", String.format("%.2f", distance));
 				}
 				
 				int follower_stringWidth = fontRender.width(follower_string);
 				
-				if (ConfigHandler.followerListPositionIsCenter.getValue()) {
+				if (ConfigHandler.followerListPositionIsCenter) {
 					xcoord = (width/2) - (follower_stringWidth/2) - xoffset;
 				}
-				else if (!ConfigHandler.followerListPositionIsLeft.getValue()) {
+				else if (!ConfigHandler.followerListPositionIsLeft) {
 					xcoord = width - follower_stringWidth - 5 - xoffset;
 				}
 				

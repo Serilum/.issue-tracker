@@ -1,0 +1,9 @@
+{
+  "nametagtweaks-fabric.duskconfig.title": "Name Tag Tweaks Config",
+  "nametagtweaks-fabric.duskconfig.DESC_droppedNameTagbyEntityKeepsNameValue": "If enabled, any name tag that drops on an entity's death will keep its named value.",
+  "nametagtweaks-fabric.duskconfig.droppedNameTagbyEntityKeepsNameValue": "Dropped Name Tagby Entity Keeps Name Value",
+  "nametagtweaks-fabric.duskconfig.DESC_enableNameTagCommand": "If enabled, adds the /nametag <name> command. Used to change the name value without an anvil.",
+  "nametagtweaks-fabric.duskconfig.enableNameTagCommand": "Enable Name Tag Command",
+  "nametagtweaks-fabric.duskconfig.DESC_nameTagCommandReplaceUnderscoresWithSpaces": "If enabled, replaces underscores with spaces when using the /nametag command.",
+  "nametagtweaks-fabric.duskconfig.nameTagCommandReplaceUnderscoresWithSpaces": "Name Tag Command Replace Underscores With Spaces"
+}

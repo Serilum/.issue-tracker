@@ -1,0 +1,5 @@
+{
+  "starterkit-fabric.duskconfig.title": "Starter Kit Config",
+  "starterkit-fabric.duskconfig.DESC_enableFTBIslandCreateCompatibility": "Whether the starter kit should be re-set after the '/ftbteamislands create' command from FTB Team Islands. Does nothing when it's not installed.",
+  "starterkit-fabric.duskconfig.enableFTBIslandCreateCompatibility": "Enable F T B Island Create Compatibility"
+}

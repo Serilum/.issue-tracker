@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "spidersproducewebs-fabric",
-  "version": "2.1",
+  "version": "2.2",
 
   "name": "Spiders Produce Webs (Fabric)",
   "description": "Spiders and cave spiders can periodically produce a web when a player is close.",
@@ -13,15 +13,45 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/spidersproducewebs-fabric/icon.png",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.spidersproducewebs.Main" ] },
+  "entrypoints": { "main": [ "com.natamus.spidersproducewebs.Main" ], "modmenu": [ "com.natamus.spidersproducewebs.config.SpidersProduceWebsModMenu" ] },
 
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.36"
-  }
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

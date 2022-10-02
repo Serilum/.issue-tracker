@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Beautified Chat Server.
- * Minecraft version: 1.19.2, mod version: 1.7.
+ * Minecraft version: 1.18.2, mod version: 1.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -22,15 +22,15 @@ import net.minecraft.ChatFormatting;
 
 public class Util {
 	public static ChatFormatting getColour(String word) {
-		ChatFormatting colour = ChatFormatting.getById(ConfigHandler.chatOtherSymbolsColour.getValue());
+		ChatFormatting colour = ChatFormatting.getById(ConfigHandler.chatOtherSymbolsColour);
 		if (word.equalsIgnoreCase("timestamp")) {
-			colour = ChatFormatting.getById(ConfigHandler.chatTimestampColour.getValue());
+			colour = ChatFormatting.getById(ConfigHandler.chatTimestampColour);
 		}
 		else if (word.equalsIgnoreCase("username")) {
-			colour = ChatFormatting.getById(ConfigHandler.chatUsernameColour.getValue());
+			colour = ChatFormatting.getById(ConfigHandler.chatUsernameColour);
 		}
 		else if (word.equalsIgnoreCase("chatmessage")) {
-			colour = ChatFormatting.getById(ConfigHandler.chatMessageColour.getValue());
+			colour = ChatFormatting.getById(ConfigHandler.chatMessageColour);
 		}
 		
 		return colour;

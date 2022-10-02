@@ -1,0 +1,11 @@
+{
+  "bottleyourxp-fabric.duskconfig.title": "Bottle Your Xp Config",
+  "bottleyourxp-fabric.duskconfig.DESC_damageOnCreation": "If enabled, damages the user whenever they create an experience bottle.",
+  "bottleyourxp-fabric.duskconfig.damageOnCreation": "Damage On Creation",
+  "bottleyourxp-fabric.duskconfig.DESC_halfHeartDamageAmount": "The amount of damage the user takes times half a heart when creating an experience bottle.",
+  "bottleyourxp-fabric.duskconfig.RANGE_halfHeartDamageAmount": "min: 1, max: 20",
+  "bottleyourxp-fabric.duskconfig.halfHeartDamageAmount": "Half Heart Damage Amount",
+  "bottleyourxp-fabric.duskconfig.DESC_rawXpConsumedOnCreation": "The amount of raw xp it takes to produce an experience bottle. Be careful when setting this too low, as it may enable xp duplication.",
+  "bottleyourxp-fabric.duskconfig.RANGE_rawXpConsumedOnCreation": "min: 0, max: 100",
+  "bottleyourxp-fabric.duskconfig.rawXpConsumedOnCreation": "Raw Xp Consumed On Creation"
+}

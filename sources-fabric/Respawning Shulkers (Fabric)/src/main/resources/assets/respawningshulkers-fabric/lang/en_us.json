@@ -1,0 +1,8 @@
+{
+  "respawningshulkers-fabric.duskconfig.title": "Respawning Shulkers Config",
+  "respawningshulkers-fabric.duskconfig.DESC_timeInTicksToRespawn": "The amount of time in ticks it takes for a shulker to respawn after it died. 20 ticks = 1 second. By default 60 seconds.",
+  "respawningshulkers-fabric.duskconfig.RANGE_timeInTicksToRespawn": "min: 1, max: 72000",
+  "respawningshulkers-fabric.duskconfig.timeInTicksToRespawn": "Time In Ticks To Respawn",
+  "respawningshulkers-fabric.duskconfig.DESC_shulkersFromSpawnersDoNotRespawn": "If enabled, shulkers which spawn from (modded) spawners will not be respawned after a death.",
+  "respawningshulkers-fabric.duskconfig.shulkersFromSpawnersDoNotRespawn": "Shulkers From Spawners Do Not Respawn"
+}

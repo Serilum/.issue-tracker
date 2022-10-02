@@ -3,6 +3,9 @@ Stack Refill
 https://curseforge.com/minecraft/mc-mods/stack-refill
 
 =========
+v3.1: (Fabric) Added Mod Menu support with project links and logo.
+
+=========
 v3.0: The big 3.0 rewrite!
 Improved code performance.
 Fixed visual desyncs in the inventory, the mod now works better with clients.

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Double Doors.
- * Minecraft version: 1.19.2, mod version: 3.7.
+ * Minecraft version: 1.19.2, mod version: 3.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -21,6 +21,7 @@ import java.util.EnumSet;
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.collective_fabric.fabric.callbacks.CollectiveBlockEvents;
 import com.natamus.doubledoors.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.doubledoors.events.DoorEvent;
 import com.natamus.doubledoors.util.Reference;
 
@@ -36,7 +37,7 @@ import net.minecraft.world.phys.BlockHitResult;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

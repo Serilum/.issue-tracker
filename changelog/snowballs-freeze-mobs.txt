@@ -3,6 +3,10 @@ Snowballs Freeze Mobs
 https://www.curseforge.com/minecraft/mc-mods/snowballs-freeze-mobs
 
 =========
+v2.2: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v2.1: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

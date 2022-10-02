@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "wooltweaks-fabric",
-  "version": "2.2",
+  "version": "2.3",
 
   "name": "Wool Tweaks (Fabric)",
   "description": "Dye beds, wool blocks and beds with a right-click in the world. Adds wool to string recipe for all wool blocks and allows players to dye any colour wool block with any dye.",
@@ -13,6 +13,7 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/wooltweaks-fabric/icon.png",
 
   "environment": "*",
   "entrypoints": { "main": [ "com.natamus.wooltweaks.Main" ] },
@@ -22,6 +23,35 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.64"
-  }
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

@@ -3,6 +3,10 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v6.1: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v6.0: Changed Fox head to Red Fox and Snow Fox heads.
 Added Toast rabbit head.
 Added Illusioner head.

@@ -1,0 +1,12 @@
+{
+  "fixedanvilrepaircost-fabric.duskconfig.title": "Fixed Anvil Repair Cost Config",
+  "fixedanvilrepaircost-fabric.duskconfig.DESC_repairCostLevelAmount": "The amount of level it costs to repair an item on an anvil. A value of 0 keeps vanilla behaviour.",
+  "fixedanvilrepaircost-fabric.duskconfig.RANGE_repairCostLevelAmount": "min: 0, max: 100",
+  "fixedanvilrepaircost-fabric.duskconfig.repairCostLevelAmount": "Repair Cost Level Amount",
+  "fixedanvilrepaircost-fabric.duskconfig.DESC_repairCostMaterialAmount": "The amount of material it costs to repair an item on an anvil. A value of 0 keeps vanilla behaviour.",
+  "fixedanvilrepaircost-fabric.duskconfig.RANGE_repairCostMaterialAmount": "min: 0, max: 64",
+  "fixedanvilrepaircost-fabric.duskconfig.repairCostMaterialAmount": "Repair Cost Material Amount",
+  "fixedanvilrepaircost-fabric.duskconfig.DESC_percentRepairedPerAction": "How much the item is repaired per action. By default 33.33%, so 3 of 'repairCostMaterialAmount' fully repairs any item.",
+  "fixedanvilrepaircost-fabric.duskconfig.RANGE_percentRepairedPerAction": "min: 0, max: 1.0",
+  "fixedanvilrepaircost-fabric.duskconfig.percentRepairedPerAction": "Percent Repaired Per Action"
+}

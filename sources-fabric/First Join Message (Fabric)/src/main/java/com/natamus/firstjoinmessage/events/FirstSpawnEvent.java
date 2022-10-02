@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of First Join Message.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 1.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -38,8 +38,8 @@ public class FirstSpawnEvent {
 		
 		Player player = (Player)entity;
 		if (PlayerFunctions.isJoiningWorldForTheFirstTime(player, Reference.MOD_ID)) {
-			String joinmessage = ConfigHandler.firstJoinMessage.getValue();
-			ChatFormatting colour = ChatFormatting.getById(ConfigHandler.firstJoinMessageTextFormattingColourIndex.getValue());
+			String joinmessage = ConfigHandler.firstJoinMessage;
+			ChatFormatting colour = ChatFormatting.getById(ConfigHandler.firstJoinMessageTextFormattingColourIndex);
 			if (colour == null) {
 				return;
 			}

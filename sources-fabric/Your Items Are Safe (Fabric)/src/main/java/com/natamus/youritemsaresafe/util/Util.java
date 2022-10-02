@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Your Items Are Safe.
- * Minecraft version: 1.19.2, mod version: 2.0.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -81,8 +81,8 @@ public class Util {
 	}
 	
 	public static void failureMessage(Player player, int planksleft, int stoneleft, int planksneeded, int stoneneeded) {
-		if (ConfigHandler.sendMessageOnCreationFailure.getValue()) {
-			String failurestring = ConfigHandler.creationFailureMessage.getValue();
+		if (ConfigHandler.sendMessageOnCreationFailure) {
+			String failurestring = ConfigHandler.creationFailureMessage;
 			failurestring = failurestring.replaceAll("%plankamount%", planksleft + "").replaceAll("%stoneamount%", stoneleft + "");
 			
 			StringFunctions.sendMessage(player, failurestring, ChatFormatting.RED);
@@ -102,8 +102,8 @@ public class Util {
 		}
 	}
 	public static void successMessage(Player player) {
-		if (ConfigHandler.sendMessageOnCreationSuccess.getValue()) {
-			StringFunctions.sendMessage(player, ConfigHandler.creationSuccessMessage.getValue(), ChatFormatting.DARK_GREEN);
+		if (ConfigHandler.sendMessageOnCreationSuccess) {
+			StringFunctions.sendMessage(player, ConfigHandler.creationSuccessMessage, ChatFormatting.DARK_GREEN);
 		}		
 	}
 }

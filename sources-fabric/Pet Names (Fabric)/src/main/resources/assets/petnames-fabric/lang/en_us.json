@@ -1,0 +1,19 @@
+{
+  "petnames-fabric.duskconfig.title": "Pet Names Config",
+  "petnames-fabric.duskconfig.DESC__useFemaleNames": "Use the list of female names when naming pets.",
+  "petnames-fabric.duskconfig._useFemaleNames": "_Use Female Names",
+  "petnames-fabric.duskconfig.DESC__useMaleNames": "Use the list of male names when naming pets.",
+  "petnames-fabric.duskconfig._useMaleNames": "_Use Male Names",
+  "petnames-fabric.duskconfig.DESC_nameWolves": "Give baby wolves a name.",
+  "petnames-fabric.duskconfig.nameWolves": "Name Wolves",
+  "petnames-fabric.duskconfig.DESC_nameCats": "Give kittens a name.",
+  "petnames-fabric.duskconfig.nameCats": "Name Cats",
+  "petnames-fabric.duskconfig.DESC_nameHorses": "Give baby horses a name.",
+  "petnames-fabric.duskconfig.nameHorses": "Name Horses",
+  "petnames-fabric.duskconfig.DESC_nameDonkeys": "Give baby donkeys a name.",
+  "petnames-fabric.duskconfig.nameDonkeys": "Name Donkeys",
+  "petnames-fabric.duskconfig.DESC_nameMules": "Give baby mules a name.",
+  "petnames-fabric.duskconfig.nameMules": "Name Mules",
+  "petnames-fabric.duskconfig.DESC_nameLlamas": "Give baby llamas a name.",
+  "petnames-fabric.duskconfig.nameLlamas": "Name Llamas"
+}

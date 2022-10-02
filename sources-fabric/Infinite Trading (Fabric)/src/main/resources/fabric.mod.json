@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "infinitetrading-fabric",
-  "version": "3.0",
+  "version": "3.1",
 
   "name": "Infinite Trading (Fabric)",
   "description": "Prevents villager and wandering trader trades from locking up, making them be always available.",
@@ -13,9 +13,10 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/infinitetrading-fabric/icon.png",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.infinitetrading.Main" ] },
+  "entrypoints": { "main": [ "com.natamus.infinitetrading.Main" ], "modmenu": [ "com.natamus.infinitetrading.config.InfiniteTradingModMenu" ] },
   "mixins": [
     "infinitetrading_fabric.mixins.json"
   ],
@@ -25,6 +26,35 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.52"
-  }
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

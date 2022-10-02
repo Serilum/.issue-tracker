@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Shulker Drops Two.
- * Minecraft version: 1.19.2, mod version: 2.3.
+ * Minecraft version: 1.19.2, mod version: 2.4.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -65,12 +65,12 @@ public class EntityEvent {
 					for (ItemEntity shellentity : shellies) {
 						ItemStack item = shellentity.getItem();
 
-						item.setCount(ConfigHandler.shulkerDropAmount.getValue());
+						item.setCount(ConfigHandler.shulkerDropAmount);
 						shellentity.setItem(item);
 					}
 				}
-				else if (ConfigHandler.alwaysDropShells.getValue()) {
-					ItemEntity newshell = new ItemEntity(world, epos.getX(), epos.getY(), epos.getZ(), new ItemStack(Items.SHULKER_SHELL, ConfigHandler.shulkerDropAmount.getValue()));
+				else if (ConfigHandler.alwaysDropShells) {
+					ItemEntity newshell = new ItemEntity(world, epos.getX(), epos.getY(), epos.getZ(), new ItemStack(Items.SHULKER_SHELL, ConfigHandler.shulkerDropAmount));
 
 					world.addFreshEntity(newshell);
 				}

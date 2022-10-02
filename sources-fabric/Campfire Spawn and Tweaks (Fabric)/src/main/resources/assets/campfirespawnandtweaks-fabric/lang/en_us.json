@@ -1,0 +1,22 @@
+{
+  "campfirespawnandtweaks-fabric.duskconfig.title": "Campfire Spawn and Tweaks Config",
+  "campfirespawnandtweaks-fabric.duskconfig.DESC_campfiresStartUnlit": "When enabled, a newly placed campfire will be unlit.",
+  "campfirespawnandtweaks-fabric.duskconfig.campfiresStartUnlit": "Campfires Start Unlit",
+  "campfirespawnandtweaks-fabric.duskconfig.DESC_sneakRightClickCampfireToUnset": "Crouching/Sneaking and right-clicking on a campfire unsets the campfire spawn point.",
+  "campfirespawnandtweaks-fabric.duskconfig.sneakRightClickCampfireToUnset": "Sneak Right Click Campfire To Unset",
+  "campfirespawnandtweaks-fabric.duskconfig.DESC_bedsOverrideCampfireSpawnOnSneakRightClick": "When enabled, sneak/crouch + right-clicking a bed will override the campfire spawn point.",
+  "campfirespawnandtweaks-fabric.duskconfig.bedsOverrideCampfireSpawnOnSneakRightClick": "Beds Override Campfire Spawn On Sneak Right Click",
+  "campfirespawnandtweaks-fabric.duskconfig.DESC_createAirPocketIfBlocksAboveCampfire": "When enabled, the mod breaks the blocks above a campfire on respawn if it would somehow be blocked.",
+  "campfirespawnandtweaks-fabric.duskconfig.createAirPocketIfBlocksAboveCampfire": "Create Air Pocket If Blocks Above Campfire",
+  "campfirespawnandtweaks-fabric.duskconfig.DESC_sendMessageOnNewCampfireSpawnSet": "When enabled, a message will be sent to the player whenever a new campfire spawn point is set.",
+  "campfirespawnandtweaks-fabric.duskconfig.sendMessageOnNewCampfireSpawnSet": "Send Message On New Campfire Spawn Set",
+  "campfirespawnandtweaks-fabric.duskconfig.DESC_sendMessageOnCampfireSpawnUnset": "When enabled, a message will be sent to the player whenever a campfire spawn point is unset.",
+  "campfirespawnandtweaks-fabric.duskconfig.sendMessageOnCampfireSpawnUnset": "Send Message On Campfire Spawn Unset",
+  "campfirespawnandtweaks-fabric.duskconfig.DESC_sendMessageOnCampfireSpawnMissing": "When enabled, a message will be sent to the player whenever a campfire spawn point is missing on respawn.",
+  "campfirespawnandtweaks-fabric.duskconfig.sendMessageOnCampfireSpawnMissing": "Send Message On Campfire Spawn Missing",
+  "campfirespawnandtweaks-fabric.duskconfig.DESC_sendMessageOnCampfireSpawnOverride": "When enabled, a message will be sent to the player whenever a campfire spawn point is overridden by the PlayerSetSpawnEvent.",
+  "campfirespawnandtweaks-fabric.duskconfig.sendMessageOnCampfireSpawnOverride": "Send Message On Campfire Spawn Override",
+  "campfirespawnandtweaks-fabric.duskconfig.DESC_fireResitanceDurationOnRespawnInMs": "The duration of fire resistance when a player respawns at a campfire. A value of 0 disables this feature, and places the player next to the campfire instead.",
+  "campfirespawnandtweaks-fabric.duskconfig.RANGE_fireResitanceDurationOnRespawnInMs": "min: 0, max: 3600000",
+  "campfirespawnandtweaks-fabric.duskconfig.fireResitanceDurationOnRespawnInMs": "Fire Resitance Duration On Respawn In Ms"
+}

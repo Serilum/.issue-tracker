@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Trample Everything.
- * Minecraft version: 1.19.2, mod version: 1.9.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,151 +16,69 @@
 
 package com.natamus.trampleeverything.config;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import com.natamus.collective_fabric.config.DuskConfig;
 
-import com.natamus.trampleeverything.util.Reference;
+public class ConfigHandler extends DuskConfig {
+	@Comment public static Comment DESC__enableTrampledBlockItems;
+	@Entry public static boolean _enableTrampledBlockItems = true;
 
-import io.github.fablabsmc.fablabs.api.fiber.v1.exception.ValueDeserializationException;
-import io.github.fablabsmc.fablabs.api.fiber.v1.schema.type.derived.ConfigTypes;
-import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.FiberSerialization;
-import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.JanksonValueSerializer;
-import io.github.fablabsmc.fablabs.api.fiber.v1.tree.ConfigTree;
-import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
+	@Comment public static Comment DESC__crouchingPreventsTrampling;
+	@Entry public static boolean _crouchingPreventsTrampling = true;
 
-public class ConfigHandler { 
-	public static PropertyMirror<Boolean> _enableTrampledBlockItems = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> _crouchingPreventsTrampling = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleSnow = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleBambooSaplings = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleCrops = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleDeadBushes = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleDoublePlants = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleFlowers = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleFungi = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleLilyPads = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleMushrooms = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleNetherRoots = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleNetherSprouts = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleNetherWart = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleSaplings = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleSeaGrass = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleSeaPickles = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleStems = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleSugarCane = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleSweetBerryBushes = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> trampleTallGrass = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	@Comment public static Comment DESC_trampleSnow;
+	@Entry public static boolean trampleSnow = false;
 
-	private static final ConfigTree CONFIG = ConfigTree.builder() 
-			.beginValue("_enableTrampledBlockItems", ConfigTypes.BOOLEAN, true)
-			.withComment("If enabled, will drop blocks from a trampled block as if a player breaks it by hand.")
-			.finishValue(_enableTrampledBlockItems::mirror)
+	@Comment public static Comment DESC_trampleBambooSaplings;
+	@Entry public static boolean trampleBambooSaplings = false;
 
-			.beginValue("_crouchingPreventsTrampling", ConfigTypes.BOOLEAN, true)
-			.withComment("If enabled, crouching/sneaking will prevent any block from being trampled.")
-			.finishValue(_crouchingPreventsTrampling::mirror)
+	@Comment public static Comment DESC_trampleCrops;
+	@Entry public static boolean trampleCrops = true;
 
-			.beginValue("trampleSnow", ConfigTypes.BOOLEAN, false)
-			.withComment("Whether snow should be trampled.")
-			.finishValue(trampleSnow::mirror)
+	@Comment public static Comment DESC_trampleDeadBushes;
+	@Entry public static boolean trampleDeadBushes = true;
 
-			.beginValue("trampleBambooSaplings", ConfigTypes.BOOLEAN, false)
-			.withComment("Whether bamboo saplings should be trampled.")
-			.finishValue(trampleBambooSaplings::mirror)
+	@Comment public static Comment DESC_trampleDoublePlants;
+	@Entry public static boolean trampleDoublePlants = true;
 
-			.beginValue("trampleCrops", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether growable crops should be trampled.")
-			.finishValue(trampleCrops::mirror)
+	@Comment public static Comment DESC_trampleFlowers;
+	@Entry public static boolean trampleFlowers = true;
 
-			.beginValue("trampleDeadBushes", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether dead bushes should be trampled")
-			.finishValue(trampleDeadBushes::mirror)
+	@Comment public static Comment DESC_trampleFungi;
+	@Entry public static boolean trampleFungi = true;
 
-			.beginValue("trampleDoublePlants", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether double plants should be trampled, for example tall flowers.")
-			.finishValue(trampleDoublePlants::mirror)
+	@Comment public static Comment DESC_trampleLilyPads;
+	@Entry public static boolean trampleLilyPads = false;
 
-			.beginValue("trampleFlowers", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether flowers should be trampled.")
-			.finishValue(trampleFlowers::mirror)
+	@Comment public static Comment DESC_trampleMushrooms;
+	@Entry public static boolean trampleMushrooms = true;
 
-			.beginValue("trampleFungi", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether nether mushrooms should be trampled.")
-			.finishValue(trampleFungi::mirror)
+	@Comment public static Comment DESC_trampleNetherRoots;
+	@Entry public static boolean trampleNetherRoots = true;
 
-			.beginValue("trampleLilyPads", ConfigTypes.BOOLEAN, false)
-			.withComment("Whether lily pads should be trampled.")
-			.finishValue(trampleLilyPads::mirror)
+	@Comment public static Comment DESC_trampleNetherSprouts;
+	@Entry public static boolean trampleNetherSprouts = true;
 
-			.beginValue("trampleMushrooms", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether mushrooms should be trampled.")
-			.finishValue(trampleMushrooms::mirror)
+	@Comment public static Comment DESC_trampleNetherWart;
+	@Entry public static boolean trampleNetherWart = true;
 
-			.beginValue("trampleNetherRoots", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether nether roots should be trampled.")
-			.finishValue(trampleNetherRoots::mirror)
+	@Comment public static Comment DESC_trampleSaplings;
+	@Entry public static boolean trampleSaplings = true;
 
-			.beginValue("trampleNetherSprouts", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether nether sprouts should be trampled.")
-			.finishValue(trampleNetherSprouts::mirror)
+	@Comment public static Comment DESC_trampleSeaGrass;
+	@Entry public static boolean trampleSeaGrass = false;
 
-			.beginValue("trampleNetherWart", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether nether wart should be trampled.")
-			.finishValue(trampleNetherWart::mirror)
+	@Comment public static Comment DESC_trampleSeaPickles;
+	@Entry public static boolean trampleSeaPickles = true;
 
-			.beginValue("trampleSaplings", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether saplings should be trampled.")
-			.finishValue(trampleSaplings::mirror)
+	@Comment public static Comment DESC_trampleStems;
+	@Entry public static boolean trampleStems = true;
 
-			.beginValue("trampleSeaGrass", ConfigTypes.BOOLEAN, false)
-			.withComment("Whether sea grass should be trampled.")
-			.finishValue(trampleSeaGrass::mirror)
+	@Comment public static Comment DESC_trampleSugarCane;
+	@Entry public static boolean trampleSugarCane = false;
 
-			.beginValue("trampleSeaPickles", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether sea pickles should be trampled.")
-			.finishValue(trampleSeaPickles::mirror)
+	@Comment public static Comment DESC_trampleSweetBerryBushes;
+	@Entry public static boolean trampleSweetBerryBushes = false;
 
-			.beginValue("trampleStems", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether stems should be trampled, such as pumpkin and melon stems.")
-			.finishValue(trampleStems::mirror)
-
-			.beginValue("trampleSugarCane", ConfigTypes.BOOLEAN, false)
-			.withComment("Whether sugar cane should be trampled.")
-			.finishValue(trampleSugarCane::mirror)
-
-			.beginValue("trampleSweetBerryBushes", ConfigTypes.BOOLEAN, false)
-			.withComment("Whether sweet berry bushes should be trampled.")
-			.finishValue(trampleSweetBerryBushes::mirror)
-
-			.beginValue("trampleTallGrass", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether tall grass should be trampled.")
-			.finishValue(trampleTallGrass::mirror)
-
-			.build();
-
-	private static void writeDefaultConfig(Path path, JanksonValueSerializer serializer) {
-		try (OutputStream s = new BufferedOutputStream(Files.newOutputStream(path, StandardOpenOption.WRITE, StandardOpenOption.CREATE_NEW))) {
-			FiberSerialization.serialize(CONFIG, s, serializer);
-		} catch (IOException ignored) {}
-
-	}
-
-	public static void setup() {
-		JanksonValueSerializer serializer = new JanksonValueSerializer(false);
-		Path p = Paths.get("config", Reference.MOD_ID + ".json");
-		writeDefaultConfig(p, serializer);
-
-		try (InputStream s = new BufferedInputStream(Files.newInputStream(p, StandardOpenOption.READ, StandardOpenOption.CREATE))) {
-			FiberSerialization.deserialize(CONFIG, s, serializer);
-		} catch (IOException | ValueDeserializationException e) {
-			System.out.println("Error loading config");
-		}
-	}
+	@Comment public static Comment DESC_trampleTallGrass;
+	@Entry public static boolean trampleTallGrass = true;
 }

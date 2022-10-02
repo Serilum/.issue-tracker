@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Fixed Anvil Repair Cost.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -37,8 +37,8 @@ public class RepairEvent {
 				return null;
 			}
 			
-			int levelcost = ConfigHandler.repairCostLevelAmount.getValue();
-			int materialcost = ConfigHandler.repairCostMaterialAmount.getValue();
+			int levelcost = ConfigHandler.repairCostLevelAmount;
+			int materialcost = ConfigHandler.repairCostMaterialAmount;
 			
 			if (levelcost >= 1 || materialcost >= 1) {
 				if (levelcost >= 1) {
@@ -55,7 +55,7 @@ public class RepairEvent {
 				
 				int currentdamage = leftstack.getDamageValue();
 				int maxdamage = leftstack.getMaxDamage();
-				int repairamount = (int)(maxdamage * ConfigHandler.percentRepairedPerAction.getValue());
+				int repairamount = (int)(maxdamage * ConfigHandler.percentRepairedPerAction);
 				
 				currentdamage -= repairamount;
 				if (currentdamage < 0) {

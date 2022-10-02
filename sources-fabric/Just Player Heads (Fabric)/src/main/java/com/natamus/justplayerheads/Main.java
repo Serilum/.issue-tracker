@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Player Heads.
- * Minecraft version: 1.19.2, mod version: 2.4.
+ * Minecraft version: 1.19.2, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -20,6 +20,7 @@ import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.collective_fabric.fabric.callbacks.CollectivePlayerEvents;
 import com.natamus.justplayerheads.cmds.CommandJph;
 import com.natamus.justplayerheads.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.justplayerheads.events.PlayerEvent;
 import com.natamus.justplayerheads.util.Reference;
 
@@ -31,7 +32,7 @@ import net.minecraft.server.level.ServerPlayer;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

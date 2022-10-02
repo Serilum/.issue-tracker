@@ -1,0 +1,11 @@
+{
+  "villagernames-fabric.duskconfig.title": "Villager Names Config",
+  "villagernames-fabric.duskconfig.DESC__useCustomNames": "Use the custom name list, editable in ./mods/villagernames/customnames.txt, seperated by a comma.",
+  "villagernames-fabric.duskconfig._useCustomNames": "_Use Custom Names",
+  "villagernames-fabric.duskconfig.DESC__useFemaleNames": "Use the list of pre-defined female names when naming villagers.",
+  "villagernames-fabric.duskconfig._useFemaleNames": "_Use Female Names",
+  "villagernames-fabric.duskconfig.DESC__useMaleNames": "Use the list of pre-defined male names when naming villagers.",
+  "villagernames-fabric.duskconfig._useMaleNames": "_Use Male Names",
+  "villagernames-fabric.duskconfig.DESC_nameModdedVillagers": "If enabled, also gives modded villagers a name. If you've found a 'villager'-entity that isn't named let me know by opening an issue so I can add it in.",
+  "villagernames-fabric.duskconfig.nameModdedVillagers": "Name Modded Villagers"
+}

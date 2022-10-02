@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Crying Ghasts.
- * Minecraft version: 1.19.2, mod version: 1.9.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -33,14 +33,14 @@ import net.minecraft.world.phys.Vec3;
 
 public class GhastEvent {
 	public static void onPlayerTick(ServerLevel world, ServerPlayer player) {
-		if (player.tickCount % ConfigHandler.ghastTearDelayTicks.getValue() != 0) {
+		if (player.tickCount % ConfigHandler.ghastTearDelayTicks != 0) {
 			return;
 		}
 		
 		BlockPos ppos = player.blockPosition();
 		ItemStack tear = new ItemStack(Items.GHAST_TEAR, 1);
 		
-		int r = ConfigHandler.maxDistanceToGhastBlocks.getValue();
+		int r = ConfigHandler.maxDistanceToGhastBlocks;
 		List<Entity> entities = world.getEntities(player, new AABB(ppos.getX()-r, ppos.getY()-r, ppos.getZ()-r, ppos.getX()+r, ppos.getY()+r, ppos.getZ()+r));
 		for (Entity entity : entities) {
 			if (entity instanceof Ghast) {

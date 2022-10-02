@@ -3,6 +3,10 @@ Hoe Tweaks
 https://curseforge.com/minecraft/mc-mods/hoe-tweaks
 
 =========
+v2.0: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v1.9: Added the onlyUntillWithOtherHandEmpty config option, which allows placing seeds while holding them in the offhand.
 Added compatibility with Advanced Netherite.
 

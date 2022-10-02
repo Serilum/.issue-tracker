@@ -1,0 +1,15 @@
+{
+  "difficultylock-fabric.duskconfig.title": "Difficulty Lock Config",
+  "difficultylock-fabric.duskconfig.DESC_forcePeaceful": "Priority 1: Sets the difficulty in any world to peaceful when enabled.",
+  "difficultylock-fabric.duskconfig.forcePeaceful": "Force Peaceful",
+  "difficultylock-fabric.duskconfig.DESC_forceEasy": "Priority 2: Sets the difficulty in any world to easy when enabled.",
+  "difficultylock-fabric.duskconfig.forceEasy": "Force Easy",
+  "difficultylock-fabric.duskconfig.DESC_forceNormal": "Priority 3: Sets the difficulty in any world to normal when enabled.",
+  "difficultylock-fabric.duskconfig.forceNormal": "Force Normal",
+  "difficultylock-fabric.duskconfig.DESC_forceHard": "Priority 4: Sets the difficulty in any world to hard when enabled.",
+  "difficultylock-fabric.duskconfig.forceHard": "Force Hard",
+  "difficultylock-fabric.duskconfig.DESC_shouldLockDifficulty": "When enabled, locks the difficulty in any world so it cannot be changed.",
+  "difficultylock-fabric.duskconfig.shouldLockDifficulty": "Should Lock Difficulty",
+  "difficultylock-fabric.duskconfig.DESC_shouldChangeDifficultyWhenAlreadyLocked": "When enabled, also sets the difficulty in worlds where it has already been locked.",
+  "difficultylock-fabric.duskconfig.shouldChangeDifficultyWhenAlreadyLocked": "Should Change Difficulty When Already Locked"
+}

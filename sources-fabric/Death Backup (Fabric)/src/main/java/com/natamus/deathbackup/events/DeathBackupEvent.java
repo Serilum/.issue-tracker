@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Death Backup.
- * Minecraft version: 1.19.2, mod version: 2.0.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -39,9 +39,9 @@ public class DeathBackupEvent {
 		String nowstring = DateFunctions.getNowInYmdhis();
 		Util.writeGearStringToFile(serverworld, playername, nowstring, gearstring);
 		
-		if (ConfigHandler.sendBackupReminderMessageToThoseWithAccessOnDeath.getValue()) {
+		if (ConfigHandler.sendBackupReminderMessageToThoseWithAccessOnDeath) {
 			if (player.hasPermissions(2)) {
-				StringFunctions.sendMessage(player, ConfigHandler.backupReminderMessage.getValue(), ChatFormatting.DARK_GRAY);
+				StringFunctions.sendMessage(player, ConfigHandler.backupReminderMessage, ChatFormatting.DARK_GRAY);
 			}
 		}
 	}

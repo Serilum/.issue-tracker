@@ -1,0 +1,7 @@
+{
+  "betterbeaconplacement-fabric.duskconfig.title": "Better Beacon Placement Config",
+  "betterbeaconplacement-fabric.duskconfig.DESC_breakBeaconBaseBlocks": "If enabled, drops all beacon base blocks when the beacon itself is broken.",
+  "betterbeaconplacement-fabric.duskconfig.breakBeaconBaseBlocks": "Break Beacon Base Blocks",
+  "betterbeaconplacement-fabric.duskconfig.DESC_dropReplacedBlockTopBeacon": "If enabled, when a mineral block replaces a normal block that block is dropped on top of the beacon.",
+  "betterbeaconplacement-fabric.duskconfig.dropReplacedBlockTopBeacon": "Drop Replaced Block Top Beacon"
+}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Villager Death Messages.
- * Minecraft version: 1.19.2, mod version: 2.7.
+ * Minecraft version: 1.19.2, mod version: 2.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -37,7 +37,7 @@ public class VillagerEvent {
 		
 		boolean goname = false;
 		if (entity instanceof Villager == false) {
-			if (ConfigHandler.mentionModdedVillagers.getValue()) {
+			if (ConfigHandler.mentionModdedVillagers) {
 				if (EntityFunctions.isModdedVillager(entity)) {
 					goname = true;
 				}
@@ -107,7 +107,7 @@ public class VillagerEvent {
 		
 		// Position	
 		String locstring = "";
-		if (ConfigHandler.showLocation.getValue()) {
+		if (ConfigHandler.showLocation) {
 			Vec3 loc = entity.position();
 			String location = "x=" + (int)loc.x + ", y=" + (int)loc.y + ", z=" + (int)loc.z;
 			

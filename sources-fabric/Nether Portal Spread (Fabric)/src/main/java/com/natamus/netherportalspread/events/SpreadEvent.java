@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nether Portal Spread.
- * Minecraft version: 1.19.2, mod version: 6.3.
+ * Minecraft version: 1.19.2, mod version: 6.4.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -49,7 +49,7 @@ public class SpreadEvent {
 		}
 		
 		int worldtick = worldticks.get(world);
-		if (worldtick % ConfigHandler.spreadDelayTicks.getValue() != 0) {
+		if (worldtick % ConfigHandler.spreadDelayTicks != 0) {
 			worldticks.put(world, worldtick+1);
 			return;
 		}

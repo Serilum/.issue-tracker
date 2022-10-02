@@ -3,6 +3,9 @@ Crying Portals
 https://curseforge.com/minecraft/mc-mods/crying-portals
 
 =========
+v1.8: (Fabric) Added Mod Menu support with project links and logo.
+
+=========
 v1.7: Fixed mixin not applying correctly in some cases.
 Updated mod description.
 

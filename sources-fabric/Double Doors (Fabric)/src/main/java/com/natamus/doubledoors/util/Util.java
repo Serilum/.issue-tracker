@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Double Doors.
- * Minecraft version: 1.19.2, mod version: 3.7.
+ * Minecraft version: 1.19.2, mod version: 3.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -77,7 +77,7 @@ public class Util {
 			Block oblock = ostate.getBlock();
 			
 			if (block instanceof DoorBlock) {
-				if (!ConfigHandler.enableDoors.getValue()) {
+				if (!ConfigHandler.enableDoors) {
 					continue;
 				}
 				
@@ -92,7 +92,7 @@ public class Util {
 				}
 			}
 			else if (block instanceof TrapDoorBlock) {
-				if (!ConfigHandler.enableTrapdoors.getValue()) {
+				if (!ConfigHandler.enableTrapdoors) {
 					continue;
 				}
 				
@@ -110,7 +110,7 @@ public class Util {
 				world.setBlock(toopen, ostate.setValue(BlockStateProperties.OPEN, isopen), 10);
 			}
 			else if (block instanceof FenceGateBlock) {
-				if (!ConfigHandler.enableFenceGates.getValue()) {
+				if (!ConfigHandler.enableFenceGates) {
 					continue;
 				}
 				
@@ -129,7 +129,7 @@ public class Util {
 				continue;
 			}
 			
-			if (!BlockPosFunctions.withinDistance(originalpos, bpa, ConfigHandler.recursiveOpeningMaxBlocksDistance.getValue())) {
+			if (!BlockPosFunctions.withinDistance(originalpos, bpa, ConfigHandler.recursiveOpeningMaxBlocksDistance)) {
 				continue;
 			}
 			
@@ -139,7 +139,7 @@ public class Util {
 				if (oblock.getName().equals(block.getName())) {
 					postoopen.add(bpa.immutable());
 					
-					if (ConfigHandler.enableRecursiveOpening.getValue()) {
+					if (ConfigHandler.enableRecursiveOpening) {
 						recursivelyOpenDoors(postoopen, ignoreoopen, world, originalpos, bpa, block, yoffset);
 					}
 					continue;

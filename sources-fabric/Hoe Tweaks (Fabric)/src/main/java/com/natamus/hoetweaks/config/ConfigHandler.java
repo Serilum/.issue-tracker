@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hoe Tweaks.
- * Minecraft version: 1.19.2, mod version: 1.9.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,91 +16,40 @@
 
 package com.natamus.hoetweaks.config;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import com.natamus.collective_fabric.config.DuskConfig;
 
-import com.natamus.hoetweaks.util.Reference;
+public class ConfigHandler extends DuskConfig {
+	@Comment public static Comment DESC_onlyUntillWithOtherHandEmpty;
+	@Entry public static boolean onlyUntillWithOtherHandEmpty = true;
 
-import io.github.fablabsmc.fablabs.api.fiber.v1.exception.ValueDeserializationException;
-import io.github.fablabsmc.fablabs.api.fiber.v1.schema.type.derived.ConfigTypes;
-import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.FiberSerialization;
-import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.JanksonValueSerializer;
-import io.github.fablabsmc.fablabs.api.fiber.v1.tree.ConfigTree;
-import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
+	@Comment public static Comment DESC_cropBlockBreakSpeedModifier;
+	@Entry public static double cropBlockBreakSpeedModifier = 8.0;
+	@Comment public static Comment RANGE_cropBlockBreakSpeedModifier;
 
-public class ConfigHandler {
-	public static PropertyMirror<Boolean> onlyUntillWithOtherHandEmpty = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Double> cropBlockBreakSpeedModifier = PropertyMirror.create(ConfigTypes.DOUBLE);
-	public static PropertyMirror<Boolean> mustCrouchToHaveBiggerHoeRange = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Integer> woodenTierHoeRange = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Integer> stoneTierHoeRange = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Integer> goldTierHoeRange = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Integer> ironTierHoeRange = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Integer> diamondTierHoeRange = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Integer> netheriteTierHoeRange = PropertyMirror.create(ConfigTypes.INTEGER);
+	@Comment public static Comment DESC_mustCrouchToHaveBiggerHoeRange;
+	@Entry public static boolean mustCrouchToHaveBiggerHoeRange = true;
 
-	private static final ConfigTree CONFIG = ConfigTree.builder()
-			.beginValue("onlyUntillWithOtherHandEmpty", ConfigTypes.BOOLEAN, true)
-			.withComment("When enabled, only allows the un-till function to work when the other hand is empty. Allows placing seeds with hoe in other hand.")
-			.finishValue(onlyUntillWithOtherHandEmpty::mirror)
+	@Comment public static Comment DESC_woodenTierHoeRange;
+	@Entry public static int woodenTierHoeRange = 0;
+	@Comment public static Comment RANGE_woodenTierHoeRange;
 
-			.beginValue("cropBlockBreakSpeedModifier", ConfigTypes.DOUBLE, 8.0)
-			.withComment("How much quicker a cropblock (pumpkin/melon) is broken than by default.")
-			.finishValue(cropBlockBreakSpeedModifier::mirror)
+	@Comment public static Comment DESC_stoneTierHoeRange;
+	@Entry public static int stoneTierHoeRange = 1;
+	@Comment public static Comment RANGE_stoneTierHoeRange;
 
-			.beginValue("mustCrouchToHaveBiggerHoeRange", ConfigTypes.BOOLEAN, true)
-			.withComment("Whether the bigger hoe range should only be used if the player is crouching when right-clicking the center block.")
-			.finishValue(mustCrouchToHaveBiggerHoeRange::mirror)
+	@Comment public static Comment DESC_goldTierHoeRange;
+	@Entry public static int goldTierHoeRange = 2;
+	@Comment public static Comment RANGE_goldTierHoeRange;
 
-			.beginValue("woodenTierHoeRange", ConfigTypes.INTEGER, 0)
-			.withComment("The wooden hoe till range (default while crouching). 0 = 1x1")
-			.finishValue(woodenTierHoeRange::mirror)
+	@Comment public static Comment DESC_ironTierHoeRange;
+	@Entry public static int ironTierHoeRange = 2;
+	@Comment public static Comment RANGE_ironTierHoeRange;
 
-			.beginValue("stoneTierHoeRange", ConfigTypes.INTEGER, 1)
-			.withComment("The wooden hoe till range (default while crouching). 1 = 3x3")
-			.finishValue(stoneTierHoeRange::mirror)
+	@Comment public static Comment DESC_diamondTierHoeRange;
+	@Entry public static int diamondTierHoeRange = 3;
+	@Comment public static Comment RANGE_diamondTierHoeRange;
 
-			.beginValue("goldTierHoeRange", ConfigTypes.INTEGER, 2)
-			.withComment("The wooden hoe till range (default while crouching). 2 = 5x5")
-			.finishValue(goldTierHoeRange::mirror)
-
-			.beginValue("ironTierHoeRange", ConfigTypes.INTEGER, 2)
-			.withComment("The wooden hoe till range (default while crouching). 2 = 5x5")
-			.finishValue(ironTierHoeRange::mirror)
-
-			.beginValue("diamondTierHoeRange", ConfigTypes.INTEGER, 3)
-			.withComment("The wooden hoe till range (default while crouching). 3 = 7x7")
-			.finishValue(diamondTierHoeRange::mirror)
-
-			.beginValue("netheriteTierHoeRange", ConfigTypes.INTEGER, 4)
-			.withComment("The wooden hoe till range (default while crouching). 4 = 9x9")
-			.finishValue(netheriteTierHoeRange::mirror)
-
-			.build();
-
-	private static void writeDefaultConfig(Path path, JanksonValueSerializer serializer) {
-		try (OutputStream s = new BufferedOutputStream(Files.newOutputStream(path, StandardOpenOption.WRITE, StandardOpenOption.CREATE_NEW))) {
-			FiberSerialization.serialize(CONFIG, s, serializer);
-		} catch (IOException ignored) {}
-
-	}
-
-	public static void setup() {
-		JanksonValueSerializer serializer = new JanksonValueSerializer(false);
-		Path p = Paths.get("config", Reference.MOD_ID + ".json");
-		writeDefaultConfig(p, serializer);
-
-		try (InputStream s = new BufferedInputStream(Files.newInputStream(p, StandardOpenOption.READ, StandardOpenOption.CREATE))) {
-			FiberSerialization.deserialize(CONFIG, s, serializer);
-		} catch (IOException | ValueDeserializationException e) {
-			System.out.println("Error loading config");
-		}
-	}
+	@Comment public static Comment DESC_netheriteTierHoeRange;
+	@Entry public static int netheriteTierHoeRange = 4;
+	@Comment public static Comment RANGE_netheriteTierHoeRange;
 }

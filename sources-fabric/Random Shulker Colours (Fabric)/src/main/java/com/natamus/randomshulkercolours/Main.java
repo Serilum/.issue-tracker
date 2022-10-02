@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Shulker Colours.
- * Minecraft version: 1.19.2, mod version: 1.9.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,6 +18,7 @@ package com.natamus.randomshulkercolours;
 
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.randomshulkercolours.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.randomshulkercolours.events.ShulkerEvent;
 import com.natamus.randomshulkercolours.util.Reference;
 import com.natamus.randomshulkercolours.util.Util;
@@ -31,7 +32,7 @@ public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
      	Util.initColours();
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

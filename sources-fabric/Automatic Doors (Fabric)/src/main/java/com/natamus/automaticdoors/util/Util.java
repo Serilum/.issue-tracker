@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Automatic Doors.
- * Minecraft version: 1.19.2, mod version: 2.8.
+ * Minecraft version: 1.19.2, mod version: 2.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -32,7 +32,7 @@ public class Util {
 	
 	public static Boolean isDoor(Block block) {
 		if (block instanceof DoorBlock) {
-			if (!ConfigHandler.shouldOpenIronDoors.getValue()) {
+			if (!ConfigHandler.shouldOpenIronDoors) {
 				String name = block.toString().toLowerCase();
 				return !name.contains("iron");
 			}
@@ -52,7 +52,7 @@ public class Util {
 		
 		runnables.add(pos);
 		new Thread(() -> {
-			try  { Thread.sleep( ConfigHandler.doorOpenTime.getValue() ); }
+			try  { Thread.sleep( ConfigHandler.doorOpenTime ); }
 			catch (InterruptedException ignored)  {}
 
 			if (!DoorEvent.toclosedoors.get(world).contains(pos) && !DoorEvent.newclosedoors.get(world).contains(pos)) {

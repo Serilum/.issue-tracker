@@ -1,0 +1,14 @@
+{
+  "doubledoors-fabric.duskconfig.title": "Double Doors Config",
+  "doubledoors-fabric.duskconfig.DESC_enableRecursiveOpening": "Whether the recursive opening feature should be enabled. This allows you to for example build a giant door with trapdoors which will all open at the same time, as long as they are connected. The 'recursiveOpeningMaxBlocksDistance' config option determines how far the function should search.",
+  "doubledoors-fabric.duskconfig.enableRecursiveOpening": "Enable Recursive Opening",
+  "doubledoors-fabric.duskconfig.DESC_recursiveOpeningMaxBlocksDistance": "How many blocks the recursive function should search when 'enableRecursiveOpening' is enabled.",
+  "doubledoors-fabric.duskconfig.RANGE_recursiveOpeningMaxBlocksDistance": "min: 1, max: 64",
+  "doubledoors-fabric.duskconfig.recursiveOpeningMaxBlocksDistance": "Recursive Opening Max Blocks Distance",
+  "doubledoors-fabric.duskconfig.DESC_enableDoors": "When enables, the mod works with double doors.",
+  "doubledoors-fabric.duskconfig.enableDoors": "Enable Doors",
+  "doubledoors-fabric.duskconfig.DESC_enableFenceGates": "When enables, the mod works with double fence gates.",
+  "doubledoors-fabric.duskconfig.enableFenceGates": "Enable Fence Gates",
+  "doubledoors-fabric.duskconfig.DESC_enableTrapdoors": "When enables, the mod works with double trapdoors.",
+  "doubledoors-fabric.duskconfig.enableTrapdoors": "Enable Trapdoors"
+}

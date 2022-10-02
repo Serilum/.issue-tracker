@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.19.2, mod version: 5.7.
+ * Minecraft version: 1.19.2, mod version: 5.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -125,7 +125,7 @@ public class Util {
 			while (it.hasNext()) {
 				BlockPos npos = it.next();
 				Block nblock = world.getBlockState(npos).getBlock();
-				if (CompareBlockFunctions.isTreeLeaf(nblock, ConfigHandler.enableNetherTrees.getValue()) || isGiantMushroomLeafBlock(nblock)) {
+				if (CompareBlockFunctions.isTreeLeaf(nblock, ConfigHandler.enableNetherTrees) || isGiantMushroomLeafBlock(nblock)) {
 					leafcount-=1;
 					if (npos.getY() > highesty) {
 						highesty = npos.getY();
@@ -147,7 +147,7 @@ public class Util {
 	
 	public static List<BlockPos> getAllLogsToBreak(Level world, BlockPos pos, int logcount, Block logtype) {
 		CopyOnWriteArrayList<BlockPos> bottomlogs = new CopyOnWriteArrayList<BlockPos>();
-		if (ConfigHandler.replaceSaplingOnTreeHarvest.getValue()) {
+		if (ConfigHandler.replaceSaplingOnTreeHarvest) {
 			Block blockbelow = world.getBlockState(pos.below()).getBlock();
 			if (CompareBlockFunctions.isDirtBlock(blockbelow) || blockbelow instanceof MyceliumBlock) {
 				Iterator<BlockPos> it = BlockPos.betweenClosedStream(pos.getX()-1, pos.getY(), pos.getZ()-1, pos.getX()+1, pos.getY(), pos.getZ()+1).iterator();
@@ -161,11 +161,11 @@ public class Util {
 			}
 		}
 		
-		if (ConfigHandler.replaceSaplingOnTreeHarvest.getValue()) {
-			if (ConfigHandler.instantBreakLeavesAround.getValue()) {
+		if (ConfigHandler.replaceSaplingOnTreeHarvest) {
+			if (ConfigHandler.instantBreakLeavesAround) {
 				replaceSapling(world, pos, bottomlogs, 1, null);
 			}
-			else if (ConfigHandler.enableFastLeafDecay.getValue()){
+			else if (ConfigHandler.enableFastLeafDecay){
 				lowerlogs.add(new Pair<BlockPos, CopyOnWriteArrayList<BlockPos>>(pos.immutable(), bottomlogs));
 			}
 		}
@@ -191,7 +191,7 @@ public class Util {
 						continue;
 					}
 				}
-				if (CompareItemFunctions.isSapling(eisa) || (ConfigHandler.replaceMushroomOnMushroomHarvest.getValue() && Block.byItem(eisaitem) instanceof MushroomBlock)) {
+				if (CompareItemFunctions.isSapling(eisa) || (ConfigHandler.replaceMushroomOnMushroomHarvest && Block.byItem(eisaitem) instanceof MushroomBlock)) {
 					if (sapling == null) {
 						sapling = eisa.copy();
 						saplingitem = eisaitem;
@@ -259,7 +259,7 @@ public class Util {
 				checkaround.add(nalogpos);
 				logstobreak.add(nalogpos);
 
-				if (ConfigHandler.instantBreakLeavesAround.getValue()) {
+				if (ConfigHandler.instantBreakLeavesAround) {
 					Pair<Integer, Integer> hv = getHorizontalAndVerticalValue(world, pos, logtype, logcount);
 					int h = hv.getFirst();
 					int v = hv.getSecond();
@@ -268,7 +268,7 @@ public class Util {
 					while (aroundleaves.hasNext()) {
 						BlockPos naleafpos = aroundleaves.next();
 						Block leafblock = world.getBlockState(naleafpos).getBlock();
-						if (CompareBlockFunctions.isTreeLeaf(leafblock, ConfigHandler.enableNetherTrees.getValue()) || isGiantMushroomLeafBlock(leafblock)) {
+						if (CompareBlockFunctions.isTreeLeaf(leafblock, ConfigHandler.enableNetherTrees) || isGiantMushroomLeafBlock(leafblock)) {
 							world.destroyBlock(naleafpos, true);
 						}
 					}
@@ -334,7 +334,7 @@ public class Util {
 	}
 
 	public static boolean isGiantMushroomStemBlock(Block block) {
-		if (!ConfigHandler.enableHugeMushrooms.getValue()) {
+		if (!ConfigHandler.enableHugeMushrooms) {
 			return false;
 		}
 		MaterialColor materialcolour = block.defaultMaterialColor();
@@ -342,7 +342,7 @@ public class Util {
 	}
 
 	public static boolean isGiantMushroomLeafBlock(Block block) {
-		if (!ConfigHandler.enableHugeMushrooms.getValue()) {
+		if (!ConfigHandler.enableHugeMushrooms) {
 			return false;
 		}
 		MaterialColor materialcolour = block.defaultMaterialColor();

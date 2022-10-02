@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Edibles.
- * Minecraft version: 1.19.2, mod version: 2.9.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -29,7 +29,7 @@ public class Util {
 			return true;
 		}
 		
-		int mscooldown = ConfigHandler._cooldownInMsBetweenUses.getValue();
+		int mscooldown = ConfigHandler._cooldownInMsBetweenUses;
 		if (mscooldown == 0) {
 			return true;
 		}

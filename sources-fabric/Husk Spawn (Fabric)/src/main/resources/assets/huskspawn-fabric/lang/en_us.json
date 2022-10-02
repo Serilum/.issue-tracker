@@ -1,0 +1,6 @@
+{
+  "huskspawn-fabric.duskconfig.title": "Husk Spawn Config",
+  "huskspawn-fabric.duskconfig.DESC_chanceZombieIsHusk": "The chance a zombie that has spawned is of the husk variant.",
+  "huskspawn-fabric.duskconfig.RANGE_chanceZombieIsHusk": "min: 0, max: 1.0",
+  "huskspawn-fabric.duskconfig.chanceZombieIsHusk": "Chance Zombie Is Husk"
+}

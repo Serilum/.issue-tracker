@@ -3,6 +3,10 @@ Transcending Trident
 https://www.curseforge.com/minecraft/mc-mods/transcending-trident
 
 =========
+v2.9: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v2.8: (Forge) Fixed the mod not working correctly due to a mixin not being applied outside the dev environment.
 
 =========

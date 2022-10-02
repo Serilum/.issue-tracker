@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Welcome Message.
- * Minecraft version: 1.19.2, mod version: 1.7.
+ * Minecraft version: 1.19.2, mod version: 1.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -28,44 +28,44 @@ public class WorldJoinEvent {
 			return;
 		}
 
-		if (ConfigHandler.onlyRunOnDedicatedServers.getValue()) {
+		if (ConfigHandler.onlyRunOnDedicatedServers) {
 			if (!world.getServer().isDedicatedServer()) {
 				return;
 			}
 		}
 		
-		boolean emptyline = ConfigHandler.sendEmptyLineBeforeFirstMessage.getValue();
+		boolean emptyline = ConfigHandler.sendEmptyLineBeforeFirstMessage;
 		
-		if (!ConfigHandler.messageOneText.getValue().isEmpty()) {
-			ChatFormatting oneColour = ChatFormatting.getById(ConfigHandler.messageOneColourIndex.getValue());
+		if (!ConfigHandler.messageOneText.isEmpty()) {
+			ChatFormatting oneColour = ChatFormatting.getById(ConfigHandler.messageOneColourIndex);
 			if (oneColour == null) {
-				System.out.println("[Welcome Message Error] Unable to find text formatting colour for message one with '" + ConfigHandler.messageOneColourIndex.getValue() + "'.");
+				System.out.println("[Welcome Message Error] Unable to find text formatting colour for message one with '" + ConfigHandler.messageOneColourIndex + "'.");
 				return;
 			}
 			
-			StringFunctions.sendMessage(player, ConfigHandler.messageOneText.getValue(), oneColour, emptyline, ConfigHandler.messageOneOptionalURL.getValue().trim());
+			StringFunctions.sendMessage(player, ConfigHandler.messageOneText, oneColour, emptyline, ConfigHandler.messageOneOptionalURL.trim());
 			emptyline = false;
 		}
 		
-		if (!ConfigHandler.messageTwoText.getValue().isEmpty()) {
-			ChatFormatting twoColour = ChatFormatting.getById(ConfigHandler.messageTwoColourIndex.getValue());
+		if (!ConfigHandler.messageTwoText.isEmpty()) {
+			ChatFormatting twoColour = ChatFormatting.getById(ConfigHandler.messageTwoColourIndex);
 			if (twoColour == null) {
-				System.out.println("[Welcome Message Error] Unable to find text formatting colour for message two with '" + ConfigHandler.messageTwoColourIndex.getValue() + "'.");
+				System.out.println("[Welcome Message Error] Unable to find text formatting colour for message two with '" + ConfigHandler.messageTwoColourIndex + "'.");
 				return;
 			}
 			
-			StringFunctions.sendMessage(player, ConfigHandler.messageTwoText.getValue(), twoColour, emptyline, ConfigHandler.messageTwoOptionalURL.getValue().trim());
+			StringFunctions.sendMessage(player, ConfigHandler.messageTwoText, twoColour, emptyline, ConfigHandler.messageTwoOptionalURL.trim());
 			emptyline = false;
 		}
 		
-		if (!ConfigHandler.messageThreeText.getValue().isEmpty()) {
-			ChatFormatting threeColour = ChatFormatting.getById(ConfigHandler.messageThreeColourIndex.getValue());
+		if (!ConfigHandler.messageThreeText.isEmpty()) {
+			ChatFormatting threeColour = ChatFormatting.getById(ConfigHandler.messageThreeColourIndex);
 			if (threeColour == null) {
-				System.out.println("[Welcome Message Error] Unable to find text formatting colour for message three with '" + ConfigHandler.messageThreeColourIndex.getValue() + "'.");
+				System.out.println("[Welcome Message Error] Unable to find text formatting colour for message three with '" + ConfigHandler.messageThreeColourIndex + "'.");
 				return;
 			}
 			
-			StringFunctions.sendMessage(player, ConfigHandler.messageThreeText.getValue(), threeColour, emptyline, ConfigHandler.messageThreeOptionalURL.getValue().trim());
+			StringFunctions.sendMessage(player, ConfigHandler.messageThreeText, threeColour, emptyline, ConfigHandler.messageThreeOptionalURL.trim());
 		}
 	}
 }

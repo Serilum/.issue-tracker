@@ -1,0 +1,11 @@
+{
+  "alternativeworldsavelocation-fabric.duskconfig.title": "Alternative World Save Location Config",
+  "alternativeworldsavelocation-fabric.duskconfig.DESC_changeDefaultWorldSaveLocation": "Disabled by default, to prevent unwanted modpack behaviour. When enabled, changes the world location to 'defaultMinecraftWorldSaveLocation'",
+  "alternativeworldsavelocation-fabric.duskconfig.changeDefaultWorldSaveLocation": "Change Default World Save Location",
+  "alternativeworldsavelocation-fabric.duskconfig.DESC_defaultMinecraftWorldSaveLocation": "Use either \\\\ or / as a path separator. The location of the folder containing the world saves.",
+  "alternativeworldsavelocation-fabric.duskconfig.defaultMinecraftWorldSaveLocation": "Default Minecraft World Save Location",
+  "alternativeworldsavelocation-fabric.duskconfig.DESC_changeDefaultWorldBackupLocation": "Disabled by default. Enable this to set a specific world backup folder. If disabled, this will be set to 'defaultMinecraftWorldSaveLocation'/_Backup.",
+  "alternativeworldsavelocation-fabric.duskconfig.changeDefaultWorldBackupLocation": "Change Default World Backup Location",
+  "alternativeworldsavelocation-fabric.duskconfig.DESC_defaultMinecraftWorldBackupLocation": "Use either \\\\ or / as a path separator. The world backup folder if both 'changeDefaultWorldSaveLocation' and 'changeDefaultWorldBackupLocation' are enabled.",
+  "alternativeworldsavelocation-fabric.duskconfig.defaultMinecraftWorldBackupLocation": "Default Minecraft World Backup Location"
+}

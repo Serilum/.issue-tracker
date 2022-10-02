@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.19.2, mod version: 5.7.
+ * Minecraft version: 1.19.2, mod version: 5.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -56,7 +56,7 @@ public class TreeEvent {
 			BlockPos lasttr = null;
 			int size = leaves.size();
 			if (size > 0) {
-				for (int i = 0; i < ConfigHandler.amountOfLeavesBrokenPerTick.getValue(); i++) {
+				for (int i = 0; i < ConfigHandler.amountOfLeavesBrokenPerTick; i++) {
 					if (leaves.isEmpty()) {
 						break;
 					}
@@ -73,7 +73,7 @@ public class TreeEvent {
 			if (leaves.size() == 0) {
 				processleaves.get(world).remove(leaves);
 				if (lasttr != null) {
-					if (ConfigHandler.replaceSaplingOnTreeHarvest.getValue()) {
+					if (ConfigHandler.replaceSaplingOnTreeHarvest) {
 						if (Util.lowerlogs.size() > 0) {
 							BlockPos lowerlasttrpos = new BlockPos(lasttr.getX(), 1, lasttr.getZ());
 							for (Pair<BlockPos, CopyOnWriteArrayList<BlockPos>> pair : Util.lowerlogs) {
@@ -101,7 +101,7 @@ public class TreeEvent {
 			return true;
 		}
 
-		if (ConfigHandler.treeHarvestWithoutSneak.getValue()) {
+		if (ConfigHandler.treeHarvestWithoutSneak) {
 			if (player.isShiftKeyDown()) {
 				return true;
 			}
@@ -114,7 +114,7 @@ public class TreeEvent {
 		
 		ItemStack hand = player.getItemInHand(InteractionHand.MAIN_HAND);
 		Item handitem = hand.getItem();
-		if (ConfigHandler.mustHoldAxeForTreeHarvest.getValue()) {
+		if (ConfigHandler.mustHoldAxeForTreeHarvest) {
 			if (!ToolFunctions.isAxe(hand)) {
 				return true;
 			}
@@ -124,7 +124,7 @@ public class TreeEvent {
 			}
 		}
 		
-		if (ConfigHandler.automaticallyFindBottomBlock.getValue()) {
+		if (ConfigHandler.automaticallyFindBottomBlock) {
 			BlockPos temppos = bpos.immutable();
 			while (world.getBlockState(temppos.below()).getBlock().equals(block)) {
 				temppos = temppos.below().immutable();
@@ -148,7 +148,7 @@ public class TreeEvent {
 			return true;
 		}
 		
-		int durabilitylosecount = (int)Math.ceil(1.0 / ConfigHandler.loseDurabilityModifier.getValue());
+		int durabilitylosecount = (int)Math.ceil(1.0 / ConfigHandler.loseDurabilityModifier);
 		int durabilitystartcount = -1;
 
 		ServerPlayer serverPlayer = (ServerPlayer)player;
@@ -167,7 +167,7 @@ public class TreeEvent {
 			//ForgeEventFactory.onEntityDestroyBlock(player, logpos, logstate);
 
 			if (!player.isCreative()) {
-				if (ConfigHandler.loseDurabilityPerHarvestedLog.getValue()) {
+				if (ConfigHandler.loseDurabilityPerHarvestedLog) {
 					if (durabilitystartcount == -1) {
 						durabilitystartcount = durabilitylosecount;
 						ItemFunctions.itemHurtBreakAndEvent(hand, serverPlayer, InteractionHand.MAIN_HAND, 1);
@@ -181,8 +181,8 @@ public class TreeEvent {
 						}
 					}
 				}
-				if (ConfigHandler.increaseExhaustionPerHarvestedLog.getValue()) {
-					player.causeFoodExhaustion(0.025F * ConfigHandler.increaseExhaustionModifier.getValue().floatValue());
+				if (ConfigHandler.increaseExhaustionPerHarvestedLog) {
+					player.causeFoodExhaustion(0.025F * (float)ConfigHandler.increaseExhaustionModifier);
 				}
 			}
 		}
@@ -191,7 +191,7 @@ public class TreeEvent {
 			return true;
 		}
 		
-		if (ConfigHandler.enableFastLeafDecay.getValue() && !ConfigHandler.instantBreakLeavesAround.getValue()) {
+		if (ConfigHandler.enableFastLeafDecay && !ConfigHandler.instantBreakLeavesAround) {
 			List<BlockPos> logs = new ArrayList<BlockPos>();
 			List<BlockPos> leaves = new ArrayList<BlockPos>();
 
@@ -212,11 +212,11 @@ public class TreeEvent {
 			Block leafblock = world.getBlockState(highestlog.above()).getBlock();
 			for (BlockPos next : BlockPos.betweenClosed(bpos.getX() - h, bpos.getY(), bpos.getZ() - h, bpos.getX() + h, Util.highestleaf.get(bpos), bpos.getZ() + h)) {
 				Block nextblock = world.getBlockState(next).getBlock();
-				if (!leafblock.equals(nextblock) && !(ConfigHandler.enableNetherTrees.getValue() && nextblock.equals(Blocks.SHROOMLIGHT))) {
+				if (!leafblock.equals(nextblock) && !(ConfigHandler.enableNetherTrees && nextblock.equals(Blocks.SHROOMLIGHT))) {
 					continue;
 				}
 
-				if (CompareBlockFunctions.isTreeLeaf(nextblock, ConfigHandler.enableNetherTrees.getValue()) || Util.isGiantMushroomLeafBlock(nextblock)) {
+				if (CompareBlockFunctions.isTreeLeaf(nextblock, ConfigHandler.enableNetherTrees) || Util.isGiantMushroomLeafBlock(nextblock)) {
 					boolean logclose = false;
 					for (BlockPos log : logs) {
 						double distance = log.distSqr(next);
@@ -261,7 +261,7 @@ public class TreeEvent {
 			processleaves.get(world).add(leaves);
 			Util.highestleaf.remove(bpos);
 
-			if (ConfigHandler.increaseHarvestingTimePerLog.getValue()) {
+			if (ConfigHandler.increaseHarvestingTimePerLog) {
 				Pair<Level, BlockPos> keypair = new Pair<Level, BlockPos>(world, bpos);
 				harvestSpeedCache.remove(keypair);
 			}
@@ -271,7 +271,7 @@ public class TreeEvent {
 	}
 
 	public static float onHarvestBreakSpeed(Level world, Player player, float digSpeed, BlockState state) {
-		if (!ConfigHandler.increaseHarvestingTimePerLog.getValue()) {
+		if (!ConfigHandler.increaseHarvestingTimePerLog) {
 			return digSpeed;
 		}
 
@@ -280,7 +280,7 @@ public class TreeEvent {
 			return digSpeed;
 		}
 
-		if (ConfigHandler.treeHarvestWithoutSneak.getValue()) {
+		if (ConfigHandler.treeHarvestWithoutSneak) {
 			if (player.isShiftKeyDown()) {
 				return digSpeed;
 			}
@@ -293,7 +293,7 @@ public class TreeEvent {
 
 		ItemStack hand = player.getItemInHand(InteractionHand.MAIN_HAND);
 		Item handitem = hand.getItem();
-		if (ConfigHandler.mustHoldAxeForTreeHarvest.getValue()) {
+		if (ConfigHandler.mustHoldAxeForTreeHarvest) {
 			if (!ToolFunctions.isAxe(hand)) {
 				return digSpeed;
 			}
@@ -343,6 +343,6 @@ public class TreeEvent {
 			harvestSpeedCache.put(keypair, new Pair<Date, Integer>(now, logcount));
 		}
 
-		return digSpeed/(1+(logcount * ConfigHandler.increasedHarvestingTimePerLogModifier.getValue().floatValue()));
+		return digSpeed/(1+(logcount * (float)ConfigHandler.increasedHarvestingTimePerLogModifier));
 	}
 }

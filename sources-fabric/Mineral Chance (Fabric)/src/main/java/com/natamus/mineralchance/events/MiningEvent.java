@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Mineral Chance.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -41,7 +41,7 @@ public class MiningEvent {
 			return;
 		}
 		
-		if (ConfigHandler.ignoreFakePlayers.getValue()) {
+		if (ConfigHandler.ignoreFakePlayers) {
 			if (player instanceof FakePlayer) {
 				return;
 			}
@@ -58,25 +58,25 @@ public class MiningEvent {
 		
 		Item randommineral;
 		if (WorldFunctions.isOverworld(world)) {
-			if (!ConfigHandler.enableOverworldMinerals.getValue()) {
+			if (!ConfigHandler.enableOverworldMinerals) {
 				return;
 			}
 			if (CompareBlockFunctions.isNetherStoneBlock(block)) {
 				return;
 			}
-			if (GlobalVariables.random.nextDouble() > ConfigHandler.extraMineralChanceOnOverworldStoneBreak.getValue()) {
+			if (GlobalVariables.random.nextDouble() > ConfigHandler.extraMineralChanceOnOverworldStoneBreak) {
 				return;
 			}
 			randommineral = Util.getRandomOverworldMineral();
 		}
 		else if (WorldFunctions.isNether(world)) {
-			if (!ConfigHandler.enableNetherMinerals.getValue()) {
+			if (!ConfigHandler.enableNetherMinerals) {
 				return;
 			}
 			if (!CompareBlockFunctions.isNetherStoneBlock(block)) {
 				return;
 			}
-			if (GlobalVariables.random.nextDouble() > ConfigHandler.extraMineralChanceOnNetherStoneBreak.getValue()) {
+			if (GlobalVariables.random.nextDouble() > ConfigHandler.extraMineralChanceOnNetherStoneBreak) {
 				return;
 			}
 			randommineral = Util.getRandomNetherMineral();
@@ -88,8 +88,8 @@ public class MiningEvent {
 		ItemEntity mineralentity = new ItemEntity(world, pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, new ItemStack(randommineral, 1));
 		world.addFreshEntity(mineralentity);
 		
-		if (ConfigHandler.sendMessageOnMineralFind.getValue()) {
-			StringFunctions.sendMessage(player, ConfigHandler.foundMineralMessage.getValue(), ChatFormatting.DARK_GREEN);
+		if (ConfigHandler.sendMessageOnMineralFind) {
+			StringFunctions.sendMessage(player, ConfigHandler.foundMineralMessage, ChatFormatting.DARK_GREEN);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Zombie Horse Spawn.
- * Minecraft version: 1.19.2, mod version: 3.5.
+ * Minecraft version: 1.19.2, mod version: 3.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -53,7 +53,7 @@ public class ZombieHorseEvent {
 		}
 		tickdelay_per_world.put(world, 1);
 		
-		if (!ConfigHandler.shouldBurnZombieHorsesInDaylight.getValue()) {
+		if (!ConfigHandler.shouldBurnZombieHorsesInDaylight) {
 			return;
 		}
 		

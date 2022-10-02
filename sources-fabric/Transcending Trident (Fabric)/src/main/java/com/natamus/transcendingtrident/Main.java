@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Transcending Trident.
- * Minecraft version: 1.19.2, mod version: 2.7.
+ * Minecraft version: 1.19.2, mod version: 2.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,6 +18,7 @@ package com.natamus.transcendingtrident;
 
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.transcendingtrident.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.transcendingtrident.events.TridentEvent;
 import com.natamus.transcendingtrident.util.Reference;
 
@@ -27,7 +28,7 @@ import net.fabricmc.fabric.api.event.player.UseItemCallback;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

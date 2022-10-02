@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Difficulty Lock.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 1.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -29,33 +29,33 @@ public class DifficultyLockEvent {
 		
 		LevelData worldinfo = world.getLevelData();
 		boolean islocked = worldinfo.isDifficultyLocked();
-		if (islocked && !ConfigHandler.shouldChangeDifficultyWhenAlreadyLocked.getValue()) {
+		if (islocked && !ConfigHandler.shouldChangeDifficultyWhenAlreadyLocked) {
 			return;
 		}
 		
 		Difficulty currentdifficulty = worldinfo.getDifficulty();
-		if (ConfigHandler.forcePeaceful.getValue()) {
+		if (ConfigHandler.forcePeaceful) {
 			if (!currentdifficulty.equals(Difficulty.PEACEFUL)) {
 				serverconfiguration.setDifficulty(Difficulty.PEACEFUL);
 			}
 		}
-		else if (ConfigHandler.forceEasy.getValue()) {
+		else if (ConfigHandler.forceEasy) {
 			if (!currentdifficulty.equals(Difficulty.EASY)) {
 				serverconfiguration.setDifficulty(Difficulty.EASY);
 			}			
 		}
-		else if (ConfigHandler.forceNormal.getValue()) {
+		else if (ConfigHandler.forceNormal) {
 			if (!currentdifficulty.equals(Difficulty.NORMAL)) {
 				serverconfiguration.setDifficulty(Difficulty.NORMAL);
 			}			
 		}
-		else if (ConfigHandler.forceHard.getValue()) {
+		else if (ConfigHandler.forceHard) {
 			if (!currentdifficulty.equals(Difficulty.HARD)) {
 				serverconfiguration.setDifficulty(Difficulty.HARD);
 			}			
 		}
 		
-		if (ConfigHandler.shouldLockDifficulty.getValue()) {
+		if (ConfigHandler.shouldLockDifficulty) {
 			if (!islocked) {
 				serverconfiguration.setDifficultyLocked(true);
 			}

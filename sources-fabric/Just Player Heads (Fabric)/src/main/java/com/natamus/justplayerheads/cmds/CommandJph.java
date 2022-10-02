@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Player Heads.
- * Minecraft version: 1.19.2, mod version: 2.4.
+ * Minecraft version: 1.19.2, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -80,7 +80,7 @@ public class CommandJph {
 		String target = StringArgumentType.getString(command, "name");
 		
 		ItemStack head = null;
-		if (ConfigHandler.enablePlayerHeadCaching.getValue()) {
+		if (ConfigHandler.enablePlayerHeadCaching) {
 			if (Variables.headcache.containsKey(target.toLowerCase())) {
 				head = Variables.headcache.get(target.toLowerCase());
 				head.setCount(amount);
@@ -90,7 +90,7 @@ public class CommandJph {
 		if (head == null) {
 			head = HeadFunctions.getPlayerHead(target, amount);
 			
-			if (head != null && ConfigHandler.enablePlayerHeadCaching.getValue()) {
+			if (head != null && ConfigHandler.enablePlayerHeadCaching) {
 				ItemStack cachehead = head.copy();
 				cachehead.setCount(1);
 				

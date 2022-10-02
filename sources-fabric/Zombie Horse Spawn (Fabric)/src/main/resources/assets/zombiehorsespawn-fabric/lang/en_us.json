@@ -1,0 +1,10 @@
+{
+  "zombiehorsespawn-fabric.duskconfig.title": "Zombie Horse Spawn Config",
+  "zombiehorsespawn-fabric.duskconfig.DESC_chanceSurfaceZombieHasHorse": "The chance a zombie that has spawned on the surface is riding a horse.",
+  "zombiehorsespawn-fabric.duskconfig.RANGE_chanceSurfaceZombieHasHorse": "min: 0, max: 1.0",
+  "zombiehorsespawn-fabric.duskconfig.chanceSurfaceZombieHasHorse": "Chance Surface Zombie Has Horse",
+  "zombiehorsespawn-fabric.duskconfig.DESC_shouldBurnZombieHorsesInDaylight": "If enabled, burns zombie horses when daylight shines upon them.",
+  "zombiehorsespawn-fabric.duskconfig.shouldBurnZombieHorsesInDaylight": "Should Burn Zombie Horses In Daylight",
+  "zombiehorsespawn-fabric.duskconfig.DESC_onlySpawnZombieHorsesOnSurface": "If enabled, a zombie horse with rider will only spawn on the surface.",
+  "zombiehorsespawn-fabric.duskconfig.onlySpawnZombieHorsesOnSurface": "Only Spawn Zombie Horses On Surface"
+}

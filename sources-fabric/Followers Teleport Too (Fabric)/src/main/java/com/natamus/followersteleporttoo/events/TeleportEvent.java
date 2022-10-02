@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Followers Teleport Too.
- * Minecraft version: 1.19.2, mod version: 1.1.
+ * Minecraft version: 1.19.2, mod version: 1.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -55,7 +55,7 @@ public class TeleportEvent {
 						if (ta.isOwnedBy(player)) {
 							ta.teleportTo(targetvec.x, targetvec.y, targetvec.z);
 
-							if (ConfigHandler.disableFollowerDamageAfterTeleport.getValue()) {
+							if (ConfigHandler.disableFollowerDamageAfterTeleport) {
 								teleportedfollowers.put(ta.getUUID(), new Date());
 							}
 						}
@@ -66,7 +66,7 @@ public class TeleportEvent {
 	}
 
 	public static float onFollowerDamage(Level level, Entity entity, DamageSource damageSource, float damageAmount) {
-		if (!ConfigHandler.disableFollowerDamageAfterTeleport.getValue()) {
+		if (!ConfigHandler.disableFollowerDamageAfterTeleport) {
 			return damageAmount;
 		}
 
@@ -80,7 +80,7 @@ public class TeleportEvent {
 				Date lastteleported = teleportedfollowers.get(uuid);
 
 				long ms = ((new Date()).getTime()-lastteleported.getTime());
-				if (ms > ConfigHandler.durationInSecondsDamageShouldBeDisabled.getValue()*1000) {
+				if (ms > ConfigHandler.durationInSecondsDamageShouldBeDisabled*1000) {
 					teleportedfollowers.remove(uuid);
 					return damageAmount;
 				}

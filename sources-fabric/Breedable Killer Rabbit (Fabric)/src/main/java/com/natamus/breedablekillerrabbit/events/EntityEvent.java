@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Breedable Killer Rabbit.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -47,9 +47,9 @@ public class EntityEvent {
 		Rabbit rabbit = (Rabbit)offspring;
 		
 		double num = GlobalVariables.random.nextDouble();
-		if (num <= ConfigHandler.chanceBabyRabbitIsKiller.getValue()) {
+		if (num <= ConfigHandler.chanceBabyRabbitIsKiller) {
 			rabbit.setRabbitType(99);
-			if (ConfigHandler.removeKillerRabbitNameTag.getValue()) {
+			if (ConfigHandler.removeKillerRabbitNameTag) {
 				rabbit.setCustomName(null);
 			}
 			
@@ -122,7 +122,7 @@ public class EntityEvent {
 		if (entity instanceof Rabbit == false) {
 			return;
 		}
-		if (!ConfigHandler.removeKillerRabbitNameTag.getValue()) {
+		if (!ConfigHandler.removeKillerRabbitNameTag) {
 			return;
 		}
 		if (((Rabbit)entity).getRabbitType() != 99) {

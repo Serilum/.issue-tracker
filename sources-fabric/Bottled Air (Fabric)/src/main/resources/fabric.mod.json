@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "bottledair-fabric",
-  "version": "1.6",
+  "version": "1.7",
 
   "name": "Bottled Air (Fabric)",
   "description": "Allows players to breathe in empty glass bottles underwater to get more air, configurable.",
@@ -13,15 +13,45 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/bottledair-fabric/icon.png",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.bottledair.Main" ] },
+  "entrypoints": { "main": [ "com.natamus.bottledair.Main" ], "modmenu": [ "com.natamus.bottledair.config.BottledAirModMenu" ] },
 
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.68"
-  }
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

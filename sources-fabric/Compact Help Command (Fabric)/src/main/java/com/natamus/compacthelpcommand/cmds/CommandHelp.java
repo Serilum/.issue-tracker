@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Compact Help Command.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.2, mod version: 1.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -73,7 +73,7 @@ public class CommandHelp {
 		
 		Collections.sort(scmds);
 		
-		int amountperpage = ConfigHandler.amountCommandsPerPage.getValue();
+		int amountperpage = ConfigHandler.amountCommandsPerPage;
 		int totalcount = scmds.size();
 		int totalpages = (int)Math.ceil(totalcount/amountperpage) + 1;
 		
@@ -84,8 +84,8 @@ public class CommandHelp {
 			page = totalpages;
 		}
 		
-		ChatFormatting commandcolour = ChatFormatting.getById(ConfigHandler.commandColour.getValue());
-		ChatFormatting subcommandcolour = ChatFormatting.getById(ConfigHandler.subcommandColour.getValue());
+		ChatFormatting commandcolour = ChatFormatting.getById(ConfigHandler.commandColour);
+		ChatFormatting subcommandcolour = ChatFormatting.getById(ConfigHandler.subcommandColour);
 
 		StringFunctions.sendMessage(player, " ", ChatFormatting.WHITE);
 		
@@ -100,7 +100,7 @@ public class CommandHelp {
 				String acmd = cmdlspl[0];
 				String csuffix = commandline.replaceAll(acmd, "");
 				
-				if (ConfigHandler.addVerticalBarSpacing.getValue()) {
+				if (ConfigHandler.addVerticalBarSpacing) {
 					csuffix = csuffix.replace("|", " | ");
 				}
 				

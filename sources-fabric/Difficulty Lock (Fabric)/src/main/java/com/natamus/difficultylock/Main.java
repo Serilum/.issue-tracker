@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Difficulty Lock.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 1.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,6 +18,7 @@ package com.natamus.difficultylock;
 
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.difficultylock.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.difficultylock.events.DifficultyLockEvent;
 import com.natamus.difficultylock.util.Reference;
 
@@ -29,7 +30,7 @@ import net.minecraft.server.level.ServerLevel;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

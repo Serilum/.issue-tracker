@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bottle Your Xp.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -37,15 +37,15 @@ public class ClickEvent {
 		
 		if (itemstack.getItem().equals(Items.GLASS_BOTTLE)) {
 			if (player.isCrouching()) {
-				if (ExperienceFunctions.canConsumeXp(player, ConfigHandler.rawXpConsumedOnCreation.getValue())) {
-					if (ConfigHandler.damageOnCreation.getValue() && !player.isCreative()) {
-						int damage = ConfigHandler.halfHeartDamageAmount.getValue();
+				if (ExperienceFunctions.canConsumeXp(player, ConfigHandler.rawXpConsumedOnCreation)) {
+					if (ConfigHandler.damageOnCreation && !player.isCreative()) {
+						int damage = ConfigHandler.halfHeartDamageAmount;
 						if (!EntityFunctions.doesEntitySurviveThisDamage(player, damage)) {
 							return InteractionResultHolder.pass(itemstack);
 						}
 					}
 					
-					ExperienceFunctions.addPlayerXP(player, -ConfigHandler.rawXpConsumedOnCreation.getValue());
+					ExperienceFunctions.addPlayerXP(player, -ConfigHandler.rawXpConsumedOnCreation);
 					ItemFunctions.shrinkGiveOrDropItemStack(player, hand, itemstack, new ItemStack(Items.EXPERIENCE_BOTTLE, 1));
 				}
 			}

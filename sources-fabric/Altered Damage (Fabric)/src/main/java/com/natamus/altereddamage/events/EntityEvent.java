@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Altered Damage.
- * Minecraft version: 1.19.2, mod version: 2.0.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -33,23 +33,23 @@ public class EntityEvent {
 		Double modifier = 1.0;
 		
 		if (target instanceof Player) {
-			if (!ConfigHandler.alterPlayerDamageTaken.getValue()) {
+			if (!ConfigHandler.alterPlayerDamageTaken) {
 				return damageAmount;
 			}
 			
-			modifier = ConfigHandler.playerDamageModifier.getValue();
+			modifier = ConfigHandler.playerDamageModifier;
 		}
 		else {
-			if (!ConfigHandler.alterEntityDamageTaken.getValue()) {
+			if (!ConfigHandler.alterEntityDamageTaken) {
 				return damageAmount;
 			}
 			
-			modifier = ConfigHandler.entityDamageModifier.getValue();
+			modifier = ConfigHandler.entityDamageModifier;
 		}
 		
 		float damage = (float)(damageAmount*modifier);
 		
-		if (ConfigHandler.preventFatalModifiedDamage.getValue()) {
+		if (ConfigHandler.preventFatalModifiedDamage) {
 			LivingEntity le = (LivingEntity)target;
 			float health = (float)Math.floor(le.getHealth());
 			if (damage >= health) {

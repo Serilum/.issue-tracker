@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Beautified Chat Client.
- * Minecraft version: 1.19.2, mod version: 1.0.
+ * Minecraft version: 1.18.2, mod version: 1.4.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -40,12 +40,12 @@ public class BeautifulChatEvent {
 			return message;
 		}
 		
-		String timestamp = new SimpleDateFormat(ConfigHandler.timestampFormat.getValue()).format(new Date());
+		String timestamp = new SimpleDateFormat(ConfigHandler.timestampFormat).format(new Date());
 		String user = cirspl[0].substring(1);
 		String messageString = chatInRaw.replace(cirspl[0] + "> ", "");
 		
 		TextComponent output = new TextComponent("");
-		String raw_outputstring = ConfigHandler.chatMessageFormat.getValue();
+		String raw_outputstring = ConfigHandler.chatMessageFormat;
 		for (String word : raw_outputstring.split("%")) {
 			ChatFormatting colour = Util.getColour(word);
 			String toappend = word;

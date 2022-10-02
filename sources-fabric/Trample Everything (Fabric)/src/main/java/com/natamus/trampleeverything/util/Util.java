@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Trample Everything.
- * Minecraft version: 1.19.2, mod version: 1.9.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -55,7 +55,7 @@ public class Util {
 			return;
 		}
 		
-		if (ConfigHandler._enableTrampledBlockItems.getValue()) {
+		if (ConfigHandler._enableTrampledBlockItems) {
 			BlockFunctions.dropBlock(world, pos);
 		}
 		else {
@@ -65,7 +65,7 @@ public class Util {
 	
 	private static boolean isTrampleBlock(Block block) {
 		if (block instanceof SnowLayerBlock) {
-			if (ConfigHandler.trampleSnow.getValue()) {
+			if (ConfigHandler.trampleSnow) {
 				return true;
 			}
 			return false;			
@@ -73,109 +73,109 @@ public class Util {
 		
 		// Plant-type blocks
 		if (block instanceof BambooSaplingBlock) {
-			if (ConfigHandler.trampleBambooSaplings.getValue()) {
+			if (ConfigHandler.trampleBambooSaplings) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof CropBlock) {
-			if (ConfigHandler.trampleCrops.getValue()) {
+			if (ConfigHandler.trampleCrops) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof DeadBushBlock) {
-			if (ConfigHandler.trampleDeadBushes.getValue()) {
+			if (ConfigHandler.trampleDeadBushes) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof DoublePlantBlock) {
-			if (ConfigHandler.trampleDoublePlants.getValue()) {
+			if (ConfigHandler.trampleDoublePlants) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof FlowerBlock) {
-			if (ConfigHandler.trampleFlowers.getValue()) {
+			if (ConfigHandler.trampleFlowers) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof FungusBlock) {
-			if (ConfigHandler.trampleFungi.getValue()) {
+			if (ConfigHandler.trampleFungi) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof WaterlilyBlock) {
-			if (ConfigHandler.trampleLilyPads.getValue()) {
+			if (ConfigHandler.trampleLilyPads) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof MushroomBlock) {
-			if (ConfigHandler.trampleMushrooms.getValue()) {
+			if (ConfigHandler.trampleMushrooms) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof RootsBlock) {
-			if (ConfigHandler.trampleNetherRoots.getValue()) {
+			if (ConfigHandler.trampleNetherRoots) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof NetherSproutsBlock) {
-			if (ConfigHandler.trampleNetherSprouts.getValue()) {
+			if (ConfigHandler.trampleNetherSprouts) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof NetherWartBlock) {
-			if (ConfigHandler.trampleNetherWart.getValue()) {
+			if (ConfigHandler.trampleNetherWart) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof SaplingBlock) {
-			if (ConfigHandler.trampleSaplings.getValue()) {
+			if (ConfigHandler.trampleSaplings) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof SeagrassBlock) {
-			if (ConfigHandler.trampleSeaGrass.getValue()) {
+			if (ConfigHandler.trampleSeaGrass) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof SeaPickleBlock) {
-			if (ConfigHandler.trampleSeaPickles.getValue()) {
+			if (ConfigHandler.trampleSeaPickles) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof StemBlock || block instanceof AttachedStemBlock) {
-			if (ConfigHandler.trampleStems.getValue()) {
+			if (ConfigHandler.trampleStems) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof SugarCaneBlock) {
-			if (ConfigHandler.trampleSugarCane.getValue()) {
+			if (ConfigHandler.trampleSugarCane) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof SweetBerryBushBlock) {
-			if (ConfigHandler.trampleSweetBerryBushes.getValue()) {
+			if (ConfigHandler.trampleSweetBerryBushes) {
 				return true;
 			}
 			return false;
 		}
 		if (block instanceof TallGrassBlock) {
-			if (ConfigHandler.trampleTallGrass.getValue()) {
+			if (ConfigHandler.trampleTallGrass) {
 				return true;
 			}
 			return false;

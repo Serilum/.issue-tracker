@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Conduit Placement.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 1.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -91,7 +91,7 @@ public class ConduitEvent {
 			}
 			
 			Block block = world.getBlockState(nextpos).getBlock();
-			if (ConfigHandler.dropReplacedBlockTopConduit.getValue()) {
+			if (ConfigHandler.dropReplacedBlockTopConduit) {
 				if (!block.equals(Blocks.AIR) && !block.equals(Blocks.WATER)) {
 					ItemEntity ei = new ItemEntity(world, cpos.getX(), cpos.getY()+1, cpos.getZ(), new ItemStack(block, 1));
 					world.addFreshEntity(ei);
@@ -122,7 +122,7 @@ public class ConduitEvent {
 			return;
 		}
 		
-		if (!ConfigHandler.breakConduitBlocks.getValue()) {
+		if (!ConfigHandler.breakConduitBlocks) {
 			return;
 		}
 		

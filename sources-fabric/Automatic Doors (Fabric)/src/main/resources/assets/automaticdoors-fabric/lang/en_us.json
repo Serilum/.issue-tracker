@@ -1,0 +1,10 @@
+{
+  "automaticdoors-fabric.duskconfig.title": "Automatic Doors Config",
+  "automaticdoors-fabric.duskconfig.DESC_doorOpenTime": "The time in ms the door should stay open.",
+  "automaticdoors-fabric.duskconfig.RANGE_doorOpenTime": "min: 0, max: 10000",
+  "automaticdoors-fabric.duskconfig.doorOpenTime": "Door Open Time",
+  "automaticdoors-fabric.duskconfig.DESC_shouldOpenIronDoors": "When enabled, iron doors will also be opened automatically.",
+  "automaticdoors-fabric.duskconfig.shouldOpenIronDoors": "Should Open Iron Doors",
+  "automaticdoors-fabric.duskconfig.DESC_preventOpeningOnSneak": "When enabled, doors won't be opened automatically when the player is sneaking.",
+  "automaticdoors-fabric.duskconfig.preventOpeningOnSneak": "Prevent Opening On Sneak"
+}

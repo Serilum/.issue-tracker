@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Clock.
- * Minecraft version: 1.19.2, mod version: 3.7.
+ * Minecraft version: 1.19.2, mod version: 3.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -37,8 +37,8 @@ public class GUIEvent {
 	private static String daystring = "";
 	
 	public static void renderOverlay(PoseStack posestack, float tickDelta){
-		boolean gametimeb = ConfigHandler.mustHaveClockInInventoryForGameTime.getValue();
-		boolean realtimeb = ConfigHandler.mustHaveClockInInventoryForRealTime.getValue();
+		boolean gametimeb = ConfigHandler.mustHaveClockInInventoryForGameTime;
+		boolean realtimeb = ConfigHandler.mustHaveClockInInventoryForRealTime;
 		boolean found = true;
 		
 		if (gametimeb || realtimeb) {
@@ -60,12 +60,12 @@ public class GUIEvent {
 		Window scaled = mc.getWindow();
 		int width = scaled.getGuiScaledWidth();
 		
-		int heightoffset = ConfigHandler.clockHeightOffset.getValue();
+		int heightoffset = ConfigHandler.clockHeightOffset;
 		if (heightoffset < 5) {
 			heightoffset = 5;
 		}
 		
-		if (ConfigHandler.lowerClockWhenPlayerHasEffects.getValue()) {
+		if (ConfigHandler.lowerClockWhenPlayerHasEffects) {
 			Collection<MobEffectInstance> activeeffects = mc.player.getActiveEffects();
 			if (activeeffects.size() > 0) {
 				boolean haspositive = false;
@@ -96,32 +96,32 @@ public class GUIEvent {
 		
 		int xcoord;
 		int daycoord;
-		if (ConfigHandler.showOnlyMinecraftClockIcon.getValue()) {
+		if (ConfigHandler.showOnlyMinecraftClockIcon) {
 			if (gametimeb) {
 				if (!found) {
 					return;
 				}
 			}
 			
-			if (ConfigHandler.clockPositionIsLeft.getValue()) {
+			if (ConfigHandler.clockPositionIsLeft) {
 				xcoord = 20;
 			}
-			else if (ConfigHandler.clockPositionIsCenter.getValue()) {
+			else if (ConfigHandler.clockPositionIsCenter) {
 				xcoord = (width/2) - 8;
 			}
 			else {
 				xcoord = width - 20;
 			}
 			
-			xcoord += ConfigHandler.clockWidthOffset.getValue();
+			xcoord += ConfigHandler.clockWidthOffset;
 			
 			ItemRenderer itemrenderer = mc.getItemRenderer();
 			itemrenderer.renderAndDecorateItem(new ItemStack(Items.CLOCK), xcoord, heightoffset);
 		}
 		else {
 			String time;
-			String realtime = StringFunctions.getPCLocalTime(ConfigHandler._24hourformat.getValue(), ConfigHandler.showRealTimeSeconds.getValue());
-			if (ConfigHandler.showBothTimes.getValue()) {
+			String realtime = StringFunctions.getPCLocalTime(ConfigHandler._24hourformat, ConfigHandler.showRealTimeSeconds);
+			if (ConfigHandler.showBothTimes) {
 				if (gametimeb && realtimeb) {
 					if (!found) {
 						return;
@@ -138,7 +138,7 @@ public class GUIEvent {
 					time = getGameTime() + " | " + realtime;
 				}
 			}
-			else if (ConfigHandler.showRealTime.getValue()) {
+			else if (ConfigHandler.showRealTime) {
 				if (realtimeb) {
 					if (!found) {
 						return;
@@ -162,13 +162,13 @@ public class GUIEvent {
 			int stringWidth = fontRender.width(time);
 			int daystringWidth = fontRender.width(daystring);
 			
-			Color colour = new Color(ConfigHandler.RGB_R.getValue(), ConfigHandler.RGB_G.getValue(), ConfigHandler.RGB_B.getValue(), 255);
+			Color colour = new Color(ConfigHandler.RGB_R, ConfigHandler.RGB_G, ConfigHandler.RGB_B, 255);
 			
-			if (ConfigHandler.clockPositionIsLeft.getValue()) {
+			if (ConfigHandler.clockPositionIsLeft) {
 				xcoord = 5;
 				daycoord = 5;
 			}
-			else if (ConfigHandler.clockPositionIsCenter.getValue()) {
+			else if (ConfigHandler.clockPositionIsCenter) {
 				xcoord = (width/2) - (stringWidth/2);
 				daycoord = (width/2) - (daystringWidth/2);
 			}
@@ -177,8 +177,8 @@ public class GUIEvent {
 				daycoord = width - daystringWidth - 5;
 			}
 			
-			xcoord += ConfigHandler.clockWidthOffset.getValue();
-			daycoord += ConfigHandler.clockWidthOffset.getValue();
+			xcoord += ConfigHandler.clockWidthOffset;
+			daycoord += ConfigHandler.clockWidthOffset;
 			
 			fontRender.draw(posestack, time, xcoord, heightoffset, colour.getRGB());
 			if (!daystring.equals("")) {
@@ -199,7 +199,7 @@ public class GUIEvent {
 			daysplayed += 1;
 		}
 		
-		if (ConfigHandler.showDaysPlayedWorld.getValue()) {
+		if (ConfigHandler.showDaysPlayedWorld) {
 			daystring = "Day " + daysplayed;
 		}
 
@@ -211,7 +211,7 @@ public class GUIEvent {
 		}
 		
 		String suffix = "";
-		if (!ConfigHandler._24hourformat.getValue()) {
+		if (!ConfigHandler._24hourformat) {
 			if (time >= 13000) {
 				time = time - 12000;
 				suffix = " PM";
@@ -243,7 +243,7 @@ public class GUIEvent {
 			sm = "0" + minutes;
 		}
 		
-		if (!ConfigHandler._24hourformat.getValue() && strsplit[0].equals("0")) {
+		if (!ConfigHandler._24hourformat && strsplit[0].equals("0")) {
 			stringtime = new StringBuilder(strsplit[1] + ":" + sm.charAt(0) + sm.charAt(1));
 		}
 		else {

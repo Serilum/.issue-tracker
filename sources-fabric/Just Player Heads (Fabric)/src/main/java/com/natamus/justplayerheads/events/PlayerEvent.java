@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Player Heads.
- * Minecraft version: 1.19.2, mod version: 2.4.
+ * Minecraft version: 1.19.2, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -27,19 +27,19 @@ import net.minecraft.world.item.ItemStack;
 
 public class PlayerEvent {
 	public static void onPlayerDeath(ServerLevel world, ServerPlayer player) {
-		if (!ConfigHandler.playerDropsHeadOnDeath.getValue()) {
+		if (!ConfigHandler.playerDropsHeadOnDeath) {
 			return;
 		}
 		
 		double num = GlobalVariables.random.nextDouble();
-		if (num > ConfigHandler.playerHeadDropChance.getValue()) {
+		if (num > ConfigHandler.playerHeadDropChance) {
 			return;
 		}
 		
 		String name = player.getName().getString();
 		
 		ItemStack head = null;
-		if (ConfigHandler.enablePlayerHeadCaching.getValue()) {
+		if (ConfigHandler.enablePlayerHeadCaching) {
 			if (Variables.headcache.containsKey(name.toLowerCase())) {
 				head = Variables.headcache.get(name.toLowerCase());
 			}
@@ -48,7 +48,7 @@ public class PlayerEvent {
 		if (head == null) {
 			head = HeadFunctions.getPlayerHead(name, 1);
 			
-			if (head != null && ConfigHandler.enablePlayerHeadCaching.getValue()) {
+			if (head != null && ConfigHandler.enablePlayerHeadCaching) {
 				ItemStack cachehead = head.copy();
 				
 				Variables.headcache.put(name.toLowerCase(), cachehead);

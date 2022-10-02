@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Sheep Colours.
- * Minecraft version: 1.19.2, mod version: 2.2.
+ * Minecraft version: 1.19.2, mod version: 2.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,6 +18,7 @@ package com.natamus.randomsheepcolours;
 
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.randomsheepcolours.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.randomsheepcolours.events.SheepEvent;
 import com.natamus.randomsheepcolours.util.Reference;
 import com.natamus.randomsheepcolours.util.Util;
@@ -31,7 +32,7 @@ public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
      	Util.initColours();
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hoe Tweaks.
- * Minecraft version: 1.19.2, mod version: 1.9.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -37,26 +37,26 @@ public class Util {
 		HoeItem item = (HoeItem)stack.getItem();
 		Tier tier = item.getTier();
 		if (tier == null) {
-			return ConfigHandler.woodenTierHoeRange.getValue();
+			return ConfigHandler.woodenTierHoeRange;
 		}
 		
 		String tierstring = tier.toString().toLowerCase();
 		
-		int range = ConfigHandler.woodenTierHoeRange.getValue();
+		int range = ConfigHandler.woodenTierHoeRange;
 		if (tier.equals(Tiers.STONE)) {
-			range = ConfigHandler.stoneTierHoeRange.getValue();
+			range = ConfigHandler.stoneTierHoeRange;
 		}
 		else if (tier.equals(Tiers.GOLD)) {
-			range = ConfigHandler.goldTierHoeRange.getValue();
+			range = ConfigHandler.goldTierHoeRange;
 		}
 		else if (tier.equals(Tiers.IRON) || tierstring.equals("steel")) {
-			range = ConfigHandler.ironTierHoeRange.getValue();
+			range = ConfigHandler.ironTierHoeRange;
 		}
 		else if (tier.equals(Tiers.DIAMOND)) {
-			range = ConfigHandler.diamondTierHoeRange.getValue();
+			range = ConfigHandler.diamondTierHoeRange;
 		}
 		else if (tier.equals(Tiers.NETHERITE) || tierstring.equals("netherite")) {
-			range = ConfigHandler.netheriteTierHoeRange.getValue();
+			range = ConfigHandler.netheriteTierHoeRange;
 		}
 		
 		return range;

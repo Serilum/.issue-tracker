@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Giant Spawn.
- * Minecraft version: 1.19.2, mod version: 3.2.
+ * Minecraft version: 1.19.2, mod version: 3.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -49,8 +49,8 @@ public class GiantEvent {
 		Giant giant = (Giant)entity;
 		
 		giant.getAttribute(Attributes.FOLLOW_RANGE).setBaseValue(35.0D); // FOLLOW_RANGE
-		giant.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double)0.23F * ConfigHandler.giantMovementSpeedModifier.getValue()); // MOVEMENT_SPEED
-		giant.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(3.0D * ConfigHandler.giantAttackDamageModifier.getValue()); // ATTACK_DAMAGE
+		giant.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double)0.23F * ConfigHandler.giantMovementSpeedModifier); // MOVEMENT_SPEED
+		giant.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(3.0D * ConfigHandler.giantAttackDamageModifier); // ATTACK_DAMAGE
 		giant.getAttribute(Attributes.ARMOR).setBaseValue(2.0D); // ARMOR
 	}
 	
@@ -62,7 +62,7 @@ public class GiantEvent {
 		}
 		tickdelay_per_world.put(world, 1);
 		
-		if (!ConfigHandler.shouldBurnGiantsInDaylight.getValue()) {
+		if (!ConfigHandler.shouldBurnGiantsInDaylight) {
 			return;
 		}
 		

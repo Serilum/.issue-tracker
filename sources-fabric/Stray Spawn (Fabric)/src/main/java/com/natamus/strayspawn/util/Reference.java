@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Stray Spawn.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,6 @@ package com.natamus.strayspawn.util;
 public class Reference {
 	public static final String MOD_ID = "strayspawn-fabric";
 	public static final String NAME = "Stray Spawn (Fabric)";
-	public static final String VERSION = "2.1";
+	public static final String VERSION = "2.2";
 	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
 }

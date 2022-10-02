@@ -3,6 +3,10 @@ Grindstone Sharper Tools
 https://www.curseforge.com/minecraft/mc-mods/grindstone-sharper-tools
 
 =========
+v2.3: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v2.2: Items will now retain name formatting when sharpened and infiniteCreativeUses config option added. Thanks @fmpreferences on Github for the pull request.
 Fixed sendUsesLeftInChat config not working correctly.
 The italic styling in the item name from the uses left will now be removed when the tool is no longer sharpened.

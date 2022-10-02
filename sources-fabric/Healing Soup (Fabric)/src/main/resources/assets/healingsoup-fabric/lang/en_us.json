@@ -1,0 +1,10 @@
+{
+  "item.healingsoup-fabric.cactus_soup": "Cactus Soup",
+  "item.healingsoup-fabric.chocolate_milk": "Chocolate Milk",
+  "item.healingsoup-fabric.mushroom_soup": "Mushroom Soup",
+
+  "healingsoup-fabric.duskconfig.title": "Healing Soup Config",
+  "healingsoup-fabric.duskconfig.DESC_soupHalfHeartHealAmount": "The amount of half hearts the mushroom stew/soup should heal. Minecraft PvP's default was 8.",
+  "healingsoup-fabric.duskconfig.RANGE_soupHalfHeartHealAmount": "min: 0, max: 20",
+  "healingsoup-fabric.duskconfig.soupHalfHeartHealAmount": "Soup Half Heart Heal Amount"
+}

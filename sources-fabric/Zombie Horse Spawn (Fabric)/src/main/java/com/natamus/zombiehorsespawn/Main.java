@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Zombie Horse Spawn.
- * Minecraft version: 1.19.2, mod version: 3.5.
+ * Minecraft version: 1.19.2, mod version: 3.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,7 @@ package com.natamus.zombiehorsespawn;
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.collective_fabric.objects.SAMObject;
 import com.natamus.zombiehorsespawn.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.zombiehorsespawn.events.ZombieHorseEvent;
 import com.natamus.zombiehorsespawn.util.Reference;
 
@@ -34,7 +35,7 @@ import net.minecraft.world.entity.EntityType;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		
@@ -54,6 +55,6 @@ public class Main implements ModInitializer {
 			ZombieHorseEvent.onEntityJoin(world, entity);
 		});
 		
-    	new SAMObject(EntityType.ZOMBIE, EntityType.ZOMBIE_HORSE, null, ConfigHandler.chanceSurfaceZombieHasHorse.getValue(), false, true, ConfigHandler.onlySpawnZombieHorsesOnSurface.getValue());
+    	new SAMObject(EntityType.ZOMBIE, EntityType.ZOMBIE_HORSE, null, ConfigHandler.chanceSurfaceZombieHasHorse, false, true, ConfigHandler.onlySpawnZombieHorsesOnSurface);
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Automatic Doors.
- * Minecraft version: 1.19.2, mod version: 2.8.
+ * Minecraft version: 1.19.2, mod version: 2.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -69,7 +69,7 @@ public class DoorEvent {
 					BlockPos ppos = player.blockPosition();
 
 					if (ppos.closerThan(bp, 3)) {
-						if (ConfigHandler.preventOpeningOnSneak.getValue() && player.isCrouching()) {
+						if (ConfigHandler.preventOpeningOnSneak && player.isCrouching()) {
 							continue;
 						}
 
@@ -105,7 +105,7 @@ public class DoorEvent {
 		}
 
 		if (player.isShiftKeyDown()) {
-			if (ConfigHandler.preventOpeningOnSneak.getValue()) {
+			if (ConfigHandler.preventOpeningOnSneak) {
 				return;
 			}
 		}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Cycle Paintings.
- * Minecraft version: 1.19.2, mod version: 2.7.
+ * Minecraft version: 1.19.2, mod version: 2.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -28,8 +28,8 @@ public class Util {
 	private static List<PaintingVariant> paintingtypes = new ArrayList<PaintingVariant>();
 	
 	public static void setPaintings() {
-		String[] allignore = ConfigHandler.ignorePaintingsInCycleResourceLocation.getValue().split(",");
-		boolean debug = ConfigHandler.showRegisteredPaintingsDebug.getValue();
+		String[] allignore = ConfigHandler.ignorePaintingsInCycleResourceLocation.split(",");
+		boolean debug = ConfigHandler.showRegisteredPaintingsDebug;
 		
 		if (debug) {
 			System.out.println("[Cycle Paintings Debug] The config option 'showRegisteredPaintingsDebug' has been enabled. Showing paintings during cycle registration.");

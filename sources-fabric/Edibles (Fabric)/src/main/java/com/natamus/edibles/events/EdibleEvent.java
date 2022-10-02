@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Edibles.
- * Minecraft version: 1.19.2, mod version: 2.9.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -75,73 +75,73 @@ public class EdibleEvent {
 		
 		Item item = itemstack.getItem();
 		if (item.equals(Items.BLAZE_POWDER)) {
-			if (ConfigHandler.blazePowderStrengthDurationSeconds.getValue() == 0) {
+			if (ConfigHandler.blazePowderStrengthDurationSeconds == 0) {
 				return InteractionResultHolder.pass(itemstack);
 			}
 			if (!Util.canPlayerUse(playername)) {
 				return InteractionResultHolder.pass(itemstack);
 			}
 			
-			MobEffectInstance effect = new MobEffectInstance(MobEffects.DAMAGE_BOOST, ConfigHandler.blazePowderStrengthDurationSeconds.getValue()*20);
+			MobEffectInstance effect = new MobEffectInstance(MobEffects.DAMAGE_BOOST, ConfigHandler.blazePowderStrengthDurationSeconds*20);
 			player.addEffect(effect);
 		}
 		else if (item.equals(Items.MAGMA_CREAM)) {
-			if (ConfigHandler.magmaCreamFireResistanceDurationSeconds.getValue() == 0) {
+			if (ConfigHandler.magmaCreamFireResistanceDurationSeconds == 0) {
 				return InteractionResultHolder.pass(itemstack);
 			}
 			if (!Util.canPlayerUse(playername)) {
 				return InteractionResultHolder.pass(itemstack);
 			}
 			
-			MobEffectInstance effect = new MobEffectInstance(MobEffects.FIRE_RESISTANCE, ConfigHandler.magmaCreamFireResistanceDurationSeconds.getValue()*20);
+			MobEffectInstance effect = new MobEffectInstance(MobEffects.FIRE_RESISTANCE, ConfigHandler.magmaCreamFireResistanceDurationSeconds*20);
 			player.addEffect(effect);
 		}
 		else if (item.equals(Items.SUGAR)) {
-			if (ConfigHandler.sugarSpeedDurationSeconds.getValue() == 0) {
+			if (ConfigHandler.sugarSpeedDurationSeconds == 0) {
 				return InteractionResultHolder.pass(itemstack);
 			}
 			if (!Util.canPlayerUse(playername)) {
 				return InteractionResultHolder.pass(itemstack);
 			}
 			
-			MobEffectInstance effect = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, ConfigHandler.sugarSpeedDurationSeconds.getValue()*20);
+			MobEffectInstance effect = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, ConfigHandler.sugarSpeedDurationSeconds*20);
 			player.addEffect(effect);
 		}
 		else if (item.equals(Items.GHAST_TEAR)) {
-			if (ConfigHandler.ghastTearDurationSeconds.getValue() == 0) {
+			if (ConfigHandler.ghastTearDurationSeconds == 0) {
 				return InteractionResultHolder.pass(itemstack);
 			}
 			if (!Util.canPlayerUse(playername)) {
 				return InteractionResultHolder.pass(itemstack);
 			}
 			
-			MobEffectInstance effect = new MobEffectInstance(MobEffects.REGENERATION, ConfigHandler.ghastTearDurationSeconds.getValue()*20);
+			MobEffectInstance effect = new MobEffectInstance(MobEffects.REGENERATION, ConfigHandler.ghastTearDurationSeconds*20);
 			player.addEffect(effect);
 		}
 		else if (item.equals(Items.PHANTOM_MEMBRANE)) {
-			if (ConfigHandler.phantomMembraneDurationSeconds.getValue() == 0) {
+			if (ConfigHandler.phantomMembraneDurationSeconds == 0) {
 				return InteractionResultHolder.pass(itemstack);
 			}
 			if (!Util.canPlayerUse(playername)) {
 				return InteractionResultHolder.pass(itemstack);
 			}
 			
-			MobEffectInstance effect = new MobEffectInstance(MobEffects.SLOW_FALLING, ConfigHandler.phantomMembraneDurationSeconds.getValue()*20);
+			MobEffectInstance effect = new MobEffectInstance(MobEffects.SLOW_FALLING, ConfigHandler.phantomMembraneDurationSeconds*20);
 			player.addEffect(effect);
 		}
 		else if (item.equals(Items.RABBIT_FOOT)) {
-			if (ConfigHandler.rabbitsFootDurationSeconds.getValue() == 0) {
+			if (ConfigHandler.rabbitsFootDurationSeconds == 0) {
 				return InteractionResultHolder.pass(itemstack);
 			}
 			if (!Util.canPlayerUse(playername)) {
 				return InteractionResultHolder.pass(itemstack);
 			}
 			
-			MobEffectInstance effect = new MobEffectInstance(MobEffects.JUMP, ConfigHandler.rabbitsFootDurationSeconds.getValue()*20);
+			MobEffectInstance effect = new MobEffectInstance(MobEffects.JUMP, ConfigHandler.rabbitsFootDurationSeconds*20);
 			player.addEffect(effect);
 		}
 		else if (item.equals(Items.GLOWSTONE_DUST)) {
-			if (ConfigHandler.glowEntityDurationSeconds.getValue() == 0) {
+			if (ConfigHandler.glowEntityDurationSeconds == 0) {
 				return InteractionResultHolder.pass(itemstack);
 			}
 			if (!Util.canPlayerUse(playername)) {
@@ -149,8 +149,8 @@ public class EdibleEvent {
 			}
 			
 			BlockPos pos = player.blockPosition();
-			int r = ConfigHandler.glowEntitiesAroundAffectedRadiusBlocks.getValue();
-			MobEffectInstance effect = new MobEffectInstance(MobEffects.GLOWING, ConfigHandler.glowEntityDurationSeconds.getValue()*200);
+			int r = ConfigHandler.glowEntitiesAroundAffectedRadiusBlocks;
+			MobEffectInstance effect = new MobEffectInstance(MobEffects.GLOWING, ConfigHandler.glowEntityDurationSeconds*200);
 			
 			Iterator<Entity> it = world.getEntities(player, new AABB(pos.getX()-r, pos.getY()-r, pos.getZ()-r, pos.getX()+r, pos.getY()+r, pos.getZ()+r)).iterator();
 			while (it.hasNext()) {
@@ -171,7 +171,7 @@ public class EdibleEvent {
 			itemstack.shrink(1);
 		}
 
-		if (ConfigHandler.maxItemUsesPerDaySingleItem.getValue() != -1 || ConfigHandler.maxItemUsesPerDayTotal.getValue() != -1) {
+		if (ConfigHandler.maxItemUsesPerDaySingleItem != -1 || ConfigHandler.maxItemUsesPerDayTotal != -1) {
 			int days = WorldFunctions.getTotalDaysPassed((ServerLevel)world);
 			if (currentday != days) {
 				playeruses = new HashMap<String, Map<Item, Integer>>();
@@ -189,18 +189,18 @@ public class EdibleEvent {
 			}
 			currentuses.put(item, dayuses);
 			
-			if (dayuses > ConfigHandler.maxItemUsesPerDaySingleItem.getValue() && ConfigHandler.maxItemUsesPerDaySingleItem.getValue() != -1) {
-				MobEffectInstance weakness = new MobEffectInstance(MobEffects.WEAKNESS, ConfigHandler.weaknessDurationSeconds.getValue()*20);
+			if (dayuses > ConfigHandler.maxItemUsesPerDaySingleItem && ConfigHandler.maxItemUsesPerDaySingleItem != -1) {
+				MobEffectInstance weakness = new MobEffectInstance(MobEffects.WEAKNESS, ConfigHandler.weaknessDurationSeconds*20);
 				player.addEffect(weakness);
 			}
-			else if (currentuses.size() > 1 && ConfigHandler.maxItemUsesPerDayTotal.getValue() != -1) {
+			else if (currentuses.size() > 1 && ConfigHandler.maxItemUsesPerDayTotal != -1) {
 				int totaluses = 0;
 				for (int dayuse : currentuses.values()) {
 					totaluses += dayuse;
 				}
 				
-				if (totaluses > ConfigHandler.maxItemUsesPerDayTotal.getValue()) {
-					MobEffectInstance weakness = new MobEffectInstance(MobEffects.WEAKNESS, ConfigHandler.weaknessDurationSeconds.getValue()*20);
+				if (totaluses > ConfigHandler.maxItemUsesPerDayTotal) {
+					MobEffectInstance weakness = new MobEffectInstance(MobEffects.WEAKNESS, ConfigHandler.weaknessDurationSeconds*20);
 					player.addEffect(weakness);	
 				}
 			}

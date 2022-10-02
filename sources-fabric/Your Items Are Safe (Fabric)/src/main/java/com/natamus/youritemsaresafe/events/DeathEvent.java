@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Your Items Are Safe.
- * Minecraft version: 1.19.2, mod version: 2.0.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -65,7 +65,7 @@ public class DeathEvent {
 			}
 		}
 		
-		if (!ConfigHandler.createArmorStand.getValue()) {
+		if (!ConfigHandler.createArmorStand) {
 			for (EquipmentSlot slottype : slottypes) {
 				if (!player.getItemBySlot(slottype).isEmpty()) {
 					totalitemcount += 1;
@@ -93,31 +93,31 @@ public class DeathEvent {
 			return;
 		}
 
-		if (ConfigHandler.mustHaveItemsInInventoryForCreation.getValue()) {
-			if (ConfigHandler.needChestMaterials.getValue() || ConfigHandler.needArmorStandMaterials.getValue() || ConfigHandler.needSignMaterials.getValue()) {
-				if (ConfigHandler.createArmorStand.getValue() && ConfigHandler.addPlayerHeadToArmorStand.getValue() && !player.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
+		if (ConfigHandler.mustHaveItemsInInventoryForCreation) {
+			if (ConfigHandler.needChestMaterials || ConfigHandler.needArmorStandMaterials || ConfigHandler.needSignMaterials) {
+				if (ConfigHandler.createArmorStand && ConfigHandler.addPlayerHeadToArmorStand && !player.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
 					totalitemcount += 1;
 				}
 
 				int stoneleft = 1; // 1 armor stand
 				int planksleft = 0; // 1 chest, 1 armor stand
 
-				if (ConfigHandler.needChestMaterials.getValue()) {
+				if (ConfigHandler.needChestMaterials) {
 					planksleft += 8;
 					if (totalitemcount > 27) {
 						planksleft += 8;
 					}
 				}
 
-				if (ConfigHandler.createArmorStand.getValue() && ConfigHandler.needArmorStandMaterials.getValue()) {
+				if (ConfigHandler.createArmorStand && ConfigHandler.needArmorStandMaterials) {
 					planksleft += 3;
 				}
 
-				if (ConfigHandler.createSignWithPlayerName.getValue() && ConfigHandler.needSignMaterials.getValue()) {
+				if (ConfigHandler.createSignWithPlayerName && ConfigHandler.needSignMaterials) {
 					planksleft += 7;
 				}
 
-				if (ConfigHandler.ignoreStoneMaterialNeed.getValue()) {
+				if (ConfigHandler.ignoreStoneMaterialNeed) {
 					stoneleft = 0;
 				}
 
@@ -159,7 +159,7 @@ public class DeathEvent {
 	
 		ArmorStand armorstand = null;
 		
-		if (ConfigHandler.createArmorStand.getValue()) {
+		if (ConfigHandler.createArmorStand) {
 			armorstand = new ArmorStand(EntityType.ARMOR_STAND, world);
 	
 			for (EquipmentSlot slottype : slottypes) {
@@ -169,7 +169,7 @@ public class DeathEvent {
 			
 			itemstacks = new ArrayList<>(player.getInventory().items);
 			
-			if (ConfigHandler.addPlayerHeadToArmorStand.getValue()) {
+			if (ConfigHandler.addPlayerHeadToArmorStand) {
 				ItemStack headstack = HeadFunctions.getPlayerHead(playername, 1);
 				
 				if (headstack != null) {
@@ -240,7 +240,7 @@ public class DeathEvent {
 		
 		Util.successMessage(player);
 		
-		if (ConfigHandler.createSignWithPlayerName.getValue()) {
+		if (ConfigHandler.createSignWithPlayerName) {
 			BlockPos signpos = deathpos.south().immutable();
 			world.setBlockAndUpdate(signpos, Blocks.OAK_WALL_SIGN.defaultBlockState().setValue(WallSignBlock.FACING, Direction.SOUTH));
 			

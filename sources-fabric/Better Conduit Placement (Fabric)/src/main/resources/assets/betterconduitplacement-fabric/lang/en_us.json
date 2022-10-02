@@ -1,0 +1,7 @@
+{
+  "betterconduitplacement-fabric.duskconfig.title": "Better Conduit Placement Config",
+  "betterconduitplacement-fabric.duskconfig.DESC_breakConduitBlocks": "If enabled, drops all conduit blocks when the conduit itself is broken.",
+  "betterconduitplacement-fabric.duskconfig.breakConduitBlocks": "Break Conduit Blocks",
+  "betterconduitplacement-fabric.duskconfig.DESC_dropReplacedBlockTopConduit": "If enabled, when prismarine replaces a normal block that block is dropped on top of the conduit.",
+  "betterconduitplacement-fabric.duskconfig.dropReplacedBlockTopConduit": "Drop Replaced Block Top Conduit"
+}

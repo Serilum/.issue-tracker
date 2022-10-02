@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Passive Shield.
- * Minecraft version: 1.19.2, mod version: 2.6.
+ * Minecraft version: 1.19.2, mod version: 2.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -28,7 +28,7 @@ public class ClientEvent {
 
 	public static boolean onHandRender(InteractionHand hand, PoseStack poseStack, ItemStack itemStack) {
 		if (hand.equals(InteractionHand.OFF_HAND)) {
-			if (ConfigHandler.hideShieldWhenNotInUse.getValue()) {
+			if (ConfigHandler.hideShieldWhenNotInUse) {
 				if (itemStack.getItem() instanceof ShieldItem) {
 					ItemStack useItem = mc.player.getUseItem();
 					if (mc.player.isUsingItem() && useItem.getItem() instanceof ShieldItem) {

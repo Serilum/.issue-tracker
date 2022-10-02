@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Skeleton Horse Spawn.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.2, mod version: 2.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -57,7 +57,7 @@ public class SkeletonHorseEvent {
 		}
 		tickdelay_per_world.put(world, 1);
 		
-		if (!ConfigHandler.shouldBurnSkeletonHorsesInDaylight.getValue()) {
+		if (!ConfigHandler.shouldBurnSkeletonHorsesInDaylight) {
 			return;
 		}
 		

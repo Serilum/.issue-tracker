@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Shulker Colours.
- * Minecraft version: 1.19.2, mod version: 1.9.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -29,7 +29,7 @@ public class Util {
 	public static void initColours() {
 		possibleColours = new ArrayList<DyeColor>();
 		
-		String possiblecolours = ConfigHandler.possibleShulkerColours.getValue();
+		String possiblecolours = ConfigHandler.possibleShulkerColours;
 		String[] pcspl = possiblecolours.toLowerCase().replace(" ",  "").split(",");
 		for (String pc : pcspl) {
 			DyeColor colour = getColourFromString(pc.trim());

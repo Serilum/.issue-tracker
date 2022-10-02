@@ -1,0 +1,19 @@
+{
+  "grindstonesharpertools-fabric.duskconfig.title": "Grindstone Sharper Tools Config",
+  "grindstonesharpertools-fabric.duskconfig.DESC_usesAfterGrinding": "The amount of sharper uses a tool has after using it on the grindstone.",
+  "grindstonesharpertools-fabric.duskconfig.RANGE_usesAfterGrinding": "min: 1, max: 5000",
+  "grindstonesharpertools-fabric.duskconfig.usesAfterGrinding": "Uses After Grinding",
+  "grindstonesharpertools-fabric.duskconfig.DESC_sharpenedDamageModifier": "The damage modifier of sharpened tools.",
+  "grindstonesharpertools-fabric.duskconfig.RANGE_sharpenedDamageModifier": "min: 0, max: 100.0",
+  "grindstonesharpertools-fabric.duskconfig.sharpenedDamageModifier": "Sharpened Damage Modifier",
+  "grindstonesharpertools-fabric.duskconfig.DESC_infiniteCreativeUses": "Whether to decrease sharpened uses in creative.",
+  "grindstonesharpertools-fabric.duskconfig.infiniteCreativeUses": "Infinite Creative Uses",
+  "grindstonesharpertools-fabric.duskconfig.DESC_sendUsesLeftInChat": "Sends the sharpened tool user a message at 75%, 50%, 25%, 10%.",
+  "grindstonesharpertools-fabric.duskconfig.sendUsesLeftInChat": "Send Uses Left In Chat",
+  "grindstonesharpertools-fabric.duskconfig.DESC_showUsesLeftInItemName": "Shows the uses left in the name of the item.",
+  "grindstonesharpertools-fabric.duskconfig.showUsesLeftInItemName": "Show Uses Left In Item Name",
+  "grindstonesharpertools-fabric.duskconfig.DESC_nameUsesPrefix": "The prefix of the sharpened uses left in the tool name.",
+  "grindstonesharpertools-fabric.duskconfig.nameUsesPrefix": "Name Uses Prefix",
+  "grindstonesharpertools-fabric.duskconfig.DESC_nameUsesSuffix": "The suffix of the sharpened uses left in the tool name.",
+  "grindstonesharpertools-fabric.duskconfig.nameUsesSuffix": "Name Uses Suffix"
+}

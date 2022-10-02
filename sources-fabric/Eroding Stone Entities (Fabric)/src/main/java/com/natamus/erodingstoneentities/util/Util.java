@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Eroding Stone Entities.
- * Minecraft version: 1.19.2, mod version: 2.9.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -40,9 +40,9 @@ public class Util {
 	public static HashMap<Item, Item> erodeinto = new HashMap<Item, Item>();
 	
 	public static boolean populateArrays() {
-		String tosandstring = ConfigHandler.itemsWhichErodeIntoSand.getValue();
-		String toredsandstring = ConfigHandler.itemsWhichErodeIntoRedSand.getValue();
-		String toclaystring = ConfigHandler.itemsWhichErodeIntoClay.getValue();
+		String tosandstring = ConfigHandler.itemsWhichErodeIntoSand;
+		String toredsandstring = ConfigHandler.itemsWhichErodeIntoRedSand;
+		String toclaystring = ConfigHandler.itemsWhichErodeIntoClay;
 		
 		for (String itemstring : tosandstring.split(",")) {
 			ResourceLocation rl = new ResourceLocation(itemstring.trim());
@@ -74,7 +74,7 @@ public class Util {
 			}
 			
 			Item item = Registry.ITEM.get(rl);
-			if (ConfigHandler.erodeIntoClayBlockInsteadOfClayBall.getValue()) {
+			if (ConfigHandler.erodeIntoClayBlockInsteadOfClayBall) {
 				erodeinto.put(item, Items.CLAY);
 			}
 			else {

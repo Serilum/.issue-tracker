@@ -1,0 +1,5 @@
+{
+  "replantingcrops-fabric.duskconfig.title": "Replanting Crops Config",
+  "replantingcrops-fabric.duskconfig.DESC_mustHoldHoeForReplanting": "If enabled, players must hold a hoe in their hand to automatically replant the crop.",
+  "replantingcrops-fabric.duskconfig.mustHoldHoeForReplanting": "Must Hold Hoe For Replanting"
+}

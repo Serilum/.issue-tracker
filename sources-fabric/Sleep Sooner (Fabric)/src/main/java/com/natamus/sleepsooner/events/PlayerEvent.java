@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Sleep Sooner.
- * Minecraft version: 1.19.2, mod version: 3.2.
+ * Minecraft version: 1.19.2, mod version: 3.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -39,7 +39,7 @@ public class PlayerEvent {
             return InteractionResult.PASS;
         }
 		
-		if (!ConfigHandler.enableSleepSooner.getValue()) {
+		if (!ConfigHandler.enableSleepSooner) {
 			return InteractionResult.PASS;
 		}
 		
@@ -49,7 +49,7 @@ public class PlayerEvent {
 			return InteractionResult.PASS;
 		}
 		
-		Integer sleeptime = ConfigHandler.whenSleepIsPossibleInTicks.getValue();
+		Integer sleeptime = ConfigHandler.whenSleepIsPossibleInTicks;
 		
 		Integer currenttime = (int)world.getDayTime();
 		Integer days = (int)Math.floor((double)currenttime/24000);
@@ -73,7 +73,7 @@ public class PlayerEvent {
 		
 		WorldFunctions.setWorldTime((ServerLevel)world, 12540);
 
-		if (ConfigHandler.enablePreSleepMessage.getValue()) {
+		if (ConfigHandler.enablePreSleepMessage) {
 			String unique = GlobalVariables.lingermessages.get(GlobalVariables.random.nextInt(GlobalVariables.lingermessages.size()));
 			
 			StringFunctions.sendMessage(player, "You " + unique + " until dusk. You may now sleep.", ChatFormatting.DARK_GREEN);

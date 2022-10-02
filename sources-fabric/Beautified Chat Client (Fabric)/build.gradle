@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.12-SNAPSHOT'
+	id 'fabric-loom' version '0.11-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -16,7 +16,8 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
-	
+
+	maven { url "https://maven.terraformersmc.com/releases/" }
     maven { url "https://github.com/ricksouth/serilum-forge-maven/raw/maven/" }
     //maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
@@ -33,7 +34,9 @@ dependencies {
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
-	modImplementation "com.natamus.collective:collective-fabric:1.19.2-4.54"
+	modImplementation "com.natamus.collective:collective-fabric:1.18.2-5.3"
+
+	modApi("com.terraformersmc:modmenu:3.2.3") { exclude(module: "fabric-api") }
 	
 	// Permissions
 	//modImplementation 'me.lucko:fabric-permissions-api:0.1-SNAPSHOT'
@@ -67,7 +70,7 @@ java {
 }
 
 jar {
-
+	
 }
 
 // configure the maven publication

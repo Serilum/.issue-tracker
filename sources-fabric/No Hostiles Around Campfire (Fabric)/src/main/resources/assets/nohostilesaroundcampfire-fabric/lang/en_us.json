@@ -1,0 +1,21 @@
+{
+  "nohostilesaroundcampfire-fabric.duskconfig.title": "No Hostiles Around Campfire Config",
+  "nohostilesaroundcampfire-fabric.duskconfig.DESC_preventHostilesRadius": "The radius around the campfire in blocks where hostile mob spawns will be blocked.",
+  "nohostilesaroundcampfire-fabric.duskconfig.RANGE_preventHostilesRadius": "min: 1, max: 128",
+  "nohostilesaroundcampfire-fabric.duskconfig.preventHostilesRadius": "Prevent Hostiles Radius",
+  "nohostilesaroundcampfire-fabric.duskconfig.DESC_burnHostilesAroundWhenPlaced": "If enabled, burns all hostile mobs around the campfire within the radius whenever a player places a campfire.",
+  "nohostilesaroundcampfire-fabric.duskconfig.burnHostilesAroundWhenPlaced": "Burn Hostiles Around When Placed",
+  "nohostilesaroundcampfire-fabric.duskconfig.DESC_burnHostilesRadiusModifier": "By default set to 0.5. This means that if the radius is 16, the campfire burns prior mobs in a radius of 8.",
+  "nohostilesaroundcampfire-fabric.duskconfig.RANGE_burnHostilesRadiusModifier": "min: 0, max: 1.0",
+  "nohostilesaroundcampfire-fabric.duskconfig.burnHostilesRadiusModifier": "Burn Hostiles Radius Modifier",
+  "nohostilesaroundcampfire-fabric.duskconfig.DESC_preventMobSpawnerSpawns": "When enabled, the mob spawners spawns are also disabled when a campfire is within the radius.",
+  "nohostilesaroundcampfire-fabric.duskconfig.preventMobSpawnerSpawns": "Prevent Mob Spawner Spawns",
+  "nohostilesaroundcampfire-fabric.duskconfig.DESC_campfireMustBeLit": "When enabled, the campfire only has an effect when the block is lit up.",
+  "nohostilesaroundcampfire-fabric.duskconfig.campfireMustBeLit": "Campfire Must Be Lit",
+  "nohostilesaroundcampfire-fabric.duskconfig.DESC_campfireMustBeSignalling": "When enabled, the campfire only has an effect when the block is signalling.",
+  "nohostilesaroundcampfire-fabric.duskconfig.campfireMustBeSignalling": "Campfire Must Be Signalling",
+  "nohostilesaroundcampfire-fabric.duskconfig.DESC_enableEffectForNormalCampfires": "When enabled, the mod will work with normal campfires.",
+  "nohostilesaroundcampfire-fabric.duskconfig.enableEffectForNormalCampfires": "Enable Effect For Normal Campfires",
+  "nohostilesaroundcampfire-fabric.duskconfig.DESC_enableEffectForSoulCampfires": "When enabled, the mod will work with soul campfires.",
+  "nohostilesaroundcampfire-fabric.duskconfig.enableEffectForSoulCampfires": "Enable Effect For Soul Campfires"
+}

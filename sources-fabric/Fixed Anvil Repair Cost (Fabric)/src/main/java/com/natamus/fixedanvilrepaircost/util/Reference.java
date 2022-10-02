@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Fixed Anvil Repair Cost.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,6 @@ package com.natamus.fixedanvilrepaircost.util;
 public class Reference {
 	public static final String MOD_ID = "fixedanvilrepaircost-fabric";
 	public static final String NAME = "Fixed Anvil Repair Cost (Fabric)";
-	public static final String VERSION = "2.1";
+	public static final String VERSION = "2.2";
 	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
 }

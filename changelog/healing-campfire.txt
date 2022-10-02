@@ -3,6 +3,10 @@ Healing Campfire
 https://www.curseforge.com/minecraft/mc-mods/healing-campfire
 
 =========
+v4.0: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v3.9: Added support for modded campfires.
 Updated mod description.
 

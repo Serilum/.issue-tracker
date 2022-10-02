@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Weaker Spiderwebs.
- * Minecraft version: 1.19.2, mod version: 2.7.
+ * Minecraft version: 1.19.2, mod version: 2.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -59,7 +59,7 @@ public class WebEvent {
 		
 		if (world.getBlockState(pos.below()).getBlock() instanceof WebBlock || world.getBlockState(pos).getBlock() instanceof WebBlock || world.getBlockState(pos.above()).getBlock() instanceof WebBlock) {
 			new Thread(() -> {
-				try  { Thread.sleep( ConfigHandler.breakSpiderwebDelay.getValue() ); }
+				try  { Thread.sleep( ConfigHandler.breakSpiderwebDelay ); }
 				catch (InterruptedException ignored)  { }
 
 				BlockPos nowpos = player.blockPosition().immutable();

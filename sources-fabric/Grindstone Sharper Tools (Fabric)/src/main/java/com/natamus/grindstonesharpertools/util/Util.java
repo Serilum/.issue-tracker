@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Grindstone Sharper Tools.
- * Minecraft version: 1.19.2, mod version: 2.2.
+ * Minecraft version: 1.19.2, mod version: 2.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -27,11 +27,11 @@ import java.util.List;
 
 public class Util {
 	public static void updateName(ItemStack itemstack, int uses) {
-		if (!ConfigHandler.showUsesLeftInItemName.getValue()) {
+		if (!ConfigHandler.showUsesLeftInItemName) {
 			return;
 		}
 
-		String prefix = ConfigHandler.nameUsesPrefix.getValue();
+		String prefix = ConfigHandler.nameUsesPrefix;
 		Component hoverName = itemstack.getHoverName();
 		String name = hoverName.getString();
 		List<Component> flatList = hoverName.toFlatList();
@@ -40,8 +40,8 @@ public class Util {
 		if (uses > 0) {
 			Style last = flatList.get(flatList.size() - 1).getStyle();
 			flatList.add(
-					Component.literal(" " + ConfigHandler.nameUsesPrefix.getValue()
-							+ uses + ConfigHandler.nameUsesSuffix.getValue()).withStyle(last)
+					Component.literal(" " + ConfigHandler.nameUsesPrefix
+							+ uses + ConfigHandler.nameUsesSuffix).withStyle(last)
 			);
 		}
 

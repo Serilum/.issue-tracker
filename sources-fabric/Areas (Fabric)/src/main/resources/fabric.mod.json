@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "areas-fabric",
-  "version": "3.1",
+  "version": "3.2",
 
   "name": "Areas (Fabric)",
   "description": "Create custom named areas/towns with a radius using signs, which sends join and leave messages.",
@@ -13,15 +13,45 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/areas-fabric/icon.png",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.areas.Main" ], "client": [ "com.natamus.areas.ClientMain" ] },
+  "entrypoints": { "main": [ "com.natamus.areas.Main" ], "client": [ "com.natamus.areas.ClientMain" ], "modmenu": [ "com.natamus.areas.config.AreasModMenu" ] },
 
   "depends": {
     "fabricloader": ">=0.13.3",
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=4.69"
-  }
+    "collective-fabric": ">=5.3"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+    " ",
+    "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+    " ",
+    "If you would like to contribute too, check out https://ricksouth.com/donate.",
+    " ",
+    "Membership sponsors:",
+    " Adam E",
+    " Alister",
+    " aternosorg",
+    " Cherriesaurus",
+    " Kreezxil",
+    " limpjellyfish",
+    " Michael W. S.",
+    " Mir3JonCZ",
+    " Robert Gilbert",
+    " Sija",
+    " Tyler Behl"
+  ]
 }

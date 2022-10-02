@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Your Items Are Safe.
- * Minecraft version: 1.19.2, mod version: 2.0.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,6 +18,7 @@ package com.natamus.youritemsaresafe;
 
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.youritemsaresafe.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.youritemsaresafe.events.DeathEvent;
 import com.natamus.youritemsaresafe.util.Reference;
 
@@ -29,7 +30,7 @@ import net.minecraft.world.damagesource.DamageSource;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Fire Spread Tweaks.
- * Minecraft version: 1.19.2, mod version: 1.7.
+ * Minecraft version: 1.19.2, mod version: 1.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -21,10 +21,10 @@ import com.natamus.firespreadtweaks.config.ConfigHandler;
 
 public class Util {
 	public static int getFireBurnDurationInTicks() {
-		int duration = ConfigHandler.timeFireBurnsInTicks.getValue();
-		if (ConfigHandler.enableRandomizedFireDuration.getValue()) {
-			int min = ConfigHandler.MinRandomExtraBurnTicks.getValue();
-			int max = ConfigHandler.MaxRandomExtraBurnTicks.getValue();
+		int duration = ConfigHandler.timeFireBurnsInTicks;
+		if (ConfigHandler.enableRandomizedFireDuration) {
+			int min = ConfigHandler.MinRandomExtraBurnTicks;
+			int max = ConfigHandler.MaxRandomExtraBurnTicks;
 			
 			int randomized = GlobalVariables.random.nextInt(max-min) + min;
 			duration += randomized;

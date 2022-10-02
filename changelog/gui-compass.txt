@@ -3,6 +3,10 @@ GUI Compass
 https://www.curseforge.com/minecraft/mc-mods/gui-compass
 
 =========
+v2.8: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v2.7: Fixed holding a compass in the offhand not counting towards having one in the inventory.
 
 =========

@@ -3,6 +3,9 @@ Full Brightness Toggle
 https://www.curseforge.com/minecraft/mc-mods/full-brightness-toggle
 
 =========
+v2.2: (Fabric) Added Mod Menu support with project links and logo.
+
+=========
 v2.1: (2.0) Released an up-to-date version for Minecraft 1.19.2.
  Added language file support for the keybinding.
 (2.1) Fixed version reference typo.

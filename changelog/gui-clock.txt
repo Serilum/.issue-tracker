@@ -3,6 +3,10 @@ GUI Clock
 https://www.curseforge.com/minecraft/mc-mods/gui-clock
 
 =========
+v3.8: (Fabric) Added Mod Menu support with project links and logo.
+Includes an in-game configuration screen.
+
+=========
 v3.7: The mod now correctly changes the height of the time in the GUI with lowerClockWhenPlayerHasEffects enabled. For positive and negative effects.
 
 =========

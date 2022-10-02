@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Villager Names.
- * Minecraft version: 1.19.2, mod version: 4.1.
+ * Minecraft version: 1.19.2, mod version: 4.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -37,7 +37,7 @@ public class VillagerEvent {
 	public static void onSpawn(Level world, Entity entity) {
 		if (!(entity instanceof Villager)) {
 			boolean goname = false;
-			if (ConfigHandler.nameModdedVillagers.getValue()) {
+			if (ConfigHandler.nameModdedVillagers) {
 				if (EntityFunctions.isModdedVillager(entity)) {
 					goname = true;
 				}

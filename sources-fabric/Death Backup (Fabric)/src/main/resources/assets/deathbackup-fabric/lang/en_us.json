@@ -1,0 +1,7 @@
+{
+  "deathbackup-fabric.duskconfig.title": "Death Backup Config",
+  "deathbackup-fabric.duskconfig.DESC_sendBackupReminderMessageToThoseWithAccessOnDeath": "When enabled, sends a message to a player when they die and have cheat-access that a backup has been created and can be loaded.",
+  "deathbackup-fabric.duskconfig.sendBackupReminderMessageToThoseWithAccessOnDeath": "Send Backup Reminder Message To Those With Access On Death",
+  "deathbackup-fabric.duskconfig.DESC_backupReminderMessage": "The message sent to players with cheat-access when 'sendBackupReminderMessageToThoseWithAccessOnDeath' is enabled.",
+  "deathbackup-fabric.duskconfig.backupReminderMessage": "Backup Reminder Message"
+}

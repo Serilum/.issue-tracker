@@ -1,0 +1,5 @@
+{
+  "advancementscreenshot-fabric.duskconfig.title": "Advancement Screenshot Config",
+  "advancementscreenshot-fabric.duskconfig.DESC_showScreenshotTakenMessage": "If enabled, shows the normal screenshot taken (same as F2) message when a screenshot is taken after an advancement.",
+  "advancementscreenshot-fabric.duskconfig.showScreenshotTakenMessage": "Show Screenshot Taken Message"
+}

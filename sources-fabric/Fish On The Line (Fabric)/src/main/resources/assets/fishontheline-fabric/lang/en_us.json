@@ -1,0 +1,5 @@
+{
+  "fishontheline-fabric.duskconfig.title": "Fish On The Line Config",
+  "fishontheline-fabric.duskconfig.DESC_mustHoldBellInOffhand": "If enabled, the fish on the line sound will only go off if a bell is held in the offhand while fishing.",
+  "fishontheline-fabric.duskconfig.mustHoldBellInOffhand": "Must Hold Bell In Offhand"
+}

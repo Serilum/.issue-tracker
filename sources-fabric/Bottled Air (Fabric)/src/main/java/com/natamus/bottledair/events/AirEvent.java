@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bottled Air.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.2, mod version: 1.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -41,7 +41,7 @@ public class AirEvent {
 
 		Item stackitem = stack.getItem();
 		if (!stackitem.equals(Items.GLASS_BOTTLE)) {
-			if (ConfigHandler.disableWaterConsumptionUnderwater.getValue()) {
+			if (ConfigHandler.disableWaterConsumptionUnderwater) {
 				if (stackitem.equals(Items.POTION)) {
 					if (PotionUtils.getPotion(stack).equals(Potions.WATER)) {
 						if (player.isUnderWater()) {
@@ -60,7 +60,7 @@ public class AirEvent {
 			return InteractionResultHolder.pass(stack);
 		}
 		
-		int newair = air + ConfigHandler.amountOfAirInBottles.getValue();
+		int newair = air + ConfigHandler.amountOfAirInBottles;
 		if (newair > maxair) {
 			newair = maxair;
 		}
@@ -84,7 +84,7 @@ public class AirEvent {
 					slot.shrink(1);
 					
 					double num = GlobalVariables.random.nextDouble();
-					if (num > ConfigHandler.chanceGlassBottleBreaksWithFireTypeInOffhand.getValue()) {
+					if (num > ConfigHandler.chanceGlassBottleBreaksWithFireTypeInOffhand) {
 						ItemFunctions.giveOrDropItemStack(player, new ItemStack(Items.GLASS_BOTTLE, 1));
 					}
 					

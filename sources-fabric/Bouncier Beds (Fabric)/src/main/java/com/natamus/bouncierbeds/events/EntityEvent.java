@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Bouncier Beds.
- * Minecraft version: 1.19.2, mod version: 1.5.
+ * Minecraft version: 1.19.2, mod version: 1.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -40,12 +40,12 @@ public class EntityEvent {
 			return;
 		}
 		
-		player.setDeltaMovement(player.getDeltaMovement().add(0.0f, ConfigHandler.bedBounciness.getValue().floatValue(), 0.0f));
+		player.setDeltaMovement(player.getDeltaMovement().add(0.0f, (float)ConfigHandler.bedBounciness, 0.0f));
 		player.hurtMarked = true;
 	}
 	
 	public static int onFall(Level world, Entity entity, float f, float g) {
-		if (!ConfigHandler.bedsPreventFallDamage.getValue()) {
+		if (!ConfigHandler.bedsPreventFallDamage) {
 			return 1;
 		}
 		

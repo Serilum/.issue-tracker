@@ -3,6 +3,9 @@ Player Tracking
 https://www.curseforge.com/minecraft/mc-mods/player-tracking
 
 =========
+v2.3: (Fabric) Added Mod Menu support with project links and logo.
+
+=========
 v2.2: (Fabric) Updated mod to Minecraft version 1.19.2.
 
 =========

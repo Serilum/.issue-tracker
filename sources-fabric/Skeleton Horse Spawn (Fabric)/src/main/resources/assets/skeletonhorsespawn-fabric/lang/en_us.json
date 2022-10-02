@@ -1,0 +1,10 @@
+{
+  "skeletonhorsespawn-fabric.duskconfig.title": "Skeleton Horse Spawn Config",
+  "skeletonhorsespawn-fabric.duskconfig.DESC_chanceSurfaceSkeletonHasHorse": "The chance a skeleton that has spawned on the surface is riding a horse.",
+  "skeletonhorsespawn-fabric.duskconfig.RANGE_chanceSurfaceSkeletonHasHorse": "min: 0, max: 1.0",
+  "skeletonhorsespawn-fabric.duskconfig.chanceSurfaceSkeletonHasHorse": "Chance Surface Skeleton Has Horse",
+  "skeletonhorsespawn-fabric.duskconfig.DESC_shouldBurnSkeletonHorsesInDaylight": "If enabled, burns skeleton horses when daylight shines upon them.",
+  "skeletonhorsespawn-fabric.duskconfig.shouldBurnSkeletonHorsesInDaylight": "Should Burn Skeleton Horses In Daylight",
+  "skeletonhorsespawn-fabric.duskconfig.DESC_onlySpawnSkeletonHorsesOnSurface": "If enabled, a skeleton horse with rider will only spawn on the surface.",
+  "skeletonhorsespawn-fabric.duskconfig.onlySpawnSkeletonHorsesOnSurface": "Only Spawn Skeleton Horses On Surface"
+}

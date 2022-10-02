@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Healing Soup.
- * Minecraft version: 1.19.2, mod version: 2.8.
+ * Minecraft version: 1.19.2, mod version: 2.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,6 +18,7 @@ package com.natamus.healingsoup;
 
 import com.natamus.collective_fabric.check.RegisterMod;
 import com.natamus.healingsoup.config.ConfigHandler;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.healingsoup.events.SoupEvent;
 import com.natamus.healingsoup.items.SoupFoods;
 import com.natamus.healingsoup.items.SoupItems;
@@ -33,7 +34,7 @@ import net.minecraft.world.item.Item;
 public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() { 
-		ConfigHandler.setup();
+		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
 
 		registerEvents();
 		registerItems();
@@ -48,9 +49,9 @@ public class Main implements ModInitializer {
 	}
 
 	private void registerItems() {
-		Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID.split("-")[0], "mushroom_soup"), SoupItems.MUSHROOM_SOUP);
-		Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID.split("-")[0], "cactus_soup"), SoupItems.CACTUS_SOUP);
-		Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID.split("-")[0], "chocolate_milk"), SoupItems.CHOCOLATE_MILK);
+		Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, "mushroom_soup"), SoupItems.MUSHROOM_SOUP);
+		Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, "cactus_soup"), SoupItems.CACTUS_SOUP);
+		Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, "chocolate_milk"), SoupItems.CHOCOLATE_MILK);
 
 		SoupItems.soups.add(SoupItems.MUSHROOM_SOUP);
 		SoupItems.soups.add(SoupItems.CACTUS_SOUP);

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Healing Campfire.
- * Minecraft version: 1.19.2, mod version: 3.9.
+ * Minecraft version: 1.19.2, mod version: 4.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,96 +16,40 @@
 
 package com.natamus.healingcampfire.config;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import com.natamus.collective_fabric.config.DuskConfig;
 
-import com.natamus.healingcampfire.util.Reference;
+public class ConfigHandler extends DuskConfig {
+	@Comment public static Comment DESC_checkForCampfireDelayInTicks;
+	@Entry public static int checkForCampfireDelayInTicks = 40;
+	@Comment public static Comment RANGE_checkForCampfireDelayInTicks;
 
-import io.github.fablabsmc.fablabs.api.fiber.v1.exception.ValueDeserializationException;
-import io.github.fablabsmc.fablabs.api.fiber.v1.schema.type.derived.ConfigTypes;
-import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.FiberSerialization;
-import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.JanksonValueSerializer;
-import io.github.fablabsmc.fablabs.api.fiber.v1.tree.ConfigTree;
-import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
+	@Comment public static Comment DESC_healingRadius;
+	@Entry public static int healingRadius = 16;
+	@Comment public static Comment RANGE_healingRadius;
 
-public class ConfigHandler { 
-	public static PropertyMirror<Integer> checkForCampfireDelayInTicks = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Integer> healingRadius = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Integer> effectDurationSeconds = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Integer> regenerationLevel = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Boolean> healPassiveMobs = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> hideEffectParticles = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> campfireMustBeLit = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> campfireMustBeSignalling = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> enableEffectForNormalCampfires = PropertyMirror.create(ConfigTypes.BOOLEAN);
-	public static PropertyMirror<Boolean> enableEffectForSoulCampfires = PropertyMirror.create(ConfigTypes.BOOLEAN);
+	@Comment public static Comment DESC_effectDurationSeconds;
+	@Entry public static int effectDurationSeconds = 60;
+	@Comment public static Comment RANGE_effectDurationSeconds;
 
-	private static final ConfigTree CONFIG = ConfigTree.builder() 
-			.beginValue("checkForCampfireDelayInTicks", ConfigTypes.INTEGER, 40)
-			.withComment("How often in ticks the mod checks for campfires around the player. 1 second = 20 ticks, so by default every 2 seconds.")
-			.finishValue(checkForCampfireDelayInTicks::mirror)
+	@Comment public static Comment DESC_regenerationLevel;
+	@Entry public static int regenerationLevel = 1;
+	@Comment public static Comment RANGE_regenerationLevel;
 
-			.beginValue("healingRadius", ConfigTypes.INTEGER, 16)
-			.withComment("The radius around the campfire in blocks where players receive the regeneration effect.")
-			.finishValue(healingRadius::mirror)
+	@Comment public static Comment DESC_healPassiveMobs;
+	@Entry public static boolean healPassiveMobs = true;
 
-			.beginValue("effectDurationSeconds", ConfigTypes.INTEGER, 60)
-			.withComment("The duration of the regeneration effect which the campfire applies.")
-			.finishValue(effectDurationSeconds::mirror)
+	@Comment public static Comment DESC_hideEffectParticles;
+	@Entry public static boolean hideEffectParticles = true;
 
-			.beginValue("regenerationLevel", ConfigTypes.INTEGER, 1)
-			.withComment("The level of regeneration which the campfire applies, by default 1.")
-			.finishValue(regenerationLevel::mirror)
+	@Comment public static Comment DESC_campfireMustBeLit;
+	@Entry public static boolean campfireMustBeLit = true;
 
-			.beginValue("healPassiveMobs", ConfigTypes.BOOLEAN, true)
-			.withComment("When enabled, the campfire heals passive mobs around where the radius is half the width of a bounding box.")
-			.finishValue(healPassiveMobs::mirror)
+	@Comment public static Comment DESC_campfireMustBeSignalling;
+	@Entry public static boolean campfireMustBeSignalling = false;
 
-			.beginValue("hideEffectParticles", ConfigTypes.BOOLEAN, true)
-			.withComment("When enabled, hides the particles from the regeneration effect around the campfire.")
-			.finishValue(hideEffectParticles::mirror)
+	@Comment public static Comment DESC_enableEffectForNormalCampfires;
+	@Entry public static boolean enableEffectForNormalCampfires = true;
 
-			.beginValue("campfireMustBeLit", ConfigTypes.BOOLEAN, true)
-			.withComment("When enabled, the campfire only has an effect when the block is lit up.")
-			.finishValue(campfireMustBeLit::mirror)
-
-			.beginValue("campfireMustBeSignalling", ConfigTypes.BOOLEAN, false)
-			.withComment("When enabled, the campfire only has an effect when the block is signalling.")
-			.finishValue(campfireMustBeSignalling::mirror)
-
-			.beginValue("enableEffectForNormalCampfires", ConfigTypes.BOOLEAN, true)
-			.withComment("When enabled, the mod will work with normal campfires.")
-			.finishValue(enableEffectForNormalCampfires::mirror)
-
-			.beginValue("enableEffectForSoulCampfires", ConfigTypes.BOOLEAN, true)
-			.withComment("When enabled, the mod will work with soul campfires.")
-			.finishValue(enableEffectForSoulCampfires::mirror)
-
-			.build();
-
-	private static void writeDefaultConfig(Path path, JanksonValueSerializer serializer) {
-		try (OutputStream s = new BufferedOutputStream(Files.newOutputStream(path, StandardOpenOption.WRITE, StandardOpenOption.CREATE_NEW))) {
-			FiberSerialization.serialize(CONFIG, s, serializer);
-		} catch (IOException ignored) {}
-
-	}
-
-	public static void setup() {
-		JanksonValueSerializer serializer = new JanksonValueSerializer(false);
-		Path p = Paths.get("config", Reference.MOD_ID + ".json");
-		writeDefaultConfig(p, serializer);
-
-		try (InputStream s = new BufferedInputStream(Files.newInputStream(p, StandardOpenOption.READ, StandardOpenOption.CREATE))) {
-			FiberSerialization.deserialize(CONFIG, s, serializer);
-		} catch (IOException | ValueDeserializationException e) {
-			System.out.println("Error loading config");
-		}
-	}
+	@Comment public static Comment DESC_enableEffectForSoulCampfires;
+	@Entry public static boolean enableEffectForSoulCampfires = true;
 }

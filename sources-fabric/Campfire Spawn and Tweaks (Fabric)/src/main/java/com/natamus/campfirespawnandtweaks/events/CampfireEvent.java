@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Campfire Spawn and Tweaks.
- * Minecraft version: 1.19.2, mod version: 2.0.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -88,7 +88,7 @@ public class CampfireEvent {
 					
 					Vec3 ts;
 					
-					int fireresistancems = ConfigHandler.fireResitanceDurationOnRespawnInMs.getValue();
+					int fireresistancems = ConfigHandler.fireResitanceDurationOnRespawnInMs;
 					if (fireresistancems > 0) {
 						ts = new Vec3(respawnpos.getX()+0.5, respawnpos.getY()+0.5, respawnpos.getZ()+0.5);
 						EntityFunctions.addPotionEffect(player, MobEffects.FIRE_RESISTANCE, fireresistancems);
@@ -98,7 +98,7 @@ public class CampfireEvent {
 						ts = new Vec3(respawnpos.getX()+1.5, respawnpos.getY(), respawnpos.getZ()+0.5);
 					}
 					
-					if (ConfigHandler.createAirPocketIfBlocksAboveCampfire.getValue()) {
+					if (ConfigHandler.createAirPocketIfBlocksAboveCampfire) {
 						BlockPos tsbp = new BlockPos(ts.x, ts.y, ts.z);
 						Iterator<BlockPos> posaround = BlockPos.betweenClosedStream(tsbp.getX(), tsbp.getY(), tsbp.getZ(), tsbp.getX(), tsbp.getY()+1, tsbp.getZ()).iterator();
 						while (posaround.hasNext()) {
@@ -118,7 +118,7 @@ public class CampfireEvent {
 				else {
 					String playername = player.getName().toString();
 					playercampfires.remove(playername.toLowerCase());
-					if (ConfigHandler.sendMessageOnCampfireSpawnMissing.getValue()) {
+					if (ConfigHandler.sendMessageOnCampfireSpawnMissing) {
 						StringFunctions.sendMessage(player, "Campfire spawn point missing.", ChatFormatting.DARK_GRAY);
 					}
 				}
@@ -144,7 +144,7 @@ public class CampfireEvent {
 				return true;
 			}
 			
-			if (ConfigHandler.campfiresStartUnlit.getValue()) {
+			if (ConfigHandler.campfiresStartUnlit) {
 				world.setBlockAndUpdate(pos, state.setValue(CampfireBlock.LIT, false));
 				return false;
 			}
@@ -165,9 +165,9 @@ public class CampfireEvent {
 		if (block instanceof CampfireBlock) {
 			String playername = player.getName().getString();
 			if (player.isShiftKeyDown()) {
-				if (ConfigHandler.sneakRightClickCampfireToUnset.getValue()) {
+				if (ConfigHandler.sneakRightClickCampfireToUnset) {
 					if (Util.checkForCampfireSpawnRemoval(world, playername, pos)) {
-						if (ConfigHandler.sendMessageOnNewCampfireSpawnSet.getValue()) {
+						if (ConfigHandler.sendMessageOnNewCampfireSpawnSet) {
 							StringFunctions.sendMessage(player, "Campfire spawn point removed.", ChatFormatting.DARK_GRAY);
 						}
 					}
@@ -203,7 +203,7 @@ public class CampfireEvent {
 					}
 					
 					if (Util.checkForCampfireSpawnRemoval(world, playername, pos)) {
-						if (ConfigHandler.sendMessageOnNewCampfireSpawnSet.getValue()) {
+						if (ConfigHandler.sendMessageOnNewCampfireSpawnSet) {
 							StringFunctions.sendMessage(player, "Campfire spawn point removed.", ChatFormatting.DARK_GRAY);
 						}
 					}
@@ -219,7 +219,7 @@ public class CampfireEvent {
 					}
 					
 					if (Util.setCampfireSpawn(world, playername, pos)) {
-						if (ConfigHandler.sendMessageOnNewCampfireSpawnSet.getValue()) {
+						if (ConfigHandler.sendMessageOnNewCampfireSpawnSet) {
 							if (holdinglighter) {
 								world.setBlockAndUpdate(pos, state.setValue(CampfireBlock.WATERLOGGED, false));
 								player.swing(hand);
@@ -242,7 +242,7 @@ public class CampfireEvent {
 		}
 		else if (block instanceof BedBlock) {
 			if (player.isShiftKeyDown()) {
-				if (!ConfigHandler.bedsOverrideCampfireSpawnOnSneakRightClick.getValue()) {
+				if (!ConfigHandler.bedsOverrideCampfireSpawnOnSneakRightClick) {
 					return true;
 				}
 				
@@ -261,7 +261,7 @@ public class CampfireEvent {
 					}
 					
 					if (Util.checkForCampfireSpawnRemoval(world, playername, oldpos)) {
-						if (ConfigHandler.sendMessageOnCampfireSpawnOverride.getValue()) {
+						if (ConfigHandler.sendMessageOnCampfireSpawnOverride) {
 							StringFunctions.sendMessage(player, "Campfire spawn point unset.", ChatFormatting.DARK_GRAY);
 						}
 					}
@@ -281,7 +281,7 @@ public class CampfireEvent {
 			String playername = player.getName().getString().toLowerCase();
 
 			if (Util.checkForCampfireSpawnRemoval(world, playername, pos)) {
-				if (ConfigHandler.sendMessageOnNewCampfireSpawnSet.getValue()) {
+				if (ConfigHandler.sendMessageOnNewCampfireSpawnSet) {
 					StringFunctions.sendMessage(player, "Campfire spawn point removed.", ChatFormatting.DARK_GRAY);
 				}
 			}

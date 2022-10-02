@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nutritious Milk.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,56 +16,14 @@
 
 package com.natamus.nutritiousmilk.config;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import com.natamus.collective_fabric.config.DuskConfig;
 
-import com.natamus.nutritiousmilk.util.Reference;
+public class ConfigHandler extends DuskConfig {
+	@Comment public static Comment DESC_hungerLevelIncrease;
+	@Entry public static int hungerLevelIncrease = 10;
+	@Comment public static Comment RANGE_hungerLevelIncrease;
 
-import io.github.fablabsmc.fablabs.api.fiber.v1.exception.ValueDeserializationException;
-import io.github.fablabsmc.fablabs.api.fiber.v1.schema.type.derived.ConfigTypes;
-import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.FiberSerialization;
-import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.JanksonValueSerializer;
-import io.github.fablabsmc.fablabs.api.fiber.v1.tree.ConfigTree;
-import io.github.fablabsmc.fablabs.api.fiber.v1.tree.PropertyMirror;
-
-public class ConfigHandler { 
-	public static PropertyMirror<Integer> hungerLevelIncrease = PropertyMirror.create(ConfigTypes.INTEGER);
-	public static PropertyMirror<Double> saturationLevelIncrease = PropertyMirror.create(ConfigTypes.DOUBLE);
-
-	private static final ConfigTree CONFIG = ConfigTree.builder() 
-			.beginValue("hungerLevelIncrease", ConfigTypes.INTEGER, 10)
-			.withComment("The hunger level decreased. Example values: cookie = 2, bread = 5, salmon = 6, steak = 8.")
-			.finishValue(hungerLevelIncrease::mirror)
-
-			.beginValue("saturationLevelIncrease", ConfigTypes.DOUBLE, 10.0)
-			.withComment("The saturation increase. Example values: melon = 1.2, carrot = 3.6, chicken = 7.2, steak 12.8.")
-			.finishValue(saturationLevelIncrease::mirror)
-
-			.build();
-
-	private static void writeDefaultConfig(Path path, JanksonValueSerializer serializer) {
-		try (OutputStream s = new BufferedOutputStream(Files.newOutputStream(path, StandardOpenOption.WRITE, StandardOpenOption.CREATE_NEW))) {
-			FiberSerialization.serialize(CONFIG, s, serializer);
-		} catch (IOException ignored) {}
-
-	}
-
-	public static void setup() {
-		JanksonValueSerializer serializer = new JanksonValueSerializer(false);
-		Path p = Paths.get("config", Reference.MOD_ID + ".json");
-		writeDefaultConfig(p, serializer);
-
-		try (InputStream s = new BufferedInputStream(Files.newInputStream(p, StandardOpenOption.READ, StandardOpenOption.CREATE))) {
-			FiberSerialization.deserialize(CONFIG, s, serializer);
-		} catch (IOException | ValueDeserializationException e) {
-			System.out.println("Error loading config");
-		}
-	}
+	@Comment public static Comment DESC_saturationLevelIncrease;
+	@Entry public static double saturationLevelIncrease = 10.0;
+	@Comment public static Comment RANGE_saturationLevelIncrease;
 }
