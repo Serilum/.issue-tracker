@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Stack Refill.
- * Minecraft version: 1.19.2, mod version: 3.0.
+ * Minecraft version: 1.19.2, mod version: 3.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -58,109 +58,113 @@ public class RefillEvent {
 	public static void processTick(boolean isClientSide) {
 		try {
 			if (addstack.size() > 0) {
-				Pair<Player, ItemStack> addstackcheck = addstack.get(0);
-				Player player = addstackcheck.getFirst();
-				ItemStack togive = addstackcheck.getSecond();
+				Pair<Player, ItemStack> pair = addstack.get(0);
+				if (pair != null) {
+					Player player = pair.getFirst();
+					ItemStack togive = pair.getSecond();
 
-				ItemStack heldmainhand = player.getMainHandItem();
-				if (heldmainhand.isEmpty()) {
-					player.setItemInHand(InteractionHand.MAIN_HAND, togive);
-				} else {
-					ItemFunctions.giveOrDropItemStack(player, togive);
+					ItemStack heldmainhand = player.getMainHandItem();
+					if (heldmainhand.isEmpty()) {
+						player.setItemInHand(InteractionHand.MAIN_HAND, togive);
+					} else {
+						ItemFunctions.giveOrDropItemStack(player, togive);
+					}
+
+					player.getInventory().setChanged();
 				}
-
-				player.getInventory().setChanged();
 				addstack.remove(0);
 			}
 			if (addsingle.size() > 0) {
 				Pair<InteractionHand, Pair<Player, ItemStack>> pair = addsingle.get(0);
-				Pair<Player, ItemStack> insidepair = pair.getSecond();
+				if (pair != null) {
+					Pair<Player, ItemStack> insidepair = pair.getSecond();
 
-				InteractionHand hand = pair.getFirst();
-				Player player = insidepair.getFirst();
-				ItemStack handstack = player.getItemInHand(hand).copy();
+					InteractionHand hand = pair.getFirst();
+					Player player = insidepair.getFirst();
+					ItemStack handstack = player.getItemInHand(hand).copy();
 
-				player.setItemInHand(hand, insidepair.getSecond());
+					player.setItemInHand(hand, insidepair.getSecond());
 
-				if (!handstack.isEmpty()) {
-					ItemFunctions.giveOrDropItemStack(player, handstack);
+					if (!handstack.isEmpty()) {
+						ItemFunctions.giveOrDropItemStack(player, handstack);
+					}
+
+					player.getInventory().setChanged();
 				}
-
-				player.getInventory().setChanged();
 				addsingle.remove(0);
 			}
 			if (checkfishingrod.size() > 0) {
 				Pair<Player, InteractionHand> pair = checkfishingrod.get(0);
+				if (pair != null) {
+					Player player = pair.getFirst();
+					InteractionHand hand = pair.getSecond();
+					if (player.getItemInHand(hand).isEmpty()) {
+						Inventory inv = player.getInventory();
 
-				Player player = pair.getFirst();
-				InteractionHand hand = pair.getSecond();
-				if (player.getItemInHand(hand).isEmpty()) {
-					Inventory inv = player.getInventory();
-
-					for (int i = 35; i > 8; i--) {
-						ItemStack slot = inv.getItem(i);
-						if (slot.getItem() instanceof FishingRodItem) {
-							player.setItemInHand(hand, slot.copy());
-							slot.setCount(0);
-							break;
+						for (int i = 35; i > 8; i--) {
+							ItemStack slot = inv.getItem(i);
+							if (slot.getItem() instanceof FishingRodItem) {
+								player.setItemInHand(hand, slot.copy());
+								slot.setCount(0);
+								break;
+							}
 						}
 					}
+					player.getInventory().setChanged();
 				}
-
-				player.getInventory().setChanged();
 				checkfishingrod.remove(0);
 			}
 			if (checkitemused.size() > 0) {
 				Pair<InteractionHand, Pair<Player, ItemStack>> pair = checkitemused.get(0);
-				Pair<Player, ItemStack> insidepair = pair.getSecond();
+				if (pair != null) {
+					Pair<Player, ItemStack> insidepair = pair.getSecond();
 
-				InteractionHand hand = pair.getFirst();
-				Player player = insidepair.getFirst();
-				if (!player.isUsingItem()) {
-					ItemStack usedstack = insidepair.getSecond();
-					ItemStack handstack = player.getItemInHand(hand).copy();
-					if (!(usedstack.getItem().equals(handstack.getItem()) && usedstack.getCount() == handstack.getCount())) {
-						boolean shouldcontinue = false;
-						if (handstack.getCount() <= 1) {
-							if (usedstack.getItem().equals(handstack.getItem())) {
-								if (handstack.isEmpty()) {
+					InteractionHand hand = pair.getFirst();
+					Player player = insidepair.getFirst();
+					if (!player.isUsingItem()) {
+						ItemStack usedstack = insidepair.getSecond();
+						ItemStack handstack = player.getItemInHand(hand).copy();
+						if (!(usedstack.getItem().equals(handstack.getItem()) && usedstack.getCount() == handstack.getCount())) {
+							boolean shouldcontinue = false;
+							if (handstack.getCount() <= 1) {
+								if (usedstack.getItem().equals(handstack.getItem())) {
+									if (handstack.isEmpty()) {
+										shouldcontinue = true;
+									}
+								} else {
 									shouldcontinue = true;
 								}
 							}
-							else {
-								shouldcontinue = true;
-							}
-						}
 
-						if (shouldcontinue) {
-							Item useditem = usedstack.getItem();
+							if (shouldcontinue) {
+								Item useditem = usedstack.getItem();
 
-							Inventory inv = player.getInventory();
-							for (int i = 35; i > 8; i--) {
-								ItemStack slot = inv.getItem(i);
-								Item slotitem = slot.getItem();
-								if (useditem.equals(slotitem)) {
-									if (slotitem instanceof PotionItem) {
-										if (!PotionUtils.getPotion(usedstack).equals(PotionUtils.getPotion(slot))) {
-											continue;
+								Inventory inv = player.getInventory();
+								for (int i = 35; i > 8; i--) {
+									ItemStack slot = inv.getItem(i);
+									Item slotitem = slot.getItem();
+									if (useditem.equals(slotitem)) {
+										if (slotitem instanceof PotionItem) {
+											if (!PotionUtils.getPotion(usedstack).equals(PotionUtils.getPotion(slot))) {
+												continue;
+											}
 										}
+
+										player.setItemInHand(hand, slot.copy());
+										slot.setCount(0);
+
+										if (!handstack.isEmpty()) {
+											ItemFunctions.giveOrDropItemStack(player, handstack);
+										}
+
+										player.getInventory().setChanged();
+										break;
 									}
-
-									player.setItemInHand(hand, slot.copy());
-									slot.setCount(0);
-
-									if (!handstack.isEmpty()) {
-										ItemFunctions.giveOrDropItemStack(player, handstack);
-									}
-
-									player.getInventory().setChanged();
-									break;
 								}
 							}
 						}
 					}
 				}
-
 				checkitemused.remove(0);
 			}
 		}

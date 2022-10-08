@@ -3,6 +3,9 @@ Realistic Bees
 https://www.curseforge.com/minecraft/mc-mods/realistic-bees
 
 =========
+v2.8: Fixed the events needed for stinger behaviour not being registered correctly.
+
+=========
 v2.7: (Forge only) Changed the mixin file name to be unique, fixing overlap with other mods.
 If the bee hive cap config wasn't working before, this will most likely fix it.
 

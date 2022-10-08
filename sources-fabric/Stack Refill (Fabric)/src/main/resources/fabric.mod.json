@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "stackrefill-fabric",
-  "version": "3.1",
+  "version": "3.2",
 
   "name": "Stack Refill (Fabric)",
   "description": "A quality of life mod which automatically refills the item in the hand of the player when using the final item if possible.",
@@ -23,7 +23,7 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=5.3"
+    "collective-fabric": ">=5.4"
   },
 
   "custom": {

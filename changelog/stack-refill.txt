@@ -3,6 +3,9 @@ Stack Refill
 https://curseforge.com/minecraft/mc-mods/stack-refill
 
 =========
+v3.2: Fixed a crash when a pair variable was null, due to an incompatibility with another mod.
+
+=========
 v3.1: (Fabric) Added Mod Menu support with project links and logo.
 
 =========
