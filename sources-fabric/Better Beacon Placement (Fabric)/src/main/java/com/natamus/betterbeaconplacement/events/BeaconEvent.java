@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Beacon Placement.
- * Minecraft version: 1.19.2, mod version: 2.0.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,11 +19,8 @@ package com.natamus.betterbeaconplacement.events;
 import com.natamus.betterbeaconplacement.config.ConfigHandler;
 import com.natamus.betterbeaconplacement.util.Util;
 import com.natamus.collective_fabric.functions.BlockFunctions;
-import com.natamus.collective_fabric.functions.BlockPosFunctions;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -32,32 +29,28 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.BlockHitResult;
 
 public class BeaconEvent {
-	public static InteractionResult onBeaconClick(Player player, Level world, InteractionHand hand, HitResult hitResult) {
+	public static boolean onBeaconClick(Level world, Player player, InteractionHand hand, BlockPos cpos, BlockHitResult hitVec) {
 		if (world.isClientSide) {
-			return InteractionResult.PASS;
+			return true;
 		}
 		
 		ItemStack handstack = player.getItemInHand(hand);
 		if (!BlockFunctions.isOneOfBlocks(Util.mineralblocks, handstack)) {
-			return InteractionResult.PASS;
+			return true;
 		}
-		
-		BlockPos cpos = BlockPosFunctions.getBlockPosFromHitResult(hitResult);
+
 		if (!world.getBlockState(cpos).getBlock().equals(Blocks.BEACON)) {
-			return InteractionResult.PASS;
+			return true;
 		}
 		
 		boolean set = false;
 		while (handstack.getCount() > 0) {
 			BlockPos nextpos = Util.getNextLocation(world, cpos);
 			if (nextpos == null) {
-				if (set) {
-					return InteractionResult.FAIL;
-				}
-				return InteractionResult.PASS;
+				return !set;
 			}
 			
 			Block block = world.getBlockState(nextpos).getBlock();
@@ -68,11 +61,11 @@ public class BeaconEvent {
 				}
 			}
 			
+			world.setBlockAndUpdate(nextpos, Block.byItem(handstack.getItem()).defaultBlockState());
+
 			if (!player.isCreative()) {
 				handstack.shrink(1);
 			}
-			
-			world.setBlockAndUpdate(nextpos, Block.byItem(handstack.getItem()).defaultBlockState());
 			
 			set = true;
 			if (!player.isCrouching()) {
@@ -80,7 +73,7 @@ public class BeaconEvent {
 			}
 		}
 		
-		return InteractionResult.FAIL;
+		return false;
 	}
 	
 	public static void onBlockBreak(Level world, Player player, BlockPos bpos, BlockState state, BlockEntity blockEntity) {

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Beacon Placement.
- * Minecraft version: 1.19.2, mod version: 1.7.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -71,11 +71,11 @@ public class BeaconEvent {
 				}
 			}
 			
+			world.setBlockAndUpdate(nextpos, Block.byItem(hand.getItem()).defaultBlockState());
+
 			if (!player.isCreative()) {
 				hand.shrink(1);
 			}
-			
-			world.setBlockAndUpdate(nextpos, Block.byItem(hand.getItem()).defaultBlockState());
 			
 			set = true;
 			if (!player.isShiftKeyDown()) {

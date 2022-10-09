@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "betterbeaconplacement-fabric",
-  "version": "2.0",
+  "version": "2.1",
 
   "name": "Better Beacon Placement (Fabric)",
   "description": "Easily place beacon bases by right-clicking the beacon with a mineral block plus other tweaks.",
@@ -23,7 +23,7 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=5.3"
+    "collective-fabric": ">=5.4"
   },
 
   "custom": {

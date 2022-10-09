@@ -3,6 +3,10 @@ Better Beacon Placement
 https://www.curseforge.com/minecraft/mc-mods/better-beacon-placement
 
 =========
+v2.1: Fixed one less block being placed when shift-right clicking the beacon.
+(Fabric) Fixed not being able to click the beacon from certain angles.
+
+=========
 v2.0: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

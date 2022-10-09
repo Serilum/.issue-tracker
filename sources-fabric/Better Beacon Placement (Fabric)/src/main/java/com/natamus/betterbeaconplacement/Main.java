@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Beacon Placement.
- * Minecraft version: 1.19.2, mod version: 2.0.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,14 +17,18 @@
 package com.natamus.betterbeaconplacement;
 
 import com.natamus.betterbeaconplacement.config.ConfigHandler;
-import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.betterbeaconplacement.events.BeaconEvent;
 import com.natamus.betterbeaconplacement.util.Reference;
 import com.natamus.collective_fabric.check.RegisterMod;
-
+import com.natamus.collective_fabric.config.DuskConfig;
+import com.natamus.collective_fabric.fabric.callbacks.CollectiveBlockEvents;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
-import net.fabricmc.fabric.api.event.player.UseBlockCallback;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 
 public class Main implements ModInitializer {
 	@Override
@@ -37,8 +41,8 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
-			return BeaconEvent.onBeaconClick(player, world, hand, hitResult);
+		CollectiveBlockEvents.BLOCK_RIGHT_CLICK.register((Level world, Player player, InteractionHand hand, BlockPos pos, BlockHitResult hitVec) -> {
+			return BeaconEvent.onBeaconClick(world, player, hand, pos, hitVec);
 		});
 		
 		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, entity) -> {
