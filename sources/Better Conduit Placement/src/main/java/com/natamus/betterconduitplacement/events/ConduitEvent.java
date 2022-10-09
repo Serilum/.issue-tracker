@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Conduit Placement.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -62,11 +62,11 @@ public class ConduitEvent {
 			return;
 		}
 		
+		world.setBlockAndUpdate(frontpos, Blocks.CONDUIT.defaultBlockState());
+
 		if (!player.isCreative()) {
 			itemstack.shrink(1);
 		}
-		
-		world.setBlockAndUpdate(frontpos, Blocks.CONDUIT.defaultBlockState());
 	}
 	
 	@SubscribeEvent
@@ -102,11 +102,11 @@ public class ConduitEvent {
 				}
 			}
 			
+			world.setBlockAndUpdate(nextpos, Block.byItem(hand.getItem()).defaultBlockState());
+
 			if (!player.isCreative()) {
 				hand.shrink(1);
 			}
-			
-			world.setBlockAndUpdate(nextpos, Block.byItem(hand.getItem()).defaultBlockState());
 			
 			set = true;
 			if (!player.isShiftKeyDown()) {

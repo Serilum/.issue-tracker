@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Better Conduit Placement.
- * Minecraft version: 1.19.2, mod version: 1.9.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,11 +19,8 @@ package com.natamus.betterconduitplacement.events;
 import com.natamus.betterconduitplacement.config.ConfigHandler;
 import com.natamus.betterconduitplacement.util.Util;
 import com.natamus.collective_fabric.functions.BlockFunctions;
-import com.natamus.collective_fabric.functions.BlockPosFunctions;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -34,7 +31,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 
 public class ConduitEvent {
@@ -60,27 +57,27 @@ public class ConduitEvent {
 			return InteractionResultHolder.pass(itemstack);
 		}
 		
+		world.setBlockAndUpdate(frontpos, Blocks.CONDUIT.defaultBlockState());
+
 		if (!player.isCreative()) {
 			itemstack.shrink(1);
 		}
-		
-		world.setBlockAndUpdate(frontpos, Blocks.CONDUIT.defaultBlockState());
+
 		return InteractionResultHolder.success(itemstack);
 	}
 	
-	public static InteractionResult onConduitClick(Player player, Level world, InteractionHand hand, HitResult hitResult) {
+	public static boolean onConduitClick(Level world, Player player, InteractionHand hand, BlockPos cpos, BlockHitResult hitVec) {
 		if (world.isClientSide) {
-			return InteractionResult.PASS;
+			return true;
 		}
-		
-		BlockPos cpos = BlockPosFunctions.getBlockPosFromHitResult(hitResult);
+
 		if (!world.getBlockState(cpos).getBlock().equals(Blocks.CONDUIT)) {
-			return InteractionResult.PASS;
+			return true;
 		}
 		
 		ItemStack handstack = player.getItemInHand(hand);
 		if (!BlockFunctions.isOneOfBlocks(Util.conduitblocks, handstack)) {
-			return InteractionResult.PASS;
+			return true;
 		}
 		
 		boolean set = false;
@@ -98,23 +95,19 @@ public class ConduitEvent {
 				}
 			}
 			
+			world.setBlockAndUpdate(nextpos, Block.byItem(handstack.getItem()).defaultBlockState());
+
 			if (!player.isCreative()) {
 				handstack.shrink(1);
 			}
-			
-			world.setBlockAndUpdate(nextpos, Block.byItem(handstack.getItem()).defaultBlockState());
 			
 			set = true;
 			if (!player.isShiftKeyDown()) {
 				break;
 			}
 		}
-		
-		if (set) {
-			return InteractionResult.FAIL;
-		}
-		
-		return InteractionResult.PASS;
+
+		return !set;
 	}
 	
 	public static void onBlockBreak(Level world, Player player, BlockPos bpos, BlockState state, BlockEntity blockEntity) {

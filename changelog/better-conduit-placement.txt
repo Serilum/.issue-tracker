@@ -3,6 +3,10 @@ Better Conduit Placement
 https://www.curseforge.com/minecraft/mc-mods/better-conduit-placement
 
 =========
+v2.0: Fixed one less block being placed when shift-right clicking a conduit.
+(Fabric) Fixed not being able to click the conduit from certain angles.
+
+=========
 v1.9: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 
