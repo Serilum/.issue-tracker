@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.5: (Forge) Moved mod icon to the root of the resources folder to prevent a crash when clicking on Collective in the mod list.
+
+=========
 v5.4: (Fabric) Fixed some config values not being parsed correctly.
 
 =========

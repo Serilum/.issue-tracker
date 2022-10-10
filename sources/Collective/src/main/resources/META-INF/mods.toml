@@ -2,11 +2,11 @@ modLoader="javafml"
 loaderVersion="[43,)"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Library%3A%20Collective"
 license="All rights reserved"
-logoFile="/assets/collective/icon.png"
+logoFile="icon.png"
 
 [[mods]]
 modId="collective"
-version="5.0"
+version="5.5"
 displayName="Collective"
 displayURL="https://curseforge.com/minecraft/mc-mods/collective"
 authors="Rick South"
