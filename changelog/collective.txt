@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.6-5.7: Added BlockPos function to get a random position inside an ungenerated chunk.
+Added functionality to Collective to parse .schem and .schematic files.
+
+=========
 v5.5: (Forge) Moved mod icon to the root of the resources folder to prevent a crash when clicking on Collective in the mod list.
 
 =========

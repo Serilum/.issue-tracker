@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.4.
+ * Minecraft version: 1.19.2, mod version: 5.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -26,6 +26,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BaseCommandBlock;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -37,9 +38,11 @@ import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class BlockPosFunctions {
 	// START: GET functions
@@ -257,26 +260,6 @@ public class BlockPosFunctions {
 		return spawnpos;
 	}
 
-	/*public static BlockPos getCenterBiome(ServerLevel serverworld, Predicate<Holder<Biome>> biome) {
-		BlockPos centerpos = new BlockPos(0, 0, 0);
-		BlockPos biomepos = serverworld.findNearestBiome(biome, centerpos, 999999, 0).getFirst();
-		if (biomepos == null) {
-			return null;
-		}
-
-		BlockPos spawnpos = null;
-		for (int y = serverworld.getHeight()-1; y > 0; y--) {
-			BlockPos checkpos = new BlockPos(biomepos.getX(), y, biomepos.getZ());
-			if (serverworld.getBlockState(checkpos).getBlock().equals(Blocks.AIR)) {
-				continue;
-			}
-			spawnpos = checkpos.above().immutable();
-			break;
-		}
-
-		return spawnpos;
-	}*/
-
 	public static BlockPos getBlockPlayerIsLookingAt(Level world, Player player, boolean stopOnLiquid) {
 		HitResult raytraceresult = RayTraceFunctions.rayTrace(world, player, stopOnLiquid);
 		double posX = raytraceresult.getLocation().x;
@@ -284,6 +267,79 @@ public class BlockPosFunctions {
 		double posZ = raytraceresult.getLocation().z;
 
 		return new BlockPos(posX, posY, posZ);
+	}
+
+	public static BlockPos getRandomCoordinatesInNearestUngeneratedChunk(ServerLevel serverLevel, BlockPos aroundPosition) {
+		List<String> regionList = new ArrayList<String>();
+
+		try {
+			File regionFolder = new File(WorldFunctions.getWorldPath(serverLevel) + File.separator + "region");
+			File[] listOfRegionFiles = regionFolder.listFiles();
+
+			for (File regionFile : listOfRegionFiles) {
+				if (regionFile.isFile()) {
+					regionList.add(regionFile.getName().replaceAll("r.", "").replaceAll(".mca", ""));
+				}
+			}
+		}
+		catch(NullPointerException ignored) {
+			return null;
+		}
+
+		ChunkPos chunkPos = serverLevel.getChunkAt(aroundPosition).getPos();
+		int curRegionX = chunkPos.getRegionX();
+		int curRegionZ = chunkPos.getRegionZ();
+
+		int currentRange = 1;
+		int loops = 0;
+
+		String closestUngeneratedRegionString = "";
+		while (closestUngeneratedRegionString.equals("")) {
+			for (int x = -1; x <= 1; x++) {
+				for (int z = -1; z <= 1; z++) {
+					int regionX = curRegionX + (x*currentRange);
+					int regionZ = curRegionZ + (z*currentRange);
+
+					String regionString = regionX + "." + regionZ;
+					if (!regionList.contains(regionString)) {
+						closestUngeneratedRegionString = regionString;
+						break;
+					}
+				}
+				if (!closestUngeneratedRegionString.equals("")) {
+					break;
+				}
+			}
+
+			currentRange += 1;
+			loops += 1;
+
+			if (loops > 50) {
+				return null;
+			}
+		}
+
+		int outputRegionX, outputRegionZ;
+
+		String[] cursspl = closestUngeneratedRegionString.split("\\.");
+		try {
+			outputRegionX = Integer.parseInt(cursspl[0]);
+			outputRegionZ = Integer.parseInt(cursspl[1]);
+		}
+		catch (NumberFormatException ex) {
+			return null;
+		}
+
+		int minXRange = (outputRegionX * 512) - 256;
+		int maxXRange = (outputRegionX * 512) + 256;
+		int minZRange = (outputRegionZ * 512) - 256;
+		int maxZRange = (outputRegionZ * 512) + 256;
+
+		int randomXCoord = ThreadLocalRandom.current().nextInt(minXRange, maxXRange + 1);
+		int randomZCoord = ThreadLocalRandom.current().nextInt(minZRange, maxZRange + 1);
+		int randomYCoord = BlockPosFunctions.getSurfaceBlockPos(serverLevel, randomXCoord, randomZCoord).getY();
+
+		return new BlockPos(randomXCoord, randomYCoord, randomZCoord);
 	}
 	// END: GET functions
 
