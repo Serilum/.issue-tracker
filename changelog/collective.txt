@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.8: Added EntityFunction to force set a LivingEntity's health, above the max health limit.
+
+=========
 v5.6-5.7: Added BlockPos function to get a random position inside an ungenerated chunk.
 Added functionality to Collective to parse .schem and .schematic files.
 

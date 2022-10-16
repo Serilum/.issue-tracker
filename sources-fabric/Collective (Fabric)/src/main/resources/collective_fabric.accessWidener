@@ -13,3 +13,4 @@ mutable field net/minecraft/world/item/trading/MerchantOffer maxUses I
 accessible field net/minecraft/world/item/trading/MerchantOffer uses I
 accessible field net/minecraft/world/item/trading/MerchantOffer demand I
 accessible field net/minecraft/world/level/BaseSpawner spawnDelay I
+accessible field net/minecraft/world/entity/LivingEntity DATA_HEALTH_ID Lnet/minecraft/network/syncher/EntityDataAccessor;
