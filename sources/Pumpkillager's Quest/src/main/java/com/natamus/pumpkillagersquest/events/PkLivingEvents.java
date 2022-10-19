@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.0.
+ * Minecraft version: 1.19.2, mod version: 1.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -42,6 +42,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PlayerHeadItem;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -64,12 +65,30 @@ public class PkLivingEvents {
             }
         }
 
-        if (!(entity instanceof Villager)) {
+        if (!(entity instanceof Villager) && !(entity instanceof Player)) {
             return;
         }
 
         Level level = entity.getLevel();
         Entity sourceEntity = damageSource.getEntity();
+        Entity directSourceEntity = damageSource.getDirectEntity();
+
+        if (entity instanceof Player) {
+            BlockPos ppos = entity.blockPosition();
+            if (damageSource.toString().contains("explosion")) {
+                if (Data.allPumpkillagers.get(level).size() > 0 || Data.allPrisoners.get(level).size() > 0) {
+                    for (Entity nearbyEntity : level.getEntities(null, new AABB(ppos.getX() - 10, ppos.getY() - 10, ppos.getZ() - 10, ppos.getX() + 10, ppos.getY() + 10, ppos.getZ() + 10))) {
+                        if (nearbyEntity instanceof Villager) {
+                            if (Util.isPumpkillager(nearbyEntity) || Util.isPrisoner(nearbyEntity)) {
+                                e.setCanceled(true);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            return;
+        }
 
         if (!Util.isPumpkillager(entity)) {
             if (Util.isPrisoner(entity)) {
@@ -81,8 +100,6 @@ public class PkLivingEvents {
             }
             return;
         }
-
-        Entity directSourceEntity = damageSource.getDirectEntity();
 
         Villager pumpkillager = (Villager)entity;
         BlockPos pos = pumpkillager.blockPosition();

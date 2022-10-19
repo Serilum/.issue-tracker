@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.0.
+ * Minecraft version: 1.19.2, mod version: 1.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -39,12 +39,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.LevelChunk;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,6 +63,15 @@ public class GenerateStructure {
 
         MinecraftServer minecraftServer = level.getServer();
         BlockPos centerPos = cPos.immutable();
+
+        ChunkPos chunkPos = level.getChunkAt(centerPos).getPos();
+
+        for (int x = -2; x <= 2; x++) {
+            for (int z = -2; z <= 2; z++) {
+                LevelChunk levelChunk = level.getChunk(chunkPos.x+x, chunkPos.z+z);
+                levelChunk.postProcessGeneration();
+            }
+        }
 
         boolean isPeaceful = minecraftServer.getWorldData().getDifficulty().equals(Difficulty.PEACEFUL);
 
@@ -181,6 +192,13 @@ public class GenerateStructure {
                     minecraftServer.execute(() -> {
                         ghostKnight.startRiding(ghostKnightHorse);
                         ghostRider.startRiding(ghostRiderHorse);
+
+                        for (int x = -2; x <= 2; x++) {
+                            for (int z = -2; z <= 2; z++) {
+                                LevelChunk levelChunk = level.getChunk(chunkPos.x+x, chunkPos.z+z);
+                                levelChunk.postProcessGeneration();
+                            }
+                        }
                     });
                 });
             });
