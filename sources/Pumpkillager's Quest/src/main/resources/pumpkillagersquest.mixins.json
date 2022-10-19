@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.natamus.pumpkillagersquest.forge.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "pumpkillager.refmap.json",
+  "mixins": [
+    "VillagerMixin"
+  ],
+  "client": [
+  ],
+  "server": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

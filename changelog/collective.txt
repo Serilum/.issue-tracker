@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.81-5.10: Updated backend code.
+Synced version with local development.
+
+=========
 v5.8: Added EntityFunction to force set a LivingEntity's health, above the max health limit.
 
 =========
