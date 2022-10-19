@@ -1,6 +1,6 @@
 Changelog:
 Pumpkillager's Quest
-https://www.curseforge.com/minecraft/mc-mods/pumpkillagers-quest
+https://curseforge.com/minecraft/mc-mods/pumpkillagers-quest
 
 =========
 v1.0: Initial release of mod.
