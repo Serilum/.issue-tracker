@@ -3,6 +3,10 @@ Pumpkillager's Quest
 https://curseforge.com/minecraft/mc-mods/pumpkillagers-quest
 
 =========
+v1.2: The Pumpkillager now makes different sounds, depending on the encounter.
+Fixed the prisoner not despawning after relog.
+
+=========
 v1.1: Improved prison generation code to prevent lighting glitches.
 Fixed the prisoner's magic explosion doing damage.
 Updated mod description.
