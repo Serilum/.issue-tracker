@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.2.
+ * Minecraft version: 1.19.2, mod version: 1.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -21,7 +21,10 @@ import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.collective.functions.CompareBlockFunctions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.npc.Villager;
@@ -34,11 +37,13 @@ import net.minecraft.world.level.block.CarvedPumpkinBlock;
 import net.minecraft.world.level.block.PumpkinBlock;
 import net.minecraft.world.phys.Vec3;
 
-import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class Util {
     public static Pair<Player, MutableComponent> modifyMessagePair(Pair<Player, MutableComponent> pair, MutableComponent newMessageComponent) {
@@ -98,14 +103,19 @@ public class Util {
         Scheduler.scheduleFireExtuingish(level, pos, target, healTarget);
     }
 
-    public static String getSchematicsFilePath(String schematicName) {
-        return getSchematicsFilePath(schematicName, ".schem");
+    public static InputStream getSchematicsInputStream(MinecraftServer minecraftServer, String schematicName) {
+        return getSchematicsInputStream(minecraftServer, schematicName, ".schem");
     }
-    public static String getSchematicsFilePath(String schematicName, String fileExtension) {
-        if (Data.modContainer == null) {
-            return "";
+    public static InputStream getSchematicsInputStream(MinecraftServer minecraftServer, String schematicName, String fileExtension) {
+        Optional<Resource> resourceOptional = minecraftServer.getResourceManager().getResource(new ResourceLocation(Reference.MOD_ID + ":schematics/" + schematicName + fileExtension));
+        if (resourceOptional.isPresent()) {
+            Resource resource = resourceOptional.get();
+            try {
+                return resource.open();
+            }
+            catch (IOException ignored) {}
         }
-        return Data.modContainer.getModInfo().getOwningFile().getFile().getFilePath().toString() + File.separator + "data" + File.separator + Reference.MOD_ID + File.separator + "schematics" + File.separator + schematicName + fileExtension;
+        return null;
     }
 
     public static float roundFloat(float d, int decimalPlace) {

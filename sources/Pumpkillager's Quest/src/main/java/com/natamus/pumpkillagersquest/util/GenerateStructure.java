@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.2.
+ * Minecraft version: 1.19.2, mod version: 1.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -48,6 +48,7 @@ import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -75,7 +76,14 @@ public class GenerateStructure {
 
         boolean isPeaceful = minecraftServer.getWorldData().getDifficulty().equals(Difficulty.PEACEFUL);
 
-        ParsedSchematicObject parsedSchematicObject = ParseSchematicFile.getParsedSchematicObject(Util.getSchematicsFilePath("floating_prisoner_camp"), level, centerPos, pasteNBlocksAboveSurface, false);
+        InputStream schematicInputstream = Util.getSchematicsInputStream(minecraftServer, "floating_prisoner_camp");
+        if (schematicInputstream == null) {
+            System.out.println("[Pumpkillager's Quest] Error generating prisoner camp: inputstream is null.");
+            return;
+        }
+
+        ParsedSchematicObject parsedSchematicObject = ParseSchematicFile.getParsedSchematicObject(schematicInputstream, level, centerPos, pasteNBlocksAboveSurface, false);
+
         if (!parsedSchematicObject.parsedCorrectly) {
             System.out.println("[Pumpkillager's Quest] Error generating prisoner camp: schematic object didn't parse.");
             return;
