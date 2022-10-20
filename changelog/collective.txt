@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.11: Changed the input of the Schematic function to work with an InputStream, instead of a file path.
+
+=========
 v5.81-5.10: Updated backend code.
 Synced version with local development.
 

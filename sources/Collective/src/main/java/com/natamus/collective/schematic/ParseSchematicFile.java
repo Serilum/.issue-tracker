@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.10.
+ * Minecraft version: 1.19.2, mod version: 5.11.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -23,18 +23,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ParseSchematicFile {
-    public static ParsedSchematicObject getParsedSchematicObject(String schematicPath, Level level, BlockPos centerPos, int extraYOffset, boolean skipAir) {
-        File schematicFile = new File(schematicPath);
-        if(!schematicFile.exists() && schematicFile.isDirectory()) {
-            return new ParsedSchematicObject(null, null, "Schematic file '" + schematicPath + "' does not exist.", false);
-        }
-
-        Schematic schematic = new Schematic(schematicFile);
+    public static ParsedSchematicObject getParsedSchematicObject(InputStream schematicInputStream, Level level, BlockPos centerPos, int extraYOffset, boolean skipAir) {
+        Schematic schematic = new Schematic(schematicInputStream);
 
         int maxBuildHeight = level.getMaxBuildHeight();
         int length = schematic.getLength();
