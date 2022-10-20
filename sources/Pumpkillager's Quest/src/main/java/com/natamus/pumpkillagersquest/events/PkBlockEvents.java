@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.3.
+ * Minecraft version: 1.19.2, mod version: 1.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -20,6 +20,7 @@ import com.mojang.authlib.GameProfile;
 import com.natamus.collective.data.GlobalVariables;
 import com.natamus.collective.functions.MessageFunctions;
 import com.natamus.collective.functions.WorldFunctions;
+import com.natamus.pumpkillagersquest.config.ConfigHandler;
 import com.natamus.pumpkillagersquest.pumpkillager.Conversations;
 import com.natamus.pumpkillagersquest.pumpkillager.Manage;
 import com.natamus.pumpkillagersquest.pumpkillager.RitualCheck;
@@ -125,26 +126,30 @@ public class PkBlockEvents {
         Set<String> playerTags = player.getTags();
         if (!playerTags.contains(Reference.MOD_ID + ".completedquest") && !playerTags.contains(Reference.MOD_ID + ".unleashed")) {
             if (Util.isPumpkinBlock(block)) {
-                if (GlobalVariables.random.nextDouble() < 0.1) {
-                    boolean foundQuestBook = false;
+                if (!Data.pumpkillagerPlayerTarget.containsValue(player)) {
+                    if (Util.pumpkinBlockIsClear(level, pos)) {
+                        if (GlobalVariables.random.nextDouble() <= ConfigHandler.GENERAL.pumpkillagerSpawnChance.get()) {
+                            boolean foundQuestBook = false;
 
-                    Inventory inventory = player.getInventory();
-                    for (int i = 0; i < inventory.getContainerSize(); i++) {
-                        ItemStack inventoryStack = inventory.getItem(i);
-                        if (inventoryStack.getItem() instanceof WrittenBookItem) {
-                            String bookName = inventoryStack.getHoverName().getString();
-                            if (bookName.equals(Data.questBookName)) {
-                                foundQuestBook = true;
-                                break;
+                            Inventory inventory = player.getInventory();
+                            for (int i = 0; i < inventory.getContainerSize(); i++) {
+                                ItemStack inventoryStack = inventory.getItem(i);
+                                if (inventoryStack.getItem() instanceof WrittenBookItem) {
+                                    String bookName = inventoryStack.getHoverName().getString();
+                                    if (bookName.equals(Data.questBookName)) {
+                                        foundQuestBook = true;
+                                        break;
+                                    }
+                                }
                             }
+
+                            if (foundQuestBook) {
+                                return;
+                            }
+
+                            Manage.spawnPumpkillager(level, player, pos);
                         }
                     }
-
-                    if (foundQuestBook) {
-                        return;
-                    }
-
-                    Manage.spawnPumpkillager(level, player, pos);
                 }
             }
         }

@@ -3,6 +3,14 @@ Pumpkillager's Quest
 https://curseforge.com/minecraft/mc-mods/pumpkillagers-quest
 
 =========
+v1.5: Made the check if the pumpkin is free for spawning the Pumpkillager less strict. It now only needs an air pocket in the NESW directons and above.
+
+=========
+v1.4: Added config option to determine chance of Pumpkillager spawning when a pumpkin is broken, by default 0.1.
+The pumpkillager won't spawn anymore when another one is already nearby.
+The pumpkillager will only spawn when the pumpkin broken is free, e.g. with air blocks around and above. To prevent it spawning inside a "pumpkin structure".
+
+=========
 v1.3: Fixed the prisoner camp not generating correctly at the specified coordinates.
 
 =========

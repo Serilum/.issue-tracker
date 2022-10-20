@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.3.
+ * Minecraft version: 1.19.2, mod version: 1.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -24,17 +24,13 @@ public class ConfigHandler {
 	public static final ForgeConfigSpec spec = BUILDER.build();
 
 	public static class General {
-		//public final ForgeConfigSpec.ConfigValue<Boolean> alwaysDropShells;
-		//public final ForgeConfigSpec.ConfigValue<Integer> shulkerDropAmount;
+		public final ForgeConfigSpec.ConfigValue<Double> pumpkillagerSpawnChance;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
-			/*alwaysDropShells = builder
-					.comment("Ignore the drop chance (default 50%) that a Shulker will drop their shell and instead makes them always drop it.")
-					.define("alwaysDropShells", false);*/
-			/*shulkerDropAmount = builder
-					.comment("Sets the amount of shells Shulkers drop.")
-					.defineInRange("shulkerDropAmount", 2, 1, 64);*/
+			pumpkillagerSpawnChance = builder
+					.comment("The chance a Pumpkillager will spawn when a player breaks a pumpkin block.")
+					.defineInRange("pumpkillagerSpawnChance", 0.1, 0.001, 1.0);
 			
 			builder.pop();
 		}

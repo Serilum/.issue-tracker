@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.3.
+ * Minecraft version: 1.19.2, mod version: 1.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,6 +17,7 @@
 package com.natamus.pumpkillagersquest.util;
 
 import com.mojang.datafixers.util.Pair;
+import com.natamus.collective.data.GlobalVariables;
 import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.collective.functions.CompareBlockFunctions;
 import net.minecraft.core.BlockPos;
@@ -35,6 +36,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CarvedPumpkinBlock;
 import net.minecraft.world.level.block.PumpkinBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.Vec3;
 
 import java.io.IOException;
@@ -44,6 +47,7 @@ import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class Util {
     public static Pair<Player, MutableComponent> modifyMessagePair(Pair<Player, MutableComponent> pair, MutableComponent newMessageComponent) {
@@ -76,6 +80,21 @@ public class Util {
 
     public static boolean isPumpkinBlock(Block block) {
         return block instanceof PumpkinBlock || block instanceof CarvedPumpkinBlock || CompareBlockFunctions.blockIsInRegistryHolder(block, Data.pumpkinTag);
+    }
+
+    public static boolean pumpkinBlockIsClear(Level level, BlockPos pumpkinPos) {
+        List<BlockPos> toCheckPositions = Stream.concat(getSidePositions(pumpkinPos.immutable()).stream(), getSidePositions(pumpkinPos.above().immutable()).stream()).toList();
+        toCheckPositions.add(pumpkinPos.above().immutable());
+
+        for (BlockPos aroundPos : toCheckPositions) {
+            BlockState aroundState = level.getBlockState(aroundPos);
+            Material material = aroundState.getMaterial();
+            if (aroundState.getLightBlock(level, aroundPos) < 15 && !GlobalVariables.surfacematerials.contains(material)) {
+                continue;
+            }
+            return false;
+        }
+        return true;
     }
 
     public static List<BlockPos> getSidePositions(BlockPos pos) {
