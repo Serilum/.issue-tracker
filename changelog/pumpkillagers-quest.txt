@@ -3,6 +3,11 @@ Pumpkillager's Quest
 https://curseforge.com/minecraft/mc-mods/pumpkillagers-quest
 
 =========
+v1.6: Prevented the prisoner of moving during the initial talk.
+Added config option to determine if the Pumpkillager should spawn when a player is in creative mode.
+Cleaned up code.
+
+=========
 v1.5: Made the check if the pumpkin is free for spawning the Pumpkillager less strict. It now only needs an air pocket in the NESW directons and above.
 
 =========

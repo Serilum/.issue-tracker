@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.5.
+ * Minecraft version: 1.19.2, mod version: 1.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -120,6 +120,12 @@ public class PkBlockEvents {
                         return;
                     }
                 }
+            }
+        }
+
+        if (!ConfigHandler.GENERAL.enablePumpkillagerSpawnDuringCreative.get()) {
+            if (player.isCreative()) {
+                return;
             }
         }
 

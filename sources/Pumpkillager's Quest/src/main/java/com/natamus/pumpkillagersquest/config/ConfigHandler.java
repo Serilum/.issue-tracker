@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.5.
+ * Minecraft version: 1.19.2, mod version: 1.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -25,12 +25,16 @@ public class ConfigHandler {
 
 	public static class General {
 		public final ForgeConfigSpec.ConfigValue<Double> pumpkillagerSpawnChance;
+		public final ForgeConfigSpec.ConfigValue<Boolean> enablePumpkillagerSpawnDuringCreative;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
 			pumpkillagerSpawnChance = builder
 					.comment("The chance a Pumpkillager will spawn when a player breaks a pumpkin block.")
 					.defineInRange("pumpkillagerSpawnChance", 0.1, 0.001, 1.0);
+			enablePumpkillagerSpawnDuringCreative = builder
+					.comment("Whether the Pumpkillager should spawn when pumpkins are broken while the player is in creative mode.")
+					.define("enablePumpkillagerSpawnDuringCreative", false);
 			
 			builder.pop();
 		}

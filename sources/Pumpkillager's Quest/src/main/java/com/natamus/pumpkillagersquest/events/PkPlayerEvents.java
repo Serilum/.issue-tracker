@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.5.
+ * Minecraft version: 1.19.2, mod version: 1.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -75,6 +75,8 @@ public class PkPlayerEvents {
 
             if (!Util.prisonerIsKnown(prisoner, player)) {
                 prisoner.getBrain().removeAllBehaviors();
+                prisoner.setDeltaMovement(0, 0, 0);
+                prisoner.setPos(prisoner.position());
                 prisoner.lookAt(EntityAnchorArgument.Anchor.EYES, player.position());
                 prisoner.getTags().add(Reference.MOD_ID + ".lookingatplayer");
 
@@ -104,11 +106,6 @@ public class PkPlayerEvents {
             }
 
             MessageFunctions.sendMessage(e.getEntity(), itemName, ChatFormatting.GRAY);
-
-            //GenerateStructure.generatePrisonerCamp(level, player, player.blockPosition(), 10);
-            //player.teleportTo(player.getX() + 0.5, player.getY() + 28, player.getZ() + 0.5);
-            //ItemFunctions.giveOrDropItemStack(player, Data.getQuestbook());
-            //ItemFunctions.giveOrDropItemStack(player, Data.getStopPkbook());
         }
         else if (handItem instanceof WrittenBookItem) {
             String bookName = handStack.getDisplayName().getString();

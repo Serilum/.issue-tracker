@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.5.
+ * Minecraft version: 1.19.2, mod version: 1.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -44,6 +44,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -83,8 +84,9 @@ public class Util {
     }
 
     public static boolean pumpkinBlockIsClear(Level level, BlockPos pumpkinPos) {
-        List<BlockPos> toCheckPositions = Stream.concat(getSidePositions(pumpkinPos.immutable()).stream(), getSidePositions(pumpkinPos.above().immutable()).stream()).toList();
-        toCheckPositions.add(pumpkinPos.above().immutable());
+        BlockPos abovePumpkinPos = pumpkinPos.above().immutable();
+        List<BlockPos> toCheckPositions = new ArrayList<BlockPos>(Stream.concat(getSidePositions(pumpkinPos.immutable()).stream(), getSidePositions(abovePumpkinPos).stream()).toList());
+        toCheckPositions.add(abovePumpkinPos);
 
         for (BlockPos aroundPos : toCheckPositions) {
             BlockState aroundState = level.getBlockState(aroundPos);
