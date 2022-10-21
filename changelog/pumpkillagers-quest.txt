@@ -3,6 +3,16 @@ Pumpkillager's Quest
 https://curseforge.com/minecraft/mc-mods/pumpkillagers-quest
 
 =========
+v1.8: Fixed config value description.
+Updated structure generation code.
+Fixed the final boss receiving damage incorrectly.
+Added colour to rider names in prison.
+
+=========
+v1.7: Added config option to set the max health of the final boss.
+Fixed conversation value.
+
+=========
 v1.6: Prevented the prisoner of moving during the initial talk.
 Added config option to determine if the Pumpkillager should spawn when a player is in creative mode.
 Cleaned up code.

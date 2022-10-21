@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.2, mod version: 1.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -57,11 +57,6 @@ import java.util.stream.IntStream;
 
 public class GenerateStructure {
     public static void generatePrisonerCamp(Level level, Player player, BlockPos cPos, int pasteNBlocksAboveSurface) {
-        if (Data.modContainer == null) {
-            System.out.println("[Pumpkillager's Quest] Error generating prisoner camp: mod container is null.");
-            return;
-        }
-
         MinecraftServer minecraftServer = level.getServer();
         BlockPos centerPos = cPos.immutable();
 
@@ -113,15 +108,16 @@ public class GenerateStructure {
                         Collections.shuffle(candleItems);
                         Collections.shuffle(candleAmounts);
 
+                        List<Integer> tempChestSlotRange = new ArrayList<Integer>(chestSlotRange);
                         for (ItemStack pumpkinHead : pumpkinHeads) {
                             pumpkinHead.setCount(randomAmounts.get(GlobalVariables.random.nextInt(randomAmounts.size())));
-                            chestBlockEntity.setItem(chestSlotRange.get(0), pumpkinHead);
-                            chestSlotRange.remove(0);
+                            chestBlockEntity.setItem(tempChestSlotRange.get(0), pumpkinHead);
+                            tempChestSlotRange.remove(0);
                         }
 
                         if (candleItems.size() > 0) {
                             int i = 0;
-                            for (int remainingChestSlot : chestSlotRange) {
+                            for (int remainingChestSlot : tempChestSlotRange) {
                                 chestBlockEntity.setItem(remainingChestSlot, new ItemStack(candleItems.get(0), candleAmounts.get(i)));
                                 i += 1;
                             }
@@ -129,8 +125,6 @@ public class GenerateStructure {
                         }
 
                         level.setBlockEntity(chestBlockEntity);
-
-                        chestSlotRange = new ArrayList<Integer>(IntStream.rangeClosed(0, 26).boxed().toList());
                     }
                 }
                 minecraftServer.execute(() -> {
@@ -165,7 +159,7 @@ public class GenerateStructure {
                     }
                     ghostKnight.setItemSlot(EquipmentSlot.HEAD, SpookyHeads.getGhostKnightHead(1));
                     ghostKnight.setPos(ghostKnightPos.getX() + 0.5, ghostKnightPos.getY(), ghostKnightPos.getZ() + 0.5);
-                    ghostKnight.setCustomName(Component.translatable("The Ghost Knight"));
+                    ghostKnight.setCustomName(Component.translatable("The Ghost Knight").withStyle(ChatFormatting.GOLD));
 
                     level.addFreshEntity(ghostKnightHorse);
                     level.addFreshEntity(ghostKnight);
@@ -192,7 +186,7 @@ public class GenerateStructure {
                     }
                     ghostRider.setItemSlot(EquipmentSlot.HEAD, SpookyHeads.getGhostRiderHead(1));
                     ghostRider.setPos(ghostKnightPos.getX() + 0.5, ghostRiderPos.getY(), ghostKnightPos.getZ() + 0.5);
-                    ghostRider.setCustomName(Component.translatable("The Ghost Rider"));
+                    ghostRider.setCustomName(Component.translatable("The Ghost Rider").withStyle(ChatFormatting.GOLD));
 
                     level.addFreshEntity(ghostRiderHorse);
                     level.addFreshEntity(ghostRider);

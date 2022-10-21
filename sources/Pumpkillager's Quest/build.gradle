@@ -34,7 +34,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-            arg "-mixin.config=pumpkillager'squest.mixins.json" // mixin
+            arg "-mixin.config=pumpkillagersquest.mixins.json" // mixin
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -48,7 +48,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            arg "-mixin.config=pumpkillager'squest.mixins.json" // mixin
+            arg "-mixin.config=pumpkillagersquest.mixins.json" // mixin
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -62,7 +62,7 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-            arg "-mixin.config=pumpkillager'squest.mixins.json" // mixin
+            arg "-mixin.config=pumpkillagersquest.mixins.json" // mixin
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -87,8 +87,8 @@ dependencies {
 }
 
 mixin { // mixin
-    add sourceSets.main, "pumpkillager'squest.refmap.json" // mixin
-    config 'pumpkillager'squest.mixins.json' // mixin
+    add sourceSets.main, "pumpkillagersquest.refmap.json" // mixin
+    config 'pumpkillagersquest.mixins.json' // mixin
     
     debug.verbose = true // mixin
     debug.export = true // mixin

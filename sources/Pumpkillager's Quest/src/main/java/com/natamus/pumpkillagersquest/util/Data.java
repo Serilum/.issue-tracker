@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.2, mod version: 1.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -36,7 +36,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fml.ModContainer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,7 +58,7 @@ public class Data {
     public static List<BlockPos> globalProcessedPoss = new ArrayList<BlockPos>();
 
     public static final TagKey<Block> pumpkinTag = BlockTags.create(new ResourceLocation("crops/pumpkin"));
-    public static final float pumpkillagerMaxHealth = 150F;
+    public static float pumpkillagerMaxHealth = 300F;
     public static final String pumpkillagerName = "The Pumpkillager";
     public static final String prisonerNameUnknown = "Prisoner";
     public static final String prisonerNameKnown = "Jax o'Saturn";
@@ -67,8 +66,6 @@ public class Data {
     public static final String stopPkBookName = "Stopping the Pumpkillager";
     public static final ChatFormatting defaultPumpkillagerColour = ChatFormatting.RED;
     public static final ChatFormatting defaultPrisonerColour = ChatFormatting.GOLD;
-
-    public static ModContainer modContainer = null;
 
     public static MutableComponent addCharacterPrefix(Villager character, Player targetPlayer, MutableComponent component) {
         if (Util.isPumpkillager(character)) {

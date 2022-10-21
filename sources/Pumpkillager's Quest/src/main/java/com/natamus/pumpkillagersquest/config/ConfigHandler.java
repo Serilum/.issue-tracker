@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.2, mod version: 1.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -26,6 +26,7 @@ public class ConfigHandler {
 	public static class General {
 		public final ForgeConfigSpec.ConfigValue<Double> pumpkillagerSpawnChance;
 		public final ForgeConfigSpec.ConfigValue<Boolean> enablePumpkillagerSpawnDuringCreative;
+		public final ForgeConfigSpec.ConfigValue<Double> finalBossMaxHealth;
 
 		public General(ForgeConfigSpec.Builder builder) {
 			builder.push("General");
@@ -35,6 +36,9 @@ public class ConfigHandler {
 			enablePumpkillagerSpawnDuringCreative = builder
 					.comment("Whether the Pumpkillager should spawn when pumpkins are broken while the player is in creative mode.")
 					.define("enablePumpkillagerSpawnDuringCreative", false);
+			finalBossMaxHealth = builder
+					.comment("The amount of health the final boss should have.")
+					.defineInRange("finalBossMaxHealth", 300.0, 1.0, 10000.0);
 			
 			builder.pop();
 		}
