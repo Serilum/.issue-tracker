@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -73,7 +73,7 @@ public class Conversations {
             addEmptyMessage(level, pumpkillager, targetPlayer, 0);
             addMessage(level, pumpkillager, targetPlayer, "Are you surprised, mortal?", ChatFormatting.WHITE, 10);
             addMessage(level, pumpkillager, targetPlayer, "I've been stuck in that tiny form for eons.", ChatFormatting.WHITE, 2500);
-            addMessage(level, pumpkillager, targetPlayer, "Now that I'm free, I can finally continue my world domination.", ChatFormatting.WHITE, 5000);
+            addMessage(level, pumpkillager, targetPlayer, "Now that I'm free, I can finally continue my quest for world domination.", ChatFormatting.WHITE, 5000);
             addMessage(level, pumpkillager, targetPlayer, "Goodbye, " + targetPlayer.getName().getString() + ". There's no reward, sorry.", ChatFormatting.WHITE, 7500);
 
             Conversations.addMessageWithoutPrefix(level, pumpkillager, targetPlayer, "As the Pumpkillager flies away, you see something fall out of his pocket.", ChatFormatting.GRAY, 8490, paperStack, "drop");
@@ -91,6 +91,8 @@ public class Conversations {
         addMessage(level, prisoner, targetPlayer, "Hey, over here!", ChatFormatting.WHITE, 0);
         addMessage(level, prisoner, targetPlayer, "I'm inside the tree!", ChatFormatting.WHITE, 4000);
         addMessage(level, prisoner, targetPlayer, "Help me!", ChatFormatting.WHITE, 5500);
+
+        Actions.makePrisonerGuardsStepOffHorse(level, prisoner, targetPlayer);
     }
 
     public static void startPostPrisonerShout(Level level, Villager prisoner, Player targetPlayer) { // 4

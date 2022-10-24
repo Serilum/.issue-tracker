@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -101,6 +101,11 @@ public class PkOtherEvents {
                     Conversations.addEmptyMessage(level, null, player, 0);
                     Conversations.addMessageWithoutPrefix(level, null, player, "You feel a blast of magic, but nothing happens. The ritual must have been completed already. Maybe a prisoner in the prisoner camp could help find the Pumpkillager.", ChatFormatting.GRAY, 10);
                 }
+                return;
+            }
+
+            if (!player.getTags().contains(Reference.MOD_ID + ".questbookgiven")) {
+                Conversations.addMessageWithoutPrefix(level, null, player, "You feel a blast of magic, but nothing happens. You'll probably need to talk to the Pumpkillager first.", ChatFormatting.GRAY, 10);
                 return;
             }
 

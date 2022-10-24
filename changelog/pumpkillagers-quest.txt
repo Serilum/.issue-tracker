@@ -3,6 +3,19 @@ Pumpkillager's Quest
 https://curseforge.com/minecraft/mc-mods/pumpkillagers-quest
 
 =========
+v2.0: Tweaked conversation text and timing.
+Fixed book whisper messages not being timed correctly in a server.
+Changed pumpkin block tag
+Added config option to determine how much experience the final boss should drop on death.
+The melee prisoner camp guard now steps off horse when the prisoner is shouting.
+The first ritual can now only be completed after accepting the quest.
+Added sound when the final boss has been killed.
+Stopped the prisoner guard from attacking the prisoner.
+
+=========
+v1.9: Fixed an exception due to the prisoner's player target being null.
+
+=========
 v1.8: Fixed config value description.
 Updated structure generation code.
 Fixed the final boss receiving damage incorrectly.

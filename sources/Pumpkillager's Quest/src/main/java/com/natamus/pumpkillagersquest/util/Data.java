@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -57,7 +57,7 @@ public class Data {
     public static HashMap<BlockPos, List<Pair<BlockPos, BlockState>>> previousStates = new HashMap<BlockPos, List<Pair<BlockPos, BlockState>>>();
     public static List<BlockPos> globalProcessedPoss = new ArrayList<BlockPos>();
 
-    public static final TagKey<Block> pumpkinTag = BlockTags.create(new ResourceLocation("crops/pumpkin"));
+    public static final TagKey<Block> pumpkinTag = BlockTags.create(new ResourceLocation("forge", "crops/pumpkin"));
     public static float pumpkillagerMaxHealth = 300F;
     public static final String pumpkillagerName = "The Pumpkillager";
     public static final String prisonerNameUnknown = "Prisoner";

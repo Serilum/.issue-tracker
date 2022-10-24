@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,6 +17,7 @@
 package com.natamus.pumpkillagersquest.pumpkillager;
 
 import com.mojang.datafixers.util.Pair;
+import com.natamus.pumpkillagersquest.config.ConfigHandler;
 import com.natamus.pumpkillagersquest.util.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -24,13 +25,17 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Entity.RemovalReason;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.animal.horse.SkeletonHorse;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.player.Player;
@@ -43,6 +48,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.PlayerHeadBlock;
 import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
@@ -73,6 +79,7 @@ public class Actions {
             return;
         }
         pumpkillager.getTags().add(Reference.MOD_ID + ".questbookgiven");
+        player.getTags().add(Reference.MOD_ID + ".questbookgiven");
 
         pumpkillager.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
 
@@ -91,7 +98,7 @@ public class Actions {
 
         Conversations.addMessage(level, pumpkillager, player, "Bye!", ChatFormatting.WHITE, 4010);
 
-        Scheduler.scheduleCharacterLeave(level, pumpkillager, 6000);
+        Scheduler.scheduleCharacterLeave(level, pumpkillager, 5000);
     }
 
     public static ItemStack generatePrisonAndCoordinatePaper(Level level, Villager pumpkillager, Player player) {
@@ -110,6 +117,16 @@ public class Actions {
         });
 
         return paperStack;
+    }
+
+    public static void makePrisonerGuardsStepOffHorse(Level level, Villager prisoner, Player targetPlayer) {
+        for (Entity entityAround : level.getEntities(null, new AABB(prisoner.getX()-30, prisoner.getY()-30, prisoner.getZ()-30, prisoner.getX()+30, prisoner.getY()+30, prisoner.getZ()+30))) {
+            if (entityAround instanceof SkeletonHorse) {
+                SkeletonHorse skeletonHorse = (SkeletonHorse)entityAround;
+                skeletonHorse.unRide();
+                break;
+            }
+        }
     }
 
     public static void processPrisonerItemGeneration(Level level, Villager prisoner, Player player, int msDelay) {
@@ -240,6 +257,7 @@ public class Actions {
         level.setBlock(headPos, playerHeadBlockState, 3);
         playerHeadBlock.setPlacedBy(level, headPos, playerHeadBlockState, null, SpookyHeads.getEvilJackoLantern(1));
 
+        level.playSound(null, pumpkillager.getX(), pumpkillager.getY(), pumpkillager.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.AMBIENT, 2.0F, 1.0F);
         pumpkillager.remove(RemovalReason.KILLED);
 
         new Thread(() -> {
@@ -271,7 +289,7 @@ public class Actions {
         level.explode(null, new DamageSource("explosion").setExplosion(), null, prisonerVec.x, prisonerVec.y, prisonerVec.z, 3.0f, false, Explosion.BlockInteraction.NONE);
 
         if (!level.isClientSide) {
-            ExperienceOrb.award((ServerLevel)level, new Vec3(pumpkillagerPos.getX()+0.5, pumpkillagerPos.getY(), pumpkillagerPos.getZ()+0.5), 200);
+            ExperienceOrb.award((ServerLevel)level, new Vec3(pumpkillagerPos.getX()+0.5, pumpkillagerPos.getY(), pumpkillagerPos.getZ()+0.5), ConfigHandler.GENERAL.experienceAmountRewardFinalBoss.get());
         }
 
         Conversations.startTalking(level, prisoner, targetPlayer, 9);

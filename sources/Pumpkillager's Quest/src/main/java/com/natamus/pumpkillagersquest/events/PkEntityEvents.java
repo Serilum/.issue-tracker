@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -54,6 +54,28 @@ public class PkEntityEvents {
 
         Set<String> entityTags = entity.getTags();
 
+        /* if (entity instanceof Pig) {
+            if (entityTags.contains(Reference.MOD_ID + ".pumpkincheck") || level.isClientSide) {
+                return;
+            }
+            level.getServer().execute(() -> {
+                entity.getTags().add(Reference.MOD_ID + ".pumpkincheck");
+
+                if (GlobalVariables.random.nextDouble() <= ConfigHandler.GENERAL.chanceForPumpkinBlockToSpawnOnPigSpawn.get()) {
+                    Vec3 pigVec = entity.position();
+                    BlockPos pigPos = entity.blockPosition();
+                    for (BlockPos posAround : BlockPos.betweenClosed(pigPos.getX() - 1, pigPos.getY(), pigPos.getZ() - 1, pigPos.getX() + 1, pigPos.getY(), pigPos.getZ() + 1)) {
+                        if (Util.isPumpkinBlock(level.getBlockState(posAround).getBlock())) {
+                            return;
+                        }
+                    }
+
+                    entity.setPos(pigVec.x, pigVec.y + 1, pigVec.z);
+                    level.setBlock(pigPos, Blocks.PUMPKIN.defaultBlockState(), 3);
+                }
+            });
+        }
+        else if (entityTags.contains(Reference.MOD_ID + ".summoned")) {*/
         if (entityTags.contains(Reference.MOD_ID + ".summoned")) {
             if (entityTags.contains(Reference.MOD_ID + ".justadded")) {
                 entity.getTags().remove(Reference.MOD_ID + ".justadded");

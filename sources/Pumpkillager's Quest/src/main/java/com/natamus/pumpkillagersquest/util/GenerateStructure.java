@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -30,8 +30,10 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.horse.SkeletonHorse;
 import net.minecraft.world.entity.animal.horse.ZombieHorse;
+import net.minecraft.world.entity.monster.Husk;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.player.Player;
@@ -153,6 +155,10 @@ public class GenerateStructure {
                         swordStack.enchant(Enchantments.SHARPNESS, 1);
                         ghostKnight.setItemSlot(EquipmentSlot.MAINHAND, swordStack);
                         ghostKnight.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(Items.SHIELD));
+
+                        Husk husk = (Husk)ghostKnight;
+                        husk.targetSelector.removeAllGoals();
+                        husk.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(husk, Player.class, true));
                     }
                     else {
                         ghostKnight = EntityType.VILLAGER.create(level);

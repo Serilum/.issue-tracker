@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -112,9 +112,7 @@ public class PkPlayerEvents {
             if (bookName.contains("Pumpkillager")) {
                 Player player = e.getEntity();
 
-                Conversations.addEmptyMessage(level, null, player, 10);
-                Conversations.addMessageWithoutPrefix(level, null, player, "You feel the book somehow whispering to you:", ChatFormatting.GRAY, 20);
-                Conversations.addMessageWithoutPrefix(level, null, player, " Right-click me on the ground to see a glimpse of the ritual.", ChatFormatting.GRAY, 30);
+                Conversations.addMessageWithoutPrefix(level, null, player, "You feel the book somehow whispering to you: \"Right-click me on the ground to see a glimpse of the ritual.\"", ChatFormatting.GRAY, 10);
             }
         }
     }

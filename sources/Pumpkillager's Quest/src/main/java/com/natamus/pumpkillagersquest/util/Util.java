@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -39,6 +39,7 @@ import net.minecraft.world.level.block.PumpkinBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.Tags;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -80,7 +81,7 @@ public class Util {
     }
 
     public static boolean isPumpkinBlock(Block block) {
-        return block instanceof PumpkinBlock || block instanceof CarvedPumpkinBlock || CompareBlockFunctions.blockIsInRegistryHolder(block, Data.pumpkinTag);
+        return block instanceof PumpkinBlock || block instanceof CarvedPumpkinBlock || CompareBlockFunctions.blockIsInRegistryHolder(block, Tags.Blocks.BARRELS);
     }
 
     public static boolean pumpkinBlockIsClear(Level level, BlockPos pumpkinPos) {
