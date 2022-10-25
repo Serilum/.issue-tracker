@@ -17,6 +17,7 @@
 package com.natamus.pumpkillagersquest.pumpkillager;
 
 import com.mojang.datafixers.util.Pair;
+import com.natamus.pumpkillagersquest.api.PumpkillagerSummonEvent;
 import com.natamus.pumpkillagersquest.config.ConfigHandler;
 import com.natamus.pumpkillagersquest.util.*;
 import net.minecraft.ChatFormatting;
@@ -50,6 +51,7 @@ import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.List;
 import java.util.Set;
@@ -159,6 +161,8 @@ public class Actions {
 
         level.setBlock(centerPos.below(), Blocks.OBSIDIAN.defaultBlockState(), 3);
         level.addFreshEntity(pumpkillager);
+
+        MinecraftForge.EVENT_BUS.post(new PumpkillagerSummonEvent(player, pumpkillager, centerPos, PumpkillagerSummonEvent.Type.FINAL_BOSS));
 
         Conversations.startTalking(level, pumpkillager, player, 7);
     }

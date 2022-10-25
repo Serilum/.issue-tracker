@@ -18,6 +18,7 @@ package com.natamus.pumpkillagersquest.pumpkillager;
 
 import com.mojang.datafixers.util.Pair;
 import com.natamus.collective.functions.EntityFunctions;
+import com.natamus.pumpkillagersquest.api.PumpkillagerSummonEvent;
 import com.natamus.pumpkillagersquest.util.Data;
 import com.natamus.pumpkillagersquest.util.Reference;
 import com.natamus.pumpkillagersquest.util.SpookyHeads;
@@ -45,6 +46,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -72,6 +74,9 @@ public class Manage {
         pumpkillager.lookAt(EntityAnchorArgument.Anchor.EYES, player.position());
 
         placePumpkillagerBlocks(level, pos, placementId);
+
+        MinecraftForge.EVENT_BUS.post(new PumpkillagerSummonEvent(player, pumpkillager, pos, conversationId == 0 ? PumpkillagerSummonEvent.Type.INITIAL_SUMMON : PumpkillagerSummonEvent.Type.POST_RITUAL));
+        
         Conversations.startTalking(level, pumpkillager, player, conversationId);
     }
 
