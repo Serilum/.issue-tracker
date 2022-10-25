@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 2.0.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -76,7 +76,7 @@ public class Manage {
         placePumpkillagerBlocks(level, pos, placementId);
 
         MinecraftForge.EVENT_BUS.post(new PumpkillagerSummonEvent(player, pumpkillager, pos, conversationId == 0 ? PumpkillagerSummonEvent.Type.INITIAL_SUMMON : PumpkillagerSummonEvent.Type.POST_RITUAL));
-        
+
         Conversations.startTalking(level, pumpkillager, player, conversationId);
     }
 

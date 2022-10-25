@@ -3,6 +3,10 @@ Pumpkillager's Quest
 https://curseforge.com/minecraft/mc-mods/pumpkillagers-quest
 
 =========
+v2.1: Added Pumpkillager summoning event, thanks to @noeppi-noeppi on Github for the PR!
+Changed when the message scheduler is ran.
+
+=========
 v2.0: Tweaked conversation text and timing.
 Fixed book whisper messages not being timed correctly in a server.
 Changed pumpkin block tag

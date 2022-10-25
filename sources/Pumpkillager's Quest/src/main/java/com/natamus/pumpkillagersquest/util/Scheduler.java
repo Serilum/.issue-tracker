@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 2.0.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -52,83 +52,83 @@ public class Scheduler {
             try  { Thread.sleep( msDelay ); }
             catch (InterruptedException ignored)  {}
 
-            boolean shouldSendMessage = true;
-            Vec3 characterVec = null;
-            if (character != null) {
-                if (!character.isRemoved()) {
-                    Set<String> tags = character.getTags();
+            level.getServer().execute(() -> {
+                boolean shouldSendMessage = true;
+                Vec3 characterVec = null;
+                if (character != null) {
+                    if (!character.isRemoved()) {
+                        Set<String> tags = character.getTags();
 
-                    if (!tags.contains(Reference.MOD_ID + ".iskilled") && !tags.contains(Reference.MOD_ID + ".preventactions")) {
-                        characterVec = character.position();
+                        if (!tags.contains(Reference.MOD_ID + ".iskilled") && !tags.contains(Reference.MOD_ID + ".preventactions")) {
+                            characterVec = character.position();
 
-                        if (Util.isPumpkillager(character)) {
-                            if (!tags.contains(Reference.MOD_ID + ".removed") && !tags.contains(Reference.MOD_ID + ".beingyeeted")) {
-                                if (!characterVec.equals(Data.pumpkillagerPositions.get(character))) {
-                                    Manage.pumpkillagerMovedWrongly(level, character, messagePair.getFirst());
-                                    return;
+                            if (Util.isPumpkillager(character)) {
+                                if (!tags.contains(Reference.MOD_ID + ".removed") && !tags.contains(Reference.MOD_ID + ".beingyeeted")) {
+                                    if (!characterVec.equals(Data.pumpkillagerPositions.get(character))) {
+                                        Manage.pumpkillagerMovedWrongly(level, character, messagePair.getFirst());
+                                        return;
+                                    }
                                 }
                             }
+                        } else {
+                            shouldSendMessage = false;
                         }
-                    }
-                    else {
+                    } else {
                         shouldSendMessage = false;
                     }
                 }
-                else {
-                    shouldSendMessage = false;
+
+                if (shouldSendMessage) {
+                    Data.messagesToSend.get(level).add(messagePair);
                 }
-            }
 
-            if (shouldSendMessage) {
-                Data.messagesToSend.get(level).add(messagePair);
-            }
-
-            if (itemStack != null) {
-                switch (itemStackBehaviour) {
-                    case "hold" -> {
-                        if (character != null) {
-                            character.setItemInHand(InteractionHand.MAIN_HAND, itemStack);
+                if (itemStack != null) {
+                    switch (itemStackBehaviour) {
+                        case "hold" -> {
+                            if (character != null) {
+                                character.setItemInHand(InteractionHand.MAIN_HAND, itemStack);
+                            }
                         }
-                    }
-                    case "give" -> {
-                        Player player = messagePair.getFirst();
+                        case "give" -> {
+                            Player player = messagePair.getFirst();
 
-                        int amount = itemStack.getCount();
-                        String itemName = amount + " " + ItemFunctions.itemToReadableString(itemStack.getItem());
-                        if (amount == 1 && itemStack.hasCustomHoverName()) {
-                            itemName = itemStack.getHoverName().getString();
+                            int amount = itemStack.getCount();
+                            String itemName = amount + " " + ItemFunctions.itemToReadableString(itemStack.getItem());
+                            if (amount == 1 && itemStack.hasCustomHoverName()) {
+                                itemName = itemStack.getHoverName().getString();
+                            }
+
+                            Data.messagesToSend.get(level).add(Conversations.createMessagePair(player, Component.translatable("You have been given " + itemName + ".").withStyle(ChatFormatting.GRAY)));
+                            ItemFunctions.giveOrDropItemStack(messagePair.getFirst(), itemStack);
                         }
+                        case "wear" -> {
+                            if (character != null) {
+                                if (messagePair.getSecond().getString().contains("freed me from these shackles")) {
+                                    character.setVillagerData(character.getVillagerData().setType(VillagerType.SNOW).setProfession(VillagerProfession.WEAPONSMITH));
+                                    character.setCustomName(null);
 
-                        Data.messagesToSend.get(level).add(Conversations.createMessagePair(player, Component.translatable("You have been given " + itemName + ".").withStyle(ChatFormatting.GRAY)));
-                        ItemFunctions.giveOrDropItemStack(messagePair.getFirst(), itemStack);
-                    }
-                    case "wear" -> {
-                        if (character != null) {
-                            if (messagePair.getSecond().getString().contains("freed me from these shackles")) {
-                                character.setVillagerData(character.getVillagerData().setType(VillagerType.SNOW).setProfession(VillagerProfession.WEAPONSMITH));
-                                character.setCustomName(null);
+                                    ItemStack feetStack = character.getItemBySlot(EquipmentSlot.FEET);
+                                    if (feetStack.getItem().equals(Items.BARRIER)) {
+                                        feetStack.setCount(3);
+                                    }
+                                }
+                                character.setItemSlot(EquipmentSlot.HEAD, itemStack);
+                            }
+                        }
+                        case "drop" -> {
+                            if (characterVec != null) {
+                                ItemEntity ie = new ItemEntity(level, characterVec.x, characterVec.y + 1, characterVec.z, itemStack);
+                                level.addFreshEntity(ie);
 
-                                ItemStack feetStack = character.getItemBySlot(EquipmentSlot.FEET);
-                                if (feetStack.getItem().equals(Items.BARRIER)) {
-                                    feetStack.setCount(3);
+                                if (itemStack.getItem().equals(Items.PAPER)) {
+                                    Player player = messagePair.getFirst();
+                                    player.getTags().add(Reference.MOD_ID + ".unleashed");
                                 }
                             }
-                            character.setItemSlot(EquipmentSlot.HEAD, itemStack);
-                        }
-                    }
-                    case "drop" -> {
-                        if (characterVec != null) {
-                            ItemEntity ie = new ItemEntity(level, characterVec.x, characterVec.y + 1, characterVec.z, itemStack);
-                            level.addFreshEntity(ie);
-
-                            if (itemStack.getItem().equals(Items.PAPER)) {
-                                Player player = messagePair.getFirst();
-                                player.getTags().add(Reference.MOD_ID + ".unleashed");
-                            }
                         }
                     }
                 }
-            }
+            });
         }).start();
     }
 
