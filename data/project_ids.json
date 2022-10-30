@@ -535,6 +535,10 @@
 		"fabric" : -1,
 		"forge" : 348758
 	},
+	"Vanilla Zoom" : {
+		"fabric" : 695360,
+		"forge" : 695354
+	},
 	"Village Bell Recipe" : {
 		"fabric" : 527675,
 		"forge" : 450614
