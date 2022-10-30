@@ -1,0 +1,6 @@
+Changelog:
+Vanilla Zoom
+https://curseforge.com/minecraft/mc-mods/vanilla-zoom
+
+=========
+v1.0: Initial release of Vanilla Zoom.
