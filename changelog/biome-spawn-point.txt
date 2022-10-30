@@ -1,0 +1,6 @@
+Changelog:
+Biome Spawn Point
+https://curseforge.com/minecraft/mc-mods/biome-spawn-point
+
+=========
+v1.0: Initial release of Biome Spawn Point.
