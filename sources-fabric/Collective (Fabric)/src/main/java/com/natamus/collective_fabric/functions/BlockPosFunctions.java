@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.11.
+ * Minecraft version: 1.19.2, mod version: 5.13.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,14 +18,11 @@ package com.natamus.collective_fabric.functions;
 
 import com.mojang.datafixers.util.Pair;
 import com.natamus.collective_fabric.data.GlobalVariables;
-import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.BaseCommandBlock;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -34,9 +31,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -181,53 +176,51 @@ public class BlockPosFunctions {
 		return returnpos;
 	}
 
-	public static BlockPos getCenterNearbyVillage(ServerLevel serverworld) {
-		return getNearbyVillage(serverworld, new BlockPos(0, 0, 0));
+	public static BlockPos getCenterNearbyVillage(ServerLevel serverLevel) {
+		return getNearbyVillage(serverLevel, new BlockPos(0, 0, 0));
 	}
-	public static BlockPos getNearbyVillage(ServerLevel serverworld, BlockPos nearpos) {
+	public static BlockPos getNearbyVillage(ServerLevel serverLevel, BlockPos nearPos) {
 		BlockPos closestvillage = null;
-		if (!serverworld.getServer().getWorldData().worldGenSettings().generateStructures()) {
+		if (!serverLevel.getServer().getWorldData().worldGenSettings().generateStructures()) {
 			return null;
 		}
 
-		BaseCommandBlock bcb = new BaseCommandBlock() {
-			@Override
-			public @NotNull ServerLevel getLevel() {
-				return serverworld;
-			}
+		String rawOutput = CommandFunctions.getRawCommandOutput(serverLevel, Vec3.atBottomCenterOf(nearPos), "/locate structure #minecraft:village");
 
-			@Override
-			public void onUpdated() { }
-
-			@Override
-			public @NotNull Vec3 getPosition() {
-				return new Vec3(nearpos.getX(), nearpos.getY(), nearpos.getZ());
-			}
-
-			@Override
-			public @NotNull CommandSourceStack createCommandSourceStack() {
-				return new CommandSourceStack(this, getPosition(), Vec2.ZERO, serverworld, 2, "dev", Component.literal("dev"), serverworld.getServer(), null);
-			}
-		};
-
-		bcb.setCommand("/locate structure #minecraft:village");
-		bcb.setTrackOutput(true);
-		bcb.performCommand(serverworld);
-
-		String raw = bcb.getLastOutput().getString();
-		if (raw.contains("nearest") && raw.contains("[")) {
-			String rawcoords = raw.split("nearest")[1].split("\\[")[1].split("\\]")[0];
+		if (rawOutput.contains("nearest") && rawOutput.contains("[")) {
+			String rawcoords = rawOutput.split("nearest")[1].split("\\[")[1].split("\\]")[0];
 			String[] coords = rawcoords.split(", ");
 			if (coords.length == 3) {
 				String sx = coords[0];
 				String sz = coords[2];
 				if (NumberFunctions.isNumeric(sx) && NumberFunctions.isNumeric(sz)) {
-					return getSurfaceBlockPos(serverworld, Integer.parseInt(sx), Integer.parseInt(sz));
+					return getSurfaceBlockPos(serverLevel, Integer.parseInt(sx), Integer.parseInt(sz));
 				}
 			}
 		}
 
 		return closestvillage;
+	}
+
+	public static BlockPos getCenterNearbyBiome(ServerLevel serverLevel, String biome) {
+		return getNearbyBiome(serverLevel, new BlockPos(0, 0, 0), biome);
+	}
+	public static BlockPos getNearbyBiome(ServerLevel serverLevel, BlockPos nearPos, String biome) {
+		String rawOutput = CommandFunctions.getRawCommandOutput(serverLevel, Vec3.atBottomCenterOf(nearPos), "/locate biome " + biome);
+
+		if (rawOutput.contains("nearest") && rawOutput.contains("[")) {
+			String rawcoords = rawOutput.split("nearest")[1].split("\\[")[1].split("\\]")[0];
+			String[] coords = rawcoords.split(", ");
+			if (coords.length == 3) {
+				String sx = coords[0];
+				String sz = coords[2];
+				if (NumberFunctions.isNumeric(sx) && NumberFunctions.isNumeric(sz)) {
+					return getSurfaceBlockPos(serverLevel, Integer.parseInt(sx), Integer.parseInt(sz));
+				}
+			}
+		}
+
+		return null;
 	}
 
 	public static BlockPos getCenterNearbyStructure(ServerLevel serverworld, HolderSet<Structure> structure) {

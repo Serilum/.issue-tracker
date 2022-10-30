@@ -3,6 +3,13 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.13: Fixed minecraft version specific biome and village input.
+
+=========
+v5.12: Added CommandFunctions to get the raw output of a command.
+Added code to get coordinates of nearby biomes.
+
+=========
 v5.11: Changed the input of the Schematic function to work with an InputStream, instead of a file path.
 
 =========
