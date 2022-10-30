@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.13.
+ * Minecraft version: 1.19.2, mod version: 5.14.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -36,12 +36,12 @@ public class ConfigFunctions {
 		}
 		
 		File dir = new File(dirpath);
-		File file = new File(dirpath + File.separator + modid + ".json");
+		File file = new File(dirpath + File.separator + modid + ".json5");
 		
 		List<String> values = new ArrayList<String>();
 		if (dir.isDirectory() && file.isFile()) {
 			try {
-				String content = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + modid + ".json")));
+				String content = new String(Files.readAllBytes(Paths.get(dirpath + File.separator + modid + ".json5")));
 				for (String line : content.split("\n")) {
 					String trimmedline = line.trim();
 					if (!trimmedline.startsWith("\"")) {

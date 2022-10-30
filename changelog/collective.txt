@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.14: (Fabric) Updated ConfigFunctions to work with the new .json5 files.
+
+=========
 v5.13: Fixed minecraft version specific biome and village input.
 
 =========
