@@ -3,6 +3,10 @@ Pumpkillager's Quest
 https://curseforge.com/minecraft/mc-mods/pumpkillagers-quest
 
 =========
+v2.2: Fixed the prisoner being targeted by a guard after a reload of the world.
+In order to sprinkle some extra pumpkins around the world, to make the Pumpkillager spawn more naturally to players, pigs now have a chance to spawn on top of a pumpkin. Can be disabled in the config file.
+
+=========
 v2.1: Added Pumpkillager summoning event, thanks to @noeppi-noeppi on Github for the PR!
 Changed when the message scheduler is ran.
 

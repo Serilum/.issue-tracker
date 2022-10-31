@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -39,6 +39,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent;
@@ -66,6 +67,7 @@ public class PkTickEvents {
             Data.allPumpkillagers.put(level, new CopyOnWriteArrayList<Villager>());
             Data.allPrisoners.put(level, new CopyOnWriteArrayList<Villager>());
             Data.lightningTasks.put(level, new HashMap<Villager, Runnable>());
+            Data.spawnPumpkin.put(level, new ArrayList<LivingEntity>());
             return;
         }
 
@@ -97,6 +99,22 @@ public class PkTickEvents {
 
                     livingEntity.setPos(vec.x, vec.y + 1, vec.z);
                 }
+            }
+            if (Data.spawnPumpkin.get(level).size() > 0) {
+                LivingEntity livingEntity = Data.spawnPumpkin.get(level).get(0);
+
+                Vec3 livingVec = livingEntity.position();
+                BlockPos livingPos = livingEntity.blockPosition();
+                for (BlockPos posAround : BlockPos.betweenClosed(livingPos.getX() - 1, livingPos.getY(), livingPos.getZ() - 1, livingPos.getX() + 1, livingPos.getY(), livingPos.getZ() + 1)) {
+                    if (Util.isPumpkinBlock(level.getBlockState(posAround).getBlock())) {
+                        return;
+                    }
+                }
+
+                livingEntity.setPos(livingVec.x, livingVec.y + 1, livingVec.z);
+                level.setBlock(livingPos, Blocks.PUMPKIN.defaultBlockState(), 3);
+
+                Data.spawnPumpkin.get(level).remove(0);
             }
         }
         if (Data.allPumpkillagers.get(level).size() > 0) {

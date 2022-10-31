@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -53,6 +53,7 @@ public class Data {
     public static WeakHashMap<Level, List<Pair<Player, MutableComponent>>> messagesToSend = new WeakHashMap<Level, List<Pair<Player, MutableComponent>>>();
     public static WeakHashMap<Level, CopyOnWriteArrayList<LivingEntity>> entitiesToYeet = new WeakHashMap<Level, CopyOnWriteArrayList<LivingEntity>>();
     public static WeakHashMap<Level, HashMap<Villager, Runnable>> lightningTasks = new WeakHashMap<Level, HashMap<Villager, Runnable>>();
+    public static WeakHashMap<Level, List<LivingEntity>> spawnPumpkin = new WeakHashMap<Level, List<LivingEntity>>();
 
     public static HashMap<BlockPos, List<Pair<BlockPos, BlockState>>> previousStates = new HashMap<BlockPos, List<Pair<BlockPos, BlockState>>>();
     public static List<BlockPos> globalProcessedPoss = new ArrayList<BlockPos>();

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,7 +16,9 @@
 
 package com.natamus.pumpkillagersquest.events;
 
+import com.natamus.collective.data.GlobalVariables;
 import com.natamus.collective.functions.MessageFunctions;
+import com.natamus.pumpkillagersquest.config.ConfigHandler;
 import com.natamus.pumpkillagersquest.pumpkillager.Manage;
 import com.natamus.pumpkillagersquest.util.Data;
 import com.natamus.pumpkillagersquest.util.QuestData;
@@ -26,11 +28,16 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.Pig;
+import net.minecraft.world.entity.monster.Husk;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PlayerHeadItem;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
@@ -39,6 +46,7 @@ import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 @Mod.EventBusSubscriber
@@ -54,29 +62,31 @@ public class PkEntityEvents {
 
         Set<String> entityTags = entity.getTags();
 
-        /* if (entity instanceof Pig) {
+        if (entity instanceof Pig) {
             if (entityTags.contains(Reference.MOD_ID + ".pumpkincheck") || level.isClientSide) {
                 return;
             }
-            level.getServer().execute(() -> {
-                entity.getTags().add(Reference.MOD_ID + ".pumpkincheck");
+            entity.getTags().add(Reference.MOD_ID + ".pumpkincheck");
 
-                if (GlobalVariables.random.nextDouble() <= ConfigHandler.GENERAL.chanceForPumpkinBlockToSpawnOnPigSpawn.get()) {
-                    Vec3 pigVec = entity.position();
-                    BlockPos pigPos = entity.blockPosition();
-                    for (BlockPos posAround : BlockPos.betweenClosed(pigPos.getX() - 1, pigPos.getY(), pigPos.getZ() - 1, pigPos.getX() + 1, pigPos.getY(), pigPos.getZ() + 1)) {
-                        if (Util.isPumpkinBlock(level.getBlockState(posAround).getBlock())) {
-                            return;
-                        }
-                    }
-
-                    entity.setPos(pigVec.x, pigVec.y + 1, pigVec.z);
-                    level.setBlock(pigPos, Blocks.PUMPKIN.defaultBlockState(), 3);
+            if (GlobalVariables.random.nextDouble() <= ConfigHandler.GENERAL.chanceForPumpkinBlockToSpawnOnPigSpawn.get()) {
+                if (!Data.spawnPumpkin.containsKey(level)) {
+                    Data.spawnPumpkin.put(level, new ArrayList<LivingEntity>());
                 }
-            });
+                Data.spawnPumpkin.get(level).add((LivingEntity)entity);
+            }
         }
-        else if (entityTags.contains(Reference.MOD_ID + ".summoned")) {*/
-        if (entityTags.contains(Reference.MOD_ID + ".summoned")) {
+        else if (entity instanceof Husk) {
+            Husk husk = (Husk)entity;
+            if (husk.hasCustomName()) {
+                if (entity.getCustomName().getString().equals("The Ghost Knight")) {
+                    if (husk.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof PlayerHeadItem) {
+                        husk.targetSelector.removeAllGoals();
+                        husk.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(husk, Player.class, true));
+                    }
+                }
+            }
+        }
+        else if (entityTags.contains(Reference.MOD_ID + ".summoned")) {
             if (entityTags.contains(Reference.MOD_ID + ".justadded")) {
                 entity.getTags().remove(Reference.MOD_ID + ".justadded");
                 return;
