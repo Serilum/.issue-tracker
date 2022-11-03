@@ -22,7 +22,6 @@ import net.minecraft.server.TickTask;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.event.entity.player.BonemealEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -32,7 +31,7 @@ import java.util.List;
 
 @EventBusSubscriber
 public class FlowerEvent {
-	@SubscribeEvent(priority = EventPriority.LOW)
+	@SubscribeEvent
 	public void onBonemeal(BonemealEvent e) {
 		Level world = e.getLevel();
 		if (world.isClientSide) {
