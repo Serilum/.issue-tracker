@@ -3,6 +3,9 @@ Village Spawn Point
 https://www.curseforge.com/minecraft/mc-mods/village-spawn-point
 
 =========
+v2.8-2.9: Added support for Biome Spawn Point. With both installed and configured, you now spawn in a village near the chosen biome.
+
+=========
 v2.7: (Fabric) Added Mod Menu support with project links and logo.
 
 =========

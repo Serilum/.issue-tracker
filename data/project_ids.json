@@ -191,6 +191,10 @@
 		"fabric" : 530614,
 		"forge" : 344421
 	},
+	"Faster Crouching" : {
+		"fabric" : 698000,
+		"forge" : 697998
+	},
 	"Fire Spread Tweaks" : {
 		"fabric" : 541191,
 		"forge" : 446366

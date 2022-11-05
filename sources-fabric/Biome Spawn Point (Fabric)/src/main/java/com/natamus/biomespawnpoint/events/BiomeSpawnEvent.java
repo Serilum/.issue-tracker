@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Biome Spawn Point.
- * Minecraft version: 1.19.2, mod version: 1.0.
+ * Minecraft version: 1.19.2, mod version: 1.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,7 @@ package com.natamus.biomespawnpoint.events;
 import com.natamus.biomespawnpoint.util.Util;
 import com.natamus.collective_fabric.functions.BlockPosFunctions;
 import com.natamus.collective_fabric.functions.FeatureFunctions;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.server.level.ServerLevel;
@@ -27,6 +28,8 @@ import net.minecraft.world.level.levelgen.WorldGenSettings;
 import net.minecraft.world.level.storage.ServerLevelData;
 
 public class BiomeSpawnEvent {
+	private static FabricLoader fabricLoader = FabricLoader.getInstance();
+
 	public static void onWorldLoad(ServerLevel serverLevel, ServerLevelData serverLevelData) {
 		try {
 			Registry<Biome> biomeRegistry = serverLevel.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY);
@@ -49,19 +52,37 @@ public class BiomeSpawnEvent {
 		}
 
 		System.out.println("[Biome Spawn Point] Finding the nearest '" + spawnBiome + "' biome. This might take a few seconds.");
-		BlockPos spawnpos = BlockPosFunctions.getCenterNearbyBiome(serverLevel, spawnBiome);
-		if (spawnpos == null) {
+		BlockPos spawnPos = BlockPosFunctions.getCenterNearbyBiome(serverLevel, spawnBiome);
+		if (spawnPos != null) {
+			System.out.println("[Biome Spawn Point] Biome found!");
+		}
+
+		WorldGenSettings generatorsettings = serverLevel.getServer().getWorldData().worldGenSettings();
+
+		if (fabricLoader.isModLoaded("villagespawnpoint-fabric") && generatorsettings.generateStructures()) {
+			if (spawnPos == null) {
+				spawnPos = new BlockPos(0, 0, 0);
+			}
+
+			System.out.println("[Biome Spawn Point] Village Spawn Point installed, finding village near biome. This might take a few seconds.");
+			BlockPos villagePos = BlockPosFunctions.getNearbyVillage(serverLevel, spawnPos);
+			if (villagePos != null) {
+				System.out.println("[Biome Spawn Point] Nearby village found.");
+				spawnPos = villagePos.immutable();
+			}
+		}
+
+		if (spawnPos == null) {
 			System.out.println("[Biome Spawn Point] Unable to find '" + spawnBiome + "' biome.");
 			return;
 		}
 
-		System.out.println("[Biome Spawn Point] Biome found! The world will now generate.");
+		System.out.println("[Biome Spawn Point] The world will now generate.");
 
-		serverLevel.setDefaultSpawnPos(spawnpos, 1.0f);
+		serverLevel.setDefaultSpawnPos(spawnPos, 1.0f);
 
-		WorldGenSettings generatorsettings = serverLevel.getServer().getWorldData().worldGenSettings();
 		if (generatorsettings.generateBonusChest()) {
-			FeatureFunctions.placeBonusChest(serverLevel, spawnpos);
+			FeatureFunctions.placeBonusChest(serverLevel, spawnPos);
 		}
 	}
 }

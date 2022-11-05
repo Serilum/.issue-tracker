@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Biome Spawn Point.
- * Minecraft version: 1.19.2, mod version: 1.0.
+ * Minecraft version: 1.19.2, mod version: 1.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,6 @@ package com.natamus.biomespawnpoint.util;
 public class Reference {
 	public static final String MOD_ID = "biomespawnpoint";
 	public static final String NAME = "Biome Spawn Point";
-	public static final String VERSION = "1.0";
+	public static final String VERSION = "1.3";
 	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
 }

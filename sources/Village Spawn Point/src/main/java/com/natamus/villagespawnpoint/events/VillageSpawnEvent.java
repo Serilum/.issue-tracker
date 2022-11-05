@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Village Spawn Point.
- * Minecraft version: 1.19.2, mod version: 2.6.
+ * Minecraft version: 1.19.2, mod version: 2.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,19 +19,23 @@ package com.natamus.villagespawnpoint.events;
 import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.collective.functions.FeatureFunctions;
 import com.natamus.collective.functions.WorldFunctions;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.WorldGenSettings;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber
 public class VillageSpawnEvent {
 	@SubscribeEvent(receiveCanceled = true)
 	public void onWorldLoad(LevelEvent.CreateSpawnPosition e) {
+		if (ModList.get().isLoaded("biomespawnpoint")) {
+			return;
+		}
+
 		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
 		if (world == null) {
 			return;

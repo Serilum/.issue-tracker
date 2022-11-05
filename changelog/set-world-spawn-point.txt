@@ -3,6 +3,9 @@ Set World Spawn Point
 https://www.curseforge.com/minecraft/mc-mods/set-world-spawn-point
 
 =========
+v2.7: Added compatibility support for the mods Biome Spawn Point and Village Spawn Point.
+
+=========
 v2.6: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

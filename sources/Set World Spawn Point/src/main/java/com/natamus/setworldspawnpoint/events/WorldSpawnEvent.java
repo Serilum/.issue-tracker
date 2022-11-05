@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Set World Spawn Point.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.2, mod version: 2.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -46,12 +46,12 @@ import java.util.Optional;
 public class WorldSpawnEvent {
 	@SubscribeEvent
 	public void onWorldLoad(LevelEvent.CreateSpawnPosition e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
-		if (world == null) {
+		if (ModList.get().isLoaded("villagespawnpoint") || ModList.get().isLoaded("biomespawnpoint")) {
 			return;
 		}
 
-		if (ModList.get().isLoaded("village-spawn-point")) {
+		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
+		if (world == null) {
 			return;
 		}
 		
