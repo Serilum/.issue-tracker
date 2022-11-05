@@ -1,0 +1,6 @@
+Changelog:
+Faster Crouching
+https://curseforge.com/minecraft/mc-mods/faster-crouching
+
+=========
+v1.0: Initial release of Faster Crouching.
