@@ -3,4 +3,7 @@ Vanilla Zoom
 https://curseforge.com/minecraft/mc-mods/vanilla-zoom
 
 =========
+v1.1: Added Mod Menu support.
+
+=========
 v1.0: Initial release of Vanilla Zoom.

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "fastercrouching-fabric",
-  "version": "1.0",
+  "version": "1.1",
 
   "name": "Faster Crouching (Fabric)",
   "description": "Set the crouch/sneak speed of players to be the same as when walking and sprinting.",
@@ -13,6 +13,7 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/fastercrouching-fabric/icon.png",
 
   "environment": "*",
   "entrypoints": { "main": [ "com.natamus.fastercrouching.Main" ] },
@@ -26,6 +27,15 @@
     "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=5.14"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
   },
 
   "contributors": [

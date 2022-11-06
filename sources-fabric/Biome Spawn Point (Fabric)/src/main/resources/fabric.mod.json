@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "biomespawnpoint-fabric",
-  "version": "1.3",
+  "version": "1.4",
 
   "name": "Biome Spawn Point (Fabric)",
   "description": "Allows specifying which biome players will spawn in on new world creation.",
@@ -13,6 +13,7 @@
   },
 
   "license": "All Right Reserved",
+  "icon": "assets/biomespawnpoint-fabric/icon.png",
 
   "environment": "*",
   "entrypoints": { "main": [ "com.natamus.biomespawnpoint.Main" ] },
@@ -23,6 +24,15 @@
     "minecraft": ">=1.19",
     "java": ">=17",
     "collective-fabric": ">=5.14"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/vFren9YzzN",
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
   },
 
   "contributors": [

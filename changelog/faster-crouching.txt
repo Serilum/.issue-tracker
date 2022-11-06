@@ -3,4 +3,7 @@ Faster Crouching
 https://curseforge.com/minecraft/mc-mods/faster-crouching
 
 =========
+v1.1: Added Mod Menu support.
+
+=========
 v1.0: Initial release of Faster Crouching.
