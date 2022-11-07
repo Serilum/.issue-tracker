@@ -1,0 +1,8 @@
+{
+  "item.manure-fabric.manure": "Manure",
+
+  "manure-fabric.duskconfig.title": "Manure Config",
+  "manure-fabric.duskconfig.DESC_manureDropDelayTicks": "How long the delay in ticks is in between loaded animals dropping manure. 20 ticks = 1 second. By default twice a day, every 12000 ticks.",
+  "manure-fabric.duskconfig.RANGE_manureDropDelayTicks": "min: 0, max: 10000000",
+  "manure-fabric.duskconfig.manureDropDelayTicks": "Manure Drop Delay Ticks"
+}

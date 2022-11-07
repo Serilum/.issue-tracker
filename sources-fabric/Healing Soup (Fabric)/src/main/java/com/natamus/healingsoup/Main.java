@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Healing Soup.
- * Minecraft version: 1.19.2, mod version: 2.9.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,19 +17,15 @@
 package com.natamus.healingsoup;
 
 import com.natamus.collective_fabric.check.RegisterMod;
-import com.natamus.healingsoup.config.ConfigHandler;
 import com.natamus.collective_fabric.config.DuskConfig;
+import com.natamus.healingsoup.config.ConfigHandler;
 import com.natamus.healingsoup.events.SoupEvent;
-import com.natamus.healingsoup.items.SoupFoods;
 import com.natamus.healingsoup.items.SoupItems;
 import com.natamus.healingsoup.util.Reference;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BowlFoodItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 
 public class Main implements ModInitializer {
 	@Override

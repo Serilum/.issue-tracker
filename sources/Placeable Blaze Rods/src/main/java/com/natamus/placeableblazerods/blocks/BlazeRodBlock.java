@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Placeable Blaze Rods.
- * Minecraft version: 1.18.2, mod version: 1.4.
+ * Minecraft version: 1.19.2, mod version: 1.4.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -56,7 +56,7 @@ public class BlazeRodBlock extends DirectionalBlock {
 		super(builder);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP));
 	}
-	
+
 	   @Deprecated
 	   @Override
 	   public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {

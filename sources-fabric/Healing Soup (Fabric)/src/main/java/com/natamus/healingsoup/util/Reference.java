@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Healing Soup.
- * Minecraft version: 1.19.2, mod version: 2.9.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,6 @@ package com.natamus.healingsoup.util;
 public class Reference {
 	public static final String MOD_ID = "healingsoup-fabric";
 	public static final String NAME = "Healing Soup (Fabric)";
-	public static final String VERSION = "2.9";
+	public static final String VERSION = "3.0";
 	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
 }
