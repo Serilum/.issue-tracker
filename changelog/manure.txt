@@ -1,0 +1,6 @@
+Changelog:
+Manure
+https://curseforge.com/minecraft/mc-mods/manure
+
+=========
+v1.0: Initial release of Manure.
