@@ -3,6 +3,9 @@ Save and Load Inventories
 https://curseforge.com/minecraft/mc-mods/save-and-load-inventories
 
 =========
+v2.4: Fixes the problems caused by Mojang's launcher update.
+
+=========
 v2.3: (Fabric) Added Mod Menu support with project links and logo.
 
 =========

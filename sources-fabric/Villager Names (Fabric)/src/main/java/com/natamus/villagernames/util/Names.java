@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Villager Names.
- * Minecraft version: 1.19.2, mod version: 4.2.
+ * Minecraft version: 1.19.2, mod version: 4.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,6 +16,11 @@
 
 package com.natamus.villagernames.util;
 
+import com.natamus.collective_fabric.data.GlobalVariables;
+import com.natamus.collective_fabric.functions.DataFunctions;
+import com.natamus.collective_fabric.functions.StringFunctions;
+import com.natamus.villagernames.config.ConfigHandler;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,16 +32,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.natamus.collective_fabric.data.GlobalVariables;
-import com.natamus.collective_fabric.functions.StringFunctions;
-import com.natamus.villagernames.config.ConfigHandler;
-
 public class Names {
 	public static List<String> customnames = null;
-	public static String workspace_path = System.getProperty("user.dir");
 	
 	public static void setCustomNames() throws IOException {
-		String dirpath = workspace_path + File.separator + "config" + File.separator + "villagernames";
+		String dirpath = DataFunctions.getConfigDirectory() + File.separator + "villagernames";
 		File dir = new File(dirpath);
 		File file = new File(dirpath + File.separator + "customnames.txt");
 		

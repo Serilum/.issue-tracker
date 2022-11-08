@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Biome Spawn Point.
- * Minecraft version: 1.19.2, mod version: 1.3.
+ * Minecraft version: 1.19.2, mod version: 1.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,6 +17,7 @@
 package com.natamus.biomespawnpoint.util;
 
 import com.natamus.collective.data.GlobalVariables;
+import com.natamus.collective.functions.DataFunctions;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
@@ -36,7 +37,7 @@ public class Util {
     private static List<String> spawnBiomes = new ArrayList<String>();
     private static List<Biome> processedBiomes = new ArrayList<Biome>();
 
-    private static String dirpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + Reference.MOD_ID;
+    private static String dirpath = DataFunctions.getConfigDirectory() + File.separator + Reference.MOD_ID;
     private static File dir = new File(dirpath);
     private static File file = new File(dirpath + File.separator + "spawnbiomes.txt");
 

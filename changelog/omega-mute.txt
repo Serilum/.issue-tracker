@@ -3,6 +3,9 @@ Omega Mute
 https://www.curseforge.com/minecraft/mc-mods/omega-mute
 
 =========
+v2.8: Fixes the problems caused by Mojang's launcher update.
+
+=========
 v2.7: (Fabric) Added Mod Menu support with project links and logo.
 
 =========

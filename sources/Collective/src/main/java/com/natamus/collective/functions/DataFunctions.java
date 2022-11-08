@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.13.
+ * Minecraft version: 1.19.2, mod version: 5.15.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,14 +16,16 @@
 
 package com.natamus.collective.functions;
 
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.loading.FMLPaths;
+import net.minecraftforge.forgespi.language.IModInfo;
+
+import java.io.File;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.forgespi.language.IModInfo;
 
 public class DataFunctions {
 	public static String readStringFromURL(String requestURL) {
@@ -35,6 +37,16 @@ public class DataFunctions {
 	    catch(Exception ignored) {}
 	    
 	    return data;
+	}
+
+	public static String getGameDirectory() {
+		return FMLPaths.GAMEDIR.get().toString();
+	}
+	public static String getModDirectory() {
+		return getGameDirectory() + File.separator + "mods";
+	}
+	public static String getConfigDirectory() {
+		return getGameDirectory() + File.separator + "config";
 	}
 	
 	public static List<String> getInstalledModJars() {

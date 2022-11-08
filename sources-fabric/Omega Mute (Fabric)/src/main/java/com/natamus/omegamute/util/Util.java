@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Omega Mute.
- * Minecraft version: 1.19.2, mod version: 2.7.
+ * Minecraft version: 1.19.2, mod version: 2.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,25 +16,16 @@
 
 package com.natamus.omegamute.util;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
-
+import com.natamus.collective_fabric.functions.DataFunctions;
 import com.natamus.omegamute.events.MuteEvent;
-
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class Util {
 	// MUTED VALUE
@@ -42,7 +33,7 @@ public class Util {
 	// 0 == always mute
 	// > 0 == cull sound for x seconds
 	
-	private static String dirpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "omegamute";
+	private static String dirpath = DataFunctions.getConfigDirectory() + File.separator + "omegamute";
 	private static File dir = new File(dirpath);
 	private static File file = new File(dirpath + File.separator + "soundmap.txt");
 	

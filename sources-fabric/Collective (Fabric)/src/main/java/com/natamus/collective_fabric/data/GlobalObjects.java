@@ -14,30 +14,10 @@
  * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
-package com.natamus.collective_fabric.schematic;
+package com.natamus.collective_fabric.data;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.state.BlockState;
+import net.fabricmc.loader.api.FabricLoader;
 
-public class SchematicBlockObject {
-
-	private BlockPos position;
-	private BlockState state;
-	
-	public SchematicBlockObject(BlockPos position, BlockState state) {
-		this.position = position;
-		this.state = state;
-	}
-	
-	public BlockPos getPosition() {
-		return position;
-	}
-	
-	public BlockState getState() {
-		return state;
-	}
-	
-	public BlockPos getPositionWithOfsset(int x, int y, int z) {
-		return new BlockPos(x + position.getX(), y + position.getY(), z + position.getZ());
-	}
+public class GlobalObjects {
+    public static final FabricLoader fabricLoader = FabricLoader.getInstance();
 }

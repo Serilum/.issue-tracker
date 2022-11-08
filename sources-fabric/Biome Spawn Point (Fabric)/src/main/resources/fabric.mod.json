@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "biomespawnpoint-fabric",
-  "version": "1.4",
+  "version": "1.5",
 
   "name": "Biome Spawn Point (Fabric)",
   "description": "Allows specifying which biome players will spawn in on new world creation.",
@@ -23,7 +23,7 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=5.14"
+    "collective-fabric": ">=5.15"
   },
 
   "custom": {

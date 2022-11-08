@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Mob Potion Effects.
- * Minecraft version: 1.19.2, mod version: 1.7.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,6 @@ package com.natamus.configurablemobpotioneffects.util;
 public class Reference {
 	public static final String MOD_ID = "configurablemobpotioneffects";
 	public static final String NAME = "Configurable Mob Potion Effects";
-	public static final String VERSION = "1.7";
+	public static final String VERSION = "2.1";
 	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
 }

@@ -3,6 +3,9 @@ Configurable Extra Mob Drops
 https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drops
 
 =========
+v2.5: Fixes the problems caused by Mojang's launcher update.
+
+=========
 v2.4: (Fabric) Added Mod Menu support with project links and logo.
 
 =========

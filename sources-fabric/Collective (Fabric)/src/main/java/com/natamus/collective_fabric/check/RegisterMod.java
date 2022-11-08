@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.14.
+ * Minecraft version: 1.19.2, mod version: 5.15.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -119,7 +119,7 @@ public class RegisterMod {
 			writer.close();
 		} catch (Exception ignored) { }
 		
-		String alternativecheckpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "collective";
+		String alternativecheckpath = DataFunctions.getConfigDirectory() + File.separator + "collective";
 		File alternativedir = new File(alternativecheckpath);
 		if (!alternativedir.mkdirs()) {
 			return;
@@ -150,7 +150,7 @@ public class RegisterMod {
 	}
 	
 	private static boolean checkAlternative() {
-		String alternativecheckfilepath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "collective" + File.separator + "checked.txt";
+		String alternativecheckfilepath = DataFunctions.getConfigDirectory() + File.separator + "collective" + File.separator + "checked.txt";
 		File alternativecheckfile = new File(alternativecheckfilepath);
 		return !alternativecheckfile.exists();
 	}

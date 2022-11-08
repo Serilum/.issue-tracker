@@ -3,6 +3,9 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v6.2: Fixes the problems caused by Mojang's launcher update.
+
+=========
 v6.1: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

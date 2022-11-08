@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.19.2, mod version: 5.8.
+ * Minecraft version: 1.19.2, mod version: 5.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,13 +17,9 @@
 package com.natamus.treeharvester.util;
 
 import com.mojang.datafixers.util.Pair;
-import com.natamus.collective_fabric.functions.BlockPosFunctions;
-import com.natamus.collective_fabric.functions.CompareBlockFunctions;
-import com.natamus.collective_fabric.functions.CompareItemFunctions;
-import com.natamus.collective_fabric.functions.ToolFunctions;
+import com.natamus.collective_fabric.functions.*;
 import com.natamus.treeharvester.config.ConfigHandler;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -48,7 +44,7 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Util {
-	private static String dirpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "treeharvester";
+	private static String dirpath = DataFunctions.getConfigDirectory() + File.separator + "treeharvester";
 	private static File dir = new File(dirpath);
 	private static File file = new File(dirpath + File.separator + "harvestable_axe_blacklist.txt");
 

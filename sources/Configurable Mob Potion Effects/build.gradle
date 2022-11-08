@@ -34,7 +34,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-            arg "-mixin.config=serilumforgemod.mixins.json" // mixin
+            arg "-mixin.config=configurablemobpotioneffects.mixins.json" // mixin
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -48,7 +48,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            arg "-mixin.config=serilumforgemod.mixins.json" // mixin
+            arg "-mixin.config=configurablemobpotioneffects.mixins.json" // mixin
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -62,7 +62,7 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-            arg "-mixin.config=serilumforgemod.mixins.json" // mixin
+            arg "-mixin.config=configurablemobpotioneffects.mixins.json" // mixin
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -87,8 +87,8 @@ dependencies {
 }
 
 mixin { // mixin
-    add sourceSets.main, "serilumforgemod.refmap.json" // mixin
-    config 'serilumforgemod.mixins.json' // mixin
+    add sourceSets.main, "configurablemobpotioneffects.refmap.json" // mixin
+    config 'configurablemobpotioneffects.mixins.json' // mixin
     
     debug.verbose = true // mixin
     debug.export = true // mixin
@@ -138,6 +138,6 @@ repositories {
 }
 
 dependencies {
-    runtimeOnly fg.deobf("com.natamus.collective:collective:1.19.2-5.11")
-    compileOnly fg.deobf("com.natamus.collective:collective:1.19.2-5.11")
+    runtimeOnly fg.deobf("com.natamus.collective:collective:1.19.2-5.15")
+    compileOnly fg.deobf("com.natamus.collective:collective:1.19.2-5.15")
 }

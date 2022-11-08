@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nether Portal Spread.
- * Minecraft version: 1.19.2, mod version: 6.0.
+ * Minecraft version: 1.19.2, mod version: 6.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,6 +16,20 @@
 
 package com.natamus.netherportalspread.util;
 
+import com.natamus.collective.functions.*;
+import com.natamus.collective.objects.RandomCollection;
+import com.natamus.netherportalspread.config.ConfigHandler;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.registries.ForgeRegistries;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,26 +43,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.natamus.collective.functions.BlockFunctions;
-import com.natamus.collective.functions.CompareBlockFunctions;
-import com.natamus.collective.functions.DimensionFunctions;
-import com.natamus.collective.functions.NumberFunctions;
-import com.natamus.collective.functions.StringFunctions;
-import com.natamus.collective.functions.WorldFunctions;
-import com.natamus.collective.objects.RandomCollection;
-import com.natamus.netherportalspread.config.ConfigHandler;
-
-import net.minecraft.ChatFormatting;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Vec3i;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.registries.ForgeRegistries;
-
 public class Util {
 	public static HashMap<Level, CopyOnWriteArrayList<BlockPos>> portals = new HashMap<Level, CopyOnWriteArrayList<BlockPos>>();
 	public static HashMap<Level, HashMap<BlockPos, Boolean>> preventedportals = new HashMap<Level, HashMap<BlockPos, Boolean>>();
@@ -59,7 +53,7 @@ public class Util {
 	private static Block preventSpreadBlock = null;
 	
 	public static void loadSpreadBlocks() throws IOException {
-		String dirpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "netherportalspread";
+		String dirpath = DataFunctions.getConfigDirectory() + File.separator + "netherportalspread";
 		File dir = new File(dirpath);
 		File file = new File(dirpath + File.separator + "spreadsettings.txt");
 		

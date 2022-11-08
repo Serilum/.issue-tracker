@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.14.
+ * Minecraft version: 1.19.2, mod version: 5.15.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,6 +16,7 @@
 
 package com.natamus.collective_fabric.functions;
 
+import com.natamus.collective_fabric.data.GlobalObjects;
 import net.minecraft.SharedConstants;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -29,7 +30,7 @@ import java.util.Scanner;
 public class DataFunctions {
 	public static String readStringFromURL(String requestURL) {
 		String data = "";
-	    try (Scanner scanner = new Scanner(new URL(requestURL).openStream(), StandardCharsets.UTF_8.toString())) {
+	    try (Scanner scanner = new Scanner(new URL(requestURL).openStream(), StandardCharsets.UTF_8)) {
 	        scanner.useDelimiter("\\A");
 	        data = scanner.hasNext() ? scanner.next() : "";
 	    }
@@ -43,8 +44,14 @@ public class DataFunctions {
 		return SharedConstants.VERSION_STRING;
 	}
 
+	public static String getGameDirectory() {
+		return GlobalObjects.fabricLoader.getGameDir().toString();
+	}
 	public static String getModDirectory() {
-		return System.getProperty("user.dir") + File.separator + "mods";
+		return getGameDirectory() + File.separator + "mods";
+	}
+	public static String getConfigDirectory() {
+		return GlobalObjects.fabricLoader.getConfigDir().toString();
 	}
 
 	public static List<String> getInstalledModJars() {

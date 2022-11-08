@@ -3,6 +3,9 @@ Biome Spawn Point
 https://curseforge.com/minecraft/mc-mods/biome-spawn-point
 
 =========
+v1.5: Fixes the problems caused by Mojang's launcher update.
+
+=========
 v1.4: Added Mod Menu support.
 
 =========

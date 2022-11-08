@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Mob Potion Effects.
- * Minecraft version: 1.19.2, mod version: 1.7.
+ * Minecraft version: 1.19.2, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,6 +16,7 @@
 
 package com.natamus.configurablemobpotioneffects.util;
 
+import com.natamus.collective.functions.DataFunctions;
 import com.natamus.collective.functions.NumberFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import net.minecraft.resources.ResourceLocation;
@@ -35,7 +36,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Util {
-	private static String dirpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "configurablemobpotioneffects";
+	private static String dirpath = DataFunctions.getConfigDirectory() + File.separator + "configurablemobpotioneffects";
 	private static File dir = new File(dirpath);
 	private static File permanentfile = new File(dirpath + File.separator + "permanenteffects.txt");
 	private static File damagefile = new File(dirpath + File.separator + "ondamageeffects.txt");

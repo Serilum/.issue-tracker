@@ -1,9 +1,9 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.natamus.saveandloadinventories.forge.mixin",
+  "package": "com.natamus.omegamute.forge.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "serilumforgemod.refmap.json",
+  "refmap": "omegamute.refmap.json",
   "mixins": [
 
   ],

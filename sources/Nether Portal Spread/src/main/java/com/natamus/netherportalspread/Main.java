@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nether Portal Spread.
- * Minecraft version: 1.19.2, mod version: 6.0.
+ * Minecraft version: 1.19.2, mod version: 6.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -52,7 +52,6 @@ public class Main {
     	try {
 			Util.loadSpreadBlocks();
 		} catch (IOException e) {
-			System.out.println(e);
 		}
     	
     	MinecraftForge.EVENT_BUS.register(new SpreadEvent());

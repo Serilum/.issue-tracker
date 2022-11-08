@@ -3,6 +3,9 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v6.5: Fixes the problems caused by Mojang's launcher update.
+
+=========
 v6.4: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

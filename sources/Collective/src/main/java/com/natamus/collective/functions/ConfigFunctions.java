@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.13.
+ * Minecraft version: 1.19.2, mod version: 5.15.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -30,7 +30,7 @@ public class ConfigFunctions {
 	}
 	
 	public static List<String> getRawConfigValues(String modid, boolean tve) {
-		String dirpath = System.getProperty("user.dir") + File.separator + "config";
+		String dirpath = DataFunctions.getConfigDirectory();
 		if (tve) {
 			dirpath = dirpath + File.separator + "TVE";
 		}

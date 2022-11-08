@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.19.2, mod version: 6.1.
+ * Minecraft version: 1.19.2, mod version: 6.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,24 +16,16 @@
 
 package com.natamus.justmobheads.util;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import com.natamus.collective_fabric.functions.DataFunctions;
+
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Util {
-	private static String dirpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "justmobheads";
+	private static String dirpath = DataFunctions.getConfigDirectory() + File.separator + "justmobheads";
 	private static File dir = new File(dirpath);
 	private static File file = new File(dirpath + File.separator + "headchances.txt");
 	

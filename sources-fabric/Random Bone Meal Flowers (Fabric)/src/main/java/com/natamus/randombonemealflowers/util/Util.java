@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Bone Meal Flowers.
- * Minecraft version: 1.19.2, mod version: 3.1.
+ * Minecraft version: 1.19.2, mod version: 3.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,6 +17,7 @@
 package com.natamus.randombonemealflowers.util;
 
 import com.natamus.collective_fabric.data.GlobalVariables;
+import com.natamus.collective_fabric.functions.DataFunctions;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -35,7 +36,7 @@ public class Util {
 	public static List<Block> allflowers = new ArrayList<Block>();
 	public static List<Block> flowers = new ArrayList<Block>();
 	
-	private static String dirpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "randombonemealflowers";
+	private static String dirpath = DataFunctions.getConfigDirectory() + File.separator + "randombonemealflowers";
 	private static File dir = new File(dirpath);
 	private static File file = new File(dirpath + File.separator + "blacklist.txt");
 	

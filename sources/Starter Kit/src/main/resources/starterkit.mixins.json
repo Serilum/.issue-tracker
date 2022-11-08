@@ -1,9 +1,9 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.natamus.netherportalspread.forge.mixin",
+  "package": "com.natamus.starterkit.forge.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "serilumforgemod.refmap.json",
+  "refmap": "starterkit.refmap.json",
   "mixins": [
 
   ],

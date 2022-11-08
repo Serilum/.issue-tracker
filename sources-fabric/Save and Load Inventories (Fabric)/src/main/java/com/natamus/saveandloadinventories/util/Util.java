@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Save and Load Inventories.
- * Minecraft version: 1.19.2, mod version: 2.3.
+ * Minecraft version: 1.19.2, mod version: 2.4.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,6 +16,8 @@
 
 package com.natamus.saveandloadinventories.util;
 
+import com.natamus.collective_fabric.functions.DataFunctions;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,8 +25,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Util {
-	private static String workspace_path = System.getProperty("user.dir");
-	private static final String dirpath = workspace_path + File.separator + "config" + File.separator + "saveandloadinventories";
+	private static final String dirpath = DataFunctions.getConfigDirectory() + File.separator + "saveandloadinventories";
 	
 	public static boolean writeGearStringToFile(String filename, String gearstring) {
 		File dir = new File(dirpath);

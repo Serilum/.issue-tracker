@@ -3,6 +3,9 @@ Random Mob Effects
 https://curseforge.com/minecraft/mc-mods/random-mob-effects
 
 =========
+v2.4: Fixes the problems caused by Mojang's launcher update.
+
+=========
 v2.3: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

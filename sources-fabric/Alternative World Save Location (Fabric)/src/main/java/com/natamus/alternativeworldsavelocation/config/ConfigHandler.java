@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Alternative World Save Location.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 1.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,19 +16,21 @@
 
 package com.natamus.alternativeworldsavelocation.config;
 
-import java.io.File;
 import com.natamus.collective_fabric.config.DuskConfig;
+import com.natamus.collective_fabric.functions.DataFunctions;
+
+import java.io.File;
 
 public class ConfigHandler extends DuskConfig {
 	@Comment public static Comment DESC_changeDefaultWorldSaveLocation;
 	@Entry public static boolean changeDefaultWorldSaveLocation = false;
 
 	@Comment public static Comment DESC_defaultMinecraftWorldSaveLocation;
-	@Entry public static String defaultMinecraftWorldSaveLocation = System.getProperty("user.dir") + File.separator + "saves";
+	@Entry public static String defaultMinecraftWorldSaveLocation = DataFunctions.getGameDirectory() + File.separator + "saves";
 
 	@Comment public static Comment DESC_changeDefaultWorldBackupLocation;
 	@Entry public static boolean changeDefaultWorldBackupLocation = false;
 
 	@Comment public static Comment DESC_defaultMinecraftWorldBackupLocation;
-	@Entry public static String defaultMinecraftWorldBackupLocation = System.getProperty("user.dir") + File.separator + "backups";
+	@Entry public static String defaultMinecraftWorldBackupLocation = DataFunctions.getGameDirectory() + File.separator + "backups";
 }

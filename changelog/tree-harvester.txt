@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v5.9: Fixes the problems caused by Mojang's launcher update.
+
+=========
 v5.7-5.8: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

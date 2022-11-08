@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Starter Kit.
- * Minecraft version: 1.19.2, mod version: 3.4.
+ * Minecraft version: 1.19.2, mod version: 3.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,32 +16,27 @@
 
 package com.natamus.starterkit.util;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import com.natamus.collective.functions.DataFunctions;
+import com.natamus.collective.functions.NumberFunctions;
+import com.natamus.collective.functions.PlayerFunctions;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 
-import com.natamus.collective.functions.NumberFunctions;
-import com.natamus.collective.functions.PlayerFunctions;
-
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
-
 public class Util {
 	public static String startergearstring = "";
-	
-	private static String workspace_path = System.getProperty("user.dir");
-	private static final String dirpath = workspace_path + File.separator + "config" + File.separator + "starterkit";
+
+	private static final String dirpath = DataFunctions.getConfigDirectory() + File.separator + "starterkit";
 	
 	public static void getOrCreateGearConfig(boolean first) throws IOException, FileNotFoundException, UnsupportedEncodingException {
 		File dir = new File(dirpath);

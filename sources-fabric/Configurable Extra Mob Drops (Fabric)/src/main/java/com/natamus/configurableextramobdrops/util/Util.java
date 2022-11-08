@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Extra Mob Drops.
- * Minecraft version: 1.19.2, mod version: 2.4.
+ * Minecraft version: 1.19.2, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,22 +16,9 @@
 
 package com.natamus.configurableextramobdrops.util;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.natamus.collective_fabric.functions.DataFunctions;
 import com.natamus.collective_fabric.functions.StringFunctions;
-
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
@@ -40,8 +27,17 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.ItemStack;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 public class Util {
-	private static String dirpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "configurableextramobdrops";
+	private static String dirpath = DataFunctions.getConfigDirectory() + File.separator + "configurableextramobdrops";
 	private static File dir = new File(dirpath);
 	private static File file = new File(dirpath + File.separator + "mobdropconfig.txt");
 	

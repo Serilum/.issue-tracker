@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Villager Names.
- * Minecraft version: 1.19.2, mod version: 4.1.
+ * Minecraft version: 1.19.2, mod version: 4.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,6 @@ package com.natamus.villagernames.util;
 public class Reference {
 	public static final String MOD_ID = "villagernames";
 	public static final String NAME = "Villager Names";
-	public static final String VERSION = "4.1";
+	public static final String VERSION = "4.3";
 	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
 }

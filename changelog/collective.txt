@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.15: Fixes the problems caused by Mojang's launcher update.
+
+=========
 v5.14: (Fabric) Updated ConfigFunctions to work with the new .json5 files.
 
 =========

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Alternative World Save Location.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.2, mod version: 1.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,9 +16,10 @@
 
 package com.natamus.alternativeworldsavelocation.config;
 
-import java.io.File;
-
+import com.natamus.collective.functions.DataFunctions;
 import net.minecraftforge.common.ForgeConfigSpec;
+
+import java.io.File;
 
 public class ConfigHandler {
 	private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -39,14 +40,14 @@ public class ConfigHandler {
 					.define("changeDefaultWorldSaveLocation", false);
 			defaultMinecraftWorldSaveLocation = builder
 					.comment("Use either \\\\ or / as a path separator. The location of the folder containing the world saves.")
-					.define("defaultMinecraftWorldSaveLocation", System.getProperty("user.dir") + File.separator + "saves");
+					.define("defaultMinecraftWorldSaveLocation", DataFunctions.getGameDirectory() + File.separator + "saves");
 			
 			changeDefaultWorldBackupLocation = builder
 					.comment("Disabled by default. Enable this to set a specific world backup folder. If disabled, this will be set to 'defaultMinecraftWorldSaveLocation'/_Backup.")
 					.define("changeDefaultWorldBackupLocation", false);
 			defaultMinecraftWorldBackupLocation = builder
 					.comment("Use either \\\\ or / as a path separator. The world backup folder if both 'changeDefaultWorldSaveLocation' and 'changeDefaultWorldBackupLocation' are enabled.")
-					.define("defaultMinecraftWorldBackupLocation", System.getProperty("user.dir") + File.separator + "backups");
+					.define("defaultMinecraftWorldBackupLocation", DataFunctions.getGameDirectory() + File.separator + "backups");
 			
 			builder.pop();
 		}

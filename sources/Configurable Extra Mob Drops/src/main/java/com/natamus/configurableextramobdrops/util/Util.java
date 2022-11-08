@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Extra Mob Drops.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,6 +17,7 @@
 package com.natamus.configurableextramobdrops.util;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.natamus.collective.functions.DataFunctions;
 import com.natamus.collective.functions.StringFunctions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
@@ -36,7 +37,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Util {
-	private static String dirpath = System.getProperty("user.dir") + File.separator + "config" + File.separator + "configurableextramobdrops";
+	private static String dirpath = DataFunctions.getConfigDirectory() + File.separator + "configurableextramobdrops";
 	private static File dir = new File(dirpath);
 	private static File file = new File(dirpath + File.separator + "mobdropconfig.txt");
 	
