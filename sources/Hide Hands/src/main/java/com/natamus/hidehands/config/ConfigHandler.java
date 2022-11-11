@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hide Hands.
- * Minecraft version: 1.19.2, mod version: 1.7.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -25,6 +25,7 @@ public class ConfigHandler {
 
 	public static class General {
 		public final ForgeConfigSpec.ConfigValue<Boolean> alwaysHideMainHand;
+		public final ForgeConfigSpec.ConfigValue<Boolean> alwaysHideEmptyMainHand;
 		public final ForgeConfigSpec.ConfigValue<String> hideMainHandWithItems;
 		public final ForgeConfigSpec.ConfigValue<Boolean> alwaysHideOffhand;
 		public final ForgeConfigSpec.ConfigValue<String> hideOffhandWithItems;
@@ -34,6 +35,9 @@ public class ConfigHandler {
 			alwaysHideMainHand = builder
 					.comment("If enabled, always hides the main hand. If disabled, hides the main hand when holding the items defined in hideMainHandWithItems.")
 					.define("alwaysHideMainHand", false);
+			alwaysHideEmptyMainHand = builder
+					.comment("If enabled, always hides the main hand if it's empty. Will still be visible when swung empty.")
+					.define("alwaysHideEmptyMainHand", true);
 			hideMainHandWithItems = builder
 					.comment("The items which when held will hide the main hand if alwaysHideMainHand is disabled.")
 					.define("hideMainHandWithItems", "");

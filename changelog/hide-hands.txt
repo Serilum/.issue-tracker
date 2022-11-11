@@ -3,6 +3,10 @@ Hide Hands
 https://www.curseforge.com/minecraft/mc-mods/hide-hands
 
 =========
+v3.0: Added the 'alwaysHideEmptyMainHand' config option, enabled by default, which will hide the player's main hand when it's empty. You no longer have to always look at that player arm!
+Updated backend code.
+
+=========
 v2.0: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

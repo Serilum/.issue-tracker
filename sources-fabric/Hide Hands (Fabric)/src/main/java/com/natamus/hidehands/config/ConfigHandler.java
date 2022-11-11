@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hide Hands.
- * Minecraft version: 1.19.2, mod version: 2.0.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -21,6 +21,9 @@ import com.natamus.collective_fabric.config.DuskConfig;
 public class ConfigHandler extends DuskConfig {
 	@Comment public static Comment DESC_alwaysHideMainHand;
 	@Entry public static boolean alwaysHideMainHand = false;
+
+	@Comment public static Comment DESC_alwaysHideEmptyMainHand;
+	@Entry public static boolean alwaysHideEmptyMainHand = true;
 
 	@Comment public static Comment DESC_hideMainHandWithItems;
 	@Entry public static String hideMainHandWithItems = "";

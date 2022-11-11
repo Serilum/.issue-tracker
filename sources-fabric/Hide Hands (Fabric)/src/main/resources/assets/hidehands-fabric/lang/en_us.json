@@ -2,6 +2,8 @@
   "hidehands-fabric.duskconfig.title": "Hide Hands Config",
   "hidehands-fabric.duskconfig.DESC_alwaysHideMainHand": "If enabled, always hides the main hand. If disabled, hides the main hand when holding the items defined in hideMainHandWithItems.",
   "hidehands-fabric.duskconfig.alwaysHideMainHand": "Always Hide Main Hand",
+  "hidehands-fabric.duskconfig.DESC_alwaysHideEmptyMainHand": "If enabled, always hides the main hand if it's empty. Will still be visible when swung empty.",
+  "hidehands-fabric.duskconfig.alwaysHideEmptyMainHand": "Always Hide Empty Main Hand",
   "hidehands-fabric.duskconfig.DESC_hideMainHandWithItems": "The items which when held will hide the main hand if alwaysHideMainHand is disabled.",
   "hidehands-fabric.duskconfig.hideMainHandWithItems": "Hide Main Hand With Items",
   "hidehands-fabric.duskconfig.DESC_alwaysHideOffhand": "If enabled, always hides the offhand. If disabled, hides the offhand when holding the items defined in hideOffhandWithItems.",

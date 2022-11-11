@@ -3,4 +3,7 @@ Manure
 https://curseforge.com/minecraft/mc-mods/manure
 
 =========
+v1.1: Fixed incorrectly set version.
+
+=========
 v1.0: Initial release of Manure.

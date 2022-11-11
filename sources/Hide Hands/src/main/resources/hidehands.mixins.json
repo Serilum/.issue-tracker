@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "com.natamus.hidehands.forge.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "serilumforgemod.refmap.json",
+  "refmap": "hidehands.refmap.json",
   "mixins": [
 
   ],
