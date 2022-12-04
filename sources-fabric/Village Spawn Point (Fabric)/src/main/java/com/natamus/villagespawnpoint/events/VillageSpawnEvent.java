@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Village Spawn Point.
- * Minecraft version: 1.19.2, mod version: 2.9.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,6 +16,7 @@
 
 package com.natamus.villagespawnpoint.events;
 
+import com.mojang.logging.LogUtils;
 import com.natamus.collective_fabric.functions.BlockPosFunctions;
 import com.natamus.collective_fabric.functions.FeatureFunctions;
 import net.fabricmc.loader.api.FabricLoader;
@@ -23,9 +24,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.levelgen.WorldGenSettings;
 import net.minecraft.world.level.storage.ServerLevelData;
+import org.slf4j.Logger;
 
 public class VillageSpawnEvent {
-	private static FabricLoader fabricLoader = FabricLoader.getInstance();
+	private static final FabricLoader fabricLoader = FabricLoader.getInstance();
+	private static final Logger logger = LogUtils.getLogger();
 
 	public static void onWorldLoad(ServerLevel serverworld, ServerLevelData serverLevelData) {
 		if (fabricLoader.isModLoaded("biomespawnpoint-fabric")) {
@@ -38,13 +41,13 @@ public class VillageSpawnEvent {
 			return;
 		}
 
-		System.out.println("[Village Spawn Point] Finding the nearest village. This might take a few seconds.");
+		logger.info("[Village Spawn Point] Finding the nearest village. This might take a few seconds.");
 		BlockPos spawnpos = BlockPosFunctions.getCenterNearbyVillage(serverworld);
 		if (spawnpos == null) {
 			return;
 		}
 
-		System.out.println("[Village Spawn Point] Village found! The world will now generate.");
+		logger.info("[Village Spawn Point] Village found! The world will now generate.");
 		
 		serverworld.setDefaultSpawnPos(spawnpos, 1.0f);
 		

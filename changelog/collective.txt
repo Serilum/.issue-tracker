@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.17: The function which simulates commands now works in a server environment. This fixes Village/Biome Spawn Point not working server-side.
+
+=========
+v5.16: Cleaned up backend code.
+
+=========
 v5.15: Fixes the problems caused by Mojang's launcher update.
 
 =========

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Village Spawn Point.
- * Minecraft version: 1.19.2, mod version: 2.9.
+ * Minecraft version: 1.19.2, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,6 +16,7 @@
 
 package com.natamus.villagespawnpoint.events;
 
+import com.mojang.logging.LogUtils;
 import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.collective.functions.FeatureFunctions;
 import com.natamus.collective.functions.WorldFunctions;
@@ -27,9 +28,12 @@ import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import org.slf4j.Logger;
 
 @EventBusSubscriber
 public class VillageSpawnEvent {
+	private static final Logger logger = LogUtils.getLogger();
+
 	@SubscribeEvent(receiveCanceled = true)
 	public void onWorldLoad(LevelEvent.CreateSpawnPosition e) {
 		if (ModList.get().isLoaded("biomespawnpoint")) {
@@ -52,13 +56,13 @@ public class VillageSpawnEvent {
 			return;
 		}
 
-		System.out.println("[Village Spawn Point] Finding the nearest village. This might take a few seconds.");
+		logger.info("[Village Spawn Point] Finding the nearest village. This might take a few seconds.");
 		BlockPos spawnpos = BlockPosFunctions.getCenterNearbyVillage(serverworld);
 		if (spawnpos == null) {
 			return;
 		}
 
-		System.out.println("[Village Spawn Point] Village found! The world will now generate.");
+		logger.info("[Village Spawn Point] Village found! The world will now generate.");
 		
 		e.setCanceled(true);
 		serverworld.setDefaultSpawnPos(spawnpos, 1.0f);

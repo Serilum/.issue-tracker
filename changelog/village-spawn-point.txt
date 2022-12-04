@@ -3,6 +3,11 @@ Village Spawn Point
 https://www.curseforge.com/minecraft/mc-mods/village-spawn-point
 
 =========
+v3.0: Fixed Biome Spawn Point and Village Spawn Point compatibility.
+The mod now works correctly server-side with the Collective 5.17+.
+Now logs messages correctly when creating a new world.
+
+=========
 v2.8-2.9: Added support for Biome Spawn Point. With both installed and configured, you now spawn in a village near the chosen biome.
 
 =========

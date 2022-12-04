@@ -3,6 +3,9 @@ Placeable Blaze Rods
 https://www.curseforge.com/minecraft/mc-mods/placeable-blaze-rods
 
 =========
+v2.4: (Fabric) Fixed the blaze rod's block loot table. Thanks to @artem-mateush on Github for the pull request!
+
+=========
 v2.3: (Fabric) Added Mod Menu support with project links and logo.
 
 =========

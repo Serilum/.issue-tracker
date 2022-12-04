@@ -3,6 +3,11 @@ Biome Spawn Point
 https://curseforge.com/minecraft/mc-mods/biome-spawn-point
 
 =========
+v1.6: Fixed Biome Spawn Point and Village Spawn Point compatibility.
+The mod now works correctly server-side with the Collective 5.17+.
+Now logs messages correctly when creating a new world.
+
+=========
 v1.5: Fixes the problems caused by Mojang's launcher update.
 
 =========

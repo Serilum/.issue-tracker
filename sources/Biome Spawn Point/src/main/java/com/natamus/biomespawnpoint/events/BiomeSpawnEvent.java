@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Biome Spawn Point.
- * Minecraft version: 1.19.2, mod version: 1.5.
+ * Minecraft version: 1.19.2, mod version: 1.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,6 +16,7 @@
 
 package com.natamus.biomespawnpoint.events;
 
+import com.mojang.logging.LogUtils;
 import com.natamus.biomespawnpoint.util.Util;
 import com.natamus.collective.functions.BlockPosFunctions;
 import com.natamus.collective.functions.FeatureFunctions;
@@ -30,45 +31,49 @@ import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import org.slf4j.Logger;
 
 @EventBusSubscriber
 public class BiomeSpawnEvent {
+	private static final Logger logger = LogUtils.getLogger();
+
 	@SubscribeEvent(receiveCanceled = true)
 	public void onWorldLoad(LevelEvent.CreateSpawnPosition e) {
-		Level world = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
-		if (world == null) {
+		Level level = WorldFunctions.getWorldIfInstanceOfAndNotRemote(e.getLevel());
+		if (level == null) {
 			return;
 		}
 		
-		if (!(world instanceof ServerLevel)) {
+		if (!(level instanceof ServerLevel)) {
 			return;
 		}
-		
-		ServerLevel serverLevel = (ServerLevel)world;
+
+		BlockPos spawnPos = null;
+
+		ServerLevel serverLevel = (ServerLevel)level;
 		try {
 			Registry<Biome> biomeRegistry = serverLevel.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY);
 			Util.loadSpawnBiomeConfig(biomeRegistry);
+
+			if (Util.spawnBiomeListSize() == 0) {
+				logger.info("[Biome Spawn Point] No spawn biome specified in the spawnbiomes.txt config.");
+			}
+			else {
+				String spawnBiome = Util.getSpawnBiome();
+				if (spawnBiome.strip().equals("")) {
+					logger.info("[Biome Spawn Point] Received spawn point biome name is empty.");
+				}
+				else {
+					logger.info("[Biome Spawn Point] Finding the nearest '" + spawnBiome + "' biome. This might take a few seconds.");
+					spawnPos = BlockPosFunctions.getCenterNearbyBiome(serverLevel, spawnBiome);
+					if (spawnPos != null) {
+						logger.info("[Biome Spawn Point] Biome found!");
+					}
+				}
+			}
 		}
 		catch (Exception ex) {
-			System.out.println("[Biome Spawn Point] Unable to access Biome Registry on level load.");
-			return;
-		}
-
-		if (Util.spawnBiomeListSize() == 0) {
-			System.out.println("[Biome Spawn Point] No spawn biome specified in the spawnbiomes.txt config.");
-			return;
-		}
-
-		String spawnBiome = Util.getSpawnBiome();
-		if (spawnBiome.strip().equals("")) {
-			System.out.println("[Biome Spawn Point] Received spawn point biome name is empty.");
-			return;
-		}
-
-		System.out.println("[Biome Spawn Point] Finding the nearest '" + spawnBiome + "' biome. This might take a few seconds.");
-		BlockPos spawnPos = BlockPosFunctions.getCenterNearbyBiome(serverLevel, spawnBiome);
-		if (spawnPos != null) {
-			System.out.println("[Biome Spawn Point] Biome found!");
+			logger.info("[Biome Spawn Point] Unable to access Biome Registry on level load.");
 		}
 
 		WorldGenSettings generatorsettings = serverLevel.getServer().getWorldData().worldGenSettings();
@@ -76,22 +81,25 @@ public class BiomeSpawnEvent {
 		if (ModList.get().isLoaded("villagespawnpoint") && generatorsettings.generateStructures()) {
 			if (spawnPos == null) {
 				spawnPos = new BlockPos(0, 0, 0);
+				logger.info("[Biome Spawn Point] Unable to find biome, but Village Spawn Point installed, finding village near x=0, z=0.");
+			}
+			else {
+				logger.info("[Biome Spawn Point] Village Spawn Point installed, finding village near biome. This might take a few seconds.");
 			}
 
-			System.out.println("[Biome Spawn Point] Village Spawn Point installed, finding village near biome. This might take a few seconds.");
 			BlockPos villagePos = BlockPosFunctions.getNearbyVillage(serverLevel, spawnPos);
 			if (villagePos != null) {
-				System.out.println("[Biome Spawn Point] Nearby village found.");
+				logger.info("[Biome Spawn Point] Nearby village found.");
 				spawnPos = villagePos.immutable();
 			}
 		}
 
 		if (spawnPos == null) {
-			System.out.println("[Biome Spawn Point] Unable to find '" + spawnBiome + "' biome.");
+			logger.info("[Biome Spawn Point] Unable to find custom spawn point.");
 			return;
 		}
 
-		System.out.println("[Biome Spawn Point] The world will now generate.");
+		logger.info("[Biome Spawn Point] The world will now generate.");
 		
 		e.setCanceled(true);
 		serverLevel.setDefaultSpawnPos(spawnPos, 1.0f);
