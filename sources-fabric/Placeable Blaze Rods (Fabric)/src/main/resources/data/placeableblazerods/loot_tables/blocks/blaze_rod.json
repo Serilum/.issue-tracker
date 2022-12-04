@@ -5,8 +5,8 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:blaze_rod",
-          "name": "placeableblazerods-fabric:blaze_rod"
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_rod"
         }
       ]
     }
