@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Bone Meal Flowers.
- * Minecraft version: 1.19.2, mod version: 3.2.
+ * Minecraft version: 1.19.2, mod version: 3.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,6 +18,7 @@ package com.natamus.randombonemealflowers.events;
 
 import com.natamus.randombonemealflowers.util.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.TickTask;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -45,7 +46,7 @@ public class FlowerEvent {
 			oldblocks.add(block);
 		}
 
-		world.getServer().execute(() -> {
+		world.getServer().tell(new TickTask(world.getServer().getTickCount(), () -> {
 			Iterator < BlockPos > newit = BlockPos.betweenClosedStream(x - 6, y, z - 6, x + 6, y + 1, z + 6).iterator();
 			while (newit.hasNext()) {
 				BlockPos bp = newit.next();
@@ -58,6 +59,6 @@ public class FlowerEvent {
 
 				oldblocks.remove(0);
 			}
-		});
+		}));
 	}
 }

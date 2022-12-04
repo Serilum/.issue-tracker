@@ -6,7 +6,7 @@ logoFile="icon.png"
 
 [[mods]]
 modId="collective"
-version="5.15"
+version="5.16"
 displayName="Collective"
 displayURL="https://curseforge.com/minecraft/mc-mods/collective"
 authors="Rick South"
