@@ -18,6 +18,7 @@ package com.natamus.randombonemealflowers.events;
 
 import com.natamus.randombonemealflowers.util.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.TickTask;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.event.entity.player.BonemealEvent;
@@ -50,7 +51,7 @@ public class FlowerEvent {
 			oldblocks.add(block);
 		}
 
-	   world.getServer().execute(() -> {
+	   world.getServer().tell(new TickTask(world.getServer().getTickCount(), () -> {
 		   Iterator < BlockPos > newit = BlockPos.betweenClosedStream(x - 6, y, z - 6, x + 6, y + 1, z + 6).iterator();
 		   while (newit.hasNext()) {
 			   BlockPos bp = newit.next();
@@ -63,6 +64,6 @@ public class FlowerEvent {
 
 			   oldblocks.remove(0);
 		   }
-	   });
+	   }));
 	}
 }
