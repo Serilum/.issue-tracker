@@ -4,4 +4,6 @@
   "betterbeaconplacement-fabric.duskconfig.breakBeaconBaseBlocks": "Break Beacon Base Blocks",
   "betterbeaconplacement-fabric.duskconfig.DESC_dropReplacedBlockTopBeacon": "If enabled, when a mineral block replaces a normal block that block is dropped on top of the beacon.",
   "betterbeaconplacement-fabric.duskconfig.dropReplacedBlockTopBeacon": "Drop Replaced Block Top Beacon"
+  "betterbeaconplacement-fabric.duskconfig.DESC_maxBeaconLayers": "Customize the maximum number of layers for placing and breaking blocks.",
+  "betterbeaconplacement-fabric.duskconfig.maxBeaconLayers": "Max Beacon Layers"
 }
