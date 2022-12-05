@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import com.natamus.betterbeaconplacement.config.ConfigHandler;
 import com.natamus.collective_fabric.functions.BlockFunctions;
 
 import net.minecraft.world.level.block.Block;
@@ -38,7 +39,7 @@ public class Util {
 		int y = beaconpos.getY();
 		int z = beaconpos.getZ();
 		
-		for (int n = 1; n <= 4; n++) {
+		for (int n = 1; n <= ConfigHandler.maxBeaconLayers; n++) {
 			Iterator<BlockPos> layer = BlockPos.betweenClosedStream(x-n, y-n, z-n, x+n, y-n, z+n).iterator();
 			BlockPos result = checkIterator(world, layer);
 			if (result != null) {
@@ -57,7 +58,7 @@ public class Util {
 		int y = beaconpos.getY();
 		int z = beaconpos.getZ();
 		
-		for (int n = 1; n <= 4; n++) {
+		for (int n = 1; n <= ConfigHandler.maxBeaconLayers; n++) {
 			breakBase(world, beaconpos, BlockPos.betweenClosedStream(x-n, y-n, z-n, x+n, y-n, z+n).iterator(), iscreative);
 		}
 	}
