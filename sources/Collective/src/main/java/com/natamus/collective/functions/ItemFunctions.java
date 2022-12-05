@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.17.
+ * Minecraft version: 1.19.2, mod version: 5.22.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,6 +18,7 @@ package com.natamus.collective.functions;
 
 import com.natamus.collective.config.ConfigHandler;
 import com.natamus.collective.data.GlobalVariables;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -189,5 +190,20 @@ public class ItemFunctions {
 	}
 	public static String itemToReadableString(Item item) {
 		return itemToReadableString(item, 1);
+	}
+
+	public static String getNBTStringFromItemStack(ItemStack itemStack) {
+		return getNBTStringFromItemStack(itemStack, true);
+	}
+	public static String getNBTStringFromItemStack(ItemStack itemStack, boolean shouldSanitize) {
+		CompoundTag nbt = new CompoundTag();
+		nbt = itemStack.save(nbt);
+
+		String nbtstring = nbt.toString();
+		if (shouldSanitize) {
+			nbtstring = nbtstring.replace(" : ", ": ");
+		}
+
+		return nbtstring;
 	}
 }

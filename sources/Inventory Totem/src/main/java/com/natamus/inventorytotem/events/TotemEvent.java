@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Inventory Totem.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,15 +17,15 @@
 package com.natamus.inventorytotem.events;
 
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.stats.Stats;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -41,7 +41,7 @@ public class TotemEvent {
 			return;
 		}
 		
-		if (entity instanceof Player == false) {
+		if (!(entity instanceof Player)) {
 			return;
 		}
 		
@@ -51,10 +51,7 @@ public class TotemEvent {
 		}
 		
 		Inventory inv = player.getInventory();
-		if (inv == null) {
-			return;
-		}
-		
+
 		ItemStack totemstack = null;
 		for(int i = 0; i < inv.getContainerSize(); i++) {
 			ItemStack stack = inv.getItem(i);
@@ -63,7 +60,7 @@ public class TotemEvent {
 				break;
 			}
 		}
-		
+
 		if (totemstack == null) {
 			return;
 		}
@@ -77,8 +74,9 @@ public class TotemEvent {
 
         player.setHealth(1.0F);
         player.removeAllEffects();
+		player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
+		player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
         player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));
-        player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
         world.broadcastEntityEvent(player, (byte)35);
         totemstack.shrink(1);
 	}

@@ -3,6 +3,9 @@ Inventory Totem
 https://www.curseforge.com/minecraft/mc-mods/inventory-totem
 
 =========
+v2.2: Fixed the Fire Resistance effect not being applied when dying with the totem in the inventory.
+
+=========
 v2.1: (Fabric) Added Mod Menu support with project links and logo.
 
 =========

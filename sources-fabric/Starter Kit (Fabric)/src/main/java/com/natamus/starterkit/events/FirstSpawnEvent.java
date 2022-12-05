@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Starter Kit.
- * Minecraft version: 1.19.2, mod version: 3.9.
+ * Minecraft version: 1.19.2, mod version: 4.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -23,10 +23,8 @@ import com.natamus.collective_fabric.functions.PlayerFunctions;
 import com.natamus.starterkit.config.ConfigHandler;
 import com.natamus.starterkit.util.Reference;
 import com.natamus.starterkit.util.Util;
-
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
@@ -36,12 +34,12 @@ public class FirstSpawnEvent {
 			return;
 		}
 		
-		if (entity instanceof Player == false) {
+		if (!(entity instanceof Player)) {
 			return;
 		}
 		
 		Player player = (Player)entity;
-		if (PlayerFunctions.isJoiningWorldForTheFirstTime(player, Reference.MOD_ID)) {
+		if (PlayerFunctions.isJoiningWorldForTheFirstTime(player, Reference.MOD_ID, false)) {
 			Util.setStarterKit(player);
 		}
 	}
@@ -65,25 +63,12 @@ public class FirstSpawnEvent {
 			if (sourceentity instanceof Player) {
 				Player player = (Player)sourceentity;
 				
-				new Thread( new Runnable() {
-			        public void run()  {
-			            try  { Thread.sleep( 2000 ); }
-			            catch (InterruptedException ie)  {}
-			            
-			    		Inventory inv = player.getInventory();
-			    		boolean isempty = true;
-			    		for (int i=0; i < 36; i++) {
-			    			if (!inv.getItem(i).isEmpty()) {
-			    				isempty = false;
-			    				break;
-			    			}
-			    		}
-			    		
-			    		if (isempty) {
-			    			 Util.setStarterKit(player);
-			    		}
-			        }
-			    } ).start();
+				new Thread(() -> {
+					try  { Thread.sleep( 2000 ); }
+					catch (InterruptedException ignored)  {}
+
+					Util.setStarterKit(player);
+				}).start();
 			}
 		}
 	}

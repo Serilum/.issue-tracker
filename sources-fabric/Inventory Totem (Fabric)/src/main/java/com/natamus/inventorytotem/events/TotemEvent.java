@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Inventory Totem.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.2, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -33,10 +33,7 @@ public class TotemEvent {
 		}
 		
 		Inventory inv = player.getInventory();
-		if (inv == null) {
-			return true;
-		}
-		
+
 		ItemStack totemstack = null;
 		for(int i = 0; i < inv.getContainerSize(); i++) {
 			ItemStack stack = inv.getItem(i);
@@ -49,17 +46,15 @@ public class TotemEvent {
 		if (totemstack == null) {
 			return true;
 		}
-		
-		if (player instanceof ServerPlayer) {
-			ServerPlayer entityplayermp = (ServerPlayer)player;
-            entityplayermp.awardStat(Stats.ITEM_USED.get(Items.TOTEM_OF_UNDYING));
-            CriteriaTriggers.USED_TOTEM.trigger(entityplayermp, totemstack);
-        }
+
+		player.awardStat(Stats.ITEM_USED.get(Items.TOTEM_OF_UNDYING));
+		CriteriaTriggers.USED_TOTEM.trigger(player, totemstack);
 
         player.setHealth(1.0F);
         player.removeAllEffects();
+		player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
+		player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
         player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));
-        player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
         world.broadcastEntityEvent(player, (byte)35);
         totemstack.shrink(1);
         return false;

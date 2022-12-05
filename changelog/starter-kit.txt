@@ -3,6 +3,12 @@ Starter Kit
 https://www.curseforge.com/minecraft/mc-mods/starter-kit
 
 =========
+v4.0: Changed the default config file to use NBT data by default.
+Improved handling of other mods adding items on startup such as books. They can either be removed completely or re-added after the kit has been set. Configurable via 'addExistingItemsAfterKitSet'.
+Fixed some custom books not being saved correctly.
+Cleaned up code.
+
+=========
 v3.9: Fixes the problems caused by Mojang's launcher update.
 
 =========

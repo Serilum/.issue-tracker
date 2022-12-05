@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.17.
+ * Minecraft version: 1.19.2, mod version: 5.22.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -210,7 +210,7 @@ public class StringFunctions {
 				time = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 			}
 			else {
-				time = now.format(DateTimeFormatter.ofPattern("hh:mm:ss a"));
+				time = now.format(DateTimeFormatter.ofPattern("hh:mm:ss a")).replace("&nbsp;","");
 			}
 		}
 		else {
@@ -218,7 +218,7 @@ public class StringFunctions {
 				time = now.format(DateTimeFormatter.ofPattern("HH:mm"));
 			}
 			else {
-				time = now.format(DateTimeFormatter.ofPattern("hh:mm a"));
+				time = now.format(DateTimeFormatter.ofPattern("hh:mm a")).replace("&nbsp;","");
 			}
 		}
 		return time;

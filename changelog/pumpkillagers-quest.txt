@@ -3,6 +3,10 @@ Pumpkillager's Quest
 https://curseforge.com/minecraft/mc-mods/pumpkillagers-quest
 
 =========
+v2.3: Fixed baby villagers being rendered as adults.
+Changed the default config value of chanceForPumpkinBlockToSpawnOnPigSpawn from 0.15 to 0.05.
+
+=========
 v2.2: Fixed the prisoner being targeted by a guard after a reload of the world.
 In order to sprinkle some extra pumpkins around the world, to make the Pumpkillager spawn more naturally to players, pigs now have a chance to spawn on top of a pumpkin. Can be disabled in the config file.
 

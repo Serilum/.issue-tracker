@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.17.
+ * Minecraft version: 1.19.2, mod version: 5.22.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -80,6 +80,9 @@ public class PlayerFunctions {
 	}
 	
 	public static boolean isJoiningWorldForTheFirstTime(Player player, String modid) {
+		return isJoiningWorldForTheFirstTime(player, modid, true);
+	}
+	public static boolean isJoiningWorldForTheFirstTime(Player player, String modid, boolean mustHaveEmptyInventory) {
 		String firstjointag = Reference.MOD_ID + ".firstJoin." + modid;
 		
 		Set<String> tags = player.getTags();
@@ -88,20 +91,21 @@ public class PlayerFunctions {
 		}
 		
 		player.addTag(firstjointag);
-		
-		Inventory inv = player.getInventory();
-		boolean isempty = true;
-		for (int i=0; i < 36; i++) {
-			if (!inv.getItem(i).isEmpty()) {
-				isempty = false;
-				break;
+
+		if (mustHaveEmptyInventory) {
+			Inventory inv = player.getInventory();
+			boolean isempty = true;
+			for (int i = 0; i < 36; i++) {
+				if (!inv.getItem(i).isEmpty()) {
+					isempty = false;
+					break;
+				}
+			}
+
+			if (!isempty) {
+				return false;
 			}
 		}
-		
-		if (!isempty) {
-			return false;
-		}
-		
 		
 		Level world = player.getCommandSenderWorld();
 		ServerLevel ServerLevel = (ServerLevel)world;
@@ -158,100 +162,84 @@ public class PlayerFunctions {
 		
 		ItemStack offhand = player.getItemBySlot(EquipmentSlot.OFFHAND);
 		if (!offhand.isEmpty()) {
-			CompoundTag nbt = new CompoundTag();
-			nbt = offhand.save(nbt);
-			String nbtstring = nbt.toString();
+			String nbtstring = ItemFunctions.getNBTStringFromItemStack(offhand);
 			skconfig.append("'offhand'" + " : " + "'").append(nbtstring).append("',");
 		}
 		else {
 			skconfig.append("'offhand'" + " : " + "'',");
 		}
-		
+
 		ItemStack head = player.getItemBySlot(EquipmentSlot.HEAD);
 		if (!head.isEmpty()) {
-			CompoundTag nbt = new CompoundTag();
-			nbt = head.save(nbt);
-			String nbtstring = nbt.toString();
+			String nbtstring = ItemFunctions.getNBTStringFromItemStack(head);
 			skconfig.append("\n" + "'head'" + " : " + "'").append(nbtstring).append("',");
 		}
 		else {
 			skconfig.append("\n" + "'head'" + " : " + "'',");
 		}
-		
+
 		ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
 		if (!chest.isEmpty()) {
-			CompoundTag nbt = new CompoundTag();
-			nbt = chest.save(nbt);
-			String nbtstring = nbt.toString();
+			String nbtstring = ItemFunctions.getNBTStringFromItemStack(chest);
 			skconfig.append("\n" + "'chest'" + " : " + "'").append(nbtstring).append("',");
 		}
 		else {
 			skconfig.append("\n" + "'chest'" + " : " + "'',");
 		}
-		
+
 		ItemStack legs = player.getItemBySlot(EquipmentSlot.LEGS);
 		if (!legs.isEmpty()) {
-			CompoundTag nbt = new CompoundTag();
-			nbt = legs.save(nbt);
-			String nbtstring = nbt.toString();
+			String nbtstring = ItemFunctions.getNBTStringFromItemStack(legs);
 			skconfig.append("\n" + "'legs'" + " : " + "'").append(nbtstring).append("',");
 		}
 		else {
 			skconfig.append("\n" + "'legs'" + " : " + "'',");
 		}
-		
+
 		ItemStack feet = player.getItemBySlot(EquipmentSlot.FEET);
 		if (!feet.isEmpty()) {
-			CompoundTag nbt = new CompoundTag();
-			nbt = feet.save(nbt);
-			String nbtstring = nbt.toString();
+			String nbtstring = ItemFunctions.getNBTStringFromItemStack(feet);
 			skconfig.append("\n" + "'feet'" + " : " + "'").append(nbtstring).append("',");
 		}
 		else {
 			skconfig.append("\n" + "'feet'" + " : " + "'',");
 		}
-		
+
 		Inventory inv = player.getInventory();
 		for (int i=0; i < 36; i++) {
 			ItemStack slot = inv.getItem(i);
 			if (!slot.isEmpty()) {
-				CompoundTag nbt = new CompoundTag();
-				nbt = slot.save(nbt);
-				String nbtstring = nbt.toString();
+				String nbtstring = ItemFunctions.getNBTStringFromItemStack(slot);
 				skconfig.append("\n").append(i).append(" : ").append("'").append(nbtstring).append("',");
 			}
 			else {
 				skconfig.append("\n").append(i).append(" : '',");
 			}
 		}
-		
+
 		return skconfig.toString();
 	}
-	
+
 	public static String getPlayerGearStringFromHashMap(HashMap<String, ItemStack> gear) {
 		StringBuilder gearstring = new StringBuilder();
-		
+
 		List<String> specialslots = new ArrayList<String>(Arrays.asList("offhand", "head", "chest", "legs", "feet"));
 		for (String specialslot : specialslots) {
 			String specialslotstring = "";
 			if (gear.containsKey(specialslot)) {
-				CompoundTag nbt = new CompoundTag();
-				nbt = gear.get(specialslot).save(nbt);
-				specialslotstring = nbt.toString();
+				specialslotstring = ItemFunctions.getNBTStringFromItemStack(gear.get(specialslot));
 			}
 			if (!gearstring.toString().equals("")) {
 				gearstring.append("\n");
 			}
 			gearstring.append("'").append(specialslot).append("'").append(" : ").append("'").append(specialslotstring).append("',");
 		}
-		
+
 		List<ItemStack> emptyinventory = NonNullList.withSize(36, ItemStack.EMPTY);
 		for (int i = 0; i < emptyinventory.size(); i++) {
 			String itemstring = "";
 			if (gear.containsKey("" + i)) {
-				CompoundTag nbt = new CompoundTag();
-				nbt = gear.get("" + i).save(nbt);
-				itemstring = nbt.toString();
+				itemstring = ItemFunctions.getNBTStringFromItemStack(gear.get("" + i));
 			}
 			gearstring.append("\n").append(i).append(" : '").append(itemstring).append("',");
 		}
@@ -309,7 +297,7 @@ public class PlayerFunctions {
 					CompoundTag newnbt = TagParser.parseTag(data);
 					itemstack = ItemStack.of(newnbt);
 				} catch (CommandSyntaxException e1) {
-					System.out.println(e1);
+					e1.printStackTrace();
 				}
 			}
 			
@@ -331,29 +319,16 @@ public class PlayerFunctions {
 			
 			EquipmentSlot type;
 			switch (slotstring) {
-				case "offhand":
-					type = EquipmentSlot.OFFHAND;
-					break;
-				case "head":
-					type = EquipmentSlot.HEAD;
-					break;
-				case "chest":
-					type = EquipmentSlot.CHEST;
-					break;
-				case "legs":
-					type = EquipmentSlot.LEGS;
-					break;
-				case "feet":
-					type = EquipmentSlot.FEET;
-					break;
-				default:
+				case "offhand" -> type = EquipmentSlot.OFFHAND;
+				case "head" -> type = EquipmentSlot.HEAD;
+				case "chest" -> type = EquipmentSlot.CHEST;
+				case "legs" -> type = EquipmentSlot.LEGS;
+				case "feet" -> type = EquipmentSlot.FEET;
+				default -> {
 					continue;
+				}
 			}
 
-			if (type == null) {
-				continue;
-			}
-			
 			player.setItemSlot(type, itemstack);
 		}
 	}

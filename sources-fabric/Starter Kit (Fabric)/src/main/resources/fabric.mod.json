@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "starterkit-fabric",
-  "version": "3.9",
+  "version": "4.0",
 
   "name": "Starter Kit (Fabric)",
   "description": "Gives players who join the world for the first time configurable starter gear.",
@@ -23,7 +23,7 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=5.15"
+    "collective-fabric": ">=5.22"
   },
 
   "custom": {
@@ -47,7 +47,6 @@
     " aternosorg",
     " Cherriesaurus",
     " Kreezxil",
-    " limpjellyfish",
     " Michael W. S.",
     " Mir3JonCZ",
     " Rebecca Hb.",

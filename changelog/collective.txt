@@ -3,6 +3,21 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.22: Updated functions related to saving itemstack NBT data to a file. Added functions to sanitize the input.
+
+=========
+v5.21: Added an option to the function which determines whether a player joins a world for the first time to ignore a non-empty inventory.
+
+=========
+v5.20: Updated and cleaned up ToolFunctions, to improve compatibility with other mods.
+
+=========
+v5.19: Fixed the local PC time not being parsed correctly when containing a &nbsp; character.
+
+=========
+v5.18: (Fabric) Fixed config values being parsed incorrectly when left empty.
+
+=========
 v5.17: The function which simulates commands now works in a server environment. This fixes Village/Biome Spawn Point not working server-side.
 
 =========

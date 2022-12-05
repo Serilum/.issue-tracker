@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.17.
+ * Minecraft version: 1.19.2, mod version: 5.22.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,21 +16,16 @@
 
 package com.natamus.collective_fabric.functions;
 
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.HoeItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.ShovelItem;
-import net.minecraft.world.item.SwordItem;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
+import net.minecraft.world.item.*;
 
 public class ToolFunctions {
-	public static Boolean isTool(ItemStack itemstack) {
-		if (itemstack == null) {
+	public static Boolean isTool(ItemStack itemStack) {
+		if (itemStack == null) {
 			return false;
 		}
 
-		Item item = itemstack.getItem();
+		Item item = itemStack.getItem();
 		if (item instanceof ShovelItem || item instanceof AxeItem || item instanceof PickaxeItem || item instanceof SwordItem || item instanceof HoeItem) {
 			return true;
 		}
@@ -39,23 +34,31 @@ public class ToolFunctions {
 		return itemname.contains("_sword") || itemname.contains("_pickaxe") || itemname.contains("_axe") || itemname.contains("_shovel") || itemname.contains("_hoe");
 	}
 
-	public static Boolean isSword(ItemStack itemstack) {
-		return itemstack.getItem() instanceof SwordItem;
+	public static Boolean isSword(ItemStack itemStack) {
+		return itemStack.getItem() instanceof SwordItem || itemStack.is(ConventionalItemTags.SWORDS);
 	}
 
-	public static Boolean isPickaxe(ItemStack itemstack) {
-		return itemstack.getItem() instanceof PickaxeItem;// || FabricToolTags.PICKAXES.contains(itemstack.getItem()); TODO: add tag support
+	public static Boolean isBow(ItemStack itemStack) {
+		return itemStack.getItem() instanceof BowItem || itemStack.is(ConventionalItemTags.BOWS);
 	}
 
-	public static Boolean isAxe(ItemStack itemstack) {
-		return itemstack.getItem() instanceof AxeItem;// || FabricToolTags.AXES.contains(itemstack.getItem());
+	public static Boolean isPickaxe(ItemStack itemStack) {
+		return itemStack.getItem() instanceof PickaxeItem || itemStack.is(ConventionalItemTags.PICKAXES);
 	}
 
-	public static Boolean isShovel(ItemStack itemstack) {
-		return itemstack.getItem() instanceof ShovelItem;// || FabricToolTags.SHOVELS.contains(itemstack.getItem());
+	public static Boolean isAxe(ItemStack itemStack) {
+		return itemStack.getItem() instanceof AxeItem || itemStack.is(ConventionalItemTags.AXES);
 	}
 
-	public static Boolean isHoe(ItemStack itemstack) {
-		return itemstack.getItem() instanceof HoeItem;// || FabricToolTags.HOES.contains(itemstack.getItem());
+	public static Boolean isShovel(ItemStack itemStack) {
+		return itemStack.getItem() instanceof ShovelItem || itemStack.is(ConventionalItemTags.SHOVELS);
+	}
+
+	public static Boolean isHoe(ItemStack itemStack) {
+		return itemStack.getItem() instanceof HoeItem || itemStack.is(ConventionalItemTags.HOES);
+	}
+
+	public static Boolean isShears(ItemStack itemStack) {
+		return itemStack.getItem() instanceof ShearsItem || itemStack.is(ConventionalItemTags.SHEARS);
 	}
 }

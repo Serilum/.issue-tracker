@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.17.
+ * Minecraft version: 1.19.2, mod version: 5.22.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -259,8 +259,13 @@ public abstract class DuskConfig {
 				else {
 					if (field.getType().isAssignableFrom(String.class)){
 						String fieldvalue = field.get(cC).toString();
-						if (fieldvalue.charAt(0) != '"') {
-							fieldvalue = '"' + fieldvalue + '"';
+						if (fieldvalue.length() > 0) {
+							if (fieldvalue.charAt(0) != '"') {
+								fieldvalue = '"' + fieldvalue + '"';
+							}
+						}
+						else {
+							fieldvalue = "\"\"";
 						}
 
 						line = "\n\t\"" + fieldname + "\": " + fieldvalue + ",";

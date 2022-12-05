@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 2.2.
+ * Minecraft version: 1.19.2, mod version: 2.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -46,7 +46,7 @@ public class ConfigHandler {
 					.defineInRange("experienceAmountRewardFinalBoss", 250, 0, 10000);
 			chanceForPumpkinBlockToSpawnOnPigSpawn = builder
 					.comment("This is a feature to add more pumpkins to the world, to make people come across the Pumpkillager in a more natural way. Whenever a pig spawns, it has a chance to spawn on top of a pumpkin block. This will make them be sprinkled around the world. To turn it off, set the config chance value to 0.")
-					.defineInRange("chanceForPumpkinBlockToSpawnOnPigSpawn", 0.15, 0.0, 1.0);
+					.defineInRange("chanceForPumpkinBlockToSpawnOnPigSpawn", 0.05, 0.0, 1.0);
 			
 			builder.pop();
 		}
