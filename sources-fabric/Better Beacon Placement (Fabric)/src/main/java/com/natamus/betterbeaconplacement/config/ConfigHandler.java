@@ -24,4 +24,7 @@ public class ConfigHandler extends DuskConfig {
 
 	@Comment public static Comment DESC_dropReplacedBlockTopBeacon;
 	@Entry public static boolean dropReplacedBlockTopBeacon = true;
+	
+	@Comment public static Comment DESC_maxBeaconLayers;
+	@Entry public static int maxBeaconLayers = 4;
 }
