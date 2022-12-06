@@ -3,6 +3,10 @@ Hidden Recipe Book
 https://curseforge.com/minecraft/mc-mods/hidden-recipe-book
 
 =========
+v3.1: Cleaned up code.
+(1.16) Fixed a nullpointer exception.
+
+=========
 v3.0: Fixed the config shouldHideRecipeBook not being read correctly on first run.
 The recipe book is now also hidden in the furnace GUI.
 Correctly added support for translation keys.

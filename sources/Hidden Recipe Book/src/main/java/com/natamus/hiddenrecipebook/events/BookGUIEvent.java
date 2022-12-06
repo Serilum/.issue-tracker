@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hidden Recipe Book.
- * Minecraft version: 1.19.2, mod version: 3.0.
+ * Minecraft version: 1.19.2, mod version: 3.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -42,12 +42,12 @@ import java.util.List;
 
 @EventBusSubscriber(Dist.CLIENT)
 public class BookGUIEvent {
-    private static Minecraft mc = Minecraft.getInstance();
+    private static final Minecraft mc = Minecraft.getInstance();
     private static Date lastpress = null;
-    private static Field imageButton_resourceLocation = ObfuscationReflectionHelper.findField(ImageButton.class, "f_94223_"); // resourceLocation
+    private static final Field imageButton_resourceLocation = ObfuscationReflectionHelper.findField(ImageButton.class, "f_94223_"); // resourceLocation
     private static ScreenEvent.Init.Post lastguipost = null;
     
-	private static HashMap<String, ImageButton> recipe_buttons = new HashMap<String, ImageButton>();
+	private static final HashMap<String, ImageButton> recipe_buttons = new HashMap<String, ImageButton>();
 	private static boolean showbook = ConfigFunctions.getDictValues(Reference.MOD_ID).getOrDefault("shouldHideRecipeBook", "true").equals("false");
 	
     @SubscribeEvent
