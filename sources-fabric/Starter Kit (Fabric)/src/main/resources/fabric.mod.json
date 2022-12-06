@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "starterkit-fabric",
-  "version": "4.0",
+  "version": "4.1",
 
   "name": "Starter Kit (Fabric)",
   "description": "Gives players who join the world for the first time configurable starter gear.",

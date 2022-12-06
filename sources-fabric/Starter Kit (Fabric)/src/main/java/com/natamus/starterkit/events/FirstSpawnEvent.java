@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Starter Kit.
- * Minecraft version: 1.19.2, mod version: 4.0.
+ * Minecraft version: 1.19.2, mod version: 4.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -24,6 +24,7 @@ import com.natamus.starterkit.config.ConfigHandler;
 import com.natamus.starterkit.util.Reference;
 import com.natamus.starterkit.util.Util;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.server.TickTask;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -37,11 +38,13 @@ public class FirstSpawnEvent {
 		if (!(entity instanceof Player)) {
 			return;
 		}
-		
-		Player player = (Player)entity;
-		if (PlayerFunctions.isJoiningWorldForTheFirstTime(player, Reference.MOD_ID, false)) {
-			Util.setStarterKit(player);
-		}
+
+		final Player player = (Player)entity;
+		world.getServer().tell(new TickTask(world.getServer().getTickCount(), () -> {
+			if (PlayerFunctions.isJoiningWorldForTheFirstTime(player, Reference.MOD_ID, false)) {
+				Util.setStarterKit(player);
+			}
+		}));
 	}
 	
 	public static void onCommand(String string, ParseResults<CommandSourceStack> parse) {
