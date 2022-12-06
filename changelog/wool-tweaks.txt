@@ -3,6 +3,9 @@ Wool Tweaks
 https://curseforge.com/minecraft/mc-mods/wool-tweaks
 
 =========
+v2.4: (Fabric) Fixed beds not being re-coloured correctly.
+
+=========
 v2.3: (Fabric) Added Mod Menu support with project links and logo.
 
 =========

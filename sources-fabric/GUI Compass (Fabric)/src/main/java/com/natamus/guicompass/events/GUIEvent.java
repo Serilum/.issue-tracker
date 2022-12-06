@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of GUI Compass.
- * Minecraft version: 1.19.2, mod version: 2.8.
+ * Minecraft version: 1.19.2, mod version: 2.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,13 +19,13 @@ package com.natamus.guicompass.events;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.natamus.guicompass.config.ConfigHandler;
+import com.natamus.guicompass.util.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.CompassItem;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -36,20 +36,18 @@ public class GUIEvent {
 
 	public static void renderOverlay(PoseStack posestack, float tickDelta){
 		if (ConfigHandler.mustHaveCompassInInventory) {
-			if (!(mc.player.getOffhandItem().getItem() instanceof CompassItem)) {
-				boolean found = mc.player.getOffhandItem().getItem() instanceof CompassItem;
-				if (!found) {
-					Inventory inv = mc.player.getInventory();
-					for (int n = 0; n <= 35; n++) {
-						if (inv.getItem(n).getItem() instanceof CompassItem) {
-							found = true;
-							break;
-						}
+			boolean found = Util.isCompass(mc.player.getOffhandItem());
+			if (!found) {
+				Inventory inv = mc.player.getInventory();
+				for (int n = 0; n <= 35; n++) {
+					if (Util.isCompass(inv.getItem(n))) {
+						found = true;
+						break;
 					}
 				}
-				if (!found) {
-					return;
-				}
+			}
+			if (!found) {
+				return;
 			}
 		}
 		
@@ -81,7 +79,7 @@ public class GUIEvent {
 		posestack.popPose();
 	}
 
-	private static List<String> direction = Arrays.asList("S", "SW", "W", "NW", "N", "NE", "E", "SE", "S");
+	private static final List<String> direction = Arrays.asList("S", "SW", "W", "NW", "N", "NE", "E", "SE", "S");
 	private static String getCoordinates() {
 		Entity player = mc.getCameraEntity();
 		BlockPos ppos = player.blockPosition();

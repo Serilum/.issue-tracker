@@ -3,6 +3,10 @@ GUI Compass
 https://www.curseforge.com/minecraft/mc-mods/gui-compass
 
 =========
+v2.9: Added modded compass compatibility.
+(1.19) The recovery compass now also shows the coordinates.
+
+=========
 v2.8: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

@@ -14,26 +14,15 @@
  * Thanks for looking at the source code! Hope it's of some use to your project. Happy modding!
  */
 
-package com.natamus.guicompass;
+package com.natamus.guicompass.util;
 
-import com.natamus.collective_fabric.check.RegisterMod;
-import com.natamus.guicompass.config.ConfigHandler;
-import com.natamus.collective_fabric.config.DuskConfig;
-import com.natamus.guicompass.util.Reference;
+import net.minecraft.world.item.CompassItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
-import net.fabricmc.api.ModInitializer;
-
-public class Main implements ModInitializer {
-	@Override
-	public void onInitialize() { 
-		DuskConfig.init(Reference.MOD_ID, ConfigHandler.class);
-
-		registerEvents();
-		
-		RegisterMod.register(Reference.NAME, Reference.MOD_ID, Reference.VERSION, Reference.ACCEPTED_VERSIONS);
-	}
-	
-	private void registerEvents() {
-
-	}
+public class Util {
+    public static boolean isCompass(ItemStack itemStack) {
+        Item item = itemStack.getItem();
+        return item.toString().endsWith("compass") || item instanceof CompassItem;
+    }
 }

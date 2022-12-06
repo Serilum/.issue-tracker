@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Wool Tweaks.
- * Minecraft version: 1.19.2, mod version: 2.3.
+ * Minecraft version: 1.19.2, mod version: 2.4.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -21,9 +21,7 @@ import com.natamus.collective_fabric.fabric.callbacks.CollectiveBlockEvents;
 import com.natamus.wooltweaks.events.WoolClickEvent;
 import com.natamus.wooltweaks.util.Reference;
 import com.natamus.wooltweaks.util.Util;
-
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 
 public class Main implements ModInitializer {
 	@Override
