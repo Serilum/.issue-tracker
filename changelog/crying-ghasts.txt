@@ -3,6 +3,9 @@ Crying Ghasts
 https://www.curseforge.com/minecraft/mc-mods/crying-ghasts
 
 =========
+v2.1: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v2.0: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

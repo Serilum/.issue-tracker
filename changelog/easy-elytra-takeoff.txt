@@ -3,6 +3,9 @@ Easy Elytra Takeoff
 https://www.curseforge.com/minecraft/mc-mods/easy-elytra-takeoff
 
 =========
+v3.3: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v3.2: (Fabric) Added Mod Menu support with project links and logo.
 
 =========

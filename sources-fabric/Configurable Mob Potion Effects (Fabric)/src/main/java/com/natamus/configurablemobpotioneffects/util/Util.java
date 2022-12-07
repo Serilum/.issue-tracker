@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Mob Potion Effects.
- * Minecraft version: 1.19.2, mod version: 2.1.
+ * Minecraft version: 1.19.3, mod version: 2.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,7 +19,7 @@ package com.natamus.configurablemobpotioneffects.util;
 import com.natamus.collective_fabric.functions.DataFunctions;
 import com.natamus.collective_fabric.functions.NumberFunctions;
 import com.natamus.collective_fabric.functions.StringFunctions;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -85,7 +85,7 @@ public class Util {
 				String potioneffects = linespl[1].trim();
 				potioneffects = potioneffects.substring(0, potioneffects.length() - 1).trim();
 				
-				EntityType<?> entitytype = Registry.ENTITY_TYPE.get(new ResourceLocation(entityrl));
+				EntityType<?> entitytype = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation(entityrl));
 				if (entitytype == null) {
 					continue;
 				}
@@ -117,7 +117,7 @@ public class Util {
 				String potioneffects = linespl[1].trim();
 				potioneffects = potioneffects.substring(0, potioneffects.length() - 1).trim();
 
-				EntityType<?> entitytype = Registry.ENTITY_TYPE.get(new ResourceLocation(entityrl));
+				EntityType<?> entitytype = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation(entityrl));
 				if (entitytype == null) {
 					continue;
 				}
@@ -135,8 +135,8 @@ public class Util {
 		String emptydamageeffects = "";
 		
 		if (permanentwriter != null || damagewriter != null) {
-			for (ResourceLocation loc : Registry.MOB_EFFECT.keySet()) {
-				MobEffect effect = Registry.MOB_EFFECT.get(loc);
+			for (ResourceLocation loc : BuiltInRegistries.MOB_EFFECT.keySet()) {
+				MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(loc);
 				String n = loc.toString().toLowerCase();
 				if (n.contains(":")) {
 					n = n.split(":")[1];
@@ -145,8 +145,8 @@ public class Util {
 				sortedpotions.add(n);
 				phm.put(n, effect);
 			}
-			for (ResourceLocation loc : Registry.ENTITY_TYPE.keySet()) {
-				EntityType<?> entitytype = Registry.ENTITY_TYPE.get(loc);
+			for (ResourceLocation loc : BuiltInRegistries.ENTITY_TYPE.keySet()) {
+				EntityType<?> entitytype = BuiltInRegistries.ENTITY_TYPE.get(loc);
 				String n = loc.toString().toLowerCase();
 				if (n.contains(":")) {
 					n = n.split(":")[1];
@@ -169,7 +169,7 @@ public class Util {
 					emptydamageeffects += "|";
 				}
 				
-				ResourceLocation rl = Registry.MOB_EFFECT.getKey(effect);
+				ResourceLocation rl = BuiltInRegistries.MOB_EFFECT.getKey(effect);
 				
 				emptypermanenteffects += rl.toString() + ",lvl:0";
 				emptydamageeffects += rl.toString() + ",lvl:0,duration:5";
@@ -183,7 +183,7 @@ public class Util {
 				
 				MobCategory classification = entitytype.getCategory();
 				if (!classification.equals(MobCategory.MISC)) {
-					ResourceLocation rl = Registry.ENTITY_TYPE.getKey(entitytype);
+					ResourceLocation rl = BuiltInRegistries.ENTITY_TYPE.getKey(entitytype);
 					permanentwriter.println("'" + rl.toString() + "'" + " : '" + emptypermanenteffects + "'," + "\n");
 					
 					mobpermanent.put(entitytype, new CopyOnWriteArrayList<MobEffectInstance>());
@@ -200,7 +200,7 @@ public class Util {
 				
 				MobCategory classification = entitytype.getCategory();
 				if (!classification.equals(MobCategory.MISC)) {
-					ResourceLocation rl = Registry.ENTITY_TYPE.getKey(entitytype);
+					ResourceLocation rl = BuiltInRegistries.ENTITY_TYPE.getKey(entitytype);
 					damagewriter.println("'" + rl.toString() + "'" + " : '" + emptydamageeffects + "'," + "\n");
 					
 					mobdamage.put(entitytype, new CopyOnWriteArrayList<MobEffectInstance>());
@@ -248,7 +248,7 @@ public class Util {
 				durationstring = "0";
 			}
 			
-			MobEffect effect = Registry.MOB_EFFECT.get(new ResourceLocation(effectrlstring));
+			MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation(effectrlstring));
 			if (effect == null) {
 				continue;
 			}

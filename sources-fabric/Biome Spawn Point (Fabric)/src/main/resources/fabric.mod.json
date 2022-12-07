@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "biomespawnpoint-fabric",
-  "version": "1.6",
+  "version": "1.7",
 
   "name": "Biome Spawn Point (Fabric)",
   "description": "Allows specifying which biome players will spawn in on new world creation.",
@@ -19,11 +19,11 @@
   "entrypoints": { "main": [ "com.natamus.biomespawnpoint.Main" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=5.17"
+    "collective-fabric": ">=5.23"
   },
 
   "custom": {
@@ -51,7 +51,9 @@
     " Mir3JonCZ",
     " Rebecca Hb.",
     " Robert Gilbert",
+    " Shana Gitnick",
     " Sija",
+    " TheNickm2",
     " Tyler Behl",
     " Wendi S"
   ]

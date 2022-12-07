@@ -3,6 +3,9 @@ Pet Names
 https://www.curseforge.com/minecraft/mc-mods/pet-names
 
 =========
+v2.4: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v2.3: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

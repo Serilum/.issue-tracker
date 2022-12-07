@@ -3,6 +3,9 @@ Eroding Stone Entities
 https://curseforge.com/minecraft/mc-mods/eroding-stone-entities
 
 =========
+v3.1: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v3.0: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

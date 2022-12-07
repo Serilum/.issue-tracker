@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Cycle Paintings.
- * Minecraft version: 1.19.2, mod version: 2.8.
+ * Minecraft version: 1.19.3, mod version: 2.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,7 +17,7 @@
 package com.natamus.cyclepaintings.util;
 
 import com.natamus.cyclepaintings.config.ConfigHandler;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.decoration.PaintingVariant;
 
@@ -35,7 +35,7 @@ public class Util {
 			System.out.println("[Cycle Paintings Debug] The config option 'showRegisteredPaintingsDebug' has been enabled. Showing paintings during cycle registration.");
 		}
 		
-		for (ResourceLocation motiverl : Registry.PAINTING_VARIANT.keySet()) {
+		for (ResourceLocation motiverl : BuiltInRegistries.PAINTING_VARIANT.keySet()) {
 			if (motiverl == null) {
 				continue;
 			}
@@ -66,7 +66,7 @@ public class Util {
 					System.out.println("[Cycle Paintings Debug] " + motiverls + " (allowed)");
 				}
 				
-				PaintingVariant motive = Registry.PAINTING_VARIANT.get(motiverl);
+				PaintingVariant motive = BuiltInRegistries.PAINTING_VARIANT.get(motiverl);
 				paintingtypes.add(motive);
 			}
 		}

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Breedable Killer Rabbit.
- * Minecraft version: 1.19.2, mod version: 2.2.
+ * Minecraft version: 1.19.3, mod version: 2.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,12 +16,9 @@
 
 package com.natamus.breedablekillerrabbit.events;
 
-import java.util.List;
-
 import com.natamus.breedablekillerrabbit.config.ConfigHandler;
 import com.natamus.collective_fabric.data.GlobalVariables;
 import com.natamus.collective_fabric.functions.StringFunctions;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
@@ -39,16 +36,18 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.List;
+
 public class EntityEvent {
 	public static boolean onBaby(ServerLevel world, Animal parentA, Animal parentB, AgeableMob offspring) {
-		if (offspring instanceof Rabbit == false) {
+		if (!(offspring instanceof Rabbit)) {
 			return true;
 		}
 		Rabbit rabbit = (Rabbit)offspring;
 		
 		double num = GlobalVariables.random.nextDouble();
 		if (num <= ConfigHandler.chanceBabyRabbitIsKiller) {
-			rabbit.setRabbitType(99);
+			rabbit.setVariant(Rabbit.Variant.EVIL);
 			if (ConfigHandler.removeKillerRabbitNameTag) {
 				rabbit.setCustomName(null);
 			}
@@ -72,7 +71,7 @@ public class EntityEvent {
 			return InteractionResult.PASS;
 		}
 		
-		if (entity instanceof Rabbit == false) {
+		if (!(entity instanceof Rabbit)) {
 			return InteractionResult.PASS;
 		}
 		
@@ -83,7 +82,7 @@ public class EntityEvent {
 		}
 		
 		Rabbit rabbit = (Rabbit)entity;
-		if (rabbit.getRabbitType() != 99) {
+		if (!rabbit.getVariant().equals(Rabbit.Variant.EVIL)) {
 			return InteractionResult.PASS;
 		}
 		if (rabbit.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(Items.GOLDEN_CARROT)) {
@@ -103,15 +102,11 @@ public class EntityEvent {
 		}
 		
 		Entity source = damageSource.getDirectEntity();
-		if (source instanceof Rabbit == false) {
+		if (!(source instanceof Rabbit)) {
 			return true;
 		}
-		
-		if (((Rabbit)source).getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(Items.GOLDEN_CARROT)) {
-			return false;
-		}
-		
-		return true;
+
+		return !((Rabbit) source).getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(Items.GOLDEN_CARROT);
 	}
 	
 	public static void mobSpawn(Level world, Entity entity) {
@@ -119,13 +114,13 @@ public class EntityEvent {
 			return;
 		}
 		
-		if (entity instanceof Rabbit == false) {
+		if (!(entity instanceof Rabbit)) {
 			return;
 		}
 		if (!ConfigHandler.removeKillerRabbitNameTag) {
 			return;
 		}
-		if (((Rabbit)entity).getRabbitType() != 99) {
+		if (!((Rabbit)entity).getVariant().equals(Rabbit.Variant.EVIL)) {
 			return;
 		}
 		if (!entity.hasCustomName()) {
@@ -142,7 +137,7 @@ public class EntityEvent {
 			return damageAmount;
 		}
 		
-		if (entity instanceof Player == false) {
+		if (!(entity instanceof Player)) {
 			return damageAmount;
 		}
 		
@@ -151,11 +146,11 @@ public class EntityEvent {
 			return damageAmount;
 		}
 		
-		if (source instanceof Rabbit == false) {
+		if (!(source instanceof Rabbit)) {
 			return damageAmount;
 		}
 		
-		if (((Rabbit)source).getRabbitType() == 99) {
+		if (!((Rabbit)entity).getVariant().equals(Rabbit.Variant.EVIL)) {
 			StringFunctions.sendMessage((Player)entity, "The killer rabbit wants a golden carrot!", ChatFormatting.RED);
 		}
 		

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Enchanting Commands.
- * Minecraft version: 1.19.2, mod version: 2.6.
+ * Minecraft version: 1.19.3, mod version: 2.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,7 +16,7 @@
 
 package com.natamus.enchantingcommands.util;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import java.util.List;
 public class Util {
     public static List<String> getEnchantmentKeys() {
         List<String> output = new ArrayList<String>();
-        for (ResourceLocation rl : Registry.ENCHANTMENT.keySet()) {
+        for (ResourceLocation rl : BuiltInRegistries.ENCHANTMENT.keySet()) {
             output.add(rl.toString().replaceAll("minecraft:", ""));
         }
         return output;

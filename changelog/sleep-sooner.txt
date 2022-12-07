@@ -3,6 +3,9 @@ Sleep Sooner
 https://www.curseforge.com/minecraft/mc-mods/sleep-sooner
 
 =========
+v3.4: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v3.3: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

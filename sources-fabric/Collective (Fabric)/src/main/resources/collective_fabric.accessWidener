@@ -4,7 +4,6 @@ mutable field net/minecraft/client/Options gamma Lnet/minecraft/client/OptionIns
 accessible class net/minecraft/server/commands/TeleportCommand$LookAt
 accessible field net/minecraft/client/OptionInstance value Ljava/lang/Object;
 mutable field net/minecraft/client/OptionInstance value Ljava/lang/Object;
-accessible method net/minecraft/world/entity/animal/MushroomCow setMushroomType (Lnet/minecraft/world/entity/animal/MushroomCow$MushroomType;)V
 accessible field net/minecraft/world/entity/monster/Creeper DATA_IS_POWERED Lnet/minecraft/network/syncher/EntityDataAccessor;
 accessible method net/minecraft/world/level/block/entity/SignBlockEntity getMessages (Z)[Lnet/minecraft/network/chat/Component;
 accessible method net/minecraft/world/entity/Entity setSharedFlag (IZ)V
@@ -14,3 +13,4 @@ accessible field net/minecraft/world/item/trading/MerchantOffer uses I
 accessible field net/minecraft/world/item/trading/MerchantOffer demand I
 accessible field net/minecraft/world/level/BaseSpawner spawnDelay I
 accessible field net/minecraft/world/entity/LivingEntity DATA_HEALTH_ID Lnet/minecraft/network/syncher/EntityDataAccessor;
+accessible field net/minecraft/world/entity/projectile/FishingHook biting Z

@@ -3,6 +3,10 @@ Fish On The Line
 https://curseforge.com/minecraft/mc-mods/fish-on-the-line
 
 =========
+v2.0: Simplified how the mod determines whether there's a fish on the line, improves performance.
+Cleaned up code.
+
+=========
 v1.9: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

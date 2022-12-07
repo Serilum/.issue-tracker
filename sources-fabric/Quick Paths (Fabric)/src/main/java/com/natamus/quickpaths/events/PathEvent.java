@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Quick Paths.
- * Minecraft version: 1.19.2, mod version: 2.6.
+ * Minecraft version: 1.19.3, mod version: 2.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -95,7 +95,6 @@ public class PathEvent {
 			targetpos = targetpos.below().immutable();
 			block = world.getBlockState(targetpos).getBlock();
 		}
-		System.out.println(block);
 		
 		if (block.equals(Blocks.DIRT_PATH)) {
 			if (lastpath.containsKey(targetpos)) {

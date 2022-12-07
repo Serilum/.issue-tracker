@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Just Mob Heads.
- * Minecraft version: 1.19.2, mod version: 6.2.
+ * Minecraft version: 1.19.3, mod version: 6.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -86,7 +86,7 @@ public class MobHeads {
 		else if (entity instanceof Cat) {
 			Cat cat = (Cat)entity;
 
-			CatVariant variant = cat.getCatVariant();
+			CatVariant variant = cat.getVariant();
 
 			ResourceLocation texture = variant.texture();
 			String type = texture.toString().split("cat/")[1].replace(".png", "");
@@ -112,28 +112,28 @@ public class MobHeads {
 		}
 		else if (entity instanceof Llama) {
 			Llama llama = (Llama)entity;
-			int type = llama.getVariant();
+			int type = llama.getVariant().getId();
 			if (type < llamatypes.size()) {
 				mobname = llamatypes.get(type) + "_" + mobname;
 			}
 		}
 		else if (entity instanceof TraderLlama) {
 			TraderLlama traderllama = (TraderLlama)entity;
-			int type = traderllama.getVariant();
+			int type = traderllama.getVariant().getId();
 			if (type < llamatypes.size()) {
 				mobname = llamatypes.get(type) + "_trader_" + mobname;
 			}
 		}
 		else if (entity instanceof Parrot) {
 			Parrot parrot = (Parrot)entity;
-			int type = parrot.getVariant();
+			int type = parrot.getVariant().getId();
 			if (type < parrottypes.size()) {
 				mobname = parrottypes.get(type) + "_parrot";
 			}
 		}
 		else if (entity instanceof Rabbit) {
 			Rabbit rabbit = (Rabbit)entity;
-			int type = rabbit.getRabbitType();
+			int type = rabbit.getVariant().id();
 			String rabbitname = rabbit.getDisplayName().getString();
 			if (rabbitname.equals("Toast")) {
 				mobname = "toast_rabbit";
@@ -165,13 +165,13 @@ public class MobHeads {
 		}
 		else if (entity instanceof MushroomCow) {
 			MushroomCow mooshroom = (MushroomCow)entity;
-			if (mooshroom.getMushroomType() == MushroomCow.MushroomType.BROWN) {
+			if (mooshroom.getVariant() == MushroomCow.MushroomType.BROWN) {
 				mobname = "brown_mooshroom";
 			}	
 		}
 		else if (entity instanceof Fox) {
 			Fox fox = (Fox)entity;
-			if (fox.getFoxType() == Fox.Type.SNOW) {
+			if (fox.getVariant() == Fox.Type.SNOW) {
 				mobname = "snow_fox";
 			}
 			else {

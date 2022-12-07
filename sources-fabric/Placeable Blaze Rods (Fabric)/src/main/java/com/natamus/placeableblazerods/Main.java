@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Placeable Blaze Rods.
- * Minecraft version: 1.19.2, mod version: 2.4.
+ * Minecraft version: 1.19.3, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -24,6 +24,7 @@ import com.natamus.placeableblazerods.util.Reference;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -51,6 +52,6 @@ public class Main implements ModInitializer {
 	}
 
 	private void registerBlocks() {
-		Registry.register(Registry.BLOCK, new ResourceLocation(Reference.MOD_ID, "blaze_rod"),  blazerodblock);
+		Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(Reference.MOD_ID, "blaze_rod"),  blazerodblock);
 	}
 }

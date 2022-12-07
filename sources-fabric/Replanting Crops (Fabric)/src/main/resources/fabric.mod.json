@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "replantingcrops-fabric",
-  "version": "4.2",
+  "version": "4.3",
 
   "name": "Replanting Crops (Fabric)",
   "description": "Automatically replants/replaces/reseeds crops harvested with seeds from drops, negated by holding the sneak button.",
@@ -23,7 +23,7 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=5.3"
+    "collective-fabric": ">=5.23"
   },
 
   "custom": {
@@ -47,11 +47,14 @@
     " aternosorg",
     " Cherriesaurus",
     " Kreezxil",
-    " limpjellyfish",
     " Michael W. S.",
     " Mir3JonCZ",
+    " Rebecca Hb.",
     " Robert Gilbert",
+    " Shana Gitnick",
     " Sija",
-    " Tyler Behl"
+    " TheNickm2",
+    " Tyler Behl",
+    " Wendi S"
   ]
 }

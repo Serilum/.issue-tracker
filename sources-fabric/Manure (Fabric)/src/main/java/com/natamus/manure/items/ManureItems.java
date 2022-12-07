@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Manure.
- * Minecraft version: 1.19.2, mod version: 1.1.
+ * Minecraft version: 1.19.3, mod version: 1.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,9 +17,8 @@
 package com.natamus.manure.items;
 
 import net.minecraft.world.item.BoneMealItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
 public class ManureItems {
-	public static Item MANURE = new BoneMealItem((new Item.Properties()).tab(CreativeModeTab.TAB_MATERIALS));
+	public static Item MANURE = new BoneMealItem(new Item.Properties());
 }

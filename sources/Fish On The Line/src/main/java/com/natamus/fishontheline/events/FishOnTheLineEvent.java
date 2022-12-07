@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Fish On The Line.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.2, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,14 +16,9 @@
 
 package com.natamus.fishontheline.events;
 
-import java.util.HashMap;
-import java.util.List;
-
 import com.natamus.collective.data.GlobalVariables;
+import com.natamus.collective.functions.EntityFunctions;
 import com.natamus.fishontheline.config.ConfigHandler;
-
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.network.syncher.SynchedEntityData.DataItem;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
@@ -36,9 +31,11 @@ import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+import java.util.HashMap;
+
 @EventBusSubscriber
 public class FishOnTheLineEvent {
-	private static HashMap<String, Integer> sounddelay = new HashMap<String, Integer>();
+	private static final HashMap<String, Integer> sounddelay = new HashMap<String, Integer>();
 	
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent e) {
@@ -59,24 +56,8 @@ public class FishOnTheLineEvent {
 				return;
 			}
 		}
-		
-		boolean fishontheline = false;
-		int booleancount = 0;
-		
-		SynchedEntityData datamanager = fbe.getEntityData();
-		List<DataItem<?>> entries = datamanager.getAll();
-		for (DataItem<?> entry : entries) {
-			String entryvalue = entry.getValue().toString();
-			if (entryvalue.equalsIgnoreCase("true") || entryvalue.equalsIgnoreCase("false")) {
-				if (booleancount >= 1) {
-					if (entryvalue.equalsIgnoreCase("true")) {
-						fishontheline = true;
-					}
-				}
-				
-				booleancount += 1;
-			}
-		}
+
+		boolean fishontheline = EntityFunctions.fishingHookHasCatch(fbe);
 		
 		if (fishontheline) {
 			int delay = 0;

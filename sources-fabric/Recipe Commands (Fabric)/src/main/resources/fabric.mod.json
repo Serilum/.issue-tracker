@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "recipecommands-fabric",
-  "version": "2.1",
+  "version": "2.2",
 
   "name": "Recipe Commands (Fabric)",
   "description": "Adds the ability to receive the pattern and ingredients of any recipe via chat by a command.",
@@ -23,7 +23,7 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=5.3"
+    "collective-fabric": ">=5.23"
   },
 
   "custom": {
@@ -47,11 +47,14 @@
     " aternosorg",
     " Cherriesaurus",
     " Kreezxil",
-    " limpjellyfish",
     " Michael W. S.",
     " Mir3JonCZ",
+    " Rebecca Hb.",
     " Robert Gilbert",
+    " Shana Gitnick",
     " Sija",
-    " Tyler Behl"
+    " TheNickm2",
+    " Tyler Behl",
+    " Wendi S"
   ]
 }

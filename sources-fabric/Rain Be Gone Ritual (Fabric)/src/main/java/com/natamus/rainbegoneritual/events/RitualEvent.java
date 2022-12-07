@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Rain Be Gone Ritual.
- * Minecraft version: 1.19.2, mod version: 2.4.
+ * Minecraft version: 1.19.3, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -88,7 +88,7 @@ public class RitualEvent {
         		Vec3 firevec = new Vec3(firepos.getX(), firepos.getY(), firepos.getZ());
         		
         		lastritual = new Pair<Date, BlockPos>(new Date(), firepos.immutable());
-        		world.explode(null, DamageSource.explosion((Explosion)null), null, firevec.x, firevec.y, firevec.z, 3.0f, false, Explosion.BlockInteraction.NONE);
+        		world.explode(null, DamageSource.explosion((Explosion)null), null, firevec.x, firevec.y, firevec.z, 3.0f, false, Level.ExplosionInteraction.NONE);
         		for (BlockPos cauldronpos : cauldronposses) {
         			world.setBlock(cauldronpos, Blocks.WATER_CAULDRON.defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3), 3);  		
         		}

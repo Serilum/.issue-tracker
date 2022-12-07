@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Omega Mute.
- * Minecraft version: 1.19.2, mod version: 2.8.
+ * Minecraft version: 1.19.3, mod version: 2.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,7 +18,7 @@ package com.natamus.omegamute.util;
 
 import com.natamus.collective_fabric.functions.DataFunctions;
 import com.natamus.omegamute.events.MuteEvent;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 
@@ -100,9 +100,9 @@ public class Util {
 	private static void generateSoundFile() throws FileNotFoundException, UnsupportedEncodingException {
 		List<String> soundnames = new ArrayList<String>();
 		
-		Set<ResourceLocation> soundlocations = Registry.SOUND_EVENT.keySet();
+		Set<ResourceLocation> soundlocations = BuiltInRegistries.SOUND_EVENT.keySet();
 		for (ResourceLocation soundlocation : soundlocations) {
-			SoundEvent sound = Registry.SOUND_EVENT.get(soundlocation);
+			SoundEvent sound = BuiltInRegistries.SOUND_EVENT.get(soundlocation);
 			soundnames.add(sound.getLocation().toString().replace("minecraft:", ""));
 		}
 		

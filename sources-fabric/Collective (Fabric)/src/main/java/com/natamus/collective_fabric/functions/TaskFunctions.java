@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.22.
+ * Minecraft version: 1.19.3, mod version: 5.25.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -37,6 +37,6 @@ public class TaskFunctions {
     	}
 
     	MinecraftServer server = ((ServerLevel)world).getServer();
-    	server.submit(new TickTask(server.getTickCount() + delay, task));
+    	server.tell(new TickTask(server.getTickCount() + delay, task));
 	}
 }

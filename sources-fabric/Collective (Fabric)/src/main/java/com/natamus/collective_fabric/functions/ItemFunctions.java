@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.22.
+ * Minecraft version: 1.19.3, mod version: 5.25.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -21,7 +21,7 @@ import com.natamus.collective_fabric.data.GlobalVariables;
 import com.natamus.collective_fabric.fabric.callbacks.CollectiveItemEvents;
 import com.natamus.collective_fabric.fakeplayer.FakePlayer;
 import com.natamus.collective_fabric.fakeplayer.FakePlayerFactory;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -70,12 +70,13 @@ public class ItemFunctions {
 		lootingsword.enchant(Enchantments.MOB_LOOTING, 10);
 		fakeplayer.setItemSlot(EquipmentSlot.MAINHAND, lootingsword);
 		
-		Collection<Entry<ResourceKey<EntityType<?>>, EntityType<?>>> entitytypes = Registry.ENTITY_TYPE.entrySet();
+		Collection<Entry<ResourceKey<EntityType<?>>, EntityType<?>>> entitytypes = BuiltInRegistries.ENTITY_TYPE.entrySet();
 		for (Entry<ResourceKey<EntityType<?>>, EntityType<?>> entry : entitytypes) {
 			EntityType<?> type = entry.getValue();
 			if (type == null) {
 				continue;
 			}
+
 			Entity entity = type.create(world);
 			if (!(entity instanceof LivingEntity)) {
 				continue;

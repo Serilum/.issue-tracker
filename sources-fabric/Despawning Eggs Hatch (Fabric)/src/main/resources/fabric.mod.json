@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "despawningeggshatch-fabric",
-  "version": "2.9",
+  "version": "3.0",
 
   "name": "Despawning Eggs Hatch (Fabric)",
   "description": "Allows chicken eggs on a hay block to hatch into a chick baby just before they despawn.",
@@ -23,7 +23,7 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=5.3"
+    "collective-fabric": ">=5.23"
   },
 
   "custom": {
@@ -47,11 +47,14 @@
     " aternosorg",
     " Cherriesaurus",
     " Kreezxil",
-    " limpjellyfish",
     " Michael W. S.",
     " Mir3JonCZ",
+    " Rebecca Hb.",
     " Robert Gilbert",
+    " Shana Gitnick",
     " Sija",
-    " Tyler Behl"
+    " TheNickm2",
+    " Tyler Behl",
+    " Wendi S"
   ]
 }

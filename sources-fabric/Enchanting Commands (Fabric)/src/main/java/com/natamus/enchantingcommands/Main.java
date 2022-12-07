@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Enchanting Commands.
- * Minecraft version: 1.19.2, mod version: 2.6.
+ * Minecraft version: 1.19.3, mod version: 2.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,11 +17,10 @@
 package com.natamus.enchantingcommands;
 
 import com.natamus.collective_fabric.check.RegisterMod;
+import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.enchantingcommands.cmds.CommandEc;
 import com.natamus.enchantingcommands.config.ConfigHandler;
-import com.natamus.collective_fabric.config.DuskConfig;
 import com.natamus.enchantingcommands.util.Reference;
-
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
@@ -36,8 +35,8 @@ public class Main implements ModInitializer {
 	}
 	
 	private void registerEvents() {
-		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-			CommandEc.register(dispatcher);
+		CommandRegistrationCallback.EVENT.register((dispatcher, commandBuildContext, environment) -> {
+			CommandEc.register(dispatcher, commandBuildContext);
 		});
 	}
 }

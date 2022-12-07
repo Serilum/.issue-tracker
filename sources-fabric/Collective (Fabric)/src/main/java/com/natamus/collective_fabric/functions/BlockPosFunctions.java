@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.22.
+ * Minecraft version: 1.19.3, mod version: 5.25.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -181,7 +181,7 @@ public class BlockPosFunctions {
 	}
 	public static BlockPos getNearbyVillage(ServerLevel serverLevel, BlockPos nearPos) {
 		BlockPos closestvillage = null;
-		if (!serverLevel.getServer().getWorldData().worldGenSettings().generateStructures()) {
+		if (!serverLevel.getServer().getWorldData().worldGenOptions().generateStructures()) {
 			return null;
 		}
 

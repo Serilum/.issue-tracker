@@ -3,6 +3,9 @@ Replanting Crops
 https://www.curseforge.com/minecraft/mc-mods/replanting-crops
 
 =========
+v4.3: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v4.2: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

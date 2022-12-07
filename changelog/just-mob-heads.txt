@@ -3,6 +3,9 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v6.3: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v6.2: Fixes the problems caused by Mojang's launcher update.
 
 =========

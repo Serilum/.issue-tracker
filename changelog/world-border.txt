@@ -3,6 +3,9 @@ World Border
 https://www.curseforge.com/minecraft/mc-mods/world-border
 
 =========
+v3.3: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v3.2: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

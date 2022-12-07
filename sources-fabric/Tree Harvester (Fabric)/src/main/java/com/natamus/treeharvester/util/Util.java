@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Tree Harvester.
- * Minecraft version: 1.19.2, mod version: 5.9.
+ * Minecraft version: 1.19.3, mod version: 6.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -20,7 +20,7 @@ import com.mojang.datafixers.util.Pair;
 import com.natamus.collective_fabric.functions.*;
 import com.natamus.treeharvester.config.ConfigHandler;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Entity.RemovalReason;
@@ -77,9 +77,9 @@ public class Util {
 			writer.println("// To disable a certain axe from being able to harvest trees, add an exclamation mark (!) in front of the line,");
 		}
 
-		for (Item item : Registry.ITEM) {
+		for (Item item : BuiltInRegistries.ITEM) {
 			if (ToolFunctions.isAxe(new ItemStack(item))) {
-				ResourceLocation rl = Registry.ITEM.getKey(item);
+				ResourceLocation rl = BuiltInRegistries.ITEM.getKey(item);
 				if (rl == null) {
 					continue;
 				}

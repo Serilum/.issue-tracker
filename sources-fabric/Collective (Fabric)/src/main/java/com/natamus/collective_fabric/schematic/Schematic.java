@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.22.
+ * Minecraft version: 1.19.3, mod version: 5.25.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,7 +19,7 @@ package com.natamus.collective_fabric.schematic;
 import com.mojang.brigadier.StringReader;
 import net.minecraft.commands.arguments.blocks.BlockStateParser;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtIo;
@@ -27,8 +27,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -174,7 +172,7 @@ public class Schematic {
 		String iblockstateS = this.palette.get(id);
 		
 		try {
-			return BlockStateParser.parseForBlock(Registry.BLOCK, new StringReader(iblockstateS), false).blockState();
+			return BlockStateParser.parseForBlock(BuiltInRegistries.BLOCK.asLookup(), new StringReader(iblockstateS), false).blockState();
 		} catch (Exception ex) {
 			return Blocks.AIR.defaultBlockState();
 		}

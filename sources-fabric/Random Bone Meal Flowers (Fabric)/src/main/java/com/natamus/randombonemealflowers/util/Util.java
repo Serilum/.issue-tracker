@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Bone Meal Flowers.
- * Minecraft version: 1.19.2, mod version: 3.3.
+ * Minecraft version: 1.19.3, mod version: 3.4.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,7 +18,7 @@ package com.natamus.randombonemealflowers.util;
 
 import com.natamus.collective_fabric.data.GlobalVariables;
 import com.natamus.collective_fabric.functions.DataFunctions;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerBlock;
@@ -61,9 +61,9 @@ public class Util {
 			}
 		}
 		
-		for (Block block : Registry.BLOCK) {
+		for (Block block : BuiltInRegistries.BLOCK) {
 			if (block instanceof FlowerBlock) {
-				ResourceLocation rl = Registry.BLOCK.getKey(block);
+				ResourceLocation rl = BuiltInRegistries.BLOCK.getKey(block);
 				if (rl == null) {
 					continue;
 				}

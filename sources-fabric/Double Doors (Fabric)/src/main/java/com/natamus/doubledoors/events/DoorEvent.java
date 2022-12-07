@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Double Doors.
- * Minecraft version: 1.19.2, mod version: 3.8.
+ * Minecraft version: 1.19.3, mod version: 3.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -47,7 +47,7 @@ public class DoorEvent {
 		Block block = state.getBlock();
 
 		if (!(block instanceof PressurePlateBlock) && !(block instanceof WeightedPressurePlateBlock)) {
-			if (!(block instanceof StoneButtonBlock) && !(block instanceof WoodButtonBlock)) {
+			if (!(block instanceof ButtonBlock)) {
 				return;
 			}
 			else {

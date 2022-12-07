@@ -3,6 +3,9 @@ Healing Soup
 https://www.curseforge.com/minecraft/mc-mods/healing-soup
 
 =========
+v3.1: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v3.0: Updated backend code.
 (Forge 1.19) Fixed items not registering correctly.
 

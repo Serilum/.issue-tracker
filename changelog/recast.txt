@@ -3,6 +3,9 @@ Recast
 https://curseforge.com/minecraft/mc-mods/recast
 
 =========
+v2.3: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v2.2: (Fabric) Added Mod Menu support with project links and logo.
 
 =========

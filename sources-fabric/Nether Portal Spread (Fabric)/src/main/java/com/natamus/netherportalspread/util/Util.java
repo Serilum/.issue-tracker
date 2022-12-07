@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Nether Portal Spread.
- * Minecraft version: 1.19.2, mod version: 6.5.
+ * Minecraft version: 1.19.3, mod version: 6.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -21,7 +21,7 @@ import com.natamus.collective_fabric.objects.RandomCollection;
 import com.natamus.netherportalspread.config.ConfigHandler;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -78,11 +78,11 @@ public class Util {
 					fromblockstr = "minecraft:" + fromblockstr;
 				}
 				ResourceLocation frl = new ResourceLocation(fromblockstr);
-				if (!Registry.BLOCK.keySet().contains(frl)) {
+				if (!BuiltInRegistries.BLOCK.keySet().contains(frl)) {
 					System.out.println("[Nether Portal Spread] Unable to find from-block '" + fromblockstr + "' in the Forge block registry. Ignoring it.");
 					continue;
 				}
-				Block fromblock = Registry.BLOCK.get(frl);
+				Block fromblock = BuiltInRegistries.BLOCK.get(frl);
 				
 				String toblocks = linespl[1].replace("[", "").replace("]", "");
 				
@@ -107,8 +107,8 @@ public class Util {
 					totalweight += weight;
 					
 					ResourceLocation trl = new ResourceLocation(toblockstr);
-					if (Registry.BLOCK.keySet().contains(trl)) {
-						tempmap.put(Registry.BLOCK.get(trl), weight);
+					if (BuiltInRegistries.BLOCK.keySet().contains(trl)) {
+						tempmap.put(BuiltInRegistries.BLOCK.get(trl), weight);
 					}
 					else {
 						System.out.println("[Nether Portal Spread] Unable to find to-block '" + toblockstr + "' in the Forge block registry. Ignoring it.");
@@ -151,8 +151,8 @@ public class Util {
 		if (preventSpreadBlock == null) {
 			String psbstr = ConfigHandler.preventSpreadBlockString;
 			ResourceLocation psbrl = new ResourceLocation(psbstr);
-			if (Registry.BLOCK.keySet().contains(psbrl)) {
-				preventSpreadBlock = Registry.BLOCK.get(psbrl);
+			if (BuiltInRegistries.BLOCK.keySet().contains(psbrl)) {
+				preventSpreadBlock = BuiltInRegistries.BLOCK.get(psbrl);
 			}
 			else {
 				System.out.println("[Nether Portal Spread] Unable to get a prevent-spread-block from the string '" + psbstr + "'. Using the default coal block instead.");

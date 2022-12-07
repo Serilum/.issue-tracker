@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Hide Hands.
- * Minecraft version: 1.19.2, mod version: 3.0.
+ * Minecraft version: 1.19.3, mod version: 3.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,7 +19,7 @@ package com.natamus.hidehands.events;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.natamus.hidehands.config.ConfigHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 
@@ -63,7 +63,7 @@ public class HandEvent {
 	
 	private static boolean isHoldingItem(String hideitems, ItemStack item) {
 		if (hideitems.length() > 1) {
-			String itemstackid = Registry.ITEM.getKey(item.getItem()).toString().toLowerCase();
+			String itemstackid = BuiltInRegistries.ITEM.getKey(item.getItem()).toString().toLowerCase();
 			return hideitems.toLowerCase().contains(itemstackid);
 		}
 		return false;

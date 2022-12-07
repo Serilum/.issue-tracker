@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "collective-fabric",
-  "version": "5.22",
+  "version": "5.25",
 
   "name": "Collective (Fabric)",
   "description": "Collective is a shared library with common code for all of Serilum's mods.",
@@ -33,9 +33,9 @@
   "accessWidener" : "collective_fabric.accessWidener",
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.0",
     "fabric": "*",
-    "minecraft": "1.19.2",
+    "minecraft": "1.19.3",
     "java": ">=17"
   },
 
@@ -65,7 +65,9 @@
     " Mir3JonCZ",
     " Rebecca Hb.",
     " Robert Gilbert",
+    " Shana Gitnick",
     " Sija",
+    " TheNickm2",
     " Tyler Behl",
     " Wendi S"
   ]

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "placeableblazerods-fabric",
-  "version": "2.4",
+  "version": "2.5",
 
   "name": "Placeable Blaze Rods (Fabric)",
   "description": "Makes blaze rods placeable as a block in the world, similar to end rods.",
@@ -23,7 +23,7 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=5.16"
+    "collective-fabric": ">=5.23"
   },
 
   "custom": {
@@ -51,7 +51,9 @@
     " Mir3JonCZ",
     " Rebecca Hb.",
     " Robert Gilbert",
+    " Shana Gitnick",
     " Sija",
+    " TheNickm2",
     " Tyler Behl",
     " Wendi S"
   ]

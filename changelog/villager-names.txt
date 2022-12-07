@@ -3,6 +3,9 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v4.4: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v4.3: Fixes the problems caused by Mojang's launcher update.
 
 =========

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Passive Endermen.
- * Minecraft version: 1.19.2, mod version: 3.2.
+ * Minecraft version: 1.19.3, mod version: 3.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,6 @@ package com.natamus.passiveendermen.util;
 public class Reference {
 	public static final String MOD_ID = "passiveendermen-fabric";
 	public static final String NAME = "Passive Endermen (Fabric)";
-	public static final String VERSION = "3.2";
-	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
+	public static final String VERSION = "3.3";
+	public static final String ACCEPTED_VERSIONS = "[1.19.3]";
 }

@@ -3,6 +3,9 @@ Crying Portals
 https://curseforge.com/minecraft/mc-mods/crying-portals
 
 =========
+v1.9: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v1.8: (Fabric) Added Mod Menu support with project links and logo.
 
 =========

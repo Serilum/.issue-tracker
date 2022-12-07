@@ -3,6 +3,9 @@ Random Bone Meal Flowers
 https://www.curseforge.com/minecraft/mc-mods/random-bone-meal-flowers
 
 =========
+v3.4: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v3.3: Fixed dispensers not randomizing flower spawns. Thanks @Tourmi on Github for the pull request!
 
 =========

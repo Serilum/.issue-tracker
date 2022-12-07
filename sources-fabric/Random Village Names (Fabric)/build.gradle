@@ -34,9 +34,9 @@ dependencies {
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
-	modImplementation "com.natamus.collective:collective-fabric:1.19.2-5.11"
+	modImplementation "com.natamus.collective:collective-fabric:1.19.3-5.25"
 
-	modApi("com.terraformersmc:modmenu:4.0.6") { exclude(module: "fabric-api") }
+	modApi("com.terraformersmc:modmenu:5.0.0-alpha.4") { exclude(module: "fabric-api") }
 
 	// Permissions
 	//modImplementation 'me.lucko:fabric-permissions-api:0.1-SNAPSHOT'

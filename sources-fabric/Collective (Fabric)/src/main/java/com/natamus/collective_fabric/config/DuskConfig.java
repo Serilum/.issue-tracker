@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.22.
+ * Minecraft version: 1.19.3, mod version: 5.25.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -230,7 +230,7 @@ public abstract class DuskConfig {
 				Files.createFile(path);
 			}
 
-			Class cC = configClass.get(modid);
+			Class<?> cC = configClass.get(modid);
 
 			String lastline = "";
 			StringBuilder json5 = new StringBuilder("{");
@@ -351,12 +351,12 @@ public abstract class DuskConfig {
 			super.init();
 			if (!reload) loadValues();
 
-			this.addRenderableWidget(new Button(this.width / 2 - 154, this.height - 28, 150, 20, CommonComponents.GUI_CANCEL, button -> {
+			this.addRenderableWidget(Button.builder(CommonComponents.GUI_CANCEL, button -> {
 				loadValues();
 				Objects.requireNonNull(minecraft).setScreen(parent);
-			}));
+			}).pos(this.width / 2 - 154, this.height - 28).size(150, 20).build());
 
-			Button done = this.addRenderableWidget(new Button(this.width / 2 + 4, this.height - 28, 150, 20, CommonComponents.GUI_DONE, (button) -> {
+			Button done = this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, button -> {
 				for (EntryInfo info : entries)
 					if (info.id.equals(modid)) {
 						try {
@@ -365,7 +365,7 @@ public abstract class DuskConfig {
 					}
 				write(modid);
 				Objects.requireNonNull(minecraft).setScreen(parent);
-			}));
+			}).pos(this.width / 2 + 4, this.height - 28).size(150, 20).build());
 
 			this.list = new MidnightConfigListWidget(this.minecraft, this.width, this.height, 32, this.height - 32, 25);
 			if (this.minecraft != null && this.minecraft.level != null) this.list.setRenderBackground(false);
@@ -378,7 +378,8 @@ public abstract class DuskConfig {
 					}
 
 					Component name = Objects.requireNonNullElseGet(info.name, () -> Component.translatable(translationPrefix + info.field.getName()));
-					Button resetButton = new Button(width - 205, 0, 40, 20, Component.literal("Reset").withStyle(ChatFormatting.RED), (button -> {
+
+					Button resetButton = Button.builder(Component.literal("Reset").withStyle(ChatFormatting.RED), button -> {
 						info.value = info.defaultValue;
 						info.tempValue = info.defaultValue.toString();
 						info.index = 0;
@@ -386,12 +387,12 @@ public abstract class DuskConfig {
 						this.reload = true;
 						Objects.requireNonNull(minecraft).setScreen(this);
 						list.setScrollAmount(scrollAmount);
-					}));
+					}).pos(width - 205, 0).size(40, 20).build();
 
 					if (info.widget instanceof Map.Entry) {
 						Map.Entry<Button.OnPress, Function<Object, Component>> widget = (Map.Entry<Button.OnPress, Function<Object, Component>>) info.widget;
 						if (info.field.getType().isEnum()) widget.setValue(value -> Component.translatable(translationPrefix + "enum." + info.field.getType().getSimpleName() + "." + info.value.toString()));
-						this.list.addButton(List.of(new Button(width - 160, 0,150, 20, widget.getValue().apply(info.value), widget.getKey()),resetButton), name, info);
+						this.list.addButton(List.of(Button.builder(widget.getValue().apply(info.value), widget.getKey()).pos(width - 160, 0).size(150, 20).build(), resetButton), name, info);
 					} else if (info.field.getType() == List.class) {
 						if (!reload) info.index = 0;
 						EditBox widget = new EditBox(font, width - 160, 0, 150, 20, null);
@@ -402,7 +403,7 @@ public abstract class DuskConfig {
 						widget.setFilter(processor);
 						resetButton.setWidth(20);
 						resetButton.setMessage(Component.literal("R").withStyle(ChatFormatting.RED));
-						Button cycleButton = new Button(width - 185, 0, 20, 20, Component.literal(String.valueOf(info.index)).withStyle(ChatFormatting.GOLD), (button -> {
+						Button cycleButton = Button.builder(Component.literal(String.valueOf(info.index)), button -> {
 							((List<String>)info.value).remove("");
 							double scrollAmount = list.getScrollAmount();
 							this.reload = true;
@@ -410,7 +411,7 @@ public abstract class DuskConfig {
 							if (info.index > ((List<String>)info.value).size()) info.index = 0;
 							Objects.requireNonNull(minecraft).setScreen(this);
 							list.setScrollAmount(scrollAmount);
-						}));
+						}).pos(width - 185, 0).size(20, 20).build();
 						this.list.addButton(List.of(widget, resetButton, cycleButton), name, info);
 					} else if (info.widget != null) {
 						EditBox widget = new EditBox(font, width - 160, 0, 150, 20, null);
@@ -421,7 +422,7 @@ public abstract class DuskConfig {
 						if (info.field.getAnnotation(Entry.class).isColor()) {
 							resetButton.setWidth(20);
 							resetButton.setMessage(Component.literal("R").withStyle(ChatFormatting.RED));
-							Button colorButton = new Button(width - 185, 0, 20, 20, Component.literal("⬛"), (button -> {}));
+							Button colorButton = Button.builder(Component.literal("⬛"), (button -> {})).pos(width - 185, 0).size(20, 20).build();
 							try {colorButton.setMessage(Component.literal("⬛").setStyle(Style.EMPTY.withColor(Color.decode(info.tempValue).getRGB())));} catch (Exception ignored) {}
 							info.colorButton = colorButton;
 							colorButton.active = false;
@@ -517,14 +518,14 @@ public abstract class DuskConfig {
 			return new ButtonEntry(buttons, text, info);
 		}
 		public void render(@NotNull PoseStack matrices, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-			buttons.forEach(b -> { b.y = y; b.render(matrices, mouseX, mouseY, tickDelta); });
+			buttons.forEach(b -> { b.setY(y); b.render(matrices, mouseX, mouseY, tickDelta); });
 			if (text != null && (!text.getString().contains("spacer") || !buttons.isEmpty())) {
 				if (info.centered) font.drawShadow(matrices, text, Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2f - (font.width(text) / 2f), y + 5, 0xFFFFFF);
 				else GuiComponent.drawString(matrices, font, text, 12, y + 5, 0xFFFFFF);
 			}
 		}
-		public List<? extends GuiEventListener> children() {return children;}
-		public List<? extends NarratableEntry> narratables() {return children;}
+		public @NotNull List<? extends GuiEventListener> children() {return children;}
+		public @NotNull List<? extends NarratableEntry> narratables() {return children;}
 	}
 	@Retention(RetentionPolicy.RUNTIME) @Target(ElementType.FIELD) public @interface Entry {
 		int width() default 100;

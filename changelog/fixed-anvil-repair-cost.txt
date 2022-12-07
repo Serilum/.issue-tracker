@@ -3,6 +3,9 @@ Fixed Anvil Repair Cost
 https://curseforge.com/minecraft/mc-mods/fixed-anvil-repair-cost
 
 =========
+v2.3: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v2.2: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

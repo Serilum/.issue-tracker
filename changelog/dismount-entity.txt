@@ -3,6 +3,9 @@ Dismount Entity
 https://www.curseforge.com/minecraft/mc-mods/dismount-entity
 
 =========
+v2.2: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v2.1: (Fabric) Added Mod Menu support with project links and logo.
 
 =========

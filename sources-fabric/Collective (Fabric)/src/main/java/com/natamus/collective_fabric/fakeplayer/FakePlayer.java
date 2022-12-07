@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.22.
+ * Minecraft version: 1.19.3, mod version: 5.25.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -38,7 +38,7 @@ import java.util.Set;
 //Preliminary, simple Fake Player class
 public class FakePlayer extends ServerPlayer {
 	    public FakePlayer(MinecraftServer minecraftServer, ServerLevel serverLevel, GameProfile gameProfile, ServerPlayerGameMode serverPlayerGameMode) {
-			super(minecraftServer, serverLevel, gameProfile, null);
+			super(minecraftServer, serverLevel, gameProfile);
 		}
 		@Override public Vec3 position(){ return new Vec3(0, 0, 0); }
 	    @Override public BlockPos blockPosition(){ return BlockPos.ZERO; }

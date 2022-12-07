@@ -3,6 +3,9 @@ Infinite Trading
 https://www.curseforge.com/minecraft/mc-mods/infinite-trading
 
 =========
+v3.2: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v3.1: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

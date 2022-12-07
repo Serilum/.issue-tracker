@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Manure.
- * Minecraft version: 1.19.2, mod version: 1.1.
+ * Minecraft version: 1.19.3, mod version: 1.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -26,11 +26,14 @@ import com.natamus.manure.util.Reference;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.CreativeModeTabs;
 
 public class Main implements ModInitializer {
 	@Override
@@ -60,6 +63,7 @@ public class Main implements ModInitializer {
 	}
 
 	private void registerItems() {
-		Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, "manure"), ManureItems.MANURE);
+		Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Reference.MOD_ID, "manure"), ManureItems.MANURE);
+		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(entries -> entries.prepend(ManureItems.MANURE));
 	}
 }

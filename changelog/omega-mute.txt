@@ -3,6 +3,9 @@ Omega Mute
 https://www.curseforge.com/minecraft/mc-mods/omega-mute
 
 =========
+v2.9: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v2.8: Fixes the problems caused by Mojang's launcher update.
 
 =========

@@ -3,6 +3,12 @@ Manure
 https://curseforge.com/minecraft/mc-mods/manure
 
 =========
+v1.3: (Fabric 1.19.3) Changed manure's creative tab to Tools and Utilities.
+
+=========
+v1.2: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v1.1: Fixed incorrectly set version.
 
 =========

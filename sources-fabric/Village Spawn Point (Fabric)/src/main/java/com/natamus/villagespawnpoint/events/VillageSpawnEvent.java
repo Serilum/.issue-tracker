@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Village Spawn Point.
- * Minecraft version: 1.19.2, mod version: 3.0.
+ * Minecraft version: 1.19.3, mod version: 3.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -22,7 +22,7 @@ import com.natamus.collective_fabric.functions.FeatureFunctions;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.levelgen.WorldGenSettings;
+import net.minecraft.world.level.levelgen.WorldOptions;
 import net.minecraft.world.level.storage.ServerLevelData;
 import org.slf4j.Logger;
 
@@ -35,7 +35,7 @@ public class VillageSpawnEvent {
 			return;
 		}
 
-		WorldGenSettings generatorsettings = serverworld.getServer().getWorldData().worldGenSettings();
+		WorldOptions generatorsettings = serverworld.getServer().getWorldData().worldGenOptions();
 		
 		if (!generatorsettings.generateStructures()) {
 			return;

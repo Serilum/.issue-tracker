@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.22.
+ * Minecraft version: 1.19.3, mod version: 5.25.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -33,6 +33,7 @@ import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
@@ -113,7 +114,7 @@ public class EntityFunctions {
 			entity.getEntityData().set(Creeper.DATA_IS_POWERED, true);
 		}
 		else if (entity instanceof MushroomCow) {
-			((MushroomCow)entity).setMushroomType(MushroomCow.MushroomType.BROWN);
+			((MushroomCow)entity).setVariant(MushroomCow.MushroomType.BROWN);
 		}
 	}
 
@@ -139,6 +140,10 @@ public class EntityFunctions {
 
 	public static void forceSetHealth(LivingEntity livingEntity, float health) {
 		livingEntity.getEntityData().set(LivingEntity.DATA_HEALTH_ID, health);
+	}
+
+	public static boolean fishingHookHasCatch(FishingHook fishingHook) {
+		return fishingHook.biting;
 	}
 
 	public static void transferItemsBetweenEntities(Entity from, Entity to, boolean ignoremainhand) {

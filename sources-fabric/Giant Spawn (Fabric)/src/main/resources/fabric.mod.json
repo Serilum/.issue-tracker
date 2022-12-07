@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "giantspawn-fabric",
-  "version": "3.3",
+  "version": "3.4",
 
   "name": "Giant Spawn (Fabric)",
   "description": "Allows the giant to spawn naturally and other tweaks.",
@@ -26,7 +26,7 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=5.3"
+    "collective-fabric": ">=5.23"
   },
 
   "custom": {
@@ -50,11 +50,14 @@
     " aternosorg",
     " Cherriesaurus",
     " Kreezxil",
-    " limpjellyfish",
     " Michael W. S.",
     " Mir3JonCZ",
+    " Rebecca Hb.",
     " Robert Gilbert",
+    " Shana Gitnick",
     " Sija",
-    " Tyler Behl"
+    " TheNickm2",
+    " Tyler Behl",
+    " Wendi S"
   ]
 }

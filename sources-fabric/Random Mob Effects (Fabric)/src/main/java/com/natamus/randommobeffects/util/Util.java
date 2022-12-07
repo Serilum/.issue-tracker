@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Random Mob Effects.
- * Minecraft version: 1.19.2, mod version: 2.4.
+ * Minecraft version: 1.19.3, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -18,7 +18,7 @@ package com.natamus.randommobeffects.util;
 
 import com.natamus.collective_fabric.data.GlobalVariables;
 import com.natamus.collective_fabric.functions.DataFunctions;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 
@@ -55,8 +55,8 @@ public class Util {
 			}
 		}
 		
-		for (MobEffect effect : Registry.MOB_EFFECT) {
-			ResourceLocation rl = Registry.MOB_EFFECT.getKey(effect);
+		for (MobEffect effect : BuiltInRegistries.MOB_EFFECT) {
+			ResourceLocation rl = BuiltInRegistries.MOB_EFFECT.getKey(effect);
 			if (rl == null) {
 				continue;
 			}

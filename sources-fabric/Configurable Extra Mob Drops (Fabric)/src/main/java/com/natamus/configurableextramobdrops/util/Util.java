@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Extra Mob Drops.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.3, mod version: 2.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,7 +19,7 @@ package com.natamus.configurableextramobdrops.util;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.natamus.collective_fabric.functions.DataFunctions;
 import com.natamus.collective_fabric.functions.StringFunctions;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
 import net.minecraft.resources.ResourceLocation;
@@ -77,7 +77,7 @@ public class Util {
 				String itemstring = linespl[1].trim();
 				itemstring = itemstring.substring(0, itemstring.length() - 1).trim();
 				
-				EntityType<?> entitytype = Registry.ENTITY_TYPE.get(new ResourceLocation(entityrl));
+				EntityType<?> entitytype = BuiltInRegistries.ENTITY_TYPE.get(new ResourceLocation(entityrl));
 				if (entitytype == null) {
 					continue;
 				}
@@ -102,8 +102,8 @@ public class Util {
 		}
 		
 		if (writer != null) {
-			for (ResourceLocation rl : Registry.ENTITY_TYPE.keySet()) {
-				EntityType<?> entitytype = Registry.ENTITY_TYPE.get(rl);
+			for (ResourceLocation rl : BuiltInRegistries.ENTITY_TYPE.keySet()) {
+				EntityType<?> entitytype = BuiltInRegistries.ENTITY_TYPE.get(rl);
 				MobCategory classification = entitytype.getCategory();
 				if (!classification.equals(MobCategory.MISC) || specialmiscmobs.contains(entitytype)) {
 					writer.println("'" + rl.toString() + "'" + " : '',");
@@ -123,8 +123,8 @@ public class Util {
 		
 		PrintWriter writer = new PrintWriter(dirpath + File.separator + "mobdropconfig.txt", "UTF-8");
 		
-		for (ResourceLocation rl : Registry.ENTITY_TYPE.keySet()) {
-			EntityType<?> entitytype = Registry.ENTITY_TYPE.get(rl);
+		for (ResourceLocation rl : BuiltInRegistries.ENTITY_TYPE.keySet()) {
+			EntityType<?> entitytype = BuiltInRegistries.ENTITY_TYPE.get(rl);
 			MobCategory classification = entitytype.getCategory();
 			if (!classification.equals(MobCategory.MISC) || specialmiscmobs.contains(entitytype)) {
 				String itemdata = "";

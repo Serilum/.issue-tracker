@@ -3,6 +3,9 @@ Configurable Mob Potion Effects
 https://curseforge.com/minecraft/mc-mods/configurable-mob-potion-effects
 
 =========
+v2.2: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v2.1: Fixes the problems caused by Mojang's launcher update.
 
 =========

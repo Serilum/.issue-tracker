@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "followersteleporttoo-fabric",
-  "version": "1.2",
+  "version": "1.3",
 
   "name": "Followers Teleport Too (Fabric)",
   "description": "Whenever a player is teleported via a command, their pets will be teleported alongside them.",
@@ -19,11 +19,11 @@
   "entrypoints": { "main": [ "com.natamus.followersteleporttoo.Main" ], "modmenu": [ "com.natamus.followersteleporttoo.config.FollowersTeleportTooModMenu" ] },
 
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
     "minecraft": ">=1.19",
     "java": ">=17",
-    "collective-fabric": ">=5.3"
+    "collective-fabric": ">=5.23"
   },
 
   "custom": {
@@ -47,11 +47,14 @@
     " aternosorg",
     " Cherriesaurus",
     " Kreezxil",
-    " limpjellyfish",
     " Michael W. S.",
     " Mir3JonCZ",
+    " Rebecca Hb.",
     " Robert Gilbert",
+    " Shana Gitnick",
     " Sija",
-    " Tyler Behl"
+    " TheNickm2",
+    " Tyler Behl",
+    " Wendi S"
   ]
 }

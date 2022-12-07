@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Eroding Stone Entities.
- * Minecraft version: 1.19.2, mod version: 3.0.
+ * Minecraft version: 1.19.3, mod version: 3.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -23,7 +23,7 @@ import java.util.List;
 
 import com.natamus.erodingstoneentities.config.ConfigHandler;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity.RemovalReason;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -46,34 +46,34 @@ public class Util {
 		
 		for (String itemstring : tosandstring.split(",")) {
 			ResourceLocation rl = new ResourceLocation(itemstring.trim());
-			if (!Registry.ITEM.keySet().contains(rl)) {
+			if (!BuiltInRegistries.ITEM.keySet().contains(rl)) {
 				System.out.println("[Eroding Stone Entities] Unable to find item for input '" + itemstring.trim() + "' to erode into sand in the Forge item registry. Ignoring it.");
 				continue;
 			}
 			
-			Item item = Registry.ITEM.get(rl);
+			Item item = BuiltInRegistries.ITEM.get(rl);
 			erodeinto.put(item, Items.SAND);
 		}
 		
 		for (String itemstring : toredsandstring.split(",")) {
 			ResourceLocation rl = new ResourceLocation(itemstring.trim());
-			if (!Registry.ITEM.keySet().contains(rl)) {
+			if (!BuiltInRegistries.ITEM.keySet().contains(rl)) {
 				System.out.println("[Eroding Stone Entities] Unable to find item for input '" + itemstring.trim() + "' to erode into red sand in the Forge item registry. Ignoring it.");
 				continue;
 			}
 			
-			Item item = Registry.ITEM.get(rl);
+			Item item = BuiltInRegistries.ITEM.get(rl);
 			erodeinto.put(item, Items.RED_SAND);
 		}
 		
 		for (String itemstring : toclaystring.split(",")) {
 			ResourceLocation rl = new ResourceLocation(itemstring.trim());
-			if (!Registry.ITEM.keySet().contains(rl)) {
+			if (!BuiltInRegistries.ITEM.keySet().contains(rl)) {
 				System.out.println("[Eroding Stone Entities] Unable to find item for input '" + itemstring.trim() + "' to erode into clay in the Forge item registry. Ignoring it.");
 				continue;
 			}
 			
-			Item item = Registry.ITEM.get(rl);
+			Item item = BuiltInRegistries.ITEM.get(rl);
 			if (ConfigHandler.erodeIntoClayBlockInsteadOfClayBall) {
 				erodeinto.put(item, Items.CLAY);
 			}

@@ -3,6 +3,9 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v6.0: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v5.9: Fixes the problems caused by Mojang's launcher update.
 
 =========

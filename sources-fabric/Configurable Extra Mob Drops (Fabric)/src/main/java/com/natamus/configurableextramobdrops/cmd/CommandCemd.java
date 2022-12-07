@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Configurable Extra Mob Drops.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.3, mod version: 2.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -31,7 +31,7 @@ import com.natamus.configurableextramobdrops.util.Util;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
@@ -59,7 +59,7 @@ public class CommandCemd {
 				
 				ArrayList<String> mobnames = new ArrayList<String>();
 				for (EntityType<?> et : Util.mobdrops.keySet()) {
-					String lowerregister = Registry.ENTITY_TYPE.getKey(et).toString().toLowerCase();
+					String lowerregister = BuiltInRegistries.ENTITY_TYPE.getKey(et).toString().toLowerCase();
 					String[] nspl = lowerregister.split(":");
 					if (nspl.length < 2) {
 						continue;
@@ -136,7 +136,7 @@ public class CommandCemd {
 				EntityType<?> entitytype = null;
 				
 				for (EntityType<?> et : Util.mobdrops.keySet()) {
-					String registrystring = Registry.ENTITY_TYPE.getKey(et).toString();
+					String registrystring = BuiltInRegistries.ENTITY_TYPE.getKey(et).toString();
 					if (!registrystring.contains(":")) {
 						continue;
 					}
@@ -198,7 +198,7 @@ public class CommandCemd {
 		EntityType<?> entitytype = null;
 		
 		for (EntityType<?> et : Util.mobdrops.keySet()) {
-			String registrystring = Registry.ENTITY_TYPE.getKey(et).toString();
+			String registrystring = BuiltInRegistries.ENTITY_TYPE.getKey(et).toString();
 			if (!registrystring.contains(":")) {
 				continue;
 			}

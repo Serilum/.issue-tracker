@@ -3,6 +3,9 @@ Anvil Restoration
 https://curseforge.com/minecraft/mc-mods/anvil-restoration
 
 =========
+v1.8: (Fabric) Updated mod to Minecraft version 1.19.3.
+
+=========
 v1.7: (Fabric) Added Mod Menu support with project links and logo.
 
 =========

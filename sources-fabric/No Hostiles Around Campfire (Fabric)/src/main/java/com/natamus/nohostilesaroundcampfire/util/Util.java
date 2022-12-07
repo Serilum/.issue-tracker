@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of No Hostiles Around Campfire.
- * Minecraft version: 1.19.2, mod version: 4.6.
+ * Minecraft version: 1.19.3, mod version: 4.7.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -22,7 +22,7 @@ import java.util.List;
 
 import com.natamus.collective_fabric.functions.EntityFunctions;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.MobCategory;
@@ -41,7 +41,7 @@ public class Util {
 			return true;
 		}
 		
-		ResourceLocation rl = Registry.ENTITY_TYPE.getKey(entity.getType());
+		ResourceLocation rl = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType());
 		if (rl != null) {
 			if (hostileSpecialResourceLocations.contains(rl.toString().split(":")[0])) {
 				return true;
