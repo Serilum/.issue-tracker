@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.25.
+ * Minecraft version: 1.19.3, mod version: 5.25.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -21,8 +21,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class SchematicBlockObject {
 
-	private BlockPos position;
-	private BlockState state;
+	private final BlockPos position;
+	private final BlockState state;
 	
 	public SchematicBlockObject(BlockPos position, BlockState state) {
 		this.position = position;

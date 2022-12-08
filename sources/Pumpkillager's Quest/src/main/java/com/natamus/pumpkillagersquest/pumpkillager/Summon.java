@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 2.3.
+ * Minecraft version: 1.19.3, mod version: 2.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -129,7 +129,7 @@ public class Summon {
             ZombieVillager zombieVillager = EntityType.ZOMBIE_VILLAGER.create(level);
             zombieVillager.setItemInHand(InteractionHand.MAIN_HAND, swordStack.copy());
 
-            zombieVillager.targetSelector.removeAllGoals();
+            zombieVillager.targetSelector.removeAllGoals(goal -> true);
             zombieVillager.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(zombieVillager, Player.class, false));
 
             minionsToSummon.add(zombieVillager);
@@ -155,7 +155,7 @@ public class Summon {
             Skeleton skeleton = EntityType.SKELETON.create(level);
             skeleton.setItemInHand(InteractionHand.MAIN_HAND, bowStack.copy());
 
-            skeleton.targetSelector.removeAllGoals();
+            skeleton.targetSelector.removeAllGoals(goal -> true);
             skeleton.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(skeleton, Player.class, false));
 
             minionsToSummon.add(skeleton);
@@ -200,8 +200,8 @@ public class Summon {
             vindicator.setItemInHand(InteractionHand.MAIN_HAND, axeStack.copy());
             pillager.setItemInHand(InteractionHand.MAIN_HAND, crossbowStack.copy());
 
-            vindicator.targetSelector.removeAllGoals();
-            pillager.targetSelector.removeAllGoals();
+            vindicator.targetSelector.removeAllGoals(goal -> true);
+            pillager.targetSelector.removeAllGoals(goal -> true);
 
             vindicator.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(vindicator, Player.class, false));
             pillager.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(pillager, Player.class, true));

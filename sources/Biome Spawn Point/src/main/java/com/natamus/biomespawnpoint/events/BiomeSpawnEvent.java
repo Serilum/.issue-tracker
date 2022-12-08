@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Biome Spawn Point.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.3, mod version: 1.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -23,10 +23,11 @@ import com.natamus.collective.functions.FeatureFunctions;
 import com.natamus.collective.functions.WorldFunctions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.levelgen.WorldGenSettings;
+import net.minecraft.world.level.levelgen.WorldOptions;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
@@ -52,7 +53,7 @@ public class BiomeSpawnEvent {
 
 		ServerLevel serverLevel = (ServerLevel)level;
 		try {
-			Registry<Biome> biomeRegistry = serverLevel.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY);
+			Registry<Biome> biomeRegistry = serverLevel.registryAccess().registryOrThrow(Registries.BIOME);
 			Util.loadSpawnBiomeConfig(biomeRegistry);
 
 			if (Util.spawnBiomeListSize() == 0) {
@@ -76,7 +77,7 @@ public class BiomeSpawnEvent {
 			logger.info("[Biome Spawn Point] Unable to access Biome Registry on level load.");
 		}
 
-		WorldGenSettings generatorsettings = serverLevel.getServer().getWorldData().worldGenSettings();
+		WorldOptions generatorsettings = serverLevel.getServer().getWorldData().worldGenOptions();
 
 		if (ModList.get().isLoaded("villagespawnpoint") && generatorsettings.generateStructures()) {
 			if (spawnPos == null) {

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Healing Soup.
- * Minecraft version: 1.19.2, mod version: 3.0.
+ * Minecraft version: 1.19.3, mod version: 3.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,7 +19,7 @@ package com.natamus.healingsoup;
 import com.natamus.collective.check.RegisterMod;
 import com.natamus.healingsoup.config.ConfigHandler;
 import com.natamus.healingsoup.events.SoupEvent;
-import com.natamus.healingsoup.items.SoupItems;
+import com.natamus.healingsoup.items.RegistryHandler;
 import com.natamus.healingsoup.util.Reference;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -45,7 +45,8 @@ public class Main {
         modEventBus.register(this); // !
         MinecraftForge.EVENT_BUS.register(this);
 
-		SoupItems.ITEMS.register(modEventBus);
+		RegistryHandler.ITEMS.register(modEventBus);
+        modEventBus.register(new RegistryHandler());
 
         RegisterMod.register(Reference.NAME, Reference.MOD_ID, Reference.VERSION, Reference.ACCEPTED_VERSIONS);
     }
@@ -53,8 +54,8 @@ public class Main {
     private void loadComplete(final FMLLoadCompleteEvent event) {
     	MinecraftForge.EVENT_BUS.register(new SoupEvent());
 
-		SoupItems.soups.add(SoupItems.MUSHROOM_SOUP = SoupItems.MUSHROOM_SOUP_ITEM.get());
-		SoupItems.soups.add(SoupItems.CACTUS_SOUP = SoupItems.CACTUS_SOUP_ITEM.get());
-		SoupItems.soups.add(SoupItems.CHOCOLATE_MILK = SoupItems.CHOCOLATE_MILK_ITEM.get());
+		RegistryHandler.soups.add(RegistryHandler.MUSHROOM_SOUP = RegistryHandler.MUSHROOM_SOUP_ITEM.get());
+		RegistryHandler.soups.add(RegistryHandler.CACTUS_SOUP = RegistryHandler.CACTUS_SOUP_ITEM.get());
+		RegistryHandler.soups.add(RegistryHandler.CHOCOLATE_MILK = RegistryHandler.CHOCOLATE_MILK_ITEM.get());
 	}
 }

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Beautified Chat Server.
- * Minecraft version: 1.19.2, mod version: 1.6.
+ * Minecraft version: 1.19.3, mod version: 1.6.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -37,7 +37,7 @@ public class BeautifulChatEvent {
 	private static final Logger logger = LogUtils.getLogger();
 
 	@SubscribeEvent
-	public void onServerChat(ServerChatEvent.Submitted e) {
+	public void onServerChat(ServerChatEvent e) {
 		String timestamp = new SimpleDateFormat(ConfigHandler.GENERAL.timestampFormat.get()).format(new Date());
 
 		ServerPlayer serverplayer = e.getPlayer();

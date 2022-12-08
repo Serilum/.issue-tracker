@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Superflat World No Slimes.
- * Minecraft version: 1.19.2, mod version: 1.8.
+ * Minecraft version: 1.19.3, mod version: 1.8.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -34,7 +34,7 @@ public class SlimeEvent {
 		
 		ServerLevel serverworld = (ServerLevel)world;
 		
-		if (serverworld.getServer().getWorldData().worldGenSettings().isFlatWorld()) {
+		if (serverworld.getServer().getWorldData().isFlatWorld()) {
 			if (e.getEntity() instanceof Slime) {
 				e.setCanceled(true);
 			}

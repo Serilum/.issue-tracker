@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.25.
+ * Minecraft version: 1.19.3, mod version: 5.25.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -55,7 +55,7 @@ public class BlockPosFunctions {
 	}
 
 	// START: RECURSIVE GET BLOCKS
-	private static HashMap<BlockPos, Integer> rgnbcount = new HashMap<BlockPos, Integer>();
+	private static final HashMap<BlockPos, Integer> rgnbcount = new HashMap<BlockPos, Integer>();
 
 	public static List<BlockPos> getBlocksNextToEachOther(Level world, BlockPos startpos, List<Block> possibleblocks) {
 		return getBlocksNextToEachOther(world, startpos, possibleblocks, 50);
@@ -96,7 +96,7 @@ public class BlockPosFunctions {
 			}
 		}
 	}
-	private static HashMap<BlockPos, Integer> rgnbmcount = new HashMap<BlockPos, Integer>();
+	private static final HashMap<BlockPos, Integer> rgnbmcount = new HashMap<BlockPos, Integer>();
 
 	public static List<BlockPos> getBlocksNextToEachOtherMaterial(Level world, BlockPos startpos, List<Material> possiblematerials) {
 		return getBlocksNextToEachOtherMaterial(world, startpos, possiblematerials, 50);
@@ -181,7 +181,7 @@ public class BlockPosFunctions {
 	}
 	public static BlockPos getNearbyVillage(ServerLevel serverLevel, BlockPos nearPos) {
 		BlockPos closestvillage = null;
-		if (!serverLevel.getServer().getWorldData().worldGenSettings().generateStructures()) {
+		if (!serverLevel.getServer().getWorldData().worldGenOptions().generateStructures()) {
 			return null;
 		}
 

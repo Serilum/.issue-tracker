@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Pumpkillager's Quest.
- * Minecraft version: 1.19.2, mod version: 2.3.
+ * Minecraft version: 1.19.3, mod version: 2.3.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -138,7 +138,7 @@ public class Actions {
 
             Vec3 pvec = prisoner.position();
 
-            level.explode(null, new DamageSource("explosion").setExplosion(), null, pvec.x, pvec.y, pvec.z, 3.0f, false, Explosion.BlockInteraction.NONE);
+            level.explode(null, new DamageSource("explosion").setExplosion(), null, pvec.x, pvec.y, pvec.z, 3.0f, false, Level.ExplosionInteraction.NONE);
 
             Conversations.startTalking(level, prisoner, player, 6);
         }).start();
@@ -147,7 +147,7 @@ public class Actions {
     public static void startFinalBossSequence(Level level, Player player, BlockPos centerPos, List<Pair<BlockPos, BlockState>> candlePositions) {
         Vec3 centerVec = new Vec3(centerPos.getX() + 0.5, centerPos.getY(), centerPos.getZ()+0.5);
 
-        level.explode(null, new DamageSource("explosion").setExplosion(), null, centerVec.x, centerVec.y, centerVec.z, 3.0f, false, Explosion.BlockInteraction.NONE);
+        level.explode(null, new DamageSource("explosion").setExplosion(), null, centerVec.x, centerVec.y, centerVec.z, 3.0f, false, Level.ExplosionInteraction.NONE);
         level.setBlock(centerPos, Blocks.AIR.defaultBlockState(), 3);
 
         for (Pair<BlockPos, BlockState> candlePair : candlePositions) {
@@ -290,7 +290,7 @@ public class Actions {
 
         level.addFreshEntity(prisoner);
 
-        level.explode(null, new DamageSource("explosion").setExplosion(), null, prisonerVec.x, prisonerVec.y, prisonerVec.z, 3.0f, false, Explosion.BlockInteraction.NONE);
+        level.explode(null, new DamageSource("explosion").setExplosion(), null, prisonerVec.x, prisonerVec.y, prisonerVec.z, 3.0f, false, Level.ExplosionInteraction.NONE);
 
         if (!level.isClientSide) {
             ExperienceOrb.award((ServerLevel)level, new Vec3(pumpkillagerPos.getX()+0.5, pumpkillagerPos.getY(), pumpkillagerPos.getZ()+0.5), ConfigHandler.GENERAL.experienceAmountRewardFinalBoss.get());

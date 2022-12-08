@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Manure.
- * Minecraft version: 1.19.2, mod version: 1.1.
+ * Minecraft version: 1.19.3, mod version: 1.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -17,7 +17,7 @@
 package com.natamus.manure.events;
 
 import com.natamus.manure.config.ConfigHandler;
-import com.natamus.manure.items.ManureItems;
+import com.natamus.manure.items.RegistryHandler;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -51,7 +51,7 @@ public class ManureDropEvent {
                 continue;
             }
 
-            animal.level.addFreshEntity(new ItemEntity(animal.level, animal.getX(), animal.getY()+0.5, animal.getZ(), new ItemStack(ManureItems.MANURE, 1)));
+            animal.level.addFreshEntity(new ItemEntity(animal.level, animal.getX(), animal.getY()+0.5, animal.getZ(), new ItemStack(RegistryHandler.MANURE, 1)));
         }
     }
 

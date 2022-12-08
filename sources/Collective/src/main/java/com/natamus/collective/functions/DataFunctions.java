@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.25.
+ * Minecraft version: 1.19.3, mod version: 5.25.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -30,7 +30,7 @@ import java.util.Scanner;
 public class DataFunctions {
 	public static String readStringFromURL(String requestURL) {
 		String data = "";
-	    try (Scanner scanner = new Scanner(new URL(requestURL).openStream(), StandardCharsets.UTF_8.toString())) {
+	    try (Scanner scanner = new Scanner(new URL(requestURL).openStream(), StandardCharsets.UTF_8)) {
 	        scanner.useDelimiter("\\A");
 	        data = scanner.hasNext() ? scanner.next() : "";
 	    }

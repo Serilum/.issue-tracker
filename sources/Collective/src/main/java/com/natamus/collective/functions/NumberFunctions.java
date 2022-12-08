@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.2, mod version: 5.25.
+ * Minecraft version: 1.19.3, mod version: 5.25.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -24,7 +24,7 @@ public class NumberFunctions {
 			bookshelfcount = 15;
 		}
 		
-		double base = (ThreadLocalRandom.current().nextInt(1, 8 + 1) + Math.floor(bookshelfcount / 2) + ThreadLocalRandom.current().nextInt(0, bookshelfcount + 1));
+		double base = (ThreadLocalRandom.current().nextInt(1, 8 + 1) + Math.floor(bookshelfcount / 2F) + ThreadLocalRandom.current().nextInt(0, bookshelfcount + 1));
 		if (tablerow == 0) {
 			return (int) Math.max(base/3, 1);
 		}

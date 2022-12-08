@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Enchanting Commands.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.3, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -50,7 +50,7 @@ public class Main {
 
     @SubscribeEvent
     public void registerCommands(RegisterCommandsEvent e) {
-    	CommandEc.register(e.getDispatcher());
+    	CommandEc.register(e.getDispatcher(), e.getBuildContext());
     }
 	
     private void loadComplete(final FMLLoadCompleteEvent event) {

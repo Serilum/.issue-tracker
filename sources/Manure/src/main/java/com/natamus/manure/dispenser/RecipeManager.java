@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Manure.
- * Minecraft version: 1.19.2, mod version: 1.1.
+ * Minecraft version: 1.19.3, mod version: 1.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,13 +16,13 @@
 
 package com.natamus.manure.dispenser;
 
-import com.natamus.manure.items.ManureItems;
+import com.natamus.manure.items.RegistryHandler;
 import net.minecraft.world.level.block.DispenserBlock;
 
 public class RecipeManager {
 	public static void initDispenserBehavior() {
 		try {
-			DispenserBlock.registerBehavior(ManureItems.MANURE, new BehaviourManureDispenser(ManureItems.MANURE));
+			DispenserBlock.registerBehavior(RegistryHandler.MANURE, new BehaviourManureDispenser(RegistryHandler.MANURE));
 		}
 		catch (ArrayIndexOutOfBoundsException ignored) { }
 	}

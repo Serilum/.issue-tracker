@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Manure.
- * Minecraft version: 1.19.2, mod version: 1.1.
+ * Minecraft version: 1.19.3, mod version: 1.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -20,7 +20,7 @@ import com.natamus.collective.check.RegisterMod;
 import com.natamus.manure.config.ConfigHandler;
 import com.natamus.manure.dispenser.RecipeManager;
 import com.natamus.manure.events.ManureDropEvent;
-import com.natamus.manure.items.ManureItems;
+import com.natamus.manure.items.RegistryHandler;
 import com.natamus.manure.util.Reference;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -40,7 +40,8 @@ public class Main {
         ModLoadingContext modLoadingContext = ModLoadingContext.get();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ManureItems.ITEMS.register(modEventBus);
+        RegistryHandler.ITEMS.register(modEventBus);
+        modEventBus.register(new RegistryHandler());
     	
         modEventBus.addListener(this::loadComplete);
         modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHandler.spec);
@@ -52,7 +53,7 @@ public class Main {
     }
 	
     private void loadComplete(final FMLLoadCompleteEvent event) {
-        ManureItems.MANURE = ManureItems.MANURE_ITEM_OBJECT.get();
+        RegistryHandler.MANURE = RegistryHandler.MANURE_ITEM_OBJECT.get();
 
         RecipeManager.initDispenserBehavior();
         MinecraftForge.EVENT_BUS.register(new ManureDropEvent());

@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Enchanting Commands.
- * Minecraft version: 1.19.2, mod version: 2.5.
+ * Minecraft version: 1.19.3, mod version: 2.5.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -22,9 +22,11 @@ import com.natamus.collective.functions.StringFunctions;
 import com.natamus.enchantingcommands.config.ConfigHandler;
 import com.natamus.enchantingcommands.util.Util;
 import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.commands.arguments.ItemEnchantmentArgument;
+import net.minecraft.commands.arguments.ResourceArgument;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -35,7 +37,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
 public class CommandEc {
-	public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+	public static void register(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext commandBuildContext) {
 		dispatcher.register(Commands.literal(ConfigHandler.GENERAL.enchantCommandString.get())
 				.requires((iCommandSender) -> iCommandSender.hasPermission(2))
 				.executes((command) -> {
@@ -52,7 +54,7 @@ public class CommandEc {
 						return 1;
 					}))
 				.then(Commands.literal("enchant")
-				.then(Commands.argument("enchantment", ItemEnchantmentArgument.enchantment())
+				.then(Commands.argument("enchantment", ResourceArgument.resource(commandBuildContext, Registries.ENCHANTMENT))
 				.then(Commands.argument("level", IntegerArgumentType.integer(0, 127))
 					.executes((command) -> {
 						CommandSourceStack source = command.getSource();
@@ -65,7 +67,7 @@ public class CommandEc {
 						Player player = (ServerPlayer)entity;
 						ItemStack held = player.getMainHandItem();
 
-						Enchantment enchantment = ItemEnchantmentArgument.getEnchantment(command, "enchantment");
+						Enchantment enchantment = ResourceArgument.getEnchantment(command, "enchantment").value();
 						int level = IntegerArgumentType.getInteger(command, "level");
 
 						if (!player.hasItemInSlot(EquipmentSlot.MAINHAND)) {

@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[43,)"
+loaderVersion="[44,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Configurable%20Extra%20Mob%20Drops"
 
@@ -11,13 +11,13 @@ displayURL="https://curseforge.com/minecraft/mc-mods/configurable-extra-mob-drop
 authors="Rick South"
 description="Add extra drops to any (modded) mob entity via commands and a config file."
 credits='''Thank you very much to my Membership sponsors for supporting the development of this mod:  
-Adam E, Alister, aternosorg, Cherriesaurus, Kreezxil, limpjellyfish, Michael W. S., Mir3JonCZ, Rebecca Hb., Robert Gilbert, Sija, Tyler Behl, Wendi S   
+Adam E, Alister, aternosorg, Cherriesaurus, Kreezxil, Michael W. S., Mir3JonCZ, Rebecca Hb., Robert Gilbert, Shana Gitnick, Sija, TheNickm2, Tyler Behl, Wendi S   
 If you would like to contribute too, check out https://ricksouth.com/donate. Appreciate it! <3   
 '''
 
 [[dependencies.configurableextramobdrops]]
     modId="collective"
     mandatory=true
-    versionRange="[5.15,)"
+    versionRange="[5.25,)"
     ordering="NONE"
     side="BOTH"

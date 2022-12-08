@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Breedable Killer Rabbit.
- * Minecraft version: 1.19.2, mod version: 1.9.
+ * Minecraft version: 1.19.3, mod version: 1.9.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -47,14 +47,14 @@ public class EntityEvent {
 			return;
 		}
 		
-		if (child instanceof Rabbit == false) {
+		if (!(child instanceof Rabbit)) {
 			return;
 		}
 		Rabbit rabbit = (Rabbit)child;
 		
 		double num = GlobalVariables.random.nextDouble();
 		if (num <= ConfigHandler.GENERAL.chanceBabyRabbitIsKiller.get()) {
-			rabbit.setRabbitType(99);
+			rabbit.setVariant(Rabbit.Variant.EVIL);
 			if (ConfigHandler.GENERAL.removeKillerRabbitNameTag.get()) {
 				rabbit.setCustomName(null);
 			}
@@ -75,7 +75,7 @@ public class EntityEvent {
 		}
 		
 		Entity entity = e.getTarget();
-		if (entity instanceof Rabbit == false) {
+		if (!(entity instanceof Rabbit)) {
 			return;
 		}
 		
@@ -87,7 +87,7 @@ public class EntityEvent {
 		}
 		
 		Rabbit rabbit = (Rabbit)entity;
-		if (rabbit.getRabbitType() != 99) {
+		if (!rabbit.getVariant().equals(Rabbit.Variant.EVIL)) {
 			return;
 		}
 		if (rabbit.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(Items.GOLDEN_CARROT)) {
@@ -112,7 +112,7 @@ public class EntityEvent {
 			return;
 		}
 		
-		if (source instanceof Rabbit == false) {
+		if (!(source instanceof Rabbit)) {
 			return;
 		}
 		
@@ -129,13 +129,13 @@ public class EntityEvent {
 		}
 		
 		Entity entity = e.getEntity();
-		if (entity instanceof Rabbit == false) {
+		if (!(entity instanceof Rabbit)) {
 			return;
 		}
 		if (!ConfigHandler.GENERAL.removeKillerRabbitNameTag.get()) {
 			return;
 		}
-		if (((Rabbit)entity).getRabbitType() != 99) {
+		if (!((Rabbit)entity).getVariant().equals(Rabbit.Variant.EVIL)) {
 			return;
 		}
 		if (!entity.hasCustomName()) {
@@ -155,7 +155,7 @@ public class EntityEvent {
 			return;
 		}
 		
-		if (entity instanceof Player == false) {
+		if (!(entity instanceof Player)) {
 			return;
 		}
 		
@@ -163,11 +163,11 @@ public class EntityEvent {
 		if (source == null) {
 			return;
 		}
-		if (source instanceof Rabbit == false) {
+		if (!(source instanceof Rabbit)) {
 			return;
 		}
 		
-		if (((Rabbit)source).getRabbitType() == 99) {
+		if (((Rabbit)source).getVariant().equals(Rabbit.Variant.EVIL)) {
 			StringFunctions.sendMessage((Player)e.getEntity(), "The killer rabbit wants a golden carrot!", ChatFormatting.RED);
 		}
 	}

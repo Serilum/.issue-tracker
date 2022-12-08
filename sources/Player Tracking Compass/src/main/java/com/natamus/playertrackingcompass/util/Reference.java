@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Tracking Compass.
- * Minecraft version: 1.19.2, mod version: 2.0.
+ * Minecraft version: 1.19.3, mod version: 2.0.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -20,5 +20,5 @@ public class Reference {
 	public static final String MOD_ID = "playertrackingcompass";
 	public static final String NAME = "Player Tracking Compass";
 	public static final String VERSION = "2.0";
-	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
+	public static final String ACCEPTED_VERSIONS = "[1.19.3]";
 }
