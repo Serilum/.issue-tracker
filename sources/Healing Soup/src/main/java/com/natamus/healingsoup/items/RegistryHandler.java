@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Healing Soup.
- * Minecraft version: 1.19.3, mod version: 3.0.
+ * Minecraft version: 1.19.3, mod version: 3.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -46,8 +46,10 @@ public class RegistryHandler {
 
     @SubscribeEvent
     public void onCreativeTab(CreativeModeTabEvent.BuildContents e) {
-        e.registerSimple(CreativeModeTabs.FOOD_AND_DRINKS, MUSHROOM_SOUP);
-		e.registerSimple(CreativeModeTabs.FOOD_AND_DRINKS, CACTUS_SOUP);
-		e.registerSimple(CreativeModeTabs.FOOD_AND_DRINKS, CHOCOLATE_MILK);
+		if (e.getTab().equals(CreativeModeTabs.FOOD_AND_DRINKS)) {
+			e.accept(MUSHROOM_SOUP);
+			e.accept(CACTUS_SOUP);
+			e.accept(CHOCOLATE_MILK);
+		}
     }
 }

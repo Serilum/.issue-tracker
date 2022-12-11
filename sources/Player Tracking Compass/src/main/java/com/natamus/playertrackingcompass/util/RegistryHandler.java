@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Player Tracking Compass.
- * Minecraft version: 1.19.3, mod version: 2.0.
+ * Minecraft version: 1.19.3, mod version: 2.1.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -42,6 +42,8 @@ public class RegistryHandler {
 
     @SubscribeEvent
     public void onCreativeTab(CreativeModeTabEvent.BuildContents e) {
-        e.registerSimple(CreativeModeTabs.TOOLS_AND_UTILITIES, CompassVariables.TRACKING_COMPASS);
+        if (e.getTab().equals(CreativeModeTabs.TOOLS_AND_UTILITIES)) {
+            e.accept(CompassVariables.TRACKING_COMPASS);
+        }
     }
 }

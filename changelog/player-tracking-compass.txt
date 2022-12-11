@@ -3,6 +3,9 @@ Player Tracking Compass
 https://www.curseforge.com/minecraft/mc-mods/player-tracking-compass
 
 =========
+v2.1: (Forge 1.19.3) Fixes the mod after breaking changes in Forge 44.0.6, related to creative tab population.
+
+=========
 v2.0: (Forge 1.19 only) Updated to Forge version 41.0.94+. Use the previous uploaded file if you're on an older version.
 
 =========

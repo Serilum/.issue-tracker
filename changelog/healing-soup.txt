@@ -3,6 +3,9 @@ Healing Soup
 https://www.curseforge.com/minecraft/mc-mods/healing-soup
 
 =========
+v3.2: (Forge 1.19.3) Fixes the mod after breaking changes in Forge 44.0.6, related to creative tab population.
+
+=========
 v3.1: (Fabric) Updated mod to Minecraft version 1.19.3.
 
 =========
