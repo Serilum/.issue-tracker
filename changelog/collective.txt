@@ -3,6 +3,18 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.36-5.39: Updated Collective's schematic code to allow input of structure block nbt schematic files.
+
+=========
+v5.35: Added an extra check for when the Mojang API is down, used in player head functions, to prevent unwanted behaviour.
+
+=========
+v5.29-5.34: Added the placeBlockEntitiesInWorld function inside the schematic code to place BlockEntities based on NBT data.
+
+=========
+v5.26-5.28: Updated Collective's schematic code to correctly use the offset stored in the NBT file.
+
+=========
 v5.24-5.25: Updated EntityFunctions.
 
 =========
