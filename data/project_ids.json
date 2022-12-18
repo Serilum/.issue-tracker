@@ -507,6 +507,10 @@
 		"fabric" : 527822,
 		"forge" : 390717
 	},
+	"Starter Structure" : {
+		"fabric" : -1,
+		"forge" : 746391
+	},
 	"Stray Spawn" : {
 		"fabric" : 527818,
 		"forge" : 348172

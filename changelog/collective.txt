@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.4-5.43: Added support for entities loaded via structure block schematic files.
+
+=========
 v5.36-5.39: Updated Collective's schematic code to allow input of structure block nbt schematic files.
 
 =========

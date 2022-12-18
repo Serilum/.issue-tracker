@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.3, mod version: 5.25.
+ * Minecraft version: 1.19.3, mod version: 5.43.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -16,46 +16,47 @@
 
 package com.natamus.collective_fabric.functions;
 
-import java.awt.*;
+import com.natamus.collective_fabric.data.GlobalVariables;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+
 import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
-import com.natamus.collective_fabric.data.GlobalVariables;
-
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-
 public class HeadFunctions {
 	public static ItemStack getPlayerHead(String playername, Integer amount) {
-		// Head Data
 		String data1 = DataFunctions.readStringFromURL(GlobalVariables.playerdataurl + playername.toLowerCase());
 		if (data1.equals("")) {
 			return null;
 		}
 
-		String[] sdata1 = data1.split("\":\"");
-		String pname = sdata1[1].split("\"")[0];
-		String pid = sdata1[2].split("\"")[0];
-		
-		String data2 = DataFunctions.readStringFromURL(GlobalVariables.skindataurl + pid);
-		if (data2.equals("")) {
-			return null;
-		}
-		
-		String[] sdata2 = data2.replaceAll(" ", "").split("value\":\"");
-		
-		String tvalue = sdata2[1].split("\"")[0];
-		String d = new String(Base64.getDecoder().decode((tvalue.getBytes())));
-		
-		String texture = Base64.getEncoder().encodeToString((("{\"textures\"" + d.split("\"textures\"")[1]).getBytes()));
-		String oldid = new UUID(texture.hashCode(), texture.hashCode()).toString();
+		try {
+			String[] sdata1 = data1.split("\":\"");
+			String pname = sdata1[1].split("\"")[0];
+			String pid = sdata1[2].split("\"")[0];
 
-		return getTexturedHead(pname + "'s Head", texture, oldid, 1);
+			String data2 = DataFunctions.readStringFromURL(GlobalVariables.skindataurl + pid);
+			if (data2.equals("")) {
+				return null;
+			}
+
+			String[] sdata2 = data2.replaceAll(" ", "").split("value\":\"");
+
+			String tvalue = sdata2[1].split("\"")[0];
+			String d = new String(Base64.getDecoder().decode((tvalue.getBytes())));
+
+			String texture = Base64.getEncoder().encodeToString((("{\"textures\"" + d.split("\"textures\"")[1]).getBytes()));
+			String oldid = new UUID(texture.hashCode(), texture.hashCode()).toString();
+
+			return getTexturedHead(pname + "'s Head", texture, oldid, 1);
+		}
+		catch (ArrayIndexOutOfBoundsException ignored) { }
+
+		return null;
 	}
 	
 	public static ItemStack getTexturedHead(String headname, String texture, String oldid, Integer amount) {

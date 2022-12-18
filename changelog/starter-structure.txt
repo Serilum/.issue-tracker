@@ -1,0 +1,6 @@
+Changelog:
+Starter Structure
+https://curseforge.com/minecraft/mc-mods/starter-structure
+
+=========
+v1.0: Initial release of Starter Structure.

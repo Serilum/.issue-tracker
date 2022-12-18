@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "collective-fabric",
-  "version": "5.25",
+  "version": "5.43",
 
   "name": "Collective (Fabric)",
   "description": "Collective is a shared library with common code for all of Serilum's mods.",
