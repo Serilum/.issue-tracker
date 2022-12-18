@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Starter Structure.
- * Minecraft version: 1.19.3, mod version: 1.0.
+ * Minecraft version: 1.19.3, mod version: 1.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,10 +19,7 @@ package com.natamus.starterstructure.util;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.logging.LogUtils;
 import com.natamus.collective.data.GlobalVariables;
-import com.natamus.collective.functions.DataFunctions;
-import com.natamus.collective.functions.DimensionFunctions;
-import com.natamus.collective.functions.SignFunctions;
-import com.natamus.collective.functions.WorldFunctions;
+import com.natamus.collective.functions.*;
 import com.natamus.collective.schematic.ParseSchematicFile;
 import com.natamus.collective.schematic.ParsedSchematicObject;
 import com.natamus.starterstructure.config.ConfigHandler;
@@ -51,6 +48,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -59,7 +57,7 @@ public class Util {
 
     private static final String dirpath = DataFunctions.getConfigDirectory() + File.separator + Reference.MOD_ID;
     private static final File schematicDir = new File(dirpath + File.separator + "schematics");
-    private static final File nbtDir = new File(dirpath + File.separator + "nbt");
+    private static final File signDataDir = new File(dirpath + File.separator + "signdata");
 
     private static final Logger logger = LogUtils.getLogger();
     private static final String logPrefix = "[" + Reference.NAME + "] ";
@@ -70,8 +68,8 @@ public class Util {
                 return false;
             }
         }
-        if (!nbtDir.isDirectory()) {
-            return nbtDir.mkdirs();
+        if (!signDataDir.isDirectory()) {
+            return signDataDir.mkdirs();
         }
         return true;
     }
@@ -107,9 +105,14 @@ public class Util {
         int configYOffset = ConfigHandler.GENERAL.generatedStructureYOffset.get();
         boolean automaticCenter = schematicFile.getName().endsWith(".nbt");
 
+        BlockPos spawnPos = serverLevel.getSharedSpawnPos().offset(0, configYOffset, 0).immutable();
+
         ParsedSchematicObject parsedSchematicObject;
         try (FileInputStream fileInputStream = new FileInputStream(schematicFile)){
-            BlockPos spawnPos = serverLevel.getSharedSpawnPos();
+            if (ConfigHandler.GENERAL.ignoreTreesDuringStructurePlacement.get()) {
+                spawnPos = BlockPosFunctions.getSurfaceBlockPos(serverLevel, spawnPos.getX(), spawnPos.getZ(), true);
+            }
+
             parsedSchematicObject = ParseSchematicFile.getParsedSchematicObject(fileInputStream, serverLevel, spawnPos, configYOffset, false, automaticCenter);
         }
         catch (Exception ex) {
@@ -123,7 +126,9 @@ public class Util {
             return;
         }
 
+        BlockPos finalSpawnPos = spawnPos;
         MinecraftServer minecraftServer = serverLevel.getServer();
+
         minecraftServer.execute(() -> {
             List<BlockPos> protectedList = null;
             if (ConfigHandler.GENERAL.protectStructureBlocks.get()) {
@@ -176,20 +181,36 @@ public class Util {
                             }
                         }
                         else if (firstLine.contains("[NBT]")) {
-                            String nbtFilePath = nbtDir + File.separator + signContent + ".txt";
+                            String nbtFilePath = signDataDir + File.separator + signContent + ".txt";
 
                             File nbtTextFile = new File(nbtFilePath);
                             if (nbtTextFile.isFile()) {
-                                try {
-                                    String rawNBT = new String(Files.readAllBytes(Paths.get(nbtFilePath)));
+                                int n = 1;
+                                while (n >= 0) {
+                                    String rawNBT = "";
+                                    try {
+                                        rawNBT = new String(Files.readAllBytes(Paths.get(nbtFilePath)));
 
-                                    CompoundTag entityCompoundTag = TagParser.parseTag(rawNBT);
-                                    Optional<Entity> optionalNewEntity = EntityType.create(entityCompoundTag, serverLevel);
-                                    if (optionalNewEntity.isPresent()) {
-                                        newEntity = optionalNewEntity.get();
+                                        CompoundTag entityCompoundTag = TagParser.parseTag(rawNBT);
+                                        Optional<Entity> optionalNewEntity = EntityType.create(entityCompoundTag, serverLevel);
+                                        if (optionalNewEntity.isPresent()) {
+                                            if (n != 1) {
+                                                logger.info(logPrefix + "Unable to parse the " + signContent + ".txt entitydata file. Attempting automatic fix.");
+                                            }
+
+                                            newEntity = optionalNewEntity.get();
+                                            n = -1;
+                                        }
+                                    } catch (Exception ex) {
+                                        logger.info(logPrefix + "Unable to parse the " + signContent + ".txt entitydata file. Attempting automatic fix.");
+                                        try {
+                                            attemptEntityDataFileFix(nbtFilePath, rawNBT);
+                                        }
+                                        catch (IOException ignored) { }
                                     }
+
+                                    n-=1;
                                 }
-                                catch (Exception ignored) { }
                             }
                         }
                         else {
@@ -216,14 +237,13 @@ public class Util {
                 }
 
                 minecraftServer.execute(() -> {
-                    BlockPos spawnPos = serverLevel.getSharedSpawnPos().offset(0, configYOffset, 0).immutable();
                     float spawnAngle = serverLevel.getSharedSpawnAngle();
 
-                    if (!isSpawnablePos(serverLevel, spawnPos)) {
+                    if (!isSpawnablePos(serverLevel, finalSpawnPos)) {
                         List<Integer> absoluteArray = Arrays.asList(-1, 1);
 
                         for (int i = 0; i <= 10; i++) {
-                            for (BlockPos aroundPos : BlockPos.betweenClosed(spawnPos.getX()-i, spawnPos.getY()-i, spawnPos.getZ()-i, spawnPos.getX()+i, spawnPos.getY()+i, spawnPos.getZ()+i)) {
+                            for (BlockPos aroundPos : BlockPos.betweenClosed(finalSpawnPos.getX()-i, finalSpawnPos.getY()-i, finalSpawnPos.getZ()-i, finalSpawnPos.getX()+i, finalSpawnPos.getY()+i, finalSpawnPos.getZ()+i)) {
                                 BlockPos upPos = aroundPos.above();
                                 if (isSpawnablePos(serverLevel, aroundPos) && isSpawnablePos(serverLevel, upPos)) {
                                     serverLevel.setDefaultSpawnPos(aroundPos, spawnAngle);
@@ -232,9 +252,34 @@ public class Util {
                             }
                         }
                     }
+
+                    serverLevel.setDefaultSpawnPos(finalSpawnPos, spawnAngle);
                 });
             });
         });
+    }
+
+    private static void attemptEntityDataFileFix(String nbtFilePath, String rawNBT) throws IOException {
+        String[] rawSplit = rawNBT.split("\\{", 2);
+        if (rawSplit.length > 1) {
+            String prefix = rawSplit[0];
+            String newRawNBT = rawSplit[1];
+
+            String idValue = "";
+            if (prefix.contains(":")) {
+                String[] prefixSplit = prefix.split(" ");
+                for (String word : prefixSplit) {
+                    if (word.contains(":")) {
+                        idValue = "id:\"" + word + "\",";
+                    }
+                }
+            }
+
+            if (!idValue.equals("")) {
+                newRawNBT = "{" + idValue + newRawNBT;
+                Files.write(Path.of(nbtFilePath), newRawNBT.getBytes());
+            }
+        }
     }
 
     private static boolean isSpawnablePos(Level level, BlockPos pos) {

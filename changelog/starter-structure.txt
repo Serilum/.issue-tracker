@@ -3,4 +3,11 @@ Starter Structure
 https://curseforge.com/minecraft/mc-mods/starter-structure
 
 =========
+v1.2: The entitydata NBT file can now attempt to parse a /summon command directly. It does this by adding the id value automatically to the nbt data. This code is only ran when the data can't be parsed initially.
+
+=========
+v1.1: Added the ignoreTreesDuringStructurePlacement config option to improve structure generation inside forests.
+Updated backend code.
+
+=========
 v1.0: Initial release of Starter Structure.

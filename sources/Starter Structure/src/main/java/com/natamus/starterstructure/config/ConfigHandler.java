@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Starter Structure.
- * Minecraft version: 1.19.3, mod version: 1.0.
+ * Minecraft version: 1.19.3, mod version: 1.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -27,6 +27,7 @@ public class ConfigHandler {
 		public final ForgeConfigSpec.ConfigValue<Boolean> shouldGenerateStructure;
 		public final ForgeConfigSpec.ConfigValue<Boolean> forceExactSpawnMiddleStructure;
 		public final ForgeConfigSpec.ConfigValue<Integer> generatedStructureYOffset;
+		public final ForgeConfigSpec.ConfigValue<Boolean> ignoreTreesDuringStructurePlacement;
 		public final ForgeConfigSpec.ConfigValue<Boolean> generationIgnoreJigsawAndStructureBlocks;
 
 		public final ForgeConfigSpec.ConfigValue<Boolean> protectStructureBlocks;
@@ -53,6 +54,9 @@ public class ConfigHandler {
 			generatedStructureYOffset = builder
 					.comment("The y offset for the generated structure. Can for example be set to -1 if you notice a building always spawns one block too high.")
 					.defineInRange("generatedStructureYOffset", 0, -100, 100);
+			ignoreTreesDuringStructurePlacement = builder
+					.comment("Prevents structures from being placed on top of trees. Any leaf and log blocks will be ignored during placement.")
+					.define("ignoreTreesDuringStructurePlacement", true);
 			generationIgnoreJigsawAndStructureBlocks = builder
 					.comment("Some schematic files might contain jigsaw or structure blocks. These are by default ignored during structure generation.")
 					.define("generationIgnoreJigsawAndStructureBlocks", true);

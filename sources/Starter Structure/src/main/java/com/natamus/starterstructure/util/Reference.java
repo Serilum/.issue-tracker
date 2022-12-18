@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Starter Structure.
- * Minecraft version: 1.19.3, mod version: 1.0.
+ * Minecraft version: 1.19.3, mod version: 1.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -19,6 +19,6 @@ package com.natamus.starterstructure.util;
 public class Reference {
 	public static final String MOD_ID = "starterstructure";
 	public static final String NAME = "Starter Structure";
-	public static final String VERSION = "1.0";
+	public static final String VERSION = "1.2";
 	public static final String ACCEPTED_VERSIONS = "[1.19.3]";
 }

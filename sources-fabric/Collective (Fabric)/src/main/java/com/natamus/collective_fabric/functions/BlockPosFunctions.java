@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Collective.
- * Minecraft version: 1.19.3, mod version: 5.43.
+ * Minecraft version: 1.19.3, mod version: 5.45.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -55,7 +55,7 @@ public class BlockPosFunctions {
 	}
 
 	// START: RECURSIVE GET BLOCKS
-	private static HashMap<BlockPos, Integer> rgnbcount = new HashMap<BlockPos, Integer>();
+	private static final HashMap<BlockPos, Integer> rgnbcount = new HashMap<BlockPos, Integer>();
 
 	public static List<BlockPos> getBlocksNextToEachOther(Level world, BlockPos startpos, List<Block> possibleblocks) {
 		return getBlocksNextToEachOther(world, startpos, possibleblocks, 50);
@@ -96,7 +96,7 @@ public class BlockPosFunctions {
 			}
 		}
 	}
-	private static HashMap<BlockPos, Integer> rgnbmcount = new HashMap<BlockPos, Integer>();
+	private static final HashMap<BlockPos, Integer> rgnbmcount = new HashMap<BlockPos, Integer>();
 
 	public static List<BlockPos> getBlocksNextToEachOtherMaterial(Level world, BlockPos startpos, List<Material> possiblematerials) {
 		return getBlocksNextToEachOtherMaterial(world, startpos, possiblematerials, 50);
@@ -139,18 +139,32 @@ public class BlockPosFunctions {
 	}
 	// END RECURSIVE GET BLOCKS
 
-	public static BlockPos getSurfaceBlockPos(ServerLevel serverworld, int x, int z) {
-		int height = serverworld.getHeight();
+	public static BlockPos getSurfaceBlockPos(ServerLevel serverLevel, int x, int z) {
+		return getSurfaceBlockPos(serverLevel, x, z, false);
+	}
+	public static BlockPos getSurfaceBlockPos(ServerLevel serverLevel, int x, int z, boolean ignoreTrees) {
+		int height = serverLevel.getHeight();
+		int lowestY = serverLevel.getMinBuildHeight();
 
 		BlockPos returnpos = new BlockPos(x, height-1, z);
-		if (!WorldFunctions.isNether(serverworld)) {
+		if (!WorldFunctions.isNether(serverLevel)) {
 			BlockPos pos = new BlockPos(x, height, z);
-			for (int y = height; y > 0; y--) {
-				BlockState blockstate = serverworld.getBlockState(pos);
-				Material material = blockstate.getMaterial();
-				if (blockstate.getLightBlock(serverworld, pos) >= 15 || GlobalVariables.surfacematerials.contains(material)) {
-					returnpos = pos.above().immutable();
-					break;
+			for (int y = height; y > lowestY; y--) {
+				boolean continueCycle = false;
+				BlockState blockState = serverLevel.getBlockState(pos);
+				if (ignoreTrees) {
+					Block block = blockState.getBlock();
+					if (CompareBlockFunctions.isTreeLeaf(block) || CompareBlockFunctions.isTreeLog(block)) {
+						continueCycle = true;
+					}
+				}
+
+				if (!continueCycle) {
+					Material material = blockState.getMaterial();
+					if (blockState.getLightBlock(serverLevel, pos) >= 15 || GlobalVariables.surfacematerials.contains(material)) {
+						returnpos = pos.above().immutable();
+						break;
+					}
 				}
 
 				pos = pos.below();
@@ -158,11 +172,11 @@ public class BlockPosFunctions {
 		}
 		else {
 			int maxheight = 128;
-			BlockPos pos = new BlockPos(x, 0, z);
-			for (int y = 0; y < maxheight; y++) {
-				BlockState blockstate = serverworld.getBlockState(pos);
+			BlockPos pos = new BlockPos(x, lowestY, z);
+			for (int y = lowestY; y < maxheight; y++) {
+				BlockState blockstate = serverLevel.getBlockState(pos);
 				if (blockstate.getBlock().equals(Blocks.AIR)) {
-					BlockState upstate = serverworld.getBlockState(pos.above());
+					BlockState upstate = serverLevel.getBlockState(pos.above());
 					if (upstate.getBlock().equals(Blocks.AIR)) {
 						returnpos = pos.immutable();
 						break;
@@ -188,7 +202,7 @@ public class BlockPosFunctions {
 		String rawOutput = CommandFunctions.getRawCommandOutput(serverLevel, Vec3.atBottomCenterOf(nearPos), "/locate structure #minecraft:village");
 
 		if (rawOutput.contains("nearest") && rawOutput.contains("[")) {
-			String rawcoords = rawOutput.split("nearest")[1].split("\\[")[1].split("\\]")[0];
+			String rawcoords = rawOutput.split("nearest")[1].split("\\[")[1].split("]")[0];
 			String[] coords = rawcoords.split(", ");
 			if (coords.length == 3) {
 				String sx = coords[0];
@@ -209,7 +223,7 @@ public class BlockPosFunctions {
 		String rawOutput = CommandFunctions.getRawCommandOutput(serverLevel, Vec3.atBottomCenterOf(nearPos), "/locate biome " + biome);
 
 		if (rawOutput.contains("nearest") && rawOutput.contains("[")) {
-			String rawcoords = rawOutput.split("nearest")[1].split("\\[")[1].split("\\]")[0];
+			String rawcoords = rawOutput.split("nearest")[1].split("\\[")[1].split("]")[0];
 			String[] coords = rawcoords.split(", ");
 			if (coords.length == 3) {
 				String sx = coords[0];

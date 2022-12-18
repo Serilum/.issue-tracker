@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v5.45: Fixed Collective not using the minimum world height correctly.
+
+=========
+v5.44: Added option to the getSurfaceBlockPos function to ignore trees.
+
+=========
 v5.4-5.43: Added support for entities loaded via structure block schematic files.
 
 =========
