@@ -1,6 +1,6 @@
 /*
  * This is the latest source code of Starter Kit.
- * Minecraft version: 1.19.2, mod version: 4.1.
+ * Minecraft version: 1.19.3, mod version: 4.2.
  *
  * Please don't distribute without permission.
  * For all Minecraft modding projects, feel free to visit my profile page on CurseForge or Modrinth.
@@ -22,7 +22,7 @@ import com.natamus.collective_fabric.functions.NumberFunctions;
 import com.natamus.collective_fabric.functions.PlayerFunctions;
 import com.natamus.starterkit.config.ConfigHandler;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -79,11 +79,11 @@ public class Util {
 					Item item;
 					ResourceLocation itemloc = new ResourceLocation(itemstring);
 
-					if (Registry.ITEM.keySet().contains(itemloc)) {
-						item = Registry.ITEM.get(itemloc);
+					if (BuiltInRegistries.ITEM.keySet().contains(itemloc)) {
+						item = BuiltInRegistries.ITEM.get(itemloc);
 					}
-					else if (Registry.BLOCK.keySet().contains(itemloc)) {
-						Block block = Registry.BLOCK.get(itemloc);
+					else if (BuiltInRegistries.BLOCK.keySet().contains(itemloc)) {
+						Block block = BuiltInRegistries.BLOCK.get(itemloc);
 						item = block.asItem();
 					}
 					else {

@@ -3,6 +3,9 @@ Wool Tweaks
 https://curseforge.com/minecraft/mc-mods/wool-tweaks
 
 =========
+v2.5: (Fabric) Updated Wool Tweaks to Minecraft version 1.19.3.
+
+=========
 v2.4: (Fabric) Fixed beds not being re-coloured correctly.
 
 =========

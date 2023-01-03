@@ -3,6 +3,9 @@ Starter Kit
 https://www.curseforge.com/minecraft/mc-mods/starter-kit
 
 =========
+v4.2: (Fabric) Updated Starter Kit to Minecraft version 1.19.3.
+
+=========
 v4.1: Improved compatibility with other mods by running the starter kit giving logic on the next tick. This will make sure all items given by other mods are caught.
 You can use the addExistingItemsAfterKitSet config option to determine what is done with those items.
 
