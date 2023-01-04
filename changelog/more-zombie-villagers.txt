@@ -3,6 +3,17 @@ More Zombie Villagers
 https://www.curseforge.com/minecraft/mc-mods/more-zombie-villagers
 
 =========
+v3.1: Fixed incorrect refmap reference.
+
+=========
+v3.0: Forge and Fabric (and Quilt) are now contained in one file.
+
+This also means that the two separate project pages for Forge/Fabric will be converted to one (on CurseForge). While having a clean file list! The Fabric project page on CF will remain as a legacy for older Fabric versions.
+
+Both versions use .json5 for their config. Old files are automatically converted.
+Forge mods can now be configured in-game via the mod list with the Configure button!
+
+=========
 v2.2: (Fabric) Updated mod to Minecraft version 1.19.3.
 
 =========
