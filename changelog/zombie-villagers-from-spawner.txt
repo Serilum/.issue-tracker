@@ -3,6 +3,9 @@ Zombie Villagers From Spawner
 https://www.curseforge.com/minecraft/mc-mods/zombie-villagers-from-spawner
 
 =========
+v3.3: Updated mod to support the Collective version 6.4 release.
+
+=========
 v3.2: Fixed incorrect refmap reference.
 
 =========

@@ -3,6 +3,9 @@ More Zombie Villagers
 https://www.curseforge.com/minecraft/mc-mods/more-zombie-villagers
 
 =========
+v3.2: Updated mod to support the Collective version 6.4 release.
+
+=========
 v3.1: Fixed incorrect refmap reference.
 
 =========

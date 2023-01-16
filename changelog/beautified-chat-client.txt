@@ -3,6 +3,18 @@ Beautified Chat Client
 https://curseforge.com/minecraft/mc-mods/beautified-chat-client
 
 =========
+v2.1: Fixed folder structure, causing an issue in server environments.
+
+=========
+v2.0: A big backend update!
+Forge and Fabric (and Quilt) are now contained in one file.
+
+This also means that the two separate project pages for Forge/Fabric will be converted to one (on CurseForge). While having a clean file list! The Fabric project page on CF will remain as a legacy for older Fabric versions.
+
+Both versions use .json5 for their config. Old files are automatically converted.
+Forge mods can now be configured in-game via the mod list with the Configure button!
+
+=========
 v1.4: (Fabric) Added Mod Menu support with project links and logo.
 Includes an in-game configuration screen.
 

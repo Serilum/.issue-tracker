@@ -3,6 +3,9 @@ Starter Structure
 https://curseforge.com/minecraft/mc-mods/starter-structure
 
 =========
+v2.0: Released a Fabric version alongside Forge. They're both contained in the same jar.
+
+=========
 v1.2: The entitydata NBT file can now attempt to parse a /summon command directly. It does this by adding the id value automatically to the nbt data. This code is only ran when the data can't be parsed initially.
 
 =========

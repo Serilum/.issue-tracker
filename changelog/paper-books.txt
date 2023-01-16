@@ -3,6 +3,12 @@ Paper Books
 https://www.curseforge.com/minecraft/mc-mods/paper-books
 
 =========
+v3.0: A big backend update!
+Forge and Fabric (and Quilt) are now contained in one file.
+
+This also means that the two separate project pages for Forge/Fabric will be converted to one (on CurseForge). While having a clean file list! The Fabric project page on CF will remain as a legacy for older Fabric versions.
+
+=========
 v2.3: (Fabric) Updated mod to Minecraft version 1.19.3.
 
 =========

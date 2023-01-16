@@ -3,6 +3,18 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v5.1: Fixed the villager profession being shown twice on the trading screen.
+
+=========
+v5.0: A big backend update!
+Forge and Fabric (and Quilt) are now contained in one file.
+
+This also means that the two separate project pages for Forge/Fabric will be converted to one (on CurseForge). While having a clean file list! The Fabric project page on CF will remain as a legacy for older Fabric versions.
+
+Both versions use .json5 for their config. Old files are automatically converted.
+Forge mods can now be configured in-game via the mod list with the Configure button!
+
+=========
 v4.4: (Fabric) Updated mod to Minecraft version 1.19.3.
 
 =========

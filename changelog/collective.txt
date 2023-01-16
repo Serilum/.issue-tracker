@@ -3,6 +3,77 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.27: Added an event callback related to pre piston activation.
+
+=========
+v6.26: Fixed ServerGamePacketListenerImplMixin not being applied correctly.
+
+=========
+v6.25: Re-added missing service files, causing a NullPointerException.
+
+=========
+v6.24: Removed legacy fabric code, due to all other mods having received an update.
+
+=========
+v6.23: Updated callback events related to Server and Client chat.
+
+=========
+v6.22: Added Flint and Steel ToolFunction.
+Added getBlockPosFromHitResult to BlockPosFunctions.
+
+=========
+v6.21: Fixed Neighbour Notify event callback not working correctly.
+
+=========
+v6.20: Removed leftover Triplet code.
+Cleaned up mods.toml file.
+
+=========
+v6.19: Changed the package of the Triplet used in Collective to improve compatibility.
+
+=========
+v6.18: Simplified ItemInHandRendererMixin, which fixes an issue on fabric when not rendering the main hand.
+Improved backend performance.
+
+=========
+v6.17: Tweaked DuskConfig to improve compatibility.
+
+=========
+v6.16: Updated EntityFunctions. Added function related to mob spawners.
+
+=========
+v6.15: Some more minor adjustments to the format of config names on the in-game configuration screen.
+
+=========
+v6.14: Fixed formatting for certain config keys on the in-game configuration screen.
+
+=========
+v6.13: Fixed the config folder and files not generating inside the game directory.
+
+=========
+v6.91-6.12: Fixed Village/Biome Spawn Point not working correctly when the game was set to a different language.
+
+=========
+v6.9: Added missing Event Trigger reference in Services file.
+
+=========
+v6.8: Fixed names on the config screen being capitalized incorrectly.
+Added service related to triggering events from Common. For now just related to a nether portal spawn.
+
+=========
+v6.6-6.7: Fixed config files not being created correctly during boot.
+Added services files to get the ToolFunctions for both Forge and Fabric.
+
+=========
+v6.5: Fixed an exception related to the config hanndler.
+
+=========
+v6.2-6.4: Added support for Serilum's non-updated Fabric mods by including the collective-fabric mod file.
+This means that all old Forge and Fabric mods are compatible with the current library.
+Once every mod has received an update, the old code will be removed.
+Thanks for playing! :D
+
+=========
 v6.1: Fixed Collective not loading correctly in a server environment.
 
 =========

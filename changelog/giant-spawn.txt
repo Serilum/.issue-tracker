@@ -3,6 +3,9 @@ Giant Spawn
 https://www.curseforge.com/minecraft/mc-mods/giant-spawn
 
 =========
+v4.1: Updated mod to support the Collective version 6.4 release.
+
+=========
 v4.0: Forge and Fabric (and Quilt) are now contained in one file.
 
 This also means that the two separate project pages for Forge/Fabric will be converted to one (on CurseForge). While having a clean file list! The Fabric project page on CF will remain as a legacy for older Fabric versions.
