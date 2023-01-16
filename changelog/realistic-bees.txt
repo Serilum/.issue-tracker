@@ -3,6 +3,10 @@ Realistic Bees
 https://www.curseforge.com/minecraft/mc-mods/realistic-bees
 
 =========
+v3.0: Released a Fabric version, both Forge and Fabric are contained in the same jar.
+Fixed the bee size config not working correctly.
+
+=========
 v2.8: Fixed the events needed for stinger behaviour not being registered correctly.
 
 =========

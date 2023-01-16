@@ -3,6 +3,14 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.29-6.30: Fixed crash on startup on Fabric due to missing service files.
+Changed informational log messages to correctly use a logger.
+Added function and access transformers to set an entity's size.
+
+=========
+v6.28: Updated CollectiveSpawnEvents to work with special spawns e.g. from spawn eggs.
+
+=========
 v6.27: Added an event callback related to pre piston activation.
 
 =========
