@@ -3,6 +3,9 @@ Realistic Bees
 https://www.curseforge.com/minecraft/mc-mods/realistic-bees
 
 =========
+v3.1: Removed config variables that weren't used anymore.
+
+=========
 v3.0: Released a Fabric version, both Forge and Fabric are contained in the same jar.
 Fixed the bee size config not working correctly.
 
