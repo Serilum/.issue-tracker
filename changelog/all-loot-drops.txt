@@ -3,6 +3,9 @@ All Loot Drops
 https://www.curseforge.com/minecraft/mc-mods/all-loot-drops
 
 =========
+v3.0: Released a Fabric version of All Loot Drops, alongside the Forge version in the same jar file.
+
+=========
 v2.6: Added the 'keepOriginalLootQuantityIfHigher' config option to fix an unintended nerf when a mob drops more than the set lootQuantity.
 (1.19) Fixed magma cubes not dropping a Froglight when consumed by a frog.
 

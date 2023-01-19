@@ -3,6 +3,9 @@ Double Doors
 https://www.curseforge.com/minecraft/mc-mods/double-doors
 
 =========
+v4.1: Fixed sometimes not being able to walk through doors in Fabric due to a ghost block.
+
+=========
 v4.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

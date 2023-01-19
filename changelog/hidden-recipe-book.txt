@@ -3,6 +3,10 @@ Hidden Recipe Book
 https://curseforge.com/minecraft/mc-mods/hidden-recipe-book
 
 =========
+v4.0: Released a Fabric version of Hidden Recipe Book.
+Contained in the same jar, alongside Forge.
+
+=========
 v3.1: Cleaned up code.
 (1.16) Fixed a nullpointer exception.
 

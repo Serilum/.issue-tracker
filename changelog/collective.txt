@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.31: Updated function to generate all possible loot drops from entities on demand to the new mod structure.
+
+=========
 v6.29-6.30: Fixed crash on startup on Fabric due to missing service files.
 Changed informational log messages to correctly use a logger.
 Added function and access transformers to set an entity's size.
