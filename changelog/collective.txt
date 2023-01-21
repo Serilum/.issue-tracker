@@ -3,6 +3,20 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.35-6.38: Updated CollectiveEntityEvents to allow canceling entity deaths.
+Updated backend code.
+
+=========
+v6.34: Added get functions for goalSelector and targetSelector from within Common.
+Added UtilityFunctions, which for now contain a function to create a new DamageSource from within Common.
+
+=========
+v6.33: Added event related to lightning bolts, to prevent certain mobs from turning.
+
+=========
+v6.32: Updated event callbacks.
+
+=========
 v6.31: Updated function to generate all possible loot drops from entities on demand to the new mod structure.
 
 =========

@@ -3,6 +3,10 @@ Pumpkillager's Quest
 https://curseforge.com/minecraft/mc-mods/pumpkillagers-quest
 
 =========
+v3.0: Released a Fabric version alongside Forge in the same jar.
+Fixed a rendering issue where the Pumpkillager would not change size.
+
+=========
 v2.3: Fixed baby villagers being rendered as adults.
 Changed the default config value of chanceForPumpkinBlockToSpawnOnPigSpawn from 0.15 to 0.05.
 
