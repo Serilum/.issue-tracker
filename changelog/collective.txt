@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.39-6.40: Added functions related to setting the creative tab category variable of items.
+
+=========
 v6.35-6.38: Updated CollectiveEntityEvents to allow canceling entity deaths.
 Updated backend code.
 

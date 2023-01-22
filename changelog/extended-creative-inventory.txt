@@ -3,6 +3,12 @@ Extended Creative Inventory
 https://curseforge.com/minecraft/mc-mods/extended-creative-inventory
 
 =========
+v2.0: Released a Fabric version along side Forge in the same jar.
+This includes a port to 1.19.2.
+
+I think this mod will not be updated further than that, as 1.19.3 contained a big overhaul to the creative inventory, removing the need for it.
+
+=========
 v1.7: (Forge 1.18.1 only) Fixed mod not initializing correctly due to missing file.
 
 =========
