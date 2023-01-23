@@ -1,6 +1,0 @@
-{
-  "strayspawn-fabric.duskconfig.title": "Stray Spawn Config",
-  "strayspawn-fabric.duskconfig.DESC_chanceSkeletonIsStray": "The chance a skeleton that has spawned is of the stray variant.",
-  "strayspawn-fabric.duskconfig.RANGE_chanceSkeletonIsStray": "min: 0, max: 1.0",
-  "strayspawn-fabric.duskconfig.chanceSkeletonIsStray": "Chance Skeleton Is Stray"
-}

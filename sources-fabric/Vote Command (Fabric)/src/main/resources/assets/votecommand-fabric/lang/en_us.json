@@ -1,5 +1,0 @@
-{
-  "votecommand-fabric.duskconfig.title": "Vote Command Config",
-  "votecommand-fabric.duskconfig.DESC_voteCommandMessage": "The message which will be sent to players when they use the /vote command.",
-  "votecommand-fabric.duskconfig.voteCommandMessage": "Vote Command Message"
-}

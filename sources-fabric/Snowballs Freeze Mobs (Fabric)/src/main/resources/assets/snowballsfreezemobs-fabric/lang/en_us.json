@@ -1,6 +1,0 @@
-{
-  "snowballsfreezemobs-fabric.duskconfig.title": "Snowballs Freeze Mobs Config",
-  "snowballsfreezemobs-fabric.duskconfig.DESC_freezeTimeMs": "The amount of time in ms the mob hit will be frozen for.",
-  "snowballsfreezemobs-fabric.duskconfig.RANGE_freezeTimeMs": "min: 0, max: 3600000",
-  "snowballsfreezemobs-fabric.duskconfig.freezeTimeMs": "Freeze Time Ms"
-}

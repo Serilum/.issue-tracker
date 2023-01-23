@@ -1,9 +1,0 @@
-{
-  "silencemobs-fabric.duskconfig.title": "Silence Mobs Config",
-  "silencemobs-fabric.duskconfig.DESC_onlyAllowCommandWhenCheatsEnabled": "If enabled, only allows the /silencestick command with cheats enabled.",
-  "silencemobs-fabric.duskconfig.onlyAllowCommandWhenCheatsEnabled": "Only Allow Command When Cheats Enabled",
-  "silencemobs-fabric.duskconfig.DESC_mustHoldStick": "If disabled, a stick will be generated via the /silencestick command instead of having to hold a stick while using the command.",
-  "silencemobs-fabric.duskconfig.mustHoldStick": "Must Hold Stick",
-  "silencemobs-fabric.duskconfig.DESC_renameSilencedMobs": "If enabled, whenever a player hits a non-silenced mob with The Silence Stick it will set their name to 'Silenced Entity'.",
-  "silencemobs-fabric.duskconfig.renameSilencedMobs": "Rename Silenced Mobs"
-}

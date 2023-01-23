@@ -1,6 +1,0 @@
-{
-  "naturallychargedcreepers-fabric.duskconfig.title": "Naturally Charged Creepers Config",
-  "naturallychargedcreepers-fabric.duskconfig.DESC_isChargedChance": "The chance of a creeper being naturally charged.",
-  "naturallychargedcreepers-fabric.duskconfig.RANGE_isChargedChance": "min: 0, max: 1.0",
-  "naturallychargedcreepers-fabric.duskconfig.isChargedChance": "Is Charged Chance"
-}

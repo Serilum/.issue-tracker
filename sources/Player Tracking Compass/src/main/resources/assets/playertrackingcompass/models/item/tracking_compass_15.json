@@ -1,6 +1,0 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "playertrackingcompass:item/tracking_compass_15"
-    }
-}

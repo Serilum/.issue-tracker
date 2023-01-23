@@ -1,6 +1,0 @@
-{
-  "morezombievillagers-fabric.duskconfig.title": "More Zombie Villagers Config",
-  "morezombievillagers-fabric.duskconfig.DESC_zombieIsVillagerChance": "The overridden chance a new zombie spawn is of the villager variant.",
-  "morezombievillagers-fabric.duskconfig.RANGE_zombieIsVillagerChance": "min: 0, max: 1.0",
-  "morezombievillagers-fabric.duskconfig.zombieIsVillagerChance": "Zombie Is Villager Chance"
-}

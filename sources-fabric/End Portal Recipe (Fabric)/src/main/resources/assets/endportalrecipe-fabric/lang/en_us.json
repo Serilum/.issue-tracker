@@ -1,9 +1,0 @@
-{
-  "endportalrecipe-fabric.duskconfig.title": "End Portal Recipe Config",
-  "endportalrecipe-fabric.duskconfig.DESC_mustHaveSilkTouchToBreakPortal": "If enabled, players can only break portal frames if they have silk touch on their pickaxe.",
-  "endportalrecipe-fabric.duskconfig.mustHaveSilkTouchToBreakPortal": "Must Have Silk Touch To Break Portal",
-  "endportalrecipe-fabric.duskconfig.DESC_addBrokenPortalFramesToInventory": "If enabled, add portal frames directly to the player's inventory to lower the chance of them being destroyed. Still drops the item entity if the inventory is full.",
-  "endportalrecipe-fabric.duskconfig.addBrokenPortalFramesToInventory": "Add Broken Portal Frames To Inventory",
-  "endportalrecipe-fabric.duskconfig.DESC_sendMessageOnExtraDragonEggDrop": "Whether a message should be sent to the player where the extra dragon egg will drop.",
-  "endportalrecipe-fabric.duskconfig.sendMessageOnExtraDragonEggDrop": "Send Message On Extra Dragon Egg Drop"
-}

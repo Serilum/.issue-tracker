@@ -1,9 +1,0 @@
-{
-  "passiveendermen-fabric.duskconfig.title": "Passive Endermen Config",
-  "passiveendermen-fabric.duskconfig.DESC_preventEndermenFromTeleporting": "If enabled, prevents the endermen from teleporting.",
-  "passiveendermen-fabric.duskconfig.preventEndermenFromTeleporting": "Prevent Endermen From Teleporting",
-  "passiveendermen-fabric.duskconfig.DESC_preventEndermenFromGriefing": "If enabled, prevents from picking up and placing blocks.",
-  "passiveendermen-fabric.duskconfig.preventEndermenFromGriefing": "Prevent Endermen From Griefing",
-  "passiveendermen-fabric.duskconfig.DESC_preventEndermenFromAttackingFirst": "If enabled, stops the endermen from attacking.",
-  "passiveendermen-fabric.duskconfig.preventEndermenFromAttackingFirst": "Prevent Endermen From Attacking First"
-}

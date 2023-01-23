@@ -1,6 +1,0 @@
-{
-   "parent": "item/generated",
-   "textures": {
-       "layer0": "healingsoup-fabric:item/cactus_soup"
-   }
-}

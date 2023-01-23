@@ -1,8 +1,0 @@
-{
-  "passiveshield-fabric.duskconfig.title": "Passive Shield Config",
-  "passiveshield-fabric.duskconfig.DESC_hideShieldWhenNotInUse": "When enabled, the shield will be hidden unless a player presses right-click.",
-  "passiveshield-fabric.duskconfig.hideShieldWhenNotInUse": "Hide Shield When Not In Use",
-  "passiveshield-fabric.duskconfig.DESC_passiveShieldPercentageDamageNegated": "The percentage of damage that will be negated when a player is hit while holding a shield that's not held high.",
-  "passiveshield-fabric.duskconfig.RANGE_passiveShieldPercentageDamageNegated": "min: 0.0, max: 1.0",
-  "passiveshield-fabric.duskconfig.passiveShieldPercentageDamageNegated": "Passive Shield Percentage Damage Negated"
-}

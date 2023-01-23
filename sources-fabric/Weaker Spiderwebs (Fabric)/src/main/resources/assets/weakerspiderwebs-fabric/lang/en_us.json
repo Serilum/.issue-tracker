@@ -1,6 +1,0 @@
-{
-  "weakerspiderwebs-fabric.duskconfig.title": "Weaker Spiderwebs Config",
-  "weakerspiderwebs-fabric.duskconfig.DESC_breakSpiderwebDelay": "The delay in ms after walking in a spiderweb until it breaks.",
-  "weakerspiderwebs-fabric.duskconfig.RANGE_breakSpiderwebDelay": "min: 0, max: 10000",
-  "weakerspiderwebs-fabric.duskconfig.breakSpiderwebDelay": "Break Spiderweb Delay"
-}

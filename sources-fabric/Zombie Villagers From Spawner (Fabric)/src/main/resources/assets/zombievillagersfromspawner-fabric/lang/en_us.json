@@ -1,6 +1,0 @@
-{
-  "zombievillagersfromspawner-fabric.duskconfig.title": "Zombie Villagers From Spawner Config",
-  "zombievillagersfromspawner-fabric.duskconfig.DESC_isZombieVillagerChance": "The chance a new zombie spawn from a spawner is of the villager variant.",
-  "zombievillagersfromspawner-fabric.duskconfig.RANGE_isZombieVillagerChance": "min: 0, max: 1.0",
-  "zombievillagersfromspawner-fabric.duskconfig.isZombieVillagerChance": "Is Zombie Villager Chance"
-}

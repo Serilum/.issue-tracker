@@ -1,7 +1,0 @@
-{
-  "infinitetrading-fabric.duskconfig.title": "Infinite Trading Config",
-  "infinitetrading-fabric.duskconfig.DESC_wanderingTraderInfiniteTrades": "When enabled, the trades of the wandering trader will never lock up.",
-  "infinitetrading-fabric.duskconfig.wanderingTraderInfiniteTrades": "Wandering Trader Infinite Trades",
-  "infinitetrading-fabric.duskconfig.DESC_villagerInfiniteTrades": "When enabled, the trades of villagers will never lock up.",
-  "infinitetrading-fabric.duskconfig.villagerInfiniteTrades": "Villager Infinite Trades"
-}

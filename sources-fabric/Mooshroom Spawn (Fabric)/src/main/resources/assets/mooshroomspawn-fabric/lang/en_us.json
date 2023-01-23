@@ -1,6 +1,0 @@
-{
-  "mooshroomspawn-fabric.duskconfig.title": "Mooshroom Spawn Config",
-  "mooshroomspawn-fabric.duskconfig.DESC_chanceCowIsMooshroom": "The chance a cow that has spawned is of the mooshroom variant.",
-  "mooshroomspawn-fabric.duskconfig.RANGE_chanceCowIsMooshroom": "min: 0, max: 1.0",
-  "mooshroomspawn-fabric.duskconfig.chanceCowIsMooshroom": "Chance Cow Is Mooshroom"
-}

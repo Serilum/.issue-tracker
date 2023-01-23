@@ -1,9 +1,0 @@
-{
-  "handoveryouritems-fabric.duskconfig.title": "Hand Over Your Items Config",
-  "handoveryouritems-fabric.duskconfig.DESC_sendItemReceivedMessage": "If enabled, players will receive a message when they have been given an item.",
-  "handoveryouritems-fabric.duskconfig.sendItemReceivedMessage": "Send Item Received Message",
-  "handoveryouritems-fabric.duskconfig.DESC_sendItemGivenMessage": "If enabled, players will receive a message when they give an item.",
-  "handoveryouritems-fabric.duskconfig.sendItemGivenMessage": "Send Item Given Message",
-  "handoveryouritems-fabric.duskconfig.DESC_mustCrouchToGiveItem": "If enabled, players will only be able to give items when they are crouching/sneaking.",
-  "handoveryouritems-fabric.duskconfig.mustCrouchToGiveItem": "Must Crouch To Give Item"
-}

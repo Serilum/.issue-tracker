@@ -1,9 +1,0 @@
-{
-  "cryingghasts-fabric.duskconfig.title": "Crying Ghasts Config",
-  "cryingghasts-fabric.duskconfig.DESC_maxDistanceToGhastBlocks": "The maximum distance in blocks the player can be away from the ghasts in order for them to start dropping tears periodically.",
-  "cryingghasts-fabric.duskconfig.RANGE_maxDistanceToGhastBlocks": "min: 1, max: 256",
-  "cryingghasts-fabric.duskconfig.maxDistanceToGhastBlocks": "Max Distance To Ghast Blocks",
-  "cryingghasts-fabric.duskconfig.DESC_ghastTearDelayTicks": "The delay in between ghasts dropping a tear in ticks (1 second = 20 ticks).",
-  "cryingghasts-fabric.duskconfig.RANGE_ghastTearDelayTicks": "min: 1, max: 72000",
-  "cryingghasts-fabric.duskconfig.ghastTearDelayTicks": "Ghast Tear Delay Ticks"
-}

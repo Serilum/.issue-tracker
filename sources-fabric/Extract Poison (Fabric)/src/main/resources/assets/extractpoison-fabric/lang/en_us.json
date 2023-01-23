@@ -1,6 +1,0 @@
-{
-  "extractpoison-fabric.duskconfig.title": "Extract Poison Config",
-  "extractpoison-fabric.duskconfig.DESC_extractDelayMs": "The delay in ms in between the ability to extract poison per mob.",
-  "extractpoison-fabric.duskconfig.RANGE_extractDelayMs": "min: 0, max: 3600000",
-  "extractpoison-fabric.duskconfig.extractDelayMs": "Extract Delay Ms"
-}

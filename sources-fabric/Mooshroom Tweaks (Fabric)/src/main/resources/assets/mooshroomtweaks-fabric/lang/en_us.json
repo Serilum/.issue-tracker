@@ -1,6 +1,0 @@
-{
-  "mooshroomtweaks-fabric.duskconfig.title": "Mooshroom Tweaks Config",
-  "mooshroomtweaks-fabric.duskconfig.DESC_becomeBrownChance": "The chance of a Red Mooshroom becoming a Brown Mooshroom.",
-  "mooshroomtweaks-fabric.duskconfig.RANGE_becomeBrownChance": "min: 0, max: 1.0",
-  "mooshroomtweaks-fabric.duskconfig.becomeBrownChance": "Become Brown Chance"
-}

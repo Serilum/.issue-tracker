@@ -1,9 +1,0 @@
-{
-  "nutritiousmilk-fabric.duskconfig.title": "Nutritious Milk Config",
-  "nutritiousmilk-fabric.duskconfig.DESC_hungerLevelIncrease": "The hunger level decreased. Example values: cookie = 2, bread = 5, salmon = 6, steak = 8.",
-  "nutritiousmilk-fabric.duskconfig.RANGE_hungerLevelIncrease": "min: 0, max: 20",
-  "nutritiousmilk-fabric.duskconfig.hungerLevelIncrease": "Hunger Level Increase",
-  "nutritiousmilk-fabric.duskconfig.DESC_saturationLevelIncrease": "The saturation increase. Example values: melon = 1.2, carrot = 3.6, chicken = 7.2, steak 12.8.",
-  "nutritiousmilk-fabric.duskconfig.RANGE_saturationLevelIncrease": "min: 0, max: 20.0",
-  "nutritiousmilk-fabric.duskconfig.saturationLevelIncrease": "Saturation Level Increase"
-}

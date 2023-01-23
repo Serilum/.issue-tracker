@@ -1,8 +1,0 @@
-{
-  "bouncierbeds-fabric.duskconfig.title": "Bouncier Beds Config",
-  "bouncierbeds-fabric.duskconfig.DESC_bedsPreventFallDamage": "Whether beds should prevent fall damage when a player lands on them. It's recommended to keep this enabled if you have lots of bounciness.",
-  "bouncierbeds-fabric.duskconfig.bedsPreventFallDamage": "Beds Prevent Fall Damage",
-  "bouncierbeds-fabric.duskconfig.DESC_bedBounciness": "The modifier of how much a bed bounces. A value of 2.0 makes the player jump around 30 blocks. A value of 100.0 makes the player jump around 4500 blocks.",
-  "bouncierbeds-fabric.duskconfig.RANGE_bedBounciness": "min: 0.0, max: 100.0",
-  "bouncierbeds-fabric.duskconfig.bedBounciness": "Bed Bounciness"
-}

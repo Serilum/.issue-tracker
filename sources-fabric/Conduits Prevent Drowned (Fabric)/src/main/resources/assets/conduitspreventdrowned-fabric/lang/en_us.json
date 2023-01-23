@@ -1,6 +1,0 @@
-{
-  "conduitspreventdrowned-fabric.duskconfig.title": "Conduits Prevent Drowned Config",
-  "conduitspreventdrowned-fabric.duskconfig.DESC_preventDrownedInRange": "The euclidian distance range around the drowned where a check for a player with the conduit effect is done. A value of 400 prevents the spawning of all drowned around.",
-  "conduitspreventdrowned-fabric.duskconfig.RANGE_preventDrownedInRange": "min: 0, max: 400",
-  "conduitspreventdrowned-fabric.duskconfig.preventDrownedInRange": "Prevent Drowned In Range"
-}
