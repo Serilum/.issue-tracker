@@ -11,7 +11,7 @@
 &nbsp;\
 [![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/issues.png)](https://github.com/ricksouth/serilum-mc-mods/issues/new/choose)\
 &nbsp;\
-[![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/code.png)](https://github.com/ricksouth/serilum-mc-mods/tree/master/sources)\
+[![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/code.png)](https://github.com/ricksouth/serilum-mc-mod-sources/tree/main/sources)\
 &nbsp;
 |   | [![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/curseforge.png)](https://curseforge.com/members/serilum/projects)  |  [![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/modrinth.png)](https://modrinth.com/user/Serilum) |
 |---|---|---|
