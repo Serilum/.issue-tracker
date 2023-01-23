@@ -3,6 +3,9 @@ Configurable Despawn Timer
 https://www.curseforge.com/minecraft/mc-mods/configurable-despawn-timer
 
 =========
+v3.0: Released a Fabric version alongside Forge in the same jar.
+
+=========
 v2.6: (Forge 1.19 only) Updated to Forge version 41.0.94+. Use the previous uploaded file if you're on an older version.
 
 =========
