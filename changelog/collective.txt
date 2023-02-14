@@ -3,6 +3,14 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.43: Fixed a rare NullPointerException when launching Collective server-side.
+
+=========
+v6.41-6.42: Removed legacy Forge code from Collective, since all mods have been ported to use Multiloader.
+Time for a big nap and then I'll focus on mod updates.
+Thanks for downloading!
+
+=========
 v6.39-6.40: Added functions related to setting the creative tab category variable of items.
 
 =========

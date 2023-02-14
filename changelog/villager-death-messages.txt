@@ -3,6 +3,9 @@ Villager Death Messages
 https://www.curseforge.com/minecraft/mc-mods/villager-death-messages
 
 =========
+v3.1: Updated mod to work with the changes in Collective 6.38.
+
+=========
 v3.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

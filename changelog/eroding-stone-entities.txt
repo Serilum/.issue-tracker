@@ -3,6 +3,9 @@ Eroding Stone Entities
 https://curseforge.com/minecraft/mc-mods/eroding-stone-entities
 
 =========
+v4.1: Fixed item names being parsed incorrectly, causing a ResourceLocationException.
+
+=========
 v4.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

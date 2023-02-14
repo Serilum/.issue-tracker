@@ -3,6 +3,9 @@ Random Sheep Colours
 https://www.curseforge.com/minecraft/mc-mods/random-sheep-colours
 
 =========
+v3.1: Changed it so that only white sheep will be recoloured, preserving existing sheep farms when installed.
+
+=========
 v3.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

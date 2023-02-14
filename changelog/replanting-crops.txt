@@ -3,6 +3,9 @@ Replanting Crops
 https://www.curseforge.com/minecraft/mc-mods/replanting-crops
 
 =========
+v5.1: Fixed a ghost item being created during the replanting that wasn't able to be picked up in dedicated servers.
+
+=========
 v5.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 
