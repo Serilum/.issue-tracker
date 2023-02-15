@@ -3,6 +3,9 @@ Eroding Stone Entities
 https://curseforge.com/minecraft/mc-mods/eroding-stone-entities
 
 =========
+v4.2: Fixed the min/max values not being used correctly within the in-game config.
+
+=========
 v4.1: Fixed item names being parsed incorrectly, causing a ResourceLocationException.
 
 =========

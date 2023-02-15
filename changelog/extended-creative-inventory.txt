@@ -3,6 +3,9 @@ Extended Creative Inventory
 https://curseforge.com/minecraft/mc-mods/extended-creative-inventory
 
 =========
+v2.1: Fixed the min/max values not being used correctly within the in-game config.
+
+=========
 v2.0: Released a Fabric version along side Forge in the same jar.
 This includes a port to 1.19.2.
 

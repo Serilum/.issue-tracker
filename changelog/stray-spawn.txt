@@ -3,6 +3,9 @@ Stray Spawn
 https://www.curseforge.com/minecraft/mc-mods/stray-spawn
 
 =========
+v3.3: Fixed the min/max values not being used correctly within the in-game config.
+
+=========
 v3.2: Updated mod to support the Collective version 6.4 release.
 
 =========

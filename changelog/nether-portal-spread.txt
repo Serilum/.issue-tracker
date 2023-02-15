@@ -3,6 +3,9 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v7.2: Fixed the min/max values not being used correctly within the in-game config.
+
+=========
 v7.1: Fixed ResourceLocationException while parsing the prevent spread block by sanitizing the input.
 
 =========

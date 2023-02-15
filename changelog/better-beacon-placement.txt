@@ -3,6 +3,9 @@ Better Beacon Placement
 https://www.curseforge.com/minecraft/mc-mods/better-beacon-placement
 
 =========
+v3.1: The mod now uses the BEACON_BASE_BLOCKS BlockTag to determine what a mineral block is, increasing compatibility with modded blocks.
+
+=========
 v3.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

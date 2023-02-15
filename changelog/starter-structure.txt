@@ -3,6 +3,9 @@ Starter Structure
 https://curseforge.com/minecraft/mc-mods/starter-structure
 
 =========
+v2.1: Fixed the min/max values not being used correctly within the in-game config.
+
+=========
 v2.0: Released a Fabric version alongside Forge. They're both contained in the same jar.
 
 =========

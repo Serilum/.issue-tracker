@@ -3,6 +3,9 @@ Beautified Chat Client
 https://curseforge.com/minecraft/mc-mods/beautified-chat-client
 
 =========
+v2.2: Fixed the min/max values not being used correctly within the in-game config.
+
+=========
 v2.1: Fixed folder structure, causing an issue in server environments.
 
 =========

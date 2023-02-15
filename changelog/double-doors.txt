@@ -3,6 +3,9 @@ Double Doors
 https://www.curseforge.com/minecraft/mc-mods/double-doors
 
 =========
+v4.2: Fixed the min/max values not being used correctly within the in-game config.
+
+=========
 v4.1: Fixed sometimes not being able to walk through doors in Fabric due to a ghost block.
 
 =========

@@ -3,6 +3,9 @@ Configurable Despawn Timer
 https://www.curseforge.com/minecraft/mc-mods/configurable-despawn-timer
 
 =========
+v3.1: Fixed the min/max values not being used correctly within the in-game config.
+
+=========
 v3.0: Released a Fabric version alongside Forge in the same jar.
 
 =========

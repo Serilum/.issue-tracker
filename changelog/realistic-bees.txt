@@ -3,6 +3,9 @@ Realistic Bees
 https://www.curseforge.com/minecraft/mc-mods/realistic-bees
 
 =========
+v3.2: Fixed the min/max values not being used correctly within the in-game config.
+
+=========
 v3.1: Removed config variables that weren't used anymore.
 
 =========

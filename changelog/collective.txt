@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.44-6.45: Updated DuskConfig to work correctly with min and max number values.
+
+=========
 v6.43: Fixed a rare NullPointerException when launching Collective server-side.
 
 =========

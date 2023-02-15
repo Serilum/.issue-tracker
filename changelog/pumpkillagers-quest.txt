@@ -3,6 +3,9 @@ Pumpkillager's Quest
 https://curseforge.com/minecraft/mc-mods/pumpkillagers-quest
 
 =========
+v3.1: Fixed the min/max values not being used correctly within the in-game config.
+
+=========
 v3.0: Released a Fabric version alongside Forge in the same jar.
 Fixed a rendering issue where the Pumpkillager would not change size.
 

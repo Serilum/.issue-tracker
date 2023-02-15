@@ -3,6 +3,9 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v7.1: Fixed the min/max values not being used correctly within the in-game config.
+
+=========
 v7.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

@@ -3,6 +3,9 @@ Bottle Your Xp
 https://www.curseforge.com/minecraft/mc-mods/bottle-your-xp
 
 =========
+v3.1: Fixed the min/max values not being used correctly within the in-game config.
+
+=========
 v3.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

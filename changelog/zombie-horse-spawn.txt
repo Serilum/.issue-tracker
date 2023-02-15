@@ -3,6 +3,9 @@ Zombie Horse Spawn
 https://www.curseforge.com/minecraft/mc-mods/zombie-horse-spawn
 
 =========
+v4.4: Fixed the min/max values not being used correctly within the in-game config.
+
+=========
 v4.3: Updated mod to support the Collective version 6.4 release.
 
 =========

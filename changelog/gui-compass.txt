@@ -3,6 +3,9 @@ GUI Compass
 https://www.curseforge.com/minecraft/mc-mods/gui-compass
 
 =========
+v4.1: Fixed the min/max values not being used correctly within the in-game config.
+
+=========
 v4.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 
