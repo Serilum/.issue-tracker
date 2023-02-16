@@ -3,6 +3,9 @@ Passive Shield
 https://curseforge.com/minecraft/mc-mods/passive-shield
 
 =========
+v3.2: Fixed target damage instead of received damage being lowered when holding a shield.
+
+=========
 v3.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========

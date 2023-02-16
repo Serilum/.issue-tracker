@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.47: Added support for special characters in the toml -> json5 config conversion. This is only used for dependent Serilum mods.
+
+=========
+v6.46: Added a new TaskFunction to Collective which can correctly delay tasks, used in dependent mods.
+
+=========
 v6.44-6.45: Updated DuskConfig to work correctly with min and max number values.
 
 =========
