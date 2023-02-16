@@ -3,6 +3,9 @@ Conduits Prevent Drowned
 https://www.curseforge.com/minecraft/mc-mods/conduits-prevent-drowned
 
 =========
+v3.2: Fixed a bug on Forge's side where the event was incorrectly canceled, instead of setting a result.
+
+=========
 v3.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========

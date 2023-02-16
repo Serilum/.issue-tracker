@@ -3,6 +3,10 @@ Cycle Paintings
 https://www.curseforge.com/minecraft/mc-mods/cycle-paintings
 
 =========
+v3.1: Fixed paintings not saving their cycled variant correctly.
+The mod now correctly checks for the PaintingVariantTags.PLACEABLE tag, so it doesn't cycle unplaceable paintings.
+
+=========
 v3.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 
