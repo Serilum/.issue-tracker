@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.48: Fixed the CollectivePlayerEvents.ON_PLAYER_DIG_SPEED_CALC callback not being applied correctly.
+
+=========
 v6.47: Added support for special characters in the toml -> json5 config conversion. This is only used for dependent Serilum mods.
 
 =========

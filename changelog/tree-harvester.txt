@@ -3,6 +3,17 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v7.2: Improved the check whether two logs are the same, increasing compatibility with other mods.
+Added support for mangrove trees.
+Improved check that determines which leaves should be broken.
+Fixed normal and flowering azalea leaves not seen as the same leaf type.
+Fixed the instant break leaves config option working differently than fast leaf decay.
+The sound of instant breaking leaves is now as if breaking one block.
+Fixed some modded sapling replacements causing a crash.
+Changed the default value of increasedHarvestingTimePerLogModifier from 0.1 to 0.2.
+Updated backend code.
+
+=========
 v7.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========
@@ -37,7 +48,7 @@ v5.4: (Fabric only) Changed the version syntax of fabric mods. Due the subversio
 v5.3: (Forge 1.19 only) Updated to Forge version 41.0.94+. Use the previous uploaded file if you're on an older version.
 
 =========
-v2.0: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
+v5.2: (Fabric 1.19 only) Updated mod to work with Minecraft's latest 1.19 release version.
 
 =========
 v5.1: Fixed chopping down log blocks being slow without it being part of a tree.
