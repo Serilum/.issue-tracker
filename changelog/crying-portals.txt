@@ -3,6 +3,9 @@ Crying Portals
 https://curseforge.com/minecraft/mc-mods/crying-portals
 
 =========
+v2.1-2.3: Fixed the mod not working correctly.
+
+=========
 v2.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

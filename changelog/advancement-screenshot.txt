@@ -3,6 +3,9 @@ Advancement Screenshot
 https://curseforge.com/minecraft/mc-mods/advancement-screenshot
 
 =========
+v4.1: Fixed mixins not being applied correctly for Forge.
+
+=========
 v4.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

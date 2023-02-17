@@ -3,6 +3,9 @@ Transcending Trident
 https://www.curseforge.com/minecraft/mc-mods/transcending-trident
 
 =========
+v4.2: Fixed mixins not being applied correctly for Forge.
+
+=========
 v4.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========

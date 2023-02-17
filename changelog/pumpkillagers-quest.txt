@@ -3,6 +3,9 @@ Pumpkillager's Quest
 https://curseforge.com/minecraft/mc-mods/pumpkillagers-quest
 
 =========
+v3.2: Fixed mixins not being applied correctly for Forge.
+
+=========
 v3.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========

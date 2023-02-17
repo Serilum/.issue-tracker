@@ -3,6 +3,9 @@ Respawning Shulkers
 https://curseforge.com/minecraft/mc-mods/respawning-shulkers
 
 =========
+v3.3: Fixed missing files during jar export.
+
+=========
 v3.2: Fixed the min/max values not being used correctly within the in-game config.
 
 =========

@@ -3,6 +3,9 @@ Bigger Sponge Absorption Radius
 https://www.curseforge.com/minecraft/mc-mods/bigger-sponge-absorption-radius
 
 =========
+v3.1: Fixed mixins not being applied correctly for Forge.
+
+=========
 v3.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

@@ -3,6 +3,9 @@ Mooshroom Tweaks
 https://www.curseforge.com/minecraft/mc-mods/mooshroom-tweaks
 
 =========
+v3.2: Fixed missing files during jar export.
+
+=========
 v3.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========
