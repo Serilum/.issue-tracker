@@ -3,6 +3,10 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v4.2: Changed how values in HashMaps are put. Instead of using an event, it uses the computeIfAbsent Java function.
+This fixes incompatibilities with other mods creating dimensions/levels without using the event.
+
+=========
 v4.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========

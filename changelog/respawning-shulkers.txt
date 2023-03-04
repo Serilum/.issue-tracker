@@ -3,6 +3,10 @@ Respawning Shulkers
 https://curseforge.com/minecraft/mc-mods/respawning-shulkers
 
 =========
+v3.4: Changed how values in HashMaps are put. Instead of using an event, it uses the computeIfAbsent Java function.
+This fixes incompatibilities with other mods creating dimensions/levels without using the event.
+
+=========
 v3.3: Fixed missing files during jar export.
 
 =========

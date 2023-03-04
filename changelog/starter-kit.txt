@@ -3,6 +3,10 @@ Starter Kit
 https://www.curseforge.com/minecraft/mc-mods/starter-kit
 
 =========
+v5.2: Changed how delays are done within the mod. It now uses a tick event, instead of Thread.sleep.
+This improves compatibility with other mods.
+
+=========
 v5.1: Fixed the addExistingItemsAfterKitSet config option not working correctly with some items.
 Added support for § (section sign) in books to colour text.
 

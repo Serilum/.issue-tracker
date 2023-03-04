@@ -3,6 +3,10 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.49: Changed how values in HashMaps are put. Instead of using an event, it uses the computeIfAbsent Java function.
+This fixes incompatibilities with other mods creating dimensions/levels without using the event.
+
+=========
 v6.48: Fixed the CollectivePlayerEvents.ON_PLAYER_DIG_SPEED_CALC callback not being applied correctly.
 
 =========

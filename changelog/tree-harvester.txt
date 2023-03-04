@@ -3,6 +3,10 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v7.3: Changed how values in HashMaps are put. Instead of using an event, it uses the computeIfAbsent Java function.
+This fixes incompatibilities with other mods creating dimensions/levels without using the event.
+
+=========
 v7.2: Improved the check whether two logs are the same, increasing compatibility with other mods.
 Added support for mangrove trees.
 Improved check that determines which leaves should be broken.

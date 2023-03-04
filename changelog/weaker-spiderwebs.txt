@@ -3,6 +3,10 @@ Weaker Spiderwebs
 https://www.curseforge.com/minecraft/mc-mods/weaker-spiderwebs
 
 =========
+v3.2: Changed how delays are done within the mod. It now uses a tick event instead of Thread.sleep.
+Improved compatibility with other mods.
+
+=========
 v3.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========

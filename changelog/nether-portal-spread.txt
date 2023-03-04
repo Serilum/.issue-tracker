@@ -3,6 +3,10 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v7.3: Changed how values in HashMaps are put. Instead of using an event, it uses the computeIfAbsent Java function.
+This fixes incompatibilities with other mods creating dimensions/levels without using the event.
+
+=========
 v7.2: Fixed the min/max values not being used correctly within the in-game config.
 
 =========

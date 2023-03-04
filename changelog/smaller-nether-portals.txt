@@ -3,6 +3,10 @@ Smaller Nether Portals
 https://www.curseforge.com/minecraft/mc-mods/smaller-nether-portals
 
 =========
+v3.3: Changed how delays are done within the mod. It now uses a tick event, instead of Thread.sleep.
+This improves compatibility with other mods.
+
+=========
 v3.2: Fixed incorrectly specified modid of Crying Portals for the compatibility.
 
 =========

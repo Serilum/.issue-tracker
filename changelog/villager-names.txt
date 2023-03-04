@@ -3,6 +3,10 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v5.2: Changed how delays are done within the mod. It now uses a tick event, instead of Thread.sleep.
+This improves compatibility with other mods.
+
+=========
 v5.1: Fixed the villager profession being shown twice on the trading screen.
 
 =========

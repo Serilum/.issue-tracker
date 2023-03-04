@@ -3,6 +3,14 @@ Automatic Doors
 https://www.curseforge.com/minecraft/mc-mods/automatic-doors
 
 =========
+v4.3: You can now (temporarily) disable the mod by setting doorOpenTime to 0.
+Changed Thread.sleep to use a tick event instead.
+
+=========
+v4.2: Changed how values in HashMaps are put. Instead of using an event, it uses the computeIfAbsent Java function.
+This fixes incompatibilities with other mods creating dimensions/levels without using the event.
+
+=========
 v4.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========
