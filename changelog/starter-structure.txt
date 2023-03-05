@@ -3,6 +3,13 @@ Starter Structure
 https://curseforge.com/minecraft/mc-mods/starter-structure
 
 =========
+v3.1: Fixed the spawn point being changed when it shouldn't.
+
+=========
+v3.0: Added multiple new config options related to setting the player's spawn point and the structure's position and offset.
+This fixes not being able to create underground bunkers.
+
+=========
 v2.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========

@@ -3,6 +3,10 @@ GUI Followers
 https://curseforge.com/minecraft/mc-mods/gui-followers
 
 =========
+v3.2: Added drawTextShadow config option, enabled by default. Makes the overlay text more readable.
+The rendering is now stopped when the F3 screen is open.
+
+=========
 v3.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========
