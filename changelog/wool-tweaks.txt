@@ -3,6 +3,9 @@ Wool Tweaks
 https://curseforge.com/minecraft/mc-mods/wool-tweaks
 
 =========
+v3.1: Fixed incorrectly named wool carpet tag, causing the recipes to not work.
+
+=========
 v3.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

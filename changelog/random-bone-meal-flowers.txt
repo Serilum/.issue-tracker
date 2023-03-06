@@ -3,6 +3,9 @@ Random Bone Meal Flowers
 https://www.curseforge.com/minecraft/mc-mods/random-bone-meal-flowers
 
 =========
+v4.1: Fixed the flower blacklist not generating correctly for modded flowers.
+
+=========
 v4.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

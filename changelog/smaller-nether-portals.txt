@@ -3,6 +3,9 @@ Smaller Nether Portals
 https://www.curseforge.com/minecraft/mc-mods/smaller-nether-portals
 
 =========
+v3.4: Added support for creating smaller nether portals with soul fire.
+
+=========
 v3.3: Changed how delays are done within the mod. It now uses a tick event, instead of Thread.sleep.
 This improves compatibility with other mods.
 

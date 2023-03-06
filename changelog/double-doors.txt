@@ -3,6 +3,11 @@ Double Doors
 https://www.curseforge.com/minecraft/mc-mods/double-doors
 
 =========
+v4.3: Fixed buttons not always opening double doors.
+Fixed double fence gates not opening with sound.
+Fixed trap doors rapidly closing when disabled and clicked.
+
+=========
 v4.2: Fixed the min/max values not being used correctly within the in-game config.
 
 =========

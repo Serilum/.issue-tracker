@@ -3,6 +3,10 @@ Move Minecarts
 https://www.curseforge.com/minecraft/mc-mods/move-minecarts
 
 =========
+v3.2: Improved how the mod determines what a minecart entity is.
+Improves compatibility with other mods.
+
+=========
 v3.1: Updated mod logo and summary.
 
 =========

@@ -3,6 +3,9 @@ Nether Portal Spread
 https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread
 
 =========
+v7.4: Fixed modded spreading blocks not being parsed correctly.
+
+=========
 v7.3: Changed how values in HashMaps are put. Instead of using an event, it uses the computeIfAbsent Java function.
 This fixes incompatibilities with other mods creating dimensions/levels without using the event.
 
