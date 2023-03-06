@@ -3,6 +3,10 @@ Manure
 https://curseforge.com/minecraft/mc-mods/manure
 
 =========
+v3.0: Added a blacklist, generated on first world load, to disable certain animals from dropping manure.
+Axolotls, bees and frogs are automatically blacklisted.
+
+=========
 v2.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========
