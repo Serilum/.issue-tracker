@@ -3,6 +3,18 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v8.0: This update contains a very big overhaul of the backend mechanics which makes the mod work.
+Cleaned up code, segmented core features.
+Changed how the mod determines which leaves should be broken. No more leaves being left behind!
+Fixed sound events not being handled on Fabric's side.
+Fixed more than one mangrove swamp tree being broken simultaniously.
+Improved compatibility with modded axes.
+Removed the instantBreakLeavesAround config option. You can increase amountOfLeavesBrokenPerTick for the same functionality.
+
+=========
+v7.4: Changed computeIfAbsent to use Collective's HashMapFunctions. This adds compatibility with threaded dimensions.
+
+=========
 v7.3: Changed how values in HashMaps are put. Instead of using an event, it uses the computeIfAbsent Java function.
 This fixes incompatibilities with other mods creating dimensions/levels without using the event.
 

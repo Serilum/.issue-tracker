@@ -3,6 +3,9 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v4.3: Changed computeIfAbsent to use Collective's HashMapFunctions. This adds compatibility with threaded dimensions.
+
+=========
 v4.2: Changed how values in HashMaps are put. Instead of using an event, it uses the computeIfAbsent Java function.
 This fixes incompatibilities with other mods creating dimensions/levels without using the event.
 

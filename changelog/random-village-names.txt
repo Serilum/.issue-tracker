@@ -3,6 +3,9 @@ Random Village Names
 https://curseforge.com/minecraft/mc-mods/random-village-names
 
 =========
+v3.2: Changed computeIfAbsent to use Collective's HashMapFunctions. This adds compatibility with threaded dimensions.
+
+=========
 v3.1: Changed how values in HashMaps are put. Instead of using an event, it uses the computeIfAbsent Java function.
 This fixes incompatibilities with other mods creating dimensions/levels without using the event.
 

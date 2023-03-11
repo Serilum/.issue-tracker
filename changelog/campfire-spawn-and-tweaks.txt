@@ -3,6 +3,9 @@ Campfire Spawn and Tweaks
 https://curseforge.com/minecraft/mc-mods/campfire-spawn-and-tweaks
 
 =========
+v3.4: Changed computeIfAbsent to use Collective's HashMapFunctions. This adds compatibility with threaded dimensions.
+
+=========
 v3.3: Fixed a NullPointerException on world load.
 
 =========

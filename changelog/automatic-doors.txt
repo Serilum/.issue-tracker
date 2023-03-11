@@ -3,6 +3,9 @@ Automatic Doors
 https://www.curseforge.com/minecraft/mc-mods/automatic-doors
 
 =========
+v4.4: Changed computeIfAbsent to use Collective's HashMapFunctions. This adds compatibility with threaded dimensions.
+
+=========
 v4.3: You can now (temporarily) disable the mod by setting doorOpenTime to 0.
 Changed Thread.sleep to use a tick event instead.
 
