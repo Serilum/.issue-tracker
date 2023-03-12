@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.52: Added KeyMappingFunctions, used to retrieve the private key field from a KeyMapping.
+
+=========
+v6.51: Fixed how Collective applies a tag to entities which originate from spawners used by dependent mods.
+
+=========
 v6.50: Added HashMapFunctions, which adds a custom computeIfAbsent function to add compatibility with threaded dimensions.
 
 =========

@@ -3,6 +3,9 @@ Vanilla Zoom
 https://curseforge.com/minecraft/mc-mods/vanilla-zoom
 
 =========
+v2.1: Fixed the zoom not working as intended when using custom keybinds.
+
+=========
 v2.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 
