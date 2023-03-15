@@ -3,6 +3,9 @@ Double Doors
 https://www.curseforge.com/minecraft/mc-mods/double-doors
 
 =========
+v4.5: Updated backend code related to double door opening.
+
+=========
 v4.4: Changed the backend code of how the mod opens double doors.
 
 =========

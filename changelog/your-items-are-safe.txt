@@ -3,6 +3,12 @@ Your Items Are Safe
 https://curseforge.com/minecraft/mc-mods/your-items-are-safe
 
 =========
+v3.2: Fixed the armor stand being created in the wrong place.
+
+=========
+v3.1: Fixed the helmet slot not being put on the armor stand with addPlayerHeadToArmorStand disabled.
+
+=========
 v3.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.53: Fixed Player Heads not being generated correctly.
+
+=========
 v6.52: Added KeyMappingFunctions, used to retrieve the private key field from a KeyMapping.
 
 =========
