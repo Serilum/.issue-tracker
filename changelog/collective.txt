@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.54: (1.19.4 only) Updated Collective to work with the changes to MobSpawnEvent in Forge version 45.0.23.
+
+=========
 v6.53: Fixed Player Heads not being generated correctly.
 
 =========

@@ -3,6 +3,9 @@ Realistic Bees
 https://www.curseforge.com/minecraft/mc-mods/realistic-bees
 
 =========
+v3.4: (1.19.4 only) Updated mod to work with the changes to MobSpawnEvent in Forge version 45.0.23.
+
+=========
 v3.3: Fixed mixins not being applied correctly for Forge.
 
 =========

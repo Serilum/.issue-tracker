@@ -3,6 +3,9 @@ No Hostiles Around Campfire
 https://www.curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire
 
 =========
+v5.5: (1.19.4 only) Updated mod to work with the changes to MobSpawnEvent in Forge version 45.0.23.
+
+=========
 v5.4: Fixed a NullPointerException due to an incompatibility with another mod.
 
 =========
