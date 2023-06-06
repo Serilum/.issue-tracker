@@ -3,6 +3,9 @@ Conduits Prevent Drowned
 https://www.curseforge.com/minecraft/mc-mods/conduits-prevent-drowned
 
 =========
+v3.4: (1.19.4 only) Fixed mob spawns not being canceled correctly.
+
+=========
 v3.3: (1.19.4 only) Updated mod to work with the changes to MobSpawnEvent in Forge version 45.0.23.
 
 =========

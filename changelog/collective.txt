@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.55: Added URL to Modrinth alongside CurseForge.
+
+=========
 v6.54: (1.19.4 only) Updated Collective to work with the changes to MobSpawnEvent in Forge version 45.0.23.
 
 =========

@@ -3,6 +3,9 @@ Better Spawner Control
 https://www.curseforge.com/minecraft/mc-mods/better-spawner-control
 
 =========
+v4.2: (1.19.4 only) Fixed mob spawns not being canceled correctly.
+
+=========
 v4.1: (1.19.4 only) Updated mod to work with the changes to MobSpawnEvent in Forge version 45.0.23.
 
 =========
