@@ -3,6 +3,13 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.57: Updated SignFunctions.
+
+=========
+v6.56: Fixed pack.mcmeta values.
+Updated backend code.
+
+=========
 v6.55: Added URL to Modrinth alongside CurseForge.
 
 =========
