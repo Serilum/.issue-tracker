@@ -3,6 +3,10 @@ Your Items Are Safe
 https://curseforge.com/minecraft/mc-mods/your-items-are-safe
 
 =========
+v3.3: Fixed the chest generating too low when players died on non-full blocks, for example paths.
+(1.20 only) Fixed the player's name not being updated correctly on the death sign.
+
+=========
 v3.2: Fixed the armor stand being created in the wrong place.
 
 =========

@@ -3,6 +3,10 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v7.2: Fixed Frog heads not dropping correctly.
+Added the Sniffer head texture. 1.20 ready!
+
+=========
 v7.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========

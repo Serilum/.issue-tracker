@@ -3,6 +3,9 @@ Random Village Names
 https://curseforge.com/minecraft/mc-mods/random-village-names
 
 =========
+v3.3: (1.20 only) Fixed area text not being updated correctly on signs.
+
+=========
 v3.2: Changed computeIfAbsent to use Collective's HashMapFunctions. This adds compatibility with threaded dimensions.
 
 =========
