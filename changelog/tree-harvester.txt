@@ -3,6 +3,10 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v8.2: Improved how the mod determines which leaves should be broken.
+Fixed the harvest speed difference not being applied correctly in a server environment.
+
+=========
 v8.1: Improved mod performance.
 Fixed trees incorrectly being harvested without crouching.
 Fixed a crash during leaf decay due to a mod incompatibility.

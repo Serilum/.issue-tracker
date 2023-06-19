@@ -3,6 +3,16 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.61: Moved ClientWorldLoad event callback to its own class. Fixes a crash in a dedicated server environment.
+
+=========
+v6.60: Added ClientWorldLoad event callback.
+
+=========
+v6.58-6.59: Fixed FABFunctions scanning unloaded chunks.
+Improved chat mixin compatibility, thanks to @SCPRedMage on Github!
+
+=========
 v6.57: Updated SignFunctions.
 
 =========
