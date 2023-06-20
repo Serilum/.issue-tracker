@@ -3,6 +3,9 @@ Just Mob Heads
 https://www.curseforge.com/minecraft/mc-mods/just-mob-heads
 
 =========
+v7.3: Added compatibility with modded player head stacks.
+
+=========
 v7.2: Fixed Frog heads not dropping correctly.
 Added the Sniffer head texture. 1.20 ready!
 

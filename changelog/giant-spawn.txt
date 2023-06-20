@@ -3,6 +3,9 @@ Giant Spawn
 https://www.curseforge.com/minecraft/mc-mods/giant-spawn
 
 =========
+v4.6: Giants with helmets on no longer burn in the daylight.
+
+=========
 v4.5: Changed computeIfAbsent to use Collective's HashMapFunctions. This adds compatibility with threaded dimensions.
 
 =========
