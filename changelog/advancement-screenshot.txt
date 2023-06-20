@@ -3,6 +3,10 @@ Advancement Screenshot
 https://curseforge.com/minecraft/mc-mods/advancement-screenshot
 
 =========
+v4.2: Added the 'takeScreenshotTickDelay' config option, to improve compatibility with other mods.
+(1.20 only) Fixed the mod not taking screenshots correctly.
+
+=========
 v4.1: Fixed mixins not being applied correctly for Forge.
 
 =========

@@ -3,6 +3,12 @@ Compact Help Command
 https://curseforge.com/minecraft/mc-mods/compact-help-command
 
 =========
+v2.3: The improved /help command can now be ran from the server console.
+
+=========
+v2.2: Fixed /help <command> not working correctly. It now also shows a better looking output.
+
+=========
 v2.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========
