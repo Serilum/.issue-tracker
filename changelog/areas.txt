@@ -3,6 +3,21 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v5.0: The big 5.0 update!
+Lots of code has been rewritten.
+Improved performance.
+The displaying of areas now works client-side only!
+For randomly generated area names, the mod still has to be installed on the server.
+Fixed the /areas command not always working correctly.
+Added new config options for better control over what the GUI shows.
+Added shadow to the area text.
+Fixed the game crashing when setting the area range too high.
+Fixed the area name sometimes not going away correctly.
+Fixed a crash with an empty range input.
+Added compatibility with unicode characters.
+Added compatibility with modded signs.
+
+=========
 v4.4: (1.20 only) Fixed sign text not being updated correctly when area name is left empty.
 
 =========

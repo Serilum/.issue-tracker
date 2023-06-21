@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.62: Fixed config strings losing their trailing spaces when using the in-game config editor.
+
+=========
 v6.61: Moved ClientWorldLoad event callback to its own class. Fixes a crash in a dedicated server environment.
 
 =========
