@@ -379,6 +379,10 @@
 		"fabric" : 585934,
 		"forge" : 447359
 	},
+	"Persistent Inventory Search" : {
+		"fabric" : -1,
+		"forge" : 880052
+	},
 	"Pet Names" : {
 		"fabric" : 539627,
 		"forge" : 344884
