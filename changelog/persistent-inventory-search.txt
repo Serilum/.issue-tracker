@@ -1,0 +1,6 @@
+Changelog:
+Persistent Inventory Search
+https://curseforge.com/minecraft/mc-mods/persistent-inventory-search
+
+=========
+v1.0: Initial release of Persistent Inventory Search.
