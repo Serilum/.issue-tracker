@@ -1,0 +1,6 @@
+Changelog:
+Quick Right-Click
+https://curseforge.com/minecraft/mc-mods/quick-right-click
+
+=========
+v1.0: Initial release of Quick Right-Click.
