@@ -411,6 +411,10 @@
 		"fabric" : 539614,
 		"forge" : 382877
 	},
+	"Quick Right-Click" : {
+		"fabric" : -1,
+		"forge" : 880596
+	},
 	"Rain Be Gone Ritual" : {
 		"fabric" : 529593,
 		"forge" : 412060
