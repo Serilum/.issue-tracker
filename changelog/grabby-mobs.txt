@@ -1,0 +1,6 @@
+Changelog:
+Grabby Mobs
+https://curseforge.com/minecraft/mc-mods/grabby-mobs
+
+=========
+v1.0: Initial release of Grabby Mobs.
