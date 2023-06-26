@@ -227,6 +227,10 @@
 		"fabric" : 541186,
 		"forge" : 347921
 	},
+	"Grabby Mobs" : {
+		"fabric" : -1,
+		"forge" : 881030
+	},
 	"Grass Seeds" : {
 		"fabric" : 530225,
 		"forge" : 345981
