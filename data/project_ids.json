@@ -371,6 +371,10 @@
 		"fabric" : 550055,
 		"forge" : -1
 	},
+	"Overworld Piglins" : {
+		"fabric" : -1,
+		"forge" : 881363
+	},
 	"Paper Books" : {
 		"fabric" : 529666,
 		"forge" : 348756
