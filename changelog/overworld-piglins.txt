@@ -1,0 +1,6 @@
+Changelog:
+Overworld Piglins
+https://curseforge.com/minecraft/mc-mods/overworld-piglins
+
+=========
+v1.0: Initial release of Overworld Piglins.
