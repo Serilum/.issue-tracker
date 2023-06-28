@@ -3,4 +3,7 @@ Grabby Mobs
 https://curseforge.com/minecraft/mc-mods/grabby-mobs
 
 =========
+v1.1: Fixed incorrect mixin reference.
+
+=========
 v1.0: Initial release of Grabby Mobs.
