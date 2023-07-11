@@ -1,0 +1,6 @@
+Changelog:
+Automatic Operator
+https://curseforge.com/minecraft/mc-mods/automatic-operator
+
+=========
+v1.0: Initial release of Automatic Operator.
