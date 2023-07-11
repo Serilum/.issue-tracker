@@ -3,6 +3,11 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.63: Cleaned up leftover files.
+Added mixins to Forge.
+Added global callbacks. The first being a Main Menu Loaded callback.
+
+=========
 v6.62: Fixed config strings losing their trailing spaces when using the in-game config editor.
 
 =========
