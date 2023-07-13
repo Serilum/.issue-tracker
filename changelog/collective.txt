@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.65: Fixed incorrect mixin reference on Fabric. Hopefully for real this time! *Finger's crossed*.
+
+=========
+v6.64: Fixed the new mixin format not exported correctly.
+
+=========
 v6.63: Cleaned up leftover files.
 Added mixins to Forge.
 Added global callbacks. The first being a Main Menu Loaded callback.
