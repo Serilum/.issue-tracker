@@ -1,0 +1,6 @@
+Changelog:
+Custom Credits
+https://curseforge.com/minecraft/mc-mods/custom-credits
+
+=========
+v1.0: Initial release of Custom Credits.
