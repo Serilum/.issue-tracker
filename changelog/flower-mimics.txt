@@ -1,0 +1,6 @@
+Changelog:
+Flower Mimics
+https://curseforge.com/minecraft/mc-mods/flower-mimics
+
+=========
+v1.0: Initial release of Flower Mimics.
