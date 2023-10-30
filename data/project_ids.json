@@ -219,6 +219,10 @@
 		"fabric" : 536752,
 		"forge" : 390913
 	},
+	"Flower Mimics" : {
+		"fabric" : -1,
+		"forge" : 930056
+	},
 	"Followers Teleport Too" : {
 		"fabric" : 682212,
 		"forge" : 682198

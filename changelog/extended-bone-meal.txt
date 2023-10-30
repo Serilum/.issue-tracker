@@ -3,6 +3,9 @@ Extended Bone Meal
 https://www.curseforge.com/minecraft/mc-mods/extended-bone-meal
 
 =========
+v3.1: Updated Extended Bone Meal to work with the latest Collective callback changes.
+
+=========
 v3.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

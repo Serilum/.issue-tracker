@@ -3,6 +3,13 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.67-6.72: Updated various backend mixin settings.
+Fixed Forge global callbacks not working correctly.
+
+=========
+v6.66: Updated simulated FakePlayer code.
+
+=========
 v6.65: Fixed incorrect mixin reference on Fabric. Hopefully for real this time! *Finger's crossed*.
 
 =========

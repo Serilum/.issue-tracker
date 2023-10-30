@@ -3,6 +3,9 @@ Underwater Enchanting
 https://www.curseforge.com/minecraft/mc-mods/underwater-enchanting
 
 =========
+v2.3: Updated mod description.
+
+=========
 v2.2: Fixed mixins not being applied correctly for Forge.
 
 =========

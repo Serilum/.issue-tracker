@@ -3,6 +3,9 @@ Respawn Delay
 https://www.curseforge.com/minecraft/mc-mods/respawn-delay
 
 =========
+v4.2: Updated mod description.
+
+=========
 v4.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========
