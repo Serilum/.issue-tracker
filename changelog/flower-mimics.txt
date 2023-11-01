@@ -3,4 +3,9 @@ Flower Mimics
 https://curseforge.com/minecraft/mc-mods/flower-mimics
 
 =========
+v1.1: Modded flowers are now loaded into the config, but the target mimic entity is left empty.
+This prevents unwanted behaviour with functional modded flower blocks.
+They can still be transformed, but would have to be added manually.
+
+=========
 v1.0: Initial release of Flower Mimics.
