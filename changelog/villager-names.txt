@@ -3,6 +3,14 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v6.0: Villager professions will now be shown in the correct localized game language.
+Added various config options to specify what and what shouldn't be shown on the villager trade screen.
+When custom names are set, the default names will not be used by default. To prevent unintended villager naming. There is a config option to use both.
+Updated mod to work with the JSON generation changes in Collective version 6.80.
+Added extra support for various modded villagers.
+And some other small backend bug fixes.
+
+=========
 v5.2: Changed how delays are done within the mod. It now uses a tick event, instead of Thread.sleep.
 This improves compatibility with other mods.
 

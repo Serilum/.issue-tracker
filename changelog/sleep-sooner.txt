@@ -3,6 +3,9 @@ Sleep Sooner
 https://www.curseforge.com/minecraft/mc-mods/sleep-sooner
 
 =========
+v4.2: Added support for the JSON file generation changes in Collective version 6.80.
+
+=========
 v4.1: Fixed the min/max values not being used correctly within the in-game config.
 
 =========

@@ -3,6 +3,9 @@ Pet Names
 https://www.curseforge.com/minecraft/mc-mods/pet-names
 
 =========
+v3.1: Added support for the JSON file generation changes in Collective version 6.80.
+
+=========
 v3.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

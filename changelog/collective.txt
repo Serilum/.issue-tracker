@@ -3,6 +3,19 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v6.76-6.80: Updated and cleaned up backend code.
+Deprecated (large) List<String> fields in GlobalVariables. Will be removed once dependent mods are updated.
+Made the hardcoded JSON fields in Collective editable in ./config/collective/.
+Added callbacks for when JSON fields are loaded.
+Added function to request JSON file generation by dependent mods. So they'll only generate when needed.
+
+=========
+v6.75: Added support for extra modded villager entities.
+
+=========
+v6.73-6.74: Added functions related to the merchant menu and screen.
+
+=========
 v6.67-6.72: Updated various backend mixin settings.
 Fixed Forge global callbacks not working correctly.
 

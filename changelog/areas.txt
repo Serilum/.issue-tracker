@@ -3,6 +3,9 @@ Areas
 https://www.curseforge.com/minecraft/mc-mods/areas
 
 =========
+v5.1: Added support for the JSON file generation changes in Collective version 6.80.
+
+=========
 v5.0: The big 5.0 update!
 Lots of code has been rewritten.
 Improved performance.
