@@ -1,0 +1,6 @@
+Changelog:
+Current Game Music Track
+https://curseforge.com/minecraft/mc-mods/current-game-music-track
+
+=========
+v1.0: Initial release of Current Game Music Track.
