@@ -3,6 +3,9 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v6.1: Fixed an incorrect mixin reference.
+
+=========
 v6.0: Villager professions will now be shown in the correct localized game language.
 Added various config options to specify what and what shouldn't be shown on the villager trade screen.
 When custom names are set, the default names will not be used by default. To prevent unintended villager naming. There is a config option to use both.
