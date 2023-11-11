@@ -3,6 +3,11 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v7.0: Improved mod performance.
+Changed the backend naming logic.
+Fixed names not being applied correctly when spawning in a village.
+
+=========
 v6.5: Changed the backend naming logic. Improves performance.
 
 =========

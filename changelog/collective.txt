@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v7.7: Changed when the JSON file generation runs, so dependent mods can access it sooner.
+
+=========
 v7.6: Made some changes to the FakePlayer code and its factory.
 
 =========
