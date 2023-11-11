@@ -3,4 +3,8 @@ Automatic Operator
 https://curseforge.com/minecraft/mc-mods/automatic-operator
 
 =========
+v1.1: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v1.0: Initial release of Automatic Operator.

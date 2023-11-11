@@ -3,6 +3,10 @@ Mineral Chance
 https://curseforge.com/minecraft/mc-mods/mineral-chance
 
 =========
+v3.3: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v3.2: Added the 'disableMineralDropsWithSilkTouch' config option, enabled by default. It prevents mineral drops from stone mined with silk touch.
 Mineral drops can now only happened when stone is mined with a pickaxe.
 

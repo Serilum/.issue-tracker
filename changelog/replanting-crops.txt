@@ -3,6 +3,10 @@ Replanting Crops
 https://www.curseforge.com/minecraft/mc-mods/replanting-crops
 
 =========
+v5.2: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v5.1: Fixed a ghost item being created during the replanting that wasn't able to be picked up in dedicated servers.
 
 =========

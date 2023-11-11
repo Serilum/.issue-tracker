@@ -3,6 +3,10 @@ Random Bone Meal Flowers
 https://www.curseforge.com/minecraft/mc-mods/random-bone-meal-flowers
 
 =========
+v4.4: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v4.2-4.3: Updated Extended Random Bone Meal Flowers to work with the latest Collective callback changes.
 
 =========

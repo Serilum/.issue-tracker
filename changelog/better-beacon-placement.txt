@@ -3,6 +3,10 @@ Better Beacon Placement
 https://www.curseforge.com/minecraft/mc-mods/better-beacon-placement
 
 =========
+v3.2: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v3.1: The mod now uses the BEACON_BASE_BLOCKS BlockTag to determine what a mineral block is, increasing compatibility with modded blocks.
 
 =========

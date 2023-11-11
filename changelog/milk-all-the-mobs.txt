@@ -3,6 +3,10 @@ Milk All The Mobs
 https://www.curseforge.com/minecraft/mc-mods/milk-all-the-mobs
 
 =========
+v3.1: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v3.0: A big backend update!
 Forge and Fabric (and Quilt) are now contained in one file.
 

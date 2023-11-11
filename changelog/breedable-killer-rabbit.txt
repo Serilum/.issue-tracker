@@ -3,6 +3,10 @@ Breedable Killer Rabbit
 https://www.curseforge.com/minecraft/mc-mods/breedable-killer-rabbit
 
 =========
+v3.3: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v3.2: The mod now correctly uses the language file to determine if a killer rabbit's name tag has to be removed.
 Fixed a bug where a rabbit would be incorrectly cast to a player.
 

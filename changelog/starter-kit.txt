@@ -3,6 +3,10 @@ Starter Kit
 https://www.curseforge.com/minecraft/mc-mods/starter-kit
 
 =========
+v5.3: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v5.2: Changed how delays are done within the mod. It now uses a tick event, instead of Thread.sleep.
 This improves compatibility with other mods.
 

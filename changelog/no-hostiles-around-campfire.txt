@@ -3,6 +3,10 @@ No Hostiles Around Campfire
 https://www.curseforge.com/minecraft/mc-mods/no-hostiles-around-campfire
 
 =========
+v5.7: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v5.6: (1.19.4 only) Fixed mob spawns not being canceled correctly.
 
 =========

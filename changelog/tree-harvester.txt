@@ -3,6 +3,10 @@ Tree Harvester
 https://www.curseforge.com/minecraft/mc-mods/tree-harvester
 
 =========
+v8.3: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v8.2: Improved how the mod determines which leaves should be broken.
 Fixed the harvest speed difference not being applied correctly in a server environment.
 

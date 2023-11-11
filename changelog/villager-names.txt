@@ -3,6 +3,17 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v6.4: The old default custom name list is now correctly ignored, and removed, when loading the mod.
+This prevents villagers from accidentally receiving the previously used old custom config names.
+
+=========
+v6.3: (1.20.2) Added extra checks which mixins should be loaded, to prevent unwanted behaviour on NeoForge.
+
+=========
+v6.2: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v6.1: Fixed an incorrect mixin reference.
 
 =========

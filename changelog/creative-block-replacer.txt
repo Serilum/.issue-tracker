@@ -3,6 +3,10 @@ Creative Block Replacer
 https://www.curseforge.com/minecraft/mc-mods/creative-block-replacer
 
 =========
+v2.1: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v2.0: Released a Fabric version alongside Forge, in the same jar.
 Improved the visual of replacing blocks. It now replaces blocks directly without showing the other block.
 

@@ -3,6 +3,10 @@ Starter Structure
 https://curseforge.com/minecraft/mc-mods/starter-structure
 
 =========
+v3.2: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v3.1: Fixed the spawn point being changed when it shouldn't.
 
 =========

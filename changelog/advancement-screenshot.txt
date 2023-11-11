@@ -3,6 +3,13 @@ Advancement Screenshot
 https://curseforge.com/minecraft/mc-mods/advancement-screenshot
 
 =========
+v4.4: (1.20.2) Added extra checks which mixins should be loaded, to prevent unwanted behaviour on NeoForge.
+
+=========
+v4.3: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v4.2: Added the 'takeScreenshotTickDelay' config option, to improve compatibility with other mods.
 (1.20 only) Fixed the mod not taking screenshots correctly.
 

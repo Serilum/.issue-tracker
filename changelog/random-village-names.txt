@@ -3,6 +3,11 @@ Random Village Names
 https://curseforge.com/minecraft/mc-mods/random-village-names
 
 =========
+v3.4: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+The dependent Areas version is now 5.2.
+
+=========
 v3.3: (1.20 only) Fixed area text not being updated correctly on signs.
 
 =========

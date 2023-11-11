@@ -3,6 +3,10 @@ Pet Names
 https://www.curseforge.com/minecraft/mc-mods/pet-names
 
 =========
+v3.2: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v3.1: Added support for the JSON file generation changes in Collective version 6.80.
 
 =========

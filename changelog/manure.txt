@@ -3,6 +3,10 @@ Manure
 https://curseforge.com/minecraft/mc-mods/manure
 
 =========
+v3.1: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
+Updated structure and content of mod info files.
+
+=========
 v3.0: Added a blacklist, generated on first world load, to disable certain animals from dropping manure.
 Axolotls, bees and frogs are automatically blacklisted.
 
