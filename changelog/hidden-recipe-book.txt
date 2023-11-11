@@ -3,6 +3,10 @@ Hidden Recipe Book
 https://curseforge.com/minecraft/mc-mods/hidden-recipe-book
 
 =========
+v4.3: (1.20.2) Fixed NeoForge not loading correctly.
+Updated mod description.
+
+=========
 v4.2: (1.20.2) Fixed incorrect class reference on NeoForge.
 
 =========

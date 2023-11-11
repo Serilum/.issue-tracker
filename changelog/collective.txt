@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v7.6: Made some changes to the FakePlayer code and its factory.
+
+=========
 v7.4-7.5: (1.20.2) Added extra checks which mixins should be loaded, to prevent unwanted behaviour on NeoForge.
 
 =========

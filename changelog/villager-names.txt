@@ -3,6 +3,9 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v6.5: Changed the backend naming logic. Improves performance.
+
+=========
 v6.4: The old default custom name list is now correctly ignored, and removed, when loading the mod.
 This prevents villagers from accidentally receiving the previously used old custom config names.
 
