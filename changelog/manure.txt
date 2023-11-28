@@ -3,6 +3,10 @@ Manure
 https://curseforge.com/minecraft/mc-mods/manure
 
 =========
+v3.2: (1.20.2) Updated mod to work with the changes in NeoForge version 20.2.59-beta.
+Fixed manure not showing up in the creative inventory.
+
+=========
 v3.1: (1.20.*) Added official support for NeoForge. Just like Fabric and Forge, in the same jar!
 Updated structure and content of mod info files.
 

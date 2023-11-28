@@ -3,6 +3,9 @@ Healing Soup
 https://www.curseforge.com/minecraft/mc-mods/healing-soup
 
 =========
+v4.4: (1.20.2) Updated mod to work with the changes in NeoForge version 20.2.59-beta.
+
+=========
 v4.3: (1.20.2) Fixed incorrect class reference on NeoForge.
 
 =========

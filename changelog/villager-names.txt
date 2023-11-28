@@ -3,6 +3,10 @@ Villager Names
 https://www.curseforge.com/minecraft/mc-mods/villager-names
 
 =========
+v7.1: Adds a new config option 'shouldCapitalizeNames'.
+Fixes custom names not keeping their formatting.
+
+=========
 v7.0: Improved mod performance.
 Changed the backend naming logic.
 Fixed names not being applied correctly when spawning in a village.

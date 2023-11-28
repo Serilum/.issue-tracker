@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v7.8: Adds support with Chat Heads for dependent chat mods. Thanks to @Fourmisain on Github for the PR!
+
+=========
 v7.7: Changed when the JSON file generation runs, so dependent mods can access it sooner.
 
 =========
