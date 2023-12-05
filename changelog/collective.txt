@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v7.10-7.11: Added the BlockTagsHelper class. It aids in providing support for modded blocks within the multi mod loader environment.
+
+=========
+v7.9: Added support for the Spawn Radius gamerule in the function where Collective determines if a player spawned in a world for the first time.
+
+=========
 v7.8: Adds support with Chat Heads for dependent chat mods. Thanks to @Fourmisain on Github for the PR!
 
 =========
@@ -195,7 +201,7 @@ v6.14: Fixed formatting for certain config keys on the in-game configuration scr
 v6.13: Fixed the config folder and files not generating inside the game directory.
 
 =========
-v6.91-6.12: Fixed Village/Biome Spawn Point not working correctly when the game was set to a different language.
+v6.10-6.12: Fixed Village/Biome Spawn Point not working correctly when the game was set to a different language.
 
 =========
 v6.9: Added missing Event Trigger reference in Services file.
@@ -296,7 +302,7 @@ Added code to get coordinates of nearby biomes.
 v5.11: Changed the input of the Schematic function to work with an InputStream, instead of a file path.
 
 =========
-v5.81-5.10: Updated backend code.
+v5.9-5.10: Updated backend code.
 Synced version with local development.
 
 =========
