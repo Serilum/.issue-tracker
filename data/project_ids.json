@@ -387,6 +387,10 @@
 		"fabric" : 550055,
 		"forge" : -1
 	},
+	"Ore Discovery Broadcast" : {
+		"fabric" : -1,
+		"forge" : 946767
+	},
 	"Overworld Piglins" : {
 		"fabric" : -1,
 		"forge" : 881363
