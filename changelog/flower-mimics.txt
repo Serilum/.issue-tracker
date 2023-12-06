@@ -3,6 +3,9 @@ Flower Mimics
 https://curseforge.com/minecraft/mc-mods/flower-mimics
 
 =========
+v1.5: Improved mod incompatibility in server environments.
+
+=========
 v1.4: (1.20.2) Added extra checks which mixins should be loaded, to prevent unwanted behaviour on NeoForge.
 
 =========

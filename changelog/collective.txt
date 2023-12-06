@@ -3,6 +3,9 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v7.12: Added an extra check if the chunk is loaded to the function that finds surface block positions. Improves compatibility with other mods.
+
+=========
 v7.10-7.11: Added the BlockTagsHelper class. It aids in providing support for modded blocks within the multi mod loader environment.
 
 =========
