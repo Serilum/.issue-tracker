@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v7.13: Fixes an issue where Collective sets returned BlockPos positions too high.
+
+=========
+v7.12: Updated Collective to Minecraft version 1.20.3.
+
+=========
 v7.12: Added an extra check if the chunk is loaded to the function that finds surface block positions. Improves compatibility with other mods.
 
 =========
