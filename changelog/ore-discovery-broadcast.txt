@@ -3,4 +3,7 @@ Ore Discovery Broadcast
 https://curseforge.com/minecraft/mc-mods/ore-discovery-broadcast
 
 =========
+v1.1: Added the 'addOreCountToMessage' config option, disabled by default, which adds the vein ore count to the broadcasted message.
+
+=========
 v1.0: Initial release of Ore Discovery Broadcast.

@@ -3,6 +3,12 @@ Collective
 https://www.curseforge.com/minecraft/mc-mods/collective
 
 =========
+v7.15: Further improvements to Collective's in-game config screen.
+
+=========
+v7.14: Fixed some issues related to the in-game config screen.
+
+=========
 v7.13: Fixes an issue where Collective sets returned BlockPos positions too high.
 
 =========
