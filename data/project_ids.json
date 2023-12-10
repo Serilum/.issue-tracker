@@ -243,6 +243,10 @@
 		"fabric" : 541186,
 		"forge" : 347921
 	},
+	"Global Narration Toggle" : {
+		"fabric" : -1,
+		"forge" : 948704
+	},
 	"Grabby Mobs" : {
 		"fabric" : -1,
 		"forge" : 881030
