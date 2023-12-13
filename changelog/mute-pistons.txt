@@ -1,9 +1,0 @@
-Changelog:
-Mute Pistons
-https://www.curseforge.com/minecraft/mc-mods/mute-pistons
-
-=========
-v1.1: The mod is now client side only, updated modid.
-
-=========
-v1.0: Initial release of mod.

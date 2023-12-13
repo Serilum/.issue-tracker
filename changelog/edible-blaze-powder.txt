@@ -1,6 +1,0 @@
-Changelog:
-Edible Blaze Powder
-https://www.curseforge.com/minecraft/mc-mods/edible-blaze-powder
-
-=========
-v1.0: Initial release of mod.

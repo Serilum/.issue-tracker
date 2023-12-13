@@ -1,6 +1,0 @@
-Changelog:
-Mute Cows
-https://www.curseforge.com/minecraft/mc-mods/mute-cows
-
-=========
-v1.0: Initial release of mod.

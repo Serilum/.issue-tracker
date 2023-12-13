@@ -1,6 +1,0 @@
-Changelog:
-Mute Villagers
-https://www.curseforge.com/minecraft/mc-mods/mute-villagers
-
-=========
-v1.0: Initial release of mod.

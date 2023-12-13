@@ -1,6 +1,0 @@
-Changelog:
-Global Narration Toggle
-https://curseforge.com/minecraft/mc-mods/global-narration-toggle
-
-=========
-v1.0: Initial release of Global Narration Toggle.

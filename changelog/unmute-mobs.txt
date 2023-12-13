@@ -1,6 +1,0 @@
-Changelog:
-Unmute Mobs
-https://www.curseforge.com/minecraft/mc-mods/unmute-mobs
-
-=========
-v1.0: Initial release of mod.
