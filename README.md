@@ -1,24 +1,22 @@
-[![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/header.png)](https://serilum.com/)
+[![](https://github.com/Serilum/.cdn/raw/main/description/github/header.png)](https://serilum.com/)
 
 <div align="center">
 <p><strong>Feeling generous? ❤️</strong></p>
 <p><a href="https://ricksouth.com/donate" target=_blank><img src="https://github.com/ricksouth/ricksouth/raw/main/assets/shields/donation_rounded.svg" height="50" width="auto"></a></p>
 </div>
 
-[![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/serilumcom.png)](https://serilum.com/)\
+[![](https://github.com/Serilum/.cdn/raw/main/description/github/serilumcom.png)](https://serilum.com/)\
 &nbsp;\
-[![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/faq.png)](https://github.com/ricksouth/serilum-mc-mods/wiki/FAQ)\
+[![](https://github.com/Serilum/.cdn/raw/main/description/github/faq.png)](https://github.com/Serilum/.information/wiki/FAQ)\
 &nbsp;\
-[![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/issues.png)](https://github.com/ricksouth/serilum-mc-mods/issues/new/choose)\
-&nbsp;\
-[![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/code.png)](https://github.com/ricksouth/serilum-mc-mod-sources/tree/main/sources)\
+[![](https://github.com/Serilum/.cdn/raw/main/description/github/issues.png)](https://github.com/Serilum/.issue-tracker/issues/new/choose)\
 &nbsp;
-|   | [![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/curseforge.png)](https://curseforge.com/members/serilum/projects)  |  [![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/modrinth.png)](https://modrinth.com/user/Serilum) |
+|   | [![](https://github.com/Serilum/.cdn/raw/main/description/github/curseforge.png)](https://curseforge.com/members/serilum/projects)  |  [![](https://github.com/Serilum/.cdn/raw/main/description/github/modrinth.png)](https://modrinth.com/user/Serilum) |
 |---|---|---|
 |   | __Project Page:__  | __Project Page:__  |
 |   | https://curseforge.com/members/serilum/projects  | https://modrinth.com/user/serilum  |
 |   | 	&nbsp;  | 	&nbsp;  |
-| [![](https://github.com/ricksouth/serilum-mc-mods/raw/master/description/Github/tiny_logo/_changelog.png)](#)  | __Mod List:__  | __Mod List:__  |
+| [![](https://github.com/Serilum/.cdn/raw/main/description/github/tiny_logo/_changelog.png)](#)  | __Mod List:__  | __Mod List:__  |
 |   | _Versions 1.11.x - 1.19.x_  | _Versions 1.16.x - 1.19.x_  |
 |   | 	&nbsp;  | 	&nbsp;  |
 | [![](https://github.com/Serilum/.cdn/raw/main/description/github/tiny_logo/advancement-screenshot.png)](https://serilum.com/mods?changelog=advancement-screenshot)  | [Advancement Screenshot](https://curseforge.com/minecraft/mc-mods/advancement-screenshot)  | [Advancement Screenshot](https://modrinth.com/mod/advancement-screenshot)  |
