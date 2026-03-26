@@ -1,0 +1,35 @@
+name: "Submit a feature idea for an existing mod."
+description: "Something could be improved or added! Please mention the mod name your feature request is for."
+labels: ["Mod Label Missing", "Feature Request"]
+assignees:
+  - ricksouth
+body:
+  - type: input
+    id: minecraft-version
+    attributes:
+      label: Minecraft version
+    validations:
+      required: true
+  - type: dropdown
+    id: modloader
+    attributes:
+      label: Modloader
+      options:
+        - Forge
+        - Fabric
+        - NeoForge
+        - Quilt
+    validations:
+      required: true
+  - type: input
+    id: mod-name
+    attributes:
+      label: Mod name
+    validations:
+      required: true
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature description
+    validations:
+      required: true

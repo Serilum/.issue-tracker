@@ -1,0 +1,58 @@
+name: "Submit a bug/crash/error."
+description: "Something doesn't work as expected. Please specify the mod name and provide a crash report if possible."
+labels: ["Mod Label Missing", "Bug"]
+assignees:
+  - ricksouth
+body:
+  - type: input
+    id: minecraft-version
+    attributes:
+      label: Minecraft version
+    validations:
+      required: true
+  - type: dropdown
+    id: modloader
+    attributes:
+      label: Modloader
+      options:
+        - Forge
+        - Fabric
+        - NeoForge
+        - Quilt
+    validations:
+      required: true
+  - type: input
+    id: modloader-version
+    attributes:
+      label: Modloader version
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - Singleplayer
+        - Multiplayer
+        - Both
+    validations:
+      required: true
+  - type: input
+    id: mod-name
+    attributes:
+      label: Mod name
+    validations:
+      required: true
+  - type: input
+    id: mod-version
+    attributes:
+      label: Mod version
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+    validations:
+      required: true
+  - type: textarea
+    id: crash-report
+    attributes:
+      label: Crash report
+      description: "Please either drag the file directly here, or use https://gist.github.com/ to prevent the paste from expiring."

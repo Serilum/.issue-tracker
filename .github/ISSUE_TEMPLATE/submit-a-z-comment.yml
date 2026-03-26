@@ -1,0 +1,22 @@
+name: "Submit a comment. What's on your mind?"
+description: "This can be about anything. Hello! :)"
+labels: ["Comment"]
+assignees:
+  - ricksouth
+body:
+  - type: input
+    id: mod-name
+    attributes:
+      label: Mod name
+    validations:
+      required: true
+  - type: input
+    id: mod-version
+    attributes:
+      label: Mod version
+  - type: textarea
+    id: comment
+    attributes:
+      label: Comment
+    validations:
+      required: true

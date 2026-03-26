@@ -1,0 +1,29 @@
+name: "Submit a feature idea for a new mod."
+description: "Something that you'd think is a great addition to the game."
+labels: ["Feature Request"]
+assignees:
+  - ricksouth
+body:
+  - type: input
+    id: minecraft-version
+    attributes:
+      label: Minecraft version
+    validations:
+      required: true
+  - type: dropdown
+    id: modloader
+    attributes:
+      label: Modloader
+      options:
+        - Forge
+        - Fabric
+        - NeoForge
+        - Quilt
+    validations:
+      required: true
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature description
+    validations:
+      required: true

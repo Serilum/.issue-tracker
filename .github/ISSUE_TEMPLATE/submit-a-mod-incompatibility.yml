@@ -1,0 +1,66 @@
+name: "Submit a mod incompatibility."
+description: "Two mods aren't working together as they should. Please specify both mods and explain the situation."
+labels: ["Mod Label Missing", "Incompatibility"]
+assignees:
+  - ricksouth
+body:
+  - type: input
+    id: minecraft-version
+    attributes:
+      label: Minecraft version
+    validations:
+      required: true
+  - type: dropdown
+    id: modloader
+    attributes:
+      label: Modloader
+      options:
+        - Forge
+        - Fabric
+        - NeoForge
+        - Quilt
+    validations:
+      required: true
+  - type: input
+    id: modloader-version
+    attributes:
+      label: Modloader version
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - Singleplayer
+        - Multiplayer
+        - Both
+    validations:
+      required: true
+  - type: input
+    id: first-mod-name
+    attributes:
+      label: First mod name
+    validations:
+      required: true
+  - type: input
+    id: first-mod-version
+    attributes:
+      label: First mod version
+  - type: input
+    id: second-mod-name
+    attributes:
+      label: Second mod name
+  - type: input
+    id: second-mod-version
+    attributes:
+      label: Second mod version
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+    validations:
+      required: true
+  - type: textarea
+    id: crash-report
+    attributes:
+      label: Crash report
+      description: "If available. Please either drag the file directly here, or use https://gist.github.com/ to prevent the paste from expiring."
