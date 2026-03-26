@@ -6,7 +6,7 @@ assignees:
 body:
   - type: markdown
     attributes:
-      value: "Hi! This issue tracker page is for all of Serilum's mods combined. Please specify which mod you are having trouble with or a question about."
+      value: "Hi! This issue tracker page is for all of Serilum's mods combined.\nPlease specify which mod you are having trouble with or a question about.\n\n> **Tell me the mod name! :)**"
   - type: input
     id: mod-name
     attributes:
