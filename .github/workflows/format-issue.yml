@@ -1,0 +1,104 @@
+name: Format Issue Body
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body || '';
+            const labels = issue.labels.map(l => l.name);
+
+            if (!body.includes('### ')) return;
+
+            const s = {};
+            for (const part of body.split(/^### /m)) {
+              if (!part.trim()) continue;
+              const i = part.indexOf('\n');
+              if (i === -1) continue;
+              const val = part.substring(i + 1).trim();
+              s[part.substring(0, i).trim()] = val === '_No response_' ? '' : val;
+            }
+
+            const info = (key) => s[key] ? key + ': ' + s[key] + '\n' : '';
+            const infoReq = (key) => key + ': ' + (s[key] || '') + '\n';
+            const section = (title, key) => s[key] ? '\n## **' + title + '**\n' + s[key] + '\n' : '';
+            const sectionReq = (title, key) => '\n## **' + title + '**\n' + (s[key] || '') + '\n';
+
+            let out = '';
+
+            if (labels.includes('Bug')) {
+              out = '## **Information**\n'
+                + infoReq('Minecraft version')
+                + infoReq('Modloader')
+                + info('Modloader version')
+                + infoReq('Environment') + '\n'
+                + infoReq('Mod name')
+                + infoReq('Mod version')
+                + section('Crash Report / Latest Log', 'Crash Report / Latest Log')
+                + sectionReq('Description', 'Description');
+
+            } else if (labels.includes('Incompatibility')) {
+              out = '## **Information**\n'
+                + infoReq('Minecraft version')
+                + infoReq('Modloader')
+                + info('Modloader version')
+                + infoReq('Environment') + '\n'
+                + infoReq('First mod name')
+                + info('First mod version') + '\n'
+                + info('Second mod name')
+                + info('Second mod version')
+                + section('Crash Report / Latest Log', 'Crash Report / Latest Log')
+                + sectionReq('Description', 'Description');
+
+            } else if (labels.includes('Feature Request') && s['Mod name']) {
+              out = '## **Information**\n'
+                + info('Minecraft version')
+                + infoReq('Modloader') + '\n'
+                + infoReq('Mod name')
+                + sectionReq('Feature description', 'Feature description');
+
+            } else if (labels.includes('Feature Request')) {
+              out = '## **Information**\n'
+                + info('Minecraft version')
+                + infoReq('Modloader')
+                + sectionReq('Feature description', 'Feature description');
+
+            } else if (labels.includes('Question')) {
+              out = '## **Information**\n'
+                + info('Minecraft version')
+                + info('Modloader')
+                + info('Modloader version')
+                + info('Environment') + '\n'
+                + info('Mod name')
+                + info('Mod version')
+                + sectionReq('Question', 'Question');
+
+            } else if (labels.includes('Comment')) {
+              out = '## **Information**\n'
+                + info('Mod name')
+                + info('Mod version')
+                + sectionReq('Comment', 'Comment');
+
+            } else {
+              return;
+            }
+
+            out = out.replace(/\n{3,}/g, '\n\n').trim();
+
+            if (out !== body.trim()) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: out
+              });
+            }
