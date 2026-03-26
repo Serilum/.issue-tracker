@@ -8,15 +8,13 @@ body:
     id: minecraft-version
     attributes:
       label: Minecraft version
-    validations:
-      required: true
   - type: dropdown
     id: modloader
     attributes:
       label: Modloader
       options:
-        - Forge
         - Fabric
+        - Forge
         - NeoForge
 
         - Other / All

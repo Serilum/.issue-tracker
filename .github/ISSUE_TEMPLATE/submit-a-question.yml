@@ -15,8 +15,8 @@ body:
     attributes:
       label: Modloader
       options:
-        - Forge
         - Fabric
+        - Forge
         - NeoForge
 
         - Other / All

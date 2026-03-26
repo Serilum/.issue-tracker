@@ -15,8 +15,8 @@ body:
     attributes:
       label: Modloader
       options:
-        - Forge
         - Fabric
+        - Forge
         - NeoForge
 
         - Other / All
@@ -57,7 +57,7 @@ body:
   - type: textarea
     id: crash-report
     attributes:
-      label: Crash report
+      label: Crash Report / Latest Log
       description: "If available. Please either drag the file directly here, or use https://gist.github.com/ to prevent the paste from expiring."
   - type: textarea
     id: description
