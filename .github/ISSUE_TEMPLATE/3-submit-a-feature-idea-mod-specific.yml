@@ -8,13 +8,19 @@ body:
     attributes:
       value: "Hi! This issue tracker page is for all of Serilum's mods combined.\nPlease specify which mod you are having trouble with or a question about.\n\n> **Tell me the mod name! :)**"
   - type: input
+    id: mod-name
+    attributes:
+      label: "Mod name:"
+    validations:
+      required: true
+  - type: input
     id: minecraft-version
     attributes:
-      label: Minecraft version
+      label: "Minecraft version:"
   - type: dropdown
     id: modloader
     attributes:
-      label: Modloader
+      label: "Modloader:"
       options:
         - Fabric
         - Forge
@@ -23,15 +29,9 @@ body:
         - Other / All
     validations:
       required: true
-  - type: input
-    id: mod-name
-    attributes:
-      label: Mod name
-    validations:
-      required: true
   - type: textarea
     id: feature-description
     attributes:
-      label: Feature description
+      label: "Feature description:"
     validations:
       required: true

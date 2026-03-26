@@ -8,13 +8,21 @@ body:
     attributes:
       value: "Hi! This issue tracker page is for all of Serilum's mods combined.\nPlease specify which mod you are having trouble with or a question about.\n\n> **Tell me the mod name! :)**"
   - type: input
+    id: mod-name
+    attributes:
+      label: "Mod name:"
+  - type: input
+    id: mod-version
+    attributes:
+      label: "Mod version:"
+  - type: input
     id: minecraft-version
     attributes:
-      label: Minecraft version
+      label: "Minecraft version:"
   - type: dropdown
     id: modloader
     attributes:
-      label: Modloader
+      label: "Modloader:"
       options:
         - Fabric
         - Forge
@@ -23,26 +31,18 @@ body:
   - type: input
     id: modloader-version
     attributes:
-      label: Modloader version
+      label: "Modloader version:"
   - type: dropdown
     id: environment
     attributes:
-      label: Environment
+      label: "Environment:"
       options:
         - Singleplayer
         - Multiplayer
         - Both
-  - type: input
-    id: mod-name
-    attributes:
-      label: Mod name
-  - type: input
-    id: mod-version
-    attributes:
-      label: Mod version
   - type: textarea
     id: question
     attributes:
-      label: Question
+      label: "Question:"
     validations:
       required: true

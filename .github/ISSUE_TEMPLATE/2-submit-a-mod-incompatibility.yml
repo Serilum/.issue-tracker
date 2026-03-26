@@ -8,15 +8,35 @@ body:
     attributes:
       value: "Hi! This issue tracker page is for all of Serilum's mods combined.\nPlease specify which mod you are having trouble with or a question about.\n\n> **Tell me the mod name! :)**"
   - type: input
+    id: first-mod-name
+    attributes:
+      label: "First mod name:"
+    validations:
+      required: true
+  - type: input
+    id: first-mod-version
+    attributes:
+      label: "First mod version:"
+    validations:
+      required: true
+  - type: input
+    id: second-mod-name
+    attributes:
+      label: "Second mod name:"
+  - type: input
+    id: second-mod-version
+    attributes:
+      label: "Second mod version:"
+  - type: input
     id: minecraft-version
     attributes:
-      label: Minecraft version
+      label: "Minecraft version:"
     validations:
       required: true
   - type: dropdown
     id: modloader
     attributes:
-      label: Modloader
+      label: "Modloader:"
       options:
         - Fabric
         - Forge
@@ -28,45 +48,25 @@ body:
   - type: input
     id: modloader-version
     attributes:
-      label: Modloader version
+      label: "Modloader version:"
   - type: dropdown
     id: environment
     attributes:
-      label: Environment
+      label: "Environment:"
       options:
         - Singleplayer
         - Multiplayer
         - Both
     validations:
       required: true
-  - type: input
-    id: first-mod-name
-    attributes:
-      label: First mod name
-    validations:
-      required: true
-  - type: input
-    id: first-mod-version
-    attributes:
-      label: First mod version
-    validations:
-      required: true
-  - type: input
-    id: second-mod-name
-    attributes:
-      label: Second mod name
-  - type: input
-    id: second-mod-version
-    attributes:
-      label: Second mod version
   - type: textarea
     id: crash-report
     attributes:
-      label: Crash Report / Latest Log
+      label: "Crash Report / Latest Log:"
       description: "If available. Please either drag the file directly here, or use https://gist.github.com/ to prevent the paste from expiring."
   - type: textarea
     id: description
     attributes:
-      label: Description
+      label: "Description:"
     validations:
       required: true

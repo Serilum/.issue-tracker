@@ -10,14 +10,14 @@ body:
   - type: input
     id: mod-name
     attributes:
-      label: Mod name
+      label: "Mod name:"
   - type: input
     id: mod-version
     attributes:
-      label: Mod version
+      label: "Mod version:"
   - type: textarea
     id: comment
     attributes:
-      label: Comment
+      label: "Comment:"
     validations:
       required: true

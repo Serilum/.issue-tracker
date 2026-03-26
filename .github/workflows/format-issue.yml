@@ -25,7 +25,7 @@ jobs:
               const i = part.indexOf('\n');
               if (i === -1) continue;
               const val = part.substring(i + 1).trim();
-              s[part.substring(0, i).trim()] = val === '_No response_' ? '' : val;
+              s[part.substring(0, i).trim().replace(/:$/, '')] = val === '_No response_' ? '' : val;
             }
 
             const info = (key) => s[key] ? key + ': ' + s[key] + '\n' : '';
@@ -37,33 +37,33 @@ jobs:
 
             if (labels.includes('Bug')) {
               out = '## **Information**\n'
+                + infoReq('Mod name')
+                + infoReq('Mod version') + '\n'
                 + infoReq('Minecraft version')
                 + infoReq('Modloader')
                 + info('Modloader version')
-                + infoReq('Environment') + '\n'
-                + infoReq('Mod name')
-                + infoReq('Mod version')
+                + infoReq('Environment')
                 + section('Crash Report / Latest Log', 'Crash Report / Latest Log')
                 + sectionReq('Description', 'Description');
 
             } else if (labels.includes('Incompatibility')) {
               out = '## **Information**\n'
-                + infoReq('Minecraft version')
-                + infoReq('Modloader')
-                + info('Modloader version')
-                + infoReq('Environment') + '\n'
                 + infoReq('First mod name')
                 + info('First mod version') + '\n'
                 + info('Second mod name')
-                + info('Second mod version')
+                + info('Second mod version') + '\n'
+                + infoReq('Minecraft version')
+                + infoReq('Modloader')
+                + info('Modloader version')
+                + infoReq('Environment')
                 + section('Crash Report / Latest Log', 'Crash Report / Latest Log')
                 + sectionReq('Description', 'Description');
 
             } else if (labels.includes('Feature Request') && s['Mod name']) {
               out = '## **Information**\n'
+                + infoReq('Mod name') + '\n'
                 + info('Minecraft version')
-                + infoReq('Modloader') + '\n'
-                + infoReq('Mod name')
+                + infoReq('Modloader')
                 + sectionReq('Feature description', 'Feature description');
 
             } else if (labels.includes('Feature Request')) {
@@ -74,12 +74,12 @@ jobs:
 
             } else if (labels.includes('Question')) {
               out = '## **Information**\n'
+                + info('Mod name')
+                + info('Mod version') + '\n'
                 + info('Minecraft version')
                 + info('Modloader')
                 + info('Modloader version')
-                + info('Environment') + '\n'
-                + info('Mod name')
-                + info('Mod version')
+                + info('Environment')
                 + sectionReq('Question', 'Question');
 
             } else if (labels.includes('Comment')) {
