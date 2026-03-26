@@ -1,6 +1,6 @@
 name: "Submit a bug/crash/error."
 description: "Something doesn't work as expected. Please specify the mod name and provide a crash report if possible."
-labels: ["Mod Label Missing", "Bug"]
+labels: ["Bug", "Mod Label Missing"]
 assignees:
   - ricksouth
 body:

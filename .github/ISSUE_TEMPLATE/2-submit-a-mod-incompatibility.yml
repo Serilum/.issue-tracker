@@ -1,6 +1,6 @@
 name: "Submit a mod incompatibility."
 description: "Two mods aren't working together as they should. Please specify both mods and explain the situation."
-labels: ["Mod Label Missing", "Incompatibility"]
+labels: ["Incompatibility", "Mod Label Missing"]
 assignees:
   - ricksouth
 body:

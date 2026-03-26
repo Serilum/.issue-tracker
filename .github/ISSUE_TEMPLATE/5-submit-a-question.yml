@@ -1,6 +1,6 @@
 name: "Submit a question."
 description: "There are no wrong questions! If your question is about a specific mod, please mention the mod name."
-labels: ["Mod Label Missing", "Question"]
+labels: ["Question", "Mod Label Missing"]
 assignees:
   - ricksouth
 body:

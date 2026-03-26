@@ -1,6 +1,6 @@
 name: "Submit a feature idea for an existing mod."
 description: "Something could be improved or added! Please mention the mod name your feature request is for."
-labels: ["Mod Label Missing", "Feature Request"]
+labels: ["Feature Request", "Mod Label Missing"]
 assignees:
   - ricksouth
 body:
