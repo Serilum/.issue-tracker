@@ -28,8 +28,9 @@ jobs:
               s[part.substring(0, i).trim().replace(/:$/, '')] = val === '_No response_' ? '' : val;
             }
 
-            const info = (key) => s[key] ? key + ': ' + s[key] + '\n' : '';
-            const infoReq = (key) => key + ': ' + (s[key] || '') + '\n';
+            const val = (key) => (s[key] && s[key] !== 'None') ? s[key] : '';
+            const info = (key) => val(key) ? key + ': ' + val(key) + '\n' : '';
+            const infoReq = (key) => key + ': ' + (val(key) || '') + '\n';
             const section = (title, key) => s[key] ? '\n## **' + title + '**\n' + s[key] + '\n' : '';
             const sectionReq = (title, key) => '\n## **' + title + '**\n' + (s[key] || '') + '\n';
 
@@ -92,6 +93,7 @@ jobs:
               return;
             }
 
+            out = out.replace(/## \*\*Information\*\*\n\s*\n/g, '');
             out = out.replace(/\n{3,}/g, '\n\n').trim();
 
             if (out !== body.trim()) {
