@@ -18,7 +18,8 @@ body:
         - Forge
         - Fabric
         - NeoForge
-        - Quilt
+
+        - Other / All
     validations:
       required: true
   - type: input
@@ -54,13 +55,13 @@ body:
     attributes:
       label: Second mod version
   - type: textarea
+    id: crash-report
+    attributes:
+      label: Crash report
+      description: "If available. Please either drag the file directly here, or use https://gist.github.com/ to prevent the paste from expiring."
+  - type: textarea
     id: description
     attributes:
       label: Description
     validations:
       required: true
-  - type: textarea
-    id: crash-report
-    attributes:
-      label: Crash report
-      description: "If available. Please either drag the file directly here, or use https://gist.github.com/ to prevent the paste from expiring."

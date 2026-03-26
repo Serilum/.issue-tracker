@@ -18,7 +18,8 @@ body:
         - Forge
         - Fabric
         - NeoForge
-        - Quilt
+
+        - Other / All
     validations:
       required: true
   - type: input
