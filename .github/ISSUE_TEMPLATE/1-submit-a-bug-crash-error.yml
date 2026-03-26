@@ -46,6 +46,8 @@ body:
     id: mod-version
     attributes:
       label: Mod version
+    validations:
+      required: true
   - type: textarea
     id: crash-report
     attributes:

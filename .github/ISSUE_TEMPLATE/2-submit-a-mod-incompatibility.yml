@@ -46,6 +46,8 @@ body:
     id: first-mod-version
     attributes:
       label: First mod version
+    validations:
+      required: true
   - type: input
     id: second-mod-name
     attributes:
