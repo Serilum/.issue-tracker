@@ -104,3 +104,13 @@ jobs:
                 body: out
               });
             }
+
+            const modName = val('Mod name') || val('First mod name');
+            if (!modName && labels.includes('Mod Label Missing')) {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                name: 'Mod Label Missing'
+              });
+            }
