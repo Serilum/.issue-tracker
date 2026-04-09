@@ -1,4 +1,4 @@
-name: "Submit a comment. What's on your mind?"
+name: "💬 Submit a comment. What's on your mind?"
 description: "This can be about anything. Hello! :)"
 labels: ["Comment", "Mod Label Missing"]
 assignees:

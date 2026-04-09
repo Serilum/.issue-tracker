@@ -1,4 +1,4 @@
-name: "Submit a question."
+name: "❓ Submit a question."
 description: "There are no wrong questions! If your question is about a specific mod, please mention the mod name."
 labels: ["Question", "Mod Label Missing"]
 assignees:
