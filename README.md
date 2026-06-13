@@ -1,7 +1,7 @@
 [![Issue tracker](https://cdn.serilum.com/description/nameplate/issue-tracker.svg)](https://serilum.com/)
 ### The best way to reach me is to open an issue. Pick the form that fits and it walks you through everything that's needed. An answer may take some time, apologies for that. I appreciate every submission!
 
-### **→ [Open a new issue](https://github.com/Serilum/.issue-tracker/issues/new/choose)**
+**→ [Open a new issue](https://github.com/Serilum/.issue-tracker/issues/new/choose)**
 
 <br><br>
 
@@ -20,14 +20,14 @@
 ![Source code](https://cdn.serilum.com/description/nameplate/source-code.svg)
 ### You can find the source code for each mod here on GitHub:
 
-### **→ [Serilum's GitHub repositories](https://github.com/orgs/Serilum/repositories)**
+**→ [Serilum's GitHub repositories](https://github.com/orgs/Serilum/repositories)**
 
 <br><br>
 
 ![Browse the mods](https://cdn.serilum.com/description/nameplate/browse-the-mods.svg)
 ### If you'd like to see an easy to navigate complete list of all of Serilum's mods, look no further!
 
-### **→ [Serilum.com/mods](https://serilum.com/mods)**
+**→ [Serilum.com/mods](https://serilum.com/mods)**
 
 <br><br>
 
