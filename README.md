@@ -1,4 +1,4 @@
-![Issue tracker](https://cdn.serilum.com/description/nameplate/issue-tracker.svg)]
+![Issue tracker](https://cdn.serilum.com/description/nameplate/issue-tracker.svg)
 ### The best way to reach me is to open an issue. Pick the form that fits and it walks you through everything that's needed. An answer may take some time, apologies for that. I appreciate every submission!
 
 **→ [Open a new issue](https://github.com/Serilum/.issue-tracker/issues/new/choose)**
