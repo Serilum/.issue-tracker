@@ -15,7 +15,7 @@ jobs:
     if: github.event.action == 'opened'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v7
+      - uses: actions/github-script@v9
         with:
           script: |
             const issue = context.payload.issue;
@@ -127,10 +127,10 @@ jobs:
     steps:
 
       - name: checkout repo content
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: setup python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.12'
 
