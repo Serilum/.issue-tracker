@@ -1,13 +1,18 @@
-name: Format Issue Body
+name: Format Issue Body and Assign Mod Label
 on:
   issues:
-    types: [opened]
+    types: [opened, edited]
 
 permissions:
   issues: write
+  contents: read
+
+concurrency:
+  group: issue-${{ github.event.issue.number }}
 
 jobs:
   format:
+    if: github.event.action == 'opened'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v7
@@ -114,3 +119,26 @@ jobs:
                 name: 'Mod Label Missing'
               });
             }
+
+  label:
+    needs: format
+    if: ${{ !cancelled() && contains(github.event.issue.labels.*.name, 'Mod Label Missing') }}
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: checkout repo content
+        uses: actions/checkout@v4
+
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: install python packages
+        run: pip install requests
+
+      - name: execute py script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: python .github/scripts/AssignModLabel.py
