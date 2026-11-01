@@ -167,8 +167,9 @@ def resolveNameField(value, modIndex, allowSplit=True):
 	text = re.sub(r"^serilum\S*\s+", "", text, flags=re.IGNORECASE)
 	withoutVersion = re.split(r"[-_ ]v?\d+(?:\.\d+)+", text)[0]
 	withoutBrackets = re.sub(r"\(.*?\)", "", withoutVersion)
+	withoutModWord = re.sub(r"\s+mods?\s*$", "", withoutBrackets.strip(), flags=re.IGNORECASE)
 
-	for variant in [text, withoutVersion, withoutBrackets]:
+	for variant in [text, withoutVersion, withoutBrackets, withoutModWord]:
 		found = lookupModKey(modKey(variant), modIndex)
 		if found:
 			return [found], False
@@ -189,7 +190,7 @@ def resolveNameField(value, modIndex, allowSplit=True):
 			if len(names) > 0:
 				return names, isFuzzy
 
-	key = modKey(withoutBrackets)
+	key = modKey(withoutModWord)
 	if len(key) < 6:
 		return [], False
 
